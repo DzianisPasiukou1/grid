@@ -1,0 +1,1 @@
+﻿angular.module('gridTaskApp', ['ngRoute', 'ui.grid']);
