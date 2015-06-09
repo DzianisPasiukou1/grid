@@ -1,1 +1,2 @@
-﻿angular.module('gridTaskApp', ['ngRoute', 'ui.grid']);
+﻿angular.module('gridTaskApp', ['ngGrid'])
+	.value('templatesPath', 'app/templates/');

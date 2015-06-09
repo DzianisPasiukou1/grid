@@ -3,18 +3,28 @@
 <head>
 	<title></title>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/ng-grid/build/ng-grid.min.js"></script>
+	<script src="bower_components/ng-grid/build/ng-grid.js"></script>
 
+	<script src="bower_components/bootstrap-slider/bootstrap-slider.js"></script>
+
+	<script src="bower_components/angular-i18n/angular-locale_en-us.js"></script>
 	<script src="app/app.js"></script>
 
+	<script src="app/directives/custom-grid/grid-constants.js"></script>
 	<script src="app/directives/custom-grid/custom-grid-controller.js"></script>
 	<script src="app/directives/custom-grid/custom-grid.js"></script>
 
+	<script src="app/directives/trend-slider/trend-slider.js"></script>
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
+	<link href="bower_components/bootstrap-slider/slider.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="gridTaskApp">
+	<h2>Page header</h2>
 	<custom-grid></custom-grid>
 </body>
 </html>

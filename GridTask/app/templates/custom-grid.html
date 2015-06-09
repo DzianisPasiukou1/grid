@@ -1,0 +1,18 @@
+﻿<div class="custom-grid">
+	<div class="custom-grid__header">
+		<div class="custom-grid__name">
+			{{grid.name}}
+		</div>
+		<div class="custom-grid__count">
+			{{grid.count}}
+		</div>
+		<div>
+			<input type="button" value="Export to excel"/>
+			<input type="button" value="View: Grid" />
+		</div>
+	</div>
+	<div class="custom-grid__body" ng-grid="grid.options">
+	</div>
+	<div class="custom-grid__footer">
+	</div>
+</div>
