@@ -1,3 +1,7 @@
 ﻿.row-trend {
 	text-align: center;
+
+	&__value {
+		display: inline;
+	}
 }

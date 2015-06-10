@@ -1,10 +1,7 @@
 ﻿.row-date {
 	margin-left: 35%;
 
-	&__check {
+	&__value {
+		display: inline;
 	}
-}
-
-.ngCellText {
-	display: inline;
 }

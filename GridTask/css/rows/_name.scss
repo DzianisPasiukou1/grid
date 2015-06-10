@@ -1,3 +1,5 @@
 ﻿.row-name {
-	text-align: center;
+	&__value {
+		display: inline;
+	}
 }

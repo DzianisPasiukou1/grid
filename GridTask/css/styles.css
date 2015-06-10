@@ -5149,22 +5149,34 @@ button.close {
 .custom-grid__body {
   padding: 0;
   height: 500px; }
-  .custom-grid__body .ngHeaderText {
-    text-align: center; }
 
 .row-date {
   margin-left: 35%; }
+  .row-date__value {
+    display: inline; }
 
-.ngCellText {
+.row-name__value {
   display: inline; }
-
-.row-name {
-  text-align: center; }
 
 .row-value {
   text-align: center; }
 
 .row-trend {
   text-align: center; }
+  .row-trend__value {
+    display: inline; }
+
+.row-btn {
+  display: inline; }
+
+.toggle .ngRow {
+  display: table-row;
+  height: auto !important;
+  position: static; }
+.toggle .ngCell {
+  display: table-cell;
+  height: auto !important;
+  overflow: visible;
+  position: static; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -3,7 +3,9 @@
 		return {
 			restrict: 'E',
 			controller: 'customGridCtrl',
-			scope: {},
+			scope: {
+				data: '='
+			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {
 			}

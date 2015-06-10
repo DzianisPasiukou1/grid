@@ -42,10 +42,13 @@
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\directives\custom-grid\grid-constants.js" />
+    <Content Include="app\directives\details\details.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
+    <Content Include="app\logic\flexible-height.js" />
     <Content Include="app\templates\custom-grid.html" />
     <Content Include="app\templates\row-templates\date.html" />
     <Content Include="app\templates\row-templates\name.html" />
+    <Content Include="app\templates\row-templates\row.html" />
     <Content Include="app\templates\row-templates\trend.html" />
     <Content Include="app\templates\row-templates\value.html" />
     <Content Include="app\templates\trend-slider.html" />
@@ -186,6 +189,8 @@
     <Content Include="css\rows\_name.scss" />
     <Content Include="css\rows\_value.scss" />
     <Content Include="css\rows\_trend.scss" />
+    <Content Include="css\common\_buttons.scss" />
+    <Content Include="css\common\_toggle.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
