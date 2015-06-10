@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('customGrid', function (templatesPath) {
+	.directive('customGrid', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			controller: 'customGridCtrl',
@@ -10,4 +10,4 @@
 			link: function (scope, element, attrs, controller) {
 			}
 		};
-	});
+	}]);

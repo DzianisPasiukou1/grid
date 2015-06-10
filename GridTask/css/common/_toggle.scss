@@ -11,4 +11,10 @@
 		overflow: visible;
 		position: static;
 	}
+
+	.wrap {
+		white-space: normal;
+		text-overflow: clip;
+		overflow: auto;
+	}
 }
