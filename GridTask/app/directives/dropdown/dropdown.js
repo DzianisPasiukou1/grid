@@ -7,6 +7,9 @@
 				selected: '='
 			},
 			controller: 'dropdownCtrl',
-			templateUrl: templatesPath + 'dropdown.html'
+			templateUrl: templatesPath + 'dropdown.html',
+			link: function (scope, element, attrs) {
+				element.addClass('dropdown');
+			}
 		}
 	}]);

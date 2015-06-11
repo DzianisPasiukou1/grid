@@ -45,11 +45,13 @@
     <Content Include="app\directives\details\details.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
+    <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page\page-content\page-content-controller.js" />
     <Content Include="app\directives\page\page-content\page-content.js" />
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
+    <Content Include="app\directives\search\search.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\logic\flexible-height.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
@@ -65,6 +67,7 @@
     <Content Include="app\templates\row-templates\row.html" />
     <Content Include="app\templates\row-templates\trend.html" />
     <Content Include="app\templates\row-templates\value.html" />
+    <Content Include="app\templates\search.html" />
     <Content Include="app\templates\trend-slider.html" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
@@ -208,6 +211,7 @@
     <Content Include="css\common\_wrap.scss" />
     <Content Include="css\common\_actions.scss" />
     <Content Include="css\_grid.scss" />
+    <Content Include="css\_options.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

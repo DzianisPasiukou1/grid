@@ -4,6 +4,6 @@
 </button>
 <ul class="actions-menu" role="menu">
 	<li role="presentation" ng-repeat="action in actions.values">
-		<a role="menuitem" ng-click="selected = action" tabindex="-1" href="">{{action.label}}</a>
+		<a role="menuitem" ng-click="select(action)" tabindex="-1" href="">{{action.label}}</a>
 	</li>
 </ul>

@@ -3,6 +3,7 @@
 		return {
 			restrict: 'E',
 			scope: {},
-			templateUrl: templatesPath + 'content-options.html'
+			templateUrl: templatesPath + 'content-options.html',
+			controller: 'contentOptionsCtrl'
 		}
 	}]);
