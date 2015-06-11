@@ -9,5 +9,11 @@
 }
 
 .actions-group {
+	position: absolute;
 	display: inline;
+	right: 0;
+
+	&__dropdown {
+		@extend .dropdown;
+	}
 }

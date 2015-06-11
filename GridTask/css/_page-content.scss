@@ -1,0 +1,25 @@
+﻿.page-content {
+	@extend .panel;
+	@extend .panel-default;
+
+	&__header {
+		@extend .panel-heading;
+	}
+
+	&__name {
+		display: inline;
+	}
+
+	&__count {
+		display: inline;
+	}
+
+	&__body {
+		@extend .panel-body;
+		padding: 0;
+	}
+
+	&__footer {
+		@extend .panel-footer;
+	}
+}

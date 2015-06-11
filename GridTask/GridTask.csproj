@@ -43,14 +43,18 @@
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\directives\custom-grid\grid-constants.js" />
     <Content Include="app\directives\details\details.js" />
+    <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
+    <Content Include="app\directives\page\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page\page-content\page-content-controller.js" />
     <Content Include="app\directives\page\page-content\page-content.js" />
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\logic\flexible-height.js" />
+    <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\services\grid-service.js" />
+    <Content Include="app\templates\content-options.html" />
     <Content Include="app\templates\custom-grid.html" />
     <Content Include="app\templates\dropdown.html" />
     <Content Include="app\templates\page-content.html" />
@@ -194,7 +198,7 @@
     <Content Include="bower_components\ng-grid\package.json" />
     <Content Include="bower_components\ng-grid\plugins\README.md" />
     <Content Include="bower_components\ng-grid\README.md" />
-    <Content Include="css\_grid.scss" />
+    <Content Include="css\_page-content.scss" />
     <Content Include="css\rows\_date.scss" />
     <Content Include="css\rows\_name.scss" />
     <Content Include="css\rows\_value.scss" />
@@ -203,6 +207,7 @@
     <Content Include="css\common\_toggle.scss" />
     <Content Include="css\common\_wrap.scss" />
     <Content Include="css\common\_actions.scss" />
+    <Content Include="css\_grid.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

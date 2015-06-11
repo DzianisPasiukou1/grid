@@ -3,8 +3,10 @@
 		return {
 			restrict: 'E',
 			scope: {
-				actions: '=dropdown'
+				actions: '=',
+				selected: '='
 			},
+			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html'
 		}
 	}]);

@@ -1,45 +1,23 @@
 ﻿.custom-grid {
-	@extend .panel;
-	@extend .panel-default;
+	padding: 0;
+	height: 500px;
+	border: 1px solid rgb(212,212,212);
 
-	&__header {
-		@extend .panel-heading;
+	.ngHeaderText {
+		text-align: center;
 	}
 
-	&__name {
-		display: inline;
+	.ngVerticalBar {
+		width: 0px;
 	}
 
-	&__count {
-		display: inline;
+	.ngViewport {
+		overflow-x: hidden;
 	}
 
-	&__body {
-		@extend .panel-body;
-		padding: 0;
-		height: 500px;
-		border: 1px solid rgb(212,212,212);
-
-		.ngHeaderText {
-			text-align: center;
-		}
-
-		.ngVerticalBar {
-			width: 0px;
-		}
-
-		.ngViewport {
-			overflow-x: hidden;
-		}
-
-		.ngCell {
-		}
-
-		.ngRow {
-		}
+	.ngCell {
 	}
 
-	&__footer {
-		@extend .panel-footer;
+	.ngRow {
 	}
 }
