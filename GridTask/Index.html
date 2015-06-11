@@ -11,6 +11,12 @@
 
 	<script src="bower_components/angular-i18n/angular-locale_en-us.js"></script>
 	<script src="app/app.js"></script>
+	<script src="app/services/grid-service.js"></script>
+
+	<script src="app/directives/page/page-controller.js"></script>
+	<script src="app/directives/page/page.js"></script>
+	<script src="app/directives/page/page-content/page-content-controller.js"></script>
+	<script src="app/directives/page/page-content/page-content.js"></script>
 
 	<script src="app/directives/custom-grid/grid-constants.js"></script>
 	<script src="app/directives/custom-grid/custom-grid-controller.js"></script>
@@ -26,7 +32,6 @@
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
 <body ng-app="gridTaskApp">
-	<h2>Page header</h2>
-	<custom-grid></custom-grid>
+	<page></page>
 </body>
 </html>

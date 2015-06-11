@@ -4,7 +4,7 @@
 			restrict: 'E',
 			controller: 'customGridCtrl',
 			scope: {
-				data: '='
+				data: '=gridData'
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {

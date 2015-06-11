@@ -44,12 +44,16 @@
     <Content Include="app\directives\custom-grid\grid-constants.js" />
     <Content Include="app\directives\details\details.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
+    <Content Include="app\directives\page\page-content\page-content-controller.js" />
+    <Content Include="app\directives\page\page-content\page-content.js" />
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\logic\flexible-height.js" />
+    <Content Include="app\services\grid-service.js" />
     <Content Include="app\templates\custom-grid.html" />
     <Content Include="app\templates\dropdown.html" />
+    <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page.html" />
     <Content Include="app\templates\row-templates\action.html" />
     <Content Include="app\templates\row-templates\date.html" />
