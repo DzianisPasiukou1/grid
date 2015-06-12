@@ -11,5 +11,6 @@
 
 		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel' }] };
 		$scope.views = { name: 'View: ', values: [{ label: 'Grid' }] };
+		$scope.selectedOptions = {};
 
 	}]);

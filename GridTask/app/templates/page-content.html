@@ -13,10 +13,10 @@
 	</div>
 	<div class="page-content__body">
 		<div class="page-content__options">
-			<content-options></content-options>
+			<content-options selected-options="selectedOptions"></content-options>
 		</div>
 		<div class="page-content__list">
-			<custom-grid grid-data="data" export-to="export" ng-if="view.label == 'Grid'"></custom-grid>
+			<custom-grid grid-data="data" filters="selectedOptions" export-to="export" ng-if="view.label == 'Grid'"></custom-grid>
 		</div>
 	</div>
 	<div class="page-content__footer">

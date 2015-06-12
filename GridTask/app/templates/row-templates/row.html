@@ -3,5 +3,6 @@
 		<button type="button" class="row-btn" ng-if="$index == $last" details details-class="'toggle'" row="row" row-height="rowHeight">
 			<span ng-class="{'glyphicon glyphicon-plus' : !row.isToggle, 'glyphicon glyphicon-minus': row.isToggle}"></span>
 		</button>
+		<input type="checkbox" class="row-check" ng-if="$index == $last" ng-model="row.entity.isCheck" />
 	</div>
 </div>

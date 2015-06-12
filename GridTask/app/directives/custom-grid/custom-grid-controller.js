@@ -2,10 +2,12 @@
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
 		$scope.data.map(function (value) {
 			value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
+			value.isCheck = false;
 		});
+		$scope.filterData = angular.copy($scope.data, []);
 
 		$scope.options = {
-			data: 'data',
+			data: 'filterData',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {

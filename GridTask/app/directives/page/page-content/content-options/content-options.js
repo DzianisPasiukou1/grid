@@ -2,7 +2,9 @@
 	.directive('contentOptions', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			scope: {},
+			scope: {
+				selectedOptions: '='
+			},
 			templateUrl: templatesPath + 'content-options.html',
 			controller: 'contentOptionsCtrl'
 		}
