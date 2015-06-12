@@ -2,7 +2,9 @@
 	.directive('search', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			scope: {},
+			scope: {
+				searchValue: '='
+			},
 			templateUrl: templatesPath + 'search.html',
 		}
 	}]);

@@ -5203,5 +5203,9 @@ button.close {
   .custom-grid .ngViewport {
     overflow-x: hidden; }
 
+.options {
+  margin: 1% 1%; }
+  .options__show {
+    margin-left: 65%; }
 
 /*# sourceMappingURL=styles.css.map */

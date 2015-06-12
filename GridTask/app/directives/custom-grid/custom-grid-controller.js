@@ -13,6 +13,7 @@
 			afterSelectionChange: function (rowitem, event) {
 				rowitem.entity.action.isShow = rowitem.selected;
 			},
+			filterOptions: { filterText: '' },
 			rowHeight: 50,
 			columnDefs: [
 				{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
@@ -22,6 +23,12 @@
 				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html' }],
 			plugins: []
 		};
+
+		$scope.$watch('filters.searchValue', function (value) {
+			if (value) {
+				$scope.options.filterOptions.filterText = 'name:' + value;
+			}
+		});
 
 		function plugin() {
 			if ($scope.exportTo.label == 'Excel') {

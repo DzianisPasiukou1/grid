@@ -1,8 +1,19 @@
 ﻿.options {
+	margin: 1% 1%;
+
+	&__check {
+	}
 
 	&__refresh {
 		@extend .btn;
 		@extend .btn-default;
+	}
+
+	&__more {
+	}
+
+	&__show {
+		margin-left: 65%;
 	}
 
 	&__search {
