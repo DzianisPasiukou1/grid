@@ -1,23 +1,50 @@
 ﻿.custom-grid {
 	padding: 0;
 	height: 500px;
-	border: 1px solid rgb(212,212,212);
+
+	.ngTopPanel {
+		background-color: #5a5a5a;
+		Border: 1px solid #4d4d4d;
+		color: #a8a8a8;
+		font-size: 13px;
+		text-decoration: none;
+	}
+
+	.ngHeaderCell {
+		/*border-right: 1px solid #121010;*/
+		border-radius: 1px;
+		box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
+		text-transform: uppercase;
+	}
 
 	.ngHeaderText {
 		text-align: center;
 	}
 
 	.ngVerticalBar {
-		width: 0px;
+		width: 0;
 	}
 
 	.ngViewport {
 		overflow-x: hidden;
+		border: 0;
 	}
 
 	.ngCell {
 	}
 
 	.ngRow {
+		background: white;
+		border: 1px solid #e5e5e5;
+		line-height: 1.6em;
+		vertical-align: middle;
+		color: #444444;
+		font-size: 14px;
+		font-family: Arial, Helvetica, sans-serif;
+		line-height: 1.6em;
+
+		&.selected {
+			background-color: rgb(149,207,235);
+		}
 	}
 }

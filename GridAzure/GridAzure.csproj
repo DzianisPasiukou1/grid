@@ -194,6 +194,7 @@
     <Content Include="app\templates\page.html" />
     <Content Include="app\templates\row-templates\action.html" />
     <Content Include="app\templates\row-templates\date.html" />
+    <Content Include="app\templates\row-templates\header-row.html" />
     <Content Include="app\templates\row-templates\name.html" />
     <Content Include="app\templates\row-templates\row.html" />
     <Content Include="app\templates\row-templates\trend.html" />
@@ -1844,8 +1845,13 @@
     <Content Include="bower_components\ng-grid\plugins\ng-grid-reorderable.js" />
     <Content Include="bower_components\ng-grid\plugins\ng-grid-wysiwyg-export.js" />
     <Content Include="bower_components\ng-grid\plugins\playground.html" />
-    <Content Include="css\styles.css" />
-    <Content Include="css\styles.min.css" />
+    <Content Include="css\common\search.png" />
+    <Content Include="css\styles.css">
+      <DependentUpon>styles.scss</DependentUpon>
+    </Content>
+    <Content Include="css\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="css\common\_actions.scss" />
     <Content Include="css\common\_buttons.scss" />
@@ -1855,7 +1861,6 @@
     <Content Include="css\rows\_name.scss" />
     <Content Include="css\rows\_trend.scss" />
     <Content Include="css\rows\_value.scss" />
-    <Content Include="css\styles.css.map" />
     <Content Include="css\styles.scss" />
     <Content Include="css\_grid.scss" />
     <Content Include="css\_options.scss" />
@@ -2064,6 +2069,10 @@
     <Content Include="bower_components\ng-grid\package.json" />
     <Content Include="bower_components\ng-grid\plugins\README.md" />
     <Content Include="bower_components\ng-grid\README.md" />
+    <Content Include="css\styles.css.map">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
+    <Content Include="css\rows\_action.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
