@@ -14,7 +14,7 @@
 					scope.row.isToggle = !scope.row.isToggle;
 
 					var step = scope.row.elm.context.scrollHeight - scope.rowHeight;
-					var top = scope.row.elm.position().top;
+					var top = Math.round(scope.row.elm.position().top);
 					var children = $(scope.row.elm).parent().children();
 
 					if (scope.row.isToggle) {

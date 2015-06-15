@@ -1327,15 +1327,15 @@ blockquote {
     blockquote footer:before, blockquote small:before, blockquote .small:before {
       content: '\2014 \00A0'; }
 
-.blockquote-reverse, blockquote.pull-right {
+.blockquote-reverse, blockquote.pull-right, blockquote.options__search, blockquote.options__show {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #eeeeee;
   border-left: 0;
   text-align: right; }
-  .blockquote-reverse footer:before, .blockquote-reverse small:before, .blockquote-reverse .small:before, blockquote.pull-right footer:before, blockquote.pull-right small:before, blockquote.pull-right .small:before {
+  .blockquote-reverse footer:before, .blockquote-reverse small:before, .blockquote-reverse .small:before, blockquote.pull-right footer:before, blockquote.options__search footer:before, blockquote.options__show footer:before, blockquote.pull-right small:before, blockquote.options__search small:before, blockquote.options__show small:before, blockquote.pull-right .small:before, blockquote.options__search .small:before, blockquote.options__show .small:before {
     content: ''; }
-  .blockquote-reverse footer:after, .blockquote-reverse small:after, .blockquote-reverse .small:after, blockquote.pull-right footer:after, blockquote.pull-right small:after, blockquote.pull-right .small:after {
+  .blockquote-reverse footer:after, .blockquote-reverse small:after, .blockquote-reverse .small:after, blockquote.pull-right footer:after, blockquote.options__search footer:after, blockquote.options__show footer:after, blockquote.pull-right small:after, blockquote.options__search small:after, blockquote.options__show small:after, blockquote.pull-right .small:after, blockquote.options__search .small:after, blockquote.options__show .small:after {
     content: '\00A0 \2014'; }
 
 address {
@@ -2815,7 +2815,7 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
-  .dropdown-menu.pull-right, .pull-right.actions-menu {
+  .dropdown-menu.pull-right, .pull-right.actions-menu, .actions-menu.options__search, .actions-menu.options__show, .dropdown-menu.options__search, .dropdown-menu.options__show {
     right: 0;
     left: auto; }
   .dropdown-menu .divider, .actions-menu .divider {
@@ -2881,7 +2881,7 @@ tbody.collapse.in {
   top: 0;
   z-index: 990; }
 
-.pull-right > .dropdown-menu, .pull-right > .actions-menu {
+.pull-right > .dropdown-menu, .options__search > .dropdown-menu, .options__show > .dropdown-menu, .pull-right > .actions-menu, .options__search > .actions-menu, .options__show > .actions-menu {
   right: 0;
   left: auto; }
 
@@ -4014,7 +4014,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 .media-object {
   display: block; }
 
-.media-right, .media > .pull-right {
+.media-right, .media > .pull-right, .media > .options__search, .media > .options__show {
   padding-left: 10px; }
 
 .media-left, .media > .pull-left {
@@ -4932,7 +4932,7 @@ button.close {
   margin-left: auto;
   margin-right: auto; }
 
-.pull-right {
+.pull-right, .options__search, .options__show {
   float: right !important; }
 
 .pull-left {
@@ -5142,6 +5142,8 @@ button.close {
     display: none !important; }
  }
 
+.page-content__header {
+  padding-bottom: 1%; }
 .page-content__name {
   display: inline; }
 .page-content__count {
@@ -5204,8 +5206,8 @@ button.close {
     overflow-x: hidden; }
 
 .options {
-  margin: 1% 1%; }
+  padding: 1% 1%; }
   .options__show {
-    margin-left: 65%; }
+    padding-right: 1%; }
 
 /*# sourceMappingURL=styles.css.map */

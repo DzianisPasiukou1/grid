@@ -1,5 +1,5 @@
 ﻿.options {
-	margin: 1% 1%;
+	padding: 1% 1%;
 
 	&__check {
 	}
@@ -12,10 +12,12 @@
 	&__more {
 	}
 
-	&__show {
-		margin-left: 65%;
+	&__search {
+		@extend .pull-right;
 	}
 
-	&__search {
+	&__show {
+		@extend .pull-right;
+		padding-right: 1%;
 	}
 }
