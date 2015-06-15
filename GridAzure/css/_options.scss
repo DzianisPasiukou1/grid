@@ -1,0 +1,23 @@
+﻿.options {
+	padding: 1% 1%;
+
+	&__check {
+	}
+
+	&__refresh {
+		@extend .btn;
+		@extend .btn-default;
+	}
+
+	&__more {
+	}
+
+	&__search {
+		@extend .pull-right;
+	}
+
+	&__show {
+		@extend .pull-right;
+		padding-right: 1%;
+	}
+}

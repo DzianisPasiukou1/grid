@@ -1,0 +1,9 @@
+﻿<button type="button" class="actions" data-toggle="dropdown" aria-expanded="false">
+	<span>{{actions.name}} {{selected.label}}</span>
+	<span class="caret"></span>
+</button>
+<ul class="actions-menu" role="menu">
+	<li role="presentation" ng-repeat="action in actions.values">
+		<a role="menuitem" ng-click="select(action)" tabindex="-1" href="">{{action.label}}</a>
+	</li>
+</ul>

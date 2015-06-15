@@ -1,0 +1,5 @@
+﻿<div class="action" ng-if="row.getProperty(col.field).isShow">
+	<div class="btn-group" ng-repeat="action in row.getProperty(col.field).values">
+		<button class="btn btn-default">{{action.label}}</button>
+	</div>
+</div>	
