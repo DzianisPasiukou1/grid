@@ -172,7 +172,30 @@ angular.module('gridTaskApp')
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',
 			link: function (scope, element, attrs) {
-				element.addClass('dropdown');
+				element.find('ul').hide();
+
+				element.click(function () {
+					if (element.find('ul').is(':visible')) {
+						element.find('ul').hide();
+					}
+					else {
+						element.find('ul').show();
+					}
+				});
+
+				element.focusout(function () {
+					if (element.find('ul').is(':visible')) {
+						element.find('ul').hide();
+					}
+					if (element.is(":focus")) {
+						if (element.find('ul').is(':visible')) {
+							element.find('ul').hide();
+						}
+						else {
+							element.find('ul').show();
+						}
+					}
+				});
 			}
 		}
 	}]);
@@ -264,6 +287,50 @@ angular.module('gridTaskApp')
 				});
 			}
 		};
+	}]);
+///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
+angular.module('gridTaskApp')
+	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
+		$scope.selected = $scope.actions.values[0];
+
+		$scope.select = function (action) {
+			$scope.selected = action;
+		}
+	}]);
+///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
+angular.module('gridTaskApp')
+	.directive('checkboxSelect', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			scope: {
+				actions: '=',
+				selected: '='
+			},
+			templateUrl: templatesPath + 'checkbox-select.html',
+			controller: 'checkboxSelectCtrl'
+		}
+	}]);
+///#source 1 1 /app/directives/split-button/split-button-controller.js
+angular.module('gridTaskApp')
+	.controller('splitButtonCtrl', ['$scope', function ($scope) {
+		$scope.selected = $scope.actions.values[0];
+
+		$scope.select = function (action) {
+			$scope.selected = action;
+		}
+	}]);
+///#source 1 1 /app/directives/split-button/split-button.js
+angular.module('gridTaskApp')
+	.directive('splitButton', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			scope: {
+				actions: '=',
+				selected: '='
+			},
+			templateUrl: templatesPath + 'split-button.html',
+			controller: 'splitButtonCtrl'
+		}
 	}]);
 ///#source 1 1 /app/plugins/ngGridCsvExportPlugin.js
 // Todo:

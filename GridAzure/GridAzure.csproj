@@ -170,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
+    <Content Include="app\directives\checkbox-select\checkbox-select.js" />
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\directives\custom-grid\grid-constants.js" />
@@ -184,9 +186,12 @@
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
     <Content Include="app\directives\search\search.js" />
+    <Content Include="app\directives\split-button\split-button-controller.js" />
+    <Content Include="app\directives\split-button\split-button.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\services\grid-service.js" />
+    <Content Include="app\templates\checkbox-select.html" />
     <Content Include="app\templates\content-options.html" />
     <Content Include="app\templates\content-options.min.html">
       <DependentUpon>content-options.html</DependentUpon>
@@ -239,6 +244,7 @@
     <Content Include="app\templates\search.min.html">
       <DependentUpon>search.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\split-button.html" />
     <Content Include="app\templates\trend-slider.html" />
     <Content Include="app\templates\trend-slider.min.html">
       <DependentUpon>trend-slider.html</DependentUpon>
@@ -1893,6 +1899,7 @@
     <Content Include="bundles\app.min.js">
       <DependentUpon>app.js</DependentUpon>
     </Content>
+    <Content Include="content\icons\search.png" />
     <Content Include="content\icons\less.ico" />
     <Content Include="content\icons\more.ico" />
     <Content Include="css\styles.css">
@@ -2147,6 +2154,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="sources\sources.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

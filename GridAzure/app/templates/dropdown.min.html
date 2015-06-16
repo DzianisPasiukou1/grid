@@ -1,1 +1,1 @@
-<select class="actions" ng-options="action as action.label for action in actions.values" ng-model="selected"></select>
+<button type="button" class="actions"> {{selected.label}} <span class="expand glyphicon glyphicon-menu-down"></span> </button><ul class="actions-dropdown"><li ng-repeat="action in actions.values"><a>{{action.label}}</a></li></ul>
