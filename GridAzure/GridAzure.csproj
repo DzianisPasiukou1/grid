@@ -1845,7 +1845,6 @@
     <Content Include="bower_components\ng-grid\plugins\ng-grid-reorderable.js" />
     <Content Include="bower_components\ng-grid\plugins\ng-grid-wysiwyg-export.js" />
     <Content Include="bower_components\ng-grid\plugins\playground.html" />
-    <Content Include="css\common\search.png" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
@@ -1855,7 +1854,7 @@
     <Content Include="Global.asax" />
     <Content Include="css\common\_actions.scss" />
     <Content Include="css\common\_buttons.scss" />
-    <Content Include="css\common\_toggle.scss" />
+    <Content Include="css\_toggle.scss" />
     <Content Include="css\common\_wrap.scss" />
     <Content Include="css\rows\_date.scss" />
     <Content Include="css\rows\_name.scss" />
@@ -2073,6 +2072,8 @@
       <DependentUpon>styles.css</DependentUpon>
     </Content>
     <Content Include="css\rows\_action.scss" />
+    <Content Include="css\common\_my-metro.scss" />
+    <Content Include="css\common\_my-panel.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

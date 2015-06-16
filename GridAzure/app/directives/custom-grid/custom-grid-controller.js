@@ -14,7 +14,9 @@
 				rowitem.entity.action.isShow = rowitem.selected;
 			},
 			filterOptions: { filterText: '' },
-			rowHeight: 50,
+			rowHeight: 100,
+			headerRowHeight: 50,
+			showFooter: true,
 			columnDefs: [
 				{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
 				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html' },

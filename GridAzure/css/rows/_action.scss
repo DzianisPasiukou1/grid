@@ -1,12 +1,9 @@
 ﻿.action {
 	&__group {
-		@extend .btn-group;
+		display: inline;
 	}
 
 	&__btn {
 		@extend .metro-btn;
-		text-align: center;
-		margin: 10px;
-		margin-right: 5px;
 	}
 }

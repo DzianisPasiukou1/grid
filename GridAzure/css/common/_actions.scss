@@ -1,10 +1,9 @@
 ﻿.actions {
 	@extend .metro-btn;
-	@extend .dropdown-toggle;
-}
 
-.actions-menu {
-	@extend .dropdown-menu;
+	option {
+		background-color: white;
+	}
 }
 
 .actions-group {

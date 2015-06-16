@@ -1,9 +1,8 @@
 ﻿.page-content {
-	@extend .panel;
-	@extend .panel-default;
+	@extend .my-panel;
 
 	&__header {
-		@extend .panel-heading;
+		@extend .heading;
 		padding-bottom: 1%;
 	}
 
@@ -16,11 +15,11 @@
 	}
 
 	&__body {
-		@extend .panel-body;
+		@extend .content;
 		padding: 0;
 	}
 
 	&__footer {
-		@extend .panel-footer;
+		@extend .footer;
 	}
 }
