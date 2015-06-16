@@ -3868,3 +3868,8 @@ GridAzure/obj/Release/TransformWebConfig/assist/Web.config
 GridAzure/obj/Release/TransformWebConfig/original/Web.config
 GridAzure/obj/Release/TransformWebConfig/transformed/Web.config
 GridAzure/obj/Release/_WPPLastBuildInfo.txt
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/row-templates/header-row.html
+/GridAzure/obj/Release/Package/PackageTmp/css/_toggle.scss
+/GridAzure/obj/Release/Package/PackageTmp/css/common/_my-metro.scss
+/GridAzure/obj/Release/Package/PackageTmp/css/common/_my-panel.scss
+/GridAzure/obj/Release/Package/PackageTmp/css/rows/_action.scss

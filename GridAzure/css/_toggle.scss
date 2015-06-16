@@ -1,0 +1,23 @@
+﻿.toggle {
+	-webkit-transition: top 2s; /* Safari */
+	transition: top 2s;
+
+	.ngRow {
+		display: table-row;
+		height: auto !important;
+		position: static;
+	}
+
+	.ngCell {
+		display: table-cell;
+		height: auto !important;
+		overflow: visible;
+		position: static;
+	}
+
+	.wrap {
+		white-space: normal;
+		text-overflow: clip;
+		overflow: auto;
+	}
+}

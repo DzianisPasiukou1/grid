@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('trendSlider', function (templatesPath) {
+	.directive('trendSlider', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -14,4 +14,4 @@
 				});
 			}
 		};
-	});
+	}]);

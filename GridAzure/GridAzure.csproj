@@ -174,6 +174,7 @@
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\directives\custom-grid\grid-constants.js" />
     <Content Include="app\directives\details\details.js" />
+    <Content Include="app\directives\download\download.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
@@ -184,23 +185,64 @@
     <Content Include="app\directives\page\page.js" />
     <Content Include="app\directives\search\search.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
-    <Content Include="app\logic\flexible-height.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\services\grid-service.js" />
     <Content Include="app\templates\content-options.html" />
+    <Content Include="app\templates\content-options.min.html">
+      <DependentUpon>content-options.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\custom-grid.html" />
+    <Content Include="app\templates\custom-grid.min.html">
+      <DependentUpon>custom-grid.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\dropdown.html" />
+    <Content Include="app\templates\dropdown.min.html">
+      <DependentUpon>dropdown.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\page-content.html" />
+    <Content Include="app\templates\page-content.min.html">
+      <DependentUpon>page-content.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\page.html" />
+    <Content Include="app\templates\page.min.html">
+      <DependentUpon>page.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\action.html" />
+    <Content Include="app\templates\row-templates\action.min.html">
+      <DependentUpon>action.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\date.html" />
+    <Content Include="app\templates\row-templates\date.min.html">
+      <DependentUpon>date.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\header-row.html" />
+    <Content Include="app\templates\row-templates\header-row.min.html">
+      <DependentUpon>header-row.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\name.html" />
+    <Content Include="app\templates\row-templates\name.min.html">
+      <DependentUpon>name.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\row.html" />
+    <Content Include="app\templates\row-templates\row.min.html">
+      <DependentUpon>row.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\trend.html" />
+    <Content Include="app\templates\row-templates\trend.min.html">
+      <DependentUpon>trend.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\row-templates\value.html" />
+    <Content Include="app\templates\row-templates\value.min.html">
+      <DependentUpon>value.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\search.html" />
+    <Content Include="app\templates\search.min.html">
+      <DependentUpon>search.html</DependentUpon>
+    </Content>
     <Content Include="app\templates\trend-slider.html" />
+    <Content Include="app\templates\trend-slider.min.html">
+      <DependentUpon>trend-slider.html</DependentUpon>
+    </Content>
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -1845,12 +1887,21 @@
     <Content Include="bower_components\ng-grid\plugins\ng-grid-reorderable.js" />
     <Content Include="bower_components\ng-grid\plugins\ng-grid-wysiwyg-export.js" />
     <Content Include="bower_components\ng-grid\plugins\playground.html" />
+    <Content Include="bundles\app.js">
+      <DependentUpon>app.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="bundles\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
+    <Content Include="content\icons\less.ico" />
+    <Content Include="content\icons\more.ico" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
     <Content Include="css\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="download.html" />
     <Content Include="Global.asax" />
     <Content Include="css\common\_actions.scss" />
     <Content Include="css\common\_buttons.scss" />
@@ -2074,6 +2125,12 @@
     <Content Include="css\rows\_action.scss" />
     <Content Include="css\common\_my-metro.scss" />
     <Content Include="css\common\_my-panel.scss" />
+    <Content Include="bundles\app.js.bundle" />
+    <Content Include="bundles\app.min.js.map">
+      <DependentUpon>app.min.js</DependentUpon>
+    </Content>
+    <Content Include="css\common\_link.scss" />
+    <Content Include="css\common\_expands.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
