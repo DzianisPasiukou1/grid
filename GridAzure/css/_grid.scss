@@ -64,22 +64,31 @@
 		}
 
 		&__name {
-			float: left;
+			/*float: left;*/
+			/*padding-left: 180px;*/
 			text-align: center;
+			/*display: inline;*/
+			padding-top: 15px;
+			position: absolute;
+			padding-left: 45%;
 		}
 
 		&__sort-down {
-			font-size: xx-large;
-
-			span {
-			}
+			font-size: 30px;
+			z-index: 10000;
+			/*float: left;*/
+			/*display: inline;*/
+			padding-top: 10px;
+			float: right;
 		}
 
 		&__sort-up {
-			font-size: xx-large;
-
-			span {
-			}
+			font-size: 30px;
+			z-index: 100;
+			/*float: left;*/
+			/*display: inline;*/
+			padding-top: 10px;
+			float: right;
 		}
 	}
 }

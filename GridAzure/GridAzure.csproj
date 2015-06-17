@@ -1909,6 +1909,8 @@
     <Content Include="bundles\app.min.js">
       <DependentUpon>app.js</DependentUpon>
     </Content>
+    <Content Include="content\arrow_down.png" />
+    <Content Include="content\arrow_up.png" />
     <Content Include="content\filter.jpg" />
     <Content Include="content\icons\search.png" />
     <Content Include="content\icons\less.ico" />
