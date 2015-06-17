@@ -137,13 +137,11 @@
   text-overflow: ellipsis;
   overflow: hidden; }
 
-.actions option {
-  background-color: white; }
-
 .actions-group {
   position: absolute;
   display: inline;
-  right: 0; }
+  right: 0;
+  margin-right: 1%; }
 
 .actions-dropdown {
   position: absolute;
@@ -275,18 +273,19 @@
 .options {
   padding: 1% 1%; }
   .options__check {
+    padding-right: 1%;
     position: relative; }
     .options__check button {
       display: inline; }
       .options__check button .expand {
         display: inline; }
   .options__refresh {
+    margin-right: 1%;
     position: relative; }
   .options__more {
     position: relative; }
   .options__search {
-    position: absolute;
-    right: 1%; }
+    float: right; }
     .options__search .search {
       border-color: #787878;
       padding: 0 1rem;
@@ -306,8 +305,7 @@
       background: url(../content/icons/search.png) no-repeat right;
       background-size: 25px 25px; }
   .options__show {
-    position: absolute;
-    right: 215px; }
+    float: right; }
 
 .action__group {
   display: inline; }
