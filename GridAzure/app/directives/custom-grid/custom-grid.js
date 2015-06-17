@@ -11,16 +11,23 @@
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {
 				scope.$watch('filters.check', function (check) {
-					scope.filterData = scope.data.filter(function (value) {
-						if (check) {
-							if (value.isCheck == check.value) {
+					if (check) {
+						if (check.label == 'All') {
+							scope.filterData = scope.data;
+							return;
+						}
+
+						scope.filterData = scope.data.filter(function (value) {
+							if (check) {
+								if (value.isCheck == check.value) {
+									return value;
+								}
+							}
+							else {
 								return value;
 							}
-						}
-						else {
-							return value;
-						}
-					});
+						});
+					}
 				});
 			}
 		};

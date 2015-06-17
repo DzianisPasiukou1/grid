@@ -7,6 +7,10 @@
 	</div>
 	<span class="expand glyphicon glyphicon-menu-down"></span>
 </button>
+
+<ul class="actions-dropdown">
+	<li ng-repeat="action in actions.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
+</ul>
 <!--<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 	<li>
 		<div class="row-check">

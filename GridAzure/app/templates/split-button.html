@@ -1,4 +1,11 @@
 ﻿<button class="split-btn">
-	{{selected.label}}<button class="split-toggle"><span class="glyphicon glyphicon-menu-down"></span></button>
+	{{selected.label}}
+	<button class="split-toggle">
+		<span class="glyphicon glyphicon-menu-down">
+		</span>
+	</button>
+	<ul class="actions-dropdown">
+		<li ng-repeat="action in actions.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
+	</ul>
 </button>
 

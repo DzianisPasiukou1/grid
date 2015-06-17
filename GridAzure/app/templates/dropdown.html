@@ -4,5 +4,5 @@
 </button>
 
 <ul class="actions-dropdown">
-	<li ng-repeat="action in actions.values"><a>{{action.label}}</a> </li>
+	<li ng-repeat="action in actions.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
 </ul>

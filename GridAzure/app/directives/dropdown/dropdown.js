@@ -21,19 +21,11 @@
 					}
 				});
 
-				element.focusout(function () {
-					if (element.find('ul').is(':visible')) {
+				$(document).click(function (event) {
+					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
 					}
-					if (element.is(":focus")) {
-						if (element.find('ul').is(':visible')) {
-							element.find('ul').hide();
-						}
-						else {
-							element.find('ul').show();
-						}
-					}
-				});
+				})
 			}
 		}
 	}]);

@@ -1,6 +1,4 @@
-﻿<button class="row-btn" details details-class="'toggle'" row="row" row-height="rowHeight">
-	<span class="expand" ng-class="{'glyphicon glyphicon-menu-down' : !row.isToggle, 'glyphicon glyphicon-menu-up': row.isToggle}"></span>
-</button>
+﻿<span class="expand" details details-class="'toggle'" row="row" row-height="rowHeight" ng-class="{'glyphicon glyphicon-menu-down' : !row.isToggle, 'glyphicon glyphicon-menu-up': row.isToggle}"></span>
 <div class="row-check">
 	<label class="input-control checkbox">
 		<input type="checkbox" ng-model="row.entity.isCheck" />

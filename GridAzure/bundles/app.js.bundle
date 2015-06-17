@@ -34,5 +34,6 @@
 		<file>/app/directives/filter/filter-controller.js</file>
 		<file>/app/directives/filter/filter.js</file>
 		<file>/app/directives/filter/filter-list/filter-list.js</file>
+		<file>/app/directives/slider/slider.js</file>
 	</files>
 </bundle>

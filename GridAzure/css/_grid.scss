@@ -4,9 +4,12 @@
 
 	.ngTopPanel {
 		background-color: #5a5a5a;
+		Border: 1px solid #4d4d4d;
 		color: #a8a8a8;
 		font-size: 13px;
 		text-decoration: none;
+		min-height: 18px;
+		line-height: 18px;
 	}
 
 	.ngHeaderCell {
@@ -32,7 +35,6 @@
 	.ngCell {
 		left: 50px;
 		text-align: center;
-		/*top: 30%;*/
 		padding-top: 30px;
 	}
 
@@ -44,14 +46,40 @@
 		color: #444444;
 		font-size: 14px;
 		font-family: Arial, Helvetica, sans-serif;
+		font-weight: 600;
 		line-height: 1.6em;
-		/*-webkit-transition: top 2s;*/ /* Safari */
-		/*transition: top 0.5s;*/
+
 		&.selected {
 			background-color: rgb(149,207,235);
 		}
 	}
 
-	.ngFooterPanel {
+
+	.column {
+		text-align: center;
+
+
+		&__sort {
+			width: 100%;
+		}
+
+		&__name {
+			float: left;
+			text-align: center;
+		}
+
+		&__sort-down {
+			font-size: xx-large;
+
+			span {
+			}
+		}
+
+		&__sort-up {
+			font-size: xx-large;
+
+			span {
+			}
+		}
 	}
 }

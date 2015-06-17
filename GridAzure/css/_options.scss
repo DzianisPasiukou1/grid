@@ -51,6 +51,7 @@
 
 	&__show {
 		float: right;
+		position: relative;
 
 		.split-btn {
 			@extend .metro-btn;

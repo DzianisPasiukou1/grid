@@ -189,11 +189,14 @@
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
     <Content Include="app\directives\search\search.js" />
+    <Content Include="app\directives\slider\slider.js" />
     <Content Include="app\directives\split-button\split-button-controller.js" />
     <Content Include="app\directives\split-button\split-button.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\services\grid-service.js" />
+    <Content Include="app\templates\cell-templates\cell-without-sort.html" />
+    <Content Include="app\templates\cell-templates\cell.html" />
     <Content Include="app\templates\checkbox-select.html" />
     <Content Include="app\templates\content-options.html" />
     <Content Include="app\templates\content-options.min.html">
@@ -250,6 +253,7 @@
     <Content Include="app\templates\search.min.html">
       <DependentUpon>search.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\slider.html" />
     <Content Include="app\templates\split-button.html" />
     <Content Include="app\templates\trend-slider.html" />
     <Content Include="app\templates\trend-slider.min.html">
@@ -1905,9 +1909,11 @@
     <Content Include="bundles\app.min.js">
       <DependentUpon>app.js</DependentUpon>
     </Content>
+    <Content Include="content\filter.jpg" />
     <Content Include="content\icons\search.png" />
     <Content Include="content\icons\less.ico" />
     <Content Include="content\icons\more.ico" />
+    <Content Include="content\text.png" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
@@ -2145,6 +2151,8 @@
     <Content Include="css\common\_link.scss" />
     <Content Include="css\common\_expands.scss" />
     <Content Include="css\_filter.scss" />
+    <Content Include="css\common\_slider.scss" />
+    <Content Include="css\common\_split-button.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

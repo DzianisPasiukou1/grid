@@ -3910,3 +3910,17 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/app/templates/split-button.html
 /GridAzure/obj/Release/Package/PackageTmp/content/icons/search.png
 /GridAzure/obj/Release/Package/PackageTmp/sources/sources.zip
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/filter/filter-controller.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/filter/filter-list/filter-list.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/filter/filter.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/slider/slider.js
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/cell-templates/cell-without-sort.html
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/cell-templates/cell.html
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/filter-list.html
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/filter.html
+/GridAzure/obj/Release/Package/PackageTmp/app/templates/slider.html
+/GridAzure/obj/Release/Package/PackageTmp/content/filter.jpg
+/GridAzure/obj/Release/Package/PackageTmp/content/text.png
+/GridAzure/obj/Release/Package/PackageTmp/css/_filter.scss
+/GridAzure/obj/Release/Package/PackageTmp/css/common/_slider.scss
+/GridAzure/obj/Release/Package/PackageTmp/css/common/_split-button.scss

@@ -6,12 +6,25 @@
 		padding-bottom: 1%;
 	}
 
+	&__icon {
+		display: inline;
+
+		img {
+			width: 2.5%;
+			height: 150%;
+		}
+	}
+
 	&__name {
 		display: inline;
 	}
 
 	&__count {
 		display: inline;
+	}
+
+	&__actions {
+		@extend .actions-group;
 	}
 
 	&__body {

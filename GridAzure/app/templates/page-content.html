@@ -1,14 +1,17 @@
 ﻿<div class="page-content">
 	<div class="page-content__header">
+		<div class="page-content__icon">
+			<img src="../../content/text.png"/>
+		</div>
 		<div class="page-content__name">
 			{{grid.name}}
 		</div>
 		<div class="page-content__count">
 			{{grid.count}} records
 		</div>
-		<div class="actions-group">
-			<dropdown class="actions-group__dropdown" actions="exports" selected="export" start-label="'Export to: '"></dropdown>
-			<dropdown class="actions-group__dropdown" actions="views" selected="view" start-label="'View: '"></dropdown>
+		<div class="page-content__actions">
+			<dropdown class="page-content__actions__dropdown" actions="exports" selected="export" start-label="'Export to: '"></dropdown>
+			<dropdown class="page-content__actions__dropdown" actions="views" selected="view" start-label="'View: '"></dropdown>
 		</div>
 	</div>
 	<div class="page-content__body">
