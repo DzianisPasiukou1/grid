@@ -1,4 +1,4 @@
-﻿.metro-btn, .row-btn, .actions, .options__check button, .options__refresh, .options__show .split-btn, .options__show .split-toggle, .action__btn {
+﻿.metro-btn, .row-btn, .actions, .options__check button, .options__refresh, .options__show .split-btn, .options__show .split-toggle, .action__btn, .filter__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -14,9 +14,9 @@
   line-height: 1;
   margin: 0.15625rem 0;
   position: relative; }
-  .metro-btn:hover, .row-btn:hover, .actions:hover, .options__check button:hover, .options__refresh:hover, .options__show .split-btn:hover, .options__show .split-toggle:hover, .action__btn:hover {
+  .metro-btn:hover, .row-btn:hover, .actions:hover, .options__check button:hover, .options__refresh:hover, .options__show .split-btn:hover, .options__show .split-toggle:hover, .action__btn:hover, .filter__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .row-btn:active, .actions:active, .options__check button:active, .options__refresh:active, .options__show .split-btn:active, .options__show .split-toggle:active, .action__btn:active {
+  .metro-btn:active, .row-btn:active, .actions:active, .options__check button:active, .options__refresh:active, .options__show .split-btn:active, .options__show .split-toggle:active, .action__btn:active, .filter__btn:active {
     box-shadow: 0 2px 0 #787878;
     transform: translateY(3px); }
 
@@ -312,5 +312,33 @@
 
 .link-container {
   display: compact; }
+
+.filter {
+  display: inline;
+  float: right;
+  margin-right: 5%; }
+  .filter filter-list {
+    position: absolute;
+    z-index: 1000;
+    min-width: 160px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
+
+.filter-selected .filter__btn {
+  background-color: #2b9fd7; }
 
 /*# sourceMappingURL=styles.css.map */

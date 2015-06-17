@@ -31,5 +31,8 @@
 		<file>/app/directives/split-button/split-button-controller.js</file>
 		<file>/app/directives/split-button/split-button.js</file>
 		<file>/app/plugins/ngGridCsvExportPlugin.js</file>
+		<file>/app/directives/filter/filter-controller.js</file>
+		<file>/app/directives/filter/filter.js</file>
+		<file>/app/directives/filter/filter-list/filter-list.js</file>
 	</files>
 </bundle>

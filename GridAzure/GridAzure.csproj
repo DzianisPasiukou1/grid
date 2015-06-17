@@ -179,6 +179,9 @@
     <Content Include="app\directives\download\download.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
+    <Content Include="app\directives\filter\filter-controller.js" />
+    <Content Include="app\directives\filter\filter-list\filter-list.js" />
+    <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page\page-content\page-content-controller.js" />
@@ -204,6 +207,8 @@
     <Content Include="app\templates\dropdown.min.html">
       <DependentUpon>dropdown.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\filter-list.html" />
+    <Content Include="app\templates\filter.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
       <DependentUpon>page-content.html</DependentUpon>
@@ -2139,6 +2144,7 @@
     </Content>
     <Content Include="css\common\_link.scss" />
     <Content Include="css\common\_expands.scss" />
+    <Content Include="css\_filter.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

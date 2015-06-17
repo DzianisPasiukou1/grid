@@ -413,3 +413,60 @@ function ngGridCsvExportPlugin(opts) {
 		scope.$watch('catHashKeys()', showDs);
 	};
 }
+///#source 1 1 /app/directives/filter/filter-controller.js
+angular.module('gridTaskApp')
+	.controller('filterCtrl', ['$scope', function ($scope) {
+		$scope.listState = false;
+		$scope.isBlur = false;
+
+		$scope.filterClick = function () {
+			$scope.listState = !$scope.listState;
+			if (!$scope.listState) {
+				$scope.isBlur = true;
+			}
+			else {
+				$scope.isBlur = false;
+			}
+		};
+
+		$scope.filterBlur = function () {
+			if (!$scope.isBlur) {
+				$scope.listState = !$scope.listState;
+				$scope.isBlur = true;
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/filter/filter.js
+angular.module('gridTaskApp')
+	.directive('filter', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			scope: {
+				listState: '='
+			},
+			controller: 'filterCtrl',
+			templateUrl: templatesPath + 'filter.html',
+			link: function (scope, element, attrs) {
+				scope.$watch('listState', function (value) {
+					if (value) {
+						element.addClass('filter-selected');
+					}
+					else {
+						element.removeClass('filter-selected');
+					}
+				});
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/filter/filter-list/filter-list.js
+angular.module('gridTaskApp')
+	.directive('filterList', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			scope: {
+			},
+			templateUrl: templatesPath + 'filter-list.html',
+			link: function (scope, element, attrs) {
+			}
+		}
+	}]);
