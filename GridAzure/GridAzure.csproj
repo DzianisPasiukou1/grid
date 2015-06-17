@@ -220,6 +220,7 @@
     <Content Include="app\templates\row-templates\date.min.html">
       <DependentUpon>date.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\row-templates\details.html" />
     <Content Include="app\templates\row-templates\header-row.html" />
     <Content Include="app\templates\row-templates\header-row.min.html">
       <DependentUpon>header-row.html</DependentUpon>

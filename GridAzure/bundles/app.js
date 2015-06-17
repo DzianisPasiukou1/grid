@@ -57,11 +57,12 @@ angular.module('gridTaskApp')
 			headerRowHeight: 50,
 			showFooter: true,
 			columnDefs: [
-				{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 100 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
 				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html' },
 				{ field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html' },
 				{ field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html' },
-				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html' }],
+				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250 }],
 			plugins: []
 		};
 
@@ -134,12 +135,14 @@ angular.module('gridTaskApp')
 					var children = $(scope.row.elm).parent().children();
 
 					if (scope.row.isToggle) {
+						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
 								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) + step + 'px');
 							}
 						}
 					} else {
+						$(scope.row.elm).css('height', scope.rowHeight + 'px');
 						scope.row.elm.removeClass(scope.detailsClass);
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
@@ -167,7 +170,8 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			scope: {
 				actions: '=',
-				selected: '='
+				selected: '=',
+				label: '=startLabel'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',

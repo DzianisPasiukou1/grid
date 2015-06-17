@@ -13,13 +13,11 @@
 }
 
 .actions-dropdown {
-	display: block;
 	position: absolute;
 	z-index: 1000;
-	display: none;
-	left: 0;
-	float: left;
 	min-width: 160px;
+	left: 0;
+	right: 0;
 	padding: 5px 0;
 	margin: 2px 0 0;
 	font-size: 14px;

@@ -118,10 +118,15 @@
     height: auto !important;
     position: static; }
   .toggle .ngCell {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
     display: table-cell;
     height: auto !important;
     overflow: visible;
-    position: static; }
+    /*position: static;*/ }
   .toggle .wrap {
     white-space: normal;
     text-overflow: clip;
@@ -141,13 +146,11 @@
   right: 0; }
 
 .actions-dropdown {
-  display: block;
   position: absolute;
   z-index: 1000;
-  display: none;
-  left: 0;
-  float: left;
   min-width: 160px;
+  left: 0;
+  right: 0;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -220,25 +223,14 @@
 .page-content__body {
   padding: 0; }
 
-.row-date {
+.row-name__value {
   display: inline; }
-  .row-date__value {
-    display: inline;
-    padding: 3%; }
-
-.row-name {
-  padding: 3%; }
-  .row-name__value {
-    display: inline; }
 
 .row-value {
-  padding: 3%;
   text-align: center; }
 
-.row-trend {
-  padding: 3%; }
-  .row-trend__value {
-    display: inline; }
+.row-trend__value {
+  display: inline; }
 
 .custom-grid {
   padding: 0;
@@ -261,8 +253,10 @@
     overflow-x: hidden;
     border: 0; }
   .custom-grid .ngCell {
-    margin-top: 20px;
-    left: 50px; }
+    left: 50px;
+    text-align: center;
+    /*top: 30%;*/
+    padding-top: 30px; }
   .custom-grid .ngRow {
     background: white;
     border: 1px solid #e5e5e5;
@@ -285,8 +279,7 @@
     .options__check button {
       display: inline; }
       .options__check button .expand {
-        display: inline;
-        top: 4px; }
+        display: inline; }
   .options__refresh {
     position: relative; }
   .options__more {

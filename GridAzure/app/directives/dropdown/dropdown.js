@@ -4,7 +4,8 @@
 			restrict: 'E',
 			scope: {
 				actions: '=',
-				selected: '='
+				selected: '=',
+				label: '=startLabel'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',

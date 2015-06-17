@@ -9,10 +9,15 @@
 	}
 
 	.ngCell {
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		background-color: inherit;
 		display: table-cell;
 		height: auto !important;
 		overflow: visible;
-		position: static;
+		/*position: static;*/
 	}
 
 	.wrap {

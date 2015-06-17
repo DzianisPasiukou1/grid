@@ -18,11 +18,12 @@
 			headerRowHeight: 50,
 			showFooter: true,
 			columnDefs: [
-				{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 100 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html' },
 				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html' },
 				{ field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html' },
 				{ field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html' },
-				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html' }],
+				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250 }],
 			plugins: []
 		};
 

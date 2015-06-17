@@ -2,4 +2,9 @@
 	<div class="action__group" ng-repeat="action in row.getProperty(col.field).values">
 		<button class="action__btn">{{action.label}}</button>
 	</div>
-</div>	
+</div>
+
+<!--<div class="action">
+	<button class="action__group">Action</button>
+	<dropdown class="action__group" actions="{values: [row.getProperty(col.field).values[0]]}" selected="selectedAction"></dropdown>
+</div>-->
