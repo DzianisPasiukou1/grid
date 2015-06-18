@@ -16,23 +16,27 @@ angular.module('gridTaskApp')
 
 			for (var i = 0; i < constantOfData.count; i++) {
 				var day = Math.floor((Math.random() * 1000) + 1);
+				var value = Math.floor((Math.random() * 100000) + 1);
+				var trend = Math.floor((Math.random() * 100) + 1);
 
 				var obj = {
 					date: new Date(constantOfData.startDate.setDate(constantOfData.startDate.getDate() + day)),
 					name: 'Changing the icon font location\nBootstrap assumes icon font files will be located in the ../fonts/ directory, relative to the compiled CSS files. Moving or renaming those font files means updating the CSS in one of three ways:\nChange the @icon-font-path and/or @icon-font-name variables in the source Less files.\nUtilize the relative URLs option provided by the Less compiler.\nChange the url() paths in the compiled CSS.\nUse whatever option best suits your specific development setup.',
-					value: 10122.97,
-					trend: 7
+					value: value,
+					trend: trend
 				};
+
+				console.log(obj.date);
 
 				array.push(obj);
 			}
 
 			return array;
-		}();
+		};
 
 		return {
 			get: function () {
-				return data;
+				return data();
 			}
 		}
 	}]);
@@ -43,10 +47,9 @@ angular.module('gridTaskApp')
 			value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
 			value.isCheck = false;
 		});
-		$scope.filterData = angular.copy($scope.data, []);
 
 		$scope.options = {
-			data: 'filterData',
+			data: 'data|filter:filterOptions',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {
@@ -66,16 +69,26 @@ angular.module('gridTaskApp')
 			plugins: []
 		};
 
-		$scope.$watch('filters.searchValue', function (value) {
-			if (value) {
-				$scope.options.filterOptions.filterText = 'name:' + value;
-			}
+		$scope.$watch('isFiltrate', function (value) {
+			$scope.options.filterOptions.filterText = convertFilterOptions($scope.filters.filterOptions).filterText;
 		});
 
 		function plugin() {
 			if ($scope.exportTo.label == 'Excel') {
 				$scope.options.plugins.push(new ngGridCsvExportPlugin());
 			}
+		}
+
+		function convertFilterOptions(options) {
+			var convertOpt = { filterText: '' };
+
+			for (var i = 0; i < options.length; i++) {
+
+				if (options[i].filter) {
+					convertOpt.filterText += options[i].label + ':' + options[i].filter + ';';
+				}
+			}
+			return convertOpt;
 		}
 
 		plugin();
@@ -89,36 +102,32 @@ angular.module('gridTaskApp')
 			scope: {
 				data: '=gridData',
 				exportTo: '=',
-				filters: '='
+				filters: '=',
+				isFiltrate: '='
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {
 				scope.$watch('filters.check', function (check) {
 					if (check) {
 						if (check.label == 'All') {
-							scope.filterData = scope.data;
-							return;
+							scope.data.forEach(function (value) {
+								value.isCheck = true;
+							});
 						}
-
-						scope.filterData = scope.data.filter(function (value) {
-							if (check) {
-								if (value.isCheck == check.value) {
-									return value;
-								}
-							}
-							else {
-								return value;
-							}
-						});
+						else if (check.label == 'No one') {
+							scope.data.forEach(function (value) {
+								value.isCheck = false;
+							});
+						}
 					}
 				});
 			}
 		};
 	}]);
-///#source 1 1 /app/directives/custom-grid/grid-constants.js
+///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
 	 .constant("constantOfData", {
-	 	count: 100,
+	 	count: 1000,
 	 	startDate: new Date(2000, 1, 1)
 	 });
 ///#source 1 1 /app/directives/details/details.js
@@ -184,19 +193,26 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
+				element.find('span').addClass('glyphicon-menu-down');
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 					else {
 						element.find('ul').show();
+						element.find('span').removeClass('glyphicon-menu-down');
+						element.find('span').addClass('glyphicon-menu-up');
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 				})
 			}
@@ -219,9 +235,12 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/page/page-content/page-content-controller.js
 angular.module('gridTaskApp')
 	.controller('pageContentCtrl', ['$scope', 'gridService', function ($scope, gridService) {
-		gridService.get(function (data) {
-			$scope.data = data;
-		});
+		function getData() {
+			gridService.get(function (data) {
+				$scope.data = data;
+			});
+		}
+		getData();
 
 		$scope.grid = {
 			name: 'Grid name',
@@ -231,7 +250,26 @@ angular.module('gridTaskApp')
 		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel' }, { label: 'Pdf' }] };
 		$scope.views = { name: 'View: ', values: [{ label: 'Grid' }, { label: 'Tiles' }] };
 		$scope.selectedOptions = {};
+		$scope.selectedOptions.filterOptions = function () {
+			var options = [];
 
+			if (Array.isArray($scope.data) && $scope.data[0])
+				for (var prop in $scope.data[0]) {
+					options.push({ label: prop });
+				}
+			return options;
+		}();
+
+		$scope.isFiltrate = false;
+
+		$scope.refresh = function () {
+			getData();
+
+			$scope.data.map(function (value) {
+				value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
+				value.isCheck = false;
+			});
+		}
 	}]);
 ///#source 1 1 /app/directives/page/page-content/page-content.js
 angular.module('gridTaskApp')
@@ -245,21 +283,23 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/page/page-content/content-options/content-options-controller.js
 angular.module('gridTaskApp')
-	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
-		$scope.checks = { values: [{ label: 'All' }, { label: 'No one' }, { label: 'Marked' }, { label: 'Not marked' }] };
+	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
+		$scope.checks = checkboxSelectConstants.values;
 		$scope.mores = { values: [{ label: 'More' }] };
 		$scope.shows = { values: [{ label: 'Everywhere' }] };
 	}]);
 ///#source 1 1 /app/directives/page/page-content/content-options/content-options.js
 angular.module('gridTaskApp')
-	.directive('contentOptions', ['templatesPath', function (templatesPath) {
+	.directive('contentOptions', ['templatesPath', 'checkboxSelectConstants', function (templatesPath, checkboxSelectConstants) {
 		return {
 			restrict: 'E',
+			controller: 'contentOptionsCtrl',
 			scope: {
-				selectedOptions: '='
+				selectedOptions: '=',
+				isFiltrate: '=',
+				refresh: '='
 			},
-			templateUrl: templatesPath + 'content-options.html',
-			controller: 'contentOptionsCtrl'
+			templateUrl: templatesPath + 'content-options.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/search/search.js
@@ -294,10 +334,20 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
 	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
-		$scope.selected = $scope.actions.values[0];
+		$scope.selected = $scope.actions.noOne;
+		$scope.check = false;
 
 		$scope.select = function (action) {
 			$scope.selected = action;
+
+			if (action.label == 'All') {
+				$scope.check = true;
+			}
+			else if (action.label == 'No one') {
+				$scope.check = false;
+			} else {
+				$scope.check = false;
+			}
 		}
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
@@ -307,27 +357,43 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			scope: {
 				actions: '=',
+				check: '=',
 				selected: '='
 			},
 			templateUrl: templatesPath + 'checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
+				element.find('span').addClass('glyphicon-menu-down');
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 					else {
 						element.find('ul').show();
+						element.find('span').removeClass('glyphicon-menu-down');
+						element.find('span').addClass('glyphicon-menu-up');
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 				})
+
+				scope.$watch('check', function (value) {
+					if (value) {
+						scope.selected = scope.actions.all;
+					} else {
+						scope.selected = scope.actions.noOne;
+					}
+				});
 			}
 		}
 	}]);
@@ -353,19 +419,26 @@ angular.module('gridTaskApp')
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
+				element.find('span').addClass('glyphicon-menu-down');
 
 				element.find('.split-toggle').click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 					else {
 						element.find('ul').show();
+						element.find('span').removeClass('glyphicon-menu-down');
+						element.find('span').addClass('glyphicon-menu-up');
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
+						element.find('span').addClass('glyphicon-menu-down');
+						element.find('span').removeClass('glyphicon-menu-up');
 					}
 				})
 			}
@@ -452,23 +525,20 @@ function ngGridCsvExportPlugin(opts) {
 angular.module('gridTaskApp')
 	.controller('filterCtrl', ['$scope', function ($scope) {
 		$scope.listState = false;
-		$scope.isBlur = false;
 
 		$scope.filterClick = function () {
 			$scope.listState = !$scope.listState;
-			if (!$scope.listState) {
-				$scope.isBlur = true;
-			}
-			else {
-				$scope.isBlur = false;
+
+			if ($scope.listState) {
+				$scope.filterOptions.forEach(function (opt) {
+					opt.filter = "";
+				});
 			}
 		};
 
-		$scope.filterBlur = function () {
-			if (!$scope.isBlur) {
-				$scope.listState = !$scope.listState;
-				$scope.isBlur = true;
-			}
+		$scope.showRecords = function () {
+			$scope.listState = false;
+			$scope.isFiltrate = !$scope.isFiltrate;
 		}
 	}]);
 ///#source 1 1 /app/directives/filter/filter.js
@@ -477,17 +547,25 @@ angular.module('gridTaskApp')
 		return {
 			restrict: 'E',
 			scope: {
-				listState: '='
+				listState: '=',
+				filterOptions: '=options',
+				isFiltrate: '='
 			},
 			controller: 'filterCtrl',
 			templateUrl: templatesPath + 'filter.html',
 			link: function (scope, element, attrs) {
+				element.find('span.expand').addClass('glyphicon-menu-down');
+
 				scope.$watch('listState', function (value) {
 					if (value) {
 						element.addClass('filter-selected');
+						element.find('span.expand').removeClass('glyphicon-menu-down');
+						element.find('span.expand').addClass('glyphicon-menu-up');
 					}
 					else {
 						element.removeClass('filter-selected');
+						element.find('span.expand').addClass('glyphicon-menu-down');
+						element.find('span.expand').removeClass('glyphicon-menu-up');
 					}
 				});
 			}
@@ -498,9 +576,8 @@ angular.module('gridTaskApp')
 	.directive('filterList', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			scope: {
-			},
 			templateUrl: templatesPath + 'filter-list.html',
+			controller: 'filterListCtrl',
 			link: function (scope, element, attrs) {
 			}
 		}
@@ -514,5 +591,43 @@ angular.module('gridTaskApp')
 				sliderValue: '='
 			},
 			templateUrl: templatesPath + 'slider.html'
+		}
+	}]);
+///#source 1 1 /app/directives/custom-grid/row-check/row-check.js
+angular.module('gridTaskApp')
+	.directive('rowCheck', [function () {
+		return {
+			restrict: 'A',
+			scope: {
+				value: '=rowCheck'
+			},
+			link: function (scope, element, attrs) {
+				scope.$watch('value.entity.isCheck', function (value) {
+					if (value) {
+						element.parent().addClass('checked');
+					}
+					else {
+						element.parent().removeClass('checked');
+					}
+				});
+			}
+		}
+	}]);
+///#source 1 1 /app/constants/checkbox-select-constants.js
+angular.module('gridTaskApp')
+	 .constant("checkboxSelectConstants",
+	 {
+	 	values: {
+	 		all: { label: 'All' },
+	 		noOne: { label: 'No one' },
+	 		marked: { label: 'Marked' },
+	 		notMarked: { label: 'Not marked' }
+	 	}
+	 });
+///#source 1 1 /app/directives/filter/filter-list/filter-list-controller.js
+angular.module('gridTaskApp')
+	.controller('filterListCtrl', ['$scope', function ($scope) {
+		$scope.filter = function () {
+			$scope.isFiltrate = true;
 		}
 	}]);

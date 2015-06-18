@@ -11,7 +11,7 @@
 	filter-list {
 		position: absolute;
 		z-index: 1000;
-		min-width: 160px;
+		min-width: 400px;
 		right: 0;
 		padding: 5px 0;
 		margin: 2px 0 0;
@@ -26,6 +26,57 @@
 		border-radius: 4px;
 		-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
 		box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
+		.filter-list {
+			z-index: 50;
+			padding-left: 20px;
+			text-transform: uppercase;
+
+			&__header {
+				padding-top: 3%;
+				color: rgb(117,118, 119);
+				font-size: 16px;
+				font-family: "Arial";
+				font-weight: bold;
+			}
+
+			&__options {
+				&__value {
+					&__header {
+						padding-top: 3%;
+						color: rgb(117,118, 119);
+						font-size: 14px;
+						font-family: "Arial";
+						font-weight: bold;
+					}
+
+					&__input {
+						input {
+							-webkit-appearance: none;
+							appearance: none;
+							position: relative;
+							border: 1px #d9d9d9 solid;
+							width: 70%;
+							height: 100%;
+							padding: .3125rem;
+							z-index: 0;
+
+							&:hover {
+								border-color: #787878;
+							}
+						}
+					}
+				}
+			}
+
+
+			&__button {
+				@extend .metro-btn;
+				background-color: rgb(43, 159, 215);
+				color: white;
+				margin-top: 8%;
+			}
+		}
 	}
 }
 
@@ -33,6 +84,7 @@
 	.filter {
 		&__btn {
 			background-color: rgb(43, 159, 215);
+			color: white;
 		}
 	}
 }

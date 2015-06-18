@@ -1,11 +1,13 @@
 ﻿angular.module('gridTaskApp')
-	.directive('contentOptions', ['templatesPath', function (templatesPath) {
+	.directive('contentOptions', ['templatesPath', 'checkboxSelectConstants', function (templatesPath, checkboxSelectConstants) {
 		return {
 			restrict: 'E',
+			controller: 'contentOptionsCtrl',
 			scope: {
-				selectedOptions: '='
+				selectedOptions: '=',
+				isFiltrate: '=',
+				refresh: '='
 			},
-			templateUrl: templatesPath + 'content-options.html',
-			controller: 'contentOptionsCtrl'
+			templateUrl: templatesPath + 'content-options.html'
 		}
 	}]);

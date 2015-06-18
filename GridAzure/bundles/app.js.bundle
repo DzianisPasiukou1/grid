@@ -14,7 +14,7 @@
 		<file>/app/services/grid-service.js</file>
 		<file>/app/directives/custom-grid/custom-grid-controller.js</file>
 		<file>/app/directives/custom-grid/custom-grid.js</file>
-		<file>/app/directives/custom-grid/grid-constants.js</file>
+		<file>/app/constants/grid-constants.js</file>
 		<file>/app/directives/details/details.js</file>
 		<file>/app/directives/dropdown/dropdown-controller.js</file>
 		<file>/app/directives/dropdown/dropdown.js</file>
@@ -35,5 +35,8 @@
 		<file>/app/directives/filter/filter.js</file>
 		<file>/app/directives/filter/filter-list/filter-list.js</file>
 		<file>/app/directives/slider/slider.js</file>
+		<file>/app/directives/custom-grid/row-check/row-check.js</file>
+		<file>/app/constants/checkbox-select-constants.js</file>
+		<file>/app/directives/filter/filter-list/filter-list-controller.js</file>
 	</files>
 </bundle>

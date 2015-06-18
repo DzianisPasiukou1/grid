@@ -4,10 +4,9 @@
 			value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
 			value.isCheck = false;
 		});
-		$scope.filterData = angular.copy($scope.data, []);
 
 		$scope.options = {
-			data: 'filterData',
+			data: 'data|filter:filterOptions',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {
@@ -27,16 +26,26 @@
 			plugins: []
 		};
 
-		$scope.$watch('filters.searchValue', function (value) {
-			if (value) {
-				$scope.options.filterOptions.filterText = 'name:' + value;
-			}
+		$scope.$watch('isFiltrate', function (value) {
+			$scope.options.filterOptions.filterText = convertFilterOptions($scope.filters.filterOptions).filterText;
 		});
 
 		function plugin() {
 			if ($scope.exportTo.label == 'Excel') {
 				$scope.options.plugins.push(new ngGridCsvExportPlugin());
 			}
+		}
+
+		function convertFilterOptions(options) {
+			var convertOpt = { filterText: '' };
+
+			for (var i = 0; i < options.length; i++) {
+
+				if (options[i].filter) {
+					convertOpt.filterText += options[i].label + ':' + options[i].filter + ';';
+				}
+			}
+			return convertOpt;
 		}
 
 		plugin();

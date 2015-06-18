@@ -170,16 +170,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\constants\checkbox-select-constants.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select.js" />
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-grid.js" />
-    <Content Include="app\directives\custom-grid\grid-constants.js" />
+    <Content Include="app\constants\grid-constants.js" />
+    <Content Include="app\directives\custom-grid\row-check\row-check.js" />
     <Content Include="app\directives\details\details.js" />
     <Content Include="app\directives\download\download.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
     <Content Include="app\directives\filter\filter-controller.js" />
+    <Content Include="app\directives\filter\filter-list\filter-list-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
@@ -2151,7 +2154,6 @@
       <DependentUpon>app.min.js</DependentUpon>
     </Content>
     <Content Include="css\common\_link.scss" />
-    <Content Include="css\common\_expands.scss" />
     <Content Include="css\_filter.scss" />
     <Content Include="css\common\_slider.scss" />
     <Content Include="css\common\_split-button.scss" />

@@ -36,6 +36,7 @@
 		left: 50px;
 		text-align: center;
 		padding-top: 30px;
+		background-color: initial;
 	}
 
 	.ngRow {
@@ -50,7 +51,11 @@
 		line-height: 1.6em;
 
 		&.selected {
-			background-color: rgb(149,207,235);
+			background-color: rgb(149,207,235) !important;
+		}
+
+		&.checked {
+			background-color: rgb(233, 245, 251);
 		}
 	}
 

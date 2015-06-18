@@ -1,29 +1,13 @@
 ﻿<button type="button">
 	<div class="row-check">
 		<label class="input-control checkbox">
-			<input type="checkbox" disabled />
+			<input type="checkbox" ng-model="check" />
 			<span class="check"></span>
 		</label>
 	</div>
-	<span class="expand glyphicon glyphicon-menu-down"></span>
+	<span class="expand glyphicon"></span>
 </button>
 
 <ul class="actions-dropdown">
-	<li ng-repeat="action in actions.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
+	<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
 </ul>
-<!--<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-	<li>
-		<div class="row-check">
-			<label class="input-control checkbox">
-				<input type="checkbox" ng-model="false" disabled />
-				<span class="check"></span>
-			</label>
-		</div>
-		<div class="row-check">
-			<label class="input-control checkbox">
-				<input type="checkbox" ng-model="false" disabled />
-				<span class="check"></span>
-			</label>
-		</div>
-	</li>
-</ul>-->

@@ -1,6 +1,6 @@
 ﻿angular.module('gridTaskApp')
-	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
-		$scope.checks = { values: [{ label: 'All' }, { label: 'No one' }, { label: 'Marked' }, { label: 'Not marked' }] };
+	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
+		$scope.checks = checkboxSelectConstants.values;
 		$scope.mores = { values: [{ label: 'More' }] };
 		$scope.shows = { values: [{ label: 'Everywhere' }] };
 	}]);

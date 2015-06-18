@@ -1,22 +1,19 @@
 ﻿angular.module('gridTaskApp')
 	.controller('filterCtrl', ['$scope', function ($scope) {
 		$scope.listState = false;
-		$scope.isBlur = false;
 
 		$scope.filterClick = function () {
 			$scope.listState = !$scope.listState;
-			if (!$scope.listState) {
-				$scope.isBlur = true;
-			}
-			else {
-				$scope.isBlur = false;
+
+			if ($scope.listState) {
+				$scope.filterOptions.forEach(function (opt) {
+					opt.filter = "";
+				});
 			}
 		};
 
-		$scope.filterBlur = function () {
-			if (!$scope.isBlur) {
-				$scope.listState = !$scope.listState;
-				$scope.isBlur = true;
-			}
+		$scope.showRecords = function () {
+			$scope.listState = false;
+			$scope.isFiltrate = !$scope.isFiltrate;
 		}
 	}]);

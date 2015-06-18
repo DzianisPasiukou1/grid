@@ -6,27 +6,23 @@
 			scope: {
 				data: '=gridData',
 				exportTo: '=',
-				filters: '='
+				filters: '=',
+				isFiltrate: '='
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {
 				scope.$watch('filters.check', function (check) {
 					if (check) {
 						if (check.label == 'All') {
-							scope.filterData = scope.data;
-							return;
+							scope.data.forEach(function (value) {
+								value.isCheck = true;
+							});
 						}
-
-						scope.filterData = scope.data.filter(function (value) {
-							if (check) {
-								if (value.isCheck == check.value) {
-									return value;
-								}
-							}
-							else {
-								return value;
-							}
-						});
+						else if (check.label == 'No one') {
+							scope.data.forEach(function (value) {
+								value.isCheck = false;
+							});
+						}
 					}
 				});
 			}
