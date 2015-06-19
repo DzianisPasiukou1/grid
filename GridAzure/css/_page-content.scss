@@ -3,15 +3,14 @@
 
 	&__header {
 		@extend .heading;
-		padding-bottom: 1%;
 	}
 
 	&__icon {
 		display: inline;
 
 		img {
-			width: 2.5%;
-			height: 150%;
+			width: 44px;
+			height: 40px;
 		}
 	}
 
@@ -23,8 +22,19 @@
 		display: inline;
 	}
 
+	&__options{
+	}
+
 	&__actions {
 		@extend .actions-group;
+
+		&__export {
+			margin-right: 20px;
+		}
+
+		&__view {
+			margin-right: 10px;
+		}
 	}
 
 	&__body {

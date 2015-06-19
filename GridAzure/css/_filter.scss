@@ -1,17 +1,21 @@
 ﻿.filter {
 	display: inline;
 	float: right;
-	margin-right: 5%;
+	margin-right: 2%;
 	position: relative;
 
 	&__btn {
 		@extend .metro-btn;
+
+		.expand {
+			top: 2px;
+		}
 	}
 
 	filter-list {
 		position: absolute;
 		z-index: 1000;
-		min-width: 400px;
+		min-width: 600px;
 		right: 0;
 		padding: 5px 0;
 		margin: 2px 0 0;

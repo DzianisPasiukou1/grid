@@ -1,9 +1,25 @@
 ﻿.action {
+
 	&__group {
 		display: inline;
 	}
 
 	&__btn {
 		@extend .metro-btn;
+		font: initial;
+		font-family: "Arial", "Helvetica", sans-serif !important;
+		font-size: 14px;
+	}
+
+	&__dropdown {
+		position: relative;
+		font: initial;
+		font-family: "Arial", "Helvetica", sans-serif !important;
+		font-size: 14px;
+
+		ul {
+			position: absolute;
+			z-index: 1000;
+		}
 	}
 }

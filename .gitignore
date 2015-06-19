@@ -3926,3 +3926,7 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/css/common/_split-button.scss
 /GridAzure/obj/Release/Package/PackageTmp/content/arrow_down.png
 /GridAzure/obj/Release/Package/PackageTmp/content/arrow_up.png
+/GridAzure/obj/Release/Package/PackageTmp/app/constants/checkbox-select-constants.js
+/GridAzure/obj/Release/Package/PackageTmp/app/constants/grid-constants.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/custom-grid/row-check/row-check.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/filter/filter-list/filter-list-controller.js

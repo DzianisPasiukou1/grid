@@ -31,7 +31,7 @@
 			getData();
 
 			$scope.data.map(function (value) {
-				value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
+				value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
 				value.isCheck = false;
 			});
 		}

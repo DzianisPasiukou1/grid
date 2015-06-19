@@ -1,12 +1,15 @@
 ﻿.actions {
 	@extend .metro-btn;
+
+	span {
+		top: 2px;
+	}
 }
 
 .actions-group {
 	position: absolute;
 	display: inline;
 	right: 0;
-	margin-right: 1%;
 }
 
 .actions-dropdown {

@@ -10,7 +10,8 @@
 				element.find('input').slider({
 					min: 0,
 					value: scope.value,
-					max: 100
+					max: 100,
+					tooltip: 'hide'
 				});
 			}
 		};

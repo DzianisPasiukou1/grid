@@ -44,7 +44,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
 		$scope.data.map(function (value) {
-			value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
+			value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{label: 'More'}] }], isShow: false };
 			value.isCheck = false;
 		});
 
@@ -56,11 +56,11 @@ angular.module('gridTaskApp')
 				rowitem.entity.action.isShow = rowitem.selected;
 			},
 			filterOptions: { filterText: '' },
-			rowHeight: 100,
-			headerRowHeight: 50,
+			rowHeight: 60,
+			headerRowHeight: 40,
 			showFooter: true,
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 100, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 70, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
 				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
 				{ field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
@@ -266,7 +266,7 @@ angular.module('gridTaskApp')
 			getData();
 
 			$scope.data.map(function (value) {
-				value.action = { values: [{ label: 'Action' }, { label: 'More' }], isShow: false };
+				value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
 				value.isCheck = false;
 			});
 		}
@@ -326,7 +326,8 @@ angular.module('gridTaskApp')
 				element.find('input').slider({
 					min: 0,
 					value: scope.value,
-					max: 100
+					max: 100,
+					tooltip: 'hide'
 				});
 			}
 		};
