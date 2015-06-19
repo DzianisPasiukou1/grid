@@ -11,6 +11,7 @@
 		img {
 			width: 44px;
 			height: 40px;
+			content: url(../content/text.png);
 		}
 	}
 
@@ -22,7 +23,7 @@
 		display: inline;
 	}
 
-	&__options{
+	&__options {
 	}
 
 	&__actions {

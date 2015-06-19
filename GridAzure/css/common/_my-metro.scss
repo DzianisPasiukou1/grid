@@ -28,8 +28,7 @@
 }
 
 .metro-checkbox {
-	.input-control.checkbox,
-	.input-control.radio {
+	.input-control.checkbox {
 		line-height: 1.875rem;
 		min-width: 1rem;
 		-webkit-user-select: none;
@@ -38,24 +37,19 @@
 		user-select: none;
 	}
 
-	.input-control.checkbox input[type="checkbox"],
-	.input-control.radio input[type="checkbox"],
-	.input-control.checkbox input[type="radio"],
-	.input-control.radio input[type="radio"] {
+	.input-control.checkbox input[type="checkbox"] {
 		position: absolute;
 		opacity: 0;
 		width: 0.0625rem;
 		height: 0.0625rem;
 	}
 
-	.input-control.checkbox .caption,
-	.input-control.radio .caption {
+	.input-control.checkbox .caption {
 		margin: 0 .125rem;
 		vertical-align: middle;
 	}
 
-	.input-control.checkbox .check,
-	.input-control.radio .check {
+	.input-control.checkbox .check {
 		width: 1.625rem;
 		height: 1.625rem;
 		background-color: #ffffff;
@@ -66,18 +60,15 @@
 		vertical-align: middle;
 	}
 
-	.input-control.checkbox.text-left .check,
-	.input-control.radio.text-left .check {
+	.input-control.checkbox.text-left .check {
 		margin: 0 0 0 .3125rem;
 	}
 
-	.input-control.checkbox .check:focus,
-	.input-control.radio .check:focus {
+	.input-control.checkbox .check:focus {
 		border-color: #bcd9e2;
 	}
 
-	.input-control.checkbox .check:before,
-	.input-control.radio .check:before {
+	.input-control.checkbox .check:before {
 		position: absolute;
 		vertical-align: middle;
 		color: transparent;
@@ -99,83 +90,22 @@
 		transition: all 0.2s linear;
 	}
 
-	.input-control.checkbox input[type=radio] ~ .check:before,
-	.input-control.radio input[type=radio] ~ .check:before {
-		border-color: transparent;
-	}
-
-	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before,
-	.input-control.radio input[type="checkbox"]:checked ~ .check:before,
-	.input-control.checkbox input[type="radio"]:checked ~ .check:before,
-	.input-control.radio input[type="radio"]:checked ~ .check:before {
+	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before {
 		border-color: #555555;
 		transition: all 0.2s linear;
 	}
 
-	.input-control.checkbox input[type="checkbox"]:disabled ~ .caption,
-	.input-control.radio input[type="checkbox"]:disabled ~ .caption,
-	.input-control.checkbox input[type="radio"]:disabled ~ .caption,
-	.input-control.radio input[type="radio"]:disabled ~ .caption {
+	.input-control.checkbox input[type="checkbox"]:disabled ~ .caption {
 		color: #cacaca;
 		cursor: default;
 	}
 
-	.input-control.checkbox input[type="checkbox"]:disabled ~ .check,
-	.input-control.radio input[type="checkbox"]:disabled ~ .check,
-	.input-control.checkbox input[type="radio"]:disabled ~ .check,
-	.input-control.radio input[type="radio"]:disabled ~ .check {
+	.input-control.checkbox input[type="checkbox"]:disabled ~ .check {
 		border-color: #cacaca;
 		cursor: default;
 	}
 
-	.input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before,
-	.input-control.radio input[type="checkbox"]:disabled:checked ~ .check:before {
+	.input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before {
 		border-color: #cacaca;
-	}
-
-	.input-control.checkbox input[type="radio"]:disabled:checked ~ .check:before,
-	.input-control.radio input[type="radio"]:disabled:checked ~ .check:before {
-		background-color: #cacaca;
-	}
-
-	.input-control.checkbox input[data-show="indeterminate"] ~ .check:before,
-	.input-control.radio input[data-show="indeterminate"] ~ .check:before,
-	.input-control.checkbox input[data-show="indeterminate"]:checked ~ .check:before,
-	.input-control.radio input[data-show="indeterminate"]:checked ~ .check:before,
-	.input-control.checkbox input.indeterminate:checked ~ .check:before,
-	.input-control.radio input.indeterminate:checked ~ .check:before,
-	.input-control.checkbox input[type="checkbox"]:indeterminate ~ .check:before,
-	.input-control.radio input[type="checkbox"]:indeterminate ~ .check:before {
-		display: none;
-	}
-
-	.input-control.checkbox input[data-show="indeterminate"] ~ .check:after,
-	.input-control.radio input[data-show="indeterminate"] ~ .check:after,
-	.input-control.checkbox input[data-show="indeterminate"]:checked ~ .check:after,
-	.input-control.radio input[data-show="indeterminate"]:checked ~ .check:after,
-	.input-control.checkbox input.indeterminate:checked ~ .check:after,
-	.input-control.radio input.indeterminate:checked ~ .check:after,
-	.input-control.checkbox input[type="checkbox"]:indeterminate ~ .check:after,
-	.input-control.radio input[type="checkbox"]:indeterminate ~ .check:after {
-		position: absolute;
-		display: block;
-		content: "";
-		background-color: #1d1d1d;
-		height: .875rem;
-		width: .875rem;
-		left: 50%;
-		top: 50%;
-		margin-left: -0.4375rem;
-		margin-top: -0.4375rem;
-	}
-
-	.input-control.checkbox input[data-show="indeterminate"]:not(:checked) ~ .check:after,
-	.input-control.radio input[data-show="indeterminate"]:not(:checked) ~ .check:after {
-		background-color: transparent;
-	}
-
-	.input-control.checkbox input[data-show="indeterminate"]:disabled ~ .check:after,
-	.input-control.radio input[data-show="indeterminate"]:disabled ~ .check:after {
-		background-color: #cacaca;
 	}
 }
