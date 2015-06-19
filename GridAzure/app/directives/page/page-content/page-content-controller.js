@@ -25,6 +25,19 @@
 			return options;
 		}();
 
+		$scope.selectedOptions.searchOptions = function () {
+			var options = [];
+			options.push({ label: 'everywhere' });
+
+			if (Array.isArray($scope.data) && $scope.data[0]) {
+				for (var prop in $scope.data[0]) {
+					options.push({ label: prop });
+				}
+			}
+
+			return options;
+		}();
+
 		$scope.isFiltrate = false;
 
 		$scope.refresh = function () {

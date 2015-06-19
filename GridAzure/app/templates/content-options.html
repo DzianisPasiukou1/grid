@@ -3,6 +3,6 @@
 	<button class="options__refresh" ng-click="refresh()">Refresh</button>
 	<dropdown class="options__more" actions="mores" selected="selectedOptions.more"></dropdown>
 	<search class="options__search" search-value="selectedOptions.searchValue"></search>
-	<split-button class="options__show" actions="shows" selected="selectedOptions.show"></split-button>
+	<split-button class="options__show" actions="selectedOptions.searchOptions" selected="selectedOptions.show" search="selectedOptions.searchValue"></split-button>
 	<filter options="selectedOptions.filterOptions" is-filtrate="isFiltrate"></filter>
 </div>

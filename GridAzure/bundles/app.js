@@ -44,7 +44,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
 		$scope.data.map(function (value) {
-			value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{label: 'More'}] }], isShow: false };
+			value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
 			value.isCheck = false;
 		});
 
@@ -59,6 +59,8 @@ angular.module('gridTaskApp')
 			rowHeight: 60,
 			headerRowHeight: 40,
 			showFooter: true,
+			footerRowHeight: 30,
+			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 70, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
@@ -71,6 +73,18 @@ angular.module('gridTaskApp')
 
 		$scope.$watch('isFiltrate', function (value) {
 			$scope.options.filterOptions.filterText = convertFilterOptions($scope.filters.filterOptions).filterText;
+		});
+
+		$scope.$watch('filters.searchValue', function (value) {
+			if (!$scope.filters.show) {
+				return;
+			}
+
+			if ($scope.filters.show.label == 'everywhere') {
+				$scope.options.filterOptions.filterText = value;
+			} else {
+				$scope.options.filterOptions.filterText = $scope.filters.show.label + ':' + value;
+			}
 		});
 
 		function plugin() {
@@ -260,6 +274,19 @@ angular.module('gridTaskApp')
 			return options;
 		}();
 
+		$scope.selectedOptions.searchOptions = function () {
+			var options = [];
+			options.push({ label: 'everywhere' });
+
+			if (Array.isArray($scope.data) && $scope.data[0]) {
+				for (var prop in $scope.data[0]) {
+					options.push({ label: prop });
+				}
+			}
+
+			return options;
+		}();
+
 		$scope.isFiltrate = false;
 
 		$scope.refresh = function () {
@@ -401,10 +428,11 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/split-button/split-button-controller.js
 angular.module('gridTaskApp')
 	.controller('splitButtonCtrl', ['$scope', function ($scope) {
-		$scope.selected = $scope.actions.values[0];
+		$scope.selected = $scope.actions[0];
 
 		$scope.select = function (action) {
 			$scope.selected = action;
+			$scope.search = '';
 		}
 	}]);
 ///#source 1 1 /app/directives/split-button/split-button.js
@@ -414,7 +442,8 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			scope: {
 				actions: '=',
-				selected: '='
+				selected: '=',
+				search: '='
 			},
 			templateUrl: templatesPath + 'split-button.html',
 			controller: 'splitButtonCtrl',
@@ -422,7 +451,7 @@ angular.module('gridTaskApp')
 				element.find('ul').hide();
 				element.find('span').addClass('glyphicon-menu-down');
 
-				element.find('.split-toggle').click(function () {
+				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
 						element.find('span').addClass('glyphicon-menu-down');

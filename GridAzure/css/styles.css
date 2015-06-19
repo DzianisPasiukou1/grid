@@ -327,6 +327,8 @@
       background-color: #95cfeb !important; }
     .custom-grid .ngRow.checked {
       background-color: #e9f5fb; }
+  .custom-grid .ngFooterPanel {
+    background-color: #5a5a5a; }
   .custom-grid .column {
     text-align: center; }
     .custom-grid .column__sort {
@@ -397,7 +399,10 @@
       border-left: 0; }
   .options__show {
     float: right;
-    position: relative; }
+    position: relative;
+    text-transform: capitalize; }
+    .options__show .split-btn {
+      text-transform: capitalize; }
 
 .action__group {
   display: inline; }

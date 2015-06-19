@@ -58,9 +58,11 @@
 	&__show {
 		float: right;
 		position: relative;
+		text-transform: capitalize;
 
 		.split-btn {
 			@extend .metro-btn;
+			text-transform: capitalize;
 		}
 
 		.split-toggle {

@@ -4,7 +4,8 @@
 			restrict: 'E',
 			scope: {
 				actions: '=',
-				selected: '='
+				selected: '=',
+				search: '='
 			},
 			templateUrl: templatesPath + 'split-button.html',
 			controller: 'splitButtonCtrl',
@@ -12,7 +13,7 @@
 				element.find('ul').hide();
 				element.find('span').addClass('glyphicon-menu-down');
 
-				element.find('.split-toggle').click(function () {
+				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
 						element.find('span').addClass('glyphicon-menu-down');
