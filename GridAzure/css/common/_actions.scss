@@ -1,9 +1,5 @@
 ﻿.actions {
 	@extend .metro-btn;
-
-	span {
-		top: 2px;
-	}
 }
 
 .actions-group {
@@ -17,5 +13,6 @@
 }
 
 .expand {
-	top: 2px;
+	top: 1px;
+	font-size: 10px;
 }

@@ -1940,7 +1940,7 @@
     <Content Include="css\rows\_value.scss" />
     <Content Include="css\styles.scss" />
     <Content Include="css\_grid.scss" />
-    <Content Include="css\_options.scss" />
+    <Content Include="css\_content-options.scss" />
     <Content Include="css\_page-content.scss" />
     <Content Include="bower.json" />
     <Content Include="bower_components\angular-i18n\.bower.json" />
@@ -2162,6 +2162,7 @@
     <Content Include="css\common\_split-button.scss" />
     <Content Include="css\common\_my-dropdown.scss" />
     <Content Include="css\common\_my-search.scss" />
+    <Content Include="css\common\_checkbox-select.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

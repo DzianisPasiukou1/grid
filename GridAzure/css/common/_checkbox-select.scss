@@ -1,0 +1,31 @@
+﻿.checkbox-select {
+	display: inline;
+
+	&__btn {
+		@extend .metro-btn;
+		display: inline;
+
+		.expand {
+			display: inline;
+			margin-left: 8px;
+		}
+	}
+
+	&__check {
+		@extend .row-check;
+		margin-left: 0 !important;
+	}
+
+	&__input-control {
+		@extend .input-control;
+		@extend .checkbox;
+
+		&__span {
+			@extend .check;
+		}
+	}
+
+	&__list {
+		@extend .actions-dropdown;
+	}
+}

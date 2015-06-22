@@ -8,15 +8,16 @@
 @import "common/_link.scss";
 @import "common/_slider.scss";
 @import "common/_split-button.scss";
+@import "common/_checkbox-select.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
 @import "rows/_value.scss";
 @import "rows/_trend.scss";
+@import "rows/_action.scss";
 
 @import "_toggle.scss";
 @import "_page-content.scss";
 @import "_grid.scss";
-@import "_options.scss";
-@import "rows/_action.scss";
+@import "_content-options.scss";
 @import "_filter.scss";

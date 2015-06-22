@@ -23,28 +23,15 @@
 		display: inline;
 	}
 
-	&__options {
-	}
-
 	&__actions {
 		@extend .actions-group;
 
 		&__export {
 			margin-right: 20px;
-
-			.expand {
-				top: 1px;
-				font-size: 10px;
-			}
 		}
 
 		&__view {
 			margin-right: 10px;
-
-			.expand {
-				top: 1px;
-				font-size: 10px;
-			}
 		}
 	}
 

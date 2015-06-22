@@ -1,4 +1,4 @@
-﻿.metro-btn, .row-btn, .actions, .options__check button, .options__refresh, .options__show .split-btn, .options__show .split-toggle, .action__btn, .filter__btn, .filter filter-list .filter-list__button {
+﻿.metro-btn, .row-btn, .actions, .checkbox-select__btn, .action__btn, .options__refresh, .options__show .split-btn, .options__show .split-toggle, .filter__btn, .filter filter-list .filter-list__button {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -16,28 +16,28 @@
   position: relative;
   color: #787878;
   font-weight: 500; }
-  .metro-btn:hover, .row-btn:hover, .actions:hover, .options__check button:hover, .options__refresh:hover, .options__show .split-btn:hover, .options__show .split-toggle:hover, .action__btn:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover {
+  .metro-btn:hover, .row-btn:hover, .actions:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .options__show .split-btn:hover, .options__show .split-toggle:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover {
     border-color: #787878; }
-  .metro-btn:active, .row-btn:active, .actions:active, .options__check button:active, .options__refresh:active, .options__show .split-btn:active, .options__show .split-toggle:active, .action__btn:active, .filter__btn:active, .filter filter-list .filter-list__button:active {
+  .metro-btn:active, .row-btn:active, .actions:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .options__show .split-btn:active, .options__show .split-toggle:active, .filter__btn:active, .filter filter-list .filter-list__button:active {
     box-shadow: 0 2px 0 #787878;
     transform: translateY(3px); }
 
-.metro-checkbox .input-control.checkbox, .row-check .input-control.checkbox {
+.metro-checkbox .input-control.checkbox, .row-check .input-control.checkbox, .checkbox-select__check .input-control.checkbox, .metro-checkbox .checkbox-select__input-control, .row-check .checkbox-select__input-control, .checkbox-select__check .checkbox-select__input-control {
   line-height: 1.875rem;
   min-width: 1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-.metro-checkbox .input-control.checkbox input[type="checkbox"], .row-check .input-control.checkbox input[type="checkbox"] {
+.metro-checkbox .input-control.checkbox input[type="checkbox"], .row-check .input-control.checkbox input[type="checkbox"], .checkbox-select__check .input-control.checkbox input[type="checkbox"], .metro-checkbox .checkbox-select__input-control input[type="checkbox"], .row-check .checkbox-select__input-control input[type="checkbox"], .checkbox-select__check .checkbox-select__input-control input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   width: 0.0625rem;
   height: 0.0625rem; }
-.metro-checkbox .input-control.checkbox .caption, .row-check .input-control.checkbox .caption {
+.metro-checkbox .input-control.checkbox .caption, .row-check .input-control.checkbox .caption, .checkbox-select__check .input-control.checkbox .caption, .metro-checkbox .checkbox-select__input-control .caption, .row-check .checkbox-select__input-control .caption, .checkbox-select__check .checkbox-select__input-control .caption {
   margin: 0 0.125rem;
   vertical-align: middle; }
-.metro-checkbox .input-control.checkbox .check, .row-check .input-control.checkbox .check {
+.metro-checkbox .input-control.checkbox .check, .row-check .input-control.checkbox .check, .checkbox-select__check .input-control.checkbox .check, .metro-checkbox .checkbox-select__input-control .check, .row-check .checkbox-select__input-control .check, .checkbox-select__check .checkbox-select__input-control .check, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span, .row-check .input-control.checkbox .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span, .row-check .checkbox-select__input-control .checkbox-select__input-control__span, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span {
   width: 1.625rem;
   height: 1.625rem;
   background-color: #ffffff;
@@ -46,11 +46,11 @@
   position: relative;
   display: inline-block;
   vertical-align: middle; }
-.metro-checkbox .input-control.checkbox.text-left .check, .row-check .input-control.checkbox.text-left .check {
+.metro-checkbox .input-control.checkbox.text-left .check, .row-check .input-control.checkbox.text-left .check, .checkbox-select__check .input-control.checkbox.text-left .check, .metro-checkbox .text-left.checkbox-select__input-control .check, .row-check .text-left.checkbox-select__input-control .check, .checkbox-select__check .text-left.checkbox-select__input-control .check, .metro-checkbox .input-control.checkbox.text-left .checkbox-select__input-control__span, .row-check .input-control.checkbox.text-left .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .metro-checkbox .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .row-check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .checkbox-select__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span {
   margin: 0 0 0 0.3125rem; }
-.metro-checkbox .input-control.checkbox .check:focus, .row-check .input-control.checkbox .check:focus {
+.metro-checkbox .input-control.checkbox .check:focus, .row-check .input-control.checkbox .check:focus, .checkbox-select__check .input-control.checkbox .check:focus, .metro-checkbox .checkbox-select__input-control .check:focus, .row-check .checkbox-select__input-control .check:focus, .checkbox-select__check .checkbox-select__input-control .check:focus, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span:focus, .row-check .input-control.checkbox .checkbox-select__input-control__span:focus, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span:focus, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span:focus, .row-check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span:focus {
   border-color: #bcd9e2; }
-.metro-checkbox .input-control.checkbox .check:before, .row-check .input-control.checkbox .check:before {
+.metro-checkbox .input-control.checkbox .check:before, .row-check .input-control.checkbox .check:before, .checkbox-select__check .input-control.checkbox .check:before, .metro-checkbox .checkbox-select__input-control .check:before, .row-check .checkbox-select__input-control .check:before, .checkbox-select__check .checkbox-select__input-control .check:before, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span:before, .row-check .input-control.checkbox .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span:before, .row-check .checkbox-select__input-control .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span:before {
   position: absolute;
   vertical-align: middle;
   color: transparent;
@@ -70,19 +70,19 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   transition: all 0.2s linear; }
-.metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .row-check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before {
+.metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .row-check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .row-check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .row-check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .row-check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before {
   border-color: #555555;
   transition: all 0.2s linear; }
-.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled ~ .caption, .row-check .input-control.checkbox input[type="checkbox"]:disabled ~ .caption {
+.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled ~ .caption, .row-check .input-control.checkbox input[type="checkbox"]:disabled ~ .caption, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:disabled ~ .caption, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:disabled ~ .caption, .row-check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .caption, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .caption {
   color: #cacaca;
   cursor: default; }
-.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled ~ .check, .row-check .input-control.checkbox input[type="checkbox"]:disabled ~ .check {
+.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled ~ .check, .row-check .input-control.checkbox input[type="checkbox"]:disabled ~ .check, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:disabled ~ .check, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:disabled ~ .check, .row-check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .check, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .check, .metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span, .row-check .input-control.checkbox input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span, .row-check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:disabled ~ .checkbox-select__input-control__span {
   border-color: #cacaca;
   cursor: default; }
-.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before, .row-check .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before {
+.metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before, .row-check .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .check:before, .row-check .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .check:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before, .row-check .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before, .row-check .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:disabled:checked ~ .checkbox-select__input-control__span:before {
   border-color: #cacaca; }
 
-.my-dropdown, .actions-dropdown {
+.my-dropdown, .actions-dropdown, .checkbox-select__list {
   position: absolute;
   z-index: 1000;
   min-width: 160px;
@@ -101,7 +101,7 @@
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
-  .my-dropdown > li > a, .actions-dropdown > li > a {
+  .my-dropdown > li > a, .actions-dropdown > li > a, .checkbox-select__list > li > a {
     display: block;
     padding: 3px 20px;
     clear: both;
@@ -109,13 +109,13 @@
     line-height: 1.42857;
     color: #333;
     white-space: nowrap; }
-    .my-dropdown > li > a:hover, .actions-dropdown > li > a:hover {
+    .my-dropdown > li > a:hover, .actions-dropdown > li > a:hover, .checkbox-select__list > li > a:hover {
       cursor: pointer;
       color: #fff;
       text-decoration: none;
       background-color: #337ab7;
       outline: 0; }
-    .my-dropdown > li > a:focus, .actions-dropdown > li > a:focus {
+    .my-dropdown > li > a:focus, .actions-dropdown > li > a:focus, .checkbox-select__list > li > a:focus {
       cursor: pointer;
       color: #fff;
       text-decoration: none;
@@ -176,12 +176,12 @@
 .row-btn {
   display: inline; }
 
-.row-check {
+.row-check, .checkbox-select__check {
   margin-left: 10px;
   display: inline; }
-  .row-check label {
+  .row-check label, .checkbox-select__check label {
     display: inline; }
-  .row-check .expand {
+  .row-check .expand, .checkbox-select__check .expand {
     font-size: 10px; }
 
 .wrap {
@@ -189,16 +189,14 @@
   text-overflow: ellipsis;
   overflow: hidden; }
 
-.actions span {
-  top: 2px; }
-
 .actions-group, .page-content__actions {
   position: absolute;
   display: inline;
   right: 0; }
 
 .expand {
-  top: 2px; }
+  top: 1px;
+  font-size: 10px; }
 
 .link-container {
   display: compact; }
@@ -236,6 +234,16 @@
 .split-btn {
   position: relative; }
 
+.checkbox-select {
+  display: inline; }
+  .checkbox-select__btn {
+    display: inline; }
+    .checkbox-select__btn .expand {
+      display: inline;
+      margin-left: 8px; }
+  .checkbox-select__check {
+    margin-left: 0 !important; }
+
 .row-name__value {
   display: inline; }
 
@@ -248,6 +256,28 @@
   display: inline;
   position: absolute;
   margin-left: 10px; }
+
+.action {
+  position: absolute;
+  top: 15px;
+  left: 70px; }
+  .action__group {
+    display: inline; }
+  .action__btn {
+    font: initial;
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-size: 14px;
+    margin-right: 10px; }
+  .action__dropdown {
+    position: relative;
+    font: initial;
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-size: 14px; }
+    .action__dropdown ul {
+      position: absolute;
+      z-index: 1000; }
+    .action__dropdown .expand {
+      font-size: 10px; }
 
 .toggle {
   -webkit-transition: top 2s;
@@ -284,14 +314,8 @@
   display: inline; }
 .page-content__actions__export {
   margin-right: 20px; }
-  .page-content__actions__export .expand {
-    top: 1px;
-    font-size: 10px; }
 .page-content__actions__view {
   margin-right: 10px; }
-  .page-content__actions__view .expand {
-    top: 1px;
-    font-size: 10px; }
 .page-content__body {
   padding: 0; }
 
@@ -324,6 +348,8 @@
     padding-top: 20px;
     background-color: initial;
     overflow: visible !important; }
+    .custom-grid .ngCell .expand {
+      font-size: 14px; }
   .custom-grid .ngRow {
     background: white;
     border: 1px solid #e5e5e5;
@@ -374,23 +400,11 @@
   .options__check {
     margin-right: 10px;
     position: relative; }
-    .options__check button {
-      display: inline; }
-      .options__check button .row-check {
-        margin-left: 0 !important; }
-      .options__check button .expand {
-        display: inline;
-        margin-left: 8px;
-        font-size: 10px;
-        top: 1px; }
   .options__refresh {
     margin-right: 10px;
     position: relative; }
   .options__more {
     position: relative; }
-    .options__more .expand {
-      top: 1px;
-      font-size: 10px; }
   .options__search {
     float: right; }
   .options__show {
@@ -401,28 +415,6 @@
       text-transform: capitalize; }
     .options__show .split-toggle span {
       top: 1px;
-      font-size: 10px; }
-
-.action {
-  position: absolute;
-  top: 15px;
-  left: 70px; }
-  .action__group {
-    display: inline; }
-  .action__btn {
-    font: initial;
-    font-family: "Arial", "Helvetica", sans-serif !important;
-    font-size: 14px;
-    margin-right: 10px; }
-  .action__dropdown {
-    position: relative;
-    font: initial;
-    font-family: "Arial", "Helvetica", sans-serif !important;
-    font-size: 14px; }
-    .action__dropdown ul {
-      position: absolute;
-      z-index: 1000; }
-    .action__dropdown .expand {
       font-size: 10px; }
 
 .filter {

@@ -1,13 +1,16 @@
-﻿<button type="button">
-	<div class="row-check">
-		<label class="input-control checkbox">
-			<input type="checkbox" ng-model="check" />
-			<span class="check"></span>
-		</label>
-	</div>
-	<span class="expand glyphicon"></span>
-</button>
+﻿<div class="checkbox-select">
+	<button type="button" class="checkbox-select__btn">
+		<div class="checkbox-select__check">
+			<label class="checkbox-select__input-control">
+				<input type="checkbox" ng-model="check" />
+				<span class="checkbox-select__input-control__span"></span>
+			</label>
+		</div>
+		<span class="expand glyphicon"></span>
+	</button>
 
-<ul class="actions-dropdown">
-	<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
-</ul>
+	<ul class="checkbox-select__list">
+		<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
+	</ul>
+</div>
+

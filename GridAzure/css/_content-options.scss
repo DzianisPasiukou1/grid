@@ -7,22 +7,6 @@
 	&__check {
 		margin-right: 10px;
 		position: relative;
-
-		button {
-			@extend .metro-btn;
-			display: inline;
-
-			.row-check {
-				margin-left: 0 !important;
-			}
-
-			.expand {
-				display: inline;
-				margin-left: 8px;
-				font-size: 10px;
-				top: 1px;
-			}
-		}
 	}
 
 	&__refresh {
@@ -33,11 +17,6 @@
 
 	&__more {
 		position: relative;
-
-		.expand {
-			top: 1px;
-			font-size: 10px;
-		}
 	}
 
 	&__search {
@@ -65,9 +44,6 @@
 				top: 1px;
 				font-size: 10px;
 			}
-		}
-
-		&:hover {
 		}
 	}
 }
