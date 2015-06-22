@@ -1,10 +1,10 @@
 ﻿<button class="split-btn">
 	{{selected.label}}
-	<button class="split-toggle">
-		<span class="glyphicon">
+	<button class="split-btn__toggle">
+		<span class="expand glyphicon">
 		</span>
 	</button>
-	<ul class="actions-dropdown">
+	<ul class="split-btn__list">
 		<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
 	</ul>
 </button>

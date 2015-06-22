@@ -2,10 +2,8 @@
 @import "common/_my-dropdown.scss";
 @import "common/_my-panel.scss";
 @import "common/_my-search.scss";
-@import "common/_buttons.scss";
 @import "common/_wrap.scss";
-@import "common/_actions.scss";
-@import "common/_link.scss";
+@import "common/_expand.scss";
 @import "common/_slider.scss";
 @import "common/_split-button.scss";
 @import "common/_checkbox-select.scss";
@@ -15,6 +13,7 @@
 @import "rows/_value.scss";
 @import "rows/_trend.scss";
 @import "rows/_action.scss";
+@import "rows/_details.scss";
 
 @import "_toggle.scss";
 @import "_page-content.scss";

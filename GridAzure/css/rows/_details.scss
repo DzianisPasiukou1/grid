@@ -1,0 +1,26 @@
+﻿.cell-details {
+
+	&__expand {
+		@extend .expand;
+		float: left;
+		top: 4px;
+		margin-left: 10px;
+		font-size: 14px;
+	}
+
+	&__check {
+		@extend .metro-checkbox;
+		position: absolute;
+		display: inline;
+		left: 35px;
+	}
+
+	&__input {
+		@extend .input-control;
+		@extend .checkbox;
+
+		&__check {
+			@extend .check;
+		}
+	}
+}

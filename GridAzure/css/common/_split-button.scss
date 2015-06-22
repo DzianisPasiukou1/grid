@@ -1,3 +1,12 @@
 ﻿.split-btn {
-	position: relative;
+	@extend .metro-btn;
+	text-transform: capitalize;
+
+	&__toggle {
+		@extend .metro-btn;
+	}
+
+	&__list {
+		@extend .my-dropdown__list;
+	}
 }

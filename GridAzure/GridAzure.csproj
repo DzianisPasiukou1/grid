@@ -1930,8 +1930,7 @@
     </Content>
     <Content Include="download.html" />
     <Content Include="Global.asax" />
-    <Content Include="css\common\_actions.scss" />
-    <Content Include="css\common\_buttons.scss" />
+    <Content Include="css\common\_expand.scss" />
     <Content Include="css\_toggle.scss" />
     <Content Include="css\common\_wrap.scss" />
     <Content Include="css\rows\_date.scss" />
@@ -2156,13 +2155,13 @@
     <Content Include="bundles\app.min.js.map">
       <DependentUpon>app.min.js</DependentUpon>
     </Content>
-    <Content Include="css\common\_link.scss" />
     <Content Include="css\_filter.scss" />
     <Content Include="css\common\_slider.scss" />
     <Content Include="css\common\_split-button.scss" />
     <Content Include="css\common\_my-dropdown.scss" />
     <Content Include="css\common\_my-search.scss" />
     <Content Include="css\common\_checkbox-select.scss" />
+    <Content Include="css\rows\_details.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

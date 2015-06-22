@@ -1,7 +1,9 @@
-﻿<span class="expand" details details-class="'toggle'" row="row" row-height="rowHeight" ng-class="{'glyphicon glyphicon-menu-down' : !row.isToggle, 'glyphicon glyphicon-menu-up': row.isToggle}"></span>
-<div class="row-check">
-	<label class="input-control checkbox">
-		<input type="checkbox" ng-model="row.entity.isCheck" />
-		<span class="check"></span>
-	</label>
+﻿<div class="cell-details">
+	<span class="cell-details__expand" details details-class="'toggle'" row="row" row-height="rowHeight" ng-class="{'glyphicon glyphicon-menu-down' : !row.isToggle, 'glyphicon glyphicon-menu-up': row.isToggle}"></span>
+	<div class="cell-details__check">
+		<label class="cell-details__input">
+			<input type="checkbox" ng-model="row.entity.isCheck" />
+			<span class="cell-details__input__check"></span>
+		</label>
+	</div>
 </div>
