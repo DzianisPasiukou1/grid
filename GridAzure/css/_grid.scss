@@ -37,10 +37,9 @@
 		text-align: center;
 		padding-top: 15px;
 		background-color: initial;
+		overflow: visible !important;
 
 		.expand {
-			margin-right: 5px;
-			top: 2px;
 		}
 	}
 
@@ -77,35 +76,34 @@
 		}
 
 		&__name {
-			text-align: center;
 			padding-top: 10px;
-			position: absolute;
-			padding-left: 45%;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: inline-block;
 		}
 
 		&__sort-down {
 			z-index: 10000;
-			padding-top: 5px;
-			padding-left: 80px;
+			display: inline-block;
+			position: absolute;
 
 			img {
-				width: 20px;
-				height: 30px;
-				content: url(../content/arrow_down.png);
-				-webkit-mask-image: -webkit-linear-gradient(top, rgba(168, 168, 168, 1), rgba(168, 168, 168, 1));
+				width: 15px;
+				height: 15px;
+				content: url(../content/ezimba_down.png);
 			}
 		}
 
 		&__sort-up {
 			z-index: 100;
-			padding-top: 5px;
-			padding-left: 80px;
+			display: inline-block;
+			position: absolute;
 
 			img {
-				width: 20px;
-				height: 30px;
-				content: url(../content/arrow_up.png);
-				-webkit-mask-image: -webkit-linear-gradient(top, rgba(168, 168, 168, 1), rgba(168, 168, 168, 1));
+				width: 15px;
+				height: 15px;
+				content: url(../content/ezimba_up.png);
 			}
 		}
 	}

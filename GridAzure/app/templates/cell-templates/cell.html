@@ -2,12 +2,12 @@
 	<div class="column__sort" ng-click="col.sort($event)" ng-style="{'height': col.headerRowHeight}">
 		<div class="column__name" ng-style="{'height': col.headerRowHeight}">
 			{{col.displayName}}
-		</div>
-		<div class="column__sort-down" ng-show="col.showSortButtonDown()">
-			<img />
-		</div>
-		<div class="column__sort-up" ng-show="col.showSortButtonUp()">
-			<img />
+			<div class="column__sort-down" ng-show="col.showSortButtonDown()">
+				<img />
+			</div>
+			<div class="column__sort-up" ng-show="col.showSortButtonUp()">
+				<img />
+			</div>
 		</div>
 	</div>
 </div>

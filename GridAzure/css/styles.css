@@ -5,7 +5,7 @@
   text-align: center;
   vertical-align: middle;
   background-color: #ffffff;
-  border: 2px #d9d9d9 solid;
+  border: 1px #d9d9d9 solid;
   cursor: pointer;
   display: inline-block;
   outline: none;
@@ -171,7 +171,6 @@
   padding-right: 25px;
   background: url(../content/icons/search.png) no-repeat right;
   background-size: 25px 25px;
-  border: 2px #d9d9d9 solid;
   border-left: 0; }
 
 .row-btn {
@@ -181,6 +180,8 @@
   display: inline; }
   .row-check label {
     display: inline; }
+  .row-check .expand {
+    font-size: 10px; }
 
 .wrap {
   white-space: nowrap;
@@ -277,8 +278,14 @@
   display: inline; }
 .page-content__actions__export {
   margin-right: 20px; }
+  .page-content__actions__export .expand {
+    top: 1px;
+    font-size: 10px; }
 .page-content__actions__view {
   margin-right: 10px; }
+  .page-content__actions__view .expand {
+    top: 1px;
+    font-size: 10px; }
 .page-content__body {
   padding: 0; }
 
@@ -309,10 +316,8 @@
     left: 50px;
     text-align: center;
     padding-top: 15px;
-    background-color: initial; }
-    .custom-grid .ngCell .expand {
-      margin-right: 5px;
-      top: 2px; }
+    background-color: initial;
+    overflow: visible !important; }
   .custom-grid .ngRow {
     background: white;
     border: 1px solid #e5e5e5;
@@ -333,33 +338,32 @@
     .custom-grid .column__sort {
       width: 100%; }
     .custom-grid .column__name {
-      text-align: center;
       padding-top: 10px;
-      position: absolute;
-      padding-left: 45%; }
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: inline-block; }
     .custom-grid .column__sort-down {
       z-index: 10000;
-      padding-top: 5px;
-      padding-left: 80px; }
+      display: inline-block;
+      position: absolute; }
       .custom-grid .column__sort-down img {
-        width: 20px;
-        height: 30px;
-        content: url(../content/arrow_down.png);
-        -webkit-mask-image: -webkit-linear-gradient(top, #a8a8a8, #a8a8a8); }
+        width: 15px;
+        height: 15px;
+        content: url(../content/ezimba_down.png); }
     .custom-grid .column__sort-up {
       z-index: 100;
-      padding-top: 5px;
-      padding-left: 80px; }
+      display: inline-block;
+      position: absolute; }
       .custom-grid .column__sort-up img {
-        width: 20px;
-        height: 30px;
-        content: url(../content/arrow_up.png);
-        -webkit-mask-image: -webkit-linear-gradient(top, #a8a8a8, #a8a8a8); }
+        width: 15px;
+        height: 15px;
+        content: url(../content/ezimba_up.png); }
 
 .options {
   padding-top: 10px;
   padding-bottom: 7px;
-  margin-left: 20px;
+  margin-left: 25px;
   padding-right: 10px; }
   .options__check {
     margin-right: 10px;
@@ -368,12 +372,16 @@
       display: inline; }
       .options__check button .expand {
         display: inline;
-        top: 2px; }
+        margin-left: 8px;
+        font-size: 10px; }
   .options__refresh {
     margin-right: 10px;
     position: relative; }
   .options__more {
     position: relative; }
+    .options__more .expand {
+      top: 1px;
+      font-size: 10px; }
   .options__search {
     float: right; }
   .options__show {
@@ -382,13 +390,17 @@
     text-transform: capitalize; }
     .options__show .split-btn {
       text-transform: capitalize; }
+    .options__show .split-toggle span {
+      top: 1px;
+      font-size: 10px; }
 
 .action__group {
   display: inline; }
 .action__btn {
   font: initial;
   font-family: "Arial", "Helvetica", sans-serif !important;
-  font-size: 14px; }
+  font-size: 14px;
+  margin-right: 10px; }
 .action__dropdown {
   position: relative;
   font: initial;
@@ -397,6 +409,8 @@
   .action__dropdown ul {
     position: absolute;
     z-index: 1000; }
+  .action__dropdown .expand {
+    font-size: 10px; }
 
 .filter {
   display: inline;
@@ -404,7 +418,8 @@
   margin-right: 40px;
   position: relative; }
   .filter__btn .expand {
-    top: 2px; }
+    top: 1px;
+    font-size: 10px; }
   .filter filter-list {
     position: absolute;
     z-index: 1000;

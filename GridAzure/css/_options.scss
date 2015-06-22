@@ -1,7 +1,7 @@
 ﻿.options {
 	padding-top: 10px;
 	padding-bottom: 7px;
-	margin-left: 20px;
+	margin-left: 25px;
 	padding-right: 10px;
 
 	&__check {
@@ -14,7 +14,8 @@
 
 			.expand {
 				display: inline;
-				top: 2px;
+				margin-left: 8px;
+				font-size: 10px;
 			}
 		}
 	}
@@ -27,6 +28,11 @@
 
 	&__more {
 		position: relative;
+
+		.expand {
+			top: 1px;
+			font-size: 10px;
+		}
 	}
 
 	&__search {
@@ -49,6 +55,11 @@
 
 		.split-toggle {
 			@extend .metro-btn;
+
+			span {
+				top: 1px;
+				font-size: 10px;
+			}
 		}
 
 		&:hover {

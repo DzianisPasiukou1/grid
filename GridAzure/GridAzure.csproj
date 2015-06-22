@@ -1915,6 +1915,8 @@
     </Content>
     <Content Include="content\arrow_down.png" />
     <Content Include="content\arrow_up.png" />
+    <Content Include="content\ezimba_down.png" />
+    <Content Include="content\ezimba_up.png" />
     <Content Include="content\filter.jpg" />
     <Content Include="content\icons\search.png" />
     <Content Include="content\icons\less.ico" />
