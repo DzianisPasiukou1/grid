@@ -177,6 +177,7 @@
   display: inline; }
 
 .row-check {
+  margin-left: 10px;
   display: inline; }
   .row-check label {
     display: inline; }
@@ -195,6 +196,9 @@
   position: absolute;
   display: inline;
   right: 0; }
+
+.expand {
+  top: 2px; }
 
 .link-container {
   display: compact; }
@@ -241,7 +245,9 @@
 .row-trend input {
   width: 50%; }
 .row-trend__value {
-  display: inline; }
+  display: inline;
+  position: absolute;
+  margin-left: 10px; }
 
 .toggle {
   -webkit-transition: top 2s;
@@ -315,7 +321,7 @@
   .custom-grid .ngCell {
     left: 50px;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 20px;
     background-color: initial;
     overflow: visible !important; }
   .custom-grid .ngRow {
@@ -370,10 +376,13 @@
     position: relative; }
     .options__check button {
       display: inline; }
+      .options__check button .row-check {
+        margin-left: 0 !important; }
       .options__check button .expand {
         display: inline;
         margin-left: 8px;
-        font-size: 10px; }
+        font-size: 10px;
+        top: 1px; }
   .options__refresh {
     margin-right: 10px;
     position: relative; }
@@ -394,23 +403,27 @@
       top: 1px;
       font-size: 10px; }
 
-.action__group {
-  display: inline; }
-.action__btn {
-  font: initial;
-  font-family: "Arial", "Helvetica", sans-serif !important;
-  font-size: 14px;
-  margin-right: 10px; }
-.action__dropdown {
-  position: relative;
-  font: initial;
-  font-family: "Arial", "Helvetica", sans-serif !important;
-  font-size: 14px; }
-  .action__dropdown ul {
-    position: absolute;
-    z-index: 1000; }
-  .action__dropdown .expand {
-    font-size: 10px; }
+.action {
+  position: absolute;
+  top: 15px;
+  left: 70px; }
+  .action__group {
+    display: inline; }
+  .action__btn {
+    font: initial;
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-size: 14px;
+    margin-right: 10px; }
+  .action__dropdown {
+    position: relative;
+    font: initial;
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-size: 14px; }
+    .action__dropdown ul {
+      position: absolute;
+      z-index: 1000; }
+    .action__dropdown .expand {
+      font-size: 10px; }
 
 .filter {
   display: inline;

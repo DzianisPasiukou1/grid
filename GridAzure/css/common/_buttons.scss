@@ -5,6 +5,7 @@
 
 .row-check {
 	@extend .metro-checkbox;
+	margin-left: 10px;
 
 	label {
 		display: inline;

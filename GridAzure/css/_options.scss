@@ -12,10 +12,15 @@
 			@extend .metro-btn;
 			display: inline;
 
+			.row-check {
+				margin-left: 0 !important;
+			}
+
 			.expand {
 				display: inline;
 				margin-left: 8px;
 				font-size: 10px;
+				top: 1px;
 			}
 		}
 	}
