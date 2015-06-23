@@ -28,4 +28,17 @@
 				$scope.options.callback(action);
 			}
 		}
+
+		$scope.checked = function (value) {
+			if (value) {
+				$scope.selected = $scope.options.actions.all;
+			}
+			else {
+				$scope.selected = $scope.options.actions.noOne;
+			}
+
+			if ($scope.options.callback) {
+				$scope.options.callback($scope.selected);
+			}
+		};
 	}]);

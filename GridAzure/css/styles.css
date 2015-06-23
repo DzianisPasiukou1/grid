@@ -109,7 +109,7 @@
     z-index: 1000;
     min-width: 160px;
     left: 0;
-    right: 0;
+    right: 10px;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 14px;
@@ -175,7 +175,7 @@
     z-index: 1;
     font-size: 0.875rem; }
 
-.my-search, .options__search .search {
+.my-search input, .options__search .search input {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -189,11 +189,24 @@
   font-size: 1.25rem;
   line-height: 1;
   margin: 0.15625rem 0;
+  position: absolute;
+  /*padding-right: 25px;*/
+  border-left: 0;
+  right: 10px; }
+.my-search .search-span, .options__search .search .search-span {
+  width: 25px;
+  height: 25px;
   position: relative;
-  padding-right: 25px;
-  background: url(../content/icons/search.png) no-repeat right;
-  background-size: 25px 25px;
-  border-left: 0; }
+  top: 5px;
+  content: url(../../content/icons/search.png) no-repeat right; }
+.my-search .search-clear, .options__search .search .search-clear {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 7px;
+  right: 3px;
+  content: url(../../content/clear-main.png) no-repeat right;
+  cursor: pointer; }
 
 .wrap {
   white-space: nowrap;
@@ -429,13 +442,14 @@
     float: right; }
   .options__show {
     float: right;
+    right: 143px;
     position: relative;
     text-transform: capitalize; }
 
 .filter {
   display: inline;
   float: right;
-  margin-right: 40px;
+  margin-right: 250px;
   position: relative; }
   .filter__btn .expand, .filter__btn .my-dropdown__expand, .filter__btn .checkbox-select__expand, .filter__btn .cell-details__expand {
     top: 1px;

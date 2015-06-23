@@ -38,5 +38,6 @@
 		<file>/app/directives/custom-grid/row-check/row-check.js</file>
 		<file>/app/constants/checkbox-select-constants.js</file>
 		<file>/app/directives/filter/filter-list/filter-list-controller.js</file>
+		<file>/app/directives/search/search-controller.js</file>
 	</files>
 </bundle>

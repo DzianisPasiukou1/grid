@@ -399,9 +399,28 @@ angular.module('gridTaskApp')
 		return {
 			restrict: 'E',
 			scope: {
-				searchValue: '='
+				searchValue: '=',
+				edited: '='
 			},
+			controller: 'searchCtrl',
 			templateUrl: templatesPath + 'search.html',
+			link: function (scope, element, attrs) {
+				element.find('.search-clear').hide();
+				element.find('.search-span').show();
+
+
+				$(document).click(function (event) {
+					if (!$(event.target).closest(element).length) {
+						element.find('.search-clear').hide();
+						element.find('.search-span').show();
+					}
+				})
+
+				element.focusin(function () {
+					element.find('.search-clear').show();
+					element.find('.search-span').hide();
+				})
+			}
 		}
 	}]);
 ///#source 1 1 /app/directives/trend-slider/trend-slider.js
@@ -454,6 +473,19 @@ angular.module('gridTaskApp')
 				$scope.options.callback(action);
 			}
 		}
+
+		$scope.checked = function (value) {
+			if (value) {
+				$scope.selected = $scope.options.actions.all;
+			}
+			else {
+				$scope.selected = $scope.options.actions.noOne;
+			}
+
+			if ($scope.options.callback) {
+				$scope.options.callback($scope.selected);
+			}
+		};
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
 angular.module('gridTaskApp')
@@ -736,4 +768,21 @@ angular.module('gridTaskApp')
 		$scope.filter = function () {
 			$scope.isFiltrate = true;
 		}
+	}]);
+///#source 1 1 /app/directives/search/search-controller.js
+angular.module('gridTaskApp')
+	.controller('searchCtrl', ['$scope', function ($scope) {
+		$scope.edited = false;
+
+		$scope.focus = function () {
+			$scope.edited = true;
+		};
+
+		$scope.blur = function () {
+			$scope.edited = false;
+		}
+
+		$scope.clear = function () {
+			$scope.searchValue = '';
+		};
 	}]);

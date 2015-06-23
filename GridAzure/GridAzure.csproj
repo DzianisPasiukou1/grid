@@ -185,12 +185,14 @@
     <Content Include="app\directives\filter\filter-list\filter-list-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
     <Content Include="app\directives\filter\filter.js" />
+    <Content Include="app\directives\focus-out\ng-focus-out.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page\page-content\page-content-controller.js" />
     <Content Include="app\directives\page\page-content\page-content.js" />
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
+    <Content Include="app\directives\search\search-controller.js" />
     <Content Include="app\directives\search\search.js" />
     <Content Include="app\directives\slider\slider.js" />
     <Content Include="app\directives\split-button\split-button-controller.js" />
@@ -1915,12 +1917,16 @@
     </Content>
     <Content Include="content\arrow_down.png" />
     <Content Include="content\arrow_up.png" />
+    <Content Include="content\clear.png" />
+    <Content Include="content\close-icon.png" />
     <Content Include="content\ezimba_down.png" />
     <Content Include="content\ezimba_up.png" />
     <Content Include="content\filter.jpg" />
     <Content Include="content\icons\search.png" />
     <Content Include="content\icons\less.ico" />
     <Content Include="content\icons\more.ico" />
+    <Content Include="content\clear-main.png" />
+    <Content Include="content\noun_25367_cc.png" />
     <Content Include="content\text.png" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
