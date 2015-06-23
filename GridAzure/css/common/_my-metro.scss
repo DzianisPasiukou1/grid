@@ -90,6 +90,28 @@
 		transition: all 0.2s linear;
 	}
 
+	.input-control.checkbox .marked:before {
+		position: absolute;
+		vertical-align: middle;
+		color: transparent;
+		font-size: 0;
+		content: "";
+		height: .3125rem;
+		width: .565rem;
+		background-color: transparent;
+		border-left: 0 !important;
+		border-bottom: .2875rem solid;
+		border-color: #555555;
+		left: 50%;
+		top: 50%;
+		margin-left: -0.325rem;
+		margin-top: -0.365rem;
+		display: block;
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		transition: all 0.2s linear;
+	}
+
 	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before {
 		border-color: #555555;
 		transition: all 0.2s linear;

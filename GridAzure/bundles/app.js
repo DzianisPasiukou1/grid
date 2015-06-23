@@ -195,10 +195,10 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
 	.controller('dropdownCtrl', ['$scope', function ($scope) {
-		if (!$scope.options.upClass) {
+		if (!$scope.options.showClass) {
 			$scope.options.showClass = 'glyphicon-menu-up'
 		}
-		if (!$scope.options.downClass) {
+		if (!$scope.options.hideClass) {
 			$scope.options.hideClass = 'glyphicon-menu-down'
 		}
 
@@ -358,7 +358,14 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/page/page-content/content-options/content-options-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
-		$scope.checks = checkboxSelectConstants.values;
+		$scope.checks = {
+			options: {
+				actions: checkboxSelectConstants.values,
+				callback: function (action) {
+					$scope.selectedOptions.check = action;
+				}
+			}
+		};
 		$scope.mores = {
 			options:
 				{
@@ -419,7 +426,18 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
 	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
-		$scope.selected = $scope.actions.noOne;
+		if (!$scope.options.showClass) {
+			$scope.options.showClass = 'glyphicon-menu-up'
+		}
+		if (!$scope.options.hideClass) {
+			$scope.options.hideClass = 'glyphicon-menu-down'
+		}
+
+		$scope.selected = $scope.options.actions.noOne;
+
+		if ($scope.options.callback) {
+			$scope.options.callback($scope.selected);
+		}
 		$scope.check = false;
 
 		$scope.select = function (action) {
@@ -428,11 +446,12 @@ angular.module('gridTaskApp')
 			if (action.isAll) {
 				$scope.check = true;
 			}
-			else if (action.isNoOne) {
-				$scope.check = false;
-			}
 			else {
 				$scope.check = false;
+			}
+
+			if ($scope.options.callback) {
+				$scope.options.callback(action);
 			}
 		}
 	}]);
@@ -442,42 +461,41 @@ angular.module('gridTaskApp')
 		return {
 			restrict: 'E',
 			scope: {
-				actions: '=',
-				check: '=',
-				selected: '='
+				options: '='
 			},
 			templateUrl: templatesPath + 'checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass('glyphicon-menu-down');
+				element.find('span').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('.glyphicon').addClass(scope.options.hideClass);
+						element.find('.glyphicon').removeClass(scope.options.showClass);
 					}
 					else {
 						element.find('ul').show();
-						element.find('span').removeClass('glyphicon-menu-down');
-						element.find('span').addClass('glyphicon-menu-up');
+						element.find('.glyphicon').removeClass(scope.options.hideClass);
+						element.find('.glyphicon').addClass(scope.options.showClass);
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('.glyphicon').addClass(scope.options.hideClass);
+						element.find('.glyphicon').removeClass(scope.options.showClass);
 					}
 				})
 
-				scope.$watch('check', function (value) {
-					if (value) {
-						scope.selected = scope.actions.all;
-					} else {
-						scope.selected = scope.actions.noOne;
+				scope.$watch('selected', function (value) {
+					if (value.isMarked || value.isNotMarked) {
+						element.find('.checkbox-select__input-control__span').addClass('marked');
+					}
+					else {
+						element.find('.checkbox-select__input-control__span').removeClass('marked');
 					}
 				});
 			}

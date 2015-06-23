@@ -1,6 +1,13 @@
 ﻿angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
-		$scope.checks = checkboxSelectConstants.values;
+		$scope.checks = {
+			options: {
+				actions: checkboxSelectConstants.values,
+				callback: function (action) {
+					$scope.selectedOptions.check = action;
+				}
+			}
+		};
 		$scope.mores = {
 			options:
 				{

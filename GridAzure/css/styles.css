@@ -70,6 +70,26 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   transition: all 0.2s linear; }
+.metro-checkbox .input-control.checkbox .marked:before, .checkbox-select__check .input-control.checkbox .marked:before, .cell-details__check .input-control.checkbox .marked:before, .metro-checkbox .checkbox-select__input-control .marked:before, .checkbox-select__check .checkbox-select__input-control .marked:before, .cell-details__check .checkbox-select__input-control .marked:before, .metro-checkbox .cell-details__input .marked:before, .checkbox-select__check .cell-details__input .marked:before, .cell-details__check .cell-details__input .marked:before {
+  position: absolute;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+  content: "";
+  height: 0.3125rem;
+  width: 0.565rem;
+  background-color: transparent;
+  border-left: 0 !important;
+  border-bottom: 0.2875rem solid;
+  border-color: #555555;
+  left: 50%;
+  top: 50%;
+  margin-left: -0.325rem;
+  margin-top: -0.365rem;
+  display: block;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition: all 0.2s linear; }
 .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before {
   border-color: #555555;
   transition: all 0.2s linear; }

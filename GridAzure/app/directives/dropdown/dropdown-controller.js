@@ -1,9 +1,9 @@
 ﻿angular.module('gridTaskApp')
 	.controller('dropdownCtrl', ['$scope', function ($scope) {
-		if (!$scope.options.upClass) {
+		if (!$scope.options.showClass) {
 			$scope.options.showClass = 'glyphicon-menu-up'
 		}
-		if (!$scope.options.downClass) {
+		if (!$scope.options.hideClass) {
 			$scope.options.hideClass = 'glyphicon-menu-down'
 		}
 
