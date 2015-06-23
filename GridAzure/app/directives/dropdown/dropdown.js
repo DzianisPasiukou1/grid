@@ -5,7 +5,8 @@
 			scope: {
 				actions: '=',
 				selected: '=',
-				label: '=startLabel'
+				label: '=startLabel',
+				isMenu: '=dropdownMenu'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',

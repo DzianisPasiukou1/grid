@@ -12,8 +12,8 @@
 			count: $scope.data.length
 		};
 
-		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel' }, { label: 'Pdf' }] };
-		$scope.views = { name: 'View: ', values: [{ label: 'Grid' }, { label: 'Tiles' }] };
+		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel', isExcel: true, isPdf: false }, { label: 'Pdf', isExcel: false, isPdf: true }] };
+		$scope.views = { name: 'View: ', values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }] };
 		$scope.selectedOptions = {};
 		$scope.selectedOptions.filterOptions = function () {
 			var options = [];

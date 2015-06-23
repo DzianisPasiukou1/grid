@@ -10,8 +10,8 @@
 			{{grid.count}} records
 		</div>
 		<div class="page-content__actions">
-			<dropdown class="page-content__actions__export" actions="exports" selected="export" start-label="'Export to: '"></dropdown>
-			<dropdown class="page-content__actions__view" actions="views" selected="view" start-label="'View: '"></dropdown>
+			<dropdown class="page-content__actions__export" actions="exports" selected="export" start-label="exports.name"></dropdown>
+			<dropdown class="page-content__actions__view" actions="views" selected="view" start-label="views.name"></dropdown>
 		</div>
 	</div>
 	<div class="page-content__body">
@@ -19,7 +19,7 @@
 			<content-options selected-options="selectedOptions" is-filtrate="isFiltrate" refresh="refresh"></content-options>
 		</div>
 		<div class="page-content__list">
-			<custom-grid grid-data="data" filters="selectedOptions" export-to="export" ng-if="view.label == 'Grid'" is-filtrate="isFiltrate"></custom-grid>
+			<custom-grid grid-data="data" filters="selectedOptions" export-to="export" ng-if="view.isGrid" is-filtrate="isFiltrate"></custom-grid>
 		</div>
 	</div>
 	<div class="page-content__footer">

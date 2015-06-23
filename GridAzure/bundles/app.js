@@ -199,7 +199,8 @@ angular.module('gridTaskApp')
 			scope: {
 				actions: '=',
 				selected: '=',
-				label: '=startLabel'
+				label: '=startLabel',
+				isMenu: '=dropdownMenu'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',
@@ -259,8 +260,8 @@ angular.module('gridTaskApp')
 			count: $scope.data.length
 		};
 
-		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel' }, { label: 'Pdf' }] };
-		$scope.views = { name: 'View: ', values: [{ label: 'Grid' }, { label: 'Tiles' }] };
+		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel', isExcel: true, isPdf: false }, { label: 'Pdf', isExcel: false, isPdf: true }] };
+		$scope.views = { name: 'View: ', values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }] };
 		$scope.selectedOptions = {};
 		$scope.selectedOptions.filterOptions = function () {
 			var options = [];
@@ -310,7 +311,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
 		$scope.checks = checkboxSelectConstants.values;
-		$scope.mores = { values: [{ label: 'More' }] };
+		$scope.mores = { name: 'More', values: [{ label: 'View reports' }] };
 		$scope.shows = { values: [{ label: 'Everywhere' }] };
 	}]);
 ///#source 1 1 /app/directives/page/page-content/content-options/content-options.js

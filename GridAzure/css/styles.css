@@ -41,7 +41,7 @@
   width: 1.625rem;
   height: 1.625rem;
   background-color: #ffffff;
-  border: 1px #999999 solid;
+  border: 1px #d9d9d9 solid;
   padding: 0;
   position: relative;
   display: inline-block;
@@ -248,7 +248,7 @@
 .action {
   position: absolute;
   top: 15px;
-  left: 70px; }
+  left: 25%; }
   .action__group {
     display: inline; }
   .action__btn {
