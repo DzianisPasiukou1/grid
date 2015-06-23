@@ -13,12 +13,12 @@
 			link: function (scope, element, attrs, controller) {
 				scope.$watch('filters.check', function (check) {
 					if (check) {
-						if (check.label == 'All') {
+						if (check.isAll) {
 							scope.data.forEach(function (value) {
 								value.isCheck = true;
 							});
 						}
-						else if (check.label == 'No one') {
+						else if (check.isNoOne) {
 							scope.data.forEach(function (value) {
 								value.isCheck = false;
 							});

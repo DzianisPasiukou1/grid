@@ -42,12 +42,22 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
 		$scope.data.map(function (value) {
-			value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
+			value.action = {
+				values: [{
+					label: 'Action',
+					isAction: true
+				}, {
+					label: 'More',
+					options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true },
+					isMore: true
+				}],
+				isShow: false
+			};
 			value.isCheck = false;
 		});
 
 		$scope.options = {
-			data: 'data|filter:filterOptions',
+			data: 'data',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {
@@ -121,12 +131,12 @@ angular.module('gridTaskApp')
 			link: function (scope, element, attrs, controller) {
 				scope.$watch('filters.check', function (check) {
 					if (check) {
-						if (check.label == 'All') {
+						if (check.isAll) {
 							scope.data.forEach(function (value) {
 								value.isCheck = true;
 							});
 						}
-						else if (check.label == 'No one') {
+						else if (check.isNoOne) {
 							scope.data.forEach(function (value) {
 								value.isCheck = false;
 							});
@@ -185,10 +195,25 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
 	.controller('dropdownCtrl', ['$scope', function ($scope) {
-		$scope.selected = $scope.actions.values[0];
+		if (!$scope.options.upClass) {
+			$scope.options.showClass = 'glyphicon-menu-up'
+		}
+		if (!$scope.options.downClass) {
+			$scope.options.hideClass = 'glyphicon-menu-down'
+		}
+
+		$scope.selected = $scope.options.values[0];
+
+		if ($scope.options.callback) {
+			$scope.options.callback($scope.selected);
+		}
 
 		$scope.select = function (action) {
 			$scope.selected = action;
+
+			if ($scope.options.callback) {
+				$scope.options.callback(action);
+			}
 		}
 	}]);
 ///#source 1 1 /app/directives/dropdown/dropdown.js
@@ -197,35 +222,32 @@ angular.module('gridTaskApp')
 		return {
 			restrict: 'E',
 			scope: {
-				actions: '=',
-				selected: '=',
-				label: '=startLabel',
-				isMenu: '=dropdownMenu'
+				options: '=dropdownOptions'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass('glyphicon-menu-down');
+				element.find('span').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('span').addClass(scope.options.hideClass);
+						element.find('span').removeClass(scope.options.showClass);
 					}
 					else {
 						element.find('ul').show();
-						element.find('span').removeClass('glyphicon-menu-down');
-						element.find('span').addClass('glyphicon-menu-up');
+						element.find('span').removeClass(scope.options.hideClass);
+						element.find('span').addClass(scope.options.showClass);
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('span').addClass(scope.options.hideClass);
+						element.find('span').removeClass(scope.options.showClass);
 					}
 				})
 			}
@@ -260,8 +282,25 @@ angular.module('gridTaskApp')
 			count: $scope.data.length
 		};
 
-		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel', isExcel: true, isPdf: false }, { label: 'Pdf', isExcel: false, isPdf: true }] };
-		$scope.views = { name: 'View: ', values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }] };
+		$scope.exports = {
+			options: {
+				label: 'Export to: ',
+				values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
+				callback: function (action) {
+					$scope.export = action;
+				}
+			}
+		};
+		$scope.views = {
+			options:
+				{
+					label: 'View: ',
+					values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
+					callback: function (action) {
+						$scope.view = action;
+					}
+				}
+		};
 		$scope.selectedOptions = {};
 		$scope.selectedOptions.filterOptions = function () {
 			var options = [];
@@ -292,7 +331,16 @@ angular.module('gridTaskApp')
 			getData();
 
 			$scope.data.map(function (value) {
-				value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
+				value.action = {
+					values: [{
+						label: 'Action', isAction: true
+					}, {
+						label: 'More',
+						isMore: true,
+						options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true }
+					}],
+					isShow: false
+				};
 				value.isCheck = false;
 			});
 		}
@@ -311,7 +359,17 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
 		$scope.checks = checkboxSelectConstants.values;
-		$scope.mores = { name: 'More', values: [{ label: 'View reports' }] };
+		$scope.mores = {
+			options:
+				{
+					label: 'More',
+					values: [{ label: 'View reports' }],
+					callback: function (action) {
+						$scope.more = action;
+					},
+					isMenu: true
+				}
+		};
 		$scope.shows = { values: [{ label: 'Everywhere' }] };
 	}]);
 ///#source 1 1 /app/directives/page/page-content/content-options/content-options.js
@@ -367,12 +425,13 @@ angular.module('gridTaskApp')
 		$scope.select = function (action) {
 			$scope.selected = action;
 
-			if (action.label == 'All') {
+			if (action.isAll) {
 				$scope.check = true;
 			}
-			else if (action.label == 'No one') {
+			else if (action.isNoOne) {
 				$scope.check = false;
-			} else {
+			}
+			else {
 				$scope.check = false;
 			}
 		}
@@ -647,10 +706,10 @@ angular.module('gridTaskApp')
 	 .constant("checkboxSelectConstants",
 	 {
 	 	values: {
-	 		all: { label: 'All' },
-	 		noOne: { label: 'No one' },
-	 		marked: { label: 'Marked' },
-	 		notMarked: { label: 'Not marked' }
+	 		all: { label: 'All', isAll: true },
+	 		noOne: { label: 'No one', isNoOne: true },
+	 		marked: { label: 'Marked', isMarked: true },
+	 		notMarked: { label: 'Not marked', isNotMarked: true }
 	 	}
 	 });
 ///#source 1 1 /app/directives/filter/filter-list/filter-list-controller.js

@@ -2,9 +2,9 @@
 	 .constant("checkboxSelectConstants",
 	 {
 	 	values: {
-	 		all: { label: 'All' },
-	 		noOne: { label: 'No one' },
-	 		marked: { label: 'Marked' },
-	 		notMarked: { label: 'Not marked' }
+	 		all: { label: 'All', isAll: true },
+	 		noOne: { label: 'No one', isNoOne: true },
+	 		marked: { label: 'Marked', isMarked: true },
+	 		notMarked: { label: 'Not marked', isNotMarked: true }
 	 	}
 	 });

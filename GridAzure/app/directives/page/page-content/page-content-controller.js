@@ -12,8 +12,25 @@
 			count: $scope.data.length
 		};
 
-		$scope.exports = { name: 'Export to ', values: [{ label: 'Excel', isExcel: true, isPdf: false }, { label: 'Pdf', isExcel: false, isPdf: true }] };
-		$scope.views = { name: 'View: ', values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }] };
+		$scope.exports = {
+			options: {
+				label: 'Export to: ',
+				values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
+				callback: function (action) {
+					$scope.export = action;
+				}
+			}
+		};
+		$scope.views = {
+			options:
+				{
+					label: 'View: ',
+					values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
+					callback: function (action) {
+						$scope.view = action;
+					}
+				}
+		};
 		$scope.selectedOptions = {};
 		$scope.selectedOptions.filterOptions = function () {
 			var options = [];
@@ -44,7 +61,16 @@
 			getData();
 
 			$scope.data.map(function (value) {
-				value.action = { values: [{ label: 'Action' }, { label: 'More', values: [{ label: 'More' }] }], isShow: false };
+				value.action = {
+					values: [{
+						label: 'Action', isAction: true
+					}, {
+						label: 'More',
+						isMore: true,
+						options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true }
+					}],
+					isShow: false
+				};
 				value.isCheck = false;
 			});
 		}

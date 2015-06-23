@@ -1,14 +1,14 @@
 ﻿<div class="my-dropdown">
-	<button type="button" class="my-dropdown__btn" ng-show="!isMenu">
-		{{label}}{{selected.label}}
+	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu">
+		{{options.label}}{{selected.label}}
 		<span class="my-dropdown__expand glyphicon"></span>
 	</button>
-	<button type="button" class="my-dropdown__btn" ng-show="isMenu">
-		{{label}}
+	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu">
+		{{options.label}}
 		<span class="my-dropdown__expand glyphicon"></span>
 	</button>
 
 	<ul class="my-dropdown__list">
-		<li ng-repeat="action in actions.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
+		<li ng-repeat="action in options.values" ng-click="select(action)"><a>{{action.label}}</a> </li>
 	</ul>
 </div>

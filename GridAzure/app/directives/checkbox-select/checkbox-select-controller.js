@@ -6,12 +6,13 @@
 		$scope.select = function (action) {
 			$scope.selected = action;
 
-			if (action.label == 'All') {
+			if (action.isAll) {
 				$scope.check = true;
 			}
-			else if (action.label == 'No one') {
+			else if (action.isNoOne) {
 				$scope.check = false;
-			} else {
+			}
+			else {
 				$scope.check = false;
 			}
 		}
