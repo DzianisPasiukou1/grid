@@ -31,10 +31,26 @@
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false }],
+				{
+					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'type', displayName: 'Type', cellTemplate: templatesPath + 'row-templates/type.html',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false
+				}],
 			plugins: []
 		};
 

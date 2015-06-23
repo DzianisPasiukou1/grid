@@ -247,10 +247,12 @@
     <Content Include="app\templates\row-templates\row.min.html">
       <DependentUpon>row.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\row-templates\status.html" />
     <Content Include="app\templates\row-templates\trend.html" />
     <Content Include="app\templates\row-templates\trend.min.html">
       <DependentUpon>trend.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\row-templates\type.html" />
     <Content Include="app\templates\row-templates\value.html" />
     <Content Include="app\templates\row-templates\value.min.html">
       <DependentUpon>value.html</DependentUpon>

@@ -11,6 +11,8 @@ angular.module('gridTaskApp')
 		}
 	}])
 	.factory('Data', ['constantOfData', function (constantOfData) {
+		var types = ['Purchase', 'Default', 'Page View', 'Krux Click Tracker', 'Ad', 'Form', 'Subscription']
+
 		var data = function () {
 			var array = [];
 
@@ -18,12 +20,15 @@ angular.module('gridTaskApp')
 				var day = Math.floor((Math.random() * 1000) + 1);
 				var value = Math.floor((Math.random() * 100000) + 1);
 				var trend = Math.floor((Math.random() * 100) + 1);
+				var type = types[Math.floor(Math.random() * 7)];
 
 				var obj = {
 					date: new Date(constantOfData.startDate.setDate(constantOfData.startDate.getDate() + day)).toDateString(),
 					name: 'Changing the icon font location\nBootstrap assumes icon font files will be located in the ../fonts/ directory, relative to the compiled CSS files. Moving or renaming those font files means updating the CSS in one of three ways:\nChange the @icon-font-path and/or @icon-font-name variables in the source Less files.\nUtilize the relative URLs option provided by the Less compiler.\nChange the url() paths in the compiled CSS.\nUse whatever option best suits your specific development setup.',
+					type: type,
 					value: value,
-					trend: trend
+					trend: trend,
+					status: 'Enabled',
 				};
 
 				array.push(obj);
@@ -72,10 +77,26 @@ angular.module('gridTaskApp')
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
-				{ field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false }],
+				{
+					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'type', displayName: 'Type', cellTemplate: templatesPath + 'row-templates/type.html',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', width: 250, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false
+				}],
 			plugins: []
 		};
 
@@ -139,6 +160,15 @@ angular.module('gridTaskApp')
 						else if (check.isNoOne) {
 							scope.data.forEach(function (value) {
 								value.isCheck = false;
+							});
+						}
+						else if (check.isMarked) {
+							scope.data.forEach(function (value) {
+							});
+						}
+						else if (check.isNotMarked) {
+							scope.data.forEach(function (value) {
+								value.isCheck = !value.isCheck;
 							});
 						}
 					}

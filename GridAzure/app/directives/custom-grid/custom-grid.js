@@ -23,6 +23,15 @@
 								value.isCheck = false;
 							});
 						}
+						else if (check.isMarked) {
+							scope.data.forEach(function (value) {
+							});
+						}
+						else if (check.isNotMarked) {
+							scope.data.forEach(function (value) {
+								value.isCheck = !value.isCheck;
+							});
+						}
 					}
 				});
 			}
