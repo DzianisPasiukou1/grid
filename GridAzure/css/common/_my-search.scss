@@ -13,26 +13,27 @@
 		font-size: 1.25rem;
 		line-height: 1;
 		margin: .15625rem 0;
-		position: absolute;
+		/*position: absolute;*/
 		/*padding-right: 25px;*/
 		border-left: 0;
 		right: 10px;
 	}
 
 	.search-span {
+		position: absolute !important;
 		width: 25px;
 		height: 25px;
-		position: relative;
-		top: 5px;
+		top: 15px;
+		right: 15px;
 		content: url(../../content/icons/search.png) no-repeat right;
 	}
 
 	.search-clear {
+		position: absolute !important;
 		width: 25px;
 		height: 25px;
-		position: relative;
-		top: 7px;
-		right: 3px;
+		top: 17px;
+		right: 15px;
 		content: url(../../content/clear-main.png) no-repeat right;
 		cursor: pointer;
 	}

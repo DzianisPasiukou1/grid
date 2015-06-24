@@ -32,12 +32,17 @@
 		border: 0;
 	}
 
+	.ngCellText {
+		padding: 0;
+	}
+
 	.ngCell {
-		left: 50px;
 		text-align: center;
-		padding-top: 20px;
 		background-color: initial;
 		overflow: visible !important;
+		position: absolute;
+		padding-top: 20px;
+		vertical-align: middle;
 	}
 
 	.ngRow {

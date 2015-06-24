@@ -1,7 +1,7 @@
 ﻿.action {
 	position: absolute;
-	top: 15px;
-	left: 25%;
+	top: 14px;
+	left: 10%;
 
 	&__group {
 		display: inline;
@@ -24,6 +24,8 @@
 		ul {
 			position: absolute;
 			z-index: 1000;
+			right: 0;
+			left: auto;
 		}
 
 		.expand {

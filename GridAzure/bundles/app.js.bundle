@@ -39,5 +39,8 @@
 		<file>/app/constants/checkbox-select-constants.js</file>
 		<file>/app/directives/filter/filter-list/filter-list-controller.js</file>
 		<file>/app/directives/search/search-controller.js</file>
+		<file>/app/directives/resize-on/resize-on.js</file>
+		<file>/app/directives/page/page-content/new-page-content-controller.js</file>
+		<file>/app/services/new-grid-service.js</file>
 	</files>
 </bundle>

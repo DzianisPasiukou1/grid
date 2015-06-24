@@ -188,10 +188,12 @@
     <Content Include="app\directives\focus-out\ng-focus-out.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options.js" />
+    <Content Include="app\directives\page\page-content\new-page-content-controller.js" />
     <Content Include="app\directives\page\page-content\page-content-controller.js" />
     <Content Include="app\directives\page\page-content\page-content.js" />
     <Content Include="app\directives\page\page-controller.js" />
     <Content Include="app\directives\page\page.js" />
+    <Content Include="app\directives\resize-on\resize-on.js" />
     <Content Include="app\directives\search\search-controller.js" />
     <Content Include="app\directives\search\search.js" />
     <Content Include="app\directives\slider\slider.js" />
@@ -200,6 +202,7 @@
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\services\grid-service.js" />
+    <Content Include="app\services\new-grid-service.js" />
     <Content Include="app\templates\cell-templates\cell-without-sort.html" />
     <Content Include="app\templates\cell-templates\cell.html" />
     <Content Include="app\templates\checkbox-select.html" />

@@ -1,14 +1,14 @@
 ﻿angular.module('gridTaskApp')
-	.controller('pageContentCtrl', ['$scope', 'gridService', 'templatesPath', function ($scope, gridService, templatesPath) {
+	.controller('newPageContentCtrl', ['$scope', 'newGridService', 'templatesPath', function ($scope, newGridService, templatesPath) {
 		function getData() {
-			gridService.get(function (data) {
+			newGridService.get(function (data) {
 				$scope.data = data;
 			});
 		}
 		getData();
 
 		$scope.grid = {
-			name: 'Grid 1',
+			name: 'Grid 2',
 			count: $scope.data.length
 		};
 
@@ -90,23 +90,24 @@
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
-			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
 				{
-					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
+					field: 'name', displayName: 'Name',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
-					field: 'type', displayName: 'Type', cellTemplate: templatesPath + 'row-templates/type.html',
+					field: 'type', displayName: 'Type',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
-					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
-				},
-				{
-					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'category', displayName: 'Category',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
 					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'conversion', displayName: 'Conversion',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false

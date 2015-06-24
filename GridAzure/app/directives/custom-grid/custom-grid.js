@@ -7,7 +7,8 @@
 				data: '=gridData',
 				exportTo: '=',
 				filters: '=',
-				isFiltrate: '='
+				isFiltrate: '=',
+				options: '=gridOptions'
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {

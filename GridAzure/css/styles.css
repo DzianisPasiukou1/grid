@@ -174,6 +174,8 @@
     background-color: white;
     z-index: 1;
     font-size: 0.875rem; }
+  .my-panel > .footer, .page-content > .footer, .my-panel > .page-content__footer, .page-content > .page-content__footer {
+    min-height: 50px; }
 
 .my-search input, .options__search .search input {
   border-color: #787878;
@@ -189,22 +191,23 @@
   font-size: 1.25rem;
   line-height: 1;
   margin: 0.15625rem 0;
-  position: absolute;
+  /*position: absolute;*/
   /*padding-right: 25px;*/
   border-left: 0;
   right: 10px; }
 .my-search .search-span, .options__search .search .search-span {
+  position: absolute !important;
   width: 25px;
   height: 25px;
-  position: relative;
-  top: 5px;
+  top: 15px;
+  right: 15px;
   content: url(../../content/icons/search.png) no-repeat right; }
 .my-search .search-clear, .options__search .search .search-clear {
+  position: absolute !important;
   width: 25px;
   height: 25px;
-  position: relative;
-  top: 7px;
-  right: 3px;
+  top: 17px;
+  right: 15px;
   content: url(../../content/clear-main.png) no-repeat right;
   cursor: pointer; }
 
@@ -273,15 +276,15 @@
 
 .row-trend input {
   width: 50%; }
+.row-trend trend-slider .slider {
+  margin-bottom: 0; }
 .row-trend__value {
-  display: inline;
-  position: absolute;
-  margin-left: 10px; }
+  display: inline-block; }
 
 .action {
   position: absolute;
-  top: 15px;
-  left: 25%; }
+  top: 14px;
+  left: 10%; }
   .action__group {
     display: inline; }
   .action__btn {
@@ -296,7 +299,9 @@
     font-size: 14px; }
     .action__dropdown ul {
       position: absolute;
-      z-index: 1000; }
+      z-index: 1000;
+      right: 0;
+      left: auto; }
     .action__dropdown .expand, .action__dropdown .my-dropdown__expand, .action__dropdown .checkbox-select__expand, .action__dropdown .cell-details__expand {
       font-size: 10px; }
 
@@ -377,12 +382,15 @@
   .custom-grid .ngViewport {
     overflow-x: hidden;
     border: 0; }
+  .custom-grid .ngCellText {
+    padding: 0; }
   .custom-grid .ngCell {
-    left: 50px;
     text-align: center;
-    padding-top: 20px;
     background-color: initial;
-    overflow: visible !important; }
+    overflow: visible !important;
+    position: absolute;
+    padding-top: 20px;
+    vertical-align: middle; }
   .custom-grid .ngRow {
     background: white;
     border: 1px solid #e5e5e5;
@@ -442,14 +450,14 @@
     float: right; }
   .options__show {
     float: right;
-    right: 143px;
+    /*right: 143px;*/
     position: relative;
     text-transform: capitalize; }
 
 .filter {
   display: inline;
   float: right;
-  margin-right: 250px;
+  margin-right: 110px;
   position: relative; }
   .filter__btn .expand, .filter__btn .my-dropdown__expand, .filter__btn .checkbox-select__expand, .filter__btn .cell-details__expand {
     top: 1px;
@@ -457,12 +465,12 @@
   .filter filter-list {
     position: absolute;
     z-index: 1000;
-    min-width: 600px;
     right: 0;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 14px;
     text-align: left;
+    max-width: 600px;
     list-style: none;
     background-color: #fff;
     -webkit-background-clip: padding-box;

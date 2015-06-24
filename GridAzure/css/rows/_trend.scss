@@ -3,9 +3,13 @@
 		width: 50%;
 	}
 
+	trend-slider {
+		.slider {
+			margin-bottom: 0;
+		}
+	}
+
 	&__value {
-		display: inline;
-		position: absolute;
-		margin-left: 10px;
+		display: inline-block;
 	}
 }
