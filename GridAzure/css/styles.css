@@ -495,23 +495,26 @@
         font-size: 16px;
         font-family: "Arial";
         font-weight: bold; }
-      .filter filter-list .filter-list__options__value__header {
-        padding-top: 3%;
-        color: #757677;
-        font-size: 14px;
-        font-family: "Arial";
-        font-weight: bold; }
-      .filter filter-list .filter-list__options__value__input input {
-        -webkit-appearance: none;
-        appearance: none;
-        position: relative;
-        border: 1px #d9d9d9 solid;
-        width: 70%;
-        height: 100%;
-        padding: 0.3125rem;
-        z-index: 0; }
-        .filter filter-list .filter-list__options__value__input input:hover {
-          border-color: #787878; }
+      .filter filter-list .filter-list__options {
+        max-height: 400px;
+        overflow-y: auto; }
+        .filter filter-list .filter-list__options__value__header {
+          padding-top: 3%;
+          color: #757677;
+          font-size: 14px;
+          font-family: "Arial";
+          font-weight: bold; }
+        .filter filter-list .filter-list__options__value__input input {
+          -webkit-appearance: none;
+          appearance: none;
+          position: relative;
+          border: 1px #d9d9d9 solid;
+          width: 70%;
+          height: 100%;
+          padding: 0.3125rem;
+          z-index: 0; }
+          .filter filter-list .filter-list__options__value__input input:hover {
+            border-color: #787878; }
       .filter filter-list .filter-list__button {
         background-color: #2b9fd7;
         color: white;

@@ -12,6 +12,8 @@ angular.module('gridTaskApp')
 	}])
 	.factory('Data', ['constantOfData', function (constantOfData) {
 		var types = ['Purchase', 'Default', 'Page View', 'Krux Click Tracker', 'Ad', 'Form', 'Subscription']
+		var categories = ['ecommerce', 'User Match', 'Site Visit', 'User Action', 'Form Data'];
+		var conversions = ['Yes', 'No'];
 
 		var data = function () {
 			var array = [];
@@ -21,6 +23,8 @@ angular.module('gridTaskApp')
 				var value = Math.floor((Math.random() * 100000) + 1);
 				var trend = Math.floor((Math.random() * 100) + 1);
 				var type = types[Math.floor(Math.random() * 7)];
+				var category = categories[Math.floor(Math.random() * categories.length)];
+				var conversion = conversions[Math.floor(Math.random() * conversions.length)];
 
 				var obj = {
 					date: new Date(constantOfData.startDate.setDate(constantOfData.startDate.getDate() + day)).toDateString(),
@@ -29,6 +33,8 @@ angular.module('gridTaskApp')
 					value: value,
 					trend: trend,
 					status: 'Enabled',
+					category: category,
+					conversion: conversion
 				};
 
 				array.push(obj);
@@ -394,6 +400,12 @@ angular.module('gridTaskApp')
 				},
 				{
 					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'category', displayName: 'Category', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+				},
+				{
+					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false

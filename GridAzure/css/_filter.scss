@@ -37,6 +37,7 @@
 			padding-left: 20px;
 			text-transform: uppercase;
 
+
 			&__header {
 				padding-top: 3%;
 				color: rgb(117,118, 119);
@@ -46,7 +47,11 @@
 			}
 
 			&__options {
+				max-height: 400px;
+				overflow-y: auto;
+
 				&__value {
+
 					&__header {
 						padding-top: 3%;
 						color: rgb(117,118, 119);

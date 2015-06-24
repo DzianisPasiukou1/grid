@@ -8,6 +8,8 @@
 	}])
 	.factory('Data', ['constantOfData', function (constantOfData) {
 		var types = ['Purchase', 'Default', 'Page View', 'Krux Click Tracker', 'Ad', 'Form', 'Subscription']
+		var categories = ['ecommerce', 'User Match', 'Site Visit', 'User Action', 'Form Data'];
+		var conversions = ['Yes', 'No'];
 
 		var data = function () {
 			var array = [];
@@ -17,6 +19,8 @@
 				var value = Math.floor((Math.random() * 100000) + 1);
 				var trend = Math.floor((Math.random() * 100) + 1);
 				var type = types[Math.floor(Math.random() * 7)];
+				var category = categories[Math.floor(Math.random() * categories.length)];
+				var conversion = conversions[Math.floor(Math.random() * conversions.length)];
 
 				var obj = {
 					date: new Date(constantOfData.startDate.setDate(constantOfData.startDate.getDate() + day)).toDateString(),
@@ -25,6 +29,8 @@
 					value: value,
 					trend: trend,
 					status: 'Enabled',
+					category: category,
+					conversion: conversion
 				};
 
 				array.push(obj);
