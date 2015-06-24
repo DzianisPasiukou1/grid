@@ -1,5 +1,6 @@
 ﻿.page-content {
 	@extend .my-panel;
+	min-width: 900px;
 
 	&__header {
 		@extend .heading;
