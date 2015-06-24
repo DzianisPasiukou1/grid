@@ -341,9 +341,9 @@
 .page-content__icon {
   display: inline; }
   .page-content__icon img {
+    content: url(../content/text.png);
     width: 44px;
-    height: 40px;
-    content: url(../content/text.png); }
+    height: 40px; }
 .page-content__name {
   display: inline; }
 .page-content__count {
@@ -369,7 +369,8 @@
     font-size: 13px;
     text-decoration: none;
     min-height: 18px;
-    line-height: 18px; }
+    line-height: 18px;
+    overflow: hidden; }
   .custom-grid .ngHeaderCell {
     border-radius: 1px;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
@@ -401,7 +402,8 @@
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6em; }
     .custom-grid .ngRow.selected {
-      background-color: #95cfeb !important; }
+      background-color: #95cfeb !important;
+      font-weight: bold; }
     .custom-grid .ngRow.checked {
       background-color: #e9f5fb; }
   .custom-grid .ngFooterPanel {
@@ -450,7 +452,6 @@
     float: right; }
   .options__show {
     float: right;
-    /*right: 143px;*/
     position: relative;
     text-transform: capitalize; }
 
