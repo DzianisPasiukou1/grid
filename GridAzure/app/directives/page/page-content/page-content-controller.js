@@ -77,6 +77,8 @@
 
 		$scope.gridOptions = {
 			data: 'data',
+			init: function (grid, $scope) {
+			},
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {
@@ -89,33 +91,33 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
-			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html' },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
 				{
 					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
 					field: 'type', displayName: 'Type', cellTemplate: templatesPath + 'row-templates/type.html',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'category', displayName: 'Category', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'category', displayName: 'Category', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 100
 				}],
 			plugins: []
 		};

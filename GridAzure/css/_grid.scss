@@ -2,6 +2,43 @@
 	padding: 0;
 	height: 600px;
 
+	@media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+		top: 80px;
+	}
+
+	&__menu {
+		.grid-menu {
+			position: absolute;
+			float: right;
+			top: 53px;
+			z-index: 100;
+			right: 10px;
+
+			@media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+				top: 100px;
+			}
+
+			&__options {
+				position: relative;
+				text-transform: capitalize;
+
+				ul {
+					position: absolute;
+					z-index: 1000;
+					right: 0;
+					left: auto;
+				}
+
+				.my-dropdown {
+					button {
+						border-color: black;
+						background: #5a5a5a;
+					}
+				}
+			}
+		}
+	}
+
 	.ngTopPanel {
 		background-color: #5a5a5a;
 		Border: 1px solid #4d4d4d;
@@ -86,12 +123,11 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
-			display: inline-block;
 		}
 
 		&__sort-down {
 			z-index: 10000;
-			display: inline-block;
+			display: inline;
 			position: absolute;
 
 			img {
@@ -103,7 +139,7 @@
 
 		&__sort-up {
 			z-index: 100;
-			display: inline-block;
+			display: inline;
 			position: absolute;
 
 			img {

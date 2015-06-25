@@ -4,6 +4,38 @@
 	margin-left: 25px;
 	padding-right: 10px;
 
+	@media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+		display: block;
+
+		&__filter {
+			margin-top: 10px;
+			float: left;
+			position: relative;
+			margin-bottom: 10px;
+		}
+
+		&__show {
+		}
+
+		&__search {
+
+
+			.search {
+				@extend .my-search;
+
+				.search-span {
+					top: 4px;
+					right: 5px;
+				}
+
+				.search-clear {
+					top: 7px;
+					right: 5px;
+				}
+			}
+		}
+	}
+
 	&__check {
 		margin-right: 10px;
 		position: relative;
@@ -17,6 +49,10 @@
 
 	&__more {
 		position: relative;
+	}
+
+	&__filter {
+		display: inline;
 	}
 
 	&__search {

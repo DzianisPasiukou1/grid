@@ -186,6 +186,8 @@
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\focus-out\ng-focus-out.js" />
+    <Content Include="app\directives\grid-menu\grid-menu-controller.js" />
+    <Content Include="app\directives\grid-menu\grid-menu.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page\page-content\new-page-content-controller.js" />
@@ -221,6 +223,7 @@
     <Content Include="app\templates\filter-list.html" />
     <Content Include="app\templates\filter.html" />
     <Content Include="app\templates\grid-footer.html" />
+    <Content Include="app\templates\grid-menu.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
       <DependentUpon>page-content.html</DependentUpon>

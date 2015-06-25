@@ -89,28 +89,28 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
 					field: 'type', displayName: 'Type',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
 					field: 'category', displayName: 'Category',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
 					field: 'conversion', displayName: 'Conversion',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
 				}],
 			plugins: []
 		};

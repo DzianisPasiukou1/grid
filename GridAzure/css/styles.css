@@ -339,7 +339,7 @@
     overflow: auto; }
 
 .page-content {
-  min-width: 900px; }
+  min-width: 500px; }
   .page-content__icon {
     display: inline; }
     .page-content__icon img {
@@ -364,6 +364,29 @@
 .custom-grid {
   padding: 0;
   height: 600px; }
+  @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .custom-grid {
+      top: 80px; } }
+  .custom-grid__menu .grid-menu {
+    position: absolute;
+    float: right;
+    top: 53px;
+    z-index: 100;
+    right: 10px; }
+    @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+      .custom-grid__menu .grid-menu {
+        top: 100px; } }
+    .custom-grid__menu .grid-menu__options {
+      position: relative;
+      text-transform: capitalize; }
+      .custom-grid__menu .grid-menu__options ul {
+        position: absolute;
+        z-index: 1000;
+        right: 0;
+        left: auto; }
+      .custom-grid__menu .grid-menu__options .my-dropdown button {
+        border-color: black;
+        background: #5a5a5a; }
   .custom-grid .ngTopPanel {
     background-color: #5a5a5a;
     Border: 1px solid #4d4d4d;
@@ -420,11 +443,10 @@
       padding-top: 10px;
       white-space: nowrap;
       text-overflow: ellipsis;
-      overflow: hidden;
-      display: inline-block; }
+      overflow: hidden; }
     .custom-grid .column__sort-down {
       z-index: 10000;
-      display: inline-block;
+      display: inline;
       position: absolute; }
       .custom-grid .column__sort-down img {
         width: 15px;
@@ -432,7 +454,7 @@
         content: url(../content/ezimba_down.png); }
     .custom-grid .column__sort-up {
       z-index: 100;
-      display: inline-block;
+      display: inline;
       position: absolute; }
       .custom-grid .column__sort-up img {
         width: 15px;
@@ -444,6 +466,20 @@
   padding-bottom: 7px;
   margin-left: 25px;
   padding-right: 10px; }
+  @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .options {
+      display: block; }
+      .options__filter {
+        margin-top: 10px;
+        float: left;
+        position: relative;
+        margin-bottom: 10px; }
+      .options__search .search .search-span {
+        top: 4px;
+        right: 5px; }
+      .options__search .search .search-clear {
+        top: 7px;
+        right: 5px; } }
   .options__check {
     margin-right: 10px;
     position: relative; }
@@ -452,6 +488,8 @@
     position: relative; }
   .options__more {
     position: relative; }
+  .options__filter {
+    display: inline; }
   .options__search {
     float: right; }
   .options__show {
@@ -464,6 +502,9 @@
   float: right;
   margin-right: 110px;
   position: relative; }
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .filter {
+      float: none; } }
   .filter__btn .expand, .filter__btn .my-dropdown__expand, .filter__btn .checkbox-select__expand, .filter__btn .cell-details__expand {
     top: 1px;
     font-size: 10px; }
