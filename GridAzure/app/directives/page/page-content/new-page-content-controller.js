@@ -96,7 +96,7 @@
 				},
 				{
 					field: 'type', displayName: 'Type',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/type.html'
 				},
 				{
 					field: 'category', displayName: 'Category',
@@ -107,7 +107,7 @@
 				},
 				{
 					field: 'conversion', displayName: 'Conversion',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180

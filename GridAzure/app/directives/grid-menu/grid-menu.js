@@ -61,7 +61,25 @@
 										if ($(window).width() < totalWidth) {
 											value[i].toggleVisible();
 											totalWidth -= value[i].minWidth;
-											scope.options.values.push({ label: value[i].field, element: value[i] });
+
+											var isExist = false;
+											for (var j = 0; j < scope.options.values.length; j++) {
+												if (scope.options.values[j].label == value[i].field) {
+													isExist = true;
+												}
+											}
+											if (!isExist) {
+												scope.options.values.push({ label: value[i].field, element: value[i] });
+											}
+											else {
+												scope.options.values = [];
+
+												for (var j = 0; j < value.length; j++) {
+													if (!value[j].visible) {
+														scope.options.values.push({ label: value[j].field, element: value[j] });
+													}
+												}
+											}
 											break;
 										}
 									}

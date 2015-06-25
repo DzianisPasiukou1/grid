@@ -11,8 +11,8 @@
 							$scope.columns[i].toggleVisible();
 							action.element.toggleVisible();
 
-							this.values.push({ label: $scope.columns[i].field, element: $scope.columns[i] });
 							this.values.splice(this.values.indexOf(action), 1);
+							this.values.push({ label: $scope.columns[i].field, element: $scope.columns[i] });
 							break;
 						}
 					}

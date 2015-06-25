@@ -42,5 +42,7 @@
 		<file>/app/directives/resize-on/resize-on.js</file>
 		<file>/app/directives/page/page-content/new-page-content-controller.js</file>
 		<file>/app/services/new-grid-service.js</file>
+		<file>/app/directives/grid-menu/grid-menu.js</file>
+		<file>/app/directives/grid-menu/grid-menu-controller.js</file>
 	</files>
 </bundle>

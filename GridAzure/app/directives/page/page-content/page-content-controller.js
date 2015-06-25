@@ -92,7 +92,7 @@
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
-			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },
 				{
 					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
@@ -117,7 +117,7 @@
 					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 240, minWidth: 240
 				}],
 			plugins: []
 		};

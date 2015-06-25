@@ -47,11 +47,12 @@
 						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) + step + 'px');
+								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) + step - 2 + 'px');
 							}
 						}
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
+
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
 								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');

@@ -200,11 +200,12 @@ angular.module('gridTaskApp')
 						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) + step + 'px');
+								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) + step - 2 + 'px');
 							}
 						}
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
+
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
 								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
@@ -385,7 +386,7 @@ angular.module('gridTaskApp')
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
-			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },
 				{
 					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
@@ -410,7 +411,7 @@ angular.module('gridTaskApp')
 					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 240, minWidth: 240
 				}],
 			plugins: []
 		};
@@ -989,7 +990,7 @@ angular.module('gridTaskApp')
 				},
 				{
 					field: 'type', displayName: 'Type',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/type.html'
 				},
 				{
 					field: 'category', displayName: 'Category',
@@ -1000,7 +1001,7 @@ angular.module('gridTaskApp')
 				},
 				{
 					field: 'conversion', displayName: 'Conversion',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html'
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
@@ -1053,4 +1054,129 @@ angular.module('gridTaskApp')
 				return data();
 			}
 		}
+	}]);
+///#source 1 1 /app/directives/grid-menu/grid-menu.js
+angular.module('gridTaskApp')
+	.directive('gridMenu', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			templateUrl: templatesPath + 'grid-menu.html',
+			controller: 'gridMenuCtrl',
+			link: function (scope, element, attrs) {
+
+				scope.$watch('columns', function (value) {
+					if (Array.isArray(value) && value.length > 0) {
+
+						var totalWidth = value.reduce(function (a, b) {
+							return a + b.minWidth;
+						}, 0);
+
+						if ($(window).width() < totalWidth) {
+							for (var i = value.length - 2; i > 1; i--) {
+								if (value[i].visible) {
+									value[i].toggleVisible();
+									totalWidth -= value[i].minWidth;
+									scope.options.values.push({ label: value[i].field, element: value[i] });
+								}
+								if ($(window).width() > totalWidth) {
+									break;
+								}
+							}
+						}
+
+						if (scope.options.values.length > 0) {
+							scope.isShow = true;
+						}
+
+						$(window).resize(function () {
+							var totalWidth = value.reduce(function (a, b) {
+								if (b.visible) {
+									return a + b.minWidth;
+								} else {
+									return a;
+								}
+							}, 0);
+
+							if ($(window).width() < totalWidth) {
+								for (var i = value.length - 2; i > 1; i--) {
+									if (value[i].visible) {
+										value[i].toggleVisible();
+										totalWidth -= value[i].minWidth;
+										scope.options.values.push({ label: value[i].field, element: value[i] });
+									}
+									if ($(window).width() > totalWidth) {
+										break;
+									}
+								}
+							}
+							else {
+								for (var i = 2; i < value.length - 1; i++) {
+									if (!value[i].visible) {
+										value[i].toggleVisible();
+										totalWidth += value[i].minWidth;
+										scope.options.values.splice(scope.options.values.indexOf(value[i]), 1);
+
+										if ($(window).width() < totalWidth) {
+											value[i].toggleVisible();
+											totalWidth -= value[i].minWidth;
+
+											var isExist = false;
+											for (var j = 0; j < scope.options.values.length; j++) {
+												if (scope.options.values[j].label == value[i].field) {
+													isExist = true;
+												}
+											}
+											if (!isExist) {
+												scope.options.values.push({ label: value[i].field, element: value[i] });
+											}
+											else {
+												scope.options.values = [];
+
+												for (var j = 0; j < value.length; j++) {
+													if (!value[j].visible) {
+														scope.options.values.push({ label: value[j].field, element: value[j] });
+													}
+												}
+											}
+											break;
+										}
+									}
+
+								}
+							}
+
+							if (scope.options.values.length > 0) {
+								scope.isShow = true;
+							}
+							else {
+								scope.isShow = false;
+							}
+						});
+					}
+				});
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/grid-menu/grid-menu-controller.js
+angular.module('gridTaskApp')
+	.controller('gridMenuCtrl', ['$scope', function ($scope) {
+		$scope.options = {
+			isMenu: true,
+			label: '',
+			values: [],
+			callback: function (action) {
+				if (action) {
+					for (var i = $scope.columns.length - 2; i > 0 ; i--) {
+						if ($scope.columns[i].visible) {
+							$scope.columns[i].toggleVisible();
+							action.element.toggleVisible();
+
+							this.values.splice(this.values.indexOf(action), 1);
+							this.values.push({ label: $scope.columns[i].field, element: $scope.columns[i] });
+							break;
+						}
+					}
+				}
+			}
+		};
 	}]);
