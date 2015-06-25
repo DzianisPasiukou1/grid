@@ -398,7 +398,7 @@ angular.module('gridTaskApp')
 					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
 					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
@@ -407,10 +407,10 @@ angular.module('gridTaskApp')
 					field: 'category', displayName: 'Category', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 100
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
 				}],
 			plugins: []
 		};
@@ -869,10 +869,23 @@ angular.module('gridTaskApp')
 			link: function (scope, element, attrs) {
 				element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
 
-				element.css('top', element.parent().height() + 'px');
+				if (element.width() < element.css('min-width').replace('px', '')) {
+					element.css('right', 'auto');
+					element.css('width', '450px');
+				}
+				else {
+					element.css('right', '0');
+				}
 
 				$(window).resize(function () {
 					element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
+
+					if (element.width() < element.css('min-width').replace('px', '')) {
+						element.css('right', 'auto');
+						element.css('width', '450px');
+					} else {
+						element.css('right', '0');
+					}
 				});
 			}
 		}
@@ -972,7 +985,7 @@ angular.module('gridTaskApp')
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
 				},
 				{
 					field: 'type', displayName: 'Type',

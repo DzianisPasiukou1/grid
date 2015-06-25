@@ -364,7 +364,7 @@
 .custom-grid {
   padding: 0;
   height: 600px; }
-  @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 774px), (min-device-width: 768px) and (max-device-width: 1024px) {
     .custom-grid {
       top: 80px; } }
   .custom-grid__menu .grid-menu {
@@ -373,7 +373,7 @@
     top: 53px;
     z-index: 100;
     right: 10px; }
-    @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    @media only screen and (max-width: 774px), (min-device-width: 768px) and (max-device-width: 1024px) {
       .custom-grid__menu .grid-menu {
         top: 100px; } }
     .custom-grid__menu .grid-menu__options {
@@ -466,7 +466,7 @@
   padding-bottom: 7px;
   margin-left: 25px;
   padding-right: 10px; }
-  @media only screen and (max-width: 776px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 774px), (min-device-width: 768px) and (max-device-width: 1024px) {
     .options {
       display: block; }
       .options__filter {
@@ -509,6 +509,7 @@
     top: 1px;
     font-size: 10px; }
   .filter filter-list {
+    min-width: 300px;
     position: absolute;
     z-index: 1000;
     right: 0;

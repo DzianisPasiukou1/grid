@@ -92,7 +92,7 @@
 				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
 				},
 				{
 					field: 'type', displayName: 'Type',

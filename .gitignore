@@ -3949,3 +3949,5 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/app/directives/resize-on/resize-on.js
 /GridAzure/obj/Release/Package/PackageTmp/app/services/new-grid-service.js
 /GridAzure/obj/Release/Package/PackageTmp/app/directives/with-scroll/with-scroll.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/grid-menu/grid-menu-controller.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/grid-menu/grid-menu.js

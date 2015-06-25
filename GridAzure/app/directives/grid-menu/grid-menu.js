@@ -57,13 +57,15 @@
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
 										scope.options.values.splice(scope.options.values.indexOf(value[i]), 1);
+
+										if ($(window).width() < totalWidth) {
+											value[i].toggleVisible();
+											totalWidth -= value[i].minWidth;
+											scope.options.values.push({ label: value[i].field, element: value[i] });
+											break;
+										}
 									}
-									if ($(window).width() < totalWidth) {
-										value[i].toggleVisible();
-										totalWidth -= value[i].minWidth;
-										scope.options.values.push({ label: value[i].field, element: value[i] });
-										break;
-									}
+
 								}
 							}
 
