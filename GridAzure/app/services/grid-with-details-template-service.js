@@ -1,12 +1,12 @@
 ﻿angular.module('gridTaskApp')
-	.service('gridServiceThree', ['ThreeData', function (ThreeData) {
+	.service('gridWithDetailsTemplateService', ['DetailsTemplateData', function (DetailsTemplateData) {
 		this.get = function (callback) {
-			var data = ThreeData.get();
+			var data = DetailsTemplateData.get();
 
 			callback(data);
 		}
 	}])
-	.factory('ThreeData', ['constantOfData', function (constantOfData) {
+	.factory('DetailsTemplateData', ['constantOfData', function (constantOfData) {
 
 		var data = function () {
 			var array = [];
@@ -33,11 +33,11 @@
 			}
 
 			return array;
-		};
+		}();
 
 		return {
 			get: function () {
-				return data();
+				return data;
 			}
 		}
 	}]);

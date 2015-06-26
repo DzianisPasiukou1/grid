@@ -1,12 +1,12 @@
 ﻿angular.module('gridTaskApp')
-	.service('gridService', ['Data', function (Data) {
+	.service('gridStandartOneService', ['StandartOneData', function (StandartOneData) {
 		this.get = function (callback) {
-			var data = Data.get();
+			var data = StandartOneData.get();
 
 			callback(data);
 		}
 	}])
-	.factory('Data', ['constantOfData', function (constantOfData) {
+	.factory('StandartOneData', ['constantOfData', function (constantOfData) {
 		var types = ['Purchase', 'Default', 'Page View', 'Krux Click Tracker', 'Ad', 'Form', 'Subscription']
 		var categories = ['ecommerce', 'User Match', 'Site Visit', 'User Action', 'Form Data'];
 		var conversions = ['Yes', 'No'];

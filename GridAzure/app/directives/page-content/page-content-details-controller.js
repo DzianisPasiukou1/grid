@@ -1,14 +1,14 @@
 ﻿angular.module('gridTaskApp')
-	.controller('pageThreeContentCtrl', ['$scope', 'templatesPath', 'gridServiceThree', function ($scope, templatesPath, gridServiceThree) {
+	.controller('pageContentDetailsCtrl', ['$scope', 'templatesPath', 'gridWithDetailsTemplateService', function ($scope, templatesPath, gridWithDetailsTemplateService) {
 		function getData() {
-			gridServiceThree.get(function (data) {
+			gridWithDetailsTemplateService.get(function (data) {
 				$scope.data = data;
 			});
 		}
 		getData();
 
 		$scope.grid = {
-			name: 'Grid 3',
+			name: 'Grid with details template',
 			count: $scope.data.length
 		};
 
@@ -37,7 +37,7 @@
 
 			if (Array.isArray($scope.data) && $scope.data[0])
 				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
+					options.push({ label: prop, isColumn: true });
 				}
 			return options;
 		}();
@@ -70,6 +70,7 @@
 					isShow: false
 				};
 				value.isCheck = false;
+				value.detailsTemplate = templatesPath + 'details.html';
 			});
 		}
 

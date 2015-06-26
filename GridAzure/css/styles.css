@@ -268,6 +268,19 @@
     display: inline;
     margin-left: 8px; }
 
+.tabs {
+  overflow: hidden;
+  position: relative;
+  width: 100%; }
+  .tabs__headers {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none inside;
+    border-bottom: 2px #1ba1e2 solid;
+    white-space: nowrap;
+    overflow: visible; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -321,30 +334,27 @@
   position: absolute;
   font-weight: normal;
   background-color: white;
-  width: 100%; }
+  width: 100%;
+  padding: 10px; }
 
-.toggle {
-  -webkit-transition: top 2s;
-  /* Safari */
-  transition: top 2s; }
-  .toggle .ngRow {
-    display: table-row;
-    height: auto !important;
-    position: static; }
-  .toggle .ngCell {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: inherit;
-    display: table-cell;
-    height: auto !important;
-    overflow: visible;
-    /*position: static;*/ }
-  .toggle .wrap {
-    white-space: normal;
-    text-overflow: clip;
-    overflow: auto; }
+.toggle .ngRow {
+  display: table-row;
+  height: auto !important;
+  position: static; }
+.toggle .ngCell {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: inherit;
+  display: table-cell;
+  height: auto !important;
+  overflow: visible;
+  /*position: static;*/ }
+.toggle .wrap {
+  white-space: normal;
+  text-overflow: clip;
+  overflow: auto; }
 
 .page-content {
   min-width: 500px;

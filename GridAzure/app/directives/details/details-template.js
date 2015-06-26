@@ -2,16 +2,18 @@
 	.directive('detailsTemplate', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'A',
-			templateUrl: templatesPath + 'details.html',
-			link: function (scope, element, attrs) {
-
-			},
 			compile: function (element, attrs) {
 				return {
 					pre: function (scope, element, attrs) {
+						if (scope.row.entity.detailsTemplate) {
+							$.get(scope.row.entity.detailsTemplate, function (result) {
+								element.append(result);
+							});
+						}
+
 						element.hide();
 
-						scope.$watch('row.isToggle', function (value) {
+						scope.$watch('row.entity.isToggle', function (value) {
 							if (value) {
 								element.show();
 
@@ -27,8 +29,6 @@
 										}
 									}
 								});
-
-
 							}
 							else {
 								element.hide();

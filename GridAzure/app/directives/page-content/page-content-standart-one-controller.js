@@ -1,14 +1,14 @@
 ﻿angular.module('gridTaskApp')
-	.controller('newPageContentCtrl', ['$scope', 'newGridService', 'templatesPath', function ($scope, newGridService, templatesPath) {
+	.controller('pageContentStandartOneCtrl', ['$scope', 'gridStandartOneService', 'templatesPath', function ($scope, gridStandartOneService, templatesPath) {
 		function getData() {
-			newGridService.get(function (data) {
+			gridStandartOneService.get(function (data) {
 				$scope.data = data;
 			});
 		}
 		getData();
 
 		$scope.grid = {
-			name: 'Grid 2',
+			name: 'Grid standart one',
 			count: $scope.data.length
 		};
 
@@ -77,6 +77,8 @@
 
 		$scope.gridOptions = {
 			data: 'data',
+			init: function (grid, $scope) {
+			},
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			afterSelectionChange: function (rowitem, event) {
@@ -88,29 +90,37 @@
 			showFooter: true,
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
+			selectItem: function (itemIndex, state) {
+
+			},
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
+			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },
 				{
-					field: 'name', displayName: 'Name',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
-				},
-				{
-					field: 'type', displayName: 'Type',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/type.html'
-				},
-				{
-					field: 'category', displayName: 'Category',
+					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+				},
+				{
+					field: 'type', displayName: 'Type', cellTemplate: templatesPath + 'row-templates/type.html',
+					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+				},
+				{
+					field: 'value', displayName: 'Value', cellTemplate: templatesPath + 'row-templates/value.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+				},
+				{
+					field: 'trend', displayName: 'Trend', cellTemplate: templatesPath + 'row-templates/trend.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
 				},
 				{
 					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'conversion', displayName: 'Conversion',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
+					field: 'category', displayName: 'Category', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
+					field: 'conversion', displayName: 'Conversion', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
+				},
+				{
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 240, minWidth: 240
 				}],
 			plugins: []
 		};
