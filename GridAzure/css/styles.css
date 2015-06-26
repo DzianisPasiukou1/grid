@@ -317,6 +317,12 @@
   display: inline;
   left: 35px; }
 
+.details-template {
+  position: absolute;
+  font-weight: normal;
+  background-color: white;
+  width: 100%; }
+
 .toggle {
   -webkit-transition: top 2s;
   /* Safari */
@@ -341,7 +347,8 @@
     overflow: auto; }
 
 .page-content {
-  min-width: 500px; }
+  min-width: 500px;
+  margin-top: 20px; }
   .page-content__icon {
     display: inline; }
     .page-content__icon img {
@@ -567,5 +574,8 @@
 .filter-selected .filter__btn {
   background-color: #2b9fd7;
   color: white; }
+
+.page {
+  margin-top: 30px; }
 
 /*# sourceMappingURL=styles.css.map */

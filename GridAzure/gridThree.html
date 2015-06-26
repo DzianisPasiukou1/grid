@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/ng-grid/build/ng-grid.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script src="bower_components/bootstrap-slider/bootstrap-slider.js"></script>
+
+	<script src="bower_components/angular-i18n/angular-locale_en-us.js"></script>
+
+	<script src="app/app.js"></script>
+
+	<script src="app/constants/checkbox-select-constants.js"></script>
+	<script src="app/constants/grid-constants.js"></script>
+
+	<script src="app/services/grid-service.js"></script>
+	<script src="app/services/new-grid-service.js"></script>
+
+	<script src="app/plugins/ngGridCsvExportPlugin.js"></script>
+
+	<script src="app/directives/checkbox-select/checkbox-select-controller.js"></script>
+	<script src="app/directives/checkbox-select/checkbox-select.js"></script>
+
+	<script src="app/directives/custom-grid/custom-grid-controller.js"></script>
+	<script src="app/directives/custom-grid/custom-grid.js"></script>
+	<script src="app/directives/custom-grid/row-check/row-check.js"></script>
+
+	<script src="app/directives/details/details.js"></script>
+
+	<script src="app/directives/dropdown/dropdown-controller.js"></script>
+	<script src="app/directives/dropdown/dropdown.js"></script>
+
+	<script src="app/directives/page/page-controller.js"></script>
+	<script src="app/directives/page/page.js"></script>
+	<script src="app/directives/page/page-content/page-content-controller.js"></script>
+	<script src="app/directives/page/page-content/page-content.js"></script>
+	<script src="app/directives/page/page-content/content-options/content-options-controller.js"></script>
+	<script src="app/directives/page/page-content/content-options/content-options.js"></script>
+	<script src="app/directives/page/page-content/new-page-content-controller.js"></script>
+
+	<script src="app/directives/search/search.js"></script>
+	<script src="app/directives/search/search-controller.js"></script>
+
+	<script src="app/directives/split-button/split-button-controller.js"></script>
+	<script src="app/directives/split-button/split-button.js"></script>
+
+	<script src="app/directives/trend-slider/trend-slider.js"></script>
+
+	<script src="app/directives/filter/filter-controller.js"></script>
+	<script src="app/directives/filter/filter.js"></script>
+	<script src="app/directives/filter/filter-list/filter-list.js"></script>
+	<script src="app/directives/filter/filter-list/filter-list-controller.js"></script>
+
+	<script src="app/directives/slider/slider.js"></script>
+
+	<script src="app/directives/resize-on/resize-on.js"></script>
+
+	<script src="app/directives/grid-menu/grid-menu.js"></script>
+	<script src="app/directives/grid-menu/grid-menu-controller.js"></script>
+
+	<script src="app/services/grid-service-three.js"></script>
+	<script src="app/directives/page/page-content/page-three-content-controller.js"></script>
+
+	<script src="app/directives/details/details-template.js"></script>
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
+	<link href="bower_components/bootstrap-slider/slider.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+<body ng-app="gridTaskApp">
+	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
+	<page-content ng-controller="pageThreeContentCtrl"></page-content>
+</body>
+</html>

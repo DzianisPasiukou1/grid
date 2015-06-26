@@ -8,7 +8,8 @@
 				exportTo: '=',
 				filters: '=',
 				isFiltrate: '=',
-				options: '=gridOptions'
+				options: '=gridOptions',
+				detailsTemplate: '='
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {

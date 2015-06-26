@@ -44,11 +44,11 @@
 
 		$scope.selectedOptions.searchOptions = function () {
 			var options = [];
-			options.push({ label: 'everywhere' });
+			options.push({ label: 'everywhere', isEverywhere: true });
 
 			if (Array.isArray($scope.data) && $scope.data[0]) {
 				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
+					options.push({ label: prop, isColumn: true });
 				}
 			}
 
@@ -89,7 +89,7 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
@@ -114,4 +114,6 @@
 				}],
 			plugins: []
 		};
+
+		$scope.refresh();
 	}]);

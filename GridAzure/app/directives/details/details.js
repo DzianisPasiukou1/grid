@@ -10,25 +10,25 @@
 			},
 			link: function (scope, element, attrs) {
 				element.click(function () {
-					scope.renderedRows.forEach(function (value) {
-						if (value.$$hashKey != scope.row.$$hashKey && value.isToggle) {
-							value.isToggle = false;
+					//scope.renderedRows.forEach(function (value) {
+					//	if (value.$$hashKey != scope.row.$$hashKey && value.isToggle) {
+					//		value.isToggle = false;
 
-							value.elm.removeClass(scope.detailsClass);
+					//		value.elm.removeClass(scope.detailsClass);
 
-							var step = value.elm.context.scrollHeight - scope.rowHeight;
-							var children = $(value.elm).parent().children();
-							var top = Math.round(value.elm.position().top);
+					//		var step = value.elm.context.scrollHeight - scope.rowHeight;
+					//		var children = $(value.elm).parent().children();
+					//		var top = Math.round(value.elm.position().top);
 
-							$(value.elm).css('height', scope.rowHeight + 'px');
+					//		$(value.elm).css('height', scope.rowHeight + 'px');
 
-							for (var i = 0; i < children.length; i++) {
-								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
-								}
-							}
-						}
-					});
+					//		for (var i = 0; i < children.length; i++) {
+					//			if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+					//				$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+					//			}
+					//		}
+					//	}
+					//});
 
 					scope.row.isToggle = !scope.row.isToggle;
 
@@ -53,9 +53,19 @@
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
 
-						for (var i = 0; i < children.length; i++) {
-							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+						if (!scope.row.isDetails) {
+							for (var i = 0; i < children.length; i++) {
+								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+								}
+							}
+						}
+						else {
+
+							for (var i = 0; i < children.length; i++) {
+								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step + 'px');
+								}
 							}
 						}
 					}

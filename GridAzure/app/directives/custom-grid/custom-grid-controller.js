@@ -1,19 +1,19 @@
 ﻿angular.module('gridTaskApp')
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
-		$scope.data.map(function (value) {
-			value.action = {
-				values: [{
-					label: 'Action',
-					isAction: true
-				}, {
-					label: 'More',
-					options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true },
-					isMore: true
-				}],
-				isShow: false
-			};
-			value.isCheck = false;
-		});
+		//$scope.data.map(function (value) {
+		//	value.action = {
+		//		values: [{
+		//			label: 'Action',
+		//			isAction: true
+		//		}, {
+		//			label: 'More',
+		//			options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true },
+		//			isMore: true
+		//		}],
+		//		isShow: false
+		//	};
+		//	value.isCheck = false;
+		//});
 
 		$scope.$watch('isFiltrate', function (value) {
 			$scope.options.filterOptions.filterText = convertFilterOptions($scope.filters.filterOptions).filterText;

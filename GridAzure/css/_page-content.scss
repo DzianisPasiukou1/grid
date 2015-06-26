@@ -1,6 +1,7 @@
 ﻿.page-content {
 	@extend .my-panel;
 	min-width: 500px;
+	margin-top: 20px;
 
 	&__header {
 		@extend .heading;

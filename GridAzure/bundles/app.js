@@ -52,20 +52,20 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/custom-grid/custom-grid-controller.js
 angular.module('gridTaskApp')
 	.controller('customGridCtrl', ['$scope', 'templatesPath', function ($scope, templatesPath) {
-		$scope.data.map(function (value) {
-			value.action = {
-				values: [{
-					label: 'Action',
-					isAction: true
-				}, {
-					label: 'More',
-					options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true },
-					isMore: true
-				}],
-				isShow: false
-			};
-			value.isCheck = false;
-		});
+		//$scope.data.map(function (value) {
+		//	value.action = {
+		//		values: [{
+		//			label: 'Action',
+		//			isAction: true
+		//		}, {
+		//			label: 'More',
+		//			options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true },
+		//			isMore: true
+		//		}],
+		//		isShow: false
+		//	};
+		//	value.isCheck = false;
+		//});
 
 		$scope.$watch('isFiltrate', function (value) {
 			$scope.options.filterOptions.filterText = convertFilterOptions($scope.filters.filterOptions).filterText;
@@ -114,7 +114,8 @@ angular.module('gridTaskApp')
 				exportTo: '=',
 				filters: '=',
 				isFiltrate: '=',
-				options: '=gridOptions'
+				options: '=gridOptions',
+				detailsTemplate: '='
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {
@@ -163,25 +164,25 @@ angular.module('gridTaskApp')
 			},
 			link: function (scope, element, attrs) {
 				element.click(function () {
-					scope.renderedRows.forEach(function (value) {
-						if (value.$$hashKey != scope.row.$$hashKey && value.isToggle) {
-							value.isToggle = false;
+					//scope.renderedRows.forEach(function (value) {
+					//	if (value.$$hashKey != scope.row.$$hashKey && value.isToggle) {
+					//		value.isToggle = false;
 
-							value.elm.removeClass(scope.detailsClass);
+					//		value.elm.removeClass(scope.detailsClass);
 
-							var step = value.elm.context.scrollHeight - scope.rowHeight;
-							var children = $(value.elm).parent().children();
-							var top = Math.round(value.elm.position().top);
+					//		var step = value.elm.context.scrollHeight - scope.rowHeight;
+					//		var children = $(value.elm).parent().children();
+					//		var top = Math.round(value.elm.position().top);
 
-							$(value.elm).css('height', scope.rowHeight + 'px');
+					//		$(value.elm).css('height', scope.rowHeight + 'px');
 
-							for (var i = 0; i < children.length; i++) {
-								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
-								}
-							}
-						}
-					});
+					//		for (var i = 0; i < children.length; i++) {
+					//			if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+					//				$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+					//			}
+					//		}
+					//	}
+					//});
 
 					scope.row.isToggle = !scope.row.isToggle;
 
@@ -206,9 +207,19 @@ angular.module('gridTaskApp')
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
 
-						for (var i = 0; i < children.length; i++) {
-							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+						if (!scope.row.isDetails) {
+							for (var i = 0; i < children.length; i++) {
+								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step - 2 + 'px');
+								}
+							}
+						}
+						else {
+
+							for (var i = 0; i < children.length; i++) {
+								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+									$(children[i]).css('top', parseInt($(children[i]).css('top').replace('px', '')) - step + 'px');
+								}
 							}
 						}
 					}
@@ -338,11 +349,11 @@ angular.module('gridTaskApp')
 
 		$scope.selectedOptions.searchOptions = function () {
 			var options = [];
-			options.push({ label: 'everywhere' });
+			options.push({ label: 'everywhere', isEverywhere: true });
 
 			if (Array.isArray($scope.data) && $scope.data[0]) {
 				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
+					options.push({ label: prop, isColumn: true });
 				}
 			}
 
@@ -385,7 +396,7 @@ angular.module('gridTaskApp')
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },
 				{
 					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'row-templates/name.html',
@@ -415,6 +426,8 @@ angular.module('gridTaskApp')
 				}],
 			plugins: []
 		};
+
+		$scope.refresh();
 	}]);
 ///#source 1 1 /app/directives/page/page-content/page-content.js
 angular.module('gridTaskApp')
@@ -938,11 +951,11 @@ angular.module('gridTaskApp')
 
 		$scope.selectedOptions.searchOptions = function () {
 			var options = [];
-			options.push({ label: 'everywhere' });
+			options.push({ label: 'everywhere', isEverywhere: true });
 
 			if (Array.isArray($scope.data) && $scope.data[0]) {
 				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
+					options.push({ label: prop, isColumn: true });
 				}
 			}
 
@@ -983,7 +996,7 @@ angular.module('gridTaskApp')
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
+				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
 					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
@@ -1008,6 +1021,8 @@ angular.module('gridTaskApp')
 				}],
 			plugins: []
 		};
+
+		$scope.refresh();
 	}]);
 ///#source 1 1 /app/services/new-grid-service.js
 angular.module('gridTaskApp')
