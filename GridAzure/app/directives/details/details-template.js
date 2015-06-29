@@ -5,6 +5,7 @@
 			compile: function (element, attrs) {
 				return {
 					pre: function (scope, element, attrs) {
+
 						if (scope.row.entity.detailsTemplate) {
 							$.get(scope.row.entity.detailsTemplate, function (result) {
 								element.append(result);
@@ -20,11 +21,17 @@
 								scope.row.isDetails = true;
 
 								element.css('top', scope.row.elm.height() + 'px');
+
+								if (!scope.row.entity.step) {
+									scope.row.entity.step = 0;
+								}
+								scope.row.entity.step += scope.row.elm.height();
+
 								scope.renderedRows.forEach(function (value) {
 									if (value.$$hashKey != scope.row.$$hashKey) {
 										var totalWidth = element.height();
 
-										if (value.$$hashKey.replace('object:', '') > scope.row.$$hashKey.replace('object:', '')) {
+										if (parseInt(value.$$hashKey.replace('object:', '')) > parseInt(scope.row.$$hashKey.replace('object:', ''))) {
 											value.elm.css('top', value.elm.position().top + totalWidth + 'px');
 										}
 									}

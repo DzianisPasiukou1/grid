@@ -32,8 +32,17 @@
 					}
 				})
 
-				scope.$watch('selected', function (value) {
+				scope.$watch('options.selected', function (value) {
 					if (value.isMarked || value.isNotMarked) {
+						element.find('.checkbox-select__input-control__span').addClass('marked');
+					}
+					else {
+						element.find('.checkbox-select__input-control__span').removeClass('marked');
+					}
+				});
+
+				scope.$watch('options.selected.isMarked', function (value) {
+					if (value) {
 						element.find('.checkbox-select__input-control__span').addClass('marked');
 					}
 					else {

@@ -2,7 +2,7 @@
 	<span class="cell-details__expand" details details-class="'toggle'" rendered-rows="renderedRows" row="row" row-height="rowHeight" ng-class="{'glyphicon glyphicon-menu-down' : !row.entity.isToggle, 'glyphicon glyphicon-menu-up': row.entity.isToggle}"></span>
 	<div class="cell-details__check">
 		<label class="cell-details__input">
-			<input type="checkbox" ng-model="row.entity.isCheck" />
+			<input type="checkbox" ng-model="row.entity.isCheck" ng-change="row.entity.oncheck(row.entity.isCheck)" />
 			<span class="cell-details__input__check"></span>
 		</label>
 	</div>

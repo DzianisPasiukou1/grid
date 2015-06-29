@@ -9,7 +9,8 @@
 				filters: '=',
 				isFiltrate: '=',
 				options: '=gridOptions',
-				detailsTemplate: '='
+				detailsTemplate: '=',
+				refresh: '='
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
 			link: function (scope, element, attrs, controller) {

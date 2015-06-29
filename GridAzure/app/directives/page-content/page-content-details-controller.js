@@ -69,7 +69,31 @@
 					}],
 					isShow: false
 				};
-				value.isCheck = false;
+				value.oncheck = function (value) {
+					//for (var i = 0; i < $scope.data.length; i++) {
+					//	if ($scope.data[i].isCheck) {
+					//		$scope.selectedOptions.check.isMarked = true;
+					//		break;
+					//	}
+					//}
+				};
+
+				if ($scope.selectedOptions.check) {
+
+					if ($scope.selectedOptions.check.isAll) {
+						value.isCheck = true;
+					}
+					else if ($scope.selectedOptions.check.isNoOne) {
+						value.isCheck = false;
+					}
+					else if ($scope.selectedOptions.check.isMarked) {
+						value.isCheck = false;
+					}
+					else if ($scope.selectedOptions.check.isNotMarked) {
+						value.isCheck = true;
+					}
+				}
+
 				value.detailsTemplate = templatesPath + 'details.html';
 			});
 		}
@@ -81,6 +105,10 @@
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row-with-detalis.html',
 			afterSelectionChange: function (rowitem, event) {
+				for (var i = 0; i < $scope.data.length; i++) {
+					$scope.data[i].action.isShow = false;
+				}
+
 				rowitem.entity.action.isShow = rowitem.selected;
 			},
 			filterOptions: { filterText: '' },

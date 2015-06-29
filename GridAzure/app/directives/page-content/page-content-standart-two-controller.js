@@ -71,8 +71,9 @@
 					}],
 					isShow: false
 				};
-				value.isCheck = false;
 			});
+
+
 		}
 
 		$scope.gridOptions = {

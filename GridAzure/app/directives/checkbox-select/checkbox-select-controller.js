@@ -7,21 +7,21 @@
 			$scope.options.hideClass = 'glyphicon-menu-down'
 		}
 
-		$scope.selected = $scope.options.actions.noOne;
+		$scope.options.selected = $scope.options.actions.noOne;
 
 		if ($scope.options.callback) {
-			$scope.options.callback($scope.selected);
+			$scope.options.callback($scope.options.selected);
 		}
-		$scope.check = false;
+		$scope.options.selected.check = false;
 
 		$scope.select = function (action) {
-			$scope.selected = action;
+			$scope.options.selected = action;
 
 			if (action.isAll) {
-				$scope.check = true;
+				$scope.options.selected.check = true;
 			}
 			else {
-				$scope.check = false;
+				$scope.options.selected.check = false;
 			}
 
 			if ($scope.options.callback) {
@@ -31,14 +31,16 @@
 
 		$scope.checked = function (value) {
 			if (value) {
-				$scope.selected = $scope.options.actions.all;
+				$scope.options.selected = $scope.options.actions.all;
+				$scope.options.selected.check = true;
 			}
 			else {
-				$scope.selected = $scope.options.actions.noOne;
+				$scope.options.selected = $scope.options.actions.noOne;
+				$scope.options.selected.check = false;
 			}
 
 			if ($scope.options.callback) {
-				$scope.options.callback($scope.selected);
+				$scope.options.callback($scope.options.selected);
 			}
 		};
 	}]);

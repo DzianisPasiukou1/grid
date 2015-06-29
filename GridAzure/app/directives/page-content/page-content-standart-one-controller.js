@@ -71,7 +71,20 @@
 					}],
 					isShow: false
 				};
-				value.isCheck = false;
+
+				if ($scope.selectedOptions.check) {
+					if ($scope.selectedOptions.check.isAll) {
+						value.isCheck = true;
+					}
+					else if ($scope.selectedOptions.check.isNoOne) {
+						value.isCheck = false;
+					}
+					else if ($scope.selectedOptions.check.isMarked) {
+					}
+					else if ($scope.selectedOptions.check.isNotMarked) {
+						value.isCheck = !value.isCheck;
+					}
+				}
 			});
 		}
 
