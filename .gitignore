@@ -3978,3 +3978,5 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/grid-standart-one.html
 /GridAzure/obj/Release/Package/PackageTmp/grid-standart-two.html
 /GridAzure/obj/Release/Package/PackageTmp/grid-with-details-template.html
+/GridAzure/obj/Release/Package/PackageTmp/app/plugins/ngGridCanvasheightPlugin.js
+/GridAzure/obj/Release/Package/PackageTmp/app/plugins/ngGridFlexibleHeightPlugin.js

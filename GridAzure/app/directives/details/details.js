@@ -14,16 +14,28 @@
 
 				$('.ngViewport').scroll(function () {
 					if (scope.row.entity.isToggle) {
-						var step = scope.row.elm.position().top + scope.row.elm.context.scrollHeight;
-						var top = Math.round(scope.row.elm.position().top);
-						var children = $(scope.row.elm).parent().children();
+						var elm;
 
-						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
-						for (var i = 0; i < children.length; i++) {
-							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', step + 'px');
+						for (var i = 0; i < scope.renderedRows.length; i++) {
+							if (angular.equals(scope.renderedRows[i].entity, scope.row.entity)) {
+								elm = scope.renderedRows[i].elm;
+								break;
+							}
+						}
 
-								step += scope.rowHeight;
+						if (elm) {
+							var step = elm.position().top + elm.context.scrollHeight;
+
+							var top = Math.round(elm.position().top);
+							var children = $(elm).parent().children();
+
+							$(scope.row.elm).css('height', elm.context.scrollHeight + 'px');
+							for (var i = 0; i < children.length; i++) {
+								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+									$(children[i]).css('top', step + 'px');
+
+									step += scope.rowHeight;
+								}
 							}
 						}
 					}
@@ -113,7 +125,7 @@
 					if (scope.row.entity.isToggle) {
 
 						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
-
+						$('.ngCanvas').css('height', 6250 + 'px');
 
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
@@ -124,6 +136,7 @@
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
 						step = scope.row.elm.position().top + scope.rowHeight;
+						$('.ngCanvas').css('height', 6000 + 'px');
 
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {

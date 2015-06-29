@@ -204,7 +204,9 @@
     <Content Include="app\directives\tabs\tabs-controller.js" />
     <Content Include="app\directives\tabs\tabs.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
+    <Content Include="app\plugins\ngGridCanvasheightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
+    <Content Include="app\plugins\ngGridFlexibleHeightPlugin.js" />
     <Content Include="app\services\grid-with-details-template-service.js" />
     <Content Include="app\services\grid-standart-one-service.js" />
     <Content Include="app\services\grid-standart-two-service.js" />

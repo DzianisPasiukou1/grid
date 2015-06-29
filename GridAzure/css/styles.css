@@ -335,7 +335,10 @@
   font-weight: normal;
   background-color: white;
   width: 100%;
-  padding: 10px; }
+  padding: 10px;
+  padding-left: 30px;
+  font: inherit;
+  font-weight: normal; }
 
 .toggle .ngRow {
   display: table-row;
@@ -426,7 +429,8 @@
     width: 0; }
   .custom-grid .ngViewport {
     overflow-x: hidden;
-    border: 0; }
+    border: 0;
+    /*height: 600px !important;*/ }
   .custom-grid .ngCellText {
     padding: 0; }
   .custom-grid .ngCell {

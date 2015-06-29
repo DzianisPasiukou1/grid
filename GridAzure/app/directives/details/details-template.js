@@ -20,8 +20,12 @@
 
 								scope.row.isDetails = true;
 
-								element.css('top', scope.row.elm.height() + 'px');
-
+								if (scope.row.elm.height() != 0) {
+									element.css('top', scope.row.elm.height() + 'px');
+								}
+								else {
+									element.css('top', 78 + 'px');
+								}
 								if (!scope.row.entity.step) {
 									scope.row.entity.step = 0;
 								}
