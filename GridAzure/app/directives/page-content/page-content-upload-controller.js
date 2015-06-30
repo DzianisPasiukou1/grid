@@ -15,6 +15,11 @@
 		$scope.upload = function (data) {
 			$scope.data = data;
 
+			$scope.grid = {
+				name: 'Grid with upload',
+				count: $scope.data.length
+			};
+
 			$scope.selectedOptions.filterOptions = function () {
 				var options = [];
 
@@ -100,7 +105,7 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: columnGenerator($scope.data),
-			plugins: [new ngGridCanvasheightPlugin()]
+			plugins: [new ngGridCanvasHeightPlugin()]
 		};
 
 
@@ -154,6 +159,11 @@
 
 		$scope.refresh = function () {
 			getData();
+
+			$scope.grid = {
+				name: 'Grid with upload',
+				count: $scope.data.length
+			};
 
 			$scope.selectedOptions.filterOptions = function () {
 				var options = [];

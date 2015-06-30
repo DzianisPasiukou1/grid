@@ -135,7 +135,7 @@
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150
 				}],
-			plugins: [new ngGridCanvasheightPlugin()]
+			plugins: [new ngGridCanvasHeightPlugin()]
 		};
 
 		$scope.refresh();

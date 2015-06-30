@@ -125,7 +125,6 @@
 					if (scope.row.entity.isToggle) {
 
 						$(scope.row.elm).css('height', scope.row.elm.context.scrollHeight + 'px');
-						$('.ngCanvas').css('height', 6250 + 'px');
 
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
@@ -136,7 +135,6 @@
 					} else {
 						$(scope.row.elm).css('height', scope.rowHeight + 'px');
 						step = scope.row.elm.position().top + scope.rowHeight;
-						$('.ngCanvas').css('height', 6000 + 'px');
 
 						for (var i = 0; i < children.length; i++) {
 							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {

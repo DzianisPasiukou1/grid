@@ -206,7 +206,7 @@
     <Content Include="app\directives\tabs\tabs.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\directives\upload\upload.js" />
-    <Content Include="app\plugins\ngGridCanvasheightPlugin.js" />
+    <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\plugins\ngGridFlexibleHeightPlugin.js" />
     <Content Include="app\services\grid-upload-service.js" />
@@ -2195,6 +2195,7 @@
     <Content Include="data\data-with-details.json" />
     <Content Include="css\common\_tabs.scss" />
     <Content Include="data\simple.json" />
+    <Content Include="data\generated.json" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-with-details-template.html" />

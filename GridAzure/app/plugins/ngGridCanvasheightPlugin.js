@@ -1,4 +1,4 @@
-﻿function ngGridCanvasheightPlugin(opts) {
+﻿function ngGridCanvasHeightPlugin(opts) {
 	var self = this;
 	self.grid = null;
 	self.scope = null;
@@ -16,11 +16,20 @@
 					step = self.scope.renderedRows[i].entity.step;
 				}
 				else {
-					self.scope.renderedRows[i].elm.removeClass('selected');
+					if (!self.scope.renderedRows[i].entity.action.isShow) {
+						self.scope.renderedRows[i].elm.removeClass('selected');
+					}
 				}
 			}
 
-			self.grid.$canvas.css('height', self.grid.maxCanvasHt + step + 'px');
+			if (self.scope.renderedRows[self.scope.renderedRows.length - 1]) {
+				var height = self.scope.renderedRows[self.scope.renderedRows.length - 1].offsetTop + self.scope.renderedRows[self.scope.renderedRows.length - 1].elm.height();
+			}
+			else {
+				var height = 0;
+			}
+
+			self.grid.$canvas.css('height', height + step + 'px');
 
 			self.scope.catHashKeys = function () {
 				var hash = '',
