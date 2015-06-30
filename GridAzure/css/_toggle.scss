@@ -13,9 +13,13 @@
 		bottom: 0;
 		background-color: inherit;
 		display: table-cell;
-		height: auto !important;
-		overflow: visible;
 		/*position: static;*/
+	}
+
+	.ngCellText {
+		white-space: normal;
+		text-overflow: clip;
+		overflow: auto;
 	}
 
 	.wrap {

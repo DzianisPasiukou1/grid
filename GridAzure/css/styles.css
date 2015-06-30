@@ -1,4 +1,4 @@
-﻿.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .action__btn, .options__refresh, .filter__btn, .filter filter-list .filter-list__button {
+﻿.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -16,9 +16,9 @@
   position: relative;
   color: #787878;
   font-weight: 500; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter filter-list .filter-list__button:active {
+  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active {
     box-shadow: 0 2px 0 #787878;
     transform: translateY(3px); }
 
@@ -351,9 +351,11 @@
   bottom: 0;
   background-color: inherit;
   display: table-cell;
-  height: auto !important;
-  overflow: visible;
   /*position: static;*/ }
+.toggle .ngCellText {
+  white-space: normal;
+  text-overflow: clip;
+  overflow: auto; }
 .toggle .wrap {
   white-space: normal;
   text-overflow: clip;
@@ -509,8 +511,17 @@
   .options__refresh {
     margin-right: 10px;
     position: relative; }
-  .options__more {
+  .options__upload {
+    margin-right: 10px;
     position: relative; }
+    .options__upload label {
+      padding-top: 8px; }
+    .options__upload input {
+      position: absolute;
+      left: -9999px; }
+  .options__more {
+    position: relative;
+    margin-right: 10px; }
   .options__filter {
     display: inline; }
   .options__search {

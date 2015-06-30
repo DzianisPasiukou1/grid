@@ -20,16 +20,12 @@
 
 								scope.row.isDetails = true;
 
-								if (scope.row.elm.height() != 0) {
-									element.css('top', scope.row.elm.height() + 'px');
-								}
-								else {
-									element.css('top', 78 + 'px');
-								}
+								element.css('top', scope.row.elm.height() + 'px');
+
 								if (!scope.row.entity.step) {
 									scope.row.entity.step = 0;
 								}
-								scope.row.entity.step += scope.row.elm.height();
+								scope.row.entity.step = scope.row.elm.context.scrollHeight;
 
 								scope.renderedRows.forEach(function (value) {
 									if (value.$$hashKey != scope.row.$$hashKey) {

@@ -12,15 +12,15 @@
 			var step = 0;
 
 			for (var i = 0; i < self.scope.renderedRows.length; i++) {
-				if (scope.renderedRows[i].entity.isToggle) {
-					step = 250;
+				if (self.scope.renderedRows[i].entity.isToggle) {
+					step = self.scope.renderedRows[i].entity.step;
 				}
 				else {
-					scope.renderedRows[i].elm.removeClass('selected');
+					self.scope.renderedRows[i].elm.removeClass('selected');
 				}
 			}
 
-			self.grid.$canvas.css('height', 6000 + step + 'px');
+			self.grid.$canvas.css('height', self.grid.maxCanvasHt + step + 'px');
 
 			self.scope.catHashKeys = function () {
 				var hash = '',

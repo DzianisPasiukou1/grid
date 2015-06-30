@@ -47,8 +47,25 @@
 		position: relative;
 	}
 
+	&__upload {
+		label {
+			padding-top: 8px;
+			@extend .metro-btn;
+		}
+
+		input {
+			position: absolute;
+			left: -9999px;
+		}
+
+		margin-right: 10px;
+		position: relative;
+	}
+
+
 	&__more {
 		position: relative;
+		margin-right: 10px;
 	}
 
 	&__filter {

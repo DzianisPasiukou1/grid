@@ -2,6 +2,7 @@
 	<checkbox-select class="options__check" options="checks.options"></checkbox-select>
 	<button class="options__refresh" ng-click="refresh()">Refresh</button>
 	<dropdown class="options__more" dropdown-options="mores.options"></dropdown>
+	<upload class="options__upload" ng-show="isUpload"></upload>
 	<div class="options__filter">
 		<search class="options__search" search-value="selectedOptions.searchValue"></search>
 		<split-button class="options__show" actions="selectedOptions.searchOptions" selected="selectedOptions.show" search="selectedOptions.searchValue"></split-button>

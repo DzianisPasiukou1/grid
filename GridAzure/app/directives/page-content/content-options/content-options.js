@@ -6,7 +6,9 @@
 			scope: {
 				selectedOptions: '=',
 				isFiltrate: '=',
-				refresh: '='
+				refresh: '=',
+				isUpload: '=',
+				upload: '='
 			},
 			templateUrl: templatesPath + 'content-options.html'
 		}
