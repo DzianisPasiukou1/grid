@@ -87,7 +87,7 @@
 		display: block;
 		-webkit-transform: rotate(-45deg);
 		transform: rotate(-45deg);
-		transition: all 0.2s linear;
+		transition: all 0.1s linear;
 	}
 
 	.input-control.checkbox .marked:before {
@@ -109,12 +109,12 @@
 		display: block;
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
-		transition: all 0.2s linear;
+		transition: all 0.1s linear;
 	}
 
 	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before {
 		border-color: #555555;
-		transition: all 0.2s linear;
+		transition: all 0.1s linear;
 	}
 
 	.input-control.checkbox input[type="checkbox"]:disabled ~ .caption {

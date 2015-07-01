@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+
+	<script src="bower_components/ng-grid/ng-grid-2.0.14.debug.js"></script>
+
+	<script src="app/custom-grid.js"></script>
+	<script src="app/testApp.js"></script>
+
+	<script src="app/grid-upload-controller.js"></script>
+
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+<body ng-app="testApp" ng-controller="gridUploadCtrl">
+	<page-content grid-data="data" content-options="contentOptions" grid="grid" grid-options="gridOptions"></page-content>
+</body>
+</html>

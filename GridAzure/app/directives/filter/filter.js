@@ -1,11 +1,11 @@
 ﻿angular.module('gridTaskApp')
-	.directive('filter', ['templatesPath', '$compile', function (templatesPath, $compile) {
+	.directive('filter', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
 				listState: '=',
 				filterOptions: '=options',
-				isFiltrate: '='
+				filtrate: '='
 			},
 			controller: 'filterCtrl',
 			templateUrl: templatesPath + 'filter.html',
@@ -13,7 +13,7 @@
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						scope.listState = false;
-						$compile(element.find('filter-list'))(scope);
+						scope.$apply();
 					}
 				})
 

@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('pageContentStandartTwoCtrl', ['$scope', 'gridStandartTwoService', 'templatesPath', function ($scope, gridStandartTwoService, templatesPath) {
+	.controller('gridStandartTwoCtrl', ['$scope', 'gridStandartTwoService', 'templatesPath', function ($scope, gridStandartTwoService, templatesPath) {
 		function getData() {
 			gridStandartTwoService.get(function (data) {
 				$scope.data = data;
@@ -8,73 +8,24 @@
 		getData();
 
 		$scope.grid = {
-			name: 'Grid standart two',
+			name: 'Standart grid two',
 			count: $scope.data.length
 		};
 
-		$scope.exports = {
-			options: {
-				label: 'Export to: ',
-				values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
-				callback: function (action) {
-					$scope.export = action;
-				}
+		$scope.contentOptions = {
+			refresh: function () {
+				getData();
+
+				$scope.grid.count = $scope.data.length;
+			},
+			isDynamic: true,
+			filtrate: function (value) {
+				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+			},
+			search: function (value) {
+				$scope.gridOptions.filterOptions.filterText = value;
 			}
 		};
-		$scope.views = {
-			options:
-				{
-					label: 'View: ',
-					values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
-					callback: function (action) {
-						$scope.view = action;
-					}
-				}
-		};
-		$scope.selectedOptions = {};
-		$scope.selectedOptions.filterOptions = function () {
-			var options = [];
-
-			if (Array.isArray($scope.data) && $scope.data[0])
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
-				}
-			return options;
-		}();
-
-		$scope.selectedOptions.searchOptions = function () {
-			var options = [];
-			options.push({ label: 'everywhere', isEverywhere: true });
-
-			if (Array.isArray($scope.data) && $scope.data[0]) {
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop, isColumn: true });
-				}
-			}
-
-			return options;
-		}();
-
-		$scope.isFiltrate = false;
-
-		$scope.refresh = function () {
-			getData();
-
-			$scope.data.map(function (value) {
-				value.action = {
-					values: [{
-						label: 'Action', isAction: true
-					}, {
-						label: 'More',
-						isMore: true,
-						options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true }
-					}],
-					isShow: false
-				};
-			});
-
-
-		}
 
 		$scope.gridOptions = {
 			data: 'data',
@@ -115,6 +66,4 @@
 				}],
 			plugins: []
 		};
-
-		$scope.refresh();
 	}]);

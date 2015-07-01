@@ -11,9 +11,17 @@
 		var innerRecalcForData = function () {
 			var step = 0;
 
+			if (self.grid.$canvas.height() > 5900) {
+				self.grid.$canvas.css('height', 6000 + 'px');
+			}
+
 			for (var i = 0; i < self.scope.renderedRows.length; i++) {
 				if (self.scope.renderedRows[i].entity.isToggle) {
 					step = self.scope.renderedRows[i].entity.step;
+
+					if (self.grid.$canvas.height() > 5900) {
+						self.grid.$canvas.css('height', 6300 + 'px');
+					}
 				}
 				else {
 					if (!self.scope.renderedRows[i].entity.action.isShow) {
@@ -28,8 +36,6 @@
 			else {
 				var height = 0;
 			}
-
-			self.grid.$canvas.css('height', height + step + 'px');
 
 			self.scope.catHashKeys = function () {
 				var hash = '',

@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('pageContentStandartOneCtrl', ['$scope', 'gridStandartOneService', 'templatesPath', function ($scope, gridStandartOneService, templatesPath) {
+	.controller('gridStandartOneCtrl', ['$scope', 'gridStandartOneService', 'templatesPath', function ($scope, gridStandartOneService, templatesPath) {
 		function getData() {
 			gridStandartOneService.get(function (data) {
 				$scope.data = data;
@@ -8,85 +8,24 @@
 		getData();
 
 		$scope.grid = {
-			name: 'Grid standart one',
+			name: 'Standart grid one',
 			count: $scope.data.length
 		};
 
-		$scope.exports = {
-			options: {
-				label: 'Export to: ',
-				values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
-				callback: function (action) {
-					$scope.export = action;
-				}
+		$scope.contentOptions = {
+			refresh: function () {
+				getData();
+
+				$scope.grid.count = $scope.data.length;
+			},
+			isDynamic: true,
+			filtrate: function (value) {
+				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+			},
+			search: function (value) {
+				$scope.gridOptions.filterOptions.filterText = value;
 			}
 		};
-		$scope.views = {
-			options:
-				{
-					label: 'View: ',
-					values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
-					callback: function (action) {
-						$scope.view = action;
-					}
-				}
-		};
-		$scope.selectedOptions = {};
-		$scope.selectedOptions.filterOptions = function () {
-			var options = [];
-
-			if (Array.isArray($scope.data) && $scope.data[0])
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop });
-				}
-			return options;
-		}();
-
-		$scope.selectedOptions.searchOptions = function () {
-			var options = [];
-			options.push({ label: 'everywhere', isEverywhere: true });
-
-			if (Array.isArray($scope.data) && $scope.data[0]) {
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop, isColumn: true });
-				}
-			}
-
-			return options;
-		}();
-
-		$scope.isFiltrate = false;
-
-		$scope.refresh = function () {
-			getData();
-
-			$scope.data.map(function (value) {
-				value.action = {
-					values: [{
-						label: 'Action', isAction: true
-					}, {
-						label: 'More',
-						isMore: true,
-						options: { label: 'More', values: [{ label: 'View Report' }], isMenu: true }
-					}],
-					isShow: false
-				};
-
-				if ($scope.selectedOptions.check) {
-					if ($scope.selectedOptions.check.isAll) {
-						value.isCheck = true;
-					}
-					else if ($scope.selectedOptions.check.isNoOne) {
-						value.isCheck = false;
-					}
-					else if ($scope.selectedOptions.check.isMarked) {
-					}
-					else if ($scope.selectedOptions.check.isNotMarked) {
-						value.isCheck = !value.isCheck;
-					}
-				}
-			});
-		}
 
 		$scope.gridOptions = {
 			data: 'data',
@@ -137,6 +76,4 @@
 				}],
 			plugins: []
 		};
-
-		$scope.refresh();
 	}]);

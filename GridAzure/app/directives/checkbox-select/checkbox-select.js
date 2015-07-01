@@ -39,14 +39,12 @@
 					else {
 						element.find('.checkbox-select__input-control__span').removeClass('marked');
 					}
-				});
 
-				scope.$watch('options.selected.isMarked', function (value) {
-					if (value) {
-						element.find('.checkbox-select__input-control__span').addClass('marked');
+					if (value.isAll) {
+						value.check = true;
 					}
 					else {
-						element.find('.checkbox-select__input-control__span').removeClass('marked');
+						value.check = false;
 					}
 				});
 			}

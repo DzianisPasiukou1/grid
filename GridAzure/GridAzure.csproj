@@ -171,6 +171,12 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\constants\checkbox-select-constants.js" />
+    <Content Include="app\custom-grid.js">
+      <DependentUpon>custom-grid.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="app\custom-grid.min.js">
+      <DependentUpon>custom-grid.js</DependentUpon>
+    </Content>
     <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select.js" />
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
@@ -187,13 +193,10 @@
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\grid-menu\grid-menu-controller.js" />
     <Content Include="app\directives\grid-menu\grid-menu.js" />
+    <Content Include="app\directives\loading\loading.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page-content\content-options\content-options.js" />
-    <Content Include="app\directives\page-content\page-content-standart-two-controller.js" />
-    <Content Include="app\directives\page-content\page-content-standart-one-controller.js" />
-    <Content Include="app\directives\page-content\page-content-upload-controller.js" />
     <Content Include="app\directives\page-content\page-content.js" />
-    <Content Include="app\directives\page-content\page-content-details-controller.js" />
     <Content Include="app\directives\resize-on\resize-on.js" />
     <Content Include="app\directives\scroll\scroll.js" />
     <Content Include="app\directives\search\search-controller.js" />
@@ -206,6 +209,13 @@
     <Content Include="app\directives\tabs\tabs.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\directives\upload\upload.js" />
+    <Content Include="app\grid-loading-controller.js" />
+    <Content Include="app\grid-standart-one-controller.js" />
+    <Content Include="app\grid-standart-two-controller.js" />
+    <Content Include="app\grid-with-details-controller.js" />
+    <Content Include="app\plugins\center.js" />
+    <Content Include="app\plugins\columnGenerator.js" />
+    <Content Include="app\plugins\convertFilterOptions.js" />
     <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\plugins\ngGridFlexibleHeightPlugin.js" />
@@ -233,6 +243,7 @@
     <Content Include="app\templates\filter.html" />
     <Content Include="app\templates\grid-footer.html" />
     <Content Include="app\templates\grid-menu.html" />
+    <Content Include="app\templates\loading.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
       <DependentUpon>page-content.html</DependentUpon>
@@ -287,6 +298,7 @@
       <DependentUpon>trend-slider.html</DependentUpon>
     </Content>
     <Content Include="app\templates\upload.html" />
+    <Content Include="app\grid-upload-controller.js" />
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -1931,12 +1943,6 @@
     <Content Include="bower_components\ng-grid\plugins\ng-grid-reorderable.js" />
     <Content Include="bower_components\ng-grid\plugins\ng-grid-wysiwyg-export.js" />
     <Content Include="bower_components\ng-grid\plugins\playground.html" />
-    <Content Include="bundles\app.js">
-      <DependentUpon>app.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="bundles\app.min.js">
-      <DependentUpon>app.js</DependentUpon>
-    </Content>
     <Content Include="content\arrow_down.png" />
     <Content Include="content\arrow_up.png" />
     <Content Include="content\clear.png" />
@@ -2179,10 +2185,6 @@
     <Content Include="css\rows\_action.scss" />
     <Content Include="css\common\_my-metro.scss" />
     <Content Include="css\common\_my-panel.scss" />
-    <Content Include="bundles\app.js.bundle" />
-    <Content Include="bundles\app.min.js.map">
-      <DependentUpon>app.min.js</DependentUpon>
-    </Content>
     <Content Include="css\_filter.scss" />
     <Content Include="css\common\_slider.scss" />
     <Content Include="css\common\_split-button.scss" />
@@ -2196,12 +2198,20 @@
     <Content Include="css\common\_tabs.scss" />
     <Content Include="data\simple.json" />
     <Content Include="data\generated.json" />
+    <Content Include="css\common\_spinner.scss" />
+    <Content Include="css\common\_disabled.scss" />
+    <Content Include="app\custom-grid.js.bundle" />
+    <Content Include="app\custom-grid.min.js.map">
+      <DependentUpon>custom-grid.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-with-details-template.html" />
     <Content Include="grid-standart-two.html" />
+    <Content Include="grid-with-loading.html" />
     <Content Include="grid-with-upload.html" />
     <Content Include="index.html" />
+    <Content Include="testing.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2221,6 +2231,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bower_components\bootstrap-sass\assets\images\" />
+    <Folder Include="bundles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

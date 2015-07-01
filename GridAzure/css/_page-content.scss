@@ -3,6 +3,10 @@
 	min-width: 500px;
 	margin-top: 20px;
 
+	&.disabled {
+		background-color: black;
+	}
+
 	&__header {
 		@extend .heading;
 	}

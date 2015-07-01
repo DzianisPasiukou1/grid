@@ -3980,3 +3980,9 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/grid-with-details-template.html
 /GridAzure/obj/Release/Package/PackageTmp/app/plugins/ngGridCanvasheightPlugin.js
 /GridAzure/obj/Release/Package/PackageTmp/app/plugins/ngGridFlexibleHeightPlugin.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/page-content/page-content-upload-controller.js
+/GridAzure/obj/Release/Package/PackageTmp/app/directives/upload/upload.js
+/GridAzure/obj/Release/Package/PackageTmp/app/services/grid-upload-service.js
+/GridAzure/obj/Release/Package/PackageTmp/data/generated.json
+/GridAzure/obj/Release/Package/PackageTmp/data/simple.json
+/GridAzure/obj/Release/Package/PackageTmp/grid-with-upload.html

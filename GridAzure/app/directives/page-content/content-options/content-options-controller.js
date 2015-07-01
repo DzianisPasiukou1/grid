@@ -1,23 +1,15 @@
 ﻿angular.module('gridTaskApp')
-	.controller('contentOptionsCtrl', ['$scope', 'checkboxSelectConstants', function ($scope, checkboxSelectConstants) {
-		$scope.checks = {
-			options: {
-				actions: checkboxSelectConstants.values,
-				callback: function (action) {
-					$scope.selectedOptions.check = action;
-				}
+	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
+		$scope.$watch('options.searchValue', function (value) {
+			if (!$scope.options.show) {
+				return;
 			}
-		};
-		$scope.mores = {
-			options:
-				{
-					label: 'More',
-					values: [{ label: 'View reports' }],
-					callback: function (action) {
-						$scope.more = action;
-					},
-					isMenu: true
-				}
-		};
-		$scope.shows = { values: [{ label: 'Everywhere' }] };
+
+			if ($scope.options.show.label == 'everywhere') {
+				$scope.options.search(value);
+			} else {
+				$scope.options.search($scope.options.show.label + ':' + value);
+			}
+		});
+
 	}]);

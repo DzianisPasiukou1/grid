@@ -99,6 +99,7 @@
 		&.selected {
 			background-color: rgb(149,207,235) !important;
 			font-weight: bold;
+			transition: all 0.1s linear;
 		}
 
 		&.checked {

@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('pageContentDetailsCtrl', ['$scope', 'templatesPath', 'gridWithDetailsTemplateService', function ($scope, templatesPath, gridWithDetailsTemplateService) {
+	.controller('gridWithDetailsCtrl', ['$scope', 'templatesPath', 'gridWithDetailsTemplateService', function ($scope, templatesPath, gridWithDetailsTemplateService) {
 		function getData() {
 			gridWithDetailsTemplateService.get(function (data) {
 				$scope.data = data;
@@ -12,91 +12,20 @@
 			count: $scope.data.length
 		};
 
-		$scope.exports = {
-			options: {
-				label: 'Export to: ',
-				values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
-				callback: function (action) {
-					$scope.export = action;
-				}
+		$scope.contentOptions = {
+			refresh: function () {
+				getData();
+
+				$scope.grid.count = $scope.data.length;
+			},
+			isDynamic: true,
+			filtrate: function (value) {
+				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+			},
+			search: function (value) {
+				$scope.gridOptions.filterOptions.filterText = value;
 			}
 		};
-		$scope.views = {
-			options:
-				{
-					label: 'View: ',
-					values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
-					callback: function (action) {
-						$scope.view = action;
-					}
-				}
-		};
-		$scope.selectedOptions = {};
-		$scope.selectedOptions.filterOptions = function () {
-			var options = [];
-
-			if (Array.isArray($scope.data) && $scope.data[0])
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop, isColumn: true });
-				}
-			return options;
-		}();
-
-		$scope.selectedOptions.searchOptions = function () {
-			var options = [];
-			options.push({ label: 'everywhere', isEverywhere: true });
-
-			if (Array.isArray($scope.data) && $scope.data[0]) {
-				for (var prop in $scope.data[0]) {
-					options.push({ label: prop, isColumn: true });
-				}
-			}
-
-			return options;
-		}();
-
-		$scope.isFiltrate = false;
-
-		$scope.refresh = function () {
-			getData();
-
-			$scope.data.map(function (value) {
-				value.action = {
-					values: [{
-						label: 'More',
-						isMore: true,
-						options: { label: 'Actions', values: [{ label: 'Edit' }, { label: 'Copy' }, { label: 'History' }, { label: 'Delete' }], isMenu: true }
-					}],
-					isShow: false
-				};
-				value.oncheck = function (value) {
-					//for (var i = 0; i < $scope.data.length; i++) {
-					//	if ($scope.data[i].isCheck) {
-					//		$scope.selectedOptions.check.isMarked = true;
-					//		break;
-					//	}
-					//}
-				};
-
-				if ($scope.selectedOptions.check) {
-
-					if ($scope.selectedOptions.check.isAll) {
-						value.isCheck = true;
-					}
-					else if ($scope.selectedOptions.check.isNoOne) {
-						value.isCheck = false;
-					}
-					else if ($scope.selectedOptions.check.isMarked) {
-						value.isCheck = false;
-					}
-					else if ($scope.selectedOptions.check.isNotMarked) {
-						value.isCheck = true;
-					}
-				}
-
-				value.detailsTemplate = templatesPath + 'details.html';
-			});
-		}
 
 		$scope.gridOptions = {
 			data: 'data',
@@ -137,6 +66,4 @@
 				}],
 			plugins: [new ngGridCanvasHeightPlugin()]
 		};
-
-		$scope.refresh();
 	}])

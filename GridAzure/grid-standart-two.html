@@ -31,7 +31,6 @@
 	<script src="app/directives/dropdown/dropdown.js"></script>
 
 	<script src="app/directives/page-content/page-content.js"></script>
-	<script src="app/directives/page-content/page-content-standart-two-controller.js"></script>
 	<script src="app/directives/page-content/content-options/content-options.js"></script>
 	<script src="app/directives/page-content/content-options/content-options-controller.js"></script>
 
@@ -51,12 +50,17 @@
 	<script src="app/directives/grid-menu/grid-menu.js"></script>
 	<script src="app/directives/grid-menu/grid-menu-controller.js"></script>
 
+	<script src="app/plugins/columnGenerator.js"></script>
+	<script src="app/plugins/convertFilterOptions.js"></script>
+
+	<script src="app/grid-standart-two-controller.js"></script>
+
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
-<body ng-app="gridTaskApp">
+<body ng-app="gridTaskApp" ng-controller="gridStandartTwoCtrl">
 	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
-	<page-content ng-controller="pageContentStandartTwoCtrl"></page-content>
+	<page-content grid-data="data" content-options="contentOptions" grid="grid" grid-options="gridOptions"></page-content>
 </body>
 </html>

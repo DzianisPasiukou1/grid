@@ -3,6 +3,9 @@
 		return {
 			restrict: 'E',
 			templateUrl: templatesPath + 'upload.html',
+			scope: {
+				upload: '=uploadCallback'
+			},
 			link: function (scope, element, attrs) {
 				element.find(':file').change(function () {
 					var file = this.files[0];

@@ -17,6 +17,12 @@
 						var elm;
 
 						for (var i = 0; i < scope.renderedRows.length; i++) {
+							if (!scope.renderedRows[i].entity.action.isShow) {
+								scope.renderedRows[i].elm.removeClass('selected');
+							}
+						}
+
+						for (var i = 0; i < scope.renderedRows.length; i++) {
 							if (angular.equals(scope.renderedRows[i].entity, scope.row.entity)) {
 								elm = scope.renderedRows[i].elm;
 								break;
@@ -24,12 +30,22 @@
 						}
 
 						if (elm) {
-							var step = elm.position().top + elm.context.scrollHeight;
+							if (elm.context.scrollHeight > 250) {
+								var step = elm.position().top + elm.context.scrollHeight;
+							}
+							else {
+								var step = elm.position().top + 296;
+							}
 
 							var top = Math.round(elm.position().top);
 							var children = $(elm).parent().children();
 
-							$(scope.row.elm).css('height', elm.context.scrollHeight + 'px');
+							if (elm.context.scrollHeight != 0) {
+								$(scope.row.elm).css('height', elm.context.scrollHeight + 'px');
+							}
+							else {
+								$(scope.row.elm).css('height', 296 + 'px');
+							}
 							for (var i = 0; i < children.length; i++) {
 								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
 									$(children[i]).css('top', step + 'px');
@@ -42,6 +58,7 @@
 				});
 
 				element.click(function () {
+
 					scope.$parent.$parent.data.forEach(function (value) {
 						if (!angular.equals(value, scope.row.entity) && value.isToggle) {
 							value.isToggle = false;
@@ -73,6 +90,7 @@
 					});
 
 					scope.renderedRows.forEach(function (value) {
+
 						if (!angular.equals(value.entity, scope.row.entity) && value.entity.isToggle) {
 							value.entity.isToggle = false;
 

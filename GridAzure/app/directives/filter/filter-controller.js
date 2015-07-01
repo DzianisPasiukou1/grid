@@ -14,6 +14,7 @@
 
 		$scope.showRecords = function () {
 			$scope.listState = false;
-			$scope.isFiltrate = !$scope.isFiltrate;
+
+			$scope.filtrate($scope.filterOptions);
 		}
 	}]);
