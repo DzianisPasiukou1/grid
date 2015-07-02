@@ -11,7 +11,6 @@
 	<!--The order of the <file> elements determines the order of the files in the bundle.-->
 	<files>
 		<file>/app/app.js</file>
-		<file>/app/constants/checkbox-select-constants.js</file>
 		<file>/app/constants/grid-constants.js</file>
 		<file>/app/directives/checkbox-select/checkbox-select-controller.js</file>
 		<file>/app/directives/checkbox-select/checkbox-select.js</file>
@@ -33,7 +32,6 @@
 		<file>/app/directives/page-content/content-options/content-options-controller.js</file>
 		<file>/app/directives/page-content/content-options/content-options.js</file>
 		<file>/app/directives/resize-on/resize-on.js</file>
-		<file>/app/directives/scroll/scroll.js</file>
 		<file>/app/directives/search/search-controller.js</file>
 		<file>/app/directives/search/search.js</file>
 		<file>/app/directives/slider/slider.js</file>

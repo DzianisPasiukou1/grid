@@ -16,6 +16,8 @@
 
 				if (scope.contentOptions.loading) {
 					scope.contentOptions.isLoading = true;
+					element.find('.page-content__list').append('<loading ng-show="contentOptions.isLoading"></loading>');
+					$compile($('loading'))(scope);
 				}
 
 				if (scope.contentOptions.checks === undefined) {
@@ -65,11 +67,6 @@
 					};
 				}
 
-				if (scope.contentOptions.loading) {
-					element.append('<loading ng-show="contentOptions.isLoading"></loading>');
-					$compile($('loading'))(scope);
-				}
-
 				if (scope.exports === undefined) {
 					scope.exports = {
 						options: {
@@ -115,15 +112,17 @@
 					};
 				}
 
-				if (scope.contentOptions.withUpload) {
+				if (scope.contentOptions.withUpload || scope.contentOptions.upload !== undefined) {
 					scope.contentOptions.isDynamic = true;
 
-					scope.contentOptions.upload = function (data) {
-						scope.data = data;
+					if (scope.contentOptions.upload === undefined) {
+						scope.contentOptions.upload = function (data) {
+							scope.data = data;
 
-						scope.grid.count = scope.data.length;
+							scope.grid.count = scope.data.length;
 
-						scope.$apply();
+							scope.$apply();
+						}
 					}
 				}
 

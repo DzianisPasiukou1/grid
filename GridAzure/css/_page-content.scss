@@ -48,6 +48,10 @@
 		padding: 0;
 	}
 
+	&__list {
+		height: 600px;
+	}
+
 	&__footer {
 		@extend .footer;
 	}

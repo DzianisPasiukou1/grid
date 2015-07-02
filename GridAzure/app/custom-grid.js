@@ -2,17 +2,6 @@
 angular.module('gridTaskApp', ['ngGrid'])
 	.value('templatesPath', 'app/templates/')
 	.value('jsonPath', 'data/');
-///#source 1 1 /app/constants/checkbox-select-constants.js
-angular.module('gridTaskApp')
-	 .constant("checkboxSelectConstants",
-	 {
-	 	values: {
-	 		all: { label: 'All', isAll: true },
-	 		noOne: { label: 'No one', isNoOne: true },
-	 		marked: { label: 'Marked', isMarked: true },
-	 		notMarked: { label: 'Not marked', isNotMarked: true }
-	 	}
-	 });
 ///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
 	 .constant("constantOfData", {
@@ -662,26 +651,26 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			templateUrl: templatesPath + 'loading.html',
 			link: function (scope, element, attrs) {
-				element.center();
+				element.css('height', element.parent().parent().height() + 'px');
+				element.css('width', element.parent().parent().width() + 'px');
 
-				element.css("top", element.parent().find('.page-content').position().top + 200 + 'px');
-				element.css("left", element.position().left - 100 + 'px');
-				//element.css('height', element.parent().find('.page-content').height() + 'px');
-				//element.css('width', element.parent().find('.page-content').width() + 'px');
+				element.find('.loading-disabled').css('top', 0);
 
-				scope.$watch('isLoading', function (value) {
-					var grid = element.parent().find('custom-grid');
+				//element.find('.spinner').css('top', (element.parent().parent().height() + element.find('.spinner').height()) / 2 + 'px');
+				//element.find('.spinner').css('left', (element.parent().parent().width() + element.find('.spinner').width()) / 2 + 'px');
+				element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
+				element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
 
-					if (grid) {
-						if (value) {
-							//grid.parent().append('<div id="disabled__grid"></div>');
-							//grid.parent().find('#disabled__grid').css('height', grid.find('.custom-grid').height() + grid.find('.custom-grid').position().top + 'px');
-							//grid.parent().find('#disabled__grid').css('width', grid.find('.custom-grid').width() + 'px');
-						}
-						else {
-							//grid.parent().find('#disabled__grid').remove();
-						}
-					}
+				$(window).resize(function () {
+					element.css('height', element.parent().parent().height() + 'px');
+					element.css('width', element.parent().parent().width() + 'px');
+
+					element.find('.loading-disabled').css('top', 0);
+
+					element.find('.spinner').css('top', (element.parent().parent().height() + element.find('.spinner').height()) / 2 + 'px');
+					element.find('.spinner').css('left', (element.parent().parent().width() + element.find('.spinner').width()) / 2 + 'px');
+					element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
+					element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
 				});
 			}
 		}
@@ -705,6 +694,8 @@ angular.module('gridTaskApp')
 
 				if (scope.contentOptions.loading) {
 					scope.contentOptions.isLoading = true;
+					element.find('.page-content__list').append('<loading ng-show="contentOptions.isLoading"></loading>');
+					$compile($('loading'))(scope);
 				}
 
 				if (scope.contentOptions.checks === undefined) {
@@ -754,11 +745,6 @@ angular.module('gridTaskApp')
 					};
 				}
 
-				if (scope.contentOptions.loading) {
-					element.append('<loading ng-show="contentOptions.isLoading"></loading>');
-					$compile($('loading'))(scope);
-				}
-
 				if (scope.exports === undefined) {
 					scope.exports = {
 						options: {
@@ -804,15 +790,17 @@ angular.module('gridTaskApp')
 					};
 				}
 
-				if (scope.contentOptions.withUpload) {
+				if (scope.contentOptions.withUpload || scope.contentOptions.upload !== undefined) {
 					scope.contentOptions.isDynamic = true;
 
-					scope.contentOptions.upload = function (data) {
-						scope.data = data;
+					if (scope.contentOptions.upload === undefined) {
+						scope.contentOptions.upload = function (data) {
+							scope.data = data;
 
-						scope.grid.count = scope.data.length;
+							scope.grid.count = scope.data.length;
 
-						scope.$apply();
+							scope.$apply();
+						}
 					}
 				}
 
@@ -1013,26 +1001,6 @@ angular.module('gridTaskApp')
 						element.css('right', '0');
 					}
 				});
-			}
-		}
-	}]);
-///#source 1 1 /app/directives/scroll/scroll.js
-angular.module('gridTaskApp')
-	.directive('scroll', [function () {
-		return {
-			restrict: 'A',
-			scope: {
-				rows: '=renderedRows',
-				selectedItems: '='
-			},
-			compile: function (element, attrs) {
-				return {
-					post: function (scope, element, attrs) {
-						scope.$watch('rows', function (value) {
-
-						});
-					}
-				}
 			}
 		}
 	}]);
@@ -1256,10 +1224,10 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/plugins/center.js
 jQuery.fn.center = function () {
 	this.css("position", "absolute");
-	this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
-                                                $(window).scrollTop()) + "px");
-	this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
-                                                $(window).scrollLeft()) + "px");
+	this.css("top", Math.max(0, (($(this.parent()).height() - $(this).outerHeight()) / 2) +
+                                                $(this.parent()).scrollTop()) + "px");
+	this.css("left", Math.max(0, (($(this.parent()).width() - $(this).outerWidth()) / 2) +
+                                                $(this.parent()).scrollLeft()) + "px");
 	this.css("z-index", 10000);
 	return this;
 }
