@@ -29,6 +29,7 @@
 
 		$scope.gridOptions = {
 			data: 'data',
+			withDetails: true,
 			init: function (grid, $scope) {
 			},
 			multiSelect: false,

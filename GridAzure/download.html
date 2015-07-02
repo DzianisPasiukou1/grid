@@ -6,9 +6,14 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
 
+	<script src="download-app/download-app.js"></script>
+	<script src="download-app/controllers/upload-controller.js"></script>
+	<script src="download-app/upload-doc.js"></script>
+
 	<link href="css/styles.css" rel="stylesheet" />
+
 </head>
-<body>
+<body ng-app="downloadApp">
 	<div class="link-container">
 		<a class="download-app" href="/app/custom-grid.js" download>Download app js</a>
 		<hr />
@@ -22,6 +27,15 @@
 		<hr />
 		<a class="download-style-min" href="/data/json.zip" download>Download json files</a>
 		<hr />
+		<!--<a class="download-style-min" href="/docs/grid.docx" download>Download docs</a>
+		<hr />-->
+		<!--<div class="options__upload" ng-controller="uploadCtrl">
+			<label>
+				<input type="file" upload-doc />
+				Upload
+			</label>
+		</div>
+		<hr />-->
 		<!--<span ng-bind="new Date('Thu, 25 Jun 2015 18:30:04 GMT').toString()"></span>-->
 		Last update on Wed Jul 01 2015 19:03:49 GMT
 	</div>

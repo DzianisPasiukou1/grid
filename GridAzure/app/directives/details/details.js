@@ -30,12 +30,7 @@
 						}
 
 						if (elm) {
-							if (elm.context.scrollHeight > 250) {
-								var step = elm.position().top + elm.context.scrollHeight;
-							}
-							else {
-								var step = elm.position().top + 296;
-							}
+							var step = elm.position().top + elm.context.scrollHeight;
 
 							var top = Math.round(elm.position().top);
 							var children = $(elm).parent().children();
@@ -43,9 +38,7 @@
 							if (elm.context.scrollHeight != 0) {
 								$(scope.row.elm).css('height', elm.context.scrollHeight + 'px');
 							}
-							else {
-								$(scope.row.elm).css('height', 296 + 'px');
-							}
+
 							for (var i = 0; i < children.length; i++) {
 								if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
 									$(children[i]).css('top', step + 'px');

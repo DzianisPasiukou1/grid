@@ -210,6 +210,7 @@
     <Content Include="app\grid-loading-controller.js" />
     <Content Include="app\grid-standart-one-controller.js" />
     <Content Include="app\grid-standart-two-controller.js" />
+    <Content Include="app\grid-testing-controller.js" />
     <Content Include="app\grid-with-details-controller.js" />
     <Content Include="app\plugins\center.js" />
     <Content Include="app\plugins\columnGenerator.js" />
@@ -232,6 +233,8 @@
     <Content Include="app\templates\custom-grid.min.html">
       <DependentUpon>custom-grid.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\details-templates\details-example1.html" />
+    <Content Include="app\templates\details-templates\details-example2.html" />
     <Content Include="app\templates\details.html" />
     <Content Include="app\templates\dropdown.html" />
     <Content Include="app\templates\dropdown.min.html">
@@ -1961,6 +1964,9 @@
     <Content Include="css\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="download-app\controllers\upload-controller.js" />
+    <Content Include="download-app\download-app.js" />
+    <Content Include="download-app\upload-doc.js" />
     <Content Include="download.html" />
     <Content Include="Global.asax" />
     <Content Include="css\common\_expand.scss" />
@@ -2208,8 +2214,10 @@
     <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="docs\grid.docx" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
+    <Content Include="grid-testing.html" />
     <Content Include="grid-with-details-template.html" />
     <Content Include="grid-standart-two.html" />
     <Content Include="grid-with-loading.html" />

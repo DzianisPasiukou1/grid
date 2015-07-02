@@ -106,9 +106,11 @@
 
 				if (scope.contentOptions.refresh === undefined) {
 					scope.contentOptions.refresh = function () {
-						scope.contentOptions.refreshCallback();
+						if (scope.contentOptions.loading) {
+							scope.contentOptions.isLoading = true;
+						}
 
-						scope.grid.count = scope.data.length;
+						scope.contentOptions.refreshCallback();
 					};
 				}
 
@@ -117,6 +119,10 @@
 
 					if (scope.contentOptions.upload === undefined) {
 						scope.contentOptions.upload = function (data) {
+							if (scope.contentOptions.loading) {
+								scope.contentOptions.isLoading = true;
+							}
+
 							scope.data = data;
 
 							scope.grid.count = scope.data.length;
@@ -130,6 +136,16 @@
 					scope.grid = {};
 
 					scope.grid.name = 'Default grid';
+					if (Array.isArray(scope.data)) {
+						scope.grid.count = scope.data.length;
+					}
+				}
+
+				if (scope.grid.name === undefined) {
+					scope.grid.name = 'Default grid'
+				}
+
+				if (scope.grid.count === undefined) {
 					if (Array.isArray(scope.data)) {
 						scope.grid.count = scope.data.length;
 					}
@@ -193,12 +209,41 @@
 					scope.gridOptions.columnDefs = columnGenerator(scope.data, templatesPath);
 				}
 
+				if (scope.gridOptions.init === undefined) {
+					if (scope.contentOptions.loading) {
+						scope.gridOptions.init = function (grid, event) {
+							scope.contentOptions.isLoading = false;
+						};
+					}
+				}
+
 				if (scope.gridOptions.plugins === undefined) {
 					scope.gridOptions.plugins = [new ngGridCanvasHeightPlugin()];
 				}
 
+				if (scope.gridOptions.actions === undefined) {
+					scope.gridOptions.actions = {
+						values: [{
+							label: 'More',
+							isMore: true,
+							options: {
+								label: 'Actions',
+								values: [{ label: 'Edit' }, { label: 'Copy' }, { label: 'History' }, { label: 'Delete' }],
+								isMenu: true
+							}
+						}],
+						isShow: false
+					};
+				}
+
+				if (scope.gridOptions.detailsTemplate === undefined && scope.gridOptions.withDetails) {
+					scope.gridOptions.detailsTemplate = templatesPath + 'details.html';
+				}
+
 				scope.$watch('data', function (data) {
 					if (data) {
+						scope.grid.count = scope.data.length;
+
 						scope.contentOptions.filterOptions = function () {
 							var options = [];
 
@@ -228,20 +273,22 @@
 							scope.gridOptions.columnDefs = columnGenerator(data, templatesPath);
 						}
 
-						data.map(function (value) {
-							value.action = {
-								values: [{
-									label: 'More',
-									isMore: true,
-									options: {
-										label: 'Actions',
-										values: [{ label: 'Edit' }, { label: 'Copy' }, { label: 'History' }, { label: 'Delete' }],
-										isMenu: true
-									}
-								}],
-								isShow: false
-							};
-							value.detailsTemplate = templatesPath + 'details.html';
+						for (var i = 0; i < data.length; i++) {
+							var value = data[i];
+
+							value.action = angular.copy(scope.gridOptions.actions);
+
+							var details;
+
+							if (scope.gridOptions.detailsCondition) {
+								var details = scope.gridOptions.detailsCondition(value, i);
+							}
+
+							if (details === undefined) {
+								details = angular.copy(scope.gridOptions.detailsTemplate);
+							}
+
+							value.detailsTemplate = details;
 							value.onCheck = function () {
 								var isCheckArray = scope.data.filter(function (value) {
 									if (value.isCheck) {
@@ -259,13 +306,18 @@
 									scope.contentOptions.checks.options.selected = scope.contentOptions.checks.options.actions.marked;
 								}
 							}
+						}
+
+						data.map(function (value) {
+
 						});
 
-						$compile($('custom-grid'))(scope);
-						$compile($('content-options'))(scope);
+						if (scope.contentOptions.isDynamic) {
+							$compile($('custom-grid'))(scope);
+							$compile($('content-options'))(scope);
+						}
 					}
 				});
-
 			}
 		}
 	}]);
