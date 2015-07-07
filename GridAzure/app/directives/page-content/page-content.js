@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('pageContent', ['templatesPath', '$compile', function (templatesPath, $compile) {
+	.directive('pageContent', ['templatesPath', '$compile', 'content', function (templatesPath, $compile, content) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -10,267 +10,41 @@
 			},
 			templateUrl: templatesPath + 'page-content.html',
 			link: function (scope, element) {
-				if (scope.contentOptions === undefined) {
-					scope.contentOptions = {};
-				}
+				initializeOpt(scope, element, content, templatesPath, $compile);
 
-				if (scope.contentOptions.loading) {
-					scope.contentOptions.isLoading = true;
-					element.find('.page-content__list').append('<loading ng-show="contentOptions.isLoading"></loading>');
-					$compile($('loading'))(scope);
-				}
+				scope.$watch('contentOptions', function (opt) {
+					initializeOpt(scope, element, content, templatesPath, $compile);
 
-				if (scope.contentOptions.checks === undefined) {
-					scope.contentOptions.checks = {
-						options: {
-							actions: {
-								all: { label: 'All', isAll: true },
-								noOne: { label: 'No one', isNoOne: true },
-								marked: { label: 'Marked', isMarked: true },
-								notMarked: { label: 'Not marked', isNotMarked: true }
-							},
-							callback: function (check) {
-								if (check) {
-									if (check.isAll) {
-										scope.data.forEach(function (value) {
-											value.isCheck = true;
-										});
-									}
-									else if (check.isNoOne) {
-										scope.data.forEach(function (value) {
-											value.isCheck = false;
-										});
-									}
-									else if (check.isMarked) {
-										scope.data.forEach(function (value) {
-										});
-									}
-									else if (check.isNotMarked) {
-										scope.data.forEach(function (value) {
-											value.isCheck = !value.isCheck;
-										});
-									}
-								}
-							}
-						}
-					};
-				}
+					scope.contentOptions.filterOptions = content.filterOptions(scope.data);
 
-				if (scope.contentOptions.mores === undefined) {
-					scope.contentOptions.mores = {
-						options:
-						{
-							label: 'More',
-							values: [{ label: 'View reports' }],
-							isMenu: true
-						}
-					};
-				}
+					scope.contentOptions.searchOptions = content.searchOptions(scope.data);
+					scope.contentOptions.searchOptions.selected = scope.contentOptions.searchOptions[0];
 
-				if (scope.exports === undefined) {
-					scope.exports = {
-						options: {
-							label: 'Export to: ',
-							values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
-							callback: function (action) {
-								scope.export = action;
-							}
-						}
-					};
-				}
+					scope.contentOptions.searchValue = '';
 
-				if (scope.views === undefined) {
-					scope.views = {
-						options:
-							{
-								label: 'View: ',
-								values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
-								callback: function (action) {
-									scope.view = action;
-								}
-							}
-					};
-				}
-
-				if (scope.contentOptions.filtrate === undefined) {
-					scope.contentOptions.filtrate = function (value) {
-						scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
-					};
-				}
-
-				if (scope.contentOptions.search === undefined) {
-					scope.contentOptions.search = function (value) {
-						scope.gridOptions.filterOptions.filterText = value;
-					}
-				}
-
-				if (scope.contentOptions.refresh === undefined) {
-					scope.contentOptions.refresh = function () {
-						if (scope.contentOptions.loading) {
-							scope.contentOptions.isLoading = true;
-						}
-
-						scope.contentOptions.refreshCallback();
-					};
-				}
-
-				if (scope.contentOptions.withUpload || scope.contentOptions.upload !== undefined) {
-					scope.contentOptions.isDynamic = true;
-
-					if (scope.contentOptions.upload === undefined) {
-						scope.contentOptions.upload = function (data) {
-							if (scope.contentOptions.loading) {
-								scope.contentOptions.isLoading = true;
-							}
-
-							scope.data = data;
-
-							scope.grid.count = scope.data.length;
-
-							scope.$apply();
-						}
-					}
-				}
-
-				if (scope.grid === undefined) {
-					scope.grid = {};
-
-					scope.grid.name = 'Default grid';
-					if (Array.isArray(scope.data)) {
-						scope.grid.count = scope.data.length;
-					}
-				}
-
-				if (scope.grid.name === undefined) {
-					scope.grid.name = 'Default grid'
-				}
-
-				if (scope.grid.count === undefined) {
-					if (Array.isArray(scope.data)) {
-						scope.grid.count = scope.data.length;
-					}
-				}
-
-				if (scope.gridOptions === undefined) {
-					scope.gridOptions = {};
-				}
-
-				if (scope.gridOptions.data === undefined) {
-					scope.gridOptions.data = 'data';
-				}
-
-				if (scope.gridOptions.multiSelect === undefined) {
-					scope.gridOptions.multiSelect = false;
-				}
-
-				if (scope.gridOptions.rowTemplate === undefined) {
-					scope.gridOptions.rowTemplate = templatesPath + 'row-templates/row-with-detalis.html';
-				}
-
-				if (scope.gridOptions.afterSelectionChange === undefined) {
-					scope.gridOptions.afterSelectionChange = function (rowitem, event) {
-						for (var i = 0; i < scope.data.length; i++) {
-							scope.data[i].action.isShow = false;
-						}
-
-						rowitem.entity.action.isShow = rowitem.selected;
-					};
-				}
-
-				if (scope.gridOptions.filterOptions === undefined) {
-					scope.gridOptions.filterOptions = { filterText: '' };
-				}
-
-				if (scope.gridOptions.rowHeight === undefined) {
-					scope.gridOptions.rowHeight = 60;
-				}
-
-				if (scope.gridOptions.headerRowHeight === undefined) {
-					scope.gridOptions.headerRowHeight = 40;
-				}
-
-				if (scope.gridOptions.showFooter == undefined) {
-					scope.gridOptions.showFooter = 40;
-				}
-
-				if (scope.gridOptions.showFooter === undefined) {
-					scope.gridOptions.showFooter = true;
-				}
-
-				if (scope.gridOptions.footerRowHeight === undefined) {
-					scope.gridOptions.footerRowHeight = 30;
-				}
-
-				if (scope.gridOptions.footerTemplate === undefined) {
-					scope.gridOptions.footerTemplate = templatesPath + 'grid-footer.html';
-				}
-
-				if (scope.gridOptions.columnDefs === undefined) {
-					scope.gridOptions.columnDefs = columnGenerator(scope.data, templatesPath);
-				}
-
-				if (scope.gridOptions.init === undefined) {
 					if (scope.contentOptions.loading) {
-						scope.gridOptions.init = function (grid, event) {
-							scope.contentOptions.isLoading = false;
-						};
+						scope.contentOptions.isLoading = false;
 					}
-				}
-
-				if (scope.gridOptions.plugins === undefined) {
-					scope.gridOptions.plugins = [new ngGridCanvasHeightPlugin()];
-				}
-
-				if (scope.gridOptions.actions === undefined) {
-					scope.gridOptions.actions = {
-						values: [{
-							label: 'More',
-							isMore: true,
-							options: {
-								label: 'Actions',
-								values: [{ label: 'Edit' }, { label: 'Copy' }, { label: 'History' }, { label: 'Delete' }],
-								isMenu: true
-							}
-						}],
-						isShow: false
-					};
-				}
-
-				if (scope.gridOptions.detailsTemplate === undefined && scope.gridOptions.withDetails) {
-					scope.gridOptions.detailsTemplate = templatesPath + 'details.html';
-				}
+				});
 
 				scope.$watch('data', function (data) {
 					if (data) {
 						scope.grid.count = scope.data.length;
 
-						scope.contentOptions.filterOptions = function () {
-							var options = [];
+						scope.contentOptions.filterOptions = content.filterOptions(data);
 
-							if (Array.isArray(data) && data[0])
-								for (var prop in data[0]) {
-									options.push({ label: prop, isColumn: true });
-								}
-							return options;
-						}();
-
-						scope.contentOptions.searchOptions = function () {
-							var options = [];
-							options.push({ label: 'everywhere', isEverywhere: true });
-
-							if (Array.isArray(data) && data[0]) {
-								for (var prop in data[0]) {
-									options.push({ label: prop, isColumn: true });
-								}
-							}
-
-							return options;
-						}();
+						scope.contentOptions.searchOptions = content.searchOptions(data);
 
 						scope.contentOptions.searchValue = '';
 
-						if (scope.contentOptions.isDynamic) {
-							scope.gridOptions.columnDefs = columnGenerator(data, templatesPath);
+						scope.contentOptions.searchOptions.selected = scope.contentOptions.searchOptions[0];
+
+						var oldColumn = angular.copy(scope.gridOptions.columnDefs);
+
+						scope.gridOptions.columnDefs = columnGenerator(data, templatesPath);
+
+						if (!columnsCompare(oldColumn, scope.gridOptions.columnDefs)) {
+							$compile($('custom-grid'))(scope);
 						}
 
 						for (var i = 0; i < data.length; i++) {
@@ -281,7 +55,7 @@
 							var details;
 
 							if (scope.gridOptions.detailsCondition) {
-								var details = scope.gridOptions.detailsCondition(value, i);
+								details = scope.gridOptions.detailsCondition(value, i);
 							}
 
 							if (details === undefined) {
@@ -308,13 +82,8 @@
 							}
 						}
 
-						data.map(function (value) {
-
-						});
-
-						if (scope.contentOptions.isDynamic) {
-							$compile($('custom-grid'))(scope);
-							$compile($('content-options'))(scope);
+						if (scope.contentOptions.loading) {
+							scope.contentOptions.isLoading = false;
 						}
 					}
 				});

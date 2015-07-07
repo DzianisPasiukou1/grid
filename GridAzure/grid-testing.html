@@ -12,8 +12,14 @@
 	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
-<body ng-app="gridTaskApp" ng-controller="gridTestingCtrl">
+<body ng-app="gridTaskApp" ng-controller="gridTestingCtrl as ctrl" class="grid-testing">
 	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
-	<page-content grid-data="data" content-options="contentOptions" grid="grid" grid-options="gridOptions"></page-content>
+	<textarea class="my-textarea" ng-model="ctrl.scope.content" ng-change="ctrl.scope.textChange()" hotkey-formatter></textarea>
+	<div class="validators-group">
+		<label class="success" ng-show="ctrl.scope.isValid">Valid data</label>
+		<label class="failed" ng-show="!ctrl.scope.isValid">Invalid data</label>
+	</div>
+	<button class="generate-btn" ng-click="compile()">Compile</button>
+	<page-content grid-data="ctrl.scope.data" content-options="ctrl.scope.contentOptions" grid="ctrl.scope.grid" grid-options="ctrl.scope.gridOptions"></page-content>
 </body>
 </html>

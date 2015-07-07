@@ -97,7 +97,7 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 
-.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button {
+.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .grid-testing .generate-btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -115,9 +115,9 @@ a:focus {
   position: relative;
   color: #787878;
   font-weight: 500; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active {
+  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active {
     box-shadow: 0 2px 0 #787878;
     transform: translateY(3px); }
 
@@ -506,6 +506,16 @@ a:focus {
   opacity: 0.4;
   background-color: white; }
 
+.my-textarea {
+  display: block;
+  /*min-height: 200px;*/
+  height: 900px;
+  min-width: 790px;
+  margin: 10px;
+  border: none;
+  background: #1e1e1e;
+  color: #00c814; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -613,6 +623,8 @@ a:focus {
     padding: 0; }
   .page-content__list {
     height: 600px; }
+  .page-content__footer {
+    border: 1px solid #e5e5e5; }
 
 .custom-grid {
   padding: 0;
@@ -642,7 +654,7 @@ a:focus {
         background: #5a5a5a; }
   .custom-grid .ngTopPanel {
     background-color: #5a5a5a;
-    Border: 1px solid #4d4d4d;
+    border: 0 solid #e5e5e5;
     color: #a8a8a8;
     font-size: 13px;
     text-decoration: none;
@@ -674,7 +686,7 @@ a:focus {
     display: block; }
   .custom-grid .ngRow {
     background: white;
-    border: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
     line-height: 1.6em;
     vertical-align: middle;
     color: #444444;
@@ -842,5 +854,51 @@ a:focus {
 
 .page {
   margin-top: 30px; }
+
+.grid-testing .generate-btn {
+  margin-left: 50px;
+  background-color: #865151;
+  color: black;
+  font-weight: bold; }
+.grid-testing .validators-group {
+  margin-left: 50px;
+  font-size: 20px; }
+  .grid-testing .validators-group .success {
+    color: green;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    transition: all linear 0.3s;
+    opacity: 1; }
+    .grid-testing .validators-group .success.ng-hide {
+      transition: all linear 0.3s; }
+  .grid-testing .validators-group .failed {
+    color: red;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    transition: all linear 0.3s;
+    opacity: 1; }
+    .grid-testing .validators-group .failed.ng-hide {
+      opacity: 0 !important; }
+.grid-testing textarea {
+  height: 850px !important;
+  width: 43%;
+  min-width: 0 !important;
+  position: relative;
+  left: 0; }
+.grid-testing page-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%; }
+  .grid-testing page-content .page-content {
+    /*height: 850px;*/
+    margin-top: 43px; }
+  .grid-testing page-content .custom-grid {
+    width: 100%;
+    /*height: 850px !important;*/ }
 
 /*# sourceMappingURL=styles.css.map */

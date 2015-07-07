@@ -33,18 +33,20 @@
 				})
 
 				scope.$watch('options.selected', function (value) {
-					if (value.isMarked || value.isNotMarked) {
-						element.find('.checkbox-select__input-control__span').addClass('marked');
-					}
-					else {
-						element.find('.checkbox-select__input-control__span').removeClass('marked');
-					}
+					if (value) {
+						if (value.isMarked || value.isNotMarked) {
+							element.find('.checkbox-select__input-control__span').addClass('marked');
+						}
+						else {
+							element.find('.checkbox-select__input-control__span').removeClass('marked');
+						}
 
-					if (value.isAll) {
-						value.check = true;
-					}
-					else {
-						value.check = false;
+						if (value.isAll) {
+							value.check = true;
+						}
+						else {
+							value.check = false;
+						}
 					}
 				});
 			}

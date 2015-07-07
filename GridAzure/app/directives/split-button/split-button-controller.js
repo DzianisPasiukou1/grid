@@ -1,9 +1,14 @@
 ﻿angular.module('gridTaskApp')
 	.controller('splitButtonCtrl', ['$scope', function ($scope) {
-		$scope.selected = $scope.actions[0];
+		if (!$scope.actions) {
+			$scope.actions = [];
+		}
+		$scope.actions.everywhere = { label: 'everywhere', isEverywhere: true };
+
+		$scope.actions.selected = $scope.actions.everywhere;
 
 		$scope.select = function (action) {
-			$scope.selected = action;
+			$scope.actions.selected = action;
 			$scope.search = '';
 		}
 	}]);

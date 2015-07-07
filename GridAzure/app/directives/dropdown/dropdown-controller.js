@@ -7,14 +7,14 @@
 			$scope.options.hideClass = 'glyphicon-menu-down'
 		}
 
-		$scope.selected = $scope.options.values[0];
+		$scope.options.selected = $scope.options.values[0];
 
 		if ($scope.options.callback) {
 			$scope.options.callback($scope.selected);
 		}
 
 		$scope.select = function (action) {
-			$scope.selected = action;
+			$scope.options.selected = action;
 
 			if ($scope.options.callback) {
 				$scope.options.callback(action);

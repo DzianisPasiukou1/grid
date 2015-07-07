@@ -1,52 +1,230 @@
 ﻿angular.module('gridTaskApp')
-	.controller('gridTestingCtrl', ['$scope', 'gridUploadService', 'templatesPath', function ($scope, gridUploadService, templatesPath) {
-		function getData() {
-			setTimeout(function () {
-				gridUploadService.get(function (data) {
-					$scope.data = data;
-					$scope.$apply();
-				})
-			}, 0);
-		}
-		getData();
+	.controller('gridTestingCtrl', ['$scope', 'gridUploadService', 'templatesPath', '$compile', '$parse', function ($scope, gridUploadService, templatesPath, $compile, $parse) {
+		var self = this;
+		self.scope = $scope;
+		self.gridUploadService = gridUploadService;
+		self.templatesPath = templatesPath;
 
-		$scope.grid = {
+		self.getData = function () {
+			var self = this;
+
+			setTimeout(function () {
+
+				self.gridUploadService.get(function (data) {
+					self.scope.data = data;
+					self.scope.$apply();
+				})
+			}.bind(this), 2000);
+		}
+		self.getData();
+
+		self.scope.grid = {
 			name: 'test grid1'
 		}
 
-		$scope.contentOptions = {
+		self.scope.contentOptions = {
 			loading: true,
-			upload: function (data) {
-				$scope.data = data;
+			refresh: function () {
+				this.scope.contentOptions.isLoading = true;
+				this.getData();
+				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'details-templates/details-example1.html';
+				this.scope.gridOptions.detailsCondition = function (entity, index) {
+					var self = this;
 
-				$scope.gridOptions.detailsTemplate = templatesPath + 'details-templates/details-upload.html';
-				$scope.gridOptions.detailsCondition = undefined;
-
-				$scope.$apply();
+					if (index % 2 != 0) {
+						return self.templatesPath + 'details-templates/details-example2.html';
+					}
+				}.bind(this);
+				setTimeout(function () {
+					this.scope.$apply();
+				}.bind(this));
 			},
-			//refresh: function () {
-			//	alert('refreshed');
-			//},
-			refreshCallback: getData,
 			checks: {
 				options: {
 					actions: [{
 						label: 'test'
 					}],
 					callback: function (action) {
-						alert('test');
+						console.log('check is tested');
 					}
 				}
+			},
+			upload: function (data) {
+				this.scope.contentOptions.isLoading = true;
+				this.scope.data = data;
+				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'details-templates/details-upload.html';
+				this.scope.gridOptions.detailsCondition = undefined;
+				this.scope.$apply();
 			}
 		};
 
-		$scope.gridOptions = {
+		self.scope.gridOptions = {
 			withDetails: true,
-			detailsTemplate: templatesPath + 'details-templates/details-example1.html',
+			detailsTemplate: self.templatesPath + 'details-templates/details-example1.html',
 			detailsCondition: function (entity, index) {
+				var self = this;
+
 				if (index % 2 != 0) {
-					return templatesPath + 'details-templates/details-example2.html';
+					return self.templatesPath + 'details-templates/details-example2.html';
 				}
 			}
+		}
+
+		self.scope.content = JSON.stringify({
+			contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions
+		}, function (key, value) {
+			if (typeof value === 'function') {
+				var temp = value.toString();
+				return temp;
+			} else {
+				return value;
+			}
+		}, "\t");
+
+		var tempContent = '';
+
+		for (var i = 0; i < self.scope.content.length - 1; i++) {
+			if (self.scope.content[i] == "\\") {
+				if (self.scope.content[i + 1] == "r") {
+					tempContent += "\r";
+					i++;
+				}
+				else if (self.scope.content[i + 1] == "n") {
+					tempContent += "\n";
+					i++;
+				}
+				else if (self.scope.content[i + 1] == "t") {
+					tempContent += "\t";
+					i++;
+				}
+				else {
+					tempContent += self.scope.content[i];
+				}
+			}
+			else {
+				tempContent += self.scope.content[i];
+			}
+
+			if (i == self.scope.content.length - 2) {
+				tempContent += self.scope.content[i + 1];
+			}
+
+		}
+
+		self.scope.content = tempContent;
+
+		self.scope.isValid = true;
+
+		self.scope.textChange = function () {
+			try {
+				var temp = self.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
+
+				temp = JSON.parse(temp, function (key, value) {
+					if (value && typeof value === "string" && value.substr(0, 8) == "function") {
+						var startBody = value.indexOf('{') + 1;
+						var endBody = value.lastIndexOf('}');
+						var startArgs = value.indexOf('(') + 1;
+						var endArgs = value.indexOf(')');
+
+						var func = new Function(value.substring(startArgs, endArgs), value.substring(startBody, endBody));
+						func = func.bind(self);
+
+						return func;
+					}
+					return value;
+				});
+
+				self.scope.contentOptions = temp.contentOptions;
+				self.scope.grid = temp.grid;
+				self.scope.gridOptions = temp.gridOptions;
+				self.scope.isValid = true;
+			}
+			catch (e) {
+				console.log('parse error');
+				self.scope.isValid = false;
+				return;
+			}
+		}
+
+		self.scope.refreshContent = function () {
+			try {
+				var temp = self.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
+
+				temp = JSON.parse(temp, function (key, value) {
+					if (value && typeof value === "string" && value.substr(0, 8) == "function") {
+						var startBody = value.indexOf('{') + 1;
+						var endBody = value.lastIndexOf('}');
+						var startArgs = value.indexOf('(') + 1;
+						var endArgs = value.indexOf(')');
+
+						var func = new Function(value.substring(startArgs, endArgs), value.substring(startBody, endBody));
+						func = func.bind(self);
+
+						return func;
+					}
+					return value;
+				});
+
+				self.scope.contentOptions = temp.contentOptions;
+				self.scope.grid = temp.grid;
+				self.scope.gridOptions = temp.gridOptions;
+				self.scope.isValid = true;
+
+				self.scope.content = JSON.stringify({
+					contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions
+				}, function (key, value) {
+					if (typeof value === 'function') {
+						var temp = value.toString();
+						return temp;
+					} else {
+						return value;
+					}
+				}, "\t");
+
+				var tempContent = '';
+
+				for (var i = 0; i < self.scope.content.length - 1; i++) {
+					if (self.scope.content[i] == "\\") {
+						if (self.scope.content[i + 1] == "r") {
+							tempContent += "\r";
+							i++;
+						}
+						else if (self.scope.content[i + 1] == "n") {
+							tempContent += "\n";
+							i++;
+						}
+						else if (self.scope.content[i + 1] == "t") {
+							tempContent += "\t";
+							i++;
+						}
+						else {
+							tempContent += self.scope.content[i];
+						}
+					}
+					else {
+						tempContent += self.scope.content[i];
+					}
+
+					if (i == self.scope.content.length - 2) {
+						tempContent += self.scope.content[i + 1];
+					}
+
+				}
+
+				self.scope.content = tempContent;
+			}
+			catch (e) {
+				console.log('parse error');
+				self.scope.isValid = false;
+				return;
+			}
+		}
+
+		self.scope.textChange();
+
+		self.scope.compile = function () {
+			$('page-content').remove();
+			$('body').append('<page-content grid-data="ctrl.scope.data" content-options="ctrl.scope.contentOptions" grid="ctrl.scope.grid" grid-options="ctrl.scope.gridOptions"></page-content>');
+			$compile('page-content')(self.scope);
 		}
 	}]);

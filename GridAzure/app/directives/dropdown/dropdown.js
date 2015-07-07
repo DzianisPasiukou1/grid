@@ -25,10 +25,12 @@
 				});
 
 				$(document).click(function (event) {
-					if (!$(event.target).closest(element).length) {
-						element.find('ul').hide();
-						element.find('span').addClass(scope.options.hideClass);
-						element.find('span').removeClass(scope.options.showClass);
+					if (element.find('ul').is(':visible')) {
+						if (!$(event.target).closest(element).length) {
+							element.find('ul').hide();
+							element.find('span').addClass(scope.options.hideClass);
+							element.find('span').removeClass(scope.options.showClass);
+						}
 					}
 				})
 			}

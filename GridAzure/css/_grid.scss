@@ -41,7 +41,7 @@
 
 	.ngTopPanel {
 		background-color: #5a5a5a;
-		Border: 1px solid #4d4d4d;
+		border: 0 solid #e5e5e5;
 		color: #a8a8a8;
 		font-size: 13px;
 		text-decoration: none;
@@ -87,7 +87,7 @@
 
 	.ngRow {
 		background: white;
-		border: 1px solid #e5e5e5;
+		border-bottom: 1px solid #e5e5e5;
 		line-height: 1.6em;
 		vertical-align: middle;
 		color: #444444;

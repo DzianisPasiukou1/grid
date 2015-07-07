@@ -52,5 +52,9 @@
 		<file>/app/services/grid-standart-two-service.js</file>
 		<file>/app/services/grid-upload-service.js</file>
 		<file>/app/services/grid-with-details-template-service.js</file>
+		<file>/app/constants/content-constants.js</file>
+		<file>/app/plugins/columns-comparer.js</file>
+		<file>/app/directives/page-content/initializer.js</file>
+		<file>/app/directives/hotkey-formatter/hotkey-formatter.js</file>
 	</files>
 </bundle>

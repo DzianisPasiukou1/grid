@@ -5,6 +5,7 @@
 			compile: function (element, attrs) {
 				return {
 					pre: function (scope, element, attrs) {
+						//scope.wthDetails = scope.$parent.$parent.options.withDetails;
 
 						if (scope.row.entity.detailsTemplate) {
 							$.get(scope.row.entity.detailsTemplate, function (result) {

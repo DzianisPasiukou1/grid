@@ -192,9 +192,14 @@
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\grid-menu\grid-menu-controller.js" />
     <Content Include="app\directives\grid-menu\grid-menu.js" />
+    <Content Include="app\directives\hotkey-formatter\hotkey-formatter.js" />
     <Content Include="app\directives\loading\loading.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page-content\content-options\content-options.js" />
+    <Content Include="app\directives\page-content\initializer.js" />
+    <Content Include="app\directives\page-content\page-content-body\page-content-body.js" />
+    <Content Include="app\directives\page-content\page-content-footer\page-content-footer.js" />
+    <Content Include="app\directives\page-content\page-content-header\page-content-header.js" />
     <Content Include="app\directives\page-content\page-content.js" />
     <Content Include="app\directives\resize-on\resize-on.js" />
     <Content Include="app\directives\search\search-controller.js" />
@@ -214,6 +219,7 @@
     <Content Include="app\grid-with-details-controller.js" />
     <Content Include="app\plugins\center.js" />
     <Content Include="app\plugins\columnGenerator.js" />
+    <Content Include="app\plugins\columns-comparer.js" />
     <Content Include="app\plugins\convertFilterOptions.js" />
     <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
@@ -235,6 +241,7 @@
     </Content>
     <Content Include="app\templates\details-templates\details-example1.html" />
     <Content Include="app\templates\details-templates\details-example2.html" />
+    <Content Include="app\templates\details-templates\details-upload.html" />
     <Content Include="app\templates\details.html" />
     <Content Include="app\templates\dropdown.html" />
     <Content Include="app\templates\dropdown.min.html">
@@ -300,6 +307,7 @@
     </Content>
     <Content Include="app\templates\upload.html" />
     <Content Include="app\grid-upload-controller.js" />
+    <Content Include="app\constants\content-constants.js" />
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -2215,6 +2223,8 @@
     <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="docs\grid.docx" />
+    <Content Include="css\common\_my-textarea.scss" />
+    <Content Include="css\_grid-testing.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />
