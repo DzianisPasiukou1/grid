@@ -11,8 +11,4 @@
 			refreshCallback: getData,
 			withUpload: true,
 		};
-
-		$scope.gridOptions = {
-
-		}
 	}]);

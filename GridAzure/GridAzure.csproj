@@ -2248,7 +2248,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="sources\custom-grid.zip" />
+    <Content Include="sources\sources.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

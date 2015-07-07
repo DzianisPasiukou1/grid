@@ -654,7 +654,7 @@ a:focus {
         background: #5a5a5a; }
   .custom-grid .ngTopPanel {
     background-color: #5a5a5a;
-    border: 0 solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
     color: #a8a8a8;
     font-size: 13px;
     text-decoration: none;
@@ -700,7 +700,8 @@ a:focus {
     .custom-grid .ngRow.checked {
       background-color: #e9f5fb; }
   .custom-grid .ngFooterPanel {
-    background-color: #5a5a5a; }
+    background-color: #5a5a5a;
+    border-right: 1px solid #e5e5e5; }
   .custom-grid .column {
     text-align: center; }
     .custom-grid .column__sort {
@@ -855,6 +856,13 @@ a:focus {
 .page {
   margin-top: 30px; }
 
+@media only screen and (max-width: 1530px), (min-device-width: 1530px) and (max-device-width: 1024px) {
+  .grid-testing textarea {
+    width: 100% !important; }
+
+  .grid-testing page-content {
+    position: relative !important; }
+ }
 .grid-testing .generate-btn {
   margin-left: 50px;
   background-color: #865151;
