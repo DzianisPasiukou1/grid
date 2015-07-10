@@ -27,6 +27,8 @@
 				self.scope.baseViewportHeight = newViewportHeight;
 				self.domUtilityService.UpdateGridLayout(self.scope, self.grid);
 			}
+			self.grid.$root.css('height', 600 + 'px');
+
 		};
 		self.scope.catHashKeys = function () {
 			var hash = '',

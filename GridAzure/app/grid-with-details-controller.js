@@ -34,13 +34,6 @@
 			},
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row-with-detalis.html',
-			afterSelectionChange: function (rowitem, event) {
-				for (var i = 0; i < $scope.data.length; i++) {
-					$scope.data[i].action.isShow = false;
-				}
-
-				rowitem.entity.action.isShow = rowitem.selected;
-			},
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
@@ -64,7 +57,6 @@
 			{ field: 'interchange', displayName: 'Interchange', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150
-				}],
-			plugins: [new ngGridCanvasHeightPlugin()]
+				}]
 		};
 	}])

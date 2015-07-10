@@ -57,6 +57,23 @@
 			isShow: false
 		},
 		detailsTemplate: 'details.html',
+		rowCheckAction: function (data) {
+			var isCheckArray = data.filter(function (value) {
+				if (value.actions.isCheck) {
+					return true;
+				}
+			});
+
+			if (isCheckArray.length == 0) {
+				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.noOne;
+			}
+			else if (isCheckArray.length == data.length) {
+				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.all;
+			}
+			else {
+				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.marked;
+			}
+		},
 		filterOptions: function (data) {
 			var options = [];
 

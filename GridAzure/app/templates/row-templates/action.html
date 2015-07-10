@@ -1,5 +1,5 @@
-﻿<div class="action" ng-if="row.getProperty(col.field).isShow">
-	<div class="action__group" ng-repeat="action in row.getProperty(col.field).values">
+﻿<div class="action" ng-if="row.orig.actions.values.isShow">
+	<div class="action__group" ng-repeat="action in row.orig.actions.values.values">
 		<button ng-if="action.isAction" class="action__btn">{{action.label}}</button>
 		<dropdown ng-if="action.isMore" class="action__dropdown" dropdown-options="action.options"></dropdown>
 	</div>

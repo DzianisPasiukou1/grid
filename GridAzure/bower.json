@@ -16,6 +16,7 @@
     "bootstrap-slider": "*",
     "angular-i18n": "~1.4.0",
     "bootstrap": "~3.3.4",
-    "ng-grid": "~2.0.14"
+    "ng-grid": "~2.0.14",
+    "angular-vs-repeat": "~1.0.0-rc9"
   }
 }

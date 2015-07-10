@@ -1,14 +1,14 @@
 ﻿angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
-			if (!$scope.options.show) {
+			if (!$scope.options.searchOptions) {
 				return;
 			}
 
-			if ($scope.options.show.label == 'everywhere') {
+			if ($scope.options.searchOptions.selected.label == 'everywhere') {
 				$scope.options.search(value);
 			} else {
-				$scope.options.search($scope.options.show.label + ':' + value);
+				$scope.options.search($scope.searchOptions.selected.label + ':' + value);
 			}
 		});
 

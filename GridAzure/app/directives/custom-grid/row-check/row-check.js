@@ -6,7 +6,7 @@
 				value: '=rowCheck'
 			},
 			link: function (scope, element, attrs) {
-				scope.$watch('value.entity.isCheck', function (value) {
+				scope.$watch('value.orig.actions.isCheck', function (value) {
 					if (value) {
 						element.parent().addClass('checked');
 					}

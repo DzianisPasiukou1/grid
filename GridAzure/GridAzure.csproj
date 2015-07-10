@@ -221,6 +221,7 @@
     <Content Include="app\plugins\columnGenerator.js" />
     <Content Include="app\plugins\columns-comparer.js" />
     <Content Include="app\plugins\convertFilterOptions.js" />
+    <Content Include="app\plugins\ngGridActionsPlugin.js" />
     <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\plugins\ngGridFlexibleHeightPlugin.js" />
@@ -1802,6 +1803,8 @@
     <Content Include="bower_components\angular-i18n\zh.js" />
     <Content Include="bower_components\angular-i18n\zu-za.js" />
     <Content Include="bower_components\angular-i18n\zu.js" />
+    <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.js" />
+    <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.min.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
@@ -2225,6 +2228,12 @@
     <Content Include="docs\grid.docx" />
     <Content Include="css\common\_my-textarea.scss" />
     <Content Include="css\_grid-testing.scss" />
+    <Content Include="bower_components\angular-vs-repeat\.bower.json" />
+    <Content Include="bower_components\angular-vs-repeat\bower.json" />
+    <Content Include="bower_components\angular-vs-repeat\LICENSE" />
+    <Content Include="bower_components\ng-grid\build\ng-grid.min.js.map">
+      <DependentUpon>ng-grid.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

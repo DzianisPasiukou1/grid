@@ -7,8 +7,8 @@
 					pre: function (scope, element, attrs) {
 						//scope.wthDetails = scope.$parent.$parent.options.withDetails;
 
-						if (scope.row.entity.detailsTemplate) {
-							$.get(scope.row.entity.detailsTemplate, function (result) {
+						if (scope.row.orig.actions.detailsTemplate) {
+							$.get(scope.row.orig.actions.detailsTemplate, function (result) {
 								element.append(result);
 							});
 						}
@@ -19,17 +19,17 @@
 							if (value) {
 								element.show();
 
-								scope.row.isDetails = true;
+								scope.row.orig.isDetails = true;
 
 								if (scope.row.elm.height() != 0) {
 									element.css('top', scope.row.elm.height() + 'px');
 								}
 
-								if (!scope.row.entity.step) {
-									scope.row.entity.step = 0;
+								if (!scope.row.actions.step) {
+									scope.row.orig.actions.step = 0;
 								}
 
-								scope.row.entity.step = scope.row.elm.context.scrollHeight;
+								scope.row.orig.actions.step = scope.row.elm.context.scrollHeight;
 
 								scope.renderedRows.forEach(function (value) {
 									if (value.$$hashKey != scope.row.$$hashKey) {

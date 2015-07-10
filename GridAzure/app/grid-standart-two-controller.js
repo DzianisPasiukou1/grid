@@ -30,9 +30,6 @@
 			data: 'data',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
-			afterSelectionChange: function (rowitem, event) {
-				rowitem.entity.action.isShow = rowitem.selected;
-			},
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
@@ -62,7 +59,6 @@
 				},
 				{
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 180, minWidth: 180
-				}],
-			plugins: []
+				}]
 		};
 	}]);

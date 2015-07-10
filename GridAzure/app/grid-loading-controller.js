@@ -47,14 +47,8 @@
 			init: function (grid, event) {
 				$scope.contentOptions.isLoading = false;
 			},
+			withDetails: true,
 			rowTemplate: templatesPath + 'row-templates/row-with-detalis.html',
-			afterSelectionChange: function (rowitem, event) {
-				for (var i = 0; i < $scope.data.length; i++) {
-					$scope.data[i].action.isShow = false;
-				}
-
-				rowitem.entity.action.isShow = rowitem.selected;
-			},
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
@@ -62,6 +56,10 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: columnGenerator($scope.data, templatesPath),
-			plugins: [new ngGridCanvasHeightPlugin()]
+			detailsCondition: function (entity, index) {
+				if (index % 2 != 0) {
+					return templatesPath + 'details-templates/details-example2.html';
+				}
+			}
 		};
 	}]);

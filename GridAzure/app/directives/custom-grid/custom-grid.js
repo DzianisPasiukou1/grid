@@ -9,7 +9,7 @@
 				options: '=gridOptions'
 			},
 			templateUrl: templatesPath + 'custom-grid.html',
-			link: function (scope, element, attrs, controller) {
+			link: function (scope, element, attrs) {
 			}
 		};
 	}]);
