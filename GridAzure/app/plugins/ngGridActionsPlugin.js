@@ -265,4 +265,8 @@
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
 		self.scope.$watch(self.grid.config.data, recalcHeightForData);
 	}
+
+	self.refreshOpt = function (otps) {
+		self.opts = otps;
+	}
 };

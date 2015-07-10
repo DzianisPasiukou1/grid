@@ -28,6 +28,8 @@
 
 				$scope.grid.count = $scope.data.length;
 
+				$scope.gridOptions.detailsCondition = undefined;
+
 				$scope.$apply();
 			},
 			refresh: function () {

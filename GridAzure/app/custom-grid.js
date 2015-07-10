@@ -1562,6 +1562,17 @@ var Initializer = (function () {
 		this.scope.grid.count = this.scope.data.length;
 		this.scope.gridOptions.filterOptions.filterText = '';
 
+		if (this.scope.gridOptions.plugins.ngGridActionsPlugin) {
+			this.scope.pluginActionOpt = {
+				values: this.scope.gridOptions.rowActions,
+				detailsTemplate: this.scope.gridOptions.detailsTemplate,
+				detailsCondition: this.scope.gridOptions.detailsCondition,
+				onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
+				contentOptions: this.scope.contentOptions
+			}
+			this.scope.gridOptions.plugins.ngGridActionsPlugin.refreshOpt(this.scope.pluginActionOpt);
+		}
+
 		var oldColumns = angular.copy(this.scope.gridOptions.columnDefs);
 		var newColumns = columnGenerator(data, this.templatesPath);
 
@@ -1863,5 +1874,9 @@ function ngGridActionsPlugin(opts) {
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
 		self.scope.$watch(self.grid.config.data, recalcHeightForData);
+	}
+
+	self.refreshOpt = function (otps) {
+		self.opts = otps;
 	}
 };
