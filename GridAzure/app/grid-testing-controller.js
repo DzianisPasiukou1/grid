@@ -5,13 +5,12 @@
 		self.gridUploadService = gridUploadService;
 		self.templatesPath = templatesPath;
 
-		self.getData = function () {
+		self.getData = function (callback) {
 			var self = this;
 
 			setTimeout(function () {
-
 				self.gridUploadService.get(function (data) {
-					self.scope.data = data;
+					self.scope.data = angular.copy(data);
 					self.scope.$apply();
 				})
 			}.bind(this), 2000);
@@ -24,6 +23,7 @@
 
 		self.scope.contentOptions = {
 			loading: true,
+			refreshCallback: self.getData,
 			refresh: function () {
 				this.scope.contentOptions.isLoading = true;
 				this.getData();
@@ -51,7 +51,7 @@
 			},
 			upload: function (data) {
 				this.scope.contentOptions.isLoading = true;
-				this.scope.data = data;
+				this.scope.data = angular.copy(data);
 				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'details-templates/details-upload.html';
 				this.scope.gridOptions.detailsCondition = undefined;
 				this.scope.$apply();
@@ -223,8 +223,6 @@
 		self.scope.textChange();
 
 		self.scope.compile = function () {
-			$('page-content').remove();
-			$('body').append('<page-content grid-data="ctrl.scope.data" content-options="ctrl.scope.contentOptions" grid="ctrl.scope.grid" grid-options="ctrl.scope.gridOptions"></page-content>');
-			$compile('page-content')(self.scope);
+			self.getData();
 		}
 	}]);
