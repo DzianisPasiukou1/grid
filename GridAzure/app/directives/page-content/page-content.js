@@ -14,7 +14,7 @@
 				initializer.init();
 
 				scope.$watch('contentOptions', function (opt) {
-					initializer.initContentOpt();
+					initializer.init();
 					initializer.refreshOpt();
 				});
 

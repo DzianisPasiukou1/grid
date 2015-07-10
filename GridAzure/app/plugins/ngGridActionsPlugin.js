@@ -8,21 +8,8 @@
 		self.grid = grid;
 		self.scope = scope;
 
-		var recalcHeightForData = function () {
-			setTimeout(function () {
-				self.grid.rowCache.forEach(function (row) {
-					if (row) {
-						row.actions = angular.copy(self.opts);
-						row.actions.isCheck = false;
-						row.actions.setToggle = setToggle;
-						row.actions.setCheck = setCheck;
-					}
-				});
-
-				self.scope.$apply();
-			});
-
-			opts.contentOptions.checks.options.callback = function (check) {
+		if (self.opts.contentOptions.checks.options.callback === undefined) {
+			self.opts.contentOptions.checks.options.callback = function (check) {
 				if (check) {
 					if (check.isAll) {
 						self.grid.rowCache.forEach(function (value) {
@@ -45,6 +32,21 @@
 					}
 				};
 			};
+		}
+
+		var recalcHeightForData = function () {
+			setTimeout(function () {
+				self.grid.rowCache.forEach(function (row) {
+					if (row) {
+						row.actions = angular.copy(self.opts);
+						row.actions.isCheck = false;
+						row.actions.setToggle = setToggle;
+						row.actions.setCheck = setCheck;
+					}
+				});
+
+				self.scope.$apply();
+			});
 
 			if (self.scope.toggleRow) {
 				closeToggleRow(self.scope.toggleRow.clone, self.scope.detailsClass, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex), self.scope.rowHeight, true);

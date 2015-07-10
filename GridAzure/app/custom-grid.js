@@ -19,7 +19,7 @@ angular.module('gridTaskApp')
 				initializer.init();
 
 				scope.$watch('contentOptions', function (opt) {
-					initializer.initContentOpt();
+					initializer.init();
 					initializer.refreshOpt();
 				});
 
@@ -559,7 +559,7 @@ angular.module('gridTaskApp')
 			if ($scope.options.searchOptions.selected.label == 'everywhere') {
 				$scope.options.search(value);
 			} else {
-				$scope.options.search($scope.searchOptions.selected.label + ':' + value);
+				$scope.options.search($scope.options.searchOptions.selected.label + ':' + value);
 			}
 		});
 
@@ -1254,8 +1254,6 @@ angular.module('gridTaskApp')
 					noOne: { label: 'No one', isNoOne: true },
 					marked: { label: 'Marked', isMarked: true },
 					notMarked: { label: 'Not marked', isNotMarked: true }
-				},
-				callback: function (check) {
 				}
 			}
 		},
@@ -1388,8 +1386,6 @@ var Initializer = (function () {
 
 		if (this.scope.contentOptions.checks === undefined) {
 			this.scope.contentOptions.checks = this.content.checks;
-			this.scope.contentOptions.checks.options.callback = function (check) {
-			};
 		}
 
 		if (this.scope.contentOptions.mores === undefined) {
@@ -1611,21 +1607,8 @@ function ngGridActionsPlugin(opts) {
 		self.grid = grid;
 		self.scope = scope;
 
-		var recalcHeightForData = function () {
-			setTimeout(function () {
-				self.grid.rowCache.forEach(function (row) {
-					if (row) {
-						row.actions = angular.copy(self.opts);
-						row.actions.isCheck = false;
-						row.actions.setToggle = setToggle;
-						row.actions.setCheck = setCheck;
-					}
-				});
-
-				self.scope.$apply();
-			});
-
-			opts.contentOptions.checks.options.callback = function (check) {
+		if (self.opts.contentOptions.checks.options.callback === undefined) {
+			self.opts.contentOptions.checks.options.callback = function (check) {
 				if (check) {
 					if (check.isAll) {
 						self.grid.rowCache.forEach(function (value) {
@@ -1648,6 +1631,21 @@ function ngGridActionsPlugin(opts) {
 					}
 				};
 			};
+		}
+
+		var recalcHeightForData = function () {
+			setTimeout(function () {
+				self.grid.rowCache.forEach(function (row) {
+					if (row) {
+						row.actions = angular.copy(self.opts);
+						row.actions.isCheck = false;
+						row.actions.setToggle = setToggle;
+						row.actions.setCheck = setCheck;
+					}
+				});
+
+				self.scope.$apply();
+			});
 
 			if (self.scope.toggleRow) {
 				closeToggleRow(self.scope.toggleRow.clone, self.scope.detailsClass, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex), self.scope.rowHeight, true);

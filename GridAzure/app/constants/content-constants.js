@@ -7,8 +7,6 @@
 					noOne: { label: 'No one', isNoOne: true },
 					marked: { label: 'Marked', isMarked: true },
 					notMarked: { label: 'Not marked', isNotMarked: true }
-				},
-				callback: function (check) {
 				}
 			}
 		},

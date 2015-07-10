@@ -8,7 +8,7 @@
 			if ($scope.options.searchOptions.selected.label == 'everywhere') {
 				$scope.options.search(value);
 			} else {
-				$scope.options.search($scope.searchOptions.selected.label + ':' + value);
+				$scope.options.search($scope.options.searchOptions.selected.label + ':' + value);
 			}
 		});
 

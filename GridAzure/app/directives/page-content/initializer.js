@@ -28,8 +28,6 @@
 
 		if (this.scope.contentOptions.checks === undefined) {
 			this.scope.contentOptions.checks = this.content.checks;
-			this.scope.contentOptions.checks.options.callback = function (check) {
-			};
 		}
 
 		if (this.scope.contentOptions.mores === undefined) {
