@@ -1,8 +1,9 @@
-﻿function ngGridActionsPlugin(opts) {
+﻿function ngGridActionsPlugin(opts, compile) {
 	var self = this;
 	self.grid = null;
 	self.scope = null;
 	self.opts = opts;
+	self.compile = compile;
 	self.init = function (scope, grid, services) {
 		self.domUtilityService = services.DomUtilityService;
 		self.grid = grid;
@@ -34,7 +35,7 @@
 			};
 		}
 
-		var recalcHeightForData = function () {
+		var recalcForData = function () {
 			setTimeout(function () {
 				self.grid.rowCache.forEach(function (row) {
 					if (row) {
@@ -42,6 +43,20 @@
 						row.actions.isCheck = false;
 						row.actions.setToggle = setToggle;
 						row.actions.setCheck = setCheck;
+						row.actions.copyRow = copyRow;
+						row.actions.deleteRow = deleteRow;
+						row.actions.tab = 2;
+						row.actions.values.options.callback = function (action) {
+							if (action.isEdit) {
+								console.log('edit');
+							}
+							else if (action.isCopy) {
+								row.actions.copyRow(row);
+							}
+							else if (action.isDelete) {
+								row.actions.deleteRow(row.entity, self.scope.data);
+							}
+						};
 					}
 				});
 
@@ -77,15 +92,38 @@
 
 			for (idx in self.scope.renderedRows) {
 				if (self.scope.renderedRows[idx].orig.actions.isToggle) {
-					refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+
+					if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
+						refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+					}
+
 					isExistToggle = true;
+				}
+				else {
+					self.scope.renderedRows[idx].elm.removeClass('toggle');
 				}
 			}
 
 			if (isExistToggle) {
 				self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
 			}
+			else {
+				$('.details-template').parent().removeClass('toggle');
+				$('.details-template').remove();
+			}
 		});
+
+		var copyRow = function (row) {
+			var text = JSON.stringify(row.entity);
+		};
+
+		var deleteRow = function (entity, data) {
+			data.splice(data.indexOf(entity), 1);
+
+			if (self.scope.toggleRow.entity == entity) {
+				closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight, true);
+			}
+		}
 
 		var setToggle = function (row, isToggle, detailsClass) {
 			if (isToggle) {
@@ -119,8 +157,11 @@
 
 				$.get(template, function (result) {
 					$('.details-template').remove();
-					row.elm.append('<div class="details-template">' + result + '</div>');
+					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+					row.elm.append(detElm);
+					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', rowHeight + 'px');
+					row.elm.addClass('toggle');
 					var top = Math.round(row.elm.position().top);
 					var children = $(row.elm).parent().children();
 
@@ -152,12 +193,14 @@
 
 			if (template) {
 				$.get(template, function (result) {
-					row.elm.append('<div class="details-template">' + result + '</div>');
+					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+					row.elm.append(detElm);
+					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', row.elm.height() + 'px');
 
 					var top = Math.round(row.elm.position().top);
 					var children = $(row.elm).parent().children();
-					var step = row.elm.position().top + row.elm.context.scrollHeight;
+					var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
 					self.scope.step = step;
 
 					self.canvasHeight = self.grid.$canvas.height();
@@ -201,6 +244,10 @@
 		}
 
 		var closeOrigToggleRow = function (row, detailsClass, template, rowHeigth, reInit) {
+			if (rowHeigth === undefined) {
+				rowHeigth = 60;
+			}
+
 			row.clone.elm.removeClass('toggle');
 			$('.details-template').remove();
 			row.actions.isToggle = false;
@@ -263,7 +310,7 @@
 		}
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
-		self.scope.$watch(self.grid.config.data, recalcHeightForData);
+		self.scope.$watch(self.grid.config.data, recalcForData);
 	}
 
 	self.refreshOpt = function (otps) {

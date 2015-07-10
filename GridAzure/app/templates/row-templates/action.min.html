@@ -1,1 +1,1 @@
-<div class="action" ng-if="row.orig.actions.values.isShow"><div class="action__group" ng-repeat="action in row.orig.actions.values.values"><button ng-if="action.isAction" class="action__btn">{{action.label}}</button> <dropdown ng-if="action.isMore" class="action__dropdown" dropdown-options="action.options"></dropdown></div></div>
+<div class="action" ng-if="row.orig.actions.values.isShow"><dropdown class="action__dropdown" dropdown-options="row.orig.actions.values.options"></dropdown></div>

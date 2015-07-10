@@ -23,6 +23,10 @@
 						initializer.refreshData(data);
 					}
 				});
+
+				scope.$watch('data.length', function () {
+					scope.grid.count = scope.data.length;
+				});
 			}
 		}
 	}]);

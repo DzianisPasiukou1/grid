@@ -5,6 +5,120 @@
 	width: 100%;
 	padding: 10px;
 	padding-left: 30px;
+	padding-bottom: 0;
 	font: inherit;
-	font-weight: normal;
+	font-weight: normal !important;
+	border-bottom: 1px solid #e5e5e5;
+	border-top: 1px solid #e5e5e5;
+	/*min-height: 240px;*/
+	/*position: relative;*/
+	z-index: 1;
+	top: 1px;
+
+	.header-row {
+		font-weight: bold;
+	}
+
+	label {
+		font: inherit;
+		font-weight: normal !important;
+	}
+
+	.content {
+		color: rgb(62, 62, 62);
+		min-height: 100px;
+		float: left;
+		width: 1500px;
+		padding: 20px;
+		margin-left: 40px;
+		padding-left: 40px;
+		border: 1px solid rgb(149,207,235);
+		margin-bottom: 10px;
+		min-height: 120px;
+
+		.details-information {
+			display: inline;
+
+			.headers {
+				float: left;
+
+				span {
+					display: block;
+					text-align: right;
+				}
+			}
+
+			.props {
+				float: left;
+
+				span {
+					display: block;
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.overview {
+			display: inline;
+
+			.headers {
+				float: left;
+
+				span {
+					display: block;
+					text-align: right;
+				}
+			}
+
+			.props {
+				float: left;
+
+				span {
+					display: block;
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+
+	p {
+		color: rgb(62, 62, 62);
+		margin: 0;
+		border: 1px solid rgb(149,207,235);
+		min-height: 100px;
+	}
+
+	ul {
+		float: left;
+		width: 1000px;
+		margin-bottom: 0;
+	}
+
+	li {
+		float: left;
+		padding: 5px 19px;
+		color: black;
+		list-style: none;
+		border: 1px solid rgb(238, 238, 238);
+		position: relative;
+		z-index: 1;
+		top: 1px;
+	}
+
+	li:hover, li:hover a {
+		border: 1px solid rgb(39, 20, 20);
+	}
+
+	li a {
+		text-decoration: none;
+		color: white;
+		font-size: 21px;
+		font-style: italic;
+		text-shadow: 1px 0px 3px rgb(157, 157, 157);
+	}
+
+	.active {
+		border: 1px solid rgb(149,207,235);
+		border-bottom: 1px solid white;
+	}
 }

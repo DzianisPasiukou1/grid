@@ -43,15 +43,11 @@
 		footerRowHeight: 30,
 		footerTemplate: 'grid-footer.html',
 		rowActions: {
-			values: [{
-				label: 'More',
-				isMore: true,
-				options: {
-					label: 'Actions',
-					values: [{ label: 'Edit' }, { label: 'Copy' }, { label: 'History' }, { label: 'Delete' }],
-					isMenu: true
-				}
-			}],
+			options: {
+				label: 'Actions',
+				values: [{ label: 'Edit', isEdit: true }, { label: 'Copy', isCopy: true }, { label: 'History', isHistory: true }, { label: 'Delete', isDelete: true }],
+				isMenu: true
+			},
 			isShow: false
 		},
 		detailsTemplate: 'details.html',

@@ -29,10 +29,18 @@
 		$scope.checked = function (value) {
 			if (value) {
 				$scope.options.selected = $scope.options.actions.all;
+
+				if ($scope.options.selected === undefined) {
+					$scope.options.selected = {};
+				}
 				$scope.options.selected.check = true;
 			}
 			else {
 				$scope.options.selected = $scope.options.actions.noOne;
+
+				if ($scope.options.selected === undefined) {
+					$scope.options.selected = {};
+				}
 				$scope.options.selected.check = false;
 			}
 

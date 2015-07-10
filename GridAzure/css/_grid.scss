@@ -104,6 +104,10 @@
 		&.checked {
 			background-color: rgb(233, 245, 251);
 		}
+
+		&.toggle {
+			background-color: rgb(238, 238, 238) !important;
+		}
 	}
 
 	.ngFooterPanel {

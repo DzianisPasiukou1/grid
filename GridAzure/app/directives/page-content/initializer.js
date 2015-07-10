@@ -182,10 +182,11 @@
 
 		if (this.scope.gridOptions.plugins === undefined) {
 			this.scope.gridOptions.plugins = [];
+			this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
+
 		}
 
-		if (this.scope.gridOptions.plugins.ngGridActionsPlugin == undefined) {
-			this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt));
+		if (this.scope.gridOptions.plugins.ngGridActionsPlugin === undefined) {
 		}
 	};
 

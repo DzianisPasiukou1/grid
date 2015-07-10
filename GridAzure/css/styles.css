@@ -572,8 +572,84 @@ a:focus {
   width: 100%;
   padding: 10px;
   padding-left: 30px;
+  padding-bottom: 0;
   font: inherit;
-  font-weight: normal; }
+  font-weight: normal !important;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  /*min-height: 240px;*/
+  /*position: relative;*/
+  z-index: 1;
+  top: 1px; }
+  .details-template .header-row {
+    font-weight: bold; }
+  .details-template label {
+    font: inherit;
+    font-weight: normal !important; }
+  .details-template .content, .details-template .page-content__body {
+    color: #3e3e3e;
+    min-height: 100px;
+    float: left;
+    width: 1500px;
+    padding: 20px;
+    margin-left: 40px;
+    padding-left: 40px;
+    border: 1px solid #95cfeb;
+    margin-bottom: 10px;
+    min-height: 120px; }
+    .details-template .content .details-information, .details-template .page-content__body .details-information {
+      display: inline; }
+      .details-template .content .details-information .headers, .details-template .page-content__body .details-information .headers {
+        float: left; }
+        .details-template .content .details-information .headers span, .details-template .page-content__body .details-information .headers span {
+          display: block;
+          text-align: right; }
+      .details-template .content .details-information .props, .details-template .page-content__body .details-information .props {
+        float: left; }
+        .details-template .content .details-information .props span, .details-template .page-content__body .details-information .props span {
+          display: block;
+          margin-left: 10px; }
+    .details-template .content .overview, .details-template .page-content__body .overview {
+      display: inline; }
+      .details-template .content .overview .headers, .details-template .page-content__body .overview .headers {
+        float: left; }
+        .details-template .content .overview .headers span, .details-template .page-content__body .overview .headers span {
+          display: block;
+          text-align: right; }
+      .details-template .content .overview .props, .details-template .page-content__body .overview .props {
+        float: left; }
+        .details-template .content .overview .props span, .details-template .page-content__body .overview .props span {
+          display: block;
+          margin-left: 10px; }
+  .details-template p {
+    color: #3e3e3e;
+    margin: 0;
+    border: 1px solid #95cfeb;
+    min-height: 100px; }
+  .details-template ul {
+    float: left;
+    width: 1000px;
+    margin-bottom: 0; }
+  .details-template li {
+    float: left;
+    padding: 5px 19px;
+    color: black;
+    list-style: none;
+    border: 1px solid #eeeeee;
+    position: relative;
+    z-index: 1;
+    top: 1px; }
+  .details-template li:hover, .details-template li:hover a {
+    border: 1px solid #271414; }
+  .details-template li a {
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+    font-style: italic;
+    text-shadow: 1px 0px 3px #9d9d9d; }
+  .details-template .active {
+    border: 1px solid #95cfeb;
+    border-bottom: 1px solid white; }
 
 .toggle .ngRow {
   display: table-row;
@@ -699,6 +775,8 @@ a:focus {
       font-weight: bold; }
     .custom-grid .ngRow.checked {
       background-color: #e9f5fb; }
+    .custom-grid .ngRow.toggle {
+      background-color: #eeeeee !important; }
   .custom-grid .ngFooterPanel {
     background-color: #5a5a5a;
     border-right: 1px solid #e5e5e5; }
