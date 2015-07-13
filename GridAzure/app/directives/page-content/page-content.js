@@ -25,7 +25,9 @@
 				});
 
 				scope.$watch('data.length', function () {
-					scope.grid.count = scope.data.length;
+					if (Array.isArray(scope.data)) {
+						scope.grid.count = scope.data.length;
+					}
 				});
 			}
 		}

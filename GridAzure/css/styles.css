@@ -636,6 +636,7 @@ a:focus {
     color: black;
     list-style: none;
     border: 1px solid #eeeeee;
+    border-bottom: 1px solid #95cfeb;
     position: relative;
     z-index: 1;
     top: 1px; }

@@ -4,36 +4,37 @@
 	self.scope = null;
 	self.opts = opts;
 	self.compile = compile;
+
+	if (self.opts.contentOptions.checks.options.callback === undefined) {
+		self.opts.contentOptions.checks.options.callback = function (check) {
+			if (check) {
+				if (check.isAll) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = true;
+					});
+				}
+				else if (check.isNoOne) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = false;
+					});
+				}
+				else if (check.isMarked) {
+					self.grid.rowCache.forEach(function (value) {
+					});
+				}
+				else if (check.isNotMarked) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = !value.actions.isCheck;
+					});
+				}
+			};
+		};
+	}
+
 	self.init = function (scope, grid, services) {
 		self.domUtilityService = services.DomUtilityService;
 		self.grid = grid;
 		self.scope = scope;
-
-		if (self.opts.contentOptions.checks.options.callback === undefined) {
-			self.opts.contentOptions.checks.options.callback = function (check) {
-				if (check) {
-					if (check.isAll) {
-						self.grid.rowCache.forEach(function (value) {
-							value.actions.isCheck = true;
-						});
-					}
-					else if (check.isNoOne) {
-						self.grid.rowCache.forEach(function (value) {
-							value.actions.isCheck = false;
-						});
-					}
-					else if (check.isMarked) {
-						self.grid.rowCache.forEach(function (value) {
-						});
-					}
-					else if (check.isNotMarked) {
-						self.grid.rowCache.forEach(function (value) {
-							value.actions.isCheck = !value.actions.isCheck;
-						});
-					}
-				};
-			};
-		}
 
 		var recalcForData = function () {
 			setTimeout(function () {
@@ -72,6 +73,32 @@
 		};
 
 		var innerRecalcForData = function () {
+
+			if (self.scope.toggleRow) {
+				var isExistToggle = false;
+
+				for (idx in self.scope.renderedRows) {
+					if (self.scope.renderedRows[idx].orig.actions.isToggle) {
+
+						if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
+							refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+						}
+
+						isExistToggle = true;
+					}
+					else {
+						self.scope.renderedRows[idx].elm.removeClass('toggle');
+					}
+				}
+
+				if (isExistToggle) {
+					self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
+				}
+				else {
+					$('.details-template').parent().removeClass('toggle');
+					$('.details-template').remove();
+				}
+			}
 
 			self.scope.catHashKeys = function () {
 				var hash = '',
@@ -112,18 +139,6 @@
 				$('.details-template').remove();
 			}
 		});
-
-		var copyRow = function (row) {
-			var text = JSON.stringify(row.entity);
-		};
-
-		var deleteRow = function (entity, data) {
-			data.splice(data.indexOf(entity), 1);
-
-			if (self.scope.toggleRow.entity == entity) {
-				closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight, true);
-			}
-		}
 
 		var setToggle = function (row, isToggle, detailsClass) {
 			if (isToggle) {
@@ -308,6 +323,21 @@
 
 			return template;
 		}
+
+		var copyRow = function (row) {
+			var text = JSON.stringify(row.entity);
+		};
+
+		var deleteRow = function (entity, data) {
+			data.splice(data.indexOf(entity), 1);
+
+			if (self.scope.toggleRow) {
+				if (self.scope.toggleRow.entity == entity) {
+					closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight);
+				}
+			}
+		}
+
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
 		self.scope.$watch(self.grid.config.data, recalcForData);
