@@ -198,6 +198,10 @@
 
 		this.scope.contentOptions.searchValue = '';
 		this.scope.contentOptions.checks.options.selected = this.scope.contentOptions.checks.options.actions.noOne;
+
+		if (this.scope.contentOptions.loading) {
+			this.scope.contentOptions.isLoading = false;
+		}
 	};
 
 	Initializer.prototype.refreshData = function (data) {

@@ -97,7 +97,7 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 
-.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .grid-testing .generate-btn {
+.metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .grid-testing .generate-btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -115,9 +115,9 @@ a:focus {
   position: relative;
   color: #787878;
   font-weight: 500; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active {
     box-shadow: 0 2px 0 #787878;
     transform: translateY(3px); }
 
@@ -516,6 +516,137 @@ a:focus {
   background: #1e1e1e;
   color: #00c814; }
 
+.cursor-message {
+  position: absolute;
+  z-index: 99999;
+  border: solid 1px #CCC;
+  background: #60a917;
+  padding: 15px;
+  margin: 0;
+  display: none;
+  font-size: 14px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  line-height: 1;
+  border-color: #787878; }
+
+.dialog-btn {
+  text-align: right; }
+
+.dialog-overlay {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: 1049; }
+
+.dialog {
+  max-height: 600px;
+  overflow-y: auto;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  width: 50%;
+  display: block;
+  height: auto;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  z-index: 105000;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3); }
+  .dialog__key {
+    font-weight: normal !important;
+    font-size: 14px !important;
+    text-align: right !important;
+    text-transform: capitalize;
+    margin-right: 20px; }
+  .dialog__value {
+    margin-right: 30%;
+    float: right; }
+  .dialog__entity {
+    text-align: right;
+    margin: 10px; }
+
+.dialog .dialog-close-button {
+  position: absolute;
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 0.125rem 0 0.625rem 0;
+  z-index: 3;
+  outline: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #777777;
+  top: 0.25rem;
+  right: 0.25rem; }
+
+.dialog .dialog-close-button:hover {
+  background-color: #cde6f7;
+  color: #2a8dd4; }
+
+.dialog .dialog-close-button:hover:after {
+  border-color: #2a8dd4; }
+
+.dialog .dialog-close-button:active {
+  background-color: #92c0e0;
+  color: #ffffff; }
+
+.dialog .dialog-close-button:after {
+  border-color: #777777;
+  content: '\D7';
+  line-height: 1; }
+
+.dialog.success {
+  background-color: #60a917;
+  color: #ffffff; }
+
+.dialog.success .dialog-close-button {
+  background-color: #7ad61d;
+  color: #ffffff; }
+
+.dialog.success .dialog-close-button:active {
+  background-color: #128023; }
+
+.dialog.warning {
+  background-color: #fa6800;
+  color: #ffffff; }
+
+.dialog.warning .dialog-close-button {
+  background-color: #c29008;
+  color: #ffffff; }
+
+.dialog.warning .dialog-close-button:active {
+  background-color: #bf5a15; }
+
+.dialog.alert {
+  background-color: #ce352c;
+  color: #ffffff; }
+
+.dialog.alert .dialog-close-button {
+  background-color: #da5a53;
+  color: #ffffff; }
+
+.dialog.alert .dialog-close-button:active {
+  background-color: #9a1616; }
+
+.dialog.info {
+  background-color: #1ba1e2;
+  color: #ffffff; }
+
+.dialog.info .dialog-close-button {
+  background-color: #59cde2;
+  color: #ffffff; }
+
+.dialog.info .dialog-close-button:active {
+  background-color: #1b6eae; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -577,8 +708,6 @@ a:focus {
   font-weight: normal !important;
   border-bottom: 1px solid #e5e5e5;
   border-top: 1px solid #e5e5e5;
-  /*min-height: 240px;*/
-  /*position: relative;*/
   z-index: 1;
   top: 1px; }
   .details-template .header-row {
@@ -934,6 +1063,38 @@ a:focus {
 
 .page {
   margin-top: 30px; }
+
+modal {
+  position: fixed;
+  top: 20%;
+  z-index: 1000;
+  left: 10%;
+  right: 0;
+  bottom: 0;
+  width: 75%;
+  height: 0; }
+
+history {
+  position: fixed;
+  top: 20%;
+  z-index: 1000;
+  left: 10%;
+  right: 0;
+  bottom: 0;
+  width: 75%;
+  height: 0;
+  font-weight: normal !important;
+  font-size: 14px !important; }
+  history .history__content {
+    text-align: left;
+    font-size: 16px; }
+  history .dialog__entity {
+    text-align: left !important; }
+  history .dialog__key {
+    margin-right: 0 !important; }
+  history .dialog__value {
+    margin-left: 10px !important;
+    float: none !important; }
 
 @media only screen and (max-width: 1530px), (min-device-width: 1530px) and (max-device-width: 1024px) {
   .grid-testing textarea {

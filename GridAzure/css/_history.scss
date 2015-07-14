@@ -1,0 +1,32 @@
+﻿history {
+	position: fixed;
+	top: 20%;
+	z-index: 1000;
+	left: 10%;
+	right: 0;
+	bottom: 0;
+	width: 75%;
+	height: 0;
+	font-weight: normal !important;
+	font-size: 14px !important;
+
+	.history__content {
+		text-align: left;
+		font-size: 16px;
+	}
+
+	.dialog {
+		&__entity {
+			text-align: left !important;
+		}
+
+		&__key {
+			margin-right: 0 !important;
+		}
+
+		&__value {
+			margin-left: 10px !important;
+			float: none !important;
+		}
+	}
+}

@@ -12,6 +12,8 @@
 @import "common/_spinner.scss";
 @import "common/_disabled.scss";
 @import "common/_my-textarea.scss";
+@import "common/_cursor-message.scss";
+@import "common/_modal-dialog.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
@@ -27,5 +29,8 @@
 @import "_content-options.scss";
 @import "_filter.scss";
 @import "_page.scss";
+
+@import "_modal.scss";
+@import "_history.scss";
 
 @import "_grid-testing.scss";

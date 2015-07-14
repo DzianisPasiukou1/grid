@@ -876,16 +876,17 @@ function columnGenerator(data, templatesPath) {
 				field: field,
 				displayName: field,
 				headerCellTemplate: templatesPath + 'cell-templates/cell.html',
-				isColumn: true
-			})
+				isColumn: true,
+				enableCellEdit: true
+		})
 		}
-	}
+}
 
-	columns.push({
-		field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
-	});
+columns.push({
+	field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
+});
 
-	return columns;
+return columns;
 }
 ///#source 1 1 /app/plugins/convertFilterOptions.js
 function convertFilterOptions(options) {
@@ -1571,6 +1572,10 @@ var Initializer = (function () {
 
 		this.scope.contentOptions.searchValue = '';
 		this.scope.contentOptions.checks.options.selected = this.scope.contentOptions.checks.options.actions.noOne;
+
+		if (this.scope.contentOptions.loading) {
+			this.scope.contentOptions.isLoading = false;
+		}
 	};
 
 	Initializer.prototype.refreshData = function (data) {
@@ -1672,16 +1677,22 @@ function ngGridActionsPlugin(opts, compile) {
 						row.actions.setCheck = setCheck;
 						row.actions.copyRow = copyRow;
 						row.actions.deleteRow = deleteRow;
+						row.actions.editRow = editRow;
+						row.actions.historyRow = historyRow;
+						row.actions.history = [];
 						row.actions.tab = 2;
 						row.actions.values.options.callback = function (action) {
 							if (action.isEdit) {
-								console.log('edit');
+								row.actions.editRow(row);
 							}
 							else if (action.isCopy) {
 								row.actions.copyRow(row);
 							}
 							else if (action.isDelete) {
-								row.actions.deleteRow(row.entity, self.scope.data);
+								row.actions.deleteRow(row.entity, self.scope.data, row);
+							}
+							else if (action.isHistory) {
+								row.actions.historyRow(row);
 							}
 						};
 					}
@@ -1767,6 +1778,7 @@ function ngGridActionsPlugin(opts, compile) {
 		});
 
 		var setToggle = function (row, isToggle, detailsClass) {
+
 			if (isToggle) {
 				if (self.scope.toggleRow) {
 					var deletedRow;
@@ -1951,19 +1963,87 @@ function ngGridActionsPlugin(opts, compile) {
 		}
 
 		var copyRow = function (row) {
-			var text = JSON.stringify(row.entity);
-		};
+			var s = JSON.stringify(row.entity);
 
-		var deleteRow = function (entity, data) {
+			if (window.clipboardData && clipboardData.setData) {
+				clipboardData.setData('text', s);
+			}
+			else {
+				$(row.clone.elm).append('<input id="holdtext"/>')
+
+				var elm = $("#holdtext");
+				elm.val(s);
+				elm.select();
+
+				document.execCommand('copy');
+
+				if ($.cursorMessage) {
+					$.cursorMessage('Row is copied to clipboard.');
+				}
+
+				elm.remove('#holdtext');
+			};
+		}
+
+		var deleteRow = function (entity, data, row) {
+			for (var i = 0; i < self.grid.rowCache.length; i++) {
+				if (self.grid.rowCache[i].entity == entity) {
+					self.grid.rowCache.splice(i, 1);
+					break
+				}
+			}
+
+			var isEarlier = false;
+
+			for (var i = 0; i < self.scope.renderedRows.length; i++) {
+				if (self.scope.renderedRows[i].entity == entity) {
+					self.scope.renderedRows.splice(i, 1);
+					break
+				}
+
+				if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
+					isEarlier = true;
+				}
+			}
+
+			self.grid.setRenderedRows(self.scope.renderedRows);
+
 			data.splice(data.indexOf(entity), 1);
 
 			if (self.scope.toggleRow) {
 				if (self.scope.toggleRow.entity == entity) {
 					closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight);
 				}
+				else {
+					if (!isEarlier) {
+						self.scope.step -= 60;
+
+						refreshToggle(self.scope.toggleRow.clone, self.scope.rowHeight, self.scope.step, self.scope.toggleRow.actions.detailsTemplate);
+					}
+				}
 			}
 		}
 
+		var editRow = function (row) {
+			if ($('modal').length != 0) {
+				$('modal').remove();
+			}
+
+			$(row.clone.elm).append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			var modal = $('modal');
+			self.compile(modal)(self.scope);
+		}
+
+
+		var historyRow = function (row) {
+			if ($('history').length != 0) {
+				$('history').remove();
+			}
+
+			$(row.clone.elm).append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			var history = $('history');
+			self.compile(history)(self.scope);
+		}
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
 		self.scope.$watch(self.grid.config.data, recalcForData);
@@ -1973,3 +2053,130 @@ function ngGridActionsPlugin(opts, compile) {
 		self.opts = otps;
 	}
 };
+///#source 1 1 /app/plugins/cursorMessage.js
+if (jQuery) {
+	(function ($) {
+		$.cursorMessageData = {}; // needed for e.g. timeoutId
+		//start registring mouse coцridnates from the start!
+
+		$(window).ready(function (e) {
+			if ($('.cursor-message').length == 0) {
+				$('body').append('<div class="cursor-message">&nbsp;</div>');
+				$('.cursor-message').hide();
+			}
+
+			$('body').mousemove(function (e) {
+				$.cursorMessageData.mouseX = e.pageX;
+				$.cursorMessageData.mouseY = e.pageY;
+				if ($.cursorMessageData.options != undefined) $._showCursorMessage();
+			});
+		});
+		$.extend({
+			cursorMessage: function (message, options) {
+				if (options == undefined) options = {};
+				if (options.offsetX == undefined) options.offsetX = 5;
+				if (options.offsetY == undefined) options.offsetY = 5;
+				if (options.hideTimeout == undefined) options.hideTimeout = 2000;
+
+				$('.cursor-message').html(message).fadeIn('slow');
+				if (jQuery.cursorMessageData.hideTimeoutId != undefined) clearTimeout(jQuery.cursorMessageData.hideTimeoutId);
+				if (options.hideTimeout > 0) jQuery.cursorMessageData.hideTimeoutId = setTimeout($.hideCursorMessage, options.hideTimeout);
+				jQuery.cursorMessageData.options = options;
+				$._showCursorMessage();
+			},
+			hideCursorMessage: function () {
+				$('.cursor-message').fadeOut('slow');
+			},
+			_showCursorMessage: function () {
+				$('.cursor-message').css({ top: ($.cursorMessageData.mouseY + $.cursorMessageData.options.offsetY + 30) + 'px', left: ($.cursorMessageData.mouseX + $.cursorMessageData.options.offsetX - 150) });
+			}
+		});
+	})(jQuery);
+}
+///#source 1 1 /app/directives/modal/modal.js
+angular.module('gridTaskApp')
+	.directive('modal', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			templateUrl: templatesPath + 'modal.html',
+			scope: {
+				entities: '=renderedRows',
+				rowIndex: '=',
+				isModal: '='
+			},
+			controller: 'modalCtrl',
+			link: function (scope, element, attrs) {
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/modal/modal-controller.js
+angular.module('gridTaskApp')
+	.controller('modalCtrl', ['$scope', function ($scope) {
+		$scope.isModal = true;
+
+		$scope.fields = [];
+
+		$scope.myEntity = {};
+
+		for (var i = 0; i < $scope.entities.length; i++) {
+			if ($scope.entities[i].rowIndex == $scope.rowIndex) {
+				$scope.myEntity = angular.copy($scope.entities[i].entity);
+				$scope.entityIndex = i;
+			}
+		}
+
+		$scope.save = function () {
+			if (!Array.isArray($scope.entities[$scope.entityIndex].orig.actions.history)) {
+				$scope.entities[$scope.entityIndex].orig.actions.history = [];
+			}
+
+			$scope.entities[$scope.entityIndex].orig.actions.history.push({
+				dateChange: new Date(),
+				oldObj: $scope.entities[$scope.entityIndex].entity,
+				newObj: $scope.myEntity
+			})
+
+			$scope.entities[$scope.entityIndex].entity = $scope.myEntity;
+
+			$scope.close();
+		};
+
+		$scope.close = function () {
+			$scope.myEntity = {};
+			$scope.isModal = false;
+		};
+
+	}]);
+///#source 1 1 /app/directives/history/history-controller.js
+angular.module('gridTaskApp')
+	.controller('historyCtrl', ['$scope', function ($scope) {
+		$scope.isModal = true;
+
+		if (Array.isArray($scope.entities)) {
+			for (var i = 0; i < $scope.entities.length; i++) {
+				if ($scope.entities[i].rowIndex == $scope.rowIndex) {
+					$scope.history = angular.copy($scope.entities[i].orig.actions.history);
+					$scope.entityIndex = i;
+				}
+			}
+		}
+
+		$scope.close = function () {
+			$scope.isModal = false;
+		};
+	}]);
+///#source 1 1 /app/directives/history/history.js
+angular.module('gridTaskApp')
+	.directive('history', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			templateUrl: templatesPath + 'history.html',
+			controller: 'historyCtrl',
+			scope: {
+				entities: '=renderedRows',
+				rowIndex: '='
+			},
+			link: function (scope, element, attrs) {
+			}
+		}
+	}]);

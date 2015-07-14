@@ -1,0 +1,10 @@
+﻿<div class="dialog" ng-if="isModal">
+	<h1>Edit entity</h1>
+	<div ng-repeat="(key, value) in myEntity" class="dialog__entity">
+		<span class="dialog__key">{{key}}</span><input class="dialog__value" ng-model="myEntity[key]" />
+	</div>
+	<div class="dialog-btn">
+		<button class="save-btn" ng-click="save()">Save</button>
+		<button class="close-btn" ng-click="close()">Close</button>
+	</div>
+</div>

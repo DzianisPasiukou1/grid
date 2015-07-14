@@ -15,14 +15,15 @@
 				field: field,
 				displayName: field,
 				headerCellTemplate: templatesPath + 'cell-templates/cell.html',
-				isColumn: true
-			})
+				isColumn: true,
+				enableCellEdit: true
+		})
 		}
-	}
+}
 
-	columns.push({
-		field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
-	});
+columns.push({
+	field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
+});
 
-	return columns;
+return columns;
 }

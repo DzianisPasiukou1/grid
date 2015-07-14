@@ -192,8 +192,12 @@
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\grid-menu\grid-menu-controller.js" />
     <Content Include="app\directives\grid-menu\grid-menu.js" />
+    <Content Include="app\directives\history\history-controller.js" />
+    <Content Include="app\directives\history\history.js" />
     <Content Include="app\directives\hotkey-formatter\hotkey-formatter.js" />
     <Content Include="app\directives\loading\loading.js" />
+    <Content Include="app\directives\modal\modal-controller.js" />
+    <Content Include="app\directives\modal\modal.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page-content\initializer.js" />
@@ -221,6 +225,7 @@
     <Content Include="app\plugins\columnGenerator.js" />
     <Content Include="app\plugins\columns-comparer.js" />
     <Content Include="app\plugins\convertFilterOptions.js" />
+    <Content Include="app\plugins\cursorMessage.js" />
     <Content Include="app\plugins\ngGridActionsPlugin.js" />
     <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
@@ -252,7 +257,9 @@
     <Content Include="app\templates\filter.html" />
     <Content Include="app\templates\grid-footer.html" />
     <Content Include="app\templates\grid-menu.html" />
+    <Content Include="app\templates\history.html" />
     <Content Include="app\templates\loading.html" />
+    <Content Include="app\templates\modal.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
       <DependentUpon>page-content.html</DependentUpon>
@@ -1955,6 +1962,11 @@
     <Content Include="bower_components\ng-grid\plugins\ng-grid-reorderable.js" />
     <Content Include="bower_components\ng-grid\plugins\ng-grid-wysiwyg-export.js" />
     <Content Include="bower_components\ng-grid\plugins\playground.html" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.Core.js" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.Core.min.js" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.js" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.min.js" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.swf" />
     <Content Include="content\arrow_down.png" />
     <Content Include="content\arrow_up.png" />
     <Content Include="content\clear.png" />
@@ -2234,6 +2246,16 @@
     <Content Include="bower_components\ng-grid\build\ng-grid.min.js.map">
       <DependentUpon>ng-grid.min.js</DependentUpon>
     </Content>
+    <Content Include="data\json.zip" />
+    <Content Include="bower_components\zeroclipboard\.bower.json" />
+    <Content Include="bower_components\zeroclipboard\bower.json" />
+    <Content Include="bower_components\zeroclipboard\dist\.jshintrc" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.Core.min.map" />
+    <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.min.map" />
+    <Content Include="css\common\_cursor-message.scss" />
+    <Content Include="css\common\_modal-dialog.scss" />
+    <Content Include="css\_modal.scss" />
+    <Content Include="css\_history.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

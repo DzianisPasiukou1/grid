@@ -57,5 +57,10 @@
 		<file>/app/directives/page-content/initializer.js</file>
 		<file>/app/directives/hotkey-formatter/hotkey-formatter.js</file>
 		<file>/app/plugins/ngGridActionsPlugin.js</file>
+		<file>/app/plugins/cursorMessage.js</file>
+		<file>/app/directives/modal/modal.js</file>
+		<file>/app/directives/modal/modal-controller.js</file>
+		<file>/app/directives/history/history-controller.js</file>
+		<file>/app/directives/history/history.js</file>
 	</files>
 </bundle>

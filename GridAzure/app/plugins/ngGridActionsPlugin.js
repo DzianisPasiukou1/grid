@@ -46,16 +46,22 @@
 						row.actions.setCheck = setCheck;
 						row.actions.copyRow = copyRow;
 						row.actions.deleteRow = deleteRow;
+						row.actions.editRow = editRow;
+						row.actions.historyRow = historyRow;
+						row.actions.history = [];
 						row.actions.tab = 2;
 						row.actions.values.options.callback = function (action) {
 							if (action.isEdit) {
-								console.log('edit');
+								row.actions.editRow(row);
 							}
 							else if (action.isCopy) {
 								row.actions.copyRow(row);
 							}
 							else if (action.isDelete) {
-								row.actions.deleteRow(row.entity, self.scope.data);
+								row.actions.deleteRow(row.entity, self.scope.data, row);
+							}
+							else if (action.isHistory) {
+								row.actions.historyRow(row);
 							}
 						};
 					}
@@ -141,6 +147,7 @@
 		});
 
 		var setToggle = function (row, isToggle, detailsClass) {
+
 			if (isToggle) {
 				if (self.scope.toggleRow) {
 					var deletedRow;
@@ -325,19 +332,87 @@
 		}
 
 		var copyRow = function (row) {
-			var text = JSON.stringify(row.entity);
-		};
+			var s = JSON.stringify(row.entity);
 
-		var deleteRow = function (entity, data) {
+			if (window.clipboardData && clipboardData.setData) {
+				clipboardData.setData('text', s);
+			}
+			else {
+				$(row.clone.elm).append('<input id="holdtext"/>')
+
+				var elm = $("#holdtext");
+				elm.val(s);
+				elm.select();
+
+				document.execCommand('copy');
+
+				if ($.cursorMessage) {
+					$.cursorMessage('Row is copied to clipboard.');
+				}
+
+				elm.remove('#holdtext');
+			};
+		}
+
+		var deleteRow = function (entity, data, row) {
+			for (var i = 0; i < self.grid.rowCache.length; i++) {
+				if (self.grid.rowCache[i].entity == entity) {
+					self.grid.rowCache.splice(i, 1);
+					break
+				}
+			}
+
+			var isEarlier = false;
+
+			for (var i = 0; i < self.scope.renderedRows.length; i++) {
+				if (self.scope.renderedRows[i].entity == entity) {
+					self.scope.renderedRows.splice(i, 1);
+					break
+				}
+
+				if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
+					isEarlier = true;
+				}
+			}
+
+			self.grid.setRenderedRows(self.scope.renderedRows);
+
 			data.splice(data.indexOf(entity), 1);
 
 			if (self.scope.toggleRow) {
 				if (self.scope.toggleRow.entity == entity) {
 					closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight);
 				}
+				else {
+					if (!isEarlier) {
+						self.scope.step -= 60;
+
+						refreshToggle(self.scope.toggleRow.clone, self.scope.rowHeight, self.scope.step, self.scope.toggleRow.actions.detailsTemplate);
+					}
+				}
 			}
 		}
 
+		var editRow = function (row) {
+			if ($('modal').length != 0) {
+				$('modal').remove();
+			}
+
+			$(row.clone.elm).append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			var modal = $('modal');
+			self.compile(modal)(self.scope);
+		}
+
+
+		var historyRow = function (row) {
+			if ($('history').length != 0) {
+				$('history').remove();
+			}
+
+			$(row.clone.elm).append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			var history = $('history');
+			self.compile(history)(self.scope);
+		}
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);
 		self.scope.$watch(self.grid.config.data, recalcForData);
