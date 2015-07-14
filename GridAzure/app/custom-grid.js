@@ -1573,6 +1573,18 @@ var Initializer = (function () {
 		this.scope.contentOptions.searchValue = '';
 		this.scope.contentOptions.checks.options.selected = this.scope.contentOptions.checks.options.actions.noOne;
 
+		if (this.scope.gridOptions.plugins[0].constructor.name == 'ngGridActionsPlugin') {
+			this.scope.pluginActionOpt = {
+				values: this.scope.gridOptions.rowActions,
+				detailsTemplate: this.scope.gridOptions.detailsTemplate,
+				detailsCondition: this.scope.gridOptions.detailsCondition,
+				onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
+				contentOptions: this.scope.contentOptions
+			}
+			this.scope.gridOptions.plugins[0].refreshOpt(this.scope.pluginActionOpt);
+		}
+
+
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = false;
 		}
@@ -1582,17 +1594,6 @@ var Initializer = (function () {
 		this.refreshOpt();
 		this.scope.grid.count = this.scope.data.length;
 		this.scope.gridOptions.filterOptions.filterText = '';
-
-		if (this.scope.gridOptions.plugins.ngGridActionsPlugin) {
-			this.scope.pluginActionOpt = {
-				values: this.scope.gridOptions.rowActions,
-				detailsTemplate: this.scope.gridOptions.detailsTemplate,
-				detailsCondition: this.scope.gridOptions.detailsCondition,
-				onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
-				contentOptions: this.scope.contentOptions
-			}
-			this.scope.gridOptions.plugins.ngGridActionsPlugin.refreshOpt(this.scope.pluginActionOpt);
-		}
 
 		var oldColumns = angular.copy(this.scope.gridOptions.columnDefs);
 		var newColumns = columnGenerator(data, this.templatesPath);
@@ -1620,7 +1621,7 @@ angular.module('gridTaskApp')
 				func: '=hotkeyFormatter'
 			},
 			link: function (scope, element, attrs) {
-				element.keypress("c", function (event) {
+				element.keypress("q", function (event) {
 					if (event.ctrlKey) {
 						scope.func();
 					}
@@ -1635,32 +1636,6 @@ function ngGridActionsPlugin(opts, compile) {
 	self.scope = null;
 	self.opts = opts;
 	self.compile = compile;
-
-	if (self.opts.contentOptions.checks.options.callback === undefined) {
-		self.opts.contentOptions.checks.options.callback = function (check) {
-			if (check) {
-				if (check.isAll) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = true;
-					});
-				}
-				else if (check.isNoOne) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = false;
-					});
-				}
-				else if (check.isMarked) {
-					self.grid.rowCache.forEach(function (value) {
-					});
-				}
-				else if (check.isNotMarked) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = !value.actions.isCheck;
-					});
-				}
-			};
-		};
-	}
 
 	self.init = function (scope, grid, services) {
 		self.domUtilityService = services.DomUtilityService;
@@ -1681,22 +1656,51 @@ function ngGridActionsPlugin(opts, compile) {
 						row.actions.historyRow = historyRow;
 						row.actions.history = [];
 						row.actions.tab = 2;
-						row.actions.values.options.callback = function (action) {
-							if (action.isEdit) {
-								row.actions.editRow(row);
-							}
-							else if (action.isCopy) {
-								row.actions.copyRow(row);
-							}
-							else if (action.isDelete) {
-								row.actions.deleteRow(row.entity, self.scope.data, row);
-							}
-							else if (action.isHistory) {
-								row.actions.historyRow(row);
-							}
-						};
+
+						if (row.actions.values.options.callback === undefined) {
+							row.actions.values.options.callback = function (action) {
+								if (action.isEdit) {
+									row.actions.editRow(row);
+								}
+								else if (action.isCopy) {
+									row.actions.copyRow(row);
+								}
+								else if (action.isDelete) {
+									row.actions.deleteRow(row.entity, self.scope.data, row);
+								}
+								else if (action.isHistory) {
+									row.actions.historyRow(row);
+								}
+							};
+						}
 					}
 				});
+
+				if (self.opts.contentOptions.checks.options.callback === undefined) {
+					self.opts.contentOptions.checks.options.callback = function (check) {
+						if (check) {
+							if (check.isAll) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = true;
+								});
+							}
+							else if (check.isNoOne) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = false;
+								});
+							}
+							else if (check.isMarked) {
+								self.grid.rowCache.forEach(function (value) {
+								});
+							}
+							else if (check.isNotMarked) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = !value.actions.isCheck;
+								});
+							}
+						};
+					};
+				}
 
 				self.scope.$apply();
 			});
@@ -2001,8 +2005,10 @@ function ngGridActionsPlugin(opts, compile) {
 					break
 				}
 
-				if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
-					isEarlier = true;
+				if (self.scope.toggleRow) {
+					if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
+						isEarlier = true;
+					}
 				}
 			}
 

@@ -6,7 +6,7 @@
 				func: '=hotkeyFormatter'
 			},
 			link: function (scope, element, attrs) {
-				element.keypress("c", function (event) {
+				element.keypress("q", function (event) {
 					if (event.ctrlKey) {
 						scope.func();
 					}

@@ -5,32 +5,6 @@
 	self.opts = opts;
 	self.compile = compile;
 
-	if (self.opts.contentOptions.checks.options.callback === undefined) {
-		self.opts.contentOptions.checks.options.callback = function (check) {
-			if (check) {
-				if (check.isAll) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = true;
-					});
-				}
-				else if (check.isNoOne) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = false;
-					});
-				}
-				else if (check.isMarked) {
-					self.grid.rowCache.forEach(function (value) {
-					});
-				}
-				else if (check.isNotMarked) {
-					self.grid.rowCache.forEach(function (value) {
-						value.actions.isCheck = !value.actions.isCheck;
-					});
-				}
-			};
-		};
-	}
-
 	self.init = function (scope, grid, services) {
 		self.domUtilityService = services.DomUtilityService;
 		self.grid = grid;
@@ -50,22 +24,51 @@
 						row.actions.historyRow = historyRow;
 						row.actions.history = [];
 						row.actions.tab = 2;
-						row.actions.values.options.callback = function (action) {
-							if (action.isEdit) {
-								row.actions.editRow(row);
-							}
-							else if (action.isCopy) {
-								row.actions.copyRow(row);
-							}
-							else if (action.isDelete) {
-								row.actions.deleteRow(row.entity, self.scope.data, row);
-							}
-							else if (action.isHistory) {
-								row.actions.historyRow(row);
-							}
-						};
+
+						if (row.actions.values.options.callback === undefined) {
+							row.actions.values.options.callback = function (action) {
+								if (action.isEdit) {
+									row.actions.editRow(row);
+								}
+								else if (action.isCopy) {
+									row.actions.copyRow(row);
+								}
+								else if (action.isDelete) {
+									row.actions.deleteRow(row.entity, self.scope.data, row);
+								}
+								else if (action.isHistory) {
+									row.actions.historyRow(row);
+								}
+							};
+						}
 					}
 				});
+
+				if (self.opts.contentOptions.checks.options.callback === undefined) {
+					self.opts.contentOptions.checks.options.callback = function (check) {
+						if (check) {
+							if (check.isAll) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = true;
+								});
+							}
+							else if (check.isNoOne) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = false;
+								});
+							}
+							else if (check.isMarked) {
+								self.grid.rowCache.forEach(function (value) {
+								});
+							}
+							else if (check.isNotMarked) {
+								self.grid.rowCache.forEach(function (value) {
+									value.actions.isCheck = !value.actions.isCheck;
+								});
+							}
+						};
+					};
+				}
 
 				self.scope.$apply();
 			});
@@ -370,8 +373,10 @@
 					break
 				}
 
-				if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
-					isEarlier = true;
+				if (self.scope.toggleRow) {
+					if (self.scope.renderedRows[i].entity == self.scope.toggleRow.entity) {
+						isEarlier = true;
+					}
 				}
 			}
 

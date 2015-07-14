@@ -9,13 +9,12 @@
 	<script src="app/custom-grid.js"></script>
 
 	<script src="app/grid-testing-controller.js"></script>
-
 	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
 <body ng-app="gridTaskApp" ng-controller="gridTestingCtrl as ctrl" class="grid-testing">
 	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
-	<textarea class="my-textarea" ng-model="ctrl.scope.content" ng-change="ctrl.scope.textChange()" hotkey-formatter></textarea>
+	<textarea class="my-textarea" ng-model="ctrl.scope.content" ng-change="ctrl.scope.textChange()" hotkey-formatter="ctrl.scope.refreshContent"></textarea>
 	<div class="validators-group">
 		<label class="success" ng-show="ctrl.scope.isValid">Valid data</label>
 		<label class="failed" ng-show="!ctrl.scope.isValid">Invalid data</label>

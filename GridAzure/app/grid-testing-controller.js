@@ -147,77 +147,7 @@
 		}
 
 		self.scope.refreshContent = function () {
-			try {
-				var temp = self.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
 
-				temp = JSON.parse(temp, function (key, value) {
-					if (value && typeof value === "string" && value.substr(0, 8) == "function") {
-						var startBody = value.indexOf('{') + 1;
-						var endBody = value.lastIndexOf('}');
-						var startArgs = value.indexOf('(') + 1;
-						var endArgs = value.indexOf(')');
-
-						var func = new Function(value.substring(startArgs, endArgs), value.substring(startBody, endBody));
-						func = func.bind(self);
-
-						return func;
-					}
-					return value;
-				});
-
-				self.scope.contentOptions = temp.contentOptions;
-				self.scope.grid = temp.grid;
-				self.scope.gridOptions = temp.gridOptions;
-				self.scope.isValid = true;
-
-				self.scope.content = JSON.stringify({
-					contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions
-				}, function (key, value) {
-					if (typeof value === 'function') {
-						var temp = value.toString();
-						return temp;
-					} else {
-						return value;
-					}
-				}, "\t");
-
-				var tempContent = '';
-
-				for (var i = 0; i < self.scope.content.length - 1; i++) {
-					if (self.scope.content[i] == "\\") {
-						if (self.scope.content[i + 1] == "r") {
-							tempContent += "\r";
-							i++;
-						}
-						else if (self.scope.content[i + 1] == "n") {
-							tempContent += "\n";
-							i++;
-						}
-						else if (self.scope.content[i + 1] == "t") {
-							tempContent += "\t";
-							i++;
-						}
-						else {
-							tempContent += self.scope.content[i];
-						}
-					}
-					else {
-						tempContent += self.scope.content[i];
-					}
-
-					if (i == self.scope.content.length - 2) {
-						tempContent += self.scope.content[i + 1];
-					}
-
-				}
-
-				self.scope.content = tempContent;
-			}
-			catch (e) {
-				console.log('parse error');
-				self.scope.isValid = false;
-				return;
-			}
 		}
 
 		self.scope.textChange();
@@ -225,4 +155,24 @@
 		self.scope.compile = function () {
 			self.getData();
 		}
+
+		$(document).delegate('.my-textarea', 'keydown', function (e) {
+			var keyCode = e.keyCode || e.which;
+
+			if (keyCode == 9) {
+				e.preventDefault();
+				var start = $(this).get(0).selectionStart;
+				var end = $(this).get(0).selectionEnd;
+
+				// set textarea value to: text before caret + tab + text after caret
+				$(this).val($(this).val().substring(0, start)
+							+ "\t"
+							+ $(this).val().substring(end));
+
+				// put caret at right position again
+				$(this).get(0).selectionStart =
+				$(this).get(0).selectionEnd = start + 1;
+			}
+		});
+
 	}]);
