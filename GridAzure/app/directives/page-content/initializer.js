@@ -183,11 +183,23 @@
 		if (this.scope.gridOptions.plugins === undefined) {
 			this.scope.gridOptions.plugins = [];
 			this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
+		}
+		else {
+			var isFindAct = false;
 
+			for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+				if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+					isFindAct = true;
+					break;
+				}
+			}
+
+			if (!isFindAct) {
+				this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
+			}
 		}
 
-		if (this.scope.gridOptions.plugins.ngGridActionsPlugin === undefined) {
-		}
+
 	};
 
 	Initializer.prototype.refreshOpt = function () {
@@ -199,7 +211,18 @@
 		this.scope.contentOptions.searchValue = '';
 		this.scope.contentOptions.checks.options.selected = this.scope.contentOptions.checks.options.actions.noOne;
 
-		if (this.scope.gridOptions.plugins[0].constructor.name == 'ngGridActionsPlugin') {
+		var isFindAct = false;
+		var indexAct = 0;
+
+		for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+			if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+				isFindAct = true;
+				indexAct = i;
+				break;
+			}
+		}
+
+		if (!isFindAct) {
 			this.scope.pluginActionOpt = {
 				values: this.scope.gridOptions.rowActions,
 				detailsTemplate: this.scope.gridOptions.detailsTemplate,
@@ -207,9 +230,8 @@
 				onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
 				contentOptions: this.scope.contentOptions
 			}
-			this.scope.gridOptions.plugins[0].refreshOpt(this.scope.pluginActionOpt);
+			this.scope.gridOptions.plugins[indexAct].refreshOpt(this.scope.pluginActionOpt);
 		}
-
 
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = false;
@@ -224,9 +246,14 @@
 		var oldColumns = angular.copy(this.scope.gridOptions.columnDefs);
 		var newColumns = columnGenerator(data, this.templatesPath);
 
-		if (!columnsCompare(oldColumns, newColumns)) {
-			this.scope.gridOptions.columnDefs = newColumns;
+		if (this.scope.gridOptions.reInit === undefined) {
+			if (!columnsCompare(oldColumns, newColumns)) {
+				this.scope.gridOptions.columnDefs = newColumns;
 
+				this.$compile($('custom-grid'))(this.scope);
+			}
+		}
+		else {
 			this.$compile($('custom-grid'))(this.scope);
 		}
 

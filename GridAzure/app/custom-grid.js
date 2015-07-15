@@ -422,19 +422,25 @@ angular.module('gridTaskApp')
 			isMenu: true,
 			label: '',
 			values: [],
-			callback: function (action) {
-				if (action) {
-					for (var i = $scope.columns.length - 2; i > 0 ; i--) {
-						if ($scope.columns[i].visible) {
-							$scope.columns[i].toggleVisible();
-							action.element.toggleVisible();
+			isCheckbox: true,
+			onCheck: function (action, index) {
+				$scope.columns[index].toggleVisible();
 
-							this.values.splice(this.values.indexOf(action), 1);
-							this.values.push({ label: $scope.columns[i].field, element: $scope.columns[i] });
-							break;
-						}
-					}
-				}
+				$scope.resize();
+			},
+			callback: function (action) {
+				//if (action) {
+				//	for (var i = $scope.columns.length - 2; i > 0 ; i--) {
+				//		if ($scope.columns[i].visible) {
+				//			$scope.columns[i].toggleVisible();
+				//			action.element.toggleVisible();
+
+				//			this.values.splice(this.values.indexOf(action), 1);
+				//			this.values.push({ label: $scope.columns[i].field, element: $scope.columns[i] });
+				//			break;
+				//		}
+				//	}
+				//}
 			}
 		};
 	}]);
@@ -450,6 +456,9 @@ angular.module('gridTaskApp')
 				scope.$watch('columns', function (value) {
 					if (Array.isArray(value) && value.length > 0) {
 
+						scope.colCache = [];
+						scope.options.values = [];
+
 						var totalWidth = value.reduce(function (a, b) {
 							return a + b.minWidth;
 						}, 0);
@@ -459,7 +468,7 @@ angular.module('gridTaskApp')
 								if (value[i].visible) {
 									value[i].toggleVisible();
 									totalWidth -= value[i].minWidth;
-									scope.options.values.push({ label: value[i].field, element: value[i] });
+									scope.colCache.push({ label: value[i].field, element: value[i] });
 								}
 								if ($(window).width() > totalWidth) {
 									break;
@@ -467,8 +476,12 @@ angular.module('gridTaskApp')
 							}
 						}
 
-						if (scope.options.values.length > 0) {
+						if (scope.colCache.length > 0) {
 							scope.isShow = true;
+						}
+
+						for (var i = 0; i < value.length; i++) {
+							scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 						}
 
 						$(window).resize(function () {
@@ -485,7 +498,7 @@ angular.module('gridTaskApp')
 									if (value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth -= value[i].minWidth;
-										scope.options.values.push({ label: value[i].field, element: value[i] });
+										scope.colCache.push({ label: value[i].field, element: value[i] });
 									}
 									if ($(window).width() > totalWidth) {
 										break;
@@ -497,27 +510,27 @@ angular.module('gridTaskApp')
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
-										scope.options.values.splice(scope.options.values.indexOf(value[i]), 1);
+										scope.colCache.splice(scope.colCache.indexOf(value[i]), 1);
 
 										if ($(window).width() < totalWidth) {
 											value[i].toggleVisible();
 											totalWidth -= value[i].minWidth;
 
 											var isExist = false;
-											for (var j = 0; j < scope.options.values.length; j++) {
-												if (scope.options.values[j].label == value[i].field) {
+											for (var j = 0; j < scope.colCache.length; j++) {
+												if (scope.colCache[j].label == value[i].field) {
 													isExist = true;
 												}
 											}
 											if (!isExist) {
-												scope.options.values.push({ label: value[i].field, element: value[i] });
+												scope.colCache.push({ label: value[i].field, element: value[i] });
 											}
 											else {
-												scope.options.values = [];
+												scope.colCache = [];
 
 												for (var j = 0; j < value.length; j++) {
 													if (!value[j].visible) {
-														scope.options.values.push({ label: value[j].field, element: value[j] });
+														scope.colCache.push({ label: value[j].field, element: value[j] });
 													}
 												}
 											}
@@ -528,7 +541,13 @@ angular.module('gridTaskApp')
 								}
 							}
 
-							if (scope.options.values.length > 0) {
+							scope.options.values = [];
+
+							for (var i = 0; i < value.length; i++) {
+								scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
+							}
+
+							if (scope.colCache.length > 0) {
 								scope.isShow = true;
 							}
 							else {
@@ -537,6 +556,23 @@ angular.module('gridTaskApp')
 						});
 					}
 				});
+
+				scope.resize = function () {
+					var totalWidth = scope.columns.reduce(function (a, b) {
+						if (b.visible) {
+							return a + b.minWidth;
+						} else {
+							return a;
+						}
+					}, 0);
+
+					if ($(window).width() < totalWidth) {
+						$('.page-content').css('minWidth', totalWidth + 'px');
+					}
+					else {
+						$('.page-content').css('minWidth', '500px');
+					}
+				}
 			}
 		}
 	}]);
@@ -862,7 +898,7 @@ jQuery.fn.center = function () {
 function columnGenerator(data, templatesPath) {
 	var columns = [];
 
-	columns.push({ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60, isColumn: true });
+	columns.push({ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60, isColumn: true });
 
 	if (data[0]) {
 		for (var i = 0; i < data.length; i++) {
@@ -876,17 +912,16 @@ function columnGenerator(data, templatesPath) {
 				field: field,
 				displayName: field,
 				headerCellTemplate: templatesPath + 'cell-templates/cell.html',
-				isColumn: true,
-				enableCellEdit: true
-		})
+				isColumn: true
+			})
 		}
-}
+	}
 
-columns.push({
-	field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
-});
+	columns.push({
+		field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
+	});
 
-return columns;
+	return columns;
 }
 ///#source 1 1 /app/plugins/convertFilterOptions.js
 function convertFilterOptions(options) {
@@ -1557,11 +1592,23 @@ var Initializer = (function () {
 		if (this.scope.gridOptions.plugins === undefined) {
 			this.scope.gridOptions.plugins = [];
 			this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
+		}
+		else {
+			var isFindAct = false;
 
+			for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+				if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+					isFindAct = true;
+					break;
+				}
+			}
+
+			if (!isFindAct) {
+				this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
+			}
 		}
 
-		if (this.scope.gridOptions.plugins.ngGridActionsPlugin === undefined) {
-		}
+
 	};
 
 	Initializer.prototype.refreshOpt = function () {
@@ -1573,7 +1620,18 @@ var Initializer = (function () {
 		this.scope.contentOptions.searchValue = '';
 		this.scope.contentOptions.checks.options.selected = this.scope.contentOptions.checks.options.actions.noOne;
 
-		if (this.scope.gridOptions.plugins[0].constructor.name == 'ngGridActionsPlugin') {
+		var isFindAct = false;
+		var indexAct = 0;
+
+		for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+			if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+				isFindAct = true;
+				indexAct = i;
+				break;
+			}
+		}
+
+		if (!isFindAct) {
 			this.scope.pluginActionOpt = {
 				values: this.scope.gridOptions.rowActions,
 				detailsTemplate: this.scope.gridOptions.detailsTemplate,
@@ -1581,9 +1639,8 @@ var Initializer = (function () {
 				onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
 				contentOptions: this.scope.contentOptions
 			}
-			this.scope.gridOptions.plugins[0].refreshOpt(this.scope.pluginActionOpt);
+			this.scope.gridOptions.plugins[indexAct].refreshOpt(this.scope.pluginActionOpt);
 		}
-
 
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = false;
@@ -1598,9 +1655,14 @@ var Initializer = (function () {
 		var oldColumns = angular.copy(this.scope.gridOptions.columnDefs);
 		var newColumns = columnGenerator(data, this.templatesPath);
 
-		if (!columnsCompare(oldColumns, newColumns)) {
-			this.scope.gridOptions.columnDefs = newColumns;
+		if (this.scope.gridOptions.reInit === undefined) {
+			if (!columnsCompare(oldColumns, newColumns)) {
+				this.scope.gridOptions.columnDefs = newColumns;
 
+				this.$compile($('custom-grid'))(this.scope);
+			}
+		}
+		else {
 			this.$compile($('custom-grid'))(this.scope);
 		}
 
@@ -1719,16 +1781,18 @@ function ngGridActionsPlugin(opts, compile) {
 				var isExistToggle = false;
 
 				for (idx in self.scope.renderedRows) {
-					if (self.scope.renderedRows[idx].orig.actions.isToggle) {
+					if (self.scope.renderedRows[idx].orig.actions) {
+						if (self.scope.renderedRows[idx].orig.actions.isToggle) {
 
-						if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
-							refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+							if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
+								refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+							}
+
+							isExistToggle = true;
 						}
-
-						isExistToggle = true;
-					}
-					else {
-						self.scope.renderedRows[idx].elm.removeClass('toggle');
+						else {
+							self.scope.renderedRows[idx].elm.removeClass('toggle');
+						}
 					}
 				}
 
@@ -1811,10 +1875,35 @@ function ngGridActionsPlugin(opts, compile) {
 		var refreshToggle = function (row, rowHeight, step, template) {
 			if (template) {
 				var step = step;
+				var detElm;
 
-				$.get(template, function (result) {
+				if (template.substr(template.length - 4) == 'html') {
+					$.get(template, function (result) {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + result + '</div>');
+					}).fail(function () {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + template + '</div>');
+
+					}).always(function () {
+						row.elm.append(detElm);
+						self.compile(detElm)(self.scope);
+						$('.details-template').css('top', rowHeight + 'px');
+						row.elm.addClass('toggle');
+						var top = Math.round(row.elm.position().top);
+						var children = $(row.elm).parent().children();
+
+						for (var i = 0; i < children.length; i++) {
+							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+								$(children[i]).css('top', step + 'px');
+								step += rowHeight;
+							}
+						}
+					});
+				}
+				else {
 					$('.details-template').remove();
-					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+					detElm = angular.element('<div class="details-template">' + template + '</div>');
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', rowHeight + 'px');
@@ -1828,7 +1917,7 @@ function ngGridActionsPlugin(opts, compile) {
 							step += rowHeight;
 						}
 					}
-				});
+				}
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
@@ -1849,8 +1938,45 @@ function ngGridActionsPlugin(opts, compile) {
 			row.isToggle = true;
 
 			if (template) {
-				$.get(template, function (result) {
-					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+				var detElm;
+
+				if (template.substr(template.length - 4) == 'html') {
+					$.get(template, function (result) {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + result + '</div>');
+					}).fail(function () {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + template + '</div>');
+
+					}).always(function () {
+						row.elm.append(detElm);
+						self.compile(detElm)(self.scope);
+						$('.details-template').css('top', row.elm.height() + 'px');
+
+						var top = Math.round(row.elm.position().top);
+						var children = $(row.elm).parent().children();
+						var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
+						self.scope.step = step;
+
+						self.canvasHeight = self.grid.$canvas.height();
+						self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
+						self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
+
+						$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+
+						for (var i = 0; i < children.length; i++) {
+							if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+								for (var j = i + 1; j < children.length; j++) {
+									$(children[j]).css('top', step + 'px');
+									step += rowHeight;
+								}
+							}
+						}
+					});;
+				}
+				else {
+					$('.details-template').remove();
+					detElm = angular.element('<div class="details-template">' + template + '</div>');
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', row.elm.height() + 'px');
@@ -1874,8 +2000,7 @@ function ngGridActionsPlugin(opts, compile) {
 							}
 						}
 					}
-				});
-
+				}
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
@@ -2018,7 +2143,7 @@ function ngGridActionsPlugin(opts, compile) {
 
 			if (self.scope.toggleRow) {
 				if (self.scope.toggleRow.entity == entity) {
-					closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight);
+					closeOrigToggleRow(self.scope.toggleRow, 'toggle', self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight, true);
 				}
 				else {
 					if (!isEarlier) {

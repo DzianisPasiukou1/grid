@@ -9,6 +9,9 @@
 				scope.$watch('columns', function (value) {
 					if (Array.isArray(value) && value.length > 0) {
 
+						scope.colCache = [];
+						scope.options.values = [];
+
 						var totalWidth = value.reduce(function (a, b) {
 							return a + b.minWidth;
 						}, 0);
@@ -18,7 +21,7 @@
 								if (value[i].visible) {
 									value[i].toggleVisible();
 									totalWidth -= value[i].minWidth;
-									scope.options.values.push({ label: value[i].field, element: value[i] });
+									scope.colCache.push({ label: value[i].field, element: value[i] });
 								}
 								if ($(window).width() > totalWidth) {
 									break;
@@ -26,8 +29,12 @@
 							}
 						}
 
-						if (scope.options.values.length > 0) {
+						if (scope.colCache.length > 0) {
 							scope.isShow = true;
+						}
+
+						for (var i = 0; i < value.length; i++) {
+							scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 						}
 
 						$(window).resize(function () {
@@ -44,7 +51,7 @@
 									if (value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth -= value[i].minWidth;
-										scope.options.values.push({ label: value[i].field, element: value[i] });
+										scope.colCache.push({ label: value[i].field, element: value[i] });
 									}
 									if ($(window).width() > totalWidth) {
 										break;
@@ -56,27 +63,27 @@
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
-										scope.options.values.splice(scope.options.values.indexOf(value[i]), 1);
+										scope.colCache.splice(scope.colCache.indexOf(value[i]), 1);
 
 										if ($(window).width() < totalWidth) {
 											value[i].toggleVisible();
 											totalWidth -= value[i].minWidth;
 
 											var isExist = false;
-											for (var j = 0; j < scope.options.values.length; j++) {
-												if (scope.options.values[j].label == value[i].field) {
+											for (var j = 0; j < scope.colCache.length; j++) {
+												if (scope.colCache[j].label == value[i].field) {
 													isExist = true;
 												}
 											}
 											if (!isExist) {
-												scope.options.values.push({ label: value[i].field, element: value[i] });
+												scope.colCache.push({ label: value[i].field, element: value[i] });
 											}
 											else {
-												scope.options.values = [];
+												scope.colCache = [];
 
 												for (var j = 0; j < value.length; j++) {
 													if (!value[j].visible) {
-														scope.options.values.push({ label: value[j].field, element: value[j] });
+														scope.colCache.push({ label: value[j].field, element: value[j] });
 													}
 												}
 											}
@@ -87,7 +94,13 @@
 								}
 							}
 
-							if (scope.options.values.length > 0) {
+							scope.options.values = [];
+
+							for (var i = 0; i < value.length; i++) {
+								scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
+							}
+
+							if (scope.colCache.length > 0) {
 								scope.isShow = true;
 							}
 							else {
@@ -96,6 +109,23 @@
 						});
 					}
 				});
+
+				scope.resize = function () {
+					var totalWidth = scope.columns.reduce(function (a, b) {
+						if (b.visible) {
+							return a + b.minWidth;
+						} else {
+							return a;
+						}
+					}, 0);
+
+					if ($(window).width() < totalWidth) {
+						$('.page-content').css('minWidth', totalWidth + 'px');
+					}
+					else {
+						$('.page-content').css('minWidth', '500px');
+					}
+				}
 			}
 		}
 	}]);

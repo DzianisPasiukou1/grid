@@ -1,3 +1,4 @@
-﻿<div class="action" ng-if="row.orig.actions.values.isShow">
-	<dropdown class="action__dropdown" dropdown-options="row.orig.actions.values.options"></dropdown>
+﻿<div class="action" ng-if="row.orig.actions.values.isShow" ng-style="dropdownOpt.style">
+	<dropdown class="action__dropdown" dropdown-options="dropdownOpt" ng-if="dropdownOpt.isVisible"></dropdown>
+	<div class="dynamic-dropdown" dynamic-dropdown orig-opt="row.orig.actions.values.options" dropdown-opt="dropdownOpt" col="col"></div>
 </div>

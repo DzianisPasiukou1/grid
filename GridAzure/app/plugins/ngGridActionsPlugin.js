@@ -87,16 +87,18 @@
 				var isExistToggle = false;
 
 				for (idx in self.scope.renderedRows) {
-					if (self.scope.renderedRows[idx].orig.actions.isToggle) {
+					if (self.scope.renderedRows[idx].orig.actions) {
+						if (self.scope.renderedRows[idx].orig.actions.isToggle) {
 
-						if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
-							refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+							if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
+								refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
+							}
+
+							isExistToggle = true;
 						}
-
-						isExistToggle = true;
-					}
-					else {
-						self.scope.renderedRows[idx].elm.removeClass('toggle');
+						else {
+							self.scope.renderedRows[idx].elm.removeClass('toggle');
+						}
 					}
 				}
 
@@ -179,10 +181,35 @@
 		var refreshToggle = function (row, rowHeight, step, template) {
 			if (template) {
 				var step = step;
+				var detElm;
 
-				$.get(template, function (result) {
+				if (template.substr(template.length - 4) == 'html') {
+					$.get(template, function (result) {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + result + '</div>');
+					}).fail(function () {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + template + '</div>');
+
+					}).always(function () {
+						row.elm.append(detElm);
+						self.compile(detElm)(self.scope);
+						$('.details-template').css('top', rowHeight + 'px');
+						row.elm.addClass('toggle');
+						var top = Math.round(row.elm.position().top);
+						var children = $(row.elm).parent().children();
+
+						for (var i = 0; i < children.length; i++) {
+							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
+								$(children[i]).css('top', step + 'px');
+								step += rowHeight;
+							}
+						}
+					});
+				}
+				else {
 					$('.details-template').remove();
-					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+					detElm = angular.element('<div class="details-template">' + template + '</div>');
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', rowHeight + 'px');
@@ -196,7 +223,7 @@
 							step += rowHeight;
 						}
 					}
-				});
+				}
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
@@ -217,8 +244,45 @@
 			row.isToggle = true;
 
 			if (template) {
-				$.get(template, function (result) {
-					var detElm = angular.element('<div class="details-template">' + result + '</div>');
+				var detElm;
+
+				if (template.substr(template.length - 4) == 'html') {
+					$.get(template, function (result) {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + result + '</div>');
+					}).fail(function () {
+						$('.details-template').remove();
+						detElm = angular.element('<div class="details-template">' + template + '</div>');
+
+					}).always(function () {
+						row.elm.append(detElm);
+						self.compile(detElm)(self.scope);
+						$('.details-template').css('top', row.elm.height() + 'px');
+
+						var top = Math.round(row.elm.position().top);
+						var children = $(row.elm).parent().children();
+						var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
+						self.scope.step = step;
+
+						self.canvasHeight = self.grid.$canvas.height();
+						self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
+						self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
+
+						$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+
+						for (var i = 0; i < children.length; i++) {
+							if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+								for (var j = i + 1; j < children.length; j++) {
+									$(children[j]).css('top', step + 'px');
+									step += rowHeight;
+								}
+							}
+						}
+					});;
+				}
+				else {
+					$('.details-template').remove();
+					detElm = angular.element('<div class="details-template">' + template + '</div>');
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', row.elm.height() + 'px');
@@ -242,8 +306,7 @@
 							}
 						}
 					}
-				});
-
+				}
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
@@ -386,7 +449,7 @@
 
 			if (self.scope.toggleRow) {
 				if (self.scope.toggleRow.entity == entity) {
-					closeOrigToggleRow(self.scope.toggleRow, self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight);
+					closeOrigToggleRow(self.scope.toggleRow, 'toggle', self.scope.toggleRow.actions.detailsTemplate, self.scope.rowHeight, true);
 				}
 				else {
 					if (!isEarlier) {

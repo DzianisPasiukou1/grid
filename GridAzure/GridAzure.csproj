@@ -186,6 +186,7 @@
     <Content Include="app\directives\details\details-template.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
+    <Content Include="app\directives\dropdown\dynamic-dropdown.js" />
     <Content Include="app\directives\filter\filter-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
@@ -198,6 +199,7 @@
     <Content Include="app\directives\loading\loading.js" />
     <Content Include="app\directives\modal\modal-controller.js" />
     <Content Include="app\directives\modal\modal.js" />
+    <Content Include="app\directives\on-finish-render\onFinishRender.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page-content\initializer.js" />
@@ -253,6 +255,7 @@
     <Content Include="app\templates\dropdown.min.html">
       <DependentUpon>dropdown.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\dynamic-actions.html" />
     <Content Include="app\templates\filter-list.html" />
     <Content Include="app\templates\filter.html" />
     <Content Include="app\templates\grid-footer.html" />
@@ -1981,6 +1984,7 @@
     <Content Include="content\noun_25367_cc.png" />
     <Content Include="content\text.png" />
     <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\fonts\text.svg" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
@@ -2256,6 +2260,11 @@
     <Content Include="css\common\_modal-dialog.scss" />
     <Content Include="css\_modal.scss" />
     <Content Include="css\_history.scss" />
+    <Content Include="css\common\_icons.scss" />
+    <Content Include="css\fonts\text.eot" />
+    <Content Include="css\fonts\text.ttf" />
+    <Content Include="css\fonts\text.woff" />
+    <Content Include="css\_dynamic-actions.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />
