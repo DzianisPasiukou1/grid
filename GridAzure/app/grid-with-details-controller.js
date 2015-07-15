@@ -41,7 +41,7 @@
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-footer.html',
 			columnDefs: [
-				{ field: '', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
+				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
 			{ field: 'priority', displayName: 'Priority', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
 			{ field: 'name', displayName: 'Name', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },
 			{ field: 'ID', displayName: 'ID', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100 },

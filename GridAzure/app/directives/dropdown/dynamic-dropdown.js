@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('dynamicDropdown', ['templatesPath', function (templatesPath) {
+	.directive('dynamicDropdown', ['templatesPath', '$compile', function (templatesPath, $compile) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -11,18 +11,23 @@
 			link: function (scope, element, attrs) {
 
 				var dynamic = function () {
+					if (scope.dropdownOpt.isVisible) {
+						scope.totalWidth -= scope.dropdownOpt.width;
+					}
+
 					scope.dropdownOpt.isVisible = false;
 
 					scope.$apply();
 
 					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 						if (!scope.dynamicOpt.values[i].isVisible) {
-							scope.dynamicOpt.values[i].toggleVisible(true);
 							scope.totalWidth += scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + element.offset().left > $('body').prop('scrollWidth')) {
-								scope.dynamicOpt.values[i].toggleVisible(false);
+							if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
 								break;
+							}
+							else {
+								scope.dynamicOpt.values[i].toggleVisible(true);
 							}
 						}
 					}
@@ -32,6 +37,9 @@
 					scope.$apply();
 
 					if (scope.dropdownOpt.isVisible) {
+						scope.totalWidth += element.parent().find('dropdown').width();
+						scope.dropdownOpt.width = element.parent().find('dropdown').width();
+
 						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 							if (!scope.dynamicOpt.values[i].isVisible) {
 								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
@@ -44,12 +52,12 @@
 						}
 					}
 
-					if (element.parent().width() + element.offset().left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + element.offset().left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -73,7 +81,7 @@
 						if (scope.dynamicOpt.values[i].isVisible) {
 							scope.dynamicOpt.values[i].toggleVisible(false);
 							scope.totalWidth -= scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + element.offset().left < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
 								break;
 							}
 						}
@@ -84,6 +92,9 @@
 					scope.$apply();
 
 					if (scope.dropdownOpt.isVisible) {
+						scope.totalWidth += element.parent().find('dropdown').width();
+						scope.dropdownOpt.width = element.parent().find('dropdown').width();
+
 						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 							if (!scope.dynamicOpt.values[i].isVisible) {
 								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
@@ -96,12 +107,12 @@
 						}
 					}
 
-					if (element.parent().width() + element.offset().left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + element.offset().left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -133,14 +144,15 @@
 				}
 
 				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
-					scope.totalWidth = 0;
+					scope.totalWidth = 20;
+					scope.offset = element.parent().offset();
 
 					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 						scope.dynamicOpt.values[i].width = element.find('.' + scope.dynamicOpt.values[i].label).width();
 						scope.totalWidth += scope.dynamicOpt.values[i].width;
 					}
 
-					if (scope.totalWidth + element.parent().offset().left < $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
 						dynamic();
 					}
 					else {
@@ -152,16 +164,28 @@
 
 
 				$(window).resize(function () {
-					scope.dropdownOpt.style = { "z-index": "-1" };
+					if ((element.parent().offset().left != 0) && (element.parent().width() != 0)) {
+						scope.totalWidth = 20;
+						scope.offset = element.parent().offset();
 
-					if (scope.totalWidth + element.parent().offset().left < $('body').prop('scrollWidth')) {
-						dynamic();
-					}
-					else {
-						undynamic();
-					}
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (scope.dynamicOpt.values[i].isVisible) {
+								scope.totalWidth += scope.dynamicOpt.values[i].width;
+							}
+						}
 
-					scope.dropdownOpt.style = { "z-index": "9" };
+						if (scope.dropdownOpt.isVisible) {
+							scope.totalWidth += scope.dropdownOpt.width;
+						}
+
+						if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+							dynamic();
+						}
+						else {
+							undynamic();
+						}
+
+					}
 				});
 			}
 		}

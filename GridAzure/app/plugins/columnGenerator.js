@@ -21,7 +21,7 @@
 	}
 
 	columns.push({
-		field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 150, minWidth: 150, isColumn: true
+		field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 300, minWidth: 150, isColumn: true
 	});
 
 	return columns;

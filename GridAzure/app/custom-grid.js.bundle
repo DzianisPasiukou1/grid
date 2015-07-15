@@ -41,7 +41,7 @@
 		<file>/app/directives/tabs/tabs.js</file>
 		<file>/app/directives/tabs/tab-content/tab-content.js</file>
 		<file>/app/directives/trend-slider/trend-slider.js</file>
-		<file>/app/directives/upload/upload.js</file>
+		<file>/app/directives/upload/upload.js</file> 
 		<file>/app/plugins/center.js</file>
 		<file>/app/plugins/columnGenerator.js</file>
 		<file>/app/plugins/convertFilterOptions.js</file>
@@ -62,5 +62,7 @@
 		<file>/app/directives/modal/modal-controller.js</file>
 		<file>/app/directives/history/history-controller.js</file>
 		<file>/app/directives/history/history.js</file>
+		<file>/app/directives/on-finish-render/onFinishRender.js</file>
+		<file>/app/directives/dropdown/dynamic-dropdown.js</file>
 	</files>
 </bundle>
