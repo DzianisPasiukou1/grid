@@ -8,7 +8,7 @@
 			onCheck: function (action, index) {
 				$scope.columns[index].toggleVisible();
 
-				$scope.resize();
+				$scope.resize(action);
 			},
 			callback: function (action) {
 				//if (action) {

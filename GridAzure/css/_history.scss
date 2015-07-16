@@ -1,14 +1,13 @@
 ﻿history {
-	position: fixed;
-	top: 20%;
-	z-index: 1000;
-	left: 10%;
-	right: 0;
+	/*position: fixed;
+	top: 25%;
+	left: 20%;
+	right: 20%;
 	bottom: 0;
-	width: 75%;
-	height: 0;
 	font-weight: normal !important;
 	font-size: 14px !important;
+	height: 0;
+	z-index: 1000;*/
 
 	.history__content {
 		text-align: left;
@@ -16,6 +15,8 @@
 	}
 
 	.dialog {
+		height: auto;
+
 		&__entity {
 			text-align: left !important;
 		}

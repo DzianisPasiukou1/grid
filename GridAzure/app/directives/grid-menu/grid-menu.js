@@ -29,7 +29,7 @@
 							}
 						}
 
-						if (scope.colCache.length > 0) {
+						if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
 							scope.isShow = true;
 						}
 
@@ -63,7 +63,12 @@
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
-										scope.colCache.splice(scope.colCache.indexOf(value[i]), 1);
+
+										for (var j = 0; j < scope.colCache.length; j++) {
+											if (scope.colCache[j].label == value[i].field) {
+												scope.colCache.splice(j, 1);
+											}
+										}
 
 										if ($(window).width() < totalWidth) {
 											value[i].toggleVisible();
@@ -100,7 +105,7 @@
 								scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 							}
 
-							if (scope.colCache.length > 0) {
+							if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
 								scope.isShow = true;
 							}
 							else {
@@ -110,7 +115,7 @@
 					}
 				});
 
-				scope.resize = function () {
+				scope.resize = function (action) {
 					var totalWidth = scope.columns.reduce(function (a, b) {
 						if (b.visible) {
 							return a + b.minWidth;
@@ -118,6 +123,12 @@
 							return a;
 						}
 					}, 0);
+
+					for (var j = 0; j < scope.colCache.length; j++) {
+						if (scope.colCache[j].label == action.label) {
+							scope.colCache.splice(j, 1);
+						}
+					}
 
 					if ($(window).width() < totalWidth) {
 						$('.page-content').css('minWidth', totalWidth + 'px');

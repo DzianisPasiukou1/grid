@@ -226,6 +226,9 @@
 				}
 			}
 			else {
+				row.elm.addClass('toggle');
+				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+
 				var top = Math.round(row.elm.position().top);
 				var children = $(row.elm).parent().children();
 				var step = step;
@@ -466,7 +469,7 @@
 				$('modal').remove();
 			}
 
-			$(row.clone.elm).append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			$('body').append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
 			var modal = $('modal');
 			self.compile(modal)(self.scope);
 		}
@@ -477,7 +480,7 @@
 				$('history').remove();
 			}
 
-			$(row.clone.elm).append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			$('body').append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
 			var history = $('history');
 			self.compile(history)(self.scope);
 		}

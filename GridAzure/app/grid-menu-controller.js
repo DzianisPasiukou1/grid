@@ -1,36 +1,51 @@
 ﻿angular.module('gridTaskApp')
-	.controller('gridStandartOneCtrl', ['$scope', 'gridStandartOneService', 'templatesPath', function ($scope, gridStandartOneService, templatesPath) {
+	.controller('gridmenuCtrl', ['templatesPath', '$scope', 'gridUploadService', function (templatesPath, $scope, gridUploadService) {
+		$scope.data = [];
+
 		function getData() {
-			gridStandartOneService.get(function (data) {
-				$scope.data = data;
-			});
+			setTimeout(function () {
+				gridUploadService.get(function (data) {
+					$scope.data = data;
+
+					$scope.grid.count = $scope.data.length;
+
+					$scope.$apply();
+				})
+			}, 2000)
 		}
 		getData();
 
 		$scope.grid = {
-			name: 'Standart grid one',
-			count: $scope.data.length
+			name: 'Grid with menu',
+			count: 0
 		};
 
 		$scope.contentOptions = {
+			upload: function (data) {
+				$scope.contentOptions.isLoading = true;
+
+				$scope.data = data;
+
+				$scope.grid.count = $scope.data.length;
+
+				$scope.$apply();
+			},
 			refresh: function () {
+				$scope.contentOptions.isLoading = true;
+
 				getData();
 
 				$scope.grid.count = $scope.data.length;
 			},
 			isDynamic: true,
-			filtrate: function (value) {
-				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
-			},
-			search: function (value) {
-				$scope.gridOptions.filterOptions.filterText = value;
-			}
+			loading: true
 		};
-
 		$scope.gridOptions = {
 			data: 'data',
+			withDetails: true,
 			init: function (grid, $scope) {
 			},
+			showResponsMenu: true,
 			multiSelect: false,
 			rowTemplate: templatesPath + 'row-templates/row.html',
 			filterOptions: { filterText: '' },
@@ -42,8 +57,6 @@
 			selectItem: function (itemIndex, state) {
 
 			},
-			showResponsMenu: false,
-			reInit: false,
 			columnDefs: [
 				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },

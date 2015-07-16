@@ -426,7 +426,7 @@ angular.module('gridTaskApp')
 			onCheck: function (action, index) {
 				$scope.columns[index].toggleVisible();
 
-				$scope.resize();
+				$scope.resize(action);
 			},
 			callback: function (action) {
 				//if (action) {
@@ -476,7 +476,7 @@ angular.module('gridTaskApp')
 							}
 						}
 
-						if (scope.colCache.length > 0) {
+						if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
 							scope.isShow = true;
 						}
 
@@ -510,7 +510,12 @@ angular.module('gridTaskApp')
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
-										scope.colCache.splice(scope.colCache.indexOf(value[i]), 1);
+
+										for (var j = 0; j < scope.colCache.length; j++) {
+											if (scope.colCache[j].label == value[i].field) {
+												scope.colCache.splice(j, 1);
+											}
+										}
 
 										if ($(window).width() < totalWidth) {
 											value[i].toggleVisible();
@@ -547,7 +552,7 @@ angular.module('gridTaskApp')
 								scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 							}
 
-							if (scope.colCache.length > 0) {
+							if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
 								scope.isShow = true;
 							}
 							else {
@@ -557,7 +562,7 @@ angular.module('gridTaskApp')
 					}
 				});
 
-				scope.resize = function () {
+				scope.resize = function (action) {
 					var totalWidth = scope.columns.reduce(function (a, b) {
 						if (b.visible) {
 							return a + b.minWidth;
@@ -565,6 +570,12 @@ angular.module('gridTaskApp')
 							return a;
 						}
 					}, 0);
+
+					for (var j = 0; j < scope.colCache.length; j++) {
+						if (scope.colCache[j].label == action.label) {
+							scope.colCache.splice(j, 1);
+						}
+					}
 
 					if ($(window).width() < totalWidth) {
 						$('.page-content').css('minWidth', totalWidth + 'px');
@@ -1920,6 +1931,9 @@ function ngGridActionsPlugin(opts, compile) {
 				}
 			}
 			else {
+				row.elm.addClass('toggle');
+				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+
 				var top = Math.round(row.elm.position().top);
 				var children = $(row.elm).parent().children();
 				var step = step;
@@ -2160,7 +2174,7 @@ function ngGridActionsPlugin(opts, compile) {
 				$('modal').remove();
 			}
 
-			$(row.clone.elm).append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			$('body').append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
 			var modal = $('modal');
 			self.compile(modal)(self.scope);
 		}
@@ -2171,7 +2185,7 @@ function ngGridActionsPlugin(opts, compile) {
 				$('history').remove();
 			}
 
-			$(row.clone.elm).append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			$('body').append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
 			var history = $('history');
 			self.compile(history)(self.scope);
 		}
@@ -2237,6 +2251,23 @@ angular.module('gridTaskApp')
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {
+
+				scope.$watch('isModal', function (value) {
+					if (!value) {
+						$('body').css('overflow', 'inherit');
+						element.remove();
+					}
+					else {
+						element.find('.fade').css('height', $('body').prop('scrollHeight') + 'px');
+						element.find('.fade').css('width', $('body').prop('scrollWidth') + 'px');
+						$('body').css('overflow', 'hidden');
+					}
+				})
+
+				$(window).resize(function () {
+					element.find('.fade').css('height', $('body').prop('scrollHeight') + 'px');
+					element.find('.fade').css('width', $('body').prop('scrollWidth') + 'px');
+				});
 			}
 		}
 	}]);
@@ -2308,6 +2339,23 @@ angular.module('gridTaskApp')
 				rowIndex: '='
 			},
 			link: function (scope, element, attrs) {
+				scope.$watch('isModal', function (value) {
+					if (!value) {
+						$('body').css('overflow', 'inherit');
+						element.remove();
+					}
+					else {
+						element.find('.fade').css('height', $('body').prop('scrollHeight') + 'px');
+						element.find('.fade').css('width', $('body').prop('scrollWidth') + 'px');
+
+						$('body').css('overflow', 'hidden');
+					}
+				});
+
+				$(window).resize(function () {
+					element.find('.fade').css('height', $('body').prop('scrollHeight') + 'px');
+					element.find('.fade').css('width', $('body').prop('scrollWidth') + 'px');
+				});
 			}
 		}
 	}]);
@@ -2333,20 +2381,13 @@ angular.module('gridTaskApp')
 			scope: {
 				origOpt: '=',
 				dropdownOpt: '=',
-				col: '='
+				col: '=',
+				row: '='
 			},
 			templateUrl: templatesPath + 'dynamic-actions.html',
 			link: function (scope, element, attrs) {
 
 				var dynamic = function () {
-					if (scope.dropdownOpt.isVisible) {
-						scope.totalWidth -= scope.dropdownOpt.width;
-					}
-
-					scope.dropdownOpt.isVisible = false;
-
-					scope.$apply();
-
 					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 						if (!scope.dynamicOpt.values[i].isVisible) {
 							scope.totalWidth += scope.dynamicOpt.values[i].width;
@@ -2365,8 +2406,10 @@ angular.module('gridTaskApp')
 					scope.$apply();
 
 					if (scope.dropdownOpt.isVisible) {
-						scope.totalWidth += element.parent().find('dropdown').width();
-						scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						if (scope.dropdownOpt.width === undefined) {
+							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						}
+						scope.totalWidth += scope.dropdownOpt.width;
 
 						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 							if (!scope.dynamicOpt.values[i].isVisible) {
@@ -2378,6 +2421,9 @@ angular.module('gridTaskApp')
 								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
 							}
 						}
+					}
+					else {
+						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
 					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
@@ -2420,8 +2466,10 @@ angular.module('gridTaskApp')
 					scope.$apply();
 
 					if (scope.dropdownOpt.isVisible) {
-						scope.totalWidth += element.parent().find('dropdown').width();
-						scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						if (scope.dropdownOpt.width === undefined) {
+							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						}
+						scope.totalWidth += scope.dropdownOpt.width;
 
 						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 							if (!scope.dynamicOpt.values[i].isVisible) {
@@ -2433,6 +2481,9 @@ angular.module('gridTaskApp')
 								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
 							}
 						}
+					}
+					else {
+						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
 					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
@@ -2492,28 +2543,32 @@ angular.module('gridTaskApp')
 
 
 				$(window).resize(function () {
-					if ((element.parent().offset().left != 0) && (element.parent().width() != 0)) {
-						scope.totalWidth = 20;
-						scope.offset = element.parent().offset();
+					//if ((element.parent().offset().left != 0) && (element.parent().width() != 0)) {
+					//	scope.totalWidth = 20;
+					//	scope.offset = element.parent().offset();
 
-						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
-							if (scope.dynamicOpt.values[i].isVisible) {
-								scope.totalWidth += scope.dynamicOpt.values[i].width;
-							}
-						}
+					//	for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+					//		if (scope.dynamicOpt.values[i].isVisible) {
+					//			scope.totalWidth += scope.dynamicOpt.values[i].width;
+					//		}
+					//	}
 
-						if (scope.dropdownOpt.isVisible) {
-							scope.totalWidth += scope.dropdownOpt.width;
-						}
+					//	if (scope.dropdownOpt.isVisible) {
+					//		scope.totalWidth += scope.dropdownOpt.width;
+					//	}
 
-						if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
-							dynamic();
-						}
-						else {
-							undynamic();
-						}
+					//	if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+					//		dynamic();
+					//	}
+					//	else {
+					//		undynamic();
+					//	}
 
-					}
+					//}
+
+					scope.row.selected = false;
+					//scope.row.orig.actions.values.isShow = false;
+					scope.$apply()
 				});
 			}
 		}

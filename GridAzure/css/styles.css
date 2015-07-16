@@ -97,6 +97,19 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 
+::-webkit-scrollbar {
+  width: 12px; }
+
+::-webkit-scrollbar-track {
+  background-color: #eaeaea;
+  border-left: 1px solid #ccc; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc; }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa; }
+
 .metro-btn, .my-dropdown__btn, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
   border-color: #787878;
   padding: 0 1rem;
@@ -271,7 +284,6 @@ a:focus {
     background-color: #f2f2f2;
     cursor: default;
     vertical-align: middle;
-    z-index: 2;
     height: 46px;
     font: 500 1.8rem/1.1 "Segoe UI", "Open Sans", serif;
     -webkit-user-select: none;
@@ -554,19 +566,47 @@ a:focus {
   min-width: 100%;
   z-index: 1049; }
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  overflow: auto;
+  outline: 0; }
+
+.fade {
+  background-color: transparent;
+  background-color: black;
+  opacity: 0.5;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  overflow: auto; }
+
 .dialog {
+  margin: 30px auto;
+  opacity: 1 !important;
   max-height: 600px;
+  max-width: 600px;
+  min-width: 500px;
   overflow-y: auto;
   text-align: center;
-  margin: 0 auto;
+  position: relative;
+  /*top: 0;
+	right: 0;
+	left: 0;*/
   padding: 10px;
-  width: 50%;
-  display: block;
-  height: auto;
   background-color: #ffffff;
   color: #1d1d1d;
   z-index: 105000;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  /*width: 75%;
+	min-width: 400px;*/ }
   .dialog__key {
     font-weight: normal !important;
     font-size: 14px !important;
@@ -859,7 +899,7 @@ a:focus {
     right: 10px; }
     @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
       .custom-grid__menu .grid-menu {
-        top: 100px; } }
+        top: 97px; } }
     .custom-grid__menu .grid-menu__options {
       position: relative;
       text-transform: capitalize; }
@@ -891,8 +931,7 @@ a:focus {
     width: 0; }
   .custom-grid .ngViewport {
     overflow-x: hidden;
-    border: 0;
-    /*height: 600px !important;*/ }
+    border: 0; }
   .custom-grid .ngCellText {
     padding: 0; }
   .custom-grid .ngCell {
@@ -957,13 +996,16 @@ a:focus {
   @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
     .options {
       display: block;
-      float: left; }
+      /*float: left;*/ }
+      .options__block {
+        float: left; }
       .options__filter {
         display: table;
         margin-top: 10px;
         float: left;
         position: relative;
-        margin-bottom: 3px; }
+        margin-bottom: 7px;
+        clear: both; }
       .options__search .search .search-span {
         top: 4px;
         right: 5px; }
@@ -998,6 +1040,8 @@ a:focus {
     margin-right: 10px; }
   .options__filter {
     display: inline; }
+  .options__block {
+    display: inline; }
   .options__search {
     float: right; }
   .options__show {
@@ -1012,7 +1056,8 @@ a:focus {
   position: relative; }
   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
     .filter {
-      float: none; } }
+      float: left;
+      margin-right: 60px; } }
   .filter__btn .expand, .filter__btn .my-dropdown__expand, .filter__btn .checkbox-select__expand, .filter__btn .cell-details__expand {
     top: 1px;
     font-size: 10px; }
@@ -1078,36 +1123,41 @@ a:focus {
   margin-top: 30px; }
 
 modal {
-  position: fixed;
-  top: 20%;
-  z-index: 1000;
-  left: 10%;
-  right: 0;
-  bottom: 0;
-  width: 75%;
-  height: 0; }
+  /*position: fixed;
+	z-index: 1000;
+	left: 20%;
+	right: 20%;
+	top: 100px;
+	bottom: 0;
+	height: 100%;
+	overflow-y: auto;
+
+	.dialog {
+		height: auto;
+	}*/ }
 
 history {
-  position: fixed;
-  top: 20%;
-  z-index: 1000;
-  left: 10%;
-  right: 0;
-  bottom: 0;
-  width: 75%;
-  height: 0;
-  font-weight: normal !important;
-  font-size: 14px !important; }
+  /*position: fixed;
+	top: 25%;
+	left: 20%;
+	right: 20%;
+	bottom: 0;
+	font-weight: normal !important;
+	font-size: 14px !important;
+	height: 0;
+	z-index: 1000;*/ }
   history .history__content {
     text-align: left;
     font-size: 16px; }
-  history .dialog__entity {
-    text-align: left !important; }
-  history .dialog__key {
-    margin-right: 0 !important; }
-  history .dialog__value {
-    margin-left: 10px !important;
-    float: none !important; }
+  history .dialog {
+    height: auto; }
+    history .dialog__entity {
+      text-align: left !important; }
+    history .dialog__key {
+      margin-right: 0 !important; }
+    history .dialog__value {
+      margin-left: 10px !important;
+      float: none !important; }
 
 @media only screen and (max-width: 1530px), (min-device-width: 1530px) and (max-device-width: 1024px) {
   .grid-testing textarea {

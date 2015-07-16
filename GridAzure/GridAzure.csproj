@@ -219,6 +219,7 @@
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\directives\upload\upload.js" />
     <Content Include="app\grid-loading-controller.js" />
+    <Content Include="app\grid-menu-controller.js" />
     <Content Include="app\grid-standart-one-controller.js" />
     <Content Include="app\grid-standart-two-controller.js" />
     <Content Include="app\grid-testing-controller.js" />
@@ -2271,6 +2272,7 @@
     <Content Include="grid-with-details-template.html" />
     <Content Include="grid-standart-two.html" />
     <Content Include="grid-with-loading.html" />
+    <Content Include="grid-with-menu.html" />
     <Content Include="grid-with-upload.html" />
     <Content Include="index.html" />
     <Content Include="testing.html" />

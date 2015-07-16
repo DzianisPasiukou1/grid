@@ -15,7 +15,7 @@
 			right: 10px;
 
 			@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
-				top: 100px;
+				top: 97px;
 			}
 
 			&__options {
@@ -68,7 +68,6 @@
 	.ngViewport {
 		overflow-x: hidden;
 		border: 0;
-		/*height: 600px !important;*/
 	}
 
 	.ngCellText {

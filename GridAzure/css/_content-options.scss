@@ -6,14 +6,18 @@
 
 	@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
 		display: block;
-		float: left;
+		/*float: left;*/
+		&__block {
+			float: left;
+		}
 
 		&__filter {
 			display: table;
 			margin-top: 10px;
 			float: left;
 			position: relative;
-			margin-bottom: 3px;
+			margin-bottom: 7px;
+			clear: both;
 		}
 
 		&__show {
@@ -88,6 +92,10 @@
 	}
 
 	&__filter {
+		display: inline;
+	}
+
+	&__block {
 		display: inline;
 	}
 
