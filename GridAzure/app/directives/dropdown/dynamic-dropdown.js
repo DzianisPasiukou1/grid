@@ -11,141 +11,282 @@
 			},
 			templateUrl: templatesPath + 'dynamic-actions.html',
 			link: function (scope, element, attrs) {
-				var dynamic = function () {
-					scope.totalWidth = 20;
 
-					if (scope.dropdownOpt.isVisible) {
-						if (scope.dropdownOpt.label == scope.origOpt.label) {
-							scope.totalWidth += scope.dropdownOpt.actWidth;
-						}
-						else {
-							scope.totalWidth += scope.dropdownOpt.moreWidth;
+				var dynamic = function () {
+					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+						if (!scope.dynamicOpt.values[i].isVisible) {
+							scope.totalWidth += scope.dynamicOpt.values[i].width;
+							if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+								scope.totalWidth -= scope.dynamicOpt.values[i].width;
+								break;
+							}
+							else {
+								scope.dynamicOpt.values[i].toggleVisible(true);
+							}
 						}
 					}
 
-					scope.dynamicOpt.values.forEach(function (value) {
-						if (value.isVisible) {
-							scope.totalWidth += value.width;
-						}
-					});
+					scope.$apply();
 
+					if (scope.dropdownOpt.isVisible) {
+						if (scope.dropdownOpt.width === undefined) {
+							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						}
+						scope.totalWidth += scope.dropdownOpt.width;
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (!scope.dynamicOpt.values[i].isVisible) {
+								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
+									scope.dropdownOpt.values.push(scope.dynamicOpt.values[i]);
+								}
+							}
+							else {
+								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
+							}
+						}
+					}
+					else {
+						scope.totalWidth -= scope.dropdownOpt.width;
+					}
+
+					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
+							if (scope.dynamicOpt.values[i].isVisible) {
+								scope.dynamicOpt.values[i].toggleVisible(false);
+								scope.totalWidth -= scope.dynamicOpt.values[i].width;
+								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+									break;
+								}
+							}
+						}
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (!scope.dynamicOpt.values[i].isVisible) {
+								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
+									scope.dropdownOpt.values.push(scope.dynamicOpt.values[i]);
+								}
+							}
+							else {
+								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
+							}
+						}
+					}
+				}
+
+				var undynamic = function () {
+					for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
+						if (scope.dynamicOpt.values[i].isVisible) {
+							scope.dynamicOpt.values[i].toggleVisible(false);
+							scope.totalWidth -= scope.dynamicOpt.values[i].width;
+							if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+								break;
+							}
+						}
+					}
+
+					scope.$apply();
+
+					if (scope.dropdownOpt.isVisible) {
+						if (scope.dropdownOpt.width === undefined) {
+							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+						}
+						scope.totalWidth += scope.dropdownOpt.width;
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (!scope.dynamicOpt.values[i].isVisible) {
+								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
+									scope.dropdownOpt.values.push(scope.dynamicOpt.values[i]);
+								}
+							}
+							else {
+								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
+							}
+						}
+					}
+					else {
+						scope.totalWidth -= scope.dropdownOpt.width;
+					}
+
+					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
+							if (scope.dynamicOpt.values[i].isVisible) {
+								scope.dynamicOpt.values[i].toggleVisible(false);
+								scope.totalWidth -= scope.dynamicOpt.values[i].width;
+								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+									break;
+								}
+							}
+						}
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (!scope.dynamicOpt.values[i].isVisible) {
+								if (scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]) == -1) {
+									scope.dropdownOpt.values.push(scope.dynamicOpt.values[i]);
+								}
+							}
+							else {
+								scope.dropdownOpt.values.splice(scope.dropdownOpt.values.indexOf(scope.dynamicOpt.values[i]), 1);
+							}
+						}
+					}
+				}
+
+				scope.dynamicOpt = angular.copy(scope.origOpt);
+				scope.dropdownOpt = angular.copy(scope.origOpt);
+				scope.dropdownOpt.values = [];
+				scope.dropdownOpt.style = { "z-index": "-1" };
+
+				scope.dropdownOpt.isVisible = true;
+
+				for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+					scope.dynamicOpt.values[i].isVisible = true;
+					scope.dynamicOpt.values[i].toggleVisible = function (value) {
+						this.isVisible = value;
+					}
+				}
+
+				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+					scope.totalWidth = 20;
+					scope.offset = element.parent().offset();
+
+					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+						scope.dynamicOpt.values[i].width = element.find('.' + scope.dynamicOpt.values[i].label).width();
+						scope.totalWidth += scope.dynamicOpt.values[i].width;
+					}
+
+					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+						dynamic();
+					}
+					else {
+						undynamic();
+					}
+
+					var countVisible = 0;
+					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+						if (scope.dynamicOpt.values[i].isVisible) {
+							countVisible += 1;
+
+							if (countVisible > 2) {
+								countVisible -= 1;
+								scope.dynamicOpt.values[i].toggleVisible(false);
+							}
+						}
+					}
+
+					if (countVisible > 0) {
+						scope.dropdownOpt.label = "More";
+					}
+					else {
+						scope.dropdownOpt.label = "Actions";
+					}
+
+					scope.dropdownOpt.style = { "z-index": "9" };
+				});
+
+
+				$(window).resize(function () {
 					if (element.parent().offset().left != 0) {
 						scope.offset = element.parent().offset();
 					}
 
-					if (scope.offset) {
-						if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
-							scope.dynamicOpt.values.forEach(function (value) {
-								if (!value.isVisible) {
-									if (scope.dropdownOpt.label == scope.origOpt.label) {
-										if (scope.totalWidth + scope.offset.left + value.width - scope.dropdownOpt.actWidth + scope.dropdownOpt.moreWidth < $('body').prop('scrollWidth')) {
-											scope.totalWidth += value.width;
-											scope.totalWidth -= scope.dropdownOpt.actWidth;
-											scope.totalWidth += scope.dropdownOpt.moreWidth;
-											value.toggleVisible(true);
-										}
-									}
-									else {
-										if (scope.totalWidth + scope.offset.left + value.width < $('body').prop('scrollWidth')) {
-											scope.totalWidth += value.width;
-											value.toggleVisible(true);
-										}
-									}
-								}
-							})
+					scope.totalWidth = 20;
+
+					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+						if (scope.dynamicOpt.values[i].isVisible) {
+							scope.totalWidth += scope.dynamicOpt.values[i].width;
+						}
+					}
+
+					if (scope.dropdownOpt.isVisible) {
+						scope.totalWidth += scope.dropdownOpt.width;
+					}
+
+					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+						scope.dynamicOpt.values.sort(function (a, b) {
+							if (a.priority > b.priority) {
+								return -1;
+							}
+							if (a.priority < b.priority) {
+								return 1;
+							}
+
+							return 0;
+						});
+
+						var countVisible = 0;
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (scope.dynamicOpt.values[i].isVisible) {
+								scope.totalWidth -= scope.dynamicOpt.values[i].width;
+								scope.dynamicOpt.values[i].toggleVisible(false);
+							}
+
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+								scope.totalWidth += scope.dynamicOpt.values[i].width;
+								scope.dynamicOpt.values[i].toggleVisible(true);
+								countVisible += 1;
+							}
+
+							if (countVisible == 2) {
+								break;
+							}
+						}
+
+						if (countVisible > 0) {
+							scope.dropdownOpt.label = "More";
 						}
 						else {
+							scope.dropdownOpt.label = "Actions";
+						}
+					}
+					else {
+						scope.dynamicOpt.values.sort(function (a, b) {
+							if (a.priority > b.priority) {
+								return 1;
+							}
+							if (a.priority < b.priority) {
+								return -1;
+							}
 
-							for (var i = scope.dynamicOpt.values.length - 1; i > -1 ; i--) {
-								if (scope.dynamicOpt.values[i].isVisible) {
-									if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
-										scope.totalWidth -= value.width;
-										scope.dynamicOpt.values[i].toggleVisible(false);
-									}
+							return 0;
+						});
 
-								}
+						var countVisible = 0;
+
+						for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+							if (scope.dynamicOpt.values[i].isVisible) {
+								scope.totalWidth -= scope.dynamicOpt.values[i].width;
+								scope.dynamicOpt.values[i].toggleVisible(false);
+							}
+
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+								scope.totalWidth += scope.dynamicOpt.values[i].width;
+								scope.dynamicOpt.values[i].toggleVisible(true);
+								countVisible += 1;
+							}
+
+							if (countVisible == 2) {
+								break;
 							}
 						}
 
-						scope.$apply();
+						if (countVisible > 0) {
+							scope.dropdownOpt.label = "More";
+						}
+						else {
+							scope.dropdownOpt.label = "Actions";
+						}
 					}
-				};
 
-				scope.dropdownOpt = angular.copy(scope.origOpt);
-				scope.dropdownOpt.isVisible = true;
-				scope.dropdownOpt.style = { "z-index": -1 }
+					scope.dropdownOpt.values = [];
 
-				$timeout(function () {
-					scope.dropdownOpt.actWidth = element.parent().find('dropdown').width();
+					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
+						if (!scope.dynamicOpt.values[i].isVisible) {
+							scope.dropdownOpt.values.push(scope.dynamicOpt.values[i]);
+						}
+					}
 
-					scope.dropdownOpt.label = "More";
-
-					$timeout(function () {
-						scope.dropdownOpt.moreWidth = element.parent().find('dropdown').width();
-
-						scope.dynamicOpt = angular.copy(scope.origOpt);
-						scope.dynamicOpt.values.splice(2);
-
-						scope.dynamicOpt.values.forEach(function (value) {
-							this.isVisible = false;
-
-							value.toggleVisible = function (isVisible) {
-								this.isVisible = isVisible;
-
-								for (var i = 0; i < scope.dropdownOpt.values.length; i++) {
-									if (isVisible) {
-										if (scope.dropdownOpt.values[i].label == this.label) {
-											scope.dropdownOpt.values.splice(i, 1);
-
-											if (scope.dropdownOpt.values.length == scope.origOpt.values.length) {
-												scope.dropdownOpt.label = scope.origOpt.label;
-											}
-											else {
-												scope.dropdownOpt.label = 'More';
-											}
-											break;
-										}
-									}
-									else {
-										scope.dropdownOpt.values.push(this);
-
-										if (scope.dropdownOpt.values.length == scope.origOpt.values.length) {
-											scope.dropdownOpt.label = scope.origOpt.label;
-										}
-										else {
-											scope.dropdownOpt.label = 'More';
-										}
-										break;
-									}
-								}
-							}
-						});
-
-						scope.dynamicOpt.values.forEach(function (value) {
-							value.toggleVisible(true);
-						});
-
-						$timeout(function () {
-							for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
-								scope.dynamicOpt.values[i].width = element.find('.' + scope.dynamicOpt.values[i].label).width();
-							}
-
-							scope.dynamicOpt.values.forEach(function (value) {
-								value.toggleVisible(false);
-							});
-
-							dynamic();
-						});
-
-
-						$timeout(function () {
-							scope.dropdownOpt.style = { "z-index": 9 };
-						})
-					});
-				});
-
-				$(window).resize(function () {
-					dynamic();
+					scope.$apply()
 				});
 			}
 		}

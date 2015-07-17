@@ -10,5 +10,7 @@
 		$scope.select = function (action) {
 			$scope.actions.selected = action;
 			$scope.search = '';
+
+			$scope.close();
 		}
 	}]);

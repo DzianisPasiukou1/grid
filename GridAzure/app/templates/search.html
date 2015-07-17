@@ -1,8 +1,8 @@
 ﻿<div class="search">
 	<input type="search" ng-model="searchValue" />
-	<span class="search-span">
+	<span class="search-span icon-search" ng-show="edited">
 	</span>
-	<!--<span class="search-clear" ng-click="clear()">
-	</span>-->
+	<span class="search-clear icon-close" ng-click="clear()" ng-show="!edited">
+	</span>
 </div>
 

@@ -405,21 +405,37 @@
 
 			if (window.clipboardData && clipboardData.setData) {
 				clipboardData.setData('text', s);
+
+				if ($.cursorMessage) {
+					$.cursorMessage('Row is copied to clipboard.');
+				}
 			}
 			else {
-				$(row.clone.elm).append('<input id="holdtext"/>')
+				$(row.clone.elm).append('<input id="holdtext" unselectable="on" style="display: none"/>')
 
 				var elm = $("#holdtext");
 				elm.val(s);
 				elm.select();
 
-				document.execCommand('copy');
+				try {
+					document.execCommand('copy');
 
-				if ($.cursorMessage) {
-					$.cursorMessage('Row is copied to clipboard.');
+					if ($.cursorMessage) {
+						$.cursorMessage('Row is copied to clipboard.');
+					}
+
+				}
+				catch (e) {
+					if ($.cursorMessage) {
+						$.cursorMessage('Copied ended with error.', { backgroundColor: 'rgb(143, 59, 59)' });
+					}
+
+				}
+				finally {
+					elm.remove('#holdtext');
 				}
 
-				elm.remove('#holdtext');
+
 			};
 		}
 

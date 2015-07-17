@@ -3,7 +3,7 @@
 	height: 600px;
 
 	@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
-		top: 80px;
+		margin-top: 80px;
 	}
 
 	&__menu {
@@ -15,7 +15,7 @@
 			right: 10px;
 
 			@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
-				top: 97px;
+				top: 99px;
 			}
 
 			&__options {

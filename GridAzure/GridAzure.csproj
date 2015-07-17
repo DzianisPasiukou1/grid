@@ -1981,6 +1981,8 @@
     <Content Include="content\arrow_up.png" />
     <Content Include="content\clear.png" />
     <Content Include="content\close-icon.png" />
+    <Content Include="content\close.png" />
+    <Content Include="content\dialog_close.png" />
     <Content Include="content\ezimba_down.png" />
     <Content Include="content\ezimba_up.png" />
     <Content Include="content\filter.jpg" />

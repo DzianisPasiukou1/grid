@@ -6,7 +6,7 @@
 
 	@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
 		display: block;
-		/*float: left;*/
+
 		&__block {
 			float: left;
 		}
@@ -30,7 +30,7 @@
 				@extend .my-search;
 
 				.search-span {
-					top: 4px;
+					top: 6px;
 					right: 5px;
 				}
 

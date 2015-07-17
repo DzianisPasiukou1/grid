@@ -33,6 +33,11 @@
 			},
 			_showCursorMessage: function () {
 				$('.cursor-message').css({ top: ($.cursorMessageData.mouseY + $.cursorMessageData.options.offsetY + 30) + 'px', left: ($.cursorMessageData.mouseX + $.cursorMessageData.options.offsetX - 150) });
+
+				if ($.cursorMessageData.options.backgroundColor) {
+					$('.cursor-message').css({ 'background-color': $.cursorMessageData.options.backgroundColor });
+				}
+
 			}
 		});
 	})(jQuery);
