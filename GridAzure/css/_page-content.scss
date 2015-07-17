@@ -14,24 +14,28 @@
 	&__icon {
 		display: inline;
 
-
 		&__text {
-			@extend .icon-text2;
+			float: left;
+			font-size: 40px;
 		}
-
-		img {
+		/*img {
 			content: url(../content/text.png);
 			width: 44px;
 			height: 40px;
-		}
+		}*/
 	}
 
 	&__name {
 		display: inline;
+		float: left;
+		margin-top: 8px;
+		margin-right: 5px;
 	}
 
 	&__count {
 		display: inline;
+		float: left;
+		margin-top: 8px;
 	}
 
 	&__actions {

@@ -4,7 +4,7 @@
 	&__btn {
 		@extend .metro-btn;
 		display: inline;
-		padding-top: 5px;
+		/*padding-top: 5px;*/
 	}
 
 	&__check {
@@ -16,18 +16,25 @@
 	&__input-control {
 		@extend .input-control;
 		@extend .checkbox;
-
+		/*padding-top: 3.5px;*/
 		&__span {
 			@extend .check;
 			position: absolute;
 			display: inline;
+			top: 2px;
+
+			&:before {
+				/*top: 2px;*/
+			}
 		}
 	}
 
 
 	&__expand {
 		display: inline;
-		margin-left: 8px;
+		margin-left: 5px;
+		top: 3.5px;
+
 		@extend .expand;
 	}
 

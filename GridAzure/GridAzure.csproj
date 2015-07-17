@@ -187,6 +187,7 @@
     <Content Include="app\directives\dropdown\dropdown-controller.js" />
     <Content Include="app\directives\dropdown\dropdown.js" />
     <Content Include="app\directives\dropdown\dynamic-dropdown.js" />
+    <Content Include="app\directives\dropdown\dynamic-options.js" />
     <Content Include="app\directives\filter\filter-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list-controller.js" />
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
@@ -320,6 +321,8 @@
     <Content Include="app\templates\upload.html" />
     <Content Include="app\grid-upload-controller.js" />
     <Content Include="app\constants\content-constants.js" />
+    <Content Include="bower_components\angular-cookie\angular-cookie.js" />
+    <Content Include="bower_components\angular-cookie\angular-cookie.min.js" />
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -1814,6 +1817,9 @@
     <Content Include="bower_components\angular-i18n\zh.js" />
     <Content Include="bower_components\angular-i18n\zu-za.js" />
     <Content Include="bower_components\angular-i18n\zu.js" />
+    <Content Include="bower_components\angular-route\angular-route.js" />
+    <Content Include="bower_components\angular-route\angular-route.min.js" />
+    <Content Include="bower_components\angular-route\index.js" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.js" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.min.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
@@ -1985,7 +1991,7 @@
     <Content Include="content\noun_25367_cc.png" />
     <Content Include="content\text.png" />
     <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="css\fonts\text.svg" />
+    <Content Include="css\fonts\icomoon.svg" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
@@ -2262,10 +2268,21 @@
     <Content Include="css\_modal.scss" />
     <Content Include="css\_history.scss" />
     <Content Include="css\common\_icons.scss" />
-    <Content Include="css\fonts\text.eot" />
-    <Content Include="css\fonts\text.ttf" />
-    <Content Include="css\fonts\text.woff" />
     <Content Include="css\_dynamic-actions.scss" />
+    <Content Include="bower_components\angular-cookie\.bower.json" />
+    <Content Include="bower_components\angular-cookie\bower.json" />
+    <Content Include="bower_components\angular-cookie\package.json" />
+    <Content Include="bower_components\angular-cookie\angular-cookie.min.js.map">
+      <DependentUpon>angular-cookie.min.js</DependentUpon>
+    </Content>
+    <Content Include="bower_components\angular-route\.bower.json" />
+    <Content Include="bower_components\angular-route\angular-route.min.js.map" />
+    <Content Include="bower_components\angular-route\bower.json" />
+    <Content Include="bower_components\angular-route\package.json" />
+    <Content Include="bower_components\angular-route\README.md" />
+    <Content Include="css\fonts\icomoon.eot" />
+    <Content Include="css\fonts\icomoon.ttf" />
+    <Content Include="css\fonts\icomoon.woff" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

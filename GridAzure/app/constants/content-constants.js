@@ -45,7 +45,7 @@
 		rowActions: {
 			options: {
 				label: 'Actions',
-				values: [{ label: 'Edit', isEdit: true }, { label: 'Copy', isCopy: true }, { label: 'History', isHistory: true }, { label: 'Delete', isDelete: true }],
+				values: [{ label: 'Edit', isEdit: true, priority: 4 }, { label: 'Copy', isCopy: true, priority: 3 }, { label: 'History', isHistory: true, priority: 2 }, { label: 'Delete', isDelete: true, priority: 1 }],
 				isMenu: true
 			},
 			isShow: false

@@ -21,5 +21,6 @@
 			</div>
 			<a ng-click="select(action)" ng-if="!options.isCheckbox">{{action.label}}</a>
 		</li>
+		<button ng-if="options.withSave" ng-click="options.onSave()" class="my-dropdown__save">Save</button>
 	</ul>
 </div>

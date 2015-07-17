@@ -14,7 +14,7 @@
 		&__filter {
 			display: table;
 			margin-top: 10px;
-			float: left;
+			float: right;
 			position: relative;
 			margin-bottom: 7px;
 			clear: both;
@@ -55,7 +55,7 @@
 
 		&__more {
 			display: inline-block;
-			padding-right: 100px;
+			margin-right: 100px;
 		}
 	}
 

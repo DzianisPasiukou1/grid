@@ -10,6 +10,10 @@
 
 				$scope.resize(action);
 			},
+			withSave: false,
+			onSave: function () {
+
+			},
 			callback: function (action) {
 				//if (action) {
 				//	for (var i = $scope.columns.length - 2; i > 0 ; i--) {
