@@ -163,12 +163,16 @@ button::-moz-focus-inner {
   margin: 0.15625rem 0;
   position: relative;
   color: #787878;
-  font-weight: 500; }
+  font-weight: 500;
+  transition: all linear 0.2s; }
   .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
     border-color: #787878; }
   .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
-    box-shadow: 0 2px 0 #787878;
-    transform: translateY(3px); }
+    /*box-shadow: 0 2px 0 #787878;
+		transform: translateY(3px);*/
+    background: #eeeeee;
+    color: #262626;
+    box-shadow: none; }
 
 .metro-checkbox .input-control.checkbox, .my-dropdown__list__check .input-control.checkbox, .checkbox-select__check .input-control.checkbox, .cell-details__check .input-control.checkbox, .metro-checkbox .my-dropdown__list__input-control, .my-dropdown__list__check .my-dropdown__list__input-control, .checkbox-select__check .my-dropdown__list__input-control, .cell-details__check .my-dropdown__list__input-control, .metro-checkbox .checkbox-select__input-control, .my-dropdown__list__check .checkbox-select__input-control, .checkbox-select__check .checkbox-select__input-control, .cell-details__check .checkbox-select__input-control, .metro-checkbox .cell-details__input, .my-dropdown__list__check .cell-details__input, .checkbox-select__check .cell-details__input, .cell-details__check .cell-details__input {
   line-height: 1.875rem;
@@ -193,7 +197,7 @@ button::-moz-focus-inner {
   padding: 0;
   position: relative;
   display: inline-block;
-  vertical-align: middle; }
+  /*vertical-align: middle;*/ }
 .metro-checkbox .input-control.checkbox.text-left .check, .my-dropdown__list__check .input-control.checkbox.text-left .check, .checkbox-select__check .input-control.checkbox.text-left .check, .cell-details__check .input-control.checkbox.text-left .check, .metro-checkbox .text-left.my-dropdown__list__input-control .check, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .check, .checkbox-select__check .text-left.my-dropdown__list__input-control .check, .cell-details__check .text-left.my-dropdown__list__input-control .check, .metro-checkbox .text-left.checkbox-select__input-control .check, .my-dropdown__list__check .text-left.checkbox-select__input-control .check, .checkbox-select__check .text-left.checkbox-select__input-control .check, .cell-details__check .text-left.checkbox-select__input-control .check, .metro-checkbox .text-left.cell-details__input .check, .my-dropdown__list__check .text-left.cell-details__input .check, .checkbox-select__check .text-left.cell-details__input .check, .cell-details__check .text-left.cell-details__input .check, .metro-checkbox .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .my-dropdown__list__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .checkbox-select__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .cell-details__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .metro-checkbox .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .cell-details__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .metro-checkbox .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .cell-details__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .metro-checkbox .text-left.cell-details__input .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .cell-details__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .metro-checkbox .input-control.checkbox.text-left .checkbox-select__input-control__span, .my-dropdown__list__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .cell-details__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .metro-checkbox .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .checkbox-select__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .cell-details__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .metro-checkbox .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .checkbox-select__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .cell-details__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .metro-checkbox .text-left.cell-details__input .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.cell-details__input .checkbox-select__input-control__span, .checkbox-select__check .text-left.cell-details__input .checkbox-select__input-control__span, .cell-details__check .text-left.cell-details__input .checkbox-select__input-control__span, .metro-checkbox .input-control.checkbox.text-left .cell-details__input__check, .my-dropdown__list__check .input-control.checkbox.text-left .cell-details__input__check, .checkbox-select__check .input-control.checkbox.text-left .cell-details__input__check, .cell-details__check .input-control.checkbox.text-left .cell-details__input__check, .metro-checkbox .text-left.my-dropdown__list__input-control .cell-details__input__check, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .checkbox-select__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .cell-details__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .metro-checkbox .text-left.checkbox-select__input-control .cell-details__input__check, .my-dropdown__list__check .text-left.checkbox-select__input-control .cell-details__input__check, .checkbox-select__check .text-left.checkbox-select__input-control .cell-details__input__check, .cell-details__check .text-left.checkbox-select__input-control .cell-details__input__check, .metro-checkbox .text-left.cell-details__input .cell-details__input__check, .my-dropdown__list__check .text-left.cell-details__input .cell-details__input__check, .checkbox-select__check .text-left.cell-details__input .cell-details__input__check, .cell-details__check .text-left.cell-details__input .cell-details__input__check {
   margin: 0 0 0 0.3125rem; }
 .metro-checkbox .input-control.checkbox .check:focus, .my-dropdown__list__check .input-control.checkbox .check:focus, .checkbox-select__check .input-control.checkbox .check:focus, .cell-details__check .input-control.checkbox .check:focus, .metro-checkbox .my-dropdown__list__input-control .check:focus, .my-dropdown__list__check .my-dropdown__list__input-control .check:focus, .checkbox-select__check .my-dropdown__list__input-control .check:focus, .cell-details__check .my-dropdown__list__input-control .check:focus, .metro-checkbox .checkbox-select__input-control .check:focus, .my-dropdown__list__check .checkbox-select__input-control .check:focus, .checkbox-select__check .checkbox-select__input-control .check:focus, .cell-details__check .checkbox-select__input-control .check:focus, .metro-checkbox .cell-details__input .check:focus, .my-dropdown__list__check .cell-details__input .check:focus, .checkbox-select__check .cell-details__input .check:focus, .cell-details__check .cell-details__input .check:focus, .metro-checkbox .input-control.checkbox .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .checkbox-select__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .cell-details__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .metro-checkbox .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .checkbox-select__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .cell-details__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .metro-checkbox .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .checkbox-select__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .cell-details__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .metro-checkbox .cell-details__input .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .cell-details__input .my-dropdown__list__input-control__span:focus, .checkbox-select__check .cell-details__input .my-dropdown__list__input-control__span:focus, .cell-details__check .cell-details__input .my-dropdown__list__input-control__span:focus, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span:focus, .my-dropdown__list__check .input-control.checkbox .checkbox-select__input-control__span:focus, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span:focus, .cell-details__check .input-control.checkbox .checkbox-select__input-control__span:focus, .metro-checkbox .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .my-dropdown__list__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .checkbox-select__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .cell-details__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span:focus, .my-dropdown__list__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .cell-details__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .metro-checkbox .cell-details__input .checkbox-select__input-control__span:focus, .my-dropdown__list__check .cell-details__input .checkbox-select__input-control__span:focus, .checkbox-select__check .cell-details__input .checkbox-select__input-control__span:focus, .cell-details__check .cell-details__input .checkbox-select__input-control__span:focus, .metro-checkbox .input-control.checkbox .cell-details__input__check:focus, .my-dropdown__list__check .input-control.checkbox .cell-details__input__check:focus, .checkbox-select__check .input-control.checkbox .cell-details__input__check:focus, .cell-details__check .input-control.checkbox .cell-details__input__check:focus, .metro-checkbox .my-dropdown__list__input-control .cell-details__input__check:focus, .my-dropdown__list__check .my-dropdown__list__input-control .cell-details__input__check:focus, .checkbox-select__check .my-dropdown__list__input-control .cell-details__input__check:focus, .cell-details__check .my-dropdown__list__input-control .cell-details__input__check:focus, .metro-checkbox .checkbox-select__input-control .cell-details__input__check:focus, .my-dropdown__list__check .checkbox-select__input-control .cell-details__input__check:focus, .checkbox-select__check .checkbox-select__input-control .cell-details__input__check:focus, .cell-details__check .checkbox-select__input-control .cell-details__input__check:focus, .metro-checkbox .cell-details__input .cell-details__input__check:focus, .my-dropdown__list__check .cell-details__input .cell-details__input__check:focus, .checkbox-select__check .cell-details__input .cell-details__input__check:focus, .cell-details__check .cell-details__input .cell-details__input__check:focus {
@@ -442,19 +446,24 @@ button::-moz-focus-inner {
 .checkbox-select {
   display: inline; }
   .checkbox-select__btn {
-    display: inline; }
+    display: inline;
+    padding-left: 35px; }
   .checkbox-select__check {
     margin-left: 0 !important;
     display: inline;
     position: relative;
-    bottom: 3px; }
+    bottom: 3px;
+    left: 30px;
+    z-index: 100; }
   .checkbox-select__input-control__span {
     position: absolute;
     display: inline;
-    top: 5px; }
+    top: 10px; }
   .checkbox-select__expand {
     position: relative;
-    top: 7px; }
+    /*top: 7px;*/ }
+  .checkbox-select__list {
+    left: 17px; }
 
 .tabs {
   overflow: hidden;
@@ -814,9 +823,7 @@ button::-moz-focus-inner {
   font-size: 20px;
   font-weight: bold; }
 .cell-details__check {
-  position: absolute;
-  display: inline;
-  left: 35px; }
+  padding-top: 3px; }
 
 .details-template {
   position: absolute;
@@ -1041,7 +1048,8 @@ button::-moz-focus-inner {
     background-color: #5a5a5a;
     border-right: 1px solid #e5e5e5; }
   .custom-grid .column {
-    text-align: center; }
+    text-align: center;
+    /*padding-right: 20px;*/ }
     .custom-grid .column__sort {
       width: 100%; }
     .custom-grid .column__name {
@@ -1049,6 +1057,8 @@ button::-moz-focus-inner {
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden; }
+      .custom-grid .column__name__span {
+        width: auto; }
     .custom-grid .column__sort-down {
       z-index: 10000;
       display: inline;
@@ -1069,7 +1079,7 @@ button::-moz-focus-inner {
 .options {
   padding-top: 10px;
   padding-bottom: 7px;
-  margin-left: 25px;
+  margin-left: 4px;
   padding-right: 10px; }
   @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
     .options {

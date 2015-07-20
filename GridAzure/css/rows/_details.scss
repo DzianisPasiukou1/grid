@@ -10,9 +10,7 @@
 
 	&__check {
 		@extend .metro-checkbox;
-		position: absolute;
-		display: inline;
-		left: 35px;
+		padding-top: 3px;
 	}
 
 	&__input {

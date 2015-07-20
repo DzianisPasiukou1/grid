@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('details', ['$compile', function ($compile) {
+	.directive('details', ['$compile', '$timeout', function ($compile, $timeout) {
 		return {
 			restict: 'A',
 			scope: {
@@ -7,7 +7,6 @@
 				detailsClass: '='
 			},
 			link: function (scope, element, attrs) {
-
 				element.click(function () {
 					scope.row.orig.actions.isToggle = !scope.row.orig.actions.isToggle;
 

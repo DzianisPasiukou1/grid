@@ -4,6 +4,7 @@
 	&__btn {
 		@extend .metro-btn;
 		display: inline;
+		padding-left:35px;
 	}
 
 	&__check {
@@ -12,6 +13,8 @@
 		display: inline;
 		position: relative;
 		bottom: 3px;
+		left: 30px;
+		z-index: 100;
 	}
 
 	&__input-control {
@@ -22,7 +25,7 @@
 			@extend .check;
 			position: absolute;
 			display: inline;
-			top: 5px;
+			top: 10px;
 		}
 	}
 
@@ -30,10 +33,11 @@
 	&__expand {
 		@extend .expand;
 		position: relative;
-		top: 7px;
+		/*top: 7px;*/
 	}
 
 	&__list {
 		@extend .my-dropdown__list;
+		left: 17px;
 	}
 }

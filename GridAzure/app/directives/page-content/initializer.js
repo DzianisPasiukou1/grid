@@ -172,6 +172,14 @@
 			this.scope.gridOptions.rowCheckAction = this.content.rowCheckAction;
 		}
 
+		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
+			this.scope.gridOptions.beforeSelectionChange = function (row, event) {
+				//this.scope.gridOptions.selectAll()
+
+				return false;
+			}.bind(this);
+		}
+
 		this.scope.pluginActionOpt = {
 			values: this.scope.gridOptions.rowActions,
 			detailsTemplate: this.scope.gridOptions.detailsTemplate,

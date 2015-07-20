@@ -12,6 +12,7 @@
 
 		var recalcForData = function () {
 			setTimeout(function () {
+
 				self.grid.rowCache.forEach(function (row) {
 					if (row) {
 						row.actions = angular.copy(self.opts);
@@ -24,6 +25,17 @@
 						row.actions.historyRow = historyRow;
 						row.actions.history = [];
 						row.actions.tab = 2;
+						row.actions.select = function (row) {
+							row.elm.addClass('selected');
+
+							self.grid.rowCache.forEach(function (row) {
+								if (row.actions.isSelect) {
+									row.actions.isSelect = false;
+								}
+							});
+
+							this.isSelect = true;
+						}
 
 						if (row.actions.values.options.callback === undefined) {
 							row.actions.values.options.callback = function (action) {
@@ -118,7 +130,14 @@
 					hash += self.scope.renderedRows[idx].$$hashKey;
 
 					if (self.scope.renderedRows[idx].orig.actions) {
-						self.scope.renderedRows[idx].orig.actions.values.isShow = self.scope.renderedRows[idx].selected;
+						if (self.scope.renderedRows[idx].orig.actions.isSelect) {
+							self.scope.renderedRows[idx].elm.addClass('selected');
+							self.scope.renderedRows[idx].orig.actions.values.isShow = true;
+						}
+						else {
+							self.scope.renderedRows[idx].elm.removeClass('selected');
+							self.scope.renderedRows[idx].orig.actions.values.isShow = false;
+						}
 					}
 				}
 				return hash;

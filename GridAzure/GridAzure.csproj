@@ -2266,6 +2266,7 @@
     <Content Include="css\fonts\icomoon.eot" />
     <Content Include="css\fonts\icomoon.ttf" />
     <Content Include="css\fonts\icomoon.woff" />
+    <Content Include="css\common\_opened.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

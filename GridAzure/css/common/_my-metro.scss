@@ -16,14 +16,18 @@
 	position: relative;
 	color: #787878;
 	font-weight: 500;
+	transition: all linear 0.2s;
 
 	&:hover {
 		border-color: #787878;
 	}
 
 	&:active {
-		box-shadow: 0 2px 0 #787878;
-		transform: translateY(3px);
+		/*box-shadow: 0 2px 0 #787878;
+		transform: translateY(3px);*/
+		background: #eeeeee;
+		color: #262626;
+		box-shadow: none;
 	}
 }
 
@@ -57,7 +61,7 @@
 		padding: 0;
 		position: relative;
 		display: inline-block;
-		vertical-align: middle;
+		/*vertical-align: middle;*/
 	}
 
 	.input-control.checkbox.text-left .check {

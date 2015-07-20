@@ -59,6 +59,7 @@ angular.module('gridTaskApp')
 		}
 
 		$scope.select = function (action) {
+			$scope.isShow = false;
 			$scope.options.selected = action;
 
 			if (action.isAll) {
@@ -71,6 +72,10 @@ angular.module('gridTaskApp')
 			if ($scope.options.callback) {
 				$scope.options.callback(action);
 			}
+		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
 		}
 
 		$scope.checked = function (value) {
@@ -94,6 +99,11 @@ angular.module('gridTaskApp')
 			if ($scope.options.callback) {
 				$scope.options.callback($scope.options.selected);
 			}
+
+			$scope.isShow = false;
+			setTimeout(function () {
+				$scope.$apply();
+			});
 		};
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
@@ -107,18 +117,15 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
-				element.find('ul').hide();
 				element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
 
-				element.click(function () {
-					if (element.find('ul').is(':visible')) {
-						element.find('ul').hide();
+				scope.$watch('isShow', function (value) {
+					if (!value) {
 						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
 						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
 						element.find('.checkbox-select__btn').removeClass('opened');
 					}
 					else {
-						element.find('ul').show();
 						element.find('.checkbox-select__expand').removeClass(scope.options.hideClass);
 						element.find('.checkbox-select__expand').addClass(scope.options.showClass);
 						element.find('.checkbox-select__btn').addClass('opened');
@@ -127,7 +134,7 @@ angular.module('gridTaskApp')
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
-						element.find('ul').hide();
+						scope.isShow = false;
 						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
 						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
 						element.find('checkbox-select__btn').removeClass('opened');
@@ -257,7 +264,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/details/details.js
 angular.module('gridTaskApp')
-	.directive('details', ['$compile', function ($compile) {
+	.directive('details', ['$compile', '$timeout', function ($compile, $timeout) {
 		return {
 			restict: 'A',
 			scope: {
@@ -265,7 +272,6 @@ angular.module('gridTaskApp')
 				detailsClass: '='
 			},
 			link: function (scope, element, attrs) {
-
 				element.click(function () {
 					scope.row.orig.actions.isToggle = !scope.row.orig.actions.isToggle;
 
@@ -1613,6 +1619,14 @@ var Initializer = (function () {
 			this.scope.gridOptions.rowCheckAction = this.content.rowCheckAction;
 		}
 
+		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
+			this.scope.gridOptions.beforeSelectionChange = function (row, event) {
+				//this.scope.gridOptions.selectAll()
+
+				return false;
+			}.bind(this);
+		}
+
 		this.scope.pluginActionOpt = {
 			values: this.scope.gridOptions.rowActions,
 			detailsTemplate: this.scope.gridOptions.detailsTemplate,
@@ -1738,6 +1752,7 @@ function ngGridActionsPlugin(opts, compile) {
 
 		var recalcForData = function () {
 			setTimeout(function () {
+
 				self.grid.rowCache.forEach(function (row) {
 					if (row) {
 						row.actions = angular.copy(self.opts);
@@ -1750,6 +1765,17 @@ function ngGridActionsPlugin(opts, compile) {
 						row.actions.historyRow = historyRow;
 						row.actions.history = [];
 						row.actions.tab = 2;
+						row.actions.select = function (row) {
+							row.elm.addClass('selected');
+
+							self.grid.rowCache.forEach(function (row) {
+								if (row.actions.isSelect) {
+									row.actions.isSelect = false;
+								}
+							});
+
+							this.isSelect = true;
+						}
 
 						if (row.actions.values.options.callback === undefined) {
 							row.actions.values.options.callback = function (action) {
@@ -1844,7 +1870,14 @@ function ngGridActionsPlugin(opts, compile) {
 					hash += self.scope.renderedRows[idx].$$hashKey;
 
 					if (self.scope.renderedRows[idx].orig.actions) {
-						self.scope.renderedRows[idx].orig.actions.values.isShow = self.scope.renderedRows[idx].selected;
+						if (self.scope.renderedRows[idx].orig.actions.isSelect) {
+							self.scope.renderedRows[idx].elm.addClass('selected');
+							self.scope.renderedRows[idx].orig.actions.values.isShow = true;
+						}
+						else {
+							self.scope.renderedRows[idx].elm.removeClass('selected');
+							self.scope.renderedRows[idx].orig.actions.values.isShow = false;
+						}
 					}
 				}
 				return hash;

@@ -12,6 +12,7 @@
 		}
 
 		$scope.select = function (action) {
+			$scope.isShow = false;
 			$scope.options.selected = action;
 
 			if (action.isAll) {
@@ -24,6 +25,10 @@
 			if ($scope.options.callback) {
 				$scope.options.callback(action);
 			}
+		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
 		}
 
 		$scope.checked = function (value) {
@@ -47,5 +52,10 @@
 			if ($scope.options.callback) {
 				$scope.options.callback($scope.options.selected);
 			}
+
+			$scope.isShow = false;
+			setTimeout(function () {
+				$scope.$apply();
+			});
 		};
 	}]);
