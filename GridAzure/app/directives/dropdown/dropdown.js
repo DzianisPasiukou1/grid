@@ -9,18 +9,20 @@
 			templateUrl: templatesPath + 'dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass(scope.options.hideClass);
+				element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass(scope.options.hideClass);
-						element.find('span').removeClass(scope.options.showClass);
+						element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
+						element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
+						element.find('.my-dropdown__btn').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('span').removeClass(scope.options.hideClass);
-						element.find('span').addClass(scope.options.showClass);
+						element.find('.my-dropdown__expand').removeClass(scope.options.hideClass);
+						element.find('.my-dropdown__expand').addClass(scope.options.showClass);
+						element.find('.my-dropdown__btn').addClass('opened');
 					}
 				});
 
@@ -28,8 +30,9 @@
 					if (element.find('ul').is(':visible')) {
 						if (!$(event.target).closest(element).length) {
 							element.find('ul').hide();
-							element.find('span').addClass(scope.options.hideClass);
-							element.find('span').removeClass(scope.options.showClass);
+							element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
+							element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
+							element.find('.my-dropdown__btn').removeClass('opened');
 						}
 					}
 				})

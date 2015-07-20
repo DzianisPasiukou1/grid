@@ -1,10 +1,10 @@
 ﻿angular.module('gridTaskApp')
-	.controller('dropdownCtrl', ['$scope', function ($scope) {
+	.controller('dropdownCtrl', ['$scope', 'classes', function ($scope, classes) {
 		if (!$scope.options.showClass) {
-			$scope.options.showClass = 'glyphicon-menu-up'
+			$scope.options.showClass = classes.menuUp;
 		}
 		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = 'glyphicon-menu-down'
+			$scope.options.hideClass = classes.menuDown;
 		}
 
 		if (!$scope.options.isMenu) {

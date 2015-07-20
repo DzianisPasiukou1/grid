@@ -1,11 +1,11 @@
 ﻿<div class="my-dropdown">
 	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu">
-		{{options.label}}{{options.selected.label}}
-		<span class="my-dropdown__expand glyphicon"></span>
+		<span class="my-dropdown__text">{{options.label}}{{options.selected.label}}</span>
+		<span class="my-dropdown__expand"></span>
 	</button>
 	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu">
-		{{options.label}}
-		<span class="my-dropdown__expand glyphicon"></span>
+		<span class="my-dropdown__text">{{options.label}}</span>
+		<span class="my-dropdown__expand"></span>
 	</button>
 
 	<ul class="my-dropdown__list">

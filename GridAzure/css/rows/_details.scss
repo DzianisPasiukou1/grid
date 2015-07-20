@@ -3,9 +3,9 @@
 	&__expand {
 		@extend .expand;
 		float: left;
-		top: 4px;
 		margin-left: 10px;
-		font-size: 14px;
+		font-size: 20px;
+		font-weight: bold;
 	}
 
 	&__check {

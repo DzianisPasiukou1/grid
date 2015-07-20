@@ -10,6 +10,8 @@
 		@extend .metro-checkbox;
 		margin-left: 0 !important;
 		display: inline;
+		position: relative;
+		bottom: 3px;
 	}
 
 	&__input-control {
@@ -20,17 +22,15 @@
 			@extend .check;
 			position: absolute;
 			display: inline;
-			top: 2px;
+			top: 5px;
 		}
 	}
 
 
 	&__expand {
-		display: inline;
-		margin-left: 5px;
-		top: 3.5px;
-
 		@extend .expand;
+		position: relative;
+		top: 7px;
 	}
 
 	&__list {

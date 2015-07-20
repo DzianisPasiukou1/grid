@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\constants\class-constant.js" />
     <Content Include="app\custom-grid.js">
       <DependentUpon>custom-grid.js.bundle</DependentUpon>
     </Content>
@@ -1977,22 +1978,6 @@
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.js" />
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.min.js" />
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.swf" />
-    <Content Include="content\arrow_down.png" />
-    <Content Include="content\arrow_up.png" />
-    <Content Include="content\clear.png" />
-    <Content Include="content\close-icon.png" />
-    <Content Include="content\close.png" />
-    <Content Include="content\dialog_close.png" />
-    <Content Include="content\ezimba_down.png" />
-    <Content Include="content\ezimba_up.png" />
-    <Content Include="content\filter.jpg" />
-    <Content Include="content\icons\search.png" />
-    <Content Include="content\icons\less.ico" />
-    <Content Include="content\icons\more.ico" />
-    <Content Include="content\clear-main.png" />
-    <Content Include="content\noun_25367_cc.png" />
-    <Content Include="content\text.png" />
-    <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="css\fonts\icomoon.svg" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
@@ -2246,10 +2231,6 @@
       <DependentUpon>custom-grid.min.js</DependentUpon>
     </Content>
     <Content Include="css\common\_common.scss" />
-    <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="docs\grid.docx" />
     <Content Include="css\common\_my-textarea.scss" />
     <Content Include="css\_grid-testing.scss" />

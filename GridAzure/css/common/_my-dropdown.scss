@@ -5,6 +5,11 @@
 		@extend .metro-btn;
 	}
 
+	&__text {
+		position: relative;
+		bottom: 1px;
+	}
+
 	&__expand {
 		@extend .expand;
 	}

@@ -2,6 +2,7 @@
 angular.module('gridTaskApp', ['ngGrid'])
 	.value('templatesPath', 'app/templates/')
 	.value('jsonPath', 'data/');
+
 ///#source 1 1 /app/directives/page-content/page-content.js
 angular.module('gridTaskApp')
 	.directive('pageContent', ['templatesPath', '$compile', 'content', function (templatesPath, $compile, content) {
@@ -45,12 +46,12 @@ angular.module('gridTaskApp')
 	 });
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
-	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
+	.controller('checkboxSelectCtrl', ['$scope', 'classes', function ($scope, classes) {
 		if (!$scope.options.showClass) {
-			$scope.options.showClass = 'glyphicon-menu-up'
+			$scope.options.showClass = classes.menuUp;
 		}
 		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = 'glyphicon-menu-down'
+			$scope.options.hideClass = classes.menuDown;
 		}
 
 		if ($scope.options.selected === undefined) {
@@ -107,26 +108,29 @@ angular.module('gridTaskApp')
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass(scope.options.hideClass);
+				element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.glyphicon').addClass(scope.options.hideClass);
-						element.find('.glyphicon').removeClass(scope.options.showClass);
+						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
+						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
+						element.find('.checkbox-select__btn').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('.glyphicon').removeClass(scope.options.hideClass);
-						element.find('.glyphicon').addClass(scope.options.showClass);
+						element.find('.checkbox-select__expand').removeClass(scope.options.hideClass);
+						element.find('.checkbox-select__expand').addClass(scope.options.showClass);
+						element.find('.checkbox-select__btn').addClass('opened');
 					}
 				});
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('.glyphicon').addClass(scope.options.hideClass);
-						element.find('.glyphicon').removeClass(scope.options.showClass);
+						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
+						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
+						element.find('checkbox-select__btn').removeClass('opened');
 					}
 				})
 
@@ -273,12 +277,12 @@ angular.module('gridTaskApp')
 
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
-	.controller('dropdownCtrl', ['$scope', function ($scope) {
+	.controller('dropdownCtrl', ['$scope', 'classes', function ($scope, classes) {
 		if (!$scope.options.showClass) {
-			$scope.options.showClass = 'glyphicon-menu-up'
+			$scope.options.showClass = classes.menuUp;
 		}
 		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = 'glyphicon-menu-down'
+			$scope.options.hideClass = classes.menuDown;
 		}
 
 		if (!$scope.options.isMenu) {
@@ -312,18 +316,20 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass(scope.options.hideClass);
+				element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass(scope.options.hideClass);
-						element.find('span').removeClass(scope.options.showClass);
+						element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
+						element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
+						element.find('.my-dropdown__btn').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('span').removeClass(scope.options.hideClass);
-						element.find('span').addClass(scope.options.showClass);
+						element.find('.my-dropdown__expand').removeClass(scope.options.hideClass);
+						element.find('.my-dropdown__expand').addClass(scope.options.showClass);
+						element.find('.my-dropdown__btn').addClass('opened');
 					}
 				});
 
@@ -331,8 +337,9 @@ angular.module('gridTaskApp')
 					if (element.find('ul').is(':visible')) {
 						if (!$(event.target).closest(element).length) {
 							element.find('ul').hide();
-							element.find('span').addClass(scope.options.hideClass);
-							element.find('span').removeClass(scope.options.showClass);
+							element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
+							element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
+							element.find('.my-dropdown__btn').removeClass('opened');
 						}
 					}
 				})
@@ -362,7 +369,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/filter/filter.js
 angular.module('gridTaskApp')
-	.directive('filter', ['templatesPath', function (templatesPath) {
+	.directive('filter', ['templatesPath', 'classes', function (templatesPath, classes) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -380,23 +387,24 @@ angular.module('gridTaskApp')
 					}
 				})
 
-				element.find('span.expand').addClass('glyphicon-menu-down');
+				element.find('span.expand').addClass(classes.menuDown);
 
 				scope.$watch('listState', function (value) {
 					if (value) {
 						element.addClass('filter-selected');
-						element.find('span.expand').removeClass('glyphicon-menu-down');
-						element.find('span.expand').addClass('glyphicon-menu-up');
+						element.find('span.expand').removeClass(classes.menuDown);
+						element.find('span.expand').addClass(classes.menuUp);
 					}
 					else {
 						element.removeClass('filter-selected');
-						element.find('span.expand').addClass('glyphicon-menu-down');
-						element.find('span.expand').removeClass('glyphicon-menu-up');
+						element.find('span.expand').addClass(classes.menuDown);
+						element.find('span.expand').removeClass(classes.menuUp);
 					}
 				});
 			}
 		}
 	}]);
+
 ///#source 1 1 /app/directives/filter/filter-list/filter-list-controller.js
 angular.module('gridTaskApp')
 	.controller('filterListCtrl', ['$scope', function ($scope) {
@@ -749,7 +757,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/split-button/split-button.js
 angular.module('gridTaskApp')
-	.directive('splitButton', ['templatesPath', function (templatesPath) {
+	.directive('splitButton', ['templatesPath', 'classes', function (templatesPath, classes) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -761,34 +769,38 @@ angular.module('gridTaskApp')
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('span').addClass('glyphicon-menu-down');
+				element.find('.expand').addClass(classes.menuDown);
 
 				scope.toggle = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('.expand').addClass(classes.menuDown);
+						element.find('.expand').removeClass(classes.menuUp);
+						element.find('.split-btn__toggle').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('span').removeClass('glyphicon-menu-down');
-						element.find('span').addClass('glyphicon-menu-up');
+						element.find('.expand').removeClass(classes.menuDown);
+						element.find('.expand').addClass(classes.menuUp);
+						element.find('.split-btn__toggle').addClass('opened');
 					}
 				}
 
 				scope.close = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('.expand').addClass(classes.menuDown);
+						element.find('.expand').removeClass(classes.menuUp);
+						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				}
 
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('span').addClass('glyphicon-menu-down');
-						element.find('span').removeClass('glyphicon-menu-up');
+						element.find('.expand').addClass(classes.menuDown);
+						element.find('.expand').removeClass(classes.menuUp);
+						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				})
 			}
@@ -2699,3 +2711,9 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/constants/class-constant.js
+angular.module('gridTaskApp')
+	.constant("classes", {
+		menuDown: 'icon-menu-down',
+		menuUp: 'icon-menu-up'
+	});
