@@ -211,8 +211,8 @@ button::-moz-focus-inner {
   height: 0.3125rem;
   width: 0.565rem;
   background-color: transparent;
-  border-left: 1.5px solid;
-  border-bottom: 1.5px solid;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
   border-color: transparent;
   left: 50%;
   top: 60%;
@@ -337,7 +337,7 @@ button::-moz-focus-inner {
     cursor: default;
     vertical-align: middle;
     height: 46px;
-    font: 600 1.8rem/1.1 "Segoe UI", "Open Sans", serif;
+    font: 600 18px/0.9 "Segoe UI", "Open Sans", serif;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

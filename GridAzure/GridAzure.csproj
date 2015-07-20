@@ -183,6 +183,8 @@
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\constants\grid-constants.js" />
     <Content Include="app\directives\custom-grid\row-check\row-check.js" />
+    <Content Include="app\directives\grid-sort\grid-sort-controller.js" />
+    <Content Include="app\directives\grid-sort\grid-sort.js" />
     <Content Include="app\directives\details\details.js" />
     <Content Include="app\directives\details\details-template.js" />
     <Content Include="app\directives\dropdown\dropdown-controller.js" />

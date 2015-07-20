@@ -430,7 +430,7 @@
 				}
 			}
 			else {
-				$(row.clone.elm).append('<input id="holdtext" unselectable="on" style="display: none"/>')
+				$(row.clone.elm).append('<input id="holdtext" style="display: none"/>')
 
 				var elm = $("#holdtext");
 				elm.val(s);
@@ -453,8 +453,6 @@
 				finally {
 					elm.remove('#holdtext');
 				}
-
-
 			};
 		}
 

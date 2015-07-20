@@ -1,6 +1,7 @@
 ﻿<div class="column" ng-style="{'cursor': col.cursor}" ng-class="{ 'ngSorted': !noSortVisible }" ng-class="{ 'ngSorted': !noSortVisible }">
 	<div class="column__sort" ng-click="col.sort($event)" ng-style="{'height': col.headerRowHeight}">
 		<div class="column__name" ng-style="{'height': col.headerRowHeight}">
+			<!--<div grid-sort word-class="'column__name__span'" icons-classes="['column__sort-down', 'column__sort-up']">-->
 			<span class="column__name__span">{{col.displayName}}</span>
 			<div class="column__sort-down" ng-show="col.showSortButtonDown()">
 				<span class="icon-arrow-down"></span>
@@ -8,6 +9,7 @@
 			<div class="column__sort-up" ng-show="col.showSortButtonUp()">
 				<span class="icon-arrow-up"></span>
 			</div>
+			<!--</div>-->
 		</div>
 	</div>
 </div>
