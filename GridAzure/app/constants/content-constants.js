@@ -28,7 +28,7 @@
 		views: {
 			options: {
 				label: 'View: ',
-				values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
+				values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }, { label: 'Ui grid', isUiGrid: true }],
 				callback: function (action) {
 				}
 			}

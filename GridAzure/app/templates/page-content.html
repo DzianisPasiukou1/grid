@@ -2,7 +2,6 @@
 	<div class="page-content__header">
 		<div class="page-content__icon">
 			<span class="page-content__icon__text icon-text2"></span>
-			<!--<img />-->
 		</div>
 		<div class="page-content__name">
 			{{grid.name}}
@@ -20,7 +19,8 @@
 			<content-options options="contentOptions"></content-options>
 		</div>
 		<div class="page-content__list">
-			<custom-grid grid-data="data" export-to="exports.options.selected" ng-show="views.options.selected.isGrid" grid-options="gridOptions"></custom-grid>
+			<custom-grid grid-data="data" export-to="exports.options.selected" ng-if="views.options.selected.isGrid" grid-options="gridOptions"></custom-grid>
+			<custom-ui-grid grid-data="data" ng-if="views.options.selected.isUiGrid" grid-options="gridOptions"></custom-ui-grid>
 		</div>
 	</div>
 	<div class="page-content__footer">

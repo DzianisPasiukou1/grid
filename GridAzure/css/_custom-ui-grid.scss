@@ -1,0 +1,93 @@
+﻿.custom-ui-grid {
+	padding: 0;
+	height: 600px;
+	width: 1900px;
+
+	.ui-grid-header-cell-row {
+		background-color: #5a5a5a;
+		border-right: 1px solid #e5e5e5;
+		color: #a8a8a8;
+		font-size: 13px;
+		text-decoration: none;
+		height: 40px;
+		line-height: 18px;
+		overflow: hidden !important;
+	}
+
+	.ui-grid-header-canvas {
+		background-color: #5a5a5a;
+	}
+
+	.ui-grid-header-cell {
+		border-radius: 1px;
+		box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
+		text-transform: uppercase;
+		border-right: 0;
+	}
+
+	.ui-grid-cell-contents {
+		text-align: center;
+		margin-top: 6px;
+	}
+
+	.ui-grid-viewport {
+		overflow-x: hidden !important;
+		border: 0;
+	}
+
+	.ui-grid-canvas {
+		padding-top: 0;
+	}
+
+	.ui-grid-row {
+		line-height: 1.6em;
+		vertical-align: middle;
+		color: #444444;
+		font-size: 14px;
+		font-family: Arial, Helvetica, sans-serif;
+		display: inline-block;
+
+		&-selected {
+			.ui-grid-cell {
+				background-color: rgb(149,207,235) !important;
+				font-weight: bold;
+			}
+		}
+
+		&-checked {
+			.ui-grid-cell {
+				background-color: rgb(233, 245, 251);
+			}
+		}
+
+		&-toggle {
+			.ui-grid-cell {
+				background-color: rgb(238, 238, 238);
+			}
+		}
+	}
+
+	.ui-grid-cell {
+		/*text-align: center;
+		background-color: initial;
+		overflow: visible !important;
+		position: absolute;
+		padding-top: 20px;
+		vertical-align: middle;
+		display: block;*/
+		border-right: 0;
+		background: white !important;
+		border-bottom: 1px solid #e5e5e5;
+		text-align: center;
+		padding-top: 7px;
+	}
+
+	.cell-details {
+		padding-top: 10px;
+	}
+
+	.grid-footer {
+		height: 30px;
+		background-color: #5a5a5a;
+	}
+}

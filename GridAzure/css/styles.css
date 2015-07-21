@@ -337,7 +337,7 @@ button::-moz-focus-inner {
     cursor: default;
     vertical-align: middle;
     height: 46px;
-    font: 600 18px/0.9 "Segoe UI", "Open Sans", serif;
+    font: 600 18px/1 "Segoe UI", "Open Sans", serif;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1035,7 +1035,6 @@ button::-moz-focus-inner {
     color: #444444;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6em;
     display: inline-block; }
     .custom-grid .ngRow.selected {
       background-color: #95cfeb !important;
@@ -1208,6 +1207,67 @@ button::-moz-focus-inner {
 
 .page {
   margin-top: 30px; }
+
+.custom-ui-grid {
+  padding: 0;
+  height: 600px;
+  width: 1900px; }
+  .custom-ui-grid .ui-grid-header-cell-row {
+    background-color: #5a5a5a;
+    border-right: 1px solid #e5e5e5;
+    color: #a8a8a8;
+    font-size: 13px;
+    text-decoration: none;
+    height: 40px;
+    line-height: 18px;
+    overflow: hidden !important; }
+  .custom-ui-grid .ui-grid-header-canvas {
+    background-color: #5a5a5a; }
+  .custom-ui-grid .ui-grid-header-cell {
+    border-radius: 1px;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    border-right: 0; }
+  .custom-ui-grid .ui-grid-cell-contents {
+    text-align: center;
+    margin-top: 6px; }
+  .custom-ui-grid .ui-grid-viewport {
+    overflow-x: hidden !important;
+    border: 0; }
+  .custom-ui-grid .ui-grid-canvas {
+    padding-top: 0; }
+  .custom-ui-grid .ui-grid-row {
+    line-height: 1.6em;
+    vertical-align: middle;
+    color: #444444;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block; }
+    .custom-ui-grid .ui-grid-row-selected .ui-grid-cell {
+      background-color: #95cfeb !important;
+      font-weight: bold; }
+    .custom-ui-grid .ui-grid-row-checked .ui-grid-cell {
+      background-color: #e9f5fb; }
+    .custom-ui-grid .ui-grid-row-toggle .ui-grid-cell {
+      background-color: #eeeeee; }
+  .custom-ui-grid .ui-grid-cell {
+    /*text-align: center;
+		background-color: initial;
+		overflow: visible !important;
+		position: absolute;
+		padding-top: 20px;
+		vertical-align: middle;
+		display: block;*/
+    border-right: 0;
+    background: white !important;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    padding-top: 7px; }
+  .custom-ui-grid .cell-details {
+    padding-top: 10px; }
+  .custom-ui-grid .grid-footer {
+    height: 30px;
+    background-color: #5a5a5a; }
 
 modal {
   /*position: fixed;

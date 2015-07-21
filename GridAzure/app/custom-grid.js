@@ -1,5 +1,5 @@
 ﻿///#source 1 1 /app/app.js
-angular.module('gridTaskApp', ['ngGrid'])
+angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection'])
 	.value('templatesPath', 'app/templates/')
 	.value('jsonPath', 'data/');
 
@@ -1368,7 +1368,7 @@ angular.module('gridTaskApp')
 		views: {
 			options: {
 				label: 'View: ',
-				values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }],
+				values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }, { label: 'Ui grid', isUiGrid: true }],
 				callback: function (action) {
 				}
 			}
@@ -1891,6 +1891,10 @@ function ngGridActionsPlugin(opts, compile) {
 				if (self.scope.renderedRows[idx].orig.actions.isToggle) {
 
 					if (!self.scope.renderedRows[idx].elm.hasClass('toggle')) {
+
+						if (idx != self.scope.renderedRows.length - 1) {
+
+						}
 						refreshToggle(self.scope.renderedRows[idx], self.scope.rowHeight, self.scope.step, getDetailsTemplate(self.scope.toggleRow.actions.detailsTemplate, self.scope.toggleRow.actions.detailsCondition, self.scope.toggleRow.entity, self.scope.toggleRow.rowIndex));
 					}
 

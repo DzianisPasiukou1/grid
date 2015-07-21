@@ -182,6 +182,7 @@
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\constants\grid-constants.js" />
+    <Content Include="app\directives\custom-grid\custom-ui-grid.js" />
     <Content Include="app\directives\custom-grid\row-check\row-check.js" />
     <Content Include="app\directives\grid-sort\grid-sort-controller.js" />
     <Content Include="app\directives\grid-sort\grid-sort.js" />
@@ -252,6 +253,7 @@
     <Content Include="app\templates\custom-grid.min.html">
       <DependentUpon>custom-grid.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\custom-ui-grid.html" />
     <Content Include="app\templates\details-templates\details-example1.html" />
     <Content Include="app\templates\details-templates\details-example2.html" />
     <Content Include="app\templates\details-templates\details-upload.html" />
@@ -1823,6 +1825,11 @@
     <Content Include="bower_components\angular-route\angular-route.js" />
     <Content Include="bower_components\angular-route\angular-route.min.js" />
     <Content Include="bower_components\angular-route\index.js" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.css" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.js" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.min.css" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.min.js" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.svg" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.js" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.min.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
@@ -2269,6 +2276,13 @@
     <Content Include="css\fonts\icomoon.ttf" />
     <Content Include="css\fonts\icomoon.woff" />
     <Content Include="css\common\_opened.scss" />
+    <Content Include="bower_components\angular-ui-grid\.bower.json" />
+    <Content Include="bower_components\angular-ui-grid\bower.json" />
+    <Content Include="bower_components\angular-ui-grid\README.md" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.eot" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.ttf" />
+    <Content Include="bower_components\angular-ui-grid\ui-grid.woff" />
+    <Content Include="css\_custom-ui-grid.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />
