@@ -1,5 +1,5 @@
 ﻿///#source 1 1 /app/app.js
-angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection'])
+angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable'])
 	.value('templatesPath', 'app/templates/')
 	.value('jsonPath', 'data/');
 
@@ -1368,7 +1368,7 @@ angular.module('gridTaskApp')
 		views: {
 			options: {
 				label: 'View: ',
-				values: [{ label: 'Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }, { label: 'Ui grid', isUiGrid: true }],
+				values: [{ label: 'Ng Grid', isGrid: true, isTiles: false }, { label: 'Tiles', isGrid: false, isTiles: true }, { label: 'UI Grid', isUiGrid: true }],
 				callback: function (action) {
 				}
 			}

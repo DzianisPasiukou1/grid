@@ -1,0 +1,9 @@
+﻿<div class="cell-details">
+	<span class="cell-details__expand" details row="row" details-class="'toggle'" ng-class="{'icon-menu-down' : !row.actions.isToggle, 'icon-menu-up': row.actions.isToggle}"></span>
+	<div class="cell-details__check">
+		<label class="cell-details__input">
+			<input type="checkbox" ng-model="row.orig.actions.isCheck" ng-change="row.actions.setCheck(row)" />
+			<span class="cell-details__input__check"></span>
+		</label>
+	</div>
+</div>

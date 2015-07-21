@@ -1211,7 +1211,7 @@ button::-moz-focus-inner {
 .custom-ui-grid {
   padding: 0;
   height: 600px;
-  width: 1900px; }
+  width: 100%; }
   .custom-ui-grid .ui-grid-header-cell-row {
     background-color: #5a5a5a;
     border-right: 1px solid #e5e5e5;
@@ -1219,8 +1219,7 @@ button::-moz-focus-inner {
     font-size: 13px;
     text-decoration: none;
     height: 40px;
-    line-height: 18px;
-    overflow: hidden !important; }
+    line-height: 18px; }
   .custom-ui-grid .ui-grid-header-canvas {
     background-color: #5a5a5a; }
   .custom-ui-grid .ui-grid-header-cell {
@@ -1241,8 +1240,7 @@ button::-moz-focus-inner {
     vertical-align: middle;
     color: #444444;
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    display: inline-block; }
+    font-family: Arial, Helvetica, sans-serif; }
     .custom-ui-grid .ui-grid-row-selected .ui-grid-cell {
       background-color: #95cfeb !important;
       font-weight: bold; }
@@ -1251,23 +1249,25 @@ button::-moz-focus-inner {
     .custom-ui-grid .ui-grid-row-toggle .ui-grid-cell {
       background-color: #eeeeee; }
   .custom-ui-grid .ui-grid-cell {
-    /*text-align: center;
-		background-color: initial;
-		overflow: visible !important;
-		position: absolute;
-		padding-top: 20px;
-		vertical-align: middle;
-		display: block;*/
     border-right: 0;
     background: white !important;
     border-bottom: 1px solid #e5e5e5;
     text-align: center;
-    padding-top: 7px; }
+    padding-top: 7px;
+    overflow: visible;
+    cursor: pointer; }
   .custom-ui-grid .cell-details {
     padding-top: 10px; }
   .custom-ui-grid .grid-footer {
     height: 30px;
     background-color: #5a5a5a; }
+  .custom-ui-grid .action {
+    position: relative;
+    top: 5px;
+    left: 10px; }
+  .custom-ui-grid .details-template {
+    position: relative;
+    border: 0; }
 
 modal {
   /*position: fixed;

@@ -1,48 +1,33 @@
-﻿<!--<div class="my-details">
-	<div class="my_details__header">
+﻿<div class="details-template">
+	<ul>
+		<li ng-class="{active:row.actions.tab===1}">
+			<label ng-click="row.actions.tab = 1">Overview</label>
+		</li>
+		<li ng-class="{active:row.actions.tab===2}">
+			<label ng-click="row.actions.tab = 2">Details Information</label>
+		</li>
+	</ul>
+	<div class="content">
+		<div class="overview" ng-show="row.actions.tab === 1">
+			<div class="headers">
+				<span class="header-row">Overview:</span>
 
-	</div>
-	<div class="my-details__content">
-	</div>
-</div>-->
-<ul>
-	<li ng-class="{active:toggleRow.actions.tab===1}">
-		<label ng-click="toggleRow.actions.tab = 1">Overview</label>
-	</li>
-	<li ng-class="{active:toggleRow.actions.tab===2}">
-		<label ng-click="toggleRow.actions.tab = 2">Details Information</label>
-	</li>
-</ul>
-<div class="content">
-	<div class="overview" ng-show="toggleRow.actions.tab === 1">
-		<div class="headers">
-			<span class="header-row">Overview:</span>
-
+			</div>
+			<div class="props">
+				<span>  Campaign, Refer</span>
+			</div>
 		</div>
-		<div class="props">
-			<span>  Campaign, Refer</span>
-		</div>
-	</div>
-	<div class="details-information" ng-show="toggleRow.actions.tab === 2">
-		<div class="headers">
-			<span class="header-row">Attributes:</span>
-			<span class="header-row">Created:</span>
-			<span class="header-row">Last Modified:</span>
-		</div>
-		<div class="props">
-			<span>  Campaign, Refer</span>
-			<span>  Demo User, 2015-03-03</span>
-			<span>  Victoria Rabinovich, 2015-03-03</span>
+		<div class="details-information" ng-show="row.actions.tab === 2">
+			<div class="headers">
+				<span class="header-row">Attributes:</span>
+				<span class="header-row">Created:</span>
+				<span class="header-row">Last Modified:</span>
+			</div>
+			<div class="props">
+				<span>  Campaign, Refer</span>
+				<span>  Demo User, 2015-03-03</span>
+				<span>  Victoria Rabinovich, 2015-03-03</span>
+			</div>
 		</div>
 	</div>
 </div>
-
-<!--Created: Victoria Rabinovich
-<hr />
-		Last Updated: ...
-<hr />
-		Input
-<br />
-<input />
-<br />
-<br />-->
