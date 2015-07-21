@@ -164,14 +164,14 @@ button::-moz-focus-inner {
   position: relative;
   color: #787878;
   font-weight: 500;
-  transition: all linear 0.2s; }
+  /*transition: all linear 0.1s;*/ }
   .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
     border-color: #787878; }
   .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
     /*box-shadow: 0 2px 0 #787878;
 		transform: translateY(3px);*/
-    background: #eeeeee;
-    color: #262626;
+    background: #5a5a5a;
+    color: white;
     box-shadow: none; }
 
 .metro-checkbox .input-control.checkbox, .my-dropdown__list__check .input-control.checkbox, .checkbox-select__check .input-control.checkbox, .cell-details__check .input-control.checkbox, .metro-checkbox .my-dropdown__list__input-control, .my-dropdown__list__check .my-dropdown__list__input-control, .checkbox-select__check .my-dropdown__list__input-control, .cell-details__check .my-dropdown__list__input-control, .metro-checkbox .checkbox-select__input-control, .my-dropdown__list__check .checkbox-select__input-control, .checkbox-select__check .checkbox-select__input-control, .cell-details__check .checkbox-select__input-control, .metro-checkbox .cell-details__input, .my-dropdown__list__check .cell-details__input, .checkbox-select__check .cell-details__input, .cell-details__check .cell-details__input {
