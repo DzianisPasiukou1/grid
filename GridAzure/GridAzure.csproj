@@ -185,6 +185,7 @@
     <Content Include="app\directives\custom-grid\custom-ui-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-ui-grid.js" />
     <Content Include="app\directives\custom-grid\row-check\row-check.js" />
+    <Content Include="app\directives\custom-grid\ui-grid-menu.js" />
     <Content Include="app\directives\grid-sort\grid-sort-controller.js" />
     <Content Include="app\directives\grid-sort\grid-sort.js" />
     <Content Include="app\directives\details\details.js" />
@@ -324,11 +325,13 @@
     <Content Include="app\templates\trend-slider.min.html">
       <DependentUpon>trend-slider.html</DependentUpon>
     </Content>
+    <Content Include="app\templates\ui-grid-menu.html" />
     <Content Include="app\templates\ui-grid-templates\cell-templates\action.html" />
     <Content Include="app\templates\ui-grid-templates\cell-templates\action.min.html">
       <DependentUpon>action.html</DependentUpon>
     </Content>
     <Content Include="app\templates\ui-grid-templates\cell-templates\details-cell.html" />
+    <Content Include="app\templates\ui-grid-templates\row.html" />
     <Content Include="app\templates\upload.html" />
     <Content Include="app\grid-upload-controller.js" />
     <Content Include="app\constants\content-constants.js" />

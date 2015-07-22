@@ -120,9 +120,10 @@
 				}
 			},
 			gridFooterTemplate: '<div class="grid-footer"></div>',
+			headerTemplate: templatesPath + 'ui-grid-templates/header.html',
 			columnDefs: [
 				{
-					field: 'details', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details-cell.html', sortable: false, width: 60, minWidth: 60, enableFiltering: false,
+					field: 'details', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details-cell.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
 					cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
 						if (row.isChecked) {
 							return 'checked';
@@ -222,7 +223,7 @@
 					}
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', sortable: false, width: 250, minWidth: 115, enableFiltering: false,
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
 					cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
 						if (row.isChecked) {
 							return 'checked';
@@ -350,4 +351,65 @@
 			var history = $('history');
 			$compile(history)($scope);
 		}
+
+		$scope.$watch('data', function (data) {
+			var columns = [];
+
+			columns.push({
+				field: 'details', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details-cell.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
+				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
+					if (row.isChecked) {
+						return 'checked';
+					}
+					else if (row.isExpanded) {
+						return 'expanded';
+					}
+				}
+			});
+
+			if (data[0]) {
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].isColumn) {
+						return;
+					}
+				}
+
+				for (var field in data[0]) {
+
+					if (field == '$$hashKey') {
+						continue;
+					}
+
+					columns.push({
+						field: field,
+						displayName: field,
+						enableFiltering: false,
+						minWidth: 80,
+						headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header-cell-template.html',
+						cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
+							if (row.isChecked) {
+								return 'checked';
+							}
+							else if (row.isExpanded) {
+								return 'expanded';
+							}
+						}
+					})
+				}
+			}
+
+			columns.push({
+				field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
+				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
+					if (row.isChecked) {
+						return 'checked';
+					}
+					else if (row.isExpanded) {
+						return 'expanded';
+					}
+				}
+			});
+
+			$scope.opt2.columnDefs = columns;
+		});
 	}]);

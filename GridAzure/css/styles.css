@@ -1294,7 +1294,8 @@ button::-moz-focus-inner {
   .custom-ui-grid .action {
     position: relative;
     top: 5px;
-    left: 10px; }
+    left: 10px;
+    text-align: left; }
   .custom-ui-grid .details-template {
     position: relative;
     border: 0; }

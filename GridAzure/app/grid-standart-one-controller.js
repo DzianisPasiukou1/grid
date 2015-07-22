@@ -18,7 +18,7 @@
 
 				$scope.grid.count = $scope.data.length;
 			},
-			isDynamic: true,
+			withUpload: true,
 			filtrate: function (value) {
 				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
 			},
@@ -43,7 +43,6 @@
 
 			},
 			showResponsMenu: true,
-			reInit: false,
 			columnDefs: [
 				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
 			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'row-templates/date.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 140 },
