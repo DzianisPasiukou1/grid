@@ -29,6 +29,10 @@
 						scope.grid.count = scope.data.length;
 					}
 				});
+
+				scope.$watch('views.options.selected', function () {
+					initializer.refreshOpt();
+				})
 			}
 		}
 	}]);

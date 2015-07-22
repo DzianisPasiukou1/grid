@@ -331,6 +331,8 @@
       <DependentUpon>action.html</DependentUpon>
     </Content>
     <Content Include="app\templates\ui-grid-templates\cell-templates\details-cell.html" />
+    <Content Include="app\templates\ui-grid-templates\cell-templates\header-cell-template.html" />
+    <Content Include="app\templates\ui-grid-templates\header.html" />
     <Content Include="app\templates\ui-grid-templates\row.html" />
     <Content Include="app\templates\upload.html" />
     <Content Include="app\grid-upload-controller.js" />

@@ -1029,7 +1029,7 @@ button::-moz-focus-inner {
     display: block; }
   .custom-grid .ngRow {
     background: white;
-    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
     line-height: 1.6em;
     vertical-align: middle;
     color: #444444;
@@ -1236,8 +1236,6 @@ button::-moz-focus-inner {
   .custom-ui-grid .ui-grid-viewport {
     overflow-x: hidden !important;
     border: 0; }
-  .custom-ui-grid .ui-grid-canvas {
-    padding-top: 0; }
   .custom-ui-grid .ui-grid-row {
     line-height: 1.6em;
     vertical-align: middle;
@@ -1247,7 +1245,7 @@ button::-moz-focus-inner {
   .custom-ui-grid .ui-grid-cell {
     border-right: 0;
     background: white !important;
-    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
     text-align: center;
     padding-top: 7px;
     overflow: visible;

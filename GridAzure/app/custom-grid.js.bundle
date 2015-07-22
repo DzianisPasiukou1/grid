@@ -67,5 +67,8 @@
 		<file>/app/constants/class-constant.js</file>
 		<file>/app/directives/grid-sort/grid-sort.js</file>
 		<file>/app/directives/grid-sort/grid-sort-controller.js</file>
+		<file>/app/directives/custom-grid/custom-ui-grid.js</file>
+		<file>/app/directives/custom-grid/custom-ui-grid-controller.js</file>
+		<file>/app/directives/custom-grid/ui-grid-menu.js</file>
 	</files>
 </bundle>
