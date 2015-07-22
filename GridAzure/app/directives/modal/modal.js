@@ -4,9 +4,7 @@
 			restrict: 'E',
 			templateUrl: templatesPath + 'modal.html',
 			scope: {
-				entities: '=renderedRows',
-				rowIndex: '=',
-				isModal: '='
+				value: '='
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {

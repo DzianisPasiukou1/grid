@@ -2246,7 +2246,9 @@ function ngGridActionsPlugin(opts, compile) {
 				$('modal').remove();
 			}
 
-			$('body').append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			self.scope.rowEditing = row;
+
+			$('body').append('<modal value="rowEditing"></modal>');
 			var modal = $('modal');
 			self.compile(modal)(self.scope);
 		}
@@ -2257,7 +2259,9 @@ function ngGridActionsPlugin(opts, compile) {
 				$('history').remove();
 			}
 
-			$('body').append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			self.scope.rowHistoried = row;
+
+			$('body').append('<history value="rowHistoried.actions.history"></history>');
 			var history = $('history');
 			self.compile(history)(self.scope);
 		}
@@ -2322,9 +2326,7 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			templateUrl: templatesPath + 'modal.html',
 			scope: {
-				entities: '=renderedRows',
-				rowIndex: '=',
-				isModal: '='
+				value: '='
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {
@@ -2358,25 +2360,22 @@ angular.module('gridTaskApp')
 
 		$scope.myEntity = {};
 
-		for (var i = 0; i < $scope.entities.length; i++) {
-			if ($scope.entities[i].rowIndex == $scope.rowIndex) {
-				$scope.myEntity = angular.copy($scope.entities[i].entity);
-				$scope.entityIndex = i;
-			}
-		}
+		$scope.myEntity = angular.copy($scope.value.entity);
 
 		$scope.save = function () {
-			if (!Array.isArray($scope.entities[$scope.entityIndex].orig.actions.history)) {
-				$scope.entities[$scope.entityIndex].orig.actions.history = [];
+			if (!Array.isArray($scope.value.actions.history)) {
+				$scope.value.actions.history = [];
 			}
 
-			$scope.entities[$scope.entityIndex].orig.actions.history.push({
+			$scope.value.actions.history.push({
 				dateChange: new Date(),
-				oldObj: $scope.entities[$scope.entityIndex].entity,
-				newObj: $scope.myEntity
+				oldObj: angular.copy($scope.value.entity),
+				newObj: angular.copy($scope.myEntity)
 			})
 
-			$scope.entities[$scope.entityIndex].entity = $scope.myEntity;
+			for (var field in $scope.myEntity) {
+				$scope.value.entity[field] = $scope.myEntity[field];
+			}
 
 			$scope.close();
 		};
@@ -2392,15 +2391,6 @@ angular.module('gridTaskApp')
 	.controller('historyCtrl', ['$scope', function ($scope) {
 		$scope.isModal = true;
 
-		if (Array.isArray($scope.entities)) {
-			for (var i = 0; i < $scope.entities.length; i++) {
-				if ($scope.entities[i].rowIndex == $scope.rowIndex) {
-					$scope.history = angular.copy($scope.entities[i].orig.actions.history);
-					$scope.entityIndex = i;
-				}
-			}
-		}
-
 		$scope.close = function () {
 			$scope.isModal = false;
 		};
@@ -2413,8 +2403,7 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'history.html',
 			controller: 'historyCtrl',
 			scope: {
-				entities: '=renderedRows',
-				rowIndex: '='
+				history: '=value'
 			},
 			link: function (scope, element, attrs) {
 				scope.$watch('isModal', function (value) {

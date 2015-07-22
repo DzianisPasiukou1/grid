@@ -506,7 +506,9 @@
 				$('modal').remove();
 			}
 
-			$('body').append('<modal rendered-rows="renderedRows" row-index=' + row.rowIndex + '></modal>');
+			self.scope.rowEditing = row;
+
+			$('body').append('<modal value="rowEditing"></modal>');
 			var modal = $('modal');
 			self.compile(modal)(self.scope);
 		}
@@ -517,7 +519,9 @@
 				$('history').remove();
 			}
 
-			$('body').append('<history rendered-rows="renderedRows" row-index=' + row.rowIndex + '></history>');
+			self.scope.rowHistoried = row;
+
+			$('body').append('<history value="rowHistoried.actions.history"></history>');
 			var history = $('history');
 			self.compile(history)(self.scope);
 		}

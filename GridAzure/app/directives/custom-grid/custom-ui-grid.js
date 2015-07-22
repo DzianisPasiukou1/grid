@@ -4,7 +4,8 @@
 			restrict: 'E',
 			scope: {
 				data: '=gridData',
-				options: '=gridOptions'
+				options: '=gridOptions',
+				contentOptions: '='
 			},
 			controller: 'customUiGridCtrl',
 			templateUrl: templatesPath + 'custom-ui-grid.html',

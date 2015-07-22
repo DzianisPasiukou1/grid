@@ -42,7 +42,7 @@
 			selectItem: function (itemIndex, state) {
 
 			},
-			showResponsMenu: false,
+			showResponsMenu: true,
 			reInit: false,
 			columnDefs: [
 				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },

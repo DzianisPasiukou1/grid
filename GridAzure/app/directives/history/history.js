@@ -5,8 +5,7 @@
 			templateUrl: templatesPath + 'history.html',
 			controller: 'historyCtrl',
 			scope: {
-				entities: '=renderedRows',
-				rowIndex: '='
+				history: '=value'
 			},
 			link: function (scope, element, attrs) {
 				scope.$watch('isModal', function (value) {

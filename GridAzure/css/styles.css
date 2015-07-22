@@ -146,7 +146,7 @@ button::-moz-focus-inner {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa; }
 
-.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
+.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -165,9 +165,9 @@ button::-moz-focus-inner {
   color: #787878;
   font-weight: 500;
   /*transition: all linear 0.1s;*/ }
-  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
     /*box-shadow: 0 2px 0 #787878;
 		transform: translateY(3px);*/
     background: #5a5a5a;
@@ -1212,6 +1212,9 @@ button::-moz-focus-inner {
   padding: 0;
   height: 600px;
   width: 100%; }
+  @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+    .custom-ui-grid {
+      margin-top: 80px; } }
   .custom-ui-grid .ui-grid-header-cell-row {
     background-color: #5a5a5a;
     border-right: 1px solid #e5e5e5;
@@ -1241,13 +1244,6 @@ button::-moz-focus-inner {
     color: #444444;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif; }
-    .custom-ui-grid .ui-grid-row-selected .ui-grid-cell {
-      background-color: #95cfeb !important;
-      font-weight: bold; }
-    .custom-ui-grid .ui-grid-row-checked .ui-grid-cell {
-      background-color: #e9f5fb; }
-    .custom-ui-grid .ui-grid-row-toggle .ui-grid-cell {
-      background-color: #eeeeee; }
   .custom-ui-grid .ui-grid-cell {
     border-right: 0;
     background: white !important;
@@ -1256,6 +1252,40 @@ button::-moz-focus-inner {
     padding-top: 7px;
     overflow: visible;
     cursor: pointer; }
+    .custom-ui-grid .ui-grid-cell.checked {
+      background-color: #e9f5fb !important; }
+    .custom-ui-grid .ui-grid-cell.expanded {
+      background-color: #eeeeee !important; }
+    .custom-ui-grid .ui-grid-cell.selected {
+      background-color: #95cfeb !important;
+      font-weight: bold; }
+  .custom-ui-grid .ui-grid-menu-button {
+    position: absolute;
+    top: 3px;
+    z-index: 100;
+    right: 17px;
+    border-color: black;
+    background: #5a5a5a;
+    padding: 0 5px !important;
+    color: #787878; }
+    .custom-ui-grid .ui-grid-menu-button:hover {
+      border-color: black; }
+    .custom-ui-grid .ui-grid-menu-button:active {
+      background: #5a5a5a;
+      color: #787878 !important;
+      box-shadow: inset !important; }
+    .custom-ui-grid .ui-grid-menu-button .ui-grid-menu {
+      padding: 15px 0 !important; }
+    .custom-ui-grid .ui-grid-menu-button .ui-grid-icon-menu {
+      position: relative;
+      top: 5px;
+      right: -2px; }
+    .custom-ui-grid .ui-grid-menu-button .ui-grid-menu-mid {
+      overflow: visible !important; }
+    .custom-ui-grid .ui-grid-menu-button .ui-grid-menu-item {
+      text-align: left;
+      text-transform: capitalize;
+      background: white !important; }
   .custom-ui-grid .cell-details {
     padding-top: 10px; }
   .custom-ui-grid .grid-footer {

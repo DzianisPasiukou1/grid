@@ -3,6 +3,10 @@
 	height: 600px;
 	width: 100%;
 
+	@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+		margin-top: 80px;
+	}
+
 	.ui-grid-header-cell-row {
 		background-color: #5a5a5a;
 		border-right: 1px solid #e5e5e5;
@@ -44,25 +48,6 @@
 		color: #444444;
 		font-size: 14px;
 		font-family: Arial, Helvetica, sans-serif;
-
-		&-selected {
-			.ui-grid-cell {
-				background-color: rgb(149,207,235) !important;
-				font-weight: bold;
-			}
-		}
-
-		&-checked {
-			.ui-grid-cell {
-				background-color: rgb(233, 245, 251);
-			}
-		}
-
-		&-toggle {
-			.ui-grid-cell {
-				background-color: rgb(238, 238, 238);
-			}
-		}
 	}
 
 	.ui-grid-cell {
@@ -73,6 +58,61 @@
 		padding-top: 7px;
 		overflow: visible;
 		cursor: pointer;
+
+		&.checked {
+			background-color: rgb(233, 245, 251) !important;
+		}
+
+		&.expanded {
+			background-color: rgb(238, 238, 238) !important;
+		}
+
+		&.selected {
+			background-color: rgb(149,207,235) !important;
+			font-weight: bold;
+		}
+	}
+
+	.ui-grid-menu-button {
+		@extend .metro-btn;
+		position: absolute;
+		top: 3px;
+		z-index: 100;
+		right: 17px;
+		border-color: black;
+		background: #5a5a5a;
+		padding: 0 5px !important;
+		color: #787878;
+
+		&:hover {
+			border-color: black;
+		}
+
+		&:active {
+			background: #5a5a5a;
+			color: #787878 !important;
+			box-shadow: inset !important;
+		}
+
+		.ui-grid-menu {
+			padding: 15px 0 !important;
+		}
+
+		.ui-grid-icon-menu {
+			position: relative;
+			top: 5px;
+			right: -2px;
+		}
+
+		.ui-grid-menu-mid {
+			overflow: visible !important;
+		}
+
+		.ui-grid-menu-item {
+			text-align: left;
+			text-transform: capitalize;
+			background: white !important;
+		}
 	}
 
 	.cell-details {
