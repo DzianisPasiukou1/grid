@@ -2812,7 +2812,7 @@ angular.module('gridTaskApp')
 	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$interval', function ($scope, templatesPath, $compile, $interval) {
 		$scope.opt2 = {
 			data: 'data',
-			rowHeight: 57,
+			rowHeight: 60,
 			showGridFooter: true,
 			enableColumnMenus: false,
 			enableRowSelection: true,
@@ -2820,6 +2820,7 @@ angular.module('gridTaskApp')
 			multiSelect: false,
 			modifierKeysToMultiSelect: false,
 			noUnselect: true,
+			enableExpandable: true,
 			enableRowHeaderSelection: false,
 			expandableRowTemplate: templatesPath + 'details.html',
 			expandableRowHeight: 220,
@@ -2832,10 +2833,6 @@ angular.module('gridTaskApp')
 			},
 			onRegisterApi: function (gridApi) {
 				$scope.gridApi = gridApi;
-
-				$interval(function () {
-					var a = 1;
-				});
 
 				gridApi.core.on.rowsRendered($scope, function () {
 

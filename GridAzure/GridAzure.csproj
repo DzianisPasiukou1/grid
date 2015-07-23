@@ -177,8 +177,12 @@
     <Content Include="app\custom-grid.min.js">
       <DependentUpon>custom-grid.js</DependentUpon>
     </Content>
+    <Content Include="app\directives\cards\cards-controller.js" />
+    <Content Include="app\directives\cards\cards.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select.js" />
+    <Content Include="app\directives\content-options-cards\content-options-cards-controller.js" />
+    <Content Include="app\directives\content-options-cards\content-options-cards.js" />
     <Content Include="app\directives\custom-grid\custom-grid-controller.js" />
     <Content Include="app\directives\custom-grid\custom-grid.js" />
     <Content Include="app\constants\grid-constants.js" />
@@ -207,6 +211,7 @@
     <Content Include="app\directives\modal\modal-controller.js" />
     <Content Include="app\directives\modal\modal.js" />
     <Content Include="app\directives\on-finish-render\onFinishRender.js" />
+    <Content Include="app\directives\page-content-cards\page-content-cards.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
     <Content Include="app\directives\page-content\content-options\content-options.js" />
     <Content Include="app\directives\page-content\initializer.js" />
@@ -230,6 +235,7 @@
     <Content Include="app\grid-standart-one-controller.js" />
     <Content Include="app\grid-standart-two-controller.js" />
     <Content Include="app\grid-testing-controller.js" />
+    <Content Include="app\grid-with-cards-controller.js" />
     <Content Include="app\grid-with-details-controller.js" />
     <Content Include="app\plugins\center.js" />
     <Content Include="app\plugins\columnGenerator.js" />
@@ -244,9 +250,11 @@
     <Content Include="app\services\grid-with-details-template-service.js" />
     <Content Include="app\services\grid-standart-one-service.js" />
     <Content Include="app\services\grid-standart-two-service.js" />
+    <Content Include="app\templates\cards.html" />
     <Content Include="app\templates\cell-templates\cell-without-sort.html" />
     <Content Include="app\templates\cell-templates\cell.html" />
     <Content Include="app\templates\checkbox-select.html" />
+    <Content Include="app\templates\content-options-cards.html" />
     <Content Include="app\templates\content-options.html" />
     <Content Include="app\templates\content-options.min.html">
       <DependentUpon>content-options.html</DependentUpon>
@@ -272,6 +280,7 @@
     <Content Include="app\templates\history.html" />
     <Content Include="app\templates\loading.html" />
     <Content Include="app\templates\modal.html" />
+    <Content Include="app\templates\page-content-cards.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
       <DependentUpon>page-content.html</DependentUpon>
@@ -1893,6 +1902,20 @@
     <Content Include="bower_components\bootstrap\js\tooltip.js" />
     <Content Include="bower_components\bootstrap\js\transition.js" />
     <Content Include="bower_components\bootstrap\package.js" />
+    <Content Include="bower_components\flip\.gitignore" />
+    <Content Include="bower_components\flip\demo\flip-with-swipebox\index.html" />
+    <Content Include="bower_components\flip\demo\flip-with-swipebox\style.css" />
+    <Content Include="bower_components\flip\demo\index.html" />
+    <Content Include="bower_components\flip\demo\index2.html" />
+    <Content Include="bower_components\flip\dist\jquery.flip.js" />
+    <Content Include="bower_components\flip\dist\jquery.flip.min.js" />
+    <Content Include="bower_components\flip\Gruntfile.js" />
+    <Content Include="bower_components\flip\src\flip.js" />
+    <Content Include="bower_components\jquery-flip\.gitignore" />
+    <Content Include="bower_components\jquery-flip\build\jquery-flip.js" />
+    <Content Include="bower_components\jquery-flip\build\jquery-flip.min.js" />
+    <Content Include="bower_components\jquery-flip\gulpfile.js" />
+    <Content Include="bower_components\jquery-flip\lib\flip.js" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
     <Content Include="bower_components\jquery\MIT-LICENSE.txt" />
@@ -1998,6 +2021,7 @@
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.js" />
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.min.js" />
     <Content Include="bower_components\zeroclipboard\dist\ZeroClipboard.swf" />
+    <Content Include="css\fonts\cards.svg" />
     <Content Include="css\fonts\icomoon.svg" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
@@ -2005,6 +2029,7 @@
     <Content Include="css\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="data\graphs.png" />
     <Content Include="download-app\controllers\upload-controller.js" />
     <Content Include="download-app\download-app.js" />
     <Content Include="download-app\upload-doc.js" />
@@ -2294,9 +2319,29 @@
     <Content Include="bower_components\angular-ui-grid\ui-grid.ttf" />
     <Content Include="bower_components\angular-ui-grid\ui-grid.woff" />
     <Content Include="css\_custom-ui-grid.scss" />
+    <Content Include="css\common\_cards.scss" />
+    <Content Include="bower_components\flip\.bower.json" />
+    <Content Include="bower_components\flip\.bowerrc" />
+    <Content Include="bower_components\flip\.jshintrc" />
+    <Content Include="bower_components\flip\bower.json" />
+    <Content Include="bower_components\flip\dist\jquery.flip.min.js.map" />
+    <Content Include="bower_components\flip\LICENSE" />
+    <Content Include="bower_components\flip\package.json" />
+    <Content Include="bower_components\flip\README.md" />
+    <Content Include="bower_components\jquery-flip\.bower.json" />
+    <Content Include="bower_components\jquery-flip\bower.json" />
+    <Content Include="bower_components\jquery-flip\build\jquery-flip.min.js.map" />
+    <Content Include="bower_components\jquery-flip\LICENSE" />
+    <Content Include="bower_components\jquery-flip\package.json" />
+    <Content Include="bower_components\jquery-flip\README.md" />
+    <Content Include="css\fonts\cards.eot" />
+    <Content Include="css\fonts\cards.ttf" />
+    <Content Include="css\fonts\cards.woff" />
+    <Content Include="css\_page-content-cards.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />
+    <Content Include="grid-with-cards.html" />
     <Content Include="grid-with-details-template.html" />
     <Content Include="grid-standart-two.html" />
     <Content Include="grid-with-loading.html" />

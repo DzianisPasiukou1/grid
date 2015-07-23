@@ -1,5 +1,5 @@
 ﻿<div class="cell-details">
-	<span class="cell-details__expand" ng-click="row.actions.expand(row)" ng-class="{'icon-menu-down' : !row.isExpanded, 'icon-menu-up': row.isExpanded}"></span>
+	<span class="cell-details__expand" ng-click="row.actions.expand(row)" ng-if="grid.options.enableExpandable" ng-class="{'icon-menu-down' : !row.isExpanded, 'icon-menu-up': row.isExpanded}"></span>
 	<div class="cell-details__check">
 		<label class="cell-details__input">
 			<input type="checkbox" ng-model="row.isCheck" ng-change="row.actions.setCheck(row)" />

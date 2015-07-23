@@ -1,0 +1,90 @@
+﻿@font-face {
+	font-family: 'cards';
+	src: url('fonts/cards.eot?cld4v2');
+	src: url('fonts/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('fonts/cards.ttf?cld4v2') format('truetype'), url('fonts/cards.woff?cld4v2') format('woff'), url('fonts/cards.svg?cld4v2#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.card-font {
+	font-family: 'cards';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-info:before {
+	content: "\e600";
+}
+
+.icon-circle-left:before {
+	content: "\e601";
+}
+
+.cards-group{
+	min-width: 1200px;
+}
+
+.my-card {
+	display: inline;
+	position: absolute;
+	top: 15px;
+
+	.front {
+		text-align: center;
+		font-size: 16px;
+		font-weight: 200;
+		background-color: white;
+		width: 250px !important;
+		cursor: pointer;
+		border: 1px #d9d9d9 solid;
+		height: 120px !important;
+		bottom: -125px;
+	}
+
+	.back {
+		text-align: center;
+		font-size: 16px;
+		font-weight: 200;
+		background-color: rgb(242,242,242);
+		width: 250px !important;
+		cursor: pointer;
+		height: 120px !important;
+		border: 1px #d9d9d9 solid;
+		bottom: -125px;
+
+		.my-card__header {
+			background-color: rgb(133, 129, 129);
+			color: white;
+		}
+	}
+
+	&__header {
+		min-height: 30px;
+		border-bottom: 1px #d9d9d9 solid;
+		padding-top: 4px;
+		font-size: 18px;
+		padding-right: 10px;
+
+		&__text {
+			margin-right: 10px;
+		}
+
+		&__icon {
+			float: left;
+			margin-left: 10px;
+			padding-top: 2px;
+			font-weight: lighter;
+		}
+	}
+
+	&__body {
+		padding-top: 25px;
+		font-size: 28px;
+	}
+}

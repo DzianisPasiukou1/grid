@@ -1,0 +1,26 @@
+{
+  "name": "jquery-flip",
+  "version": "0.1.0",
+  "authors": [
+    "Tim Severien <timseverien@gmail.com>"
+  ],
+  "description": "(╯°□°）╯︵ ┻━┻",
+  "main": "build/jquery.flip.js",
+  "keywords": [
+    "jquery",
+    "flip",
+    "table"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/timseverien/jquery-flip",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "48bc7504810d7ee1fb0c00e030967f5d62969cf4"
+  },
+  "_source": "git://github.com/timseverien/jquery-flip.git",
+  "_target": "~0.1.0",
+  "_originalSource": "jquery-flip",
+  "_direct": true
+}

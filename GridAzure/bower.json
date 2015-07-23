@@ -21,6 +21,8 @@
     "zeroclipboard": "~2.2.0",
     "angular-cookie": "~4.0.9",
     "angular-route": "~1.4.3",
-    "ui-grid": "~3.0.1"
+    "ui-grid": "~3.0.1",
+    "jquery-flip": "~0.1.0",
+    "flip": "~1.0.14"
   }
 }
