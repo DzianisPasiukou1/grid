@@ -1,5 +1,5 @@
 ﻿///#source 1 1 /app/app.js
-angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable'])
+angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'datePicker'])
 	.value('templatesPath', 'app/templates/')
 	.value('jsonPath', 'data/');
 

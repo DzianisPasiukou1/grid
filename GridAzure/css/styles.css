@@ -146,7 +146,7 @@ button::-moz-focus-inner {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa; }
 
-.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
+.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -165,9 +165,9 @@ button::-moz-focus-inner {
   color: #787878;
   font-weight: 500;
   /*transition: all linear 0.1s;*/ }
-  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
     /*box-shadow: 0 2px 0 #787878;
 		transform: translateY(3px);*/
     background: #5a5a5a;
@@ -849,6 +849,61 @@ button::-moz-focus-inner {
     padding-top: 25px;
     font-size: 28px; }
 
+.input-datepicker {
+  border-color: #787878;
+  padding: 0 1rem;
+  height: 3.125rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px #d9d9d9 solid;
+  color: #262626;
+  cursor: text;
+  display: inline-block;
+  outline: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin: 0.15625rem 0;
+  right: 10px; }
+
+@font-face {
+  font-family: 'datepicker';
+  src: url('fonts/datepicker.eot?72jwq5');
+  src: url('fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('fonts/datepicker.ttf?72jwq5') format('truetype'), url('fonts/datepicker.woff?72jwq5') format('woff'), url('fonts/datepicker.svg?72jwq5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="glyph-"], [class*=" glyph-"] {
+  font-family: 'datepicker';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.glyph-calendar:before {
+  content: "\e600"; }
+
+.date-btn__toggle.opened, .filter-selected .date-btn__toggle.filter__btn {
+  background-color: #337ab7; }
+.date-btn__icon {
+  position: relative;
+  top: 1px; }
+.date-btn__datepicker {
+  position: absolute;
+  z-index: 100;
+  font-size: 14px;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -1470,6 +1525,8 @@ history {
 @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
   page-content-cards .page-content__header {
     height: 100px !important; }
+  page-content-cards .page-content__list .custom-ui-grid {
+    margin-top: 20px !important; }
  }
 page-content-cards .page-content__options {
   float: left; }
@@ -1502,10 +1559,10 @@ page-content-cards .page-content__options {
       margin-right: 50px; }
       page-content-cards .page-content__options .options__search .search-span {
         top: 10px !important;
-        left: 393px; }
+        left: 560px; }
       page-content-cards .page-content__options .options__search .search-clear {
         top: 12px !important;
-        left: 395px; }
+        left: 560px; }
     page-content-cards .page-content__options .options__show {
       float: left; }
     page-content-cards .page-content__options .options__block {
@@ -1513,10 +1570,11 @@ page-content-cards .page-content__options {
       margin-right: 30px;
       margin-left: 10px; }
 page-content-cards .page-content__list {
-  margin-top: 20px; }
+  margin-top: 10px; }
 page-content-cards .page-content__cards {
   width: 100%;
   height: 170px;
-  overflow-x: auto; }
+  overflow-x: auto;
+  margin-left: 40px; }
 
 /*# sourceMappingURL=styles.css.map */

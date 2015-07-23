@@ -23,6 +23,7 @@
     "angular-route": "~1.4.3",
     "ui-grid": "~3.0.1",
     "jquery-flip": "~0.1.0",
-    "flip": "~1.0.14"
+    "flip": "~1.0.14",
+    "angular-datepicker": "~1.0.12"
   }
 }
