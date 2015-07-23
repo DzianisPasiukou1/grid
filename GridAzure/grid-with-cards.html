@@ -5,7 +5,6 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/flip/dist/jquery.flip.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/angular-datepicker/dist/index.min.js"></script>
 
 	<script src="bower_components/ng-grid/build/ng-grid.js"></script>
 
@@ -103,10 +102,13 @@
 
 	<script src="app/directives/datepicker/datepicker.js"></script>
 
+	<script src="app/directives/number-format/number-format.js"></script>
+
+	<script src="app/directives/graphs/graphs.js"></script>
+
 	<script src="app/directives/content-options-cards/content-options-cards-controller.js"></script>
 	<script src="app/directives/content-options-cards/content-options-cards.js"></script>
 
-	<link href="bower_components/angular-datepicker/dist/index.min.css" rel="stylesheet" />
 	<link href="bower_components/ng-grid/ng-grid.min.css" rel="stylesheet" />
 	<link href="bower_components/angular-ui-grid/ui-grid.min.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
@@ -114,5 +116,6 @@
 <body ng-app="gridTaskApp" ng-controller="gridWithCardsCtrl">
 	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
 	<page-content-cards grid-data="data" content-options="contentOptions" grid="grid" grid-options="gridOptions"></page-content-cards>
+	<div rg-range-picker="myDatetimeRange" collapse="isShow" labels="myDatetimeLabels"></div>
 </body>
 </html>

@@ -191,6 +191,7 @@
     <Content Include="app\directives\custom-grid\row-check\row-check.js" />
     <Content Include="app\directives\custom-grid\ui-grid-menu.js" />
     <Content Include="app\directives\datepicker\datepicker.js" />
+    <Content Include="app\directives\graphs\graphs.js" />
     <Content Include="app\directives\grid-sort\grid-sort-controller.js" />
     <Content Include="app\directives\grid-sort\grid-sort.js" />
     <Content Include="app\directives\details\details.js" />
@@ -211,6 +212,7 @@
     <Content Include="app\directives\loading\loading.js" />
     <Content Include="app\directives\modal\modal-controller.js" />
     <Content Include="app\directives\modal\modal.js" />
+    <Content Include="app\directives\number-format\number-format.js" />
     <Content Include="app\directives\on-finish-render\onFinishRender.js" />
     <Content Include="app\directives\page-content-cards\page-content-cards.js" />
     <Content Include="app\directives\page-content\content-options\content-options-controller.js" />
@@ -277,6 +279,7 @@
     <Content Include="app\templates\dynamic-actions.html" />
     <Content Include="app\templates\filter-list.html" />
     <Content Include="app\templates\filter.html" />
+    <Content Include="app\templates\graphs.html" />
     <Content Include="app\templates\grid-footer.html" />
     <Content Include="app\templates\grid-menu.html" />
     <Content Include="app\templates\history.html" />
@@ -350,6 +353,12 @@
     <Content Include="app\constants\content-constants.js" />
     <Content Include="bower_components\angular-cookie\angular-cookie.js" />
     <Content Include="bower_components\angular-cookie\angular-cookie.min.js" />
+    <Content Include="bower_components\angular-date-range-picker\.gitignore" />
+    <Content Include="bower_components\angular-date-range-picker\build\angular-date-range-picker.css" />
+    <Content Include="bower_components\angular-date-range-picker\build\angular-date-range-picker.js" />
+    <Content Include="bower_components\angular-date-range-picker\build\angular-date-range-picker.min.js" />
+    <Content Include="bower_components\angular-date-range-picker\LICENSE.txt" />
+    <Content Include="bower_components\angular-date-range-picker\test\index.html" />
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -1854,6 +1863,21 @@
     <Content Include="bower_components\angular-ui-grid\ui-grid.svg" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.js" />
     <Content Include="bower_components\angular-vs-repeat\src\angular-vs-repeat.min.js" />
+    <Content Include="bower_components\angularjs-datepicker\assets\js\index.js" />
+    <Content Include="bower_components\angularjs-datepicker\dist\angular-datepicker.min.css" />
+    <Content Include="bower_components\angularjs-datepicker\dist\angular-datepicker.min.js" />
+    <Content Include="bower_components\angularjs-datepicker\Gruntfile.js" />
+    <Content Include="bower_components\angularjs-datepicker\index.html" />
+    <Content Include="bower_components\angularjs-datepicker\src\css\angular-datepicker.css" />
+    <Content Include="bower_components\angularjs-datepicker\src\js\angular-datepicker.js" />
+    <Content Include="bower_components\angularjs-datepicker\twitter-bootstrap.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\assets\js\index.js" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\index.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\datepicker.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\day.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\month.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\popup.html" />
+    <Content Include="bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\year.html" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
@@ -1904,6 +1928,10 @@
     <Content Include="bower_components\bootstrap\js\tooltip.js" />
     <Content Include="bower_components\bootstrap\js\transition.js" />
     <Content Include="bower_components\bootstrap\package.js" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.css" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.js" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.min.css" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.min.js" />
     <Content Include="bower_components\flip\.gitignore" />
     <Content Include="bower_components\flip\demo\flip-with-swipebox\index.html" />
     <Content Include="bower_components\flip\demo\flip-with-swipebox\style.css" />
@@ -2346,6 +2374,33 @@
     <Content Include="css\fonts\datepicker.eot" />
     <Content Include="css\fonts\datepicker.ttf" />
     <Content Include="css\fonts\datepicker.woff" />
+    <Content Include="bower_components\angularjs-datepicker\.bower.json" />
+    <Content Include="bower_components\angularjs-datepicker\bower.json" />
+    <Content Include="bower_components\angularjs-datepicker\config\csslintrc.json" />
+    <Content Include="bower_components\angularjs-datepicker\config\eslint.json" />
+    <Content Include="bower_components\angularjs-datepicker\dist\angular-datepicker.sourcemap.map" />
+    <Content Include="bower_components\angularjs-datepicker\package.json" />
+    <Content Include="bower_components\angularjs-datepicker\README.md" />
+    <Content Include="bower_components\angular-date-range-picker\.bower.json" />
+    <Content Include="bower_components\angular-date-range-picker\bower.json" />
+    <Content Include="bower_components\angular-date-range-picker\Gruntfile.coffee" />
+    <Content Include="bower_components\angular-date-range-picker\package.json" />
+    <Content Include="bower_components\angular-date-range-picker\README.md" />
+    <Content Include="bower_components\angular-date-range-picker\src\angular-date-range-picker.coffee" />
+    <Content Include="bower_components\angular-date-range-picker\src\angular-date-range-picker.less" />
+    <Content Include="bower_components\angular-date-range-picker\build\angular-date-range-picker.min.js.map">
+      <DependentUpon>angular-date-range-picker.min.js</DependentUpon>
+    </Content>
+    <Content Include="bower_components\datetimeRangePicker\.bower.json" />
+    <Content Include="bower_components\datetimeRangePicker\bower.json" />
+    <Content Include="bower_components\datetimeRangePicker\CHANGELOG.md" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.less" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.sass" />
+    <Content Include="bower_components\datetimeRangePicker\README.md" />
+    <Content Include="bower_components\datetimeRangePicker\range-picker.min.js.map">
+      <DependentUpon>range-picker.min.js</DependentUpon>
+    </Content>
+    <Content Include="css\common\_graphs.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

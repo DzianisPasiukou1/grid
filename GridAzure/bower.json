@@ -24,6 +24,9 @@
     "ui-grid": "~3.0.1",
     "jquery-flip": "~0.1.0",
     "flip": "~1.0.14",
-    "angular-datepicker": "~1.0.12"
+    "angular-datepicker": "~1.0.12",
+    "angularjs-datepicker": "~0.2.5",
+    "angular-date-range-picker": "~0.4.15",
+    "datetimeRangePicker": "~1.3.0"
   }
 }

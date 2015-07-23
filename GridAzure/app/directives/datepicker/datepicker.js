@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('datepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('customDatepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
 		return {
 			restrict: 'E',
 			templateUrl: templatesPath + 'datepicker.html',
@@ -9,7 +9,7 @@
 			link: function (scope, element, attrs) {
 				element.find('.expand').addClass(classes.menuDown);
 
-				scope.startDate = new Date();
+				scope.startDate = new Date(2014, 1);
 				scope.endDate = new Date();
 
 				scope.toggle = function () {
