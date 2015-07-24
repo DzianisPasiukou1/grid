@@ -1941,6 +1941,14 @@
     <Content Include="bower_components\flip\dist\jquery.flip.min.js" />
     <Content Include="bower_components\flip\Gruntfile.js" />
     <Content Include="bower_components\flip\src\flip.js" />
+    <Content Include="bower_components\jquery-date-range-picker\daterangepicker.css" />
+    <Content Include="bower_components\jquery-date-range-picker\demo.js" />
+    <Content Include="bower_components\jquery-date-range-picker\index.html" />
+    <Content Include="bower_components\jquery-date-range-picker\jquery-1.11.2.min.js" />
+    <Content Include="bower_components\jquery-date-range-picker\jquery.daterangepicker.js" />
+    <Content Include="bower_components\jquery-date-range-picker\LICENSE.txt" />
+    <Content Include="bower_components\jquery-date-range-picker\moment.min.js" />
+    <Content Include="bower_components\jquery-date-range-picker\preview.jpg" />
     <Content Include="bower_components\jquery-flip\.gitignore" />
     <Content Include="bower_components\jquery-flip\build\jquery-flip.js" />
     <Content Include="bower_components\jquery-flip\build\jquery-flip.min.js" />
@@ -2401,6 +2409,9 @@
       <DependentUpon>range-picker.min.js</DependentUpon>
     </Content>
     <Content Include="css\common\_graphs.scss" />
+    <Content Include="bower_components\jquery-date-range-picker\.bower.json" />
+    <Content Include="bower_components\jquery-date-range-picker\bower.json" />
+    <Content Include="bower_components\jquery-date-range-picker\README.md" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="grid-standart-one.html" />
     <Content Include="grid-testing.html" />

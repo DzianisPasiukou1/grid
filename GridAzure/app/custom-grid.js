@@ -3075,16 +3075,6 @@ angular.module('gridTaskApp')
 
 					var matcher = new RegExp(propVal);
 
-					//for (var j = 0; j < $scope.gridApi.grid.columns.length; j++) {
-					//	if ($scope.gridApi.grid.columns[j].field == propName) {
-					//		if (!$scope.gridApi.grid.columns[j].filters[0]) {
-					//			$scope.gridApi.grid.columns[j].filters[0] = {};
-					//		}
-					//		$scope.gridApi.grid.columns[j].filters[0].term = propVal;
-					//		break;
-					//	}
-					//}
-
 					renderableRows.forEach(function (row) {
 						var match = false;
 

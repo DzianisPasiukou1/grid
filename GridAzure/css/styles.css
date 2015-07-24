@@ -805,7 +805,7 @@ button::-moz-focus-inner {
   min-width: 2100px; }
 
 .my-card {
-  display: inline-flex;
+  display: inline-block;
   top: 15px; }
   .my-card .front {
     text-align: center;
