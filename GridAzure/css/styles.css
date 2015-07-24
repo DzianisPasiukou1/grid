@@ -336,7 +336,7 @@ button::-moz-focus-inner {
     background-color: #f2f2f2;
     cursor: default;
     vertical-align: middle;
-    height: 46px;
+    /*height: 46px;*/
     font: 600 18px/1 "Segoe UI", "Open Sans", serif;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1135,6 +1135,8 @@ button::-moz-focus-inner {
   margin-top: 20px; }
   .page-content.disabled {
     background-color: black; }
+  .page-content__header {
+    height: 46px; }
   .page-content__icon {
     display: inline;
     /*img {
@@ -1634,7 +1636,10 @@ history {
   page-content-cards .page-content__list .custom-ui-grid {
     margin-top: 20px !important; }
  }
+page-content-cards .page-content__header {
+  height: 55px; }
 page-content-cards .page-content__actions {
+  margin-top: 4px;
   font-size: 14px;
   font-family: "Arial", "Helvetica", sans-serif; }
   page-content-cards .page-content__actions__export .my-dropdown__list, page-content-cards .page-content__actions__export .split-btn__list, page-content-cards .page-content__actions__export .checkbox-select__list {
@@ -1642,6 +1647,7 @@ page-content-cards .page-content__actions {
     left: auto !important;
     min-width: 200px; }
 page-content-cards .page-content__options {
+  margin-top: 4px;
   font-size: 14px;
   font-family: "Arial", "Helvetica", sans-serif;
   float: left; }

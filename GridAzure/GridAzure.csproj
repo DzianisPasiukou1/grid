@@ -179,6 +179,7 @@
     </Content>
     <Content Include="app\directives\cards\cards-controller.js" />
     <Content Include="app\directives\cards\cards.js" />
+    <Content Include="app\directives\cards\counter.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select.js" />
     <Content Include="app\directives\content-options-cards\content-options-cards-controller.js" />

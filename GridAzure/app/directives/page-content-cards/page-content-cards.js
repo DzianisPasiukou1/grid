@@ -36,7 +36,6 @@
 					},
 					views: {
 						count: 1910000,
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
 							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
 							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
@@ -45,7 +44,6 @@
 					},
 					conversion: {
 						count: 2010,
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
 						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
@@ -54,7 +52,6 @@
 					},
 					spend: {
 						count: 2150,
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
 						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
@@ -63,7 +60,6 @@
 					},
 					actions: {
 						count: 1910000,
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
 							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
 							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
@@ -72,7 +68,6 @@
 					},
 					time: {
 						count: new Date(),
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
 						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
@@ -81,7 +76,6 @@
 					},
 					date: {
 						count: 2015,
-						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
 						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
@@ -89,6 +83,13 @@
 						{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
 					}
 				}
+
+				scope.cards.views.counter = new Counter(scope.cards.views);
+				scope.cards.conversion.counter = new Counter(scope.cards.conversion);
+				scope.cards.spend.counter = new Counter(scope.cards.spend);
+				scope.cards.actions.counter = new Counter(scope.cards.actions);
+				scope.cards.time.counter = new Counter(scope.cards.time);
+				scope.cards.date.counter = new Counter(scope.cards.date);
 
 				$(document).click(function (event) {
 					scope.cards.clicks.count += 1;
