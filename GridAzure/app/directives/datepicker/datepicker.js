@@ -4,20 +4,17 @@
 			restrict: 'E',
 			templateUrl: templatesPath + 'datepicker.html',
 			scope: {
-				options: '='
+				options: '=',
+				startDate: '=',
+				endDate: '='
 			},
 			link: function (scope, element, attrs) {
 				element.find('.expand').addClass(classes.menuDown);
 
-				scope.startDate = new Date(2014, 1);
-				scope.endDate = new Date();
-
 				scope.config = {
 					singleMonth: true,
 					showShortcuts: false,
-					showTopbar: false,
-					startDate: scope.startDate.toString(),
-					endDate: scope.endDate.toString()
+					showTopbar: false
 				};
 
 				$(element.find('.date-btn__toggle')).dateRangePicker(scope.config).bind('datepicker-change', function (event, obj) {

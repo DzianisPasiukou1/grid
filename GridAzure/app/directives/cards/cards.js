@@ -4,7 +4,9 @@
 			restrict: 'A',
 			templateUrl: templatesPath + 'cards.html',
 			scope: {
-				cards: '='
+				cards: '=',
+				startDate: '=',
+				endDate: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {

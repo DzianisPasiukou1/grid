@@ -5,7 +5,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Views/Impressions</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.views.count = cards.views.counter.calculate(startDate, endDate)">
 				<span number-format="cards.views.count"></span>
 			</div>
 		</div>
@@ -15,7 +15,6 @@
 				<span class="my-card__header__text">Views/Impressions</span>
 			</div>
 			<div class="my-card__body">
-				<!--<img src="../../data/graphs.png" width="150" height="50" />-->
 				<div graphs="cards.views.graphs"></div>
 			</div>
 		</div>
@@ -26,7 +25,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Clicks</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.views.count = cards.views.counter.calculate(startDate, endDate)">
 				<span number-format="cards.clicks.count"></span>
 			</div>
 		</div>
@@ -46,7 +45,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Conversion</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.conversion.count = cards.conversion.counter.calculate(startDate, endDate)">
 				<span number-format="cards.conversion.count"></span>
 			</div>
 		</div>
@@ -66,7 +65,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Spend</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.spend.count = cards.spend.counter.calculate(startDate, endDate)">
 				<span number-format="cards.spend.count"></span>
 			</div>
 		</div>
@@ -86,7 +85,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Actions</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.actions.count = cards.actions.counter.calculate(startDate, endDate)">
 				<span number-format="cards.actions.count"></span>
 			</div>
 		</div>
@@ -106,7 +105,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Time</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.time.count = cards.time.counter.calculate(startDate, endDate)">
 				<span number-format="cards.time.count"></span>
 			</div>
 		</div>
@@ -126,7 +125,7 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">Date</span>
 			</div>
-			<div class="my-card__body">
+			<div class="my-card__body" ng-init="cards.date.count = cards.date.counter.calculate(startDate, endDate)">
 				<span number-format="cards.date.count"></span>
 			</div>
 		</div>

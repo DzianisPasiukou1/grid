@@ -4,7 +4,9 @@
 			restrict: 'E',
 			controller: 'contentOptionsCardsCtrl',
 			scope: {
-				options: '='
+				options: '=',
+				startDate: '=',
+				endDate: '='
 			},
 			templateUrl: templatesPath + 'content-options-cards.html'
 		}

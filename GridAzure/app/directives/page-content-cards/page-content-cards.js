@@ -12,9 +12,22 @@
 				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
 				initializer.init();
 
+				scope.startDate = new Date();
+				scope.startDate.setDate(scope.startDate.getDate() - 1);
+				scope.endDate = new Date();
+
+				scope.$watch('startDate', function (date) {
+					for (var card in scope.cards) {
+						if (scope.cards[card].counter) {
+							scope.cards[card].count = scope.cards[card].counter.calculate(scope.startDate, scope.endDate);
+						}
+					}
+				});
+
 				scope.cards = {
 					clicks: {
 						count: 0,
+						counter: undefined,
 						graphs: [{ style: { 'background-color': 'rgb(233, 124, 130)', height: '55px' } },
 							{ style: { 'background-color': 'rgb(165, 189, 215)', height: '35px' } },
 							{ style: { 'background-color': 'rgb(165, 215, 208)', height: '55px' } },
@@ -23,6 +36,7 @@
 					},
 					views: {
 						count: 1910000,
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
 							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
 							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
@@ -31,6 +45,7 @@
 					},
 					conversion: {
 						count: 2010,
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
 						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
@@ -39,6 +54,7 @@
 					},
 					spend: {
 						count: 2150,
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
 						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
@@ -47,6 +63,7 @@
 					},
 					actions: {
 						count: 1910000,
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
 							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
 							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
@@ -55,6 +72,7 @@
 					},
 					time: {
 						count: new Date(),
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
 						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
@@ -63,6 +81,7 @@
 					},
 					date: {
 						count: 2015,
+						counter: new Counter(this),
 						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
 						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
 						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },

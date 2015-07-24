@@ -900,6 +900,42 @@ button::-moz-focus-inner {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
 
+.date-picker-wrapper {
+  padding: 0 !important;
+  font-size: 14px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  z-index: 1000; }
+  .date-picker-wrapper .month-wrapper {
+    border: 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    width: 100% !important; }
+    .date-picker-wrapper .month-wrapper .month1 .caption {
+      background-color: #59cde2;
+      color: #ffffff; }
+      .date-picker-wrapper .month-wrapper .month1 .caption .prev:hover {
+        background-color: #59cde2;
+        color: #4547ac;
+        font-weight: bold; }
+      .date-picker-wrapper .month-wrapper .month1 .caption .next:hover {
+        background-color: #59cde2;
+        color: #4547ac;
+        font-weight: bold; }
+    .date-picker-wrapper .month-wrapper .month1 th {
+      font-weight: normal !important; }
+    .date-picker-wrapper .month-wrapper .month1 td {
+      padding: 2px; }
+    .date-picker-wrapper .month-wrapper .month1 .day {
+      border: 1px #bcd9e2 solid;
+      text-align: center;
+      width: 30px; }
+      .date-picker-wrapper .month-wrapper .month1 .day:hover {
+        background-color: #4da3ba; }
+      .date-picker-wrapper .month-wrapper .month1 .day.real-today {
+        background-color: #60a917; }
+  .date-picker-wrapper .footer, .date-picker-wrapper .page-content__footer {
+    padding-top: 0 !important; }
+
 .graphs {
   width: 30px;
   margin-right: 10px;
