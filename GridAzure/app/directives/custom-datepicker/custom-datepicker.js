@@ -2,12 +2,7 @@
 	.directive('customDatepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'datepicker.html',
-			scope: {
-				options: '=',
-				startDate: '=',
-				endDate: '='
-			},
+			templateUrl: templatesPath + 'custom-datepicker.html',
 			link: function (scope, element, attrs) {
 				element.find('.expand').addClass(classes.menuDown);
 
