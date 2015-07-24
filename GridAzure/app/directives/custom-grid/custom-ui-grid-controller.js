@@ -353,7 +353,7 @@
 			var columns = [];
 
 			columns.push({
-				field: 'details', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details-cell.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
+				field: 'details', displayName: '', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header-cell-template.html', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details-cell.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
 				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
 					if (row.isChecked) {
 						return 'checked';
@@ -382,7 +382,7 @@
 						displayName: field,
 						enableFiltering: false,
 						minWidth: 80,
-						headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header-cell-template.html',
+						//headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header-cell-template.html',
 						cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
 							if (row.isChecked) {
 								return 'checked';
@@ -396,7 +396,7 @@
 			}
 
 			columns.push({
-				field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
+				field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header-cell-template.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
 				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
 					if (row.isChecked) {
 						return 'checked';

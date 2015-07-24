@@ -1425,6 +1425,35 @@ button::-moz-focus-inner {
     .custom-ui-grid .ui-grid-cell.selected {
       background-color: #95cfeb !important;
       font-weight: bold; }
+  .custom-ui-grid .ui-grid-icon-down-dir:before {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\e605"; }
+  .custom-ui-grid .ui-grid-icon-up-dir:before {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\e605";
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    display: inline-block;
+    position: relative; }
+  .custom-ui-grid .ui-grid-icon-blank::before {
+    content: none; }
   .custom-ui-grid .ui-grid-menu-button {
     position: absolute;
     top: 3px;

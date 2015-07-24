@@ -69,6 +69,45 @@
 		}
 	}
 
+	.ui-grid-icon-down-dir {
+		&:before {
+			font-family: 'icomoon' !important;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			content: "\e605";
+		}
+	}
+
+	.ui-grid-icon-up-dir {
+		&:before {
+			font-family: 'icomoon' !important;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			content: "\e605";
+			-ms-transform: rotate(180deg);
+			-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+			display: inline-block;
+			position: relative;
+		}
+	}
+
+	.ui-grid-icon-blank::before {
+		content: none;
+	}
+
 	.ui-grid-menu-button {
 		@extend .metro-btn;
 		position: absolute;
