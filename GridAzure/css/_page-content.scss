@@ -55,6 +55,7 @@
 	&__body {
 		@extend .content;
 		padding: 0;
+		border: 0 !important;
 	}
 
 	&__list {

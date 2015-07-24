@@ -256,18 +256,41 @@
 			}
 			else {
 				for (var i = 0; i < filtersText.length; i++) {
+					if (filtersText[i] == '') {
+						break
+					}
+
 					var propName = filtersText[i].substr(0, filtersText[i].indexOf(':'));
 					var propVal = filtersText[i].substr(filtersText[i].indexOf(':') + 1);
 
-					for (var j = 0; j < $scope.gridApi.grid.columns.length; j++) {
-						if ($scope.gridApi.grid.columns[j].field == propName) {
-							if (!$scope.gridApi.grid.columns[j].filters[0]) {
-								$scope.gridApi.grid.columns[j].filters[0] = {};
+					var matcher = new RegExp(propVal);
+
+					//for (var j = 0; j < $scope.gridApi.grid.columns.length; j++) {
+					//	if ($scope.gridApi.grid.columns[j].field == propName) {
+					//		if (!$scope.gridApi.grid.columns[j].filters[0]) {
+					//			$scope.gridApi.grid.columns[j].filters[0] = {};
+					//		}
+					//		$scope.gridApi.grid.columns[j].filters[0].term = propVal;
+					//		break;
+					//	}
+					//}
+
+					renderableRows.forEach(function (row) {
+						var match = false;
+
+						$scope.opt2.columnDefs.forEach(function (col) {
+							if (row.entity[propName] !== undefined) {
+								if (row.entity[propName].toString().match(matcher)) {
+									match = true;
+								}
 							}
-							$scope.gridApi.grid.columns[j].filters[0].term = propVal;
-							break;
+						});
+
+						if (!match) {
+							row.visible = false;
 						}
-					}
+					});
+
 				}
 			}
 

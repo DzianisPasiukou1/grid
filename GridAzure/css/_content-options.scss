@@ -30,13 +30,11 @@
 				@extend .my-search;
 
 				.search-span {
-					top: 6px;
-					right: 5px;
+					top: 7px;
 				}
 
 				.search-clear {
 					top: 7px;
-					right: 5px;
 				}
 			}
 		}
@@ -104,6 +102,14 @@
 
 		.search {
 			@extend .my-search;
+
+			.search-span {
+				top: 7px;
+			}
+
+			.search-clear {
+				top: 7px;
+			}
 		}
 	}
 

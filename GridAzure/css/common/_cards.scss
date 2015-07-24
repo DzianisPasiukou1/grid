@@ -26,13 +26,12 @@
 	content: "\e601";
 }
 
-.cards-group{
+.cards-group {
 	min-width: 2100px;
 }
 
 .my-card {
-	display: inline;
-	position: absolute;
+	display: inline-flex;
 	top: 15px;
 
 	.front {
@@ -44,7 +43,6 @@
 		cursor: pointer;
 		border: 1px #d9d9d9 solid;
 		height: 120px !important;
-		bottom: -125px;
 	}
 
 	.back {
@@ -56,7 +54,6 @@
 		cursor: pointer;
 		height: 120px !important;
 		border: 1px #d9d9d9 solid;
-		bottom: -125px;
 
 		.my-card__header {
 			background-color: rgb(133, 129, 129);

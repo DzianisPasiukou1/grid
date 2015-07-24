@@ -1,5 +1,5 @@
 ﻿page-content-cards {
-	@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+	@media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
 		.page-content {
 			&__header {
 				height: 100px !important;
@@ -15,13 +15,31 @@
 
 	.page-content {
 
+		&__actions {
+			font-size: 14px;
+			font-family: "Arial", "Helvetica", sans-serif;
+
+			&__export {
+
+				.my-dropdown {
+					&__list {
+						right: 19px !important;
+						left: auto !important;
+						min-width: 200px;
+					}
+				}
+			}
+		}
+
 		&__options {
+			font-size: 14px;
+			font-family: "Arial", "Helvetica", sans-serif;
 			float: left;
 
 			.options {
 				padding-top: 0 !important;
 
-				@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+				@media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
 					display: block;
 
 					&__block {
@@ -52,13 +70,9 @@
 							@extend .my-search;
 
 							.search-span {
-								top: 5px !important;
-								left: 270px;
 							}
 
 							.search-clear {
-								top: 7px !important;
-								left: 272px;
 							}
 						}
 					}
@@ -66,17 +80,7 @@
 
 				&__search {
 					float: left;
-					margin-right: 50px;
-
-					.search-span {
-						top: 10px !important;
-						left: 560px;
-					}
-
-					.search-clear {
-						top: 12px !important;
-						left: 560px;
-					}
+					margin-right: 0.75rem !important;
 				}
 
 				&__show {
@@ -92,14 +96,21 @@
 		}
 
 		&__list {
-			margin-top: 10px;
+			margin-top: 40px;
+			overflow: hidden;
 		}
 
 		&__cards {
 			width: 100%;
-			height: 170px;
+			height: 180px;
 			overflow-x: auto;
 			padding-left: 40px;
+		}
+
+		&__footer {
+			@extend .footer;
+			border: 1px solid #e5e5e5;
+			min-height: 0 !important;
 		}
 	}
 }
