@@ -44,6 +44,30 @@
 						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
 						{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
 						{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
+					},
+					actions: {
+						count: 1910000,
+						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
+							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
+							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
+							{ style: { 'background-color': 'rgb(30, 201, 135)', height: '25px' } },
+							{ style: { 'background-color': 'rgb(57, 124, 100)', height: '30px' } }]
+					},
+					time: {
+						count: new Date(),
+						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
+						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
+						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
+						{ style: { 'background-color': 'rgb(251, 201, 54)', height: '34px' } },
+						{ style: { 'background-color': 'rgb(57, 33, 130)', height: '60px' } }]
+					},
+					date: {
+						count: 2015,
+						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
+						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
+						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
+						{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
+						{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
 					}
 				}
 
