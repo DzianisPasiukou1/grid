@@ -2,7 +2,7 @@
 	.directive('history', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'history.html',
+			templateUrl: templatesPath + 'directive-templates/history.html',
 			controller: 'historyCtrl',
 			scope: {
 				history: '=value'

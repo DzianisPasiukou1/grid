@@ -7,7 +7,7 @@
 				contentOptions: '=',
 				gridOptions: '='
 			},
-			templateUrl: templatesPath + 'page-content-cards.html',
+			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
 				initializer.init();

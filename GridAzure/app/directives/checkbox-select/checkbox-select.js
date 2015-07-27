@@ -5,7 +5,7 @@
 			scope: {
 				options: '='
 			},
-			templateUrl: templatesPath + 'checkbox-select.html',
+			templateUrl: templatesPath + 'directive-templates/checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
 				element.find('.checkbox-select__expand').addClass(scope.options.hideClass);

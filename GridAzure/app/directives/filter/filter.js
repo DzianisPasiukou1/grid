@@ -8,7 +8,7 @@
 				filtrate: '='
 			},
 			controller: 'filterCtrl',
-			templateUrl: templatesPath + 'filter.html',
+			templateUrl: templatesPath + 'directive-templates/filter.html',
 			link: function (scope, element, attrs) {
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {

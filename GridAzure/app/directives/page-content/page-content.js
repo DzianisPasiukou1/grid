@@ -8,7 +8,7 @@
 				grid: '=',
 				gridOptions: '='
 			},
-			templateUrl: templatesPath + 'page-content.html',
+			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
 				initializer.init();

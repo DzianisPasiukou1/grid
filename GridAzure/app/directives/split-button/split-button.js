@@ -7,7 +7,7 @@
 				selected: '=',
 				search: '='
 			},
-			templateUrl: templatesPath + 'split-button.html',
+			templateUrl: templatesPath + 'directive-templates/split-button.html',
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();

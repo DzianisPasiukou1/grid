@@ -8,7 +8,7 @@
 				exportTo: '=',
 				options: '=gridOptions'
 			},
-			templateUrl: templatesPath + 'custom-grid.html',
+			templateUrl: templatesPath + 'directive-templates/custom-grid.html',
 			link: function (scope, element, attrs) {
 			}
 		};

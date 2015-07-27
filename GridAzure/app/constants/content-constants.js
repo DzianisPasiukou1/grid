@@ -36,12 +36,12 @@
 		listSelector: '.page-content__list',
 		loadingTemplate: '<loading ng-show="contentOptions.isLoading"></loading>',
 		gridName: 'Default grid',
-		rowTemplate: 'row-templates/row-with-detalis.html',
+		rowTemplate: 'grid-templates/row-templates/row-with-detalis.html',
 		rowHeight: 60,
 		headerRowHeight: 40,
 		showFooter: true,
 		footerRowHeight: 30,
-		footerTemplate: 'grid-footer.html',
+		footerTemplate: 'grid-templates/grid-footer.html',
 		rowActions: {
 			options: {
 				label: 'Actions',
@@ -50,7 +50,7 @@
 			},
 			isShow: false
 		},
-		detailsTemplate: 'details.html',
+		detailsTemplate: 'grid-templates/details-templates/details.html',
 		rowCheckAction: function (data) {
 			var isCheckArray = data.filter(function (value) {
 				if (value.actions.isCheck) {

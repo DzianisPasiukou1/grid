@@ -802,7 +802,7 @@ button::-moz-focus-inner {
   content: "\e601"; }
 
 .cards-group {
-  min-width: 2100px; }
+  min-width: 1930px; }
 
 .my-card {
   display: inline-block;
@@ -1186,12 +1186,12 @@ button::-moz-focus-inner {
   .custom-grid__menu .grid-menu {
     position: absolute;
     float: right;
-    top: 99px;
+    top: 53px;
     z-index: 100;
     right: 10px; }
     @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
       .custom-grid__menu .grid-menu {
-        top: 146px; } }
+        top: 99px; } }
     .custom-grid__menu .grid-menu__options {
       position: relative;
       text-transform: capitalize; }
@@ -1694,5 +1694,8 @@ page-content-cards .page-content__cards {
 page-content-cards .page-content__footer {
   border: 1px solid #e5e5e5;
   min-height: 0 !important; }
+
+.navigation {
+  margin: 20px; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -10,12 +10,12 @@
 		.grid-menu {
 			position: absolute;
 			float: right;
-			top: 99px;
+			top: 53px;
 			z-index: 100;
 			right: 10px;
 
 			@media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
-				top: 146px;
+				top: 99px;
 			}
 
 			&__options {

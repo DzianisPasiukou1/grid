@@ -2,7 +2,7 @@
 	.directive('loading', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'loading.html',
+			templateUrl: templatesPath + 'directive-templates/loading.html',
 			link: function (scope, element, attrs) {
 				element.css('height', element.parent().parent().height() + 'px');
 				element.css('width', element.parent().parent().width() + 'px');

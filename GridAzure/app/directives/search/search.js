@@ -7,7 +7,7 @@
 				edited: '='
 			},
 			controller: 'searchCtrl',
-			templateUrl: templatesPath + 'search.html',
+			templateUrl: templatesPath + 'directive-templates/search.html',
 			link: function (scope, element, attrs) {
 				scope.$watch('searchValue', function (value) {
 					if (value.length > 0) {

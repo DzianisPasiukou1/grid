@@ -27,12 +27,12 @@
 			refresh: function () {
 				this.scope.contentOptions.isLoading = true;
 				this.getData();
-				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'details-templates/details-example1.html';
+				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'grid-templates/details-templates/details-example1.html';
 				this.scope.gridOptions.detailsCondition = function (entity, index) {
 					var self = this;
 
 					if (index % 2 != 0) {
-						return self.templatesPath + 'details-templates/details-example2.html';
+						return self.templatesPath + 'grid-templates/details-templates/details-example2.html';
 					}
 				}.bind(this);
 				setTimeout(function () {
@@ -52,7 +52,7 @@
 			upload: function (data) {
 				this.scope.contentOptions.isLoading = true;
 				this.scope.data = angular.copy(data);
-				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'details-templates/details-upload.html';
+				this.scope.gridOptions.detailsTemplate = this.templatesPath + 'grid-templates/details-templates/details-upload.html';
 				this.scope.gridOptions.detailsCondition = undefined;
 				this.scope.$apply();
 			}
@@ -60,12 +60,12 @@
 
 		self.scope.gridOptions = {
 			withDetails: true,
-			detailsTemplate: self.templatesPath + 'details-templates/details-example1.html',
+			detailsTemplate: self.templatesPath + 'grid-templates/details-templates/details-example1.html',
 			detailsCondition: function (entity, index) {
 				var self = this;
 
 				if (index % 2 != 0) {
-					return self.templatesPath + 'details-templates/details-example2.html';
+					return self.templatesPath + 'grid-templates/details-templates/details-example2.html';
 				}
 			}
 		}

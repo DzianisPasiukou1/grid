@@ -2,7 +2,7 @@
 	.directive('cards', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
 			restrict: 'A',
-			templateUrl: templatesPath + 'cards.html',
+			templateUrl: templatesPath + 'directive-templates/cards.html',
 			scope: {
 				cards: '=',
 				startDate: '=',

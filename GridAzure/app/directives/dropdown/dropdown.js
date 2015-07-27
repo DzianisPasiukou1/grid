@@ -6,7 +6,7 @@
 				options: '=dropdownOptions'
 			},
 			controller: 'dropdownCtrl',
-			templateUrl: templatesPath + 'dropdown.html',
+			templateUrl: templatesPath + 'directive-templates/dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
 				element.find('.my-dropdown__expand').addClass(scope.options.hideClass);

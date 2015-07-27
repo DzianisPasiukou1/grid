@@ -2,7 +2,7 @@
 	.directive('upload', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'upload.html',
+			templateUrl: templatesPath + 'directive-templates/upload.html',
 			scope: {
 				upload: '=uploadCallback'
 			},

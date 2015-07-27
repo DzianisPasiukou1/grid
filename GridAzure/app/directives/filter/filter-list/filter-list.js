@@ -2,7 +2,7 @@
 	.directive('filterList', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'filter-list.html',
+			templateUrl: templatesPath + 'directive-templates/filter-list.html',
 			controller: 'filterListCtrl',
 			link: function (scope, element, attrs) {
 			}

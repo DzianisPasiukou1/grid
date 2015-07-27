@@ -5,7 +5,7 @@
 			scope: {
 				graphs: '='
 			},
-			templateUrl: templatesPath + 'graphs.html',
+			templateUrl: templatesPath + 'directive-templates/graphs.html',
 			link: function (scope, element, attrs) {
 
 			}

@@ -2,7 +2,7 @@
 	.directive('modal', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
 			restrict: 'E',
-			templateUrl: templatesPath + 'modal.html',
+			templateUrl: templatesPath + 'directive-templates/modal.html',
 			scope: {
 				value: '='
 			},

@@ -29,37 +29,37 @@
 		$scope.gridOptions = {
 			data: 'data',
 			multiSelect: false,
-			rowTemplate: templatesPath + 'row-templates/row.html',
+			rowTemplate: templatesPath + 'grid-templates/row-templates/row.html',
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
 			showFooter: true,
 			footerRowHeight: 30,
 			reInit: false,
-			footerTemplate: templatesPath + 'grid-footer.html',
+			footerTemplate: templatesPath + 'grid-templates/grid-footer.html',
 			columnDefs: [
-				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'row-templates/details-cell.html', width: 60, headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, minWidth: 60 },
+				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/details.html', width: 60, headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, minWidth: 60 },
 				{
 					field: 'name', displayName: 'Name',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/name.html'
+					headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/name.html'
 				},
 				{
 					field: 'type', displayName: 'Type',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'row-templates/type.html'
+					headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 100, cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/type.html'
 				},
 				{
 					field: 'category', displayName: 'Category',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 100
 				},
 				{
-					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'row-templates/status.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 100
+					field: 'status', displayName: 'Status', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/status.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 100
 				},
 				{
 					field: 'conversion', displayName: 'Conversion',
-					headerCellTemplate: templatesPath + 'cell-templates/cell.html', minWidth: 130
+					headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 130
 				},
 				{
-					field: 'action', displayName: '', cellTemplate: templatesPath + 'row-templates/action.html', headerCellTemplate: templatesPath + 'cell-templates/cell.html', sortable: false, width: 300, minWidth: 115
+					field: 'action', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/action.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 300, minWidth: 115
 				}]
 		};
 	}]);
