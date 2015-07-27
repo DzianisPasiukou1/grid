@@ -13,6 +13,8 @@
 	transition-property: color;
 	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
+	transition: height linear 0.5s;
+
 
 	&:hover:before {
 		-webkit-transform: scaleY(1);
@@ -41,7 +43,7 @@
 		-webkit-transition-timing-function: ease-out;
 		transition-timing-function: ease-out;
 	}
-	/*height: 30px;*/
+
 	.graph {
 	}
 }

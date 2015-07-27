@@ -844,6 +844,11 @@ button::-moz-focus-inner {
   .my-card__body {
     padding-top: 25px;
     font-size: 28px; }
+    .my-card__body__graphs {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0; }
 
 .input-datepicker {
   border-color: #787878;
@@ -951,7 +956,7 @@ button::-moz-focus-inner {
   transition-property: color;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
-  /*height: 30px;*/ }
+  transition: height linear 0.5s; }
   .graphs:hover:before {
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
