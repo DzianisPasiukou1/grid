@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('gridmenuCtrl', ['templatesPath', '$scope', 'gridUploadService', function (templatesPath, $scope, gridUploadService) {
+	.controller('gridWithMenuCtrl', ['templatesPath', '$scope', 'gridUploadService', function (templatesPath, $scope, gridUploadService) {
 		$scope.data = [];
 
 		function getData() {

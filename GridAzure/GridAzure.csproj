@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\config\routes.js" />
     <Content Include="app\constants\class-constant.js" />
     <Content Include="app\custom-grid.js">
       <DependentUpon>custom-grid.js.bundle</DependentUpon>
@@ -273,6 +274,7 @@
     <Content Include="app\templates\details-templates\details-example2.html" />
     <Content Include="app\templates\details-templates\details-upload.html" />
     <Content Include="app\templates\details.html" />
+    <Content Include="app\templates\download.html" />
     <Content Include="app\templates\dropdown.html" />
     <Content Include="app\templates\dropdown.min.html">
       <DependentUpon>dropdown.html</DependentUpon>
@@ -283,9 +285,18 @@
     <Content Include="app\templates\graphs.html" />
     <Content Include="app\templates\grid-footer.html" />
     <Content Include="app\templates\grid-menu.html" />
+    <Content Include="app\templates\grids\grid-standart-one.html" />
+    <Content Include="app\templates\grids\grid-standart-two.html" />
+    <Content Include="app\templates\grids\grid-testing.html" />
+    <Content Include="app\templates\grids\grid-with-cards.html" />
+    <Content Include="app\templates\grids\grid-with-details-template.html" />
+    <Content Include="app\templates\grids\grid-with-loading.html" />
+    <Content Include="app\templates\grids\grid-with-menu.html" />
+    <Content Include="app\templates\grids\grid-with-upload.html" />
     <Content Include="app\templates\history.html" />
     <Content Include="app\templates\loading.html" />
     <Content Include="app\templates\modal.html" />
+    <Content Include="app\templates\navigation.html" />
     <Content Include="app\templates\page-content-cards.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
@@ -2414,16 +2425,7 @@
     <Content Include="bower_components\jquery-date-range-picker\bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\README.md" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
-    <Content Include="grid-standart-one.html" />
-    <Content Include="grid-testing.html" />
-    <Content Include="grid-with-cards.html" />
-    <Content Include="grid-with-details-template.html" />
-    <Content Include="grid-standart-two.html" />
-    <Content Include="grid-with-loading.html" />
-    <Content Include="grid-with-menu.html" />
-    <Content Include="grid-with-upload.html" />
     <Content Include="index.html" />
-    <Content Include="testing.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
