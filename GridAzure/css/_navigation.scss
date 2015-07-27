@@ -1,3 +1,9 @@
 ﻿.navigation {
 	margin: 20px;
+
+	.link-container {
+		&__update {
+			margin: 20px 0 10px 0;
+		}
+	}
 }

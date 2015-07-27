@@ -1697,5 +1697,7 @@ page-content-cards .page-content__footer {
 
 .navigation {
   margin: 20px; }
+  .navigation .link-container__update {
+    margin: 20px 0 10px 0; }
 
 /*# sourceMappingURL=styles.css.map */

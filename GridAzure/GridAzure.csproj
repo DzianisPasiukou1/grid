@@ -170,6 +170,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\custom-grid.js">
+      <DependentUpon>custom-grid.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="app\custom-grid.min.js">
+      <DependentUpon>custom-grid.js</DependentUpon>
+    </Content>
     <Content Include="app\directives\custom-grid\grid-menu\grid-menu.js" />
     <Content Include="azure-app\config\routes.js" />
     <Content Include="app\constants\class-constant.js" />
@@ -2038,6 +2044,11 @@
     <Content Include="bower_components\jquery-date-range-picker\.bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\README.md" />
+    <Content Include="css\_navigation.scss" />
+    <Content Include="app\custom-grid.js.bundle" />
+    <Content Include="app\custom-grid.min.js.map">
+      <DependentUpon>custom-grid.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
