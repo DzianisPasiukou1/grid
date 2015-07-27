@@ -170,17 +170,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\config\routes.js" />
+    <Content Include="azure-app\config\routes.js" />
     <Content Include="app\constants\class-constant.js" />
-    <Content Include="app\custom-grid.js">
-      <DependentUpon>custom-grid.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="app\custom-grid.min.js">
-      <DependentUpon>custom-grid.js</DependentUpon>
-    </Content>
     <Content Include="app\directives\cards\cards-controller.js" />
     <Content Include="app\directives\cards\cards.js" />
-    <Content Include="app\directives\cards\counter.js" />
+    <Content Include="app\entities\counter.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select-controller.js" />
     <Content Include="app\directives\checkbox-select\checkbox-select.js" />
     <Content Include="app\directives\content-options-cards\content-options-cards-controller.js" />
@@ -235,13 +229,13 @@
     <Content Include="app\directives\tabs\tabs.js" />
     <Content Include="app\directives\trend-slider\trend-slider.js" />
     <Content Include="app\directives\upload\upload.js" />
-    <Content Include="app\grid-loading-controller.js" />
-    <Content Include="app\grid-menu-controller.js" />
-    <Content Include="app\grid-standart-one-controller.js" />
-    <Content Include="app\grid-standart-two-controller.js" />
-    <Content Include="app\grid-testing-controller.js" />
-    <Content Include="app\grid-with-cards-controller.js" />
-    <Content Include="app\grid-with-details-controller.js" />
+    <Content Include="azure-app\controllers\grid-loading-controller.js" />
+    <Content Include="azure-app\controllers\grid-menu-controller.js" />
+    <Content Include="azure-app\controllers\grid-standart-one-controller.js" />
+    <Content Include="azure-app\controllers\grid-standart-two-controller.js" />
+    <Content Include="azure-app\controllers\grid-testing-controller.js" />
+    <Content Include="azure-app\controllers\grid-with-cards-controller.js" />
+    <Content Include="azure-app\controllers\grid-with-details-controller.js" />
     <Content Include="app\plugins\center.js" />
     <Content Include="app\plugins\columnGenerator.js" />
     <Content Include="app\plugins\columns-comparer.js" />
@@ -251,10 +245,10 @@
     <Content Include="app\plugins\ngGridCanvasHeightPlugin.js" />
     <Content Include="app\plugins\ngGridCsvExportPlugin.js" />
     <Content Include="app\plugins\ngGridFlexibleHeightPlugin.js" />
-    <Content Include="app\services\grid-upload-service.js" />
-    <Content Include="app\services\grid-with-details-template-service.js" />
-    <Content Include="app\services\grid-standart-one-service.js" />
-    <Content Include="app\services\grid-standart-two-service.js" />
+    <Content Include="azure-app\services\grid-upload-service.js" />
+    <Content Include="azure-app\services\grid-with-details-template-service.js" />
+    <Content Include="azure-app\services\grid-standart-one-service.js" />
+    <Content Include="azure-app\services\grid-standart-two-service.js" />
     <Content Include="app\templates\cards.html" />
     <Content Include="app\templates\cell-templates\cell-without-sort.html" />
     <Content Include="app\templates\cell-templates\cell.html" />
@@ -274,7 +268,7 @@
     <Content Include="app\templates\details-templates\details-example2.html" />
     <Content Include="app\templates\details-templates\details-upload.html" />
     <Content Include="app\templates\details.html" />
-    <Content Include="app\templates\download.html" />
+    <Content Include="azure-app\templates\download.html" />
     <Content Include="app\templates\dropdown.html" />
     <Content Include="app\templates\dropdown.min.html">
       <DependentUpon>dropdown.html</DependentUpon>
@@ -285,18 +279,18 @@
     <Content Include="app\templates\graphs.html" />
     <Content Include="app\templates\grid-footer.html" />
     <Content Include="app\templates\grid-menu.html" />
-    <Content Include="app\templates\grids\grid-standart-one.html" />
-    <Content Include="app\templates\grids\grid-standart-two.html" />
-    <Content Include="app\templates\grids\grid-testing.html" />
-    <Content Include="app\templates\grids\grid-with-cards.html" />
-    <Content Include="app\templates\grids\grid-with-details-template.html" />
-    <Content Include="app\templates\grids\grid-with-loading.html" />
-    <Content Include="app\templates\grids\grid-with-menu.html" />
-    <Content Include="app\templates\grids\grid-with-upload.html" />
+    <Content Include="azure-app\templates\grids\grid-standart-one.html" />
+    <Content Include="azure-app\templates\grids\grid-standart-two.html" />
+    <Content Include="azure-app\templates\grids\grid-testing.html" />
+    <Content Include="azure-app\templates\grids\grid-with-cards.html" />
+    <Content Include="azure-app\templates\grids\grid-with-details-template.html" />
+    <Content Include="azure-app\templates\grids\grid-with-loading.html" />
+    <Content Include="azure-app\templates\grids\grid-with-menu.html" />
+    <Content Include="azure-app\templates\grids\grid-with-upload.html" />
     <Content Include="app\templates\history.html" />
     <Content Include="app\templates\loading.html" />
     <Content Include="app\templates\modal.html" />
-    <Content Include="app\templates\navigation.html" />
+    <Content Include="azure-app\templates\navigation.html" />
     <Content Include="app\templates\page-content-cards.html" />
     <Content Include="app\templates\page-content.html" />
     <Content Include="app\templates\page-content.min.html">
@@ -361,8 +355,9 @@
     <Content Include="app\templates\ui-grid-templates\header.html" />
     <Content Include="app\templates\ui-grid-templates\row.html" />
     <Content Include="app\templates\upload.html" />
-    <Content Include="app\grid-upload-controller.js" />
+    <Content Include="azure-app\controllers\grid-upload-controller.js" />
     <Content Include="app\constants\content-constants.js" />
+    <Content Include="azure-app\azure-app.js" />
     <Content Include="bower_components\angular-i18n\aa-dj.js" />
     <Content Include="bower_components\angular-i18n\aa-er.js" />
     <Content Include="bower_components\angular-i18n\aa-et.js" />
@@ -1996,9 +1991,6 @@
       <DependentUpon>styles.css</DependentUpon>
     </Content>
     <Content Include="data\graphs.png" />
-    <Content Include="download-app\controllers\upload-controller.js" />
-    <Content Include="download-app\download-app.js" />
-    <Content Include="download-app\upload-doc.js" />
     <Content Include="Global.asax" />
     <Content Include="css\common\_expand.scss" />
     <Content Include="css\_toggle.scss" />
@@ -2055,10 +2047,6 @@
     <Content Include="data\generated.json" />
     <Content Include="css\common\_spinner.scss" />
     <Content Include="css\common\_disabled.scss" />
-    <Content Include="app\custom-grid.js.bundle" />
-    <Content Include="app\custom-grid.min.js.map">
-      <DependentUpon>custom-grid.min.js</DependentUpon>
-    </Content>
     <Content Include="css\common\_common.scss" />
     <Content Include="docs\grid.docx" />
     <Content Include="css\common\_my-textarea.scss" />
@@ -2130,6 +2118,7 @@
     <Content Include="sources\sources.zip" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\services\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

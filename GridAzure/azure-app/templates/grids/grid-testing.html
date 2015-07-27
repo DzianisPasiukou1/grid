@@ -1,0 +1,12 @@
+﻿<div class="grid-testing">
+	<button class="metro-btn" onclick="location.href = '/navigation'">Back</button>
+	<textarea class="my-textarea" ng-model="ctrl.scope.content" ng-change="ctrl.scope.textChange()" hotkey-formatter="ctrl.scope.refreshContent"></textarea>
+	<div class="validators-group">
+		<label class="success" ng-show="ctrl.scope.isValid">Valid data</label>
+		<label class="failed" ng-show="!ctrl.scope.isValid">Invalid data</label>
+	</div>
+	<button class="generate-btn" ng-click="compile()">Compile</button>
+	<page-content grid-data="ctrl.scope.data" content-options="ctrl.scope.contentOptions" grid="ctrl.scope.grid" grid-options="ctrl.scope.gridOptions"></page-content>
+</div>
+
+

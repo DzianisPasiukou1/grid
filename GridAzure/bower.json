@@ -16,6 +16,7 @@
     "ng-grid": "~2.0.14",
     "angular-route": "~1.4.3",
     "flip": "~1.0.14",
-    "jquery-date-range-picker": "~0.0.7"
+    "jquery-date-range-picker": "~0.0.7",
+    "angular-ui-grid": "~3.0.1"
   }
 }
