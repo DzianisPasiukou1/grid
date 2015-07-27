@@ -1,44 +1,17 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title></title>
-	<link href="css/styles.css" rel="stylesheet" />
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/angular/angular.min.js"></script>
+﻿<div class="link-container">
+	<a class="download-app" href="/app/custom-grid.js" download>Download app js</a>
+	<hr />
+	<a class="download-app-min" href="/app/custom-grid.min.js" download>Download min app js</a>
+	<hr />
+	<a class="download-style" href="/css/styles.css" download>Download styles</a>
+	<hr />
+	<a class="download-style-min" href="/css/styles.min.css" download>Download min styles</a>
+	<hr />
+	<a class="download-style-min" href="/sources/sources.zip" download>Download as archive</a>
+	<hr />
+	<a class="download-style-min" href="/data/json.zip" download>Download json files</a>
+	<hr />
+	Last update on Mon, 20 Jul 2015 10:39:40 GMT
+</div>
+<button class="metro-btn" onclick="location.href = '/navigation'">Back</button>
 
-	<script src="download-app/download-app.js"></script>
-	<script src="download-app/controllers/upload-controller.js"></script>
-	<script src="download-app/upload-doc.js"></script>
-
-	<link href="css/styles.css" rel="stylesheet" />
-
-</head>
-<body ng-app="downloadApp">
-	<div class="link-container">
-		<a class="download-app" href="/app/custom-grid.js" download>Download app js</a>
-		<hr />
-		<a class="download-app-min" href="/app/custom-grid.min.js" download>Download min app js</a>
-		<hr />
-		<a class="download-style" href="/css/styles.css" download>Download styles</a>
-		<hr />
-		<a class="download-style-min" href="/css/styles.min.css" download>Download min styles</a>
-		<hr />
-		<a class="download-style-min" href="/sources/sources.zip" download>Download as archive</a>
-		<hr />
-		<a class="download-style-min" href="/data/json.zip" download>Download json files</a>
-		<hr />
-		<!--<a class="download-style-min" href="/docs/grid.docx" download>Download docs</a>
-		<hr />-->
-		<!--<div class="options__upload" ng-controller="uploadCtrl">
-			<label>
-				<input type="file" upload-doc />
-				Upload
-			</label>
-		</div>
-		<hr />-->
-		<!--<span ng-bind="new Date('Thu, 25 Jun 2015 18:30:04 GMT').toString()"></span>-->
-		Last update on Mon, 20 Jul 2015 10:39:40 GMT
-	</div>
-	<button class="metro-btn" onclick="location.href = '/index.html'">Back</button>
-</body>
-</html>

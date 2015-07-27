@@ -25,6 +25,8 @@
 	}).when("/withCards", {
 		templateUrl: "app/templates/grids/grid-with-cards.html",
 		controller: "gridWithCardsCtrl"
+	}).when("/download", {
+		templateUrl: "app/templates/download.html"
 	}).when("/navigation", {
 		templateUrl: "app/templates/navigation.html",
 	})
