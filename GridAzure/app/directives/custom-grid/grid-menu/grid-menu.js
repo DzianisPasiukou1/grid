@@ -59,7 +59,7 @@
 								}
 							}
 							else {
-								for (var i = 2; i < value.length - 1; i++) {
+								for (var i = 0; i < value.length; i++) {
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;

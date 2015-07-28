@@ -415,7 +415,7 @@ angular.module('gridTaskApp')
 								}
 							}
 							else {
-								for (var i = 2; i < value.length - 1; i++) {
+								for (var i = 0; i < value.length; i++) {
 									if (!value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth += value[i].minWidth;
@@ -894,7 +894,7 @@ angular.module('gridTaskApp')
 							}
 						}
 						else {
-							for (var i = 2; i < this.scope.gridApi.grid.columns.length - 1; i++) {
+							for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
 								if (!this.scope.gridApi.grid.columns[i].visible) {
 									if ($(window).width() < totalWidth + this.scope.gridApi.grid.columns[i].minWidth) {
 										break;
@@ -1009,7 +1009,8 @@ angular.module('gridTaskApp')
 				dropdownOpt: '=',
 				col: '=',
 				row: '=',
-				reInit: '='
+				reInit: '=',
+				toResize: '='
 			},
 			templateUrl: templatesPath + 'grid-templates/dynamic-actions.html',
 			link: function (scope, element, attrs) {
@@ -1147,6 +1148,11 @@ angular.module('gridTaskApp')
 					}
 				}
 
+				scope.$watch('toResize', function (value) {
+					if (value) {
+					}
+				});
+
 				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
 					scope.totalWidth = 20;
 					scope.offset = element.parent().offset();
@@ -1184,6 +1190,7 @@ angular.module('gridTaskApp')
 
 					scope.dropdownOpt.style = { "z-index": "9" };
 				});
+
 
 
 				$(window).resize(function () {
@@ -1338,6 +1345,7 @@ angular.module('gridTaskApp')
 
 				scope.$watch('listState', function (value) {
 					if (value) {
+						element.find('filter-list').resize();
 						element.addClass('filter-selected');
 						element.find('span.expand').removeClass(classes.menuDown);
 						element.find('span.expand').addClass(classes.menuUp);

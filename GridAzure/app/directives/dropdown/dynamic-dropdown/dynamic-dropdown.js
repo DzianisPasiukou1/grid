@@ -7,7 +7,8 @@
 				dropdownOpt: '=',
 				col: '=',
 				row: '=',
-				reInit: '='
+				reInit: '=',
+				toResize: '='
 			},
 			templateUrl: templatesPath + 'grid-templates/dynamic-actions.html',
 			link: function (scope, element, attrs) {
@@ -145,6 +146,11 @@
 					}
 				}
 
+				scope.$watch('toResize', function (value) {
+					if (value) {
+					}
+				});
+
 				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
 					scope.totalWidth = 20;
 					scope.offset = element.parent().offset();
@@ -182,6 +188,7 @@
 
 					scope.dropdownOpt.style = { "z-index": "9" };
 				});
+
 
 
 				$(window).resize(function () {

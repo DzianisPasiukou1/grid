@@ -46,7 +46,7 @@
 							}
 						}
 						else {
-							for (var i = 2; i < this.scope.gridApi.grid.columns.length - 1; i++) {
+							for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
 								if (!this.scope.gridApi.grid.columns[i].visible) {
 									if ($(window).width() < totalWidth + this.scope.gridApi.grid.columns[i].minWidth) {
 										break;

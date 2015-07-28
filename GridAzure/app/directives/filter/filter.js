@@ -21,6 +21,7 @@
 
 				scope.$watch('listState', function (value) {
 					if (value) {
+						element.find('filter-list').resize();
 						element.addClass('filter-selected');
 						element.find('span.expand').removeClass(classes.menuDown);
 						element.find('span.expand').addClass(classes.menuUp);
