@@ -84,7 +84,9 @@ angular.module('gridTaskApp')
 
 			if (Array.isArray(data) && data[0])
 				for (var prop in data[0]) {
-					options.push({ label: prop, isColumn: true });
+					if (prop != '$$hashKey') {
+						options.push({ label: prop, isColumn: true });
+					}
 				}
 			return options;
 		},
@@ -94,7 +96,9 @@ angular.module('gridTaskApp')
 
 			if (Array.isArray(data) && data[0]) {
 				for (var prop in data[0]) {
-					options.push({ label: prop, isColumn: true });
+					if (prop != '$$hashKey') {
+						options.push({ label: prop, isColumn: true });
+					}
 				}
 			}
 
@@ -1596,8 +1600,14 @@ angular.module('gridTaskApp')
 					}
 				});
 
-				scope.$watch('views.options.selected', function () {
-					initializer.refreshOpt();
+				scope.$watch('views.options.selected', function (value) {
+					if (value) {
+						initializer.refreshOpt();
+
+						if (value.isGrid) {
+							initializer.refreshCheckCallback();
+						}
+					}
 				})
 			}
 		}
@@ -2331,6 +2341,18 @@ var Initializer = (function () {
 		}
 	};
 
+	Initializer.prototype.refreshCheckCallback = function () {
+		for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+			if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+				isFindAct = true;
+				indexAct = i;
+				break;
+			}
+		}
+
+		this.scope.gridOptions.plugins[indexAct].refreshCallback();
+	};
+
 	Initializer.prototype.refreshData = function (data) {
 		this.refreshOpt();
 		this.scope.grid.count = this.scope.data.length;
@@ -2625,10 +2647,10 @@ function ngGridActionsPlugin(opts, compile) {
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + result + '</div>');
+						detElm = angular.element(result);
 					}).fail(function () {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + template + '</div>');
+						detElm = angular.element(template);
 
 					}).always(function () {
 						row.elm.append(detElm);
@@ -2648,7 +2670,7 @@ function ngGridActionsPlugin(opts, compile) {
 				}
 				else {
 					$('.details-template').remove();
-					detElm = angular.element('<div class="details-template">' + template + '</div>');
+					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', rowHeight + 'px');
@@ -2691,11 +2713,10 @@ function ngGridActionsPlugin(opts, compile) {
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + result + '</div>');
+						detElm = angular.element(result);
 					}).fail(function () {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + template + '</div>');
-
+						detElm = angular.element(template);
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
@@ -2724,7 +2745,7 @@ function ngGridActionsPlugin(opts, compile) {
 				}
 				else {
 					$('.details-template').remove();
-					detElm = angular.element('<div class="details-template">' + template + '</div>');
+					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', row.elm.height() + 'px');
@@ -2948,6 +2969,32 @@ function ngGridActionsPlugin(opts, compile) {
 
 	self.refreshOpt = function (otps) {
 		self.opts = otps;
+	}
+
+	self.refreshCallback = function () {
+		self.opts.contentOptions.checks.options.callback = function (check) {
+			if (check) {
+				if (check.isAll) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = true;
+					});
+				}
+				else if (check.isNoOne) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = false;
+					});
+				}
+				else if (check.isMarked) {
+					self.grid.rowCache.forEach(function (value) {
+					});
+				}
+				else if (check.isNotMarked) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = !value.actions.isCheck;
+					});
+				}
+			};
+		};
 	}
 };
 ///#source 1 1 /app/plugins/ngGridCsvExportPlugin.js

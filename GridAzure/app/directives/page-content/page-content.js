@@ -30,8 +30,14 @@
 					}
 				});
 
-				scope.$watch('views.options.selected', function () {
-					initializer.refreshOpt();
+				scope.$watch('views.options.selected', function (value) {
+					if (value) {
+						initializer.refreshOpt();
+
+						if (value.isGrid) {
+							initializer.refreshCheckCallback();
+						}
+					}
 				})
 			}
 		}

@@ -246,6 +246,18 @@
 		}
 	};
 
+	Initializer.prototype.refreshCheckCallback = function () {
+		for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+			if (this.scope.gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+				isFindAct = true;
+				indexAct = i;
+				break;
+			}
+		}
+
+		this.scope.gridOptions.plugins[indexAct].refreshCallback();
+	};
+
 	Initializer.prototype.refreshData = function (data) {
 		this.refreshOpt();
 		this.scope.grid.count = this.scope.data.length;

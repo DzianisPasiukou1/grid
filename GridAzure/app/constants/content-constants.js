@@ -73,7 +73,9 @@
 
 			if (Array.isArray(data) && data[0])
 				for (var prop in data[0]) {
-					options.push({ label: prop, isColumn: true });
+					if (prop != '$$hashKey') {
+						options.push({ label: prop, isColumn: true });
+					}
 				}
 			return options;
 		},
@@ -83,7 +85,9 @@
 
 			if (Array.isArray(data) && data[0]) {
 				for (var prop in data[0]) {
-					options.push({ label: prop, isColumn: true });
+					if (prop != '$$hashKey') {
+						options.push({ label: prop, isColumn: true });
+					}
 				}
 			}
 

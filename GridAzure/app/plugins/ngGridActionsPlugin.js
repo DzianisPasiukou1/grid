@@ -209,10 +209,10 @@
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + result + '</div>');
+						detElm = angular.element(result);
 					}).fail(function () {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + template + '</div>');
+						detElm = angular.element(template);
 
 					}).always(function () {
 						row.elm.append(detElm);
@@ -232,7 +232,7 @@
 				}
 				else {
 					$('.details-template').remove();
-					detElm = angular.element('<div class="details-template">' + template + '</div>');
+					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', rowHeight + 'px');
@@ -275,11 +275,10 @@
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + result + '</div>');
+						detElm = angular.element(result);
 					}).fail(function () {
 						$('.details-template').remove();
-						detElm = angular.element('<div class="details-template">' + template + '</div>');
-
+						detElm = angular.element(template);
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
@@ -308,7 +307,7 @@
 				}
 				else {
 					$('.details-template').remove();
-					detElm = angular.element('<div class="details-template">' + template + '</div>');
+					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
 					$('.details-template').css('top', row.elm.height() + 'px');
@@ -532,5 +531,31 @@
 
 	self.refreshOpt = function (otps) {
 		self.opts = otps;
+	}
+
+	self.refreshCallback = function () {
+		self.opts.contentOptions.checks.options.callback = function (check) {
+			if (check) {
+				if (check.isAll) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = true;
+					});
+				}
+				else if (check.isNoOne) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = false;
+					});
+				}
+				else if (check.isMarked) {
+					self.grid.rowCache.forEach(function (value) {
+					});
+				}
+				else if (check.isNotMarked) {
+					self.grid.rowCache.forEach(function (value) {
+						value.actions.isCheck = !value.actions.isCheck;
+					});
+				}
+			};
+		};
 	}
 };
