@@ -47,37 +47,86 @@ angular.module('gridTaskApp')
 		listSelector: '.page-content__list',
 		loadingTemplate: '<loading ng-show="contentOptions.isLoading"></loading>',
 		gridName: 'Default grid',
-		rowTemplate: 'grid-templates/row-templates/row-with-detalis.html',
-		rowHeight: 60,
-		headerRowHeight: 40,
-		showFooter: true,
-		footerRowHeight: 30,
-		footerTemplate: 'grid-templates/grid-footer.html',
-		rowActions: {
-			options: {
-				label: 'Actions',
-				values: [{ label: 'Edit', isEdit: true, priority: 4 }, { label: 'Copy', isCopy: true, priority: 3 }, { label: 'History', isHistory: true, priority: 2 }, { label: 'Delete', isDelete: true, priority: 1 }],
-				isMenu: true
+		ngGridOpt: {
+			data: 'data',
+			multiSelect: false,
+			rowTemplate: 'app/templates/grid-templates/row-templates/row-with-detalis.html',
+			filterOptions: { filterText: '' },
+			rowHeight: 60,
+			headerRowHeight: 40,
+			showFooter: true,
+			footerRowHeight: 30,
+			footerTemplate: 'app/templates/grid-templates/grid-footer.html',
+			detailsTemplate: 'app/templates/grid-templates/details-templates/details.html',
+			rowActions: {
+				options: {
+					label: 'Actions',
+					values: [{ label: 'Edit', isEdit: true, priority: 4 }, { label: 'Copy', isCopy: true, priority: 3 }, { label: 'History', isHistory: true, priority: 2 }, { label: 'Delete', isDelete: true, priority: 1 }],
+					isMenu: true
+				},
+				isShow: false
 			},
-			isShow: false
-		},
-		detailsTemplate: 'grid-templates/details-templates/details.html',
-		rowCheckAction: function (data) {
-			var isCheckArray = data.filter(function (value) {
-				if (value.actions.isCheck) {
-					return true;
-				}
-			});
+			rowCheckAction: function (data) {
+				var isCheckArray = data.filter(function (value) {
+					if (value.actions.isCheck) {
+						return true;
+					}
+				});
 
-			if (isCheckArray.length == 0) {
-				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.noOne;
+				if (isCheckArray.length == 0) {
+					this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.noOne;
+				}
+				else if (isCheckArray.length == data.length) {
+					this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.all;
+				}
+				else {
+					this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.marked;
+				}
 			}
-			else if (isCheckArray.length == data.length) {
-				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.all;
-			}
-			else {
-				this.contentOptions.checks.options.selected = this.contentOptions.checks.options.actions.marked;
-			}
+		},
+		uiGridOpt: {
+			data: 'data',
+			rowHeight: 60,
+			showGridFooter: true,
+			enableColumnMenus: false,
+			enableRowSelection: true,
+			enableGridMenu: false,
+			multiSelect: false,
+			modifierKeysToMultiSelect: false,
+			noUnselect: true,
+			enableExpandable: true,
+			enableRowHeaderSelection: false,
+			expandableRowTemplate: 'app/templates/grid-templates/details-templates/details.html',
+			expandableRowHeight: 220,
+			selectionRowHeaderWidth: 35,
+			enableExpandableRowHeader: false,
+			enableFiltering: true,
+			rowTemplate: 'app/templates/ui-grid-templates/row.html',
+			expandableRowScope: {
+				subGridVariable: 'subGridScopeVariable'
+			},
+			gridFooterTemplate: '<div class="grid-footer"></div>',
+			headerTemplate: 'app/templates/ui-grid-templates/header.html',
+			headerCellTemplate: 'app/templates/ui-grid-templates/cell-templates/header.html',
+			reInit: true,
+			enableDetails: true,
+			detailsCellTemplate: 'app/templates/ui-grid-templates/cell-templates/details.html',
+			detailsWidth: 60,
+			detailsMinWidth: 60,
+			enableAction: true,
+			actionsCellTemplate: 'app/templates/ui-grid-templates/cell-templates/action.html',
+			actionsWidth: 250,
+			actionsMinWidth: 115,
+			columnMinWidth: 80,
+			cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
+				if (row.isChecked) {
+					return 'checked';
+				}
+				else if (row.isExpanded) {
+					return 'expanded';
+				}
+			},
+			enableColumnFilter: false
 		},
 		filterOptions: function (data) {
 			var options = [];
@@ -519,32 +568,12 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/custom-ui-grid/custom-ui-grid-controller.js
 angular.module('gridTaskApp')
 	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$interval', function ($scope, templatesPath, $compile, $interval) {
-		$scope.opt2 = {
-			data: 'data',
-			rowHeight: 60,
-			showGridFooter: true,
-			enableColumnMenus: false,
-			enableRowSelection: true,
-			enableGridMenu: true,
-			multiSelect: false,
-			modifierKeysToMultiSelect: false,
-			noUnselect: true,
-			enableExpandable: true,
-			enableRowHeaderSelection: false,
-			expandableRowTemplate: templatesPath + 'grid-templates/details-templates/details.html',
-			expandableRowHeight: 220,
-			selectionRowHeaderWidth: 35,
-			enableExpandableRowHeader: false,
-			enableFiltering: true,
-			rowTemplate: templatesPath + 'ui-grid-templates/row.html',
-			expandableRowScope: {
-				subGridVariable: 'subGridScopeVariable'
-			},
-			onRegisterApi: function (gridApi) {
-				$scope.gridApi = gridApi;
 
+		$scope.options.onRegisterApi = function (gridApi) {
+			$scope.gridApi = gridApi;
+
+			if ($scope.options.enableAction) {
 				gridApi.core.on.rowsRendered($scope, function () {
-
 					$scope.gridApi.grid.rows.forEach(function (row) {
 						row.actions = angular.copy($scope.options.rowActions);
 						row.actions.tab = 2;
@@ -593,14 +622,11 @@ angular.module('gridTaskApp')
 						};
 					})
 				});
+			}
 
-				$scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
+			$scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
 
-				gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-					var msg = 'row selected ' + row.isSelected;
-					console.log(msg);
-				});
-
+			if ($scope.options.enableDetails) {
 				gridApi.expandable.on.rowExpandedStateChanged($scope, function (row) {
 					if (row.isExpanded) {
 						$scope.gridApi.grid.rows.forEach(function (rowCache) {
@@ -610,33 +636,31 @@ angular.module('gridTaskApp')
 						});
 					}
 				});
+			}
 
-				$scope.contentOptions.checks.options.callback = function (check) {
-					if (check) {
-						if (check.isAll) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = true;
-							});
-						}
-						else if (check.isNoOne) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = false;
-							});
-						}
-						else if (check.isMarked) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-							});
-						}
-						else if (check.isNotMarked) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = !row.isCheck;
-							});
-						}
+			$scope.contentOptions.checks.options.callback = function (check) {
+				if (check) {
+					if (check.isAll) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = true;
+						});
+					}
+					else if (check.isNoOne) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = false;
+						});
+					}
+					else if (check.isMarked) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+						});
+					}
+					else if (check.isNotMarked) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = !row.isCheck;
+						});
 					}
 				}
-			},
-			gridFooterTemplate: '<div class="grid-footer"></div>',
-			headerTemplate: templatesPath + 'ui-grid-templates/header.html'
+			}
 		}
 
 		$scope.singleFilter = function (renderableRows) {
@@ -648,7 +672,7 @@ angular.module('gridTaskApp')
 				renderableRows.forEach(function (row) {
 					var match = false;
 
-					$scope.opt2.columnDefs.forEach(function (col) {
+					$scope.options.columnDefs.forEach(function (col) {
 						if (row.entity[col.field] !== undefined) {
 							if (row.entity[col.field].toString().match(matcher)) {
 								match = true;
@@ -675,7 +699,7 @@ angular.module('gridTaskApp')
 					renderableRows.forEach(function (row) {
 						var match = false;
 
-						$scope.opt2.columnDefs.forEach(function (col) {
+						$scope.options.columnDefs.forEach(function (col) {
 							if (row.entity[propName] !== undefined) {
 								if (row.entity[propName].toString().match(matcher)) {
 									match = true;
@@ -770,63 +794,48 @@ angular.module('gridTaskApp')
 		}
 
 		$scope.$watch('data', function (data) {
-			var columns = [];
+			if ($scope.options.reInit) {
+				var columns = [];
 
-			columns.push({
-				field: 'details', displayName: '', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
-				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-					if (row.isChecked) {
-						return 'checked';
-					}
-					else if (row.isExpanded) {
-						return 'expanded';
-					}
-				}
-			});
-
-			if (data[0]) {
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].isColumn) {
-						return;
-					}
-				}
-
-				for (var field in data[0]) {
-
-					if (field == '$$hashKey') {
-						continue;
-					}
-
+				if ($scope.options.enableDetails) {
 					columns.push({
-						field: field,
-						displayName: field,
-						enableFiltering: false,
-						minWidth: 80,
-						cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-							if (row.isChecked) {
-								return 'checked';
-							}
-							else if (row.isExpanded) {
-								return 'expanded';
-							}
+						field: 'details', displayName: '', headerCellTemplate: $scope.options.headerCellTemplate, cellTemplate: $scope.options.detailsCellTemplate, enableSorting: false, width: $scope.options.detailsWidth, minWidth: $scope.options.detailsMinWidth, enableFiltering: $scope.options.enableColumnFilter,
+						cellClass: $scope.options.cellClass
+					});
+				}
+
+				if (data[0]) {
+					for (var i = 0; i < data.length; i++) {
+						if (data[i].isColumn) {
+							return;
 						}
-					})
+					}
+
+					for (var field in data[0]) {
+
+						if (field == '$$hashKey') {
+							continue;
+						}
+
+						columns.push({
+							field: field,
+							displayName: field,
+							enableFiltering: $scope.options.enableColumnFilter,
+							minWidth: $scope.options.columnMinWidth,
+							cellClass: $scope.options.cellClass
+						})
+					}
 				}
+
+				if ($scope.options.enableAction) {
+					columns.push({
+						field: 'action', displayName: '', cellTemplate: $scope.options.actionsCellTemplate, headerCellTemplate: $scope.options.headerCellTemplate, enableSorting: false, width: $scope.options.actionsWidth, minWidth: $scope.options.actionsMinWidth, enableFiltering: $scope.options.enableColumnFilter,
+						cellClass: $scope.options.cellClass
+					});
+				}
+
+				$scope.options.columnDefs = columns;
 			}
-
-			columns.push({
-				field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
-				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-					if (row.isChecked) {
-						return 'checked';
-					}
-					else if (row.isExpanded) {
-						return 'expanded';
-					}
-				}
-			});
-
-			$scope.opt2.columnDefs = columns;
 		});
 	}]);
 ///#source 1 1 /app/directives/custom-ui-grid/custom-ui-grid.js
@@ -855,21 +864,32 @@ angular.module('gridTaskApp')
 				self.scope = scope;
 				self.uiGridGridMenuService = uiGridGridMenuService;
 
+				if (self.scope.options.showResponsMenu) {
+					self.scope.options.enableGridMenu = true;
+				}
+
 				$timeout(function () {
 					var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
 						return a + b.minWidth;
 					}, 0);
+
+					var isAllVisible = true;
 
 					if ($(window).width() < totalWidth) {
 						for (var i = this.scope.gridApi.grid.columns.length - 2; i > 1; i--) {
 							if (this.scope.gridApi.grid.columns[i].visible) {
 								this.uiGridGridMenuService.toggleColumnVisibility(this.scope.gridApi.grid.columns[i]);
 								totalWidth -= this.scope.gridApi.grid.columns[i].minWidth;
+								isAllVisible = false;
 							}
 							if ($(window).width() > totalWidth) {
 								break;
 							}
 						}
+					}
+
+					if (!isAllVisible && !self.scope.options.enableGridMenu) {
+						self.scope.options.enableGridMenu = true;
 					}
 
 					$(window).resize(function () {
@@ -904,6 +924,25 @@ angular.module('gridTaskApp')
 								}
 							}
 						}
+
+						if (!self.scope.options.showResponsMenu) {
+
+							var isAllVisible = true;
+
+							for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
+								if (!this.scope.gridApi.grid.columns[i].visible) {
+									isAllVisible = false;
+								}
+							}
+
+							if (isAllVisible) {
+								self.scope.options.enableGridMenu = false;
+							}
+							else {
+								self.scope.options.enableGridMenu = true;
+							}
+						}
+
 					}.bind(this));
 				}.bind(self));
 			}
@@ -1584,7 +1623,8 @@ angular.module('gridTaskApp')
 				data: '=gridData',
 				contentOptions: '=',
 				grid: '=',
-				gridOptions: '='
+				gridOptions: '=',
+				uiGridOptions: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {
@@ -1701,7 +1741,7 @@ angular.module('gridTaskApp')
 			scope: {
 				data: '=gridData',
 				contentOptions: '=',
-				gridOptions: '='
+				uiGridOptions: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
@@ -1807,10 +1847,6 @@ angular.module('gridTaskApp')
 						scope.grid.count = scope.data.length;
 					}
 				});
-
-				scope.$watch('views.options.selected', function () {
-					initializer.refreshOpt();
-				})
 			}
 		};
 	}])
@@ -2114,6 +2150,7 @@ var Initializer = (function () {
 		this.initContentOpt();
 		this.initGrid();
 		this.initGridOpt();
+		this.initUiGridOpt();
 	}
 
 	Initializer.prototype.initContentOpt = function () {
@@ -2140,12 +2177,14 @@ var Initializer = (function () {
 		if (this.scope.contentOptions.filtrate === undefined) {
 			this.scope.contentOptions.filtrate = function (value) {
 				this.scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+				this.scope.uiGridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
 			}.bind(this);
 		}
 
 		if (this.scope.contentOptions.search === undefined) {
 			this.scope.contentOptions.search = function (value) {
 				this.scope.gridOptions.filterOptions.filterText = value;
+				this.scope.uiGridOptions.filterOptions.filterText = value;
 			}.bind(this);
 		}
 
@@ -2220,39 +2259,39 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.data === undefined) {
-			this.scope.gridOptions.data = 'data';
+			this.scope.gridOptions.data = this.content.ngGridOpt.data;
 		}
 
 		if (this.scope.gridOptions.multiSelect === undefined) {
-			this.scope.gridOptions.multiSelect = false;
+			this.scope.gridOptions.multiSelect = this.content.ngGridOpt.multiSelect;
 		}
 
 		if (this.scope.gridOptions.rowTemplate === undefined) {
-			this.scope.gridOptions.rowTemplate = this.templatesPath + this.content.rowTemplate;
+			this.scope.gridOptions.rowTemplate = this.content.ngGridOpt.rowTemplate;
 		}
 
 		if (this.scope.gridOptions.filterOptions === undefined) {
-			this.scope.gridOptions.filterOptions = { filterText: '' };
+			this.scope.gridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.gridOptions.rowHeight === undefined) {
-			this.scope.gridOptions.rowHeight = this.content.rowHeight;
+			this.scope.gridOptions.rowHeight = this.content.ngGridOpt.rowHeight;
 		}
 
 		if (this.scope.gridOptions.headerRowHeight === undefined) {
-			this.scope.gridOptions.headerRowHeight = this.content.headerRowHeight;
+			this.scope.gridOptions.headerRowHeight = this.content.ngGridOpt.headerRowHeight;
 		}
 
 		if (this.scope.gridOptions.showFooter === undefined) {
-			this.scope.gridOptions.showFooter = this.content.showFooter;
+			this.scope.gridOptions.showFooter = this.content.ngGridOpt.showFooter;
 		}
 
 		if (this.scope.gridOptions.footerRowHeight === undefined) {
-			this.scope.gridOptions.footerRowHeight = this.content.footerRowHeight;
+			this.scope.gridOptions.footerRowHeight = this.content.ngGridOpt.footerRowHeight;
 		}
 
 		if (this.scope.gridOptions.footerTemplate === undefined) {
-			this.scope.gridOptions.footerTemplate = this.templatesPath + this.content.footerTemplate;
+			this.scope.gridOptions.footerTemplate = this.content.ngGridOpt.footerTemplate;
 		}
 
 		if (this.scope.gridOptions.init === undefined) {
@@ -2264,21 +2303,19 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.detailsTemplate === undefined && this.scope.gridOptions.withDetails) {
-			this.scope.gridOptions.detailsTemplate = this.templatesPath + this.content.detailsTemplate;
+			this.scope.gridOptions.detailsTemplate = this.content.ngGridOpt.detailsTemplate;
 		}
 
 		if (this.scope.gridOptions.rowActions === undefined) {
-			this.scope.gridOptions.rowActions = this.content.rowActions;
+			this.scope.gridOptions.rowActions = this.content.ngGridOpt.rowActions;
 		}
 
 		if (this.scope.gridOptions.rowCheckAction === undefined) {
-			this.scope.gridOptions.rowCheckAction = this.content.rowCheckAction;
+			this.scope.gridOptions.rowCheckAction = this.content.ngGridOpt.rowCheckAction;
 		}
 
 		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
 			this.scope.gridOptions.beforeSelectionChange = function (row, event) {
-				//this.scope.gridOptions.selectAll()
-
 				return false;
 			}.bind(this);
 		}
@@ -2309,7 +2346,26 @@ var Initializer = (function () {
 				this.scope.gridOptions.plugins.push(new ngGridActionsPlugin(this.scope.pluginActionOpt, this.$compile));
 			}
 		}
+	};
 
+	Initializer.prototype.initUiGridOpt = function () {
+		if (this.scope.uiGridOptions === undefined) {
+			this.scope.uiGridOptions = {};
+		}
+
+		for (var prop in this.content.uiGridOpt) {
+			if (this.scope.uiGridOptions[prop] === undefined) {
+				this.scope.uiGridOptions[prop] = this.content.uiGridOpt[prop];
+			}
+		}
+
+		if (this.scope.uiGridOptions.filterOptions === undefined) {
+			this.scope.uiGridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
+		}
+
+		if (this.scope.uiGridOptions.rowActions === undefined) {
+			this.scope.uiGridOptions.rowActions = this.content.ngGridOpt.rowActions;
+		}
 
 	};
 
@@ -2365,6 +2421,7 @@ var Initializer = (function () {
 		this.refreshOpt();
 		this.scope.grid.count = this.scope.data.length;
 		this.scope.gridOptions.filterOptions.filterText = '';
+		this.scope.uiGridOptions.filterOptions.filterText = '';
 
 		var oldColumns = angular.copy(this.scope.gridOptions.columnDefs);
 		var newColumns = columnGenerator(data, this.templatesPath);
@@ -2373,11 +2430,31 @@ var Initializer = (function () {
 			if (!columnsCompare(oldColumns, newColumns)) {
 				this.scope.gridOptions.columnDefs = newColumns;
 
-				this.$compile($('custom-grid'))(this.scope);
+				if (this.scope.view) {
+					if (this.scope.view.isGrid) {
+						this.$compile($('custom-grid'))(this.scope);
+					}
+					else if (this.scope.view.isUiGrid) {
+						//this.$compile($('custom-ui-grid'))(this.scope);
+					}
+				}
+				else {
+					//this.$compile($('.custom-ui-grid'))(this.scope);
+				}
 			}
 		}
 		else {
-			this.$compile($('custom-grid'))(this.scope);
+			if (view) {
+				if (view.isGrid) {
+					this.$compile($('custom-grid'))(this.scope);
+				}
+				else if (view.isUiGrid) {
+					//this.$compile($('custom-ui-grid'))(this.scope);
+				}
+			}
+			else {
+				//this.$compile($('.custom-ui-grid'))(this.scope);
+			}
 		}
 
 		if (this.scope.contentOptions.loading) {

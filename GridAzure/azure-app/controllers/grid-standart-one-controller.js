@@ -18,14 +18,12 @@
 
 				$scope.grid.count = $scope.data.length;
 			},
-			withUpload: true,
-			filtrate: function (value) {
-				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
-			},
-			search: function (value) {
-				$scope.gridOptions.filterOptions.filterText = value;
-			}
+			withUpload: true
 		};
+
+		$scope.uiGridOptions = {
+			showResponsMenu: true
+		}
 
 		$scope.gridOptions = {
 			data: 'data',

@@ -70,8 +70,11 @@
 			}
 		}
 
+		self.scope.uiGridOptions = {
+		}
+
 		self.scope.content = JSON.stringify({
-			contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions
+			contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions, uiGridOptions: self.scope.uiGridOptions
 		}, function (key, value) {
 			if (typeof value === 'function') {
 				var temp = value.toString();
@@ -111,6 +114,7 @@
 
 		}
 
+
 		self.scope.content = tempContent;
 
 		self.scope.isValid = true;
@@ -137,6 +141,7 @@
 				self.scope.contentOptions = temp.contentOptions;
 				self.scope.grid = temp.grid;
 				self.scope.gridOptions = temp.gridOptions;
+				self.scope.uiGridOptions = temp.uiGridOptions;
 				self.scope.isValid = true;
 			}
 			catch (e) {
@@ -144,10 +149,6 @@
 				self.scope.isValid = false;
 				return;
 			}
-		}
-
-		self.scope.refreshContent = function () {
-
 		}
 
 		self.scope.textChange();

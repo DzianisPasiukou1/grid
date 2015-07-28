@@ -1,31 +1,11 @@
 ﻿angular.module('gridTaskApp')
 	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$interval', function ($scope, templatesPath, $compile, $interval) {
-		$scope.opt2 = {
-			data: 'data',
-			rowHeight: 60,
-			showGridFooter: true,
-			enableColumnMenus: false,
-			enableRowSelection: true,
-			enableGridMenu: true,
-			multiSelect: false,
-			modifierKeysToMultiSelect: false,
-			noUnselect: true,
-			enableExpandable: true,
-			enableRowHeaderSelection: false,
-			expandableRowTemplate: templatesPath + 'grid-templates/details-templates/details.html',
-			expandableRowHeight: 220,
-			selectionRowHeaderWidth: 35,
-			enableExpandableRowHeader: false,
-			enableFiltering: true,
-			rowTemplate: templatesPath + 'ui-grid-templates/row.html',
-			expandableRowScope: {
-				subGridVariable: 'subGridScopeVariable'
-			},
-			onRegisterApi: function (gridApi) {
-				$scope.gridApi = gridApi;
 
+		$scope.options.onRegisterApi = function (gridApi) {
+			$scope.gridApi = gridApi;
+
+			if ($scope.options.enableAction) {
 				gridApi.core.on.rowsRendered($scope, function () {
-
 					$scope.gridApi.grid.rows.forEach(function (row) {
 						row.actions = angular.copy($scope.options.rowActions);
 						row.actions.tab = 2;
@@ -74,14 +54,11 @@
 						};
 					})
 				});
+			}
 
-				$scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
+			$scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
 
-				gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-					var msg = 'row selected ' + row.isSelected;
-					console.log(msg);
-				});
-
+			if ($scope.options.enableDetails) {
 				gridApi.expandable.on.rowExpandedStateChanged($scope, function (row) {
 					if (row.isExpanded) {
 						$scope.gridApi.grid.rows.forEach(function (rowCache) {
@@ -91,33 +68,31 @@
 						});
 					}
 				});
+			}
 
-				$scope.contentOptions.checks.options.callback = function (check) {
-					if (check) {
-						if (check.isAll) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = true;
-							});
-						}
-						else if (check.isNoOne) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = false;
-							});
-						}
-						else if (check.isMarked) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-							});
-						}
-						else if (check.isNotMarked) {
-							$scope.gridApi.grid.rows.forEach(function (row) {
-								row.isCheck = !row.isCheck;
-							});
-						}
+			$scope.contentOptions.checks.options.callback = function (check) {
+				if (check) {
+					if (check.isAll) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = true;
+						});
+					}
+					else if (check.isNoOne) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = false;
+						});
+					}
+					else if (check.isMarked) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+						});
+					}
+					else if (check.isNotMarked) {
+						$scope.gridApi.grid.rows.forEach(function (row) {
+							row.isCheck = !row.isCheck;
+						});
 					}
 				}
-			},
-			gridFooterTemplate: '<div class="grid-footer"></div>',
-			headerTemplate: templatesPath + 'ui-grid-templates/header.html'
+			}
 		}
 
 		$scope.singleFilter = function (renderableRows) {
@@ -129,7 +104,7 @@
 				renderableRows.forEach(function (row) {
 					var match = false;
 
-					$scope.opt2.columnDefs.forEach(function (col) {
+					$scope.options.columnDefs.forEach(function (col) {
 						if (row.entity[col.field] !== undefined) {
 							if (row.entity[col.field].toString().match(matcher)) {
 								match = true;
@@ -156,7 +131,7 @@
 					renderableRows.forEach(function (row) {
 						var match = false;
 
-						$scope.opt2.columnDefs.forEach(function (col) {
+						$scope.options.columnDefs.forEach(function (col) {
 							if (row.entity[propName] !== undefined) {
 								if (row.entity[propName].toString().match(matcher)) {
 									match = true;
@@ -251,62 +226,47 @@
 		}
 
 		$scope.$watch('data', function (data) {
-			var columns = [];
+			if ($scope.options.reInit) {
+				var columns = [];
 
-			columns.push({
-				field: 'details', displayName: '', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details.html', enableSorting: false, width: 60, minWidth: 60, enableFiltering: false,
-				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-					if (row.isChecked) {
-						return 'checked';
-					}
-					else if (row.isExpanded) {
-						return 'expanded';
-					}
-				}
-			});
-
-			if (data[0]) {
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].isColumn) {
-						return;
-					}
-				}
-
-				for (var field in data[0]) {
-
-					if (field == '$$hashKey') {
-						continue;
-					}
-
+				if ($scope.options.enableDetails) {
 					columns.push({
-						field: field,
-						displayName: field,
-						enableFiltering: false,
-						minWidth: 80,
-						cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-							if (row.isChecked) {
-								return 'checked';
-							}
-							else if (row.isExpanded) {
-								return 'expanded';
-							}
+						field: 'details', displayName: '', headerCellTemplate: $scope.options.headerCellTemplate, cellTemplate: $scope.options.detailsCellTemplate, enableSorting: false, width: $scope.options.detailsWidth, minWidth: $scope.options.detailsMinWidth, enableFiltering: $scope.options.enableColumnFilter,
+						cellClass: $scope.options.cellClass
+					});
+				}
+
+				if (data[0]) {
+					for (var i = 0; i < data.length; i++) {
+						if (data[i].isColumn) {
+							return;
 						}
-					})
+					}
+
+					for (var field in data[0]) {
+
+						if (field == '$$hashKey') {
+							continue;
+						}
+
+						columns.push({
+							field: field,
+							displayName: field,
+							enableFiltering: $scope.options.enableColumnFilter,
+							minWidth: $scope.options.columnMinWidth,
+							cellClass: $scope.options.cellClass
+						})
+					}
 				}
+
+				if ($scope.options.enableAction) {
+					columns.push({
+						field: 'action', displayName: '', cellTemplate: $scope.options.actionsCellTemplate, headerCellTemplate: $scope.options.headerCellTemplate, enableSorting: false, width: $scope.options.actionsWidth, minWidth: $scope.options.actionsMinWidth, enableFiltering: $scope.options.enableColumnFilter,
+						cellClass: $scope.options.cellClass
+					});
+				}
+
+				$scope.options.columnDefs = columns;
 			}
-
-			columns.push({
-				field: 'action', displayName: '', cellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html', headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html', enableSorting: false, width: 250, minWidth: 115, enableFiltering: false,
-				cellClass: function (grid, row, col, rowRenderedIndex, colRenderedIndex) {
-					if (row.isChecked) {
-						return 'checked';
-					}
-					else if (row.isExpanded) {
-						return 'expanded';
-					}
-				}
-			});
-
-			$scope.opt2.columnDefs = columns;
 		});
 	}]);

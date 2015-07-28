@@ -7,21 +7,32 @@
 				self.scope = scope;
 				self.uiGridGridMenuService = uiGridGridMenuService;
 
+				if (self.scope.options.showResponsMenu) {
+					self.scope.options.enableGridMenu = true;
+				}
+
 				$timeout(function () {
 					var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
 						return a + b.minWidth;
 					}, 0);
+
+					var isAllVisible = true;
 
 					if ($(window).width() < totalWidth) {
 						for (var i = this.scope.gridApi.grid.columns.length - 2; i > 1; i--) {
 							if (this.scope.gridApi.grid.columns[i].visible) {
 								this.uiGridGridMenuService.toggleColumnVisibility(this.scope.gridApi.grid.columns[i]);
 								totalWidth -= this.scope.gridApi.grid.columns[i].minWidth;
+								isAllVisible = false;
 							}
 							if ($(window).width() > totalWidth) {
 								break;
 							}
 						}
+					}
+
+					if (!isAllVisible && !self.scope.options.enableGridMenu) {
+						self.scope.options.enableGridMenu = true;
 					}
 
 					$(window).resize(function () {
@@ -56,6 +67,25 @@
 								}
 							}
 						}
+
+						if (!self.scope.options.showResponsMenu) {
+
+							var isAllVisible = true;
+
+							for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
+								if (!this.scope.gridApi.grid.columns[i].visible) {
+									isAllVisible = false;
+								}
+							}
+
+							if (isAllVisible) {
+								self.scope.options.enableGridMenu = false;
+							}
+							else {
+								self.scope.options.enableGridMenu = true;
+							}
+						}
+
 					}.bind(this));
 				}.bind(self));
 			}

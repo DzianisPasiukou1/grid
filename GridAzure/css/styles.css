@@ -215,9 +215,9 @@ button::-moz-focus-inner {
   border-bottom: 1px solid;
   border-color: transparent;
   left: 50%;
-  top: 60%;
-  margin-left: -0.325rem;
-  margin-top: -0.365rem;
+  top: 8px;
+  margin-left: -3px;
+  margin-top: -3px;
   display: block;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
@@ -235,9 +235,9 @@ button::-moz-focus-inner {
   border-bottom: 2px solid;
   border-color: #555555;
   left: 50%;
-  top: 60%;
-  margin-left: -0.325rem;
-  margin-top: -0.365rem;
+  top: 8px;
+  margin-left: -3px;
+  margin-top: -3px;
   display: block;
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
@@ -1336,7 +1336,8 @@ button::-moz-focus-inner {
   .options__block {
     display: inline; }
   .options__search {
-    float: right; }
+    float: right;
+    margin-right: -20.5px; }
     .options__search .search .search-span {
       top: 7px; }
     .options__search .search .search-clear {
@@ -1501,7 +1502,7 @@ button::-moz-focus-inner {
     position: absolute;
     top: 3px;
     z-index: 100;
-    right: 17px;
+    right: 2.25rem;
     border-color: black;
     background: #5a5a5a;
     padding: 0 5px !important;

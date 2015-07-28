@@ -5,7 +5,7 @@
 			scope: {
 				data: '=gridData',
 				contentOptions: '=',
-				gridOptions: '='
+				uiGridOptions: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
@@ -111,10 +111,6 @@
 						scope.grid.count = scope.data.length;
 					}
 				});
-
-				scope.$watch('views.options.selected', function () {
-					initializer.refreshOpt();
-				})
 			}
 		};
 	}])

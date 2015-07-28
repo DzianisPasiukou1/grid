@@ -18,13 +18,7 @@
 
 				$scope.grid.count = $scope.data.length;
 			},
-			isDynamic: true,
-			filtrate: function (value) {
-				$scope.gridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
-			},
-			search: function (value) {
-				$scope.gridOptions.filterOptions.filterText = value;
-			}
+			isDynamic: true
 		};
 
 		$scope.gridOptions = {

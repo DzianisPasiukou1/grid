@@ -6,7 +6,8 @@
 				data: '=gridData',
 				contentOptions: '=',
 				grid: '=',
-				gridOptions: '='
+				gridOptions: '=',
+				uiGridOptions: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {

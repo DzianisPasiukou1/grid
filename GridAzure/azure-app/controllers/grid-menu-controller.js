@@ -40,6 +40,11 @@
 			isDynamic: true,
 			loading: true
 		};
+
+		$scope.uiGridOptions = {
+			showResponsMenu: true
+		}
+
 		$scope.gridOptions = {
 			data: 'data',
 			withDetails: true,
