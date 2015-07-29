@@ -1,0 +1,78 @@
+@import partials/base
+$mobileEm: 50em
+
+/* =dashboard grid for mobile (max 50em) */
+.dashboard-grid
+  @include at-breakpoint(9 $mobileEm)
+    @include container
+    max-width: 100%
+  .dcol.small
+    @include at-breakpoint(9 $mobileEm)  
+      @include span-columns(9, 9)
+  .dcol.med
+    @include at-breakpoint(9 $mobileEm)  
+      @include span-columns(9, 9)    
+  .dcol.large
+    @include at-breakpoint(9 $mobileEm)  
+      @include span-columns(9, 9) 
+  .dcol
+    @include at-breakpoint(9 $mobileEm)
+      padding: 15px 0
+  .row 
+    @include at-breakpoint(9 $mobileEm)
+      border-bottom: 0
+      box-shadow: none
+  .row >
+    div
+      @include at-breakpoint(9 $mobileEm)
+        border-right: none
+        border-bottom: 1px solid #000000
+        box-shadow: 0 1px 0 rgb(95, 95, 95)
+    div:last-child
+      @include at-breakpoint(9 $mobileEm)
+  .row:last-child >
+    .dcol:last-child
+      border-bottom: none
+      box-shadow: none
+
+.dashboard-grid >
+  div
+    @include at-breakpoint(9 $mobileEm)
+      height: auto !important
+
+
+$widgetConfWidth: 70em
+.social-widget
+  .row
+    @include at-breakpoint(9 $widgetConfWidth)
+      @include container
+      max-width: 100%
+    .col:nth-child(1)
+      @include at-breakpoint(21 $widgetConfWidth)
+        @include span-columns(4, 21)
+    .col:nth-child(2)
+      @include at-breakpoint(18 $widgetConfWidth)
+        @include span-columns(10, 21)    
+    .col:nth-child(3)
+      @include at-breakpoint(18 $widgetConfWidth)
+        @include span-columns(7, 21)
+
+@media (max-width: 800px)
+  .logged-in-user .user-name
+    max-width: 150px
+@media (max-width: 600px)
+  .logged-in-user .user-name
+    max-width: 120px
+@media (max-width: 480px)
+  .logged-in-user .user-name
+    max-width: 100px
+  .logged-in-user, .account
+    margin: 0 !important
+  .logged-in-user .organization-name
+    display: none
+  .logged-in-user .dropdown-menu
+    left: auto
+    right: 0
+@media (max-width: 320px)
+  .logged-in-user .user-name
+    max-width: 80px

@@ -1,0 +1,434 @@
+
+/* -- Flight Criteria Form Crud -- */
+.flight-criteria-form-crud
+  fieldset
+    margin-bottom: 20px
+  fieldset > *
+    display: inline-block
+  fieldset > label
+    text-align: right
+    @include span-columns(3, 10)
+    margin-right: 5%
+  fieldset .value
+    @include span-columns(5, 10)
+    .select2-container
+      height: 100%
+      width: 100%
+  .country-list
+    padding-top: 15px
+    li.country
+      background: #283236
+      position: relative
+    .country-name
+      display: inline-block
+      width: 30%
+    .select2-container.region-select
+      width: 60%
+      position: relative
+      right: 0
+  .advanced-options-container
+    .icon-chevron-right,
+    .icon-chevron-down
+      margin-top: 4px
+  .advanced-options
+    margin: 0px
+    padding: 10px
+    background-color: $black-low-opacity
+    border-radius: 5px
+    .option-container
+      margin-top: 25px
+      .day-options
+        margin-bottom: 10px
+        width: 100%
+        label
+          display: inline-block
+          width: 50px
+          text-align: left !important
+          input
+            position: relative
+            top: -3px
+            margin-right: 4px
+        .dropdown-menu
+          @include clearfix
+          background-color: #e6e6e6
+          color: #333333
+          border-radius: 6px
+          border: 1px solid rgba(0, 0, 0, 0.2)
+          margin: 2px 0 0
+          padding: 5px 0
+          label
+            color: black
+            min-width: 170px
+            text-align: left
+          label input
+            margin-top: 5px
+          a
+            padding: 0 10px
+    .campaign-only
+      .ad-category-select
+        width: 50%
+      textarea
+        width: 50%
+    .flight-only
+      padding: 50px
+      .additional-message
+        padding: 15px
+        background-color: $black-low-opacity
+
+// ****** Campaign Report ******* //
+.campaign-report-list
+  font-family: 'Open Sans', sans-serif
+  min-width: 700px
+  .section-header > h3
+    font-weight: 300
+    margin: 10px 0
+  .section-header
+    position: relative
+    padding-left: 20px
+    text-align: left
+    span
+      color: #aaa
+      position: absolute
+      top: 10px
+      right: 20px
+  table
+    border-collapse:collapse
+  .table-campaign-flight
+    width: 100%
+    .table-header
+      background: #202528
+    th:nth-of-type(1)
+      border-radius: 0 0 0 10px
+    th:nth-of-type(5)
+      border-radius: 0 0 10px 0
+    th
+      letter-spacing: 1px
+      cursor: pointer
+      font-size: 15px
+      font-weight: 400
+      color: #cae9fd
+      i
+        margin: 0 6px 0 0
+        position: relative
+        top: 3px
+    th:first-child
+      padding-left: 20px
+    td
+      border: none
+      font-weight: 300
+    td:first-child
+      padding-left: 20px
+    th.toggle-trigger
+      width: 20%
+    th.impression,
+    th.spend
+      width: 30%
+    th.ecpm,
+    th.ctr
+      width: 10%
+    tbody
+      cursor: pointer
+    tbody tr.active
+      background: #36444a
+    tbody tr.active > td:first-child
+      border-radius: 10px 0 0 10px
+    tbody tr.active > td:last-child
+      border-radius: 0 10px 10px 0
+  .toggle-trigger
+    .icon-large
+      color: #149bdf
+      margin-right: 10px
+
+.report-row
+  .rcol
+    margin-right: 0 !important
+    padding: 0 15px
+  .rcol.small
+    @include span-columns(4, 12)
+  .rcol:first-child
+    padding-left: 0
+  .rcol:last-child
+    padding-right: 0
+    box-shadow: none
+  .demo-header
+    margin-bottom: 0
+    text-align: center
+  .demo-header > h5
+    font-size: 18.5px
+    letter-spacing: 3px
+    color: #ffba00
+    padding: 4px 0px
+    font-weight: 500
+    margin: 0
+
+.centerbar
+  .flights li
+    margin-left: 20px
+    margin-bottom: 10px
+  .flights li .delete-flight
+    margin-left: 10px
+    .icon-trash
+      margin-top: 5px
+   
+.sidebar
+  .campaign-detail
+    @include clearfix
+    .header
+      position: relative
+      .name
+        margin-top: 0
+        h3
+          font-weight: 200
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+      .actions
+        opacity: .7
+        position: absolute
+        top: 5px
+        right: 0
+        margin-right: 10px
+        -webkit-transition: all 50ms ease-in-out
+        -moz-transition: all 50ms ease-in-out
+        -ms-transition: all 50ms ease-in-out
+        -o-transition: all 50ms ease-in-out
+        transition: all 50ms ease-in-out
+        a
+          background-color: #2b373c
+          width: 24px
+          height: 24px
+          display: inline-block
+          margin-left: 5px
+        a:hover
+          background-color: transparent
+      .actions:hover
+        opacity: 1
+  .campaign-row > *
+    display: inline-block
+    line-height: 1.6
+  .campaign-row .title
+    text-align: right
+    @include span-columns(3, 10)
+    margin-right: 15px
+    color: #7e8f9a
+  .campaign-row .value
+    @include span-columns(5, 10)
+  .campaign-row.use-default-setting .value
+    @include span-columns(6, 10)
+  .campaign-description .value
+    @include span-columns(5, 10)
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+  .default-targeting-and-delivery
+    @include clearfix
+    margin-top: 30px
+    .criteria-row
+      @include clearfix
+      margin-bottom: 5px
+    & .title
+      text-align: right
+      @include span-columns(3, 10)
+      margin-right: 15px
+      color: #7e8f9a
+    & .value
+      @include span-columns(5, 10)
+    .segments .value,
+    .ad-categories .value
+      display: inline-block
+      // margin-bottom: 10px
+      & span
+        margin-right: 5px
+    .geographic .country-list .country
+      margin-bottom: 10px
+    .geographic .region-list .label
+      margin-right: 5px
+    .day-parting .time-list span
+      margin-right: 5px
+    .whitelist .value
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+    .blacklist .value
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+    .simplehistory-container
+      .simplehistory
+        @include span-columns(6, 10)
+        padding: 5px
+        background-color: $black-low-opacity
+        border-radius: 5px
+        & > *
+          margin: 5px
+        .label
+          width: 65px
+          margin-right: 5px
+        .date
+          color: grey
+        .user
+          color: $blue-pink
+
+.campaign-detail
+  position: relative
+  padding-bottom: 20px
+.campaign-detail:after
+  content: ""
+  display: block
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  border-top: 1px solid #1d2327
+  border-bottom: 1px solid #2b353a
+
+// ******** campaign-list-table ********//
+// The following snippet overrides/customizes the
+// CSS of.table-striped for campaign list page
+.table-striped.campaign-list-table
+  table-layout: fixed
+  thead, .thead
+    tr, .tr
+      th:first-child, .th:first-child
+        width: 25px
+      th:nth-child(2), .th:nth-child(2)
+        width: 25%
+      th:nth-child(3), .th:nth-child(3)
+        width: 3%
+      th:nth-child(4), .th:nth-child(4),
+      th:nth-child(5), .th:nth-child(5)
+        width: 20%
+      th:nth-child(6), .th:nth-child(6),
+      th:nth-child(7), .th:nth-child(7),
+      th:nth-child(8), .th:nth-child(8)
+        width: 10%
+  tbody, .tbody
+    tr, .tr
+      td:nth-child(2), .td:nth-child(2)
+        a
+          display: block
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+          width: 100%
+      td:nth-child(4), .td:nth-child(4),
+      td:nth-child(5), .td:nth-child(5)
+        padding-top: 15px
+  .expand-campaign-details
+    @include span-columns(4, 12)
+    .black-list, .white-list
+      width: 100%
+      td:nth-child(2), .td:nth-child(2)
+        display: block
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        max-width: 300px
+  .expand-flight-details
+    margin-left: 6%
+    @include span-columns(7,12)
+    .details-table
+      width: 100%
+    .flight-table
+      thead
+        background-color: #202528
+        color: $blue-curious
+        font-weight: normal
+        tr
+          th:first-child,
+          th:nth-child(2),
+          th:nth-child(3)
+            width: 25%
+          th:nth-child(4),
+          th:nth-child(5)
+            width: 10%
+
+.highcharts-wrapper
+  .campaign-detail-filter
+    position: absolute
+    top: 8px
+
+.over-under
+  margin-top: 3px
+  &.positive
+    color: green
+  &.negative
+    color: #b94a48
+  text-align: right
+
+/* --- flight form crud -- */
+.flight-form-crud,
+.campaign-form-crud
+  @include clearfix
+  font-weight: 200
+  .sidebar
+    i
+      margin-top: 5px
+  .centerbar
+    .flights
+      border-bottom: 1px solid #eeeeee
+      padding-bottom: 10px
+      margin-bottom: 10px
+    .resource-form-checkbox
+      margin-left: 34%
+      margin-bottom: 15px
+      a
+        margin-right: 10px
+    .flight-creative
+      .uis2-creative-list
+        @include span-columns(5, 10)
+        margin-bottom: 15px
+    .field
+      margin-bottom: 10px
+    .field label
+      text-align: right
+      @include span-columns(3, 10)
+      margin-right: 5%
+    .field > *
+      display: inline-block
+    .date-range
+      .invalid-message
+        min-width: 310px
+        margin-left: 20px
+    .resource-form-btns
+      margin-top: 25px
+      .cancel-btn
+        margin-left: 15px
+    .error-message
+      margin-top: 20px
+    .country-list
+      float: left
+      width: 100%
+    .country-list >
+      li.country
+        width: 100%
+      li.country
+        .country-item
+          margin: 20px 0
+          position: relative
+          float: left
+          width: 100%
+        .country-item >
+          .icon-remove
+            position: absolute
+            width: auto
+            top: 0
+            right: 0
+            cursor: pointer
+          div
+            float: left
+            clear: left
+            width: 100%
+          div >
+            label
+              float: left
+              width: 20%
+              text-align: right
+            .content
+              float: left
+              width: 75%
+          .dma
+            margin-top: 15px
+
+.disabled
+  color: #909090 

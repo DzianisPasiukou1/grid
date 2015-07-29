@@ -1,0 +1,43 @@
+﻿core-diagram {
+	font-size: 14px;
+	font-weight: bold;
+
+	#chart {
+		border: 1px solid #2ba6d5;
+		border-radius: 3px 3px;
+		width: 99%;
+		margin-left: 15px;
+		margin-right: 10px;
+		overflow: auto;
+	}
+
+	svg {
+		/*margin-left: 15%;*/
+		position: relative;
+		left: 15%;
+	}
+
+	.node rect {
+		cursor: move;
+		fill-opacity: .9;
+		shape-rendering: crispEdges;
+	}
+
+	.node text {
+		pointer-events: none;
+		text-shadow: 0 1px 0 #fff;
+	}
+
+	.link {
+		fill: none;
+		stroke: #000;
+		stroke-opacity: .2;
+	}
+
+	.link:hover {
+		stroke-opacity: .5;
+	}
+
+	.text-val {
+	}
+}

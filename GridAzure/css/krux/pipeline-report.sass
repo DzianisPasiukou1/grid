@@ -1,0 +1,37 @@
+=textPresentation($color, $fontWeight)
+  color: $color
+  font-weight: $fontWeight
+
+.pipeline-report
+  .expandable
+    background-image: url('/images/arrow-grey-down.png')
+    background-repeat: no-repeat
+    background-position: 100px 50%
+
+  .expanded-element.emr
+    background-color: khaki
+    td
+      background-color: khaki
+
+  .expanded-element.loader
+    background-color: beige
+    td
+      background-color: beige
+
+  .expanded-element.params
+    background-color: lightgrey
+    td
+      background-color: lightgrey
+
+  td.status.green
+    +textPresentation(green, 600)
+  td.status.red
+    +textPresentation(red, 600)
+  td.status.yellow
+    +textPresentation(yellow, 600)
+
+  .no-data
+    position: relative
+    top: 70%
+    left: 40%
+    font-size: 2em

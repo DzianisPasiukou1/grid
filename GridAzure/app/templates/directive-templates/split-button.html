@@ -1,5 +1,10 @@
 ﻿<button class="split-btn" ng-click="close()">
-	{{actions.selected.label}}
+	<div ng-if="actions.selected">
+		{{actions.selected.label}}
+	</div>
+	<div ng-if="!actions.selected" style="opacity: 0.5">
+		{{typehead}}
+	</div>
 	<button class="split-btn__toggle" ng-click="toggle()">
 		<span class="expand">
 		</span>

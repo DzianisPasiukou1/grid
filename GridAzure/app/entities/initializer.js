@@ -14,6 +14,52 @@
 		this.initUiGridOpt();
 	}
 
+	Initializer.prototype.initCards = function () {
+		this.initContentCardsOpt();
+		this.initCardsGrid();
+		this.initUiGridOpt();
+		this.initCardsOpt();
+	};
+
+	Initializer.prototype.initCardsOpt = function () {
+		if (this.scope.cardsOptions === undefined) {
+			this.scope.cardsOptions = {};
+		}
+
+		if (this.scope.cardsOptions.cards === undefined) {
+			this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
+
+			if (this.scope.cardsOptions.startDate === undefined) {
+				this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
+			}
+
+			if (this.scope.cardsOptions.endDate === undefined) {
+				this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
+			}
+
+			if (this.scope.cardsOptions.dateRange === undefined) {
+				this.scope.cardsOptions.dateRange = this.content.cardsOptions.dateRange;
+			}
+
+			if (this.scope.cardsOptions.margin === undefined) {
+				this.scope.cardsOptions.margin = this.content.cardsOptions.margin;
+			}
+
+			for (var card in this.scope.cardsOptions.cards) {
+				if (card == 'clicks') {
+					continue;
+				}
+
+				this.scope.cardsOptions.cards[card].counter = new Counter(this.scope.cardsOptions.cards[card]);
+			}
+
+			$(document).click(function (event) {
+				this.scope.cardsOptions.cards.clicks.count += 1;
+				this.scope.$apply();
+			}.bind(this));
+		};
+	};
+
 	Initializer.prototype.initContentOpt = function () {
 		if (this.scope.contentOptions === undefined) {
 			this.scope.contentOptions = {};
@@ -77,6 +123,40 @@
 			}
 		}
 
+	};
+
+	Initializer.prototype.initContentCardsOpt = function () {
+		if (this.scope.contentOptions === undefined) {
+			this.scope.contentOptions = {};
+		}
+
+		if (this.scope.contentOptions.filtrate === undefined) {
+			this.scope.contentOptions.filtrate = function (value) {
+				this.scope.uiGridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+			}.bind(this);
+		}
+
+		if (this.scope.contentOptions.search === undefined) {
+			this.scope.contentOptions.search = function (value) {
+				this.scope.uiGridOptions.filterOptions.filterText = value;
+			}.bind(this);
+		}
+
+		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+
+		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
+
+		this.scope.contentOptions.searchValue = '';
+	};
+
+	Initializer.prototype.initCardsGrid = function () {
+		if (this.scope.exports === undefined) {
+			this.scope.exports = this.content.exports;
+			this.scope.exports.options.callback = function (action) {
+				this.scope.export = action;
+			}.bind(this);
+		}
 	};
 
 	Initializer.prototype.initGrid = function () {

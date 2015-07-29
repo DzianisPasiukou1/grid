@@ -1,0 +1,19 @@
+﻿{
+	"links": [
+		{ "source": "View video", "target": "Log in", "value": "2" },
+		{ "source": "View video", "target": "Add to Cart", "value": "1.5" },
+		{ "source": "Ad Imression", "target": "Log in", "value": "1" },
+		{ "source": "Ad Imression", "target": "Ad Click", "value": "1" },
+		{ "source": "Ad Click", "target": "Log in", "value": ".75" },
+		{ "source": "Log in", "target": "Purchase Complete", "value": "3" },
+		{ "source": "Add to Cart", "target": "Purchase Complete", "value": "1" }
+	],
+	"nodes": [
+		{ "name": "View video", "color": "rgb(62,145,95)", "transform": "0,0", "mx": "0", "my": "0", "val": "50" },
+		{ "name": "Log in", "color": "rgb(133,133,133)", "transform": "730,0", "mx": "730", "my": "0", "val": "65" },
+		{ "name": "Ad Imression", "color": "rgb(211,46,53)", "transform": "0,470.90909090909093", "mx": "0", "my": "470.90909090909093", "val": "15" },
+		{ "name": "Ad Click", "color": "rgb(20,0,254)", "transform": "478,595.4545454545455", "mx": "478", "my": "595.4545454545455", "val": "20" },
+		{ "name": "Add to Cart", "color": "rgb(157,226,141)", "transform": "731,533.1818181818182", "mx": "731", "my": "533.1818181818182", "val": "30" },
+		{ "name": "Purchase Complete", "color": "rgb(20,20,20)", "transform": "1155,94.63279261954919", "mx": "1155", "my": "94.63279261954919", "val": "85" }
+	]
+}

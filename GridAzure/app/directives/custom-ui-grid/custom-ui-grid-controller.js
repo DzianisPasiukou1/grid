@@ -70,26 +70,28 @@
 				});
 			}
 
-			$scope.contentOptions.checks.options.callback = function (check) {
-				if (check) {
-					if (check.isAll) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = true;
-						});
-					}
-					else if (check.isNoOne) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = false;
-						});
-					}
-					else if (check.isMarked) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-						});
-					}
-					else if (check.isNotMarked) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = !row.isCheck;
-						});
+			if ($scope.contentOptions.checks) {
+				$scope.contentOptions.checks.options.callback = function (check) {
+					if (check) {
+						if (check.isAll) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = true;
+							});
+						}
+						else if (check.isNoOne) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = false;
+							});
+						}
+						else if (check.isMarked) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+							});
+						}
+						else if (check.isNotMarked) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = !row.isCheck;
+							});
+						}
 					}
 				}
 			}

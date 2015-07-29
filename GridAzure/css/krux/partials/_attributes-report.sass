@@ -1,0 +1,52 @@
+.attribute-report
+  margin: 20px
+  h3, h4
+    text-align: center
+  .filters
+    margin-left: 5px
+    max-width: 40%
+  .filter-label
+    max-width: 20%
+    margin-left: 15px
+  .row-fluid
+    margin-bottom: 20px
+  .bg-container
+    background-color: $white
+    padding: 5px
+  .chart-container
+    -webkit-border-radius: 3px
+    -webkit-box-shadow: 0 0 5px 0 $blue-bahama
+    box-shadow: 0 0 5px 0 $blue-bahama
+  div.chart-container
+    margin-left: 1%
+    padding: 1%
+  div.chart-container.trend-chart
+    margin-left: 0%
+  .seperator
+    border-left: solid 2px grey
+    margin-left: 10px
+    padding-top: 1px
+    padding-bottom: 1px
+  .create-segment
+    margin-top: 10px
+
+/* data type icons */
+.attributes > :before, .attributes.selected:before
+  background-color: $blue-bahama
+  border-radius: 8px
+  color: $white
+  display: inline
+  font-size: 11px
+  margin-right: 6px
+  opacity: 0.4
+  padding: 2px
+  text-align: center
+
+.attributes.kxattrib-user > :before, .attributes.selected.kxattrib-user:before
+  content: 'U'
+.attributes.kxattrib-contextual > :before, .attributes.selected.kxattrib-contextual:before
+  background-color: $grey-scorpion
+  border-color: $grey-scorpion
+  content: 'P'
+.attributes.kxattrib-txn > :before, .attributes.selected.kxattrib-txn:before
+  content: 'T'

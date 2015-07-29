@@ -1,4 +1,27 @@
 ﻿<div class="cards-group">
+	<div class="my-card" ng-repeat="(id, card) in cards" id="{{id}}">
+		<div class="front">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-info"></span>
+				<span class="my-card__header__text">{{card.label}}</span>
+			</div>
+			<div class="my-card__body" ng-init="card.count = card.counter.calculate(startDate, endDate) || card.count">
+				<span number-format="card.count"></span>
+			</div>
+		</div>
+		<div class="back">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-circle-left"></span>
+				<span class="my-card__header__text">{{card.label}}</span>
+			</div>
+			<div class="my-card__body">
+				<div class="my-card__body__graphs" graphs="card.graphs"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<div class="cards-group">
 	<div class="my-card" id="card1">
 		<div class="front">
 			<div class="my-card__header">
@@ -115,7 +138,7 @@
 				<span class="my-card__header__text">Time</span>
 			</div>
 			<div class="my-card__body">
-				<div  class="my-card__body__graphs" graphs="cards.time.graphs"></div>
+				<div class="my-card__body__graphs" graphs="cards.time.graphs"></div>
 			</div>
 		</div>
 	</div>
@@ -139,4 +162,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->

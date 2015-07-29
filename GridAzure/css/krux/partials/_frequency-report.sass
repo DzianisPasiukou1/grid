@@ -1,0 +1,99 @@
+$background : #eee
+$background-color: #222
+$checked-button-background: #4A8DB4
+$hover-background-color: #8cf
+
+=dimensions($width, $height)
+  width: $width
+  height: $height
+
+=features($fontSize, $padding, $margin)
+  font-size: $fontSize
+  padding: $padding
+  margin: $margin
+
+.frequency-report
+  padding: 20px
+  .btn-group
+    margin-right: 40px
+  .filters-section
+    margin-top: 10px
+    padding-bottom: 10px
+    .content-filters > *
+      margin-right: 20px
+    .content-filters
+      .select2-choice
+        height: 30px
+        width: 15em
+      .btn
+        vertical-align: top
+    .pdf-export
+      float: right
+  
+  .reports-section
+    position: absolute
+    padding-top: 20px
+    
+    .kx-layout-element
+      background: #fff
+      float: left
+      margin-bottom: 20px
+      line-height: 25px
+
+      h3
+        +features(18px, 0 10px, 0)
+        font-weight: 400
+        line-height: 1.4
+        color: #a6821f
+      ul
+        list-style-type: disc
+        margin: 0 0 0 0
+        padding: 0 10px 10px 30px
+        font-size: 14px
+        li
+          margin: 0 0 0 0
+      .bigNumber
+        +features(24px, 0 10px, 0)
+        font-weight: 300
+      .footnote
+        font-size: 10px
+        line-height: 1.4
+        padding: 10px
+      .comment
+        +features(12px, 0 10px, 0)
+      .trendUp
+        color: green
+        +features(11px, 0 10px, 0)
+      .trendDn
+        color: red
+        +features(11px, 0 10px, 0)
+      .listTable
+        width: 180px
+        margin: 0 10px
+        td
+          border-top: 1px dotted #ccc
+          dotted: #ccc
+          font-size: 11px
+          padding: 2px 0
+        .value
+          text-align: right
+      .greenText
+        color: green
+      .redText
+        color: red
+
+    .super
+      +dimensions(800px, 400px)
+    .big
+      +dimensions(640px, 400px)
+    .wide
+      +dimensions(600px, 200px)
+    .med
+      +dimensions(420px, 400px)
+    .tall
+      width: 200px
+    .small
+      +dimensions(200px, 200px)
+
+  //custom styles
+  +setBoxSizing(border-box)

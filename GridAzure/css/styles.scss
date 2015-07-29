@@ -1,4 +1,5 @@
-﻿@import "common/_common.scss";
+﻿
+@import "common/_common.scss";
 @import "common/_my-metro.scss";
 @import "common/_my-dropdown.scss";
 @import "common/_my-panel.scss";
@@ -19,6 +20,10 @@
 @import "common/_input-datepicker.scss";
 @import "common/_datepicker.scss";
 @import "common/_graphs.scss";
+@import "common/_core-diagram.scss";
+@import "common/_histogram.scss";
+@import "common/_chart-segment.scss";
+@import "common/_mouse-over.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
@@ -41,3 +46,4 @@
 @import "_dynamic-actions.scss";
 @import "_page-content-cards.scss";
 @import "_navigation.scss";
+@import "_page-content-d3.scss";

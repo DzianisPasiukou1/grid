@@ -1,0 +1,30 @@
+/*
+ * Basic alert settings
+ */
+.alert
+  p
+    margin-bottom: 0
+    text-align: center
+    font-weight: $bold
+  &-success
+    border-color: $green-killarney
+  &-info
+    border-color: $blue-calypso
+  &-warning
+    border-color: $orange-clay
+  &-error
+    border-color: $red-apple
+
+// TODO: Move the following settings to main for further refactor later
+.floating-alert
+  margin-left: 10%
+  margin-right: 10%
+  position: relative
+  width: 80%
+  z-index: map-get($z-indices, high)
+
+.fix-floating-alert
+  position: fixed
+  top: 7px
+  z-index: map-get($z-indices, high)
+

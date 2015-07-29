@@ -1,0 +1,352 @@
+.segment-builder
+  input[type="number"]
+    width: 70px
+  form, input
+    margin: 0
+  .select
+    min-width: 150px
+  .prompt
+    font-size: 80%
+    color: $grey
+  .field-title
+    display: inline-block
+    width: 200px
+  .filter-values-mode-input
+    margin-left: 5px
+  .rule-builder
+    .event-editor
+      .line
+        margin-bottom: 5px
+      .field-title
+        width: 140px
+      .filter-values-mode-input
+        width: 150px
+        margin-left: 5px
+    .keywords-editor
+      .field-title
+        width: 100px
+    .segments-editor
+      .category-select
+        margin-left: 10px
+    .site-hierarchy-editor
+      .sites-predicate-value-input
+        width: 300px
+    .return-visits-editor
+      .site-select
+        margin-left: 10px
+        min-width: 150px
+    .error
+      color: maroon
+  .error-message
+    @include span-columns(6, 9)
+    margin-top: 20px
+  .toolbar
+    margin-top: 20px
+    .btn
+      margin-right: 10px
+  .value-selector
+    max-width: 600px
+    min-width: 200px
+    margin: 10px 0
+    .filter
+      position: relative
+      top: -3px
+      font-size: 80%
+      height: 70%
+      width: 70%
+      max-width: 200px
+      line-height: 80%
+    .add-all, .removel-all
+      cursor: pointer
+      float: right
+      font-size: 70%
+    .list-header
+      background-color: $blue-geyser
+      height: 30px
+      line-height: 30px
+      padding: 0 5px
+    .list-footer
+      background-color: $blue-geyser
+      height: 17px
+      padding: 0 5px
+      font-size: 9px
+    .list
+      height: 150px
+      overflow-y: auto
+    .availible
+      display: inline-block
+      width: 50%
+      height: 100%
+      float: left
+      border: 1px solid $silver
+      border-right: none
+      border-radius: 3px 0 0 3px
+    .selected
+      display: inline-block
+      width: 50%
+      height: 100%
+      overflow-y: auto
+      border: 1px solid $silver
+      border-radius: 0 3px 3px 0
+      .prompt
+        text-align: center
+        padding-top: 60px
+    .value
+      display: inline-block
+      width: 100%
+      overflow: hidden
+      text-overflow: ellipsis
+      cursor: pointer
+      padding: 0 5px
+      .move-icon
+        display: none
+        position: relative
+        top: 3px
+        font-size: 80%
+        float: right
+        color: $black-outer-space
+    .value:hover
+      background-color: $blue-alice
+      .move-icon
+        display: inline
+  .field-wrapper
+    display: inline-block
+    position: relative
+    .error
+      position: absolute
+      top: 2px
+      left: 100%
+      padding: 0 5px
+      color: $red
+      font-size: 65%
+      letter-spacing: 1px
+      white-space: nowrap
+    .min
+      right: 100%
+      left: auto
+    .max
+      left: 100%
+
+// TODO: Refactor the code above
+.segment-builder
+  .bubble
+    background: $blue-alice
+    border: 1px solid $grey-alto
+    border-radius: 20px
+    cursor: pointer
+    padding-left: 25px
+    padding-right: 10px
+    position: relative
+  .nobubble
+    background-image: url('/images/segment_builder/ico-folder.png')
+    background-repeat: no-repeat
+  .row-title
+    background-position: 6px 2px
+    display: inline-block
+    overflow: hidden
+    padding-left: 25px
+    text-overflow: ellipsis
+    width: 100%
+    white-space: nowrap
+  /* data type icons */
+  .Attributes:after, .ContextualAttributeEvent:after, .TransactionAttributes:after
+    background-color: $blue-bahama
+    border-radius: 8px
+    color: $white
+    display: block
+    font-weight: normal
+    font-size: 11px
+    height: 16px
+    left: 3px
+    line-height: 18px
+    position: absolute
+    opacity: 0.4
+    text-align: center
+    top: 2px
+    transition: all 150ms ease-in
+    width: 16px
+  .Attributes:after
+    content: 'U'
+  .ContextualAttributeEvent:after
+    content: 'P'
+    background-color: $grey-scorpion
+  .TransactionAttributes:after
+    content: 'T'
+  .Attributes:hover:after, .ContextualAttributeEvent:hover:after, .TransactionAttributes:hover:after
+    opacity: 1
+  .SocialVisit, .ReturnVisit, .ADMEvent, .SiteEvent, .Keywords, .Segments
+    background-repeat: no-repeat
+    background-position: 6px 2px
+  .SocialVisit
+    background-image: url('/images/segment_builder/ico-share.png')
+  .ReturnVisit
+    background-image: url('/images/segment_builder/ico-return.png')
+  .ADMEvent
+    background-image: url('/images/segment_builder/ico-events.png')
+  .SiteEvent
+    background-image: url('/images/segment_builder/ico-heiarchy.png')
+    margin-right: 5px
+  .Keywords
+    background-image: url('/images/segment_builder/ico-keywords.png')
+  .Segments
+    background-image: url('/images/segment_builder/ico-segments.png')
+
+  .operator
+    width: auto
+    margin-left: 10px
+  .add-options
+    margin-top: 15px
+    margin-bottom: 15px
+    width: 160px
+
+  .side-bar
+    @include span-columns(3)
+    background-color: $white
+    +border-radius(5px)
+    padding: 20px
+    .loading-indicator
+      text-align: center
+  .data-type-search
+    height: 50px
+    width: 100%
+    border-bottom: 1px solid $grey-alto
+    .btn
+      height: 30px
+      width: 15%
+      &:first-child
+        background: $grey-gallery
+      &:last-child
+        color: $white
+        background: $blue-curious
+    input
+      width: 70%
+  .publisher
+    border-bottom: 1px solid $grey-gallery
+    &:last-child
+      border-bottom: none
+  .publisher-header
+    margin-bottom: 10px
+  .publisher-name
+    cursor: pointer
+    display: inline-block
+  .expandable
+    display: block
+    position: relative
+    .toggle
+      position: absolute
+      top: 3px
+      right: 5px
+  .sub-rows
+    margin-left: 15px
+
+  .main-content
+    @include span-columns(9 omega)
+    .label-input-inline
+      height: 35px
+      margin-top: 15px
+      margin-left: 5px
+    .warning-icon
+      background-color: $orange-flush
+      border-radius: 5px
+      color: $white
+      margin-right: 5px
+      padding: 0 10px
+  .predicates
+    background: $white-high-opacity
+    border-radius: 5px
+    padding: 20px 50px 0 20px
+    position: relative
+    li:last-child
+      .predicates-operator
+        display: none
+  .predicate
+    position: relative
+    padding: 15px
+    background: $white
+    border-radius: 2px
+    box-shadow: 0px 0px 2px 1px $black-low-opacity
+    .predicate-description
+      padding-right: 50px
+  .predicate-toolbar
+    position: absolute
+    right: 10px
+    top: 18px
+    > a
+      margin-right: 5px
+  .groups
+    li:last-child
+      .groups-operator
+        display: none
+  .group-toolbar
+    position: absolute
+    right: 15px
+    top: 15px
+  .segment-details
+    border-top: 1px solid $silver
+    margin-top: 20px
+    overflow: hidden
+    .left-grid
+      @include span-columns(3, 9)
+      > input
+        width: 100%
+      .required-indicator
+        display: table-cell
+        padding-left: 2px
+      input
+        float: left
+        display: inline-block
+        margin-bottom: 10px
+        width: 95%
+      input.error
+        width: 90%
+    .right-grid
+      @include span-columns(6 omega, 9)
+      > textarea
+        width: 50%
+      .description
+        height: 150px
+    .bottom-grid
+      margin-top: 10px
+      @include span-columns(9, 9)
+    .title, .usage-option, .selectable-options
+      display: inline-block
+    .title
+      margin-right: 20px
+      vertical-align: top
+      width: 150px
+    .usage-option
+      margin-right: 20px
+      input
+        margin-right: 5px
+    .selectable-options
+      background-color: $white
+      border-radius: 5px
+      height: 100px
+      overflow: auto
+      padding: 10px
+      width: 250px
+    .checkbox-label
+      margin-left: 5px
+    .sub-options
+      margin-top: 15px
+      select
+        margin-bottom: 0
+    .interchange-section
+      margin-bottom: 15px
+
+  .number-input
+    width: 70px
+
+  .transaction-fields
+    border-top: 1px solid $silver
+    margin-top: 10px
+    label
+      display: inline
+    legend
+      margin-bottom: 5px
+    input
+      margin-right: 20px
+
+.manage-interchange-dialog
+  .modal-body
+    overflow-y: visible

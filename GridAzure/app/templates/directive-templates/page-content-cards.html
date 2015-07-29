@@ -1,14 +1,14 @@
 ﻿<div class="page-content">
 	<div class="page-content__header">
 		<div class="page-content__options">
-			<content-options-cards options="contentOptions" start-date="startDate" end-date="endDate"></content-options-cards>
+			<content-options-cards options="contentOptions" start-date="cardsOptions.startDate" end-date="cardsOptions.endDate" date-range="cardsOptions.dateRange"></content-options-cards>
 		</div>
 		<div class="page-content__actions">
 			<dropdown class="page-content__actions__export" dropdown-options="exports.options"></dropdown>
 		</div>
 	</div>
 	<div class="page-content__body">
-		<div class="page-content__cards" cards="cards" start-date="startDate" end-date="endDate">
+		<div class="page-content__cards" cards="cardsOptions.cards" start-date="cardsOptions.startDate" end-date="cardsOptions.endDate" margin="cardsOptions.margin">
 		</div>
 		<div class="page-content__list">
 			<custom-ui-grid grid-data="data" grid-options="uiGridOptions" content-options="contentOptions"></custom-ui-grid>

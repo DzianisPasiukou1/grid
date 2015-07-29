@@ -1,0 +1,56 @@
+﻿.mouse-over {
+	position: absolute;
+	background-color: white;
+	border: 1px solid black;
+	min-height: 200px;
+	min-width: 400px;
+	z-index: 100;
+
+	.mouse-over-simple {
+		padding: 5px 0 0 25px;
+
+		&__header {
+			text-align: center;
+			font-size: 16px;
+		}
+
+		&__body {
+			font-weight: normal;
+			margin-top: 10px;
+
+			&__value {
+				&__text {
+					display: block;
+				}
+
+				margin-bottom: 40px;
+			}
+		}
+	}
+
+	.mouse-over-medium {
+		padding: 5px 0 0 25px;
+
+		&__header {
+			text-align: center;
+			font-size: 16px;
+		}
+
+		&__body {
+			font-weight: normal;
+			margin-top: 10px;
+
+			&__header {
+				border-bottom: 1px solid #a39f9f;
+			}
+
+			&__blockCampaing {
+				margin-right: 40px;
+			}
+
+			&__blockSegm {
+				margin-left: 20px;
+			}
+		}
+	}
+}

@@ -6,7 +6,8 @@
 			scope: {
 				options: '=',
 				startDate: '=',
-				endDate: '='
+				endDate: '=',
+				dateRange: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
 		}

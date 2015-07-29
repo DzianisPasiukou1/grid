@@ -26,6 +26,9 @@
 	}).when("/withCards", {
 		templateUrl: "azure-app/templates/grids/grid-with-cards.html",
 		controller: "gridWithCardsCtrl"
+	}).when("/withDiagrams", {
+		templateUrl: "azure-app/templates/grids/grid-d3.html",
+		controller: "gridD3Ctrl"
 	}).when("/download", {
 		templateUrl: "azure-app/templates/download.html"
 	}).when("/navigation", {

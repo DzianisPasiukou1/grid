@@ -1,0 +1,19 @@
+﻿<div class="chart-segment">
+	<div class="chart-segment__panel">
+		<span class="chart-segment__panel__text">Ctrl+click and item on the chart to add segment</span>
+	</div>
+	<div class="chart-segment__list">
+		<div class="chart-segment__list__header">
+			<span class="chart-segment__list__header__text">Selected Users</span>
+		</div>
+		<div class="chart-segment__list__body">
+			<div ng-repeat="user in selectedUsers" class="chart-segment__list__body__user" ng-class="{'even' : $even, 'odd': $odd}">
+				<span class="chart-segment__list__body__user__icon icon-close" ng-click="deleteUser(user, $index)"></span>
+				<span class="chart-segment__list__body__user__text">Users who have interacted with at least {{user.touchpoints}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="chart-segment__btn">
+		<button class="metro-btn">Create Segment</button>
+	</div>
+</div>

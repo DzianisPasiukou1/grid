@@ -1,0 +1,31 @@
+// date-range-picker leverages bootstrap input-prepend class to prepend the calendar icon
+.kx-daterangepicker
+  .add-on
+    background-color: $silver
+    height: 30px
+    padding-top: 2px
+    i
+      margin-right: 5px
+  form
+    display: inline
+    input
+      padding-left: 10px
+      height: 30px
+  input.ng-invalid
+    border-color: $red-coral
+
+// Error message set by kxDateRange directive 
+.calendar-invalid-msg
+  font-size: 14px
+
+// Override the default setting in daterangepicker-bs2
+.daterangepicker
+  .ranges
+    width: 180px
+    .range_inputs
+      label,
+      input,
+      button
+        width: 80px
+      .cancelBtn
+        margin-left: 8px

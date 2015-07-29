@@ -1,0 +1,741 @@
+// Interchange Brokerage / Manage Orders / Reject Order Dialog
+.dialog.reject-order-details-dialog
+  textarea
+    margin: 20px 0
+    width: 100%
+    height: 160px
+  .buttons-bar
+    float: right
+    .btn
+      margin-left: 15px
+
+.dialog.get-code-dialog
+  textarea
+    width: 100%
+    height: 260px
+  .btn-primary
+    z-index: 9999
+
+[class*="block-grid-"]
+  display: block
+  padding: 0
+  margin: 0 -0.625rem
+  *zomm: 1
+[class*="block-grid-"]:before
+  content: " "
+  display: table
+[class*="block-grid-"]:after
+  content: " "
+  display: table
+  clear: both
+[class*="block-grid-"] > li
+  display: block
+  height: auto
+  float: left
+  padding: 0
+
+
+@media only screen
+  .small-block-grid-1 > li
+    width: 100%
+    list-style: none
+  .small-block-grid-1 > li:nth-of-type(n)
+    clear: none
+  .small-block-grid-1 > li:nth-of-type(1n+1)
+    clear: both
+
+  .small-block-grid-2 > li
+    width: 50%
+    list-style: none
+  .small-block-grid-2 > li:nth-of-type(n)
+    clear: none
+  .small-block-grid-2 > li:nth-of-type(2n+1)
+    clear: both
+
+@media only screen and (min-width: 40.063em)
+  .medium-block-grid-1 > li
+    width: 100%
+    list-style: none
+  .medium-block-grid-1 > li:nth-of-type(n)
+    clear: none
+  .medium-block-grid-1 > li:nth-of-type(1n+1)
+    clear: both
+
+  .medium-block-grid-2 > li
+    width: 50%
+    list-style: none
+  .medium-block-grid-2 > li:nth-of-type(n)
+    clear: none
+  .medium-block-grid-2 > li:nth-of-type(2n+1)
+    clear: both
+
+/* -- Marketplace -- */
+.buyers-console
+  strong
+    font-weight: bold
+  .search-bar
+    background: linear-gradient(to bottom, #163442, #0C6A9C)
+    box-shadow: inset 0 2px 7px 0 rgba(0,0,0,.6)
+    height: 185px
+    // TODO FIXME TBD advanced search
+    //height: 210px
+    text-align: center
+    color: #FFF
+    text-shadow: 0px 1px 1px #000
+    padding: 30px 0
+    h2
+      font-weight: 200
+    .filters
+      margin: 0 0 30px
+      padding: 0 20px
+    .filters > *
+      margin: 0 15px
+    .btn-primary
+      background: linear-gradient(to bottom, #25A2C6, #11729B)
+    a.advanced
+      display: inline-block
+      font-size: 13px
+      text-transform: uppercase
+      letter-spacing: 0.05em
+      color: #5694B4
+      transition: color 50ms linear 0s
+      text-shadow: none
+      i
+        margin-left: 5px
+    a.advanced:hover
+      color: white
+
+  .title-area
+    margin-bottom: 20px
+    position: relative
+    .btn-group
+      position: absolute
+      right: 0px
+      top: 8px
+
+  .main-content
+    padding-top: 15px
+    .block-grid.categories
+      padding-top: 20px
+      li
+        .entry
+          margin: 0 10px 20px
+          position: relative
+          background: #e6eff3
+          overflow: hidden
+          margin-bottom: 20px
+          padding: 10px 15px
+          min-height: 45px
+          border-radius: 3px
+          box-shadow: 1px 1px 1px 1px rgba(0,0,0,.2)
+          .icon
+            position: absolute
+            left: 10px
+            top: 50%
+            margin-top: -24px
+            font-size: 3em
+          p
+            position: relative
+            margin: 8px 15px 8px 55px
+            font-size: 24px
+            font-weight: 300
+            color: #2f3437
+            line-height: 1.4
+        .entry:hover
+          background: #f4f8fa
+          .entry-arrow
+            right: 18px
+        //.entry:after
+        //  content: ""
+        //  position: absolute
+        //  top: 50%
+        //  margin-top: -17px
+        //  right: 15px
+        //  width: 17px
+        //  height: 34px
+        //  background: url(../img/arrow-cat-entry.png) top left no-repeat
+        //  -webkit-transition: all 100ms linear
+        //  -moz-transition: all 100ms linear
+        //  -o-transition: all 100ms linear
+        //  transition: all 100ms linear
+        .entry-arrow
+          position: absolute
+          font-size: 2.5em
+          top: 50%
+          margin-top: -8px
+          right: 24px
+          width: 17px
+          height: 34px
+          transition: right 0.1s
+
+    // No Search Results Form
+    .no-results-form
+      textarea
+        width: 75%
+
+    // Entries
+
+    .entry
+      background: #e6eff3
+      overflow: hidden
+      position: relative
+      margin-bottom: 20px
+      -webkit-border-radius: 3px
+      border-radius: 3px
+      padding: 10px 15px
+      -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2)
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2)
+      min-height: 45px
+      -webkit-transition: background 100ms linear
+      -moz-transition: background 100ms linear
+      -o-transition: background 100ms linear
+      transition: background 100ms linear
+      h3
+        font-weight: 300
+        margin-top: 0
+      .not-created-warn
+        color: red
+      .bg-img
+        position: absolute
+        top: 0
+        right: 0
+        height: 100%
+        width: auto
+        opacity: .1
+        border: 1px solid #e6eff3
+        -webkit-border-radius: 3px
+        border-radius: 3px
+        z-index: 9
+      [class*="span"]
+        position: relative
+        z-index: 10
+      .description
+        padding-bottom: 40px
+        p
+          opacity: .5
+      .type p
+        text-transform: uppercase
+        font-size: 12px
+        color: #576369
+      .provider
+        padding-bottom: 15px
+        color: #afb7ba
+        text-transform: uppercase
+        font-size: 11px
+        a
+          text-transform: none
+          font-size: 14px
+          color: #afb7ba
+      .btn
+        bottom: 15px
+        left: 15px
+        z-index: 11
+      .btn-cartcampaign
+        bottom: 0
+        left: 0
+      .cartcampaign
+        float: left
+        width: 180px
+        margin-right: 20px
+        text-align: right
+        font-weight: bold
+      .btn-absolute
+        position: absolute
+      .min-impressions
+        margin-top: 10px
+      .icon
+        width: 40px
+      .range-picker
+        white-space: nowrap
+      .date-range-picker
+        width: 210px
+        height: 31px
+        display: inline-block
+        margin-right: 30px
+        margin-top: 15px
+      .date-range-picker .add-on
+        float: left
+        background-color: #bbb
+        height: 26px
+        width: 20px
+      .sendone
+        margin-left: 30px
+      .sendmultiple
+        margin-left: 20px
+      .ddlselector
+        margin-top: 15px
+        width: 250px
+
+    @media (min-width: 768px)
+      .entry
+        .provider
+          text-align: right
+          padding-top: 15px
+        .description
+          padding-bottom: 0
+        .btn
+          left: auto
+          right: 15px
+
+    // Title Area
+
+    .title-area
+      position: relative
+      margin-bottom: 20px
+      h2
+        img
+          position: relative
+          top: -3px
+        .count
+          text-transform: uppercase
+          color: #9cadb6
+          font-weight: 300
+          font-size: 22px
+      .btn-group, .results-count
+        position: absolute
+        right: 0
+        top: 8px
+
+    @media (max-width: 767px)
+      .title-area
+        .btn-group, .results-count
+          position: relative
+          top: 0
+
+    // Block Grid
+
+    [class*="block-grid-"]
+      display: block
+      padding: 0
+      margin: 0 -0.625rem
+      *zoom: 1
+      &:before
+        content: " "
+        display: table
+      &:after
+        content: " "
+        display: table
+        clear: both
+      > li
+        display: block
+        height: auto
+        float: left
+        padding: 0
+
+    @media only screen
+      .small-block-grid-1 > li
+        width: 100%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(1n+1)
+          clear: both
+      .small-block-grid-2 > li
+        width: 50%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(2n+1)
+          clear: both
+      .small-block-grid-3 > li
+        width: 33.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(3n+1)
+          clear: both
+      .small-block-grid-4 > li
+        width: 25%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(4n+1)
+          clear: both
+      .small-block-grid-5 > li
+        width: 20%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(5n+1)
+          clear: both
+      .small-block-grid-6 > li
+        width: 16.66667%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(6n+1)
+          clear: both
+      .small-block-grid-7 > li
+        width: 14.28571%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(7n+1)
+          clear: both
+      .small-block-grid-8 > li
+        width: 12.5%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(8n+1)
+          clear: both
+      .small-block-grid-9 > li
+        width: 11.11111%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(9n+1)
+          clear: both
+      .small-block-grid-10 > li
+        width: 10%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(10n+1)
+          clear: both
+      .small-block-grid-11 > li
+        width: 9.09091%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(11n+1)
+          clear: both
+      .small-block-grid-12 > li
+        width: 8.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(12n+1)
+          clear: both
+
+    @media only screen and (min-width: 40.063em)
+      .medium-block-grid-1 > li
+        width: 100%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(1n+1)
+          clear: both
+      .medium-block-grid-2 > li
+        width: 50%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(2n+1)
+          clear: both
+      .medium-block-grid-3 > li
+        width: 33.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(3n+1)
+          clear: both
+      .medium-block-grid-4 > li
+        width: 25%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(4n+1)
+          clear: both
+      .medium-block-grid-5 > li
+        width: 20%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(5n+1)
+          clear: both
+      .medium-block-grid-6 > li
+        width: 16.66667%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(6n+1)
+          clear: both
+      .medium-block-grid-7 > li
+        width: 14.28571%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(7n+1)
+          clear: both
+      .medium-block-grid-8 > li
+        width: 12.5%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(8n+1)
+          clear: both
+      .medium-block-grid-9 > li
+        width: 11.11111%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(9n+1)
+          clear: both
+      .medium-block-grid-10 > li
+        width: 10%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(10n+1)
+          clear: both
+      .medium-block-grid-11 > li
+        width: 9.09091%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(11n+1)
+          clear: both
+      .medium-block-grid-12 > li
+        width: 8.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(12n+1)
+          clear: both
+
+    @media only screen and (min-width: 64.063em)
+      .large-block-grid-1 > li
+        width: 100%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(1n+1)
+          clear: both
+      .large-block-grid-2 > li
+        width: 50%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(2n+1)
+          clear: both
+      .large-block-grid-3 > li
+        width: 33.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(3n+1)
+          clear: both
+      .large-block-grid-4 > li
+        width: 25%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(4n+1)
+          clear: both
+      .large-block-grid-5 > li
+        width: 20%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(5n+1)
+          clear: both
+      .large-block-grid-6 > li
+        width: 16.66667%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(6n+1)
+          clear: both
+      .large-block-grid-7 > li
+        width: 14.28571%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(7n+1)
+          clear: both
+      .large-block-grid-8 > li
+        width: 12.5%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(8n+1)
+          clear: both
+      .large-block-grid-9 > li
+        width: 11.11111%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(9n+1)
+          clear: both
+      .large-block-grid-10 > li
+        width: 10%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(10n+1)
+          clear: both
+      .large-block-grid-11 > li
+        width: 9.09091%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(11n+1)
+          clear: both
+      .large-block-grid-12 > li
+        width: 8.33333%
+        list-style: none
+        &:nth-of-type(n)
+          clear: none
+        &:nth-of-type(12n+1)
+          clear: both
+
+  .footer-content
+    margin-top: 15px
+    .conditions
+      margin-left: 5px
+      width: 0px
+      height: 0px
+      display: inline-block
+      border-bottom: 7px solid transparent
+      border-top: 7px solid transparent
+      border-left: 7px solid
+      vertical-align: middle
+    .finishbutton
+      text-align: right
+      margin-right: 50px
+
+  .order-details
+    padding: 15px
+    line-height: 2em
+    .geo-container
+      margin-top: 6px
+    .geo-container > *
+      display: inline-block
+      vertical-align: top
+      line-height: 20px
+    .geo-container > ul
+      width: 260px
+      list-style: inside none disc
+      margin-left: 10px
+    .panel
+      .heading
+        i
+          display: inline-block
+          margin-left: 8px
+          margin-top: 4px
+          font-size: 0.7em
+          transform-origin: 70% 150%
+          transition: 0.1s
+      .heading.collapsed
+        i
+          transform: rotate(-90deg)
+    #orderItemDetails
+      input.same-date-range
+        margin-left: 8px
+        margin-right: 4px
+        display: inline-block
+      select.approval
+        width: 155px
+      button.save-btn
+        margin-top: 10px
+    #campaignDetails
+      table
+        table-layout: fixed
+        word-wrap: break-word
+        .th-actions
+          width: 65px
+        th:first-child, .th:first-child
+          width: initial
+    #notes
+      textarea
+        display: block
+        width: 100%
+        height: 200px
+    .btn-container
+      text-align: center
+    .row
+      margin-left: 0
+
+  .select2-container, .select2-container-multi
+    width: 90%
+
+.cart-campaign-form-crud
+  .field
+    position: relative
+    @include clearfix
+    min-height: 50px
+    &.resource-description
+      height: 100px !important
+      width: 100%
+    &.segment
+      width: 100%
+
+  .field-country
+    height: auto !important
+ 
+  .countries
+    margin-bottom: 10px
+    float: left
+    width: 49%
+    .country
+      margin-bottom: 10px
+      width: 100%
+      .countryline
+        margin: 20px 0
+        position: relative
+        .select-predicate
+          width: 85px
+          padding-left: 5px
+          margin-right: 10px
+        .elementname
+          width: 70px
+          display: inline-block
+        .elementright
+          float: right
+
+  .sidebar
+    @include span-columns(5,10)
+    padding: 20px
+    position: absolute
+    left: 0
+    width: 40%
+    margin-right: 0
+
+  .description
+    textarea
+      width: 100%
+
+  .centerbar
+    @include span-columns(5 omega, 10)
+    width: 60%
+    .creatives li
+      margin-left: 20px
+      margin-bottom: 10px
+    .creatives li .delete-creative
+      margin-left: 10px
+      .icon-trash
+        margin-top: 5px
+    .field
+      #position: relative
+      @include clearfix
+      input
+        width: 300px
+      .select
+        width: 300px
+        margin-bottom: 10px
+      &.ad-content-category
+        overflow: inherit
+      .select2-container, .select2-container-multi
+        @include span-columns(5, 10)
+    .field label
+      text-align: right
+      @include span-columns(3, 10)
+      margin-right: 5%
+    .field.html
+      height: 300px !important
+      margin-bottom: 20px
+    .resource-form-btns
+      margin-top: 25px
+      .cancel-btn
+        margin-left: 15px
+    .error-message
+      margin-top: 20px
+// order details history
+.buyers-console
+  .order-details
+    .order-history
+      .ui-grid-viewport
+        background-color: #c1cdd3
+    .order-history-changes
+      height: 150px

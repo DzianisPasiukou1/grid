@@ -5,7 +5,8 @@
 			scope: {
 				actions: '=',
 				selected: '=',
-				search: '='
+				search: '=',
+				typehead: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/split-button.html',
 			controller: 'splitButtonCtrl',

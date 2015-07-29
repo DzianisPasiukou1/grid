@@ -11,4 +11,10 @@
 			showResponsMenu: true
 		}
 
+		$scope.cardsOpt = {
+			cards: [],
+			startDate: '',
+			endDate: ''
+		}
+
 	}])

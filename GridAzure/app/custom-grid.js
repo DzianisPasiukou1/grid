@@ -128,6 +128,78 @@ angular.module('gridTaskApp')
 			},
 			enableColumnFilter: false
 		},
+		cardsOptions: {
+			cards: {
+				clicks: {
+					label: 'Clicks',
+					count: 0,
+					counter: undefined,
+					graphs: [{ style: { 'background-color': 'rgb(233, 124, 130)', height: '55px' } },
+						{ style: { 'background-color': 'rgb(165, 189, 215)', height: '35px' } },
+						{ style: { 'background-color': 'rgb(165, 215, 208)', height: '55px' } },
+						{ style: { 'background-color': 'rgb(251, 201, 135)', height: '10px' } },
+						{ style: { 'background-color': 'rgb(57, 124, 130)', height: '30px' } }]
+				},
+				views: {
+					label: 'Views/Impressions',
+					count: 1910000,
+					graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
+						{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
+						{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
+						{ style: { 'background-color': 'rgb(30, 201, 135)', height: '25px' } },
+						{ style: { 'background-color': 'rgb(57, 124, 100)', height: '30px' } }]
+				},
+				conversion: {
+					label: 'Conversion',
+					count: 2010,
+					graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
+					{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
+					{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
+					{ style: { 'background-color': 'rgb(251, 201, 54)', height: '34px' } },
+					{ style: { 'background-color': 'rgb(57, 33, 130)', height: '60px' } }]
+				},
+				spend: {
+					label: 'Spend',
+					count: 2150,
+					graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
+					{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
+					{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
+					{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
+					{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
+				},
+				actions: {
+					label: 'Actions',
+					count: 1910000,
+					graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
+						{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
+						{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
+						{ style: { 'background-color': 'rgb(30, 201, 135)', height: '25px' } },
+						{ style: { 'background-color': 'rgb(57, 124, 100)', height: '30px' } }]
+				},
+				time: {
+					label: 'Time',
+					count: new Date(),
+					graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
+					{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
+					{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
+					{ style: { 'background-color': 'rgb(251, 201, 54)', height: '34px' } },
+					{ style: { 'background-color': 'rgb(57, 33, 130)', height: '60px' } }]
+				},
+				date: {
+					label: 'Date',
+					count: 2015,
+					graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
+					{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
+					{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
+					{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
+					{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
+				}
+			},
+			startDate: new Date(new Date().setDate(new Date().getDate() - 1)),
+			endDate: new Date(),
+			dateRange: Math.abs(new Date().getTime() - new Date(new Date().setDate(new Date().getDate() - 1)).getTime()),
+			margin: 270
+		},
 		filterOptions: function (data) {
 			var options = [];
 
@@ -174,18 +246,20 @@ angular.module('gridTaskApp')
 			scope: {
 				cards: '=',
 				startDate: '=',
-				endDate: '='
+				endDate: '=',
+				margin: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					$("#card1").flip();
-					$("#card2").flip();
-					$("#card3").flip();
-					$("#card4").flip();
-					$("#card5").flip();
-					$("#card6").flip();
-					$("#card7").flip();
+					var left = 40;
+
+					for (var card in scope.cards) {
+						$('#' + card).flip();
+						$('#' + card).css('left', left);
+
+						left += scope.margin;
+					}
 				});
 			}
 		}
@@ -325,6 +399,7 @@ angular.module('gridTaskApp')
 				$(element.find('.date-btn__toggle')).dateRangePicker(scope.config).bind('datepicker-change', function (event, obj) {
 					scope.startDate = obj.date1;
 					scope.endDate = obj.date2;
+					scope.dateRange = Math.abs(scope.endDate.getTime() - scope.startDate.getTime());
 					scope.$apply();
 				}).bind('datepicker-close', function () {
 					scope.isShow = false;
@@ -638,26 +713,28 @@ angular.module('gridTaskApp')
 				});
 			}
 
-			$scope.contentOptions.checks.options.callback = function (check) {
-				if (check) {
-					if (check.isAll) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = true;
-						});
-					}
-					else if (check.isNoOne) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = false;
-						});
-					}
-					else if (check.isMarked) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-						});
-					}
-					else if (check.isNotMarked) {
-						$scope.gridApi.grid.rows.forEach(function (row) {
-							row.isCheck = !row.isCheck;
-						});
+			if ($scope.contentOptions.checks) {
+				$scope.contentOptions.checks.options.callback = function (check) {
+					if (check) {
+						if (check.isAll) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = true;
+							});
+						}
+						else if (check.isNoOne) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = false;
+							});
+						}
+						else if (check.isMarked) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+							});
+						}
+						else if (check.isNotMarked) {
+							$scope.gridApi.grid.rows.forEach(function (row) {
+								row.isCheck = !row.isCheck;
+							});
+						}
 					}
 				}
 			}
@@ -1629,7 +1706,6 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
-				initializer.init();
 
 				scope.$watch('contentOptions', function (opt) {
 					initializer.init();
@@ -1741,110 +1817,21 @@ angular.module('gridTaskApp')
 			scope: {
 				data: '=gridData',
 				contentOptions: '=',
-				uiGridOptions: '='
+				uiGridOptions: '=',
+				cardsOptions: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
-				initializer.init();
+				initializer.initCards();
 
-				scope.startDate = new Date();
-				scope.startDate.setDate(scope.startDate.getDate() - 1);
-				scope.endDate = new Date();
-
-				scope.$watch('startDate', function (date) {
-					for (var card in scope.cards) {
-						if (scope.cards[card].counter) {
-							scope.cards[card].count = scope.cards[card].counter.calculate(scope.startDate, scope.endDate);
+				scope.$watch('cardsOptions.dateRange', function (date) {
+					if (date) {
+						for (var card in scope.cardsOptions.cards) {
+							if (scope.cardsOptions.cards[card].counter) {
+								scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(scope.cardsOptions.startDate, scope.cardsOptions.endDate);
+							}
 						}
-					}
-				});
-
-				scope.cards = {
-					clicks: {
-						count: 0,
-						counter: undefined,
-						graphs: [{ style: { 'background-color': 'rgb(233, 124, 130)', height: '55px' } },
-							{ style: { 'background-color': 'rgb(165, 189, 215)', height: '35px' } },
-							{ style: { 'background-color': 'rgb(165, 215, 208)', height: '55px' } },
-							{ style: { 'background-color': 'rgb(251, 201, 135)', height: '10px' } },
-							{ style: { 'background-color': 'rgb(57, 124, 130)', height: '30px' } }]
-					},
-					views: {
-						count: 1910000,
-						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
-							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
-							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
-							{ style: { 'background-color': 'rgb(30, 201, 135)', height: '25px' } },
-							{ style: { 'background-color': 'rgb(57, 124, 100)', height: '30px' } }]
-					},
-					conversion: {
-						count: 2010,
-						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
-						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
-						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
-						{ style: { 'background-color': 'rgb(251, 201, 54)', height: '34px' } },
-						{ style: { 'background-color': 'rgb(57, 33, 130)', height: '60px' } }]
-					},
-					spend: {
-						count: 2150,
-						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
-						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
-						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
-						{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
-						{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
-					},
-					actions: {
-						count: 1910000,
-						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '30px' } },
-							{ style: { 'background-color': 'rgb(165, 25, 215)', height: '50px' } },
-							{ style: { 'background-color': 'rgb(165, 200, 208)', height: '60px' } },
-							{ style: { 'background-color': 'rgb(30, 201, 135)', height: '25px' } },
-							{ style: { 'background-color': 'rgb(57, 124, 100)', height: '30px' } }]
-					},
-					time: {
-						count: new Date(),
-						graphs: [{ style: { 'background-color': 'rgb(233, 44, 130)', height: '20px' } },
-						{ style: { 'background-color': 'rgb(165, 189, 300)', height: '30px' } },
-						{ style: { 'background-color': 'rgb(1, 215, 208)', height: '45px' } },
-						{ style: { 'background-color': 'rgb(251, 201, 54)', height: '34px' } },
-						{ style: { 'background-color': 'rgb(57, 33, 130)', height: '60px' } }]
-					},
-					date: {
-						count: 2015,
-						graphs: [{ style: { 'background-color': 'rgb(10, 124, 130)', height: '10px' } },
-						{ style: { 'background-color': 'rgb(165, 189, 55)', height: '5px' } },
-						{ style: { 'background-color': 'rgb(165, 231, 208)', height: '50px' } },
-						{ style: { 'background-color': 'rgb(251, 201, 29)', height: '30px' } },
-						{ style: { 'background-color': 'rgb(57, 124, 1)', height: '34px' } }]
-					}
-				}
-
-				scope.cards.views.counter = new Counter(scope.cards.views);
-				scope.cards.conversion.counter = new Counter(scope.cards.conversion);
-				scope.cards.spend.counter = new Counter(scope.cards.spend);
-				scope.cards.actions.counter = new Counter(scope.cards.actions);
-				scope.cards.time.counter = new Counter(scope.cards.time);
-				scope.cards.date.counter = new Counter(scope.cards.date);
-
-				$(document).click(function (event) {
-					scope.cards.clicks.count += 1;
-				});
-
-				scope.$watch('contentOptions', function (opt) {
-					initializer.init();
-					initializer.refreshOpt();
-				});
-
-				scope.$watch('data', function (data) {
-					if (data) {
-						initializer.refreshData(data);
-					}
-				});
-
-				scope.$watch('data.length', function () {
-					if (Array.isArray(scope.data)) {
-						scope.grid.count = scope.data.length;
 					}
 				});
 			}
@@ -1875,7 +1862,8 @@ angular.module('gridTaskApp')
 			scope: {
 				options: '=',
 				startDate: '=',
-				endDate: '='
+				endDate: '=',
+				dateRange: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
 		}
@@ -1959,9 +1947,11 @@ angular.module('gridTaskApp')
 		if (!$scope.actions) {
 			$scope.actions = [];
 		}
-		$scope.actions.everywhere = { label: 'everywhere', isEverywhere: true };
+		if (!$scope.typehead) {
+			$scope.actions.everywhere = { label: 'everywhere', isEverywhere: true };
 
-		$scope.actions.selected = $scope.actions.everywhere;
+			$scope.actions.selected = $scope.actions.everywhere;
+		}
 
 		$scope.select = function (action) {
 			$scope.actions.selected = action;
@@ -1978,7 +1968,8 @@ angular.module('gridTaskApp')
 			scope: {
 				actions: '=',
 				selected: '=',
-				search: '='
+				search: '=',
+				typehead: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/split-button.html',
 			controller: 'splitButtonCtrl',
@@ -2153,6 +2144,52 @@ var Initializer = (function () {
 		this.initUiGridOpt();
 	}
 
+	Initializer.prototype.initCards = function () {
+		this.initContentCardsOpt();
+		this.initCardsGrid();
+		this.initUiGridOpt();
+		this.initCardsOpt();
+	};
+
+	Initializer.prototype.initCardsOpt = function () {
+		if (this.scope.cardsOptions === undefined) {
+			this.scope.cardsOptions = {};
+		}
+
+		if (this.scope.cardsOptions.cards === undefined) {
+			this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
+
+			if (this.scope.cardsOptions.startDate === undefined) {
+				this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
+			}
+
+			if (this.scope.cardsOptions.endDate === undefined) {
+				this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
+			}
+
+			if (this.scope.cardsOptions.dateRange === undefined) {
+				this.scope.cardsOptions.dateRange = this.content.cardsOptions.dateRange;
+			}
+
+			if (this.scope.cardsOptions.margin === undefined) {
+				this.scope.cardsOptions.margin = this.content.cardsOptions.margin;
+			}
+
+			for (var card in this.scope.cardsOptions.cards) {
+				if (card == 'clicks') {
+					continue;
+				}
+
+				this.scope.cardsOptions.cards[card].counter = new Counter(this.scope.cardsOptions.cards[card]);
+			}
+
+			$(document).click(function (event) {
+				this.scope.cardsOptions.cards.clicks.count += 1;
+				this.scope.$apply();
+			}.bind(this));
+		};
+	};
+
 	Initializer.prototype.initContentOpt = function () {
 		if (this.scope.contentOptions === undefined) {
 			this.scope.contentOptions = {};
@@ -2216,6 +2253,40 @@ var Initializer = (function () {
 			}
 		}
 
+	};
+
+	Initializer.prototype.initContentCardsOpt = function () {
+		if (this.scope.contentOptions === undefined) {
+			this.scope.contentOptions = {};
+		}
+
+		if (this.scope.contentOptions.filtrate === undefined) {
+			this.scope.contentOptions.filtrate = function (value) {
+				this.scope.uiGridOptions.filterOptions.filterText = convertFilterOptions(value).filterText;
+			}.bind(this);
+		}
+
+		if (this.scope.contentOptions.search === undefined) {
+			this.scope.contentOptions.search = function (value) {
+				this.scope.uiGridOptions.filterOptions.filterText = value;
+			}.bind(this);
+		}
+
+		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+
+		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
+
+		this.scope.contentOptions.searchValue = '';
+	};
+
+	Initializer.prototype.initCardsGrid = function () {
+		if (this.scope.exports === undefined) {
+			this.scope.exports = this.content.exports;
+			this.scope.exports.options.callback = function (action) {
+				this.scope.export = action;
+			}.bind(this);
+		}
 	};
 
 	Initializer.prototype.initGrid = function () {

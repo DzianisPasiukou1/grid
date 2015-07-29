@@ -1,0 +1,3323 @@
+/***  Checkout the SASS style guide: https://github.com/krux/style-guide/tree/master/sass  ***/
+/*
+ * Basic directory structure:
+ *
+ * styles
+ * |
+ * |-- modules                      # Common modules
+ * |   |-- _all.sass                # Include to get all modules
+ * |   |-- _utility.sass            # Module name
+ * |   |-- _colors.sass             # Etc...
+ * |   ...
+ * |
+ * |-- partials                     # Partials
+ * |   |-- _base.sass               # imports for all mixins + global project variables
+ * |   |-- _actions-button.sass     # buttons
+ * |   |-- _ng-grid.sass            # grids
+ * |   ...
+ * |
+ * `-- main.sass                    # primary Sass file
+ */
+
+$FontAwesomePath: "/styles/fonts/font-awesome"
+@import font-awesome/scss/font-awesome.scss
+@import sass-bootstrap/lib/bootstrap
+@import sass-bootstrap/lib/responsive
+
+// Modules and Variables
+@import partials/base
+
+// Import partials alphabetically
+@import partials/account
+@import partials/actions-button
+@import partials/alert
+@import partials/audience
+@import partials/button
+@import partials/buyers-console
+@import partials/data-sentry
+@import partials/date-range-picker
+@import partials/editable-resource-table
+@import partials/export-to-excel
+@import partials/frequency-report
+@import partials/funnels
+@import partials/geo-chart
+@import partials/input
+@import partials/layout
+@import partials/manage-priority-dialog
+@import partials/matrix-chart
+@import partials/meter
+@import partials/navigation-bar
+@import partials/ng-grid
+@import partials/notifications
+@import partials/opportunities
+@import partials/organization
+@import partials/partner-enablement-framework
+@import partials/rating
+@import partials/reach-overlap
+@import partials/rtb
+@import partials/segment-builder
+@import partials/segment-overlaps
+@import partials/social-sharing-report
+@import partials/supertag
+@import partials/tooltip
+@import partials/treeview
+@import partials/ng-table
+@import partials/tree
+@import partials/circlepack
+@import partials/attributes-report
+@import partials/data-providers
+@import partials/tagrules
+@import partials/analytics
+
+// Separate each component in container
+.components-container
+  > *
+    margin-right: 5px
+
+/* disable bootstrap icons in favor of font-awesome */
+[class^="icon-"], [class*=" icon-"], .icon-white
+  background-image: none
+  line-height: inherit
+
+.icon-remove
+  color: #b8250c
+  cursor: pointer
+
+.icon-fix
+  line-height: normal
+  width: auto
+  height: auto
+
+.btn-group
+  .icon-remove
+    color: #fff
+
+// Make sure to prevent flickr of elements on page load.
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak
+  display: none !important
+
+@include border-box-sizing
+
+/* =global lines */
+@mixin embossLineBottom
+  border-bottom: 1px solid $black
+  box-shadow: 0 1px 0 $grey-scorpion
+
+/* =arrows */
+@mixin arrowCommon($size)
+  width: 0
+  height: 0
+  border-top: $size solid transparent
+  border-bottom: $size solid transparent
+@mixin arrowRight($size, $color)
+  @include arrowCommon($size)
+  border-left: $size solid $color
+@mixin arrowLeft($size, $color)
+  @include arrowCommon($size)
+  border-right: $size solid $color
+.arrow-right
+  @include arrowRight(10px, #000)
+.arrow-left
+  @include arrowLeft(10px, #000)
+
+/* =buttons */
+.btn-group.toggle-btns
+  button
+    background: #415056
+    box-shadow: none
+    border: none
+    margin-right: 20px
+    border-radius: 5px
+    padding: 10px 15px
+    color: #fff
+    text-shadow: none
+  button:hover
+    background: #505f66
+  button.active
+    background: #000
+    box-shadow: 0
+.btn-group.nav-btns
+  button.active,
+  label.active
+    text-shadow: none !important
+    background-color: #008cc5
+    *background-color: #008cc5
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#21b8ea), to(#008cc5))
+    background-image: -webkit-linear-gradient(top, #21b8ea, #008cc5)
+    background-image: -o-linear-gradient(top, #21b8ea, #008cc5)
+    background-image: linear-gradient(to bottom, #21b8ea, #008cc5)
+    background-image: -moz-linear-gradient(top, #21b8ea, #008cc5)
+    background-repeat: repeat-x
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
+    color: #fff
+
+.btn-group > .btn:first-child
+  float: left
+
+// padding between icon and label in bulk actions menu
+.bulk-actions .dropdown-menu
+  .btn
+    text-align: left
+    i:before
+      padding-right: 5px
+    .caret
+      margin-left: 5px
+
+/* =social icons */
+@mixin socialPlatform
+  background-image: url('/images/social/soc-platforms.png')
+  background-repeat: no-repeat
+  height: 21px
+  width: 21px
+.fb-small
+  @include socialPlatform
+  background-position: -2px -120px
+.tw-small
+  @include socialPlatform
+  background-position: -2px -1px
+.gp-small
+  @include socialPlatform
+  background-position: -2px -90px
+.li-small
+  @include socialPlatform
+  background-position: -1px -60px
+.pin-small
+  @include socialPlatform
+  background-position: -1px -30px
+
+/* =boxes */
+@mixin blackBox
+  float: left
+  position: relative
+  background-color: #000
+  padding: 15px
+  border-radius: 3px
+
+/* =headers */
+@mixin blueRibbon
+  height: 20px
+  line-height: 20px
+  text-shadow: none
+  position: absolute
+  background-color: #43b6ea
+  color: rgb(6, 69, 107)
+  top: 15px
+  left: -5px
+  padding: 0 3px
+  font-size: 14px
+
+.black-blue-box
+  @include blackBox
+  .title
+    @include blueRibbon
+
+/* =tables */
+.table-striped
+  display: table
+
+.table-striped
+  .thead, .tbody
+    display: table-row-group
+  .tr
+    display: table-row
+  .td, .th
+    display: table-cell
+    padding: 10px
+  .sortable-column
+    cursor: pointer
+
+.table-striped
+  thead, .thead >
+    tr, .tr
+      th, .th
+        background-color: #202528
+        color: $blue-curious
+        font-weight: normal
+      th:first-child, .th:first-child
+        width: 25px
+        -webkit-border-radius: 3px 0 0
+        border-radius: 3px 0 0
+      th:last-child, .th:last-child
+        -webkit-border-radius: 0 3px 0 0
+        border-radius: 0 3px 0 0
+      th.small-icon, .th.small-icon
+        width: 15px
+  tbody, .tbody >
+    tr, .tr
+      td, .td
+        border: none
+        background-color: #CDE0EF
+      td:first-child, .td:first-child
+        width: 25px
+
+.table-striped
+  tbody, .tbody >
+    tr:nth-child(odd), .tr:nth-child(odd) >
+      td, .td
+        background-color: transparent
+
+.exandble-row
+  color: #CDE0EF
+
+.exandble-rows-table
+  tbody, .tbody >
+    tr, .tr
+      th, .th
+        background-color: transparent
+.exandble-rows-table
+  tbody, .tbody >
+    tr:nth-child(4n+3), .tr:nth-child(4n+3) >
+      td, .td
+        background-color: $black-low-opacity
+    tr:nth-child(even), .tr:nth-child(even) >
+      td, .td
+        background-color: #CDE0EF
+.details-table
+  td
+    padding: 3px 10px
+  .title
+    padding-left: 50px
+    color: #7e8f9a
+    white-space: nowrap
+    text-align: right
+  .content-type
+    max-width: 1000px
+
+// audience segments
+// predicate summary directive
+.predicate-summary
+  display: inline-block
+
+.rule-population
+  display: inline-block
+  float: right
+  margin-left: 5px
+
+/* different layouts */
+.table-striped.four-columns
+  th, .th
+    width: 25%
+.table-striped.five-columns
+  th, .th
+    width: 20%
+
+.popover-title
+  float: none !important
+  padding: 8px 14px !important
+  font-size: 14px
+
+/* pagination */
+.pagination
+  display: inline-block
+  ul
+    -webkit-box-shadow: none
+    box-shadow: none
+.pagination
+  li
+    margin-right: 6px
+    display: inline-block
+.pagination ul > li > a, .pagination ul > li > span
+  border-width: 0
+  background-color: transparent
+.pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span
+  background-color: transparent
+.pagination ul > li:first-child > a, .pagination ul > li:first-child > span
+  border-left-width: 0
+.pagination-bar
+  select
+    display: inline-block
+    width: 55px
+    margin-left: 15px
+    margin-top: 10px
+  label
+    display: inline-block
+    margin-right: 20px
+    margin-top: 15px
+
+.pagination .active
+  font-size: 120% !important
+
+.logo-btn
+  display: inline-block
+  float: left
+  margin: 7px 0 0 7px
+
+.selected-attributes-dd
+  float: right
+  margin-right: 20px
+
+  a.dropdown-toggle i
+    width: 140px
+
+.selected-attributes-btn-caret
+  margin-top: 5px !important
+
+#filler
+  font-size: 30px
+  color: #dddddd
+  padding: 20px
+
+.rb-container
+  padding: 10px
+
+input.query
+  width: 200px
+
+.ui-view,
+.main-alert-wrapper
+  padding: 0px
+
+.loading-message
+  margin-top: 20px
+  p
+    text-align: center
+    font-weight: 200
+    font-size: 18px
+
+.resource-manager
+  position: relative
+
+.resource-manager
+  .header
+    .response-message
+      width: 600px
+    .select2-container
+      vertical-align: middle
+
+.resource-manager .resource-list
+  clear: both
+
+.resource-manager
+  .campaign-list-filter,
+  .event-list-filter,
+  .segment-list-filter
+    margin-top: -40px
+    float: right
+  .right-block
+    position: absolute
+    right: 0
+
+.resource-manager.underlay
+  // Hide it for now
+  display: none
+  .col1
+    display: none
+
+.resource-manager .overlay
+  background-color: white
+  left: 0px
+  top: 0
+
+ul
+  list-style: none
+  margin-left: 0px
+
+// -- START RESOURCE --
+.resource-manager .resource-list-content .resource-list-heading
+  background: #202528
+  padding-top: 10px
+  padding-bottom: 10px
+  width: 100%
+  min-width: 1000px
+
+.resource-manager .resource-list-content .resource-list-heading > *
+  display: inline-block
+  color: #cae9fd
+  font-size: 18px
+  font-weight: 400
+  font-family: 'Open Sans', sans-serif
+  letter-spacing: .04em
+
+.resource-manager .resource-list-content .resource-list-heading .name
+  margin-left: 57px
+
+.resource-manager .resource-list-content li
+  border-bottom: 1px solid #999999
+  line-height: 50px
+  padding-left: 8px
+  min-width: 1000px
+
+.resource-manager .resource-list-content li > *
+  display: inline-block
+  font-family: 'Open Sans', sans-serif
+  font-size: 15px
+
+.resource-manager .resource-list-content li > .li-checkbox
+  width: 48px
+  margin-bottom: 5px
+
+.resource-manager .resource-list-content li .li-name, .li-click-url
+  width: 18%
+  margin-right: 2%
+  min-width: 150px
+  font-size: 16px
+  a
+    display: inline-block
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    width: 100%
+// -- END RESOURCE --
+
+// -- Creative List -- //
+.resource-manager .creative-list-content .creative-list-heading .name, .size
+  width: 18%
+  margin-right: 2%
+  min-width: 150px
+.resource-manager .creative-list-content .creative-list-heading .click-url
+  width: 25%
+  margin-right: 2%
+  min-width: 250px
+.resource-manager .creative-list-content .creative-list-heading .content
+  width: 10%
+  margin-right: .5%
+.resource-manager .creative-list-content li > *
+  margin-top: 10px
+.resource-manager .creative-list-content li .li-size
+  width: 18%
+  margin-right: 2%
+  min-width: 150px
+  span
+    display: inline-block
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    width: 100%
+.resource-manager .creative-list-content li .li-click-url
+  width: 25%
+  margin-right: 2%
+  min-width: 250px
+.resource-manager .creative-list-content li .li-content
+  width: 10%
+  margin-left: .5%
+  margin-right: .5%
+.resource-manager .creative-list-content li .creative-content
+  display: block
+  margin-left: 50px
+.resource-manager .creative-content .collapsible-content
+  max-width: 375px
+
+.event-header
+  display: inline-block
+  margin-top: 8px
+  margin-right: 8px
+  margin-bottom: 12px
+  margin-left: 50px
+
+.resource-manager .main-list .events-list-body > .col2
+  width: 15%
+  min-width: 100px
+  margin-right: 0px
+
+.resource-manager .main-list .events-list-body > .col3
+  width: 15%
+
+.resource-manager .main-list .events-list-body > .col4
+  width: 25%
+  min-width: 100px
+  margin-left: 55px
+  margin-right: 45px
+
+.resource-manager .campaign-list-content .event-action-dropdown .user-action-drowdown > li
+  min-width: 100px
+
+.contact-us-modal label
+  display: inline-block
+  width: 100px
+
+.modal-dialog
+  background: #f1f5f6
+  padding: 20px
+  -webkit-border-radius: 3px
+  border-radius: 3px
+
+  .contact-us-modal
+    .codename
+      vertical-align: top
+      padding-left: 60px
+
+    .close.event-getcode-close
+      position: absolute
+      right: 10px
+      top: 10px
+      cursor: pointer
+      color: #555
+      font-size: 30px
+      -webkit-text-shadow: none
+      text-shadow: none
+      -moz-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)
+      -webkit-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)
+      -o-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)
+      -ms-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)
+      transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)
+    .close.event-getcode-close:hover
+      color: #888
+      -webkit-text-shadow: none
+      text-shadow: none
+
+    .event-getcode-header-inline
+      display: inline-block
+      font-size: 25px
+      margin-top: 0
+
+    .getcode-dialog
+      min-width: 700px
+
+    .getcode-footer
+      margin-bottom: 15px
+      margin-top: 10px
+
+    .getcode-note
+      margin-left: 10px
+
+    .getcode-attr-list
+      display: block
+      max-height: 300px !important
+      overflow: auto
+
+.resource-manager .header
+  position: relative
+  margin-left: 7px
+  input[type='checkbox']
+    display: none
+
+.resource-manager .header > *
+  display: inline-block
+  margin-top: 8px
+  margin-right: 8px
+  margin-bottom: 12px
+
+.resource-manager .header label
+  width: 25px
+  height: 25px
+  padding-top: 4px
+  padding-left: 4px
+  border-radius: 3px
+  background-color: #b3b3b3
+
+// TODO: fixed it later
+.resource-manager
+  padding: 0
+  input[type='checkbox'] + label span
+    display: inline-block
+    width: 19px
+    height: 19px
+    margin: -5px 4px 0 0
+    vertical-align: middle
+    background: url('/images/check_radio_sheet.png') left top no-repeat
+    cursor: pointer
+  input[type='checkbox']:checked + label span
+    background: url('/images/check_radio_sheet.png') -19px top no-repeat
+
+.resource-manager .header .heading
+  margin-right: 50px
+
+// caption 'no items created' and 'no items found' in resource list
+.resource-manager .empty
+  font-size: 90%
+
+// Setting for UI-Utils Highlight
+.ui-match
+  background: yellow
+
+.selection-filter
+  width: 70px
+  margin: -5px
+
+textarea.kx-auto-height
+  transition: all linear 0.2s
+  -webkit-transition: all linear 0.2s
+  resize: none
+
+.kx-resource-form, .resource-form, event-form, .user-settings-form
+  .form-controls
+    & > *
+      display: inline-block
+      margin-top: 8px
+      margin-right: 8px
+      margin-bottom: 12px
+    .title
+      margin-right: 20px
+  & > .form-content
+    .control-group
+      margin-bottom: 0
+      margin-top: 0
+      padding-top: 0
+      padding-bottom: 10px
+      > label
+        display: inline-block
+      &:first-child
+        border-top: 0
+    textarea
+      height: 100px
+
+  .create-history
+    .label
+      width: auto !important
+
+.cartblock
+  float: right
+  vertical-align: middle
+  line-height: 20px !important
+  margin-top: 10px
+
+.list input[type=checkbox]
+  margin-right: 10px
+  margin-top: -5px
+  display: inline-block
+
+.list .add-item input[type=text]
+  margin-left: -5px
+
+.list .selectable .add-item input[type=text]
+  margin-left: 16px
+
+.list-label
+  width: 100%
+
+.select2-drop
+  border:
+    left: 1px solid #cccccc
+    bottom: 1px solid #cccccc
+    right: 1px solid #cccccc
+
+.select2-container-multi
+  .select2-choices
+    // Surrounds the chosen items
+    // Looks like a text field
+
+    // Reset to Bootstrap
+    background-image: none
+    border: 1px solid #30393c
+    background-color: #303e44
+    border-radius: 4px
+    padding: 2px 6px 0px 6px
+    min-height: 20px
+    transition: border linear 0.2s, box-shadow linear 0.2s
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s
+
+    .select2-search-field
+      // The input
+      input
+        padding: 0
+          top: 1px
+
+    .select2-search-choice-focus
+      background-color: #DDEEFF !important
+
+    .select2-search-choice
+      color: #ffffff
+      background-image: none
+      background-color: #202528
+      border: none
+      padding: 5px 5px 8px 18px
+      margin:
+        left: 0
+        right: 4px
+        bottom: 2px
+        top: 2px
+      -webkit-box-shadow: none
+      box-shadow: none
+      .select2-search-choice-close
+        top: 5px
+        color: #d14125
+
+/* --- RTB --- */
+*[disabled], .select2-container-disabled
+  opacity: 0.5
+
+.margin-left-zero
+  margin-left: 0 !important
+
+.select
+  position: static
+
+[kx-money], [kx-number], .number-cell
+  text-align: right
+
+/* --- Default Campaign/Flight scaffolding styles --- */
+.fullbar,
+.sidebar
+  border-right: 1px solid #49585f
+  border-bottom: 1px solid #49585f
+  background: #242c31
+  -webkit-box-shadow: inset -1px 1px 2px 1px rgba(0, 0, 0, .5)
+  box-shadow: inset -1px 1px 2px 1px rgba(0, 0, 0, .5)
+  padding: 20px
+  position: absolute
+  left: 0
+  width: 40%
+  margin-right: 0
+  min-height: 100%
+  .header
+    padding-right: 150px
+  label
+    color: #aac2d2
+    font-size: 14px
+  .description
+    color: #7e8f9a
+    margin-bottom: 20px
+.centerbar
+  width: 60%
+  min-height: 100%
+  position: absolute
+  right: 0
+  padding: 20px
+  background: #202528
+  label
+    color: #7E8F9A
+    font-size: 14px
+    font-weight: normal
+  .text-message
+    position: absolute
+    top: 50%
+    text-align: center
+    margin-top: -3em
+
+.fullbar
+  width: 100%
+  .form-controls,
+  .error-message
+    @include span-columns(10,10)
+    @include prefix(4)
+
+a.act-edit
+  background: url(/images/ico-edit.png) 50% 50% no-repeat !important
+a.act-pause
+  background: url(/images/ico-pause.png) 50% 50% no-repeat !important
+a.act-play
+  background: url(/images/ico-play.png) 50% 50% no-repeat !important
+a.act-history
+  background: url(/images/ico-history.png) 50% 50% no-repeat !important
+a.act-delete
+  background: url(/images/ico-delete.png) 50% 50% no-repeat !important
+a.act-report
+  background: url(/images/ico-report.png) 50% 50% no-repeat !important
+
+/* --- form crud -- */
+.form-crud
+  @include clearfix
+  font-family: 'Open Sans', sans-serif
+  font-size: 14px
+  label
+    font-size: 14px
+    color: #cae9fd
+  .sidebar
+    .field
+      height: 50px
+      margin-bottom: 5px
+      @include clearfix
+    .field label
+      text-align: right
+      @include span-columns(3, 10)
+      margin-right: 5%
+    .field input
+      font-size: 15px
+      font-weight: 200
+    .field > *
+      display: inline-block
+      @include clearfix
+    .resource-form-checkbox
+      margin-left: 34%
+      margin-bottom: 15px
+      .helper-text
+        @include span-columns(9, 10)
+        padding-top: 10px
+        padding-left: 30px
+        background-color: $black-low-opacity
+        border-radius: 5px
+        color: grey
+        ul
+          list-style-type: disc
+    .resource-name,
+    .select2-container,
+    input[type="text"],
+    input[type="url"],
+    .CodeMirror
+      @include span-columns(5, 10)
+    .resource-description
+      .description-text
+        @include span-columns(5, 10)
+        margin-bottom: 24px
+    fieldset
+      clear: left
+
+  .simplehistory-container
+    .simplehistory
+      @include span-columns(6, 10)
+      padding: 5px
+      background-color: $black-low-opacity
+      border-radius: 5px
+      & > *
+        margin: 5px
+      .label
+        width: 70px
+        margin-right: 5px
+      .date
+        color: grey
+  .flights
+    @include clearfix
+    @include span-columns(9, 10)
+    margin-top: 20px
+    padding-top: 10px
+    border-top: 1px solid #eeeeee
+    li
+      margin-left: 25px
+  .centerbar
+    .resource-form-btns
+      margin-top: 25px
+      .cancel-btn
+        margin-left: 15px
+    .error-message
+      margin-top: 20px
+
+/* --- event-builder-form  -- */
+.event-builder-form
+  @include clearfix
+  font-family: 'Open Sans', sans-serif
+  font-size: 14px
+  .attr-table-header
+    .head-name
+      width: 50%
+    display: block
+  .attr-table-body
+    .attr-name
+      width: 48%
+    .attr-icon
+      cursor: pointer
+      min-width: 34px
+      vertical-align: middle
+    display: block
+    overflow: auto
+    max-height: 250px !important
+  label
+    font-size: 14px
+    color: #616e77
+  .field
+    height: 50px
+    margin-bottom: 5px
+  .field label
+    text-align: right
+    @include span-columns(3, 10)
+    margin-right: 5%
+  .field input
+    font-size: 15px
+    font-weight: 200
+  .numerical
+    text-align: right
+  .field > *
+    display: inline-block
+    @include clearfix
+  .resource-form-checkbox
+    margin-left: 34%
+    margin-bottom: 15px
+    .helper-text
+      @include span-columns(9, 10)
+      padding-top: 10px
+      padding-left: 30px
+      background-color: $black-low-opacity
+      border-radius: 5px
+      color: grey
+      ul
+        list-style-type: disc
+  .resource-name,
+  .select2-container,
+  input[type="text"],
+  input[type="url"],
+  .CodeMirror
+    @include span-columns(5, 10)
+  .resource-description
+    .description-text
+      @include span-columns(5, 10)
+      margin-bottom: 24px
+  fieldset
+    clear: left
+  .buttons-bar
+    text-align: center
+
+/* --- Creative Form --- */
+.creative-form
+  @include clearfix
+  .field
+    #position: relative
+    @include clearfix
+    input
+      width: 300px
+    .select
+      width: 300px
+      margin-bottom: 10px
+    &.attributes,&.ad-content-category
+      overflow: inherit
+      .select2-container
+        @include span-columns(5, 10)
+  .field.html
+    height: 300px !important
+    margin-bottom: 20px
+  .field.simplehistory-container
+    height: 65px
+    margin-top: 10px
+    margin-bottom: 10px
+    overflow: inherit
+
+/* -- resource detail -- */
+.resource-detail
+  @include clearfix
+  font-family: 'Open Sans', sans-serif
+  font-size: 14px
+  font-weight: 200
+  i
+    margin-left: 10px
+    margin-top: 5px
+
+/* -- Segments List -- */
+.groups-list
+  li
+    padding-left: 15px
+.resource-manager
+  .header
+    .audience-segment-reports
+      display: block
+      .highcharts-container
+        overflow: visible !important
+        width: 100% !important
+        text-align: center !important
+
+  .day_parting
+    .use-day-parting-checkbox
+      input
+        margin-right: 5px
+    .days-of-week
+      @include span-columns(6, 10)
+      margin-bottom: 20px
+    .hours-of-day-container
+      @include span-columns(6, 10)
+      .field.hours-of-day
+        @include clearfix
+        @include span-columns(3, 10)
+
+
+/* =chart section */
+.chart-section
+  border-radius: 3px
+  padding-top: 12px
+
+  .heading
+    padding-left: 12px
+    padding-right: 23px
+
+  .form-search
+    float: left
+
+  h3
+    color: #555555
+    text-shadow: 0 1px 0 #ffffff
+    font-weight: normal
+    padding: 0
+    margin: 0
+
+  h4
+    color: #555555
+    text-shadow: 0 1px 0 #ffffff
+    font-weight: normal
+    padding: 0
+    margin: 0
+
+/* =header module (actions) */
+.action-header
+
+  button
+    margin-left: 5px
+
+  .view-toggle
+    margin-left: 10px
+
+  .help-span
+    position: relative
+
+    a#chartQuestions
+      display: block
+      float: right
+      margin-left: 6px
+    .arrow
+      margin-top: -154px !important
+    .popover
+      top: -50px !important
+      max-width: 500px !important
+      width: 500px
+
+      h3
+        float: none
+        font-size: 16px
+        line-height: 30px
+        color: #000
+      p,
+      ul li
+        font-size: 13px
+        line-height: 17px
+      ul li
+        margin-bottom: 10px
+    h3.popover-title
+      font-size: 18px
+      i
+        float: right
+        margin-top: 9px
+        cursor: pointer
+
+  .help-span.table-help
+    .arrow
+      margin-top: -135px !important
+    .popover
+      top: -42px !important
+
+/* =table section */
+.table-wrapper
+  h3
+    float: none
+  thead
+    background-color: #ddd
+  .number,
+  .number-title
+    text-align: right
+
+/* =fixed position module */
+.fixed-pos
+  padding: 15px 20px 20px 20px
+  position: fixed
+  bottom: 0
+  right: 20px
+  border: 1px solid rgba(180, 178, 178, 0.89)
+  border-radius: 5px 5px 0 0
+  background-image: -webkit-linear-gradient(top, white, #f2f2f2)
+  background-color: #f9f9f9
+  display: none
+
+  thead
+    background-color: transparent !important
+
+table
+  tr.selected,
+  tr.selected:hover
+    background-color: green !important
+    td
+      background-color: green !important
+
+.default-show
+  margin-top: 20px
+.default-show input
+  float: left
+.default-show label
+  float: left
+  margin-left: 5px
+
+.d3-background
+  fill: #fff
+.d3-wrapper.centered
+  text-align: center
+svg
+  font-size: 12px
+
+/* white tooltips */
+.w-tooltip
+  position: absolute
+  z-index: 1030
+  display: block
+  visibility: visible
+  font-size: 14px
+  line-height: 1.4
+  background-color: #ffffff
+  border-radius: 3px
+  padding: 10px
+
+/* =dashboard grid */
+.dashboard-grid
+  @include container
+  .top-filter-buttons
+    height: 50px
+    padding-top: 20px
+    .btn
+      a
+        color: $blue-curious
+    .btn-info
+      a
+        color: #ffffff
+    .site-dropdown
+      display: inline
+    .section-dropdown
+      display: inline
+    .btn-toolbar
+      display: inline
+      .actions
+        float: right
+        margin-top: 0px
+      .time-filter
+        float: right
+        margin-right: 10px
+        margin-top: 0px
+  max-width: 100%
+  .dcol.x-small
+    @include span-columns(2, 12)
+  .dcol.small
+    @include span-columns(3, 12)
+  .dcol.x-med
+    @include span-columns(5, 12)
+  .dcol.med
+    @include span-columns(6, 12)
+  .dcol.large
+    @include span-columns(9, 12)
+  .dcol.x-large
+    @include span-columns(12, 12)
+  .dcol
+    margin-right: 0 !important
+    padding: 0 15px
+
+  .dcol:first-child
+    padding-left: 0
+  .dcol:last-child
+    padding-right: 0
+    box-shadow: none
+
+  h4
+    color: #97a7b3
+    font-size: 16px
+    font-weight: normal
+    text-align: center
+    padding: 0
+    text-shadow: -1px -1px 0 rgb(54, 54, 54)
+    margin: 0 0 15px 0
+  h5
+    text-align: center
+  .row
+    width: 100%
+    border-bottom: 1px solid $black
+    box-shadow: 0 1px 0 $grey-scorpion
+    margin-left: 0
+    padding: 15px 0
+  .row:first-child,
+  .row.first
+    border-top: 0
+    padding-top: 0
+    margin-top: 20px
+  .row:last-child,
+  .row.last
+    border-bottom: 0
+    box-shadow: none
+    padding-bottom: 0
+  .row >
+    div
+      border-right: 1px solid $black
+      box-shadow: 1px 0 0 $grey-scorpion
+      height: 100%
+    div:last-child
+      border-right: 0
+      box-shadow: none
+  .section
+    padding: 0
+  .centered
+    text-align: center
+  .center-margin
+    margin: 0 auto
+  .big-number
+    text-align: center
+    font-size: 80px
+  .mini-nav
+    text-align: center
+    .section
+      display: none
+      margin-top: 20px
+  /* =black row */
+  .row.black
+    border: none
+    box-shadow: none
+    padding: 0
+    margin: 20px 0
+    .dcol
+      background-color: $black-wood-smoke
+      border-radius: 3px
+      border-width: 1px
+      border-style: solid
+      border-color: #111316
+      box-shadow: none
+      padding: 10px
+      h4
+        padding: 0
+        margin: 0 0 10px 0
+    .dcol.x-small,
+    .dcol.small,
+    .dcol.x-med,
+    .dcol.med,
+    .dcol.large,
+    .dcol.x-large
+      margin-right: 2px !important
+    .dcol.x-small:last-child,
+    .dcol.small:last-child,
+    .dcol.x-med:last-child,
+    .dcol.med:last-child,
+    .dcol.large:last-child,
+    .dcol.x-large:last-child
+      margin-right: 0 !important
+
+.social-widget
+  color: #fff
+  min-width: 935px
+  .row
+    @include container
+    max-width: 100%
+    width: 100%
+    .col
+      height: 515px
+    .col:nth-child(1)
+      @include span-columns(5, 18)
+    .col:nth-child(2)
+      min-width: 425px
+      @include span-columns(7, 18)
+    .col:nth-child(3)
+      @include span-columns(6, 18)
+    .col:nth-child(2)
+      .main-body
+        min-width: 450px
+  span.icon
+    display: block
+    float: left
+  .icon.small-globe
+    background: url('/images/small-globe.png') no-repeat
+    height: 12px
+    width: 12px
+    margin-top: 4px
+  .icon.small-wp
+    background: url('/images/small-wp-icon.png') no-repeat
+    height: 12px
+    width: 12px
+    margin-top: 4px
+  .sharing-options
+    width: 100%
+    list-style: none
+    margin-top: 20px
+    clear: left
+    background-color: #1d2427
+    float: left
+    padding: 20px
+    -webkit-border-radius: 2px
+    border-radius: 2px
+    li
+      float: left
+      width: 30%
+      margin-bottom: 20px
+      min-height: 40px
+      input
+        display: block
+        float: left
+      label
+        float: left
+        margin-left: 4px
+      img
+        float: left
+  #formatChoices
+    .big
+      float: left
+      width: 100%
+      height: 80px
+    .article_hor
+      float: left
+      width: 100%
+      height: 40px
+    .article
+      float: left
+      width: 100%
+    .single
+      float: left
+      width: 100%
+  #formatChoices >
+    div
+      padding: 10px
+    div >
+      input
+        float: left
+        margin: -3px 5px 0 0
+      div
+        float: left
+  .social_div_wrapper
+    textarea
+      width: 100%
+      margin-top: 4px
+  #widgetCode
+    height: 50px
+  .widget-status
+    float: left
+    margin-bottom: 20px
+  .generate-code
+    clear: left
+    margin-bottom: 10px
+    line-height: 16px
+  .code-wrapper
+    clear: left
+  .snippet-code
+    height: 150px
+
+.steps-grid
+  .row
+    margin-left: 0
+  .row >
+    .col
+      margin-right: 3px !important
+      @include span-columns(4, 12)
+      background: url('/images/transparency-bg.png')
+    .col >
+      h3
+        background-color: #171a1e
+        width: 100%
+        height: 37px
+        margin: 0
+        padding: 0
+        font-size: 20px
+        border-top: 1px solid #282d31
+      h3 >
+        span
+          display: block
+          float: left
+          width: 36px
+          height: 36px
+          border-radius: 2px
+          background-color: #7dd5fd
+          color: #000000
+          text-align: center
+          font-size: 30px
+          line-height: 37px
+          font-weight: bold
+          text-shadow: 1px 1px 1px #CAE7E6
+          box-shadow: 1px 1px 4px #72A8AF inset
+        label
+          line-height: 37px
+          padding: 0 12px
+          display: block
+          float: left
+      .main-body
+        padding: 15px
+  .radio-wrapper
+    float: left
+    min-width: 150px
+  .radio-wrapper >
+    input
+      display: block
+      float: left
+      margin: -4px 0 0 0
+    label
+      float: left
+      margin-left: 10px
+
+.social-iframe-body
+  .ui-view,
+  .main-alert-wrapper
+    padding: 0
+    margin: 10px 0 0 0
+
+/* =real time dashboard */
+.rt-dashboard >
+  div:nth-child(3)
+    height: 470px
+  div:nth-child(4)
+    height: 470px
+  div:nth-child(5)
+    height: 750px
+.rt-dashboard
+  .avg-time-on-site
+    .big-number
+      margin: 90px 0
+    .avg-time-on-site-chart
+      width: 200px
+  .search-wordcloud
+    width: 100%
+    min-height: 300px
+    margin-top: 20px
+  .loyalty
+    .column >
+      div
+        margin: 0 auto
+        width: 300px
+  .browsers-section
+    margin-top: 80px
+  .geo
+    .toggle-btns
+      margin-bottom: 15px
+      button
+        width: 50%
+  .demo-message
+    .alert
+      text-align: center
+  .page-loads-wrapper >
+    div
+      width: 49%
+      float: left
+
+/* -- modal -- */
+.modal-backdrop
+  background: rgba(0, 0, 0, .65)
+
+.modal
+  background: #d7dee1
+
+.modal-header
+  border: 0px
+  padding: 0
+  h2
+    font-weight: 200
+    margin-top: 0px
+    color: #333333
+.modal-body
+  font-weight: 200
+  padding: 5px 20px 20px
+  color: #97a7b3
+  a
+    color: #25b5de
+  a:hover
+    color: #fff
+  ul
+    list-style: disc
+    padding-left: 30px
+  li
+    margin: 10px 0px
+
+.kruxTAndC
+  font-weight: 100
+  color: #bebebe
+
+/* -- reset password -- */
+.user-password
+  position: relative
+  input[type='password']
+    padding-right: 85px
+
+.progress
+  width: 60px
+  height: 7px
+  position: absolute
+  top: 13px
+  left: 195px
+
+.login-inner-box
+  margin: 50px auto
+  padding: 20px 20px 20px 30px
+  border: 1px solid #25b5de
+  border-radius: 5px
+  width: 575px
+  .help-inline
+    margin-left: 15px
+    font-weight: 200
+    font-size: 14px
+    width: 250px
+    line-height: 15px
+.login-inner-box
+  padding: 20px 20px 5px
+  width: 310px
+
+.input-container,
+.login-inputbox
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  textarea
+    font-size: 14px
+    height: 33px
+    width: 270px
+    padding-left: 7px
+    margin-bottom: 17px
+    background: #ccc
+    border: 1px solid #5c5c5e
+    border-radius: 5px
+  input,
+  input:focus,
+  textarea,
+  textarea:focus
+    color: #333
+    font-size: 14px
+    font-weight: bold
+  input::-webkit-input-placeholder
+    color: #515151
+
+.input-container
+  i
+    margin-right: 5px
+    margin-top: 0px
+  .alert-message
+    height: 30px
+    text-align: center
+    .alert
+      padding: 4px 35px 8px 4px
+      height: 30px
+  .field
+    margin-top: 10px
+    margin-bottom: 10px
+  .btn
+    margin-top: 10px
+    padding: 6px 106px 6px
+    color: #444444
+    text-shadow: 0px 1px 1px #bebebe
+    font-weight: bold
+
+.event-inner-box
+  .btn
+    padding: 4px 12px
+    display: inline-block
+    margin-top: 8px
+    margin-right: 8px
+    margin-bottom: 12px
+    font-size: 14px
+    font-weght: normal
+
+  .textinput
+    width: 300px
+  .attr_create
+    width: 135px
+  .attr_remove
+    margin-top: 9px
+    margin-left: 10px
+  .addbutton
+    margin-top: 2px
+  input[type=checkbox]
+    height: 15px
+  select
+    height: 26px
+    width: 300px
+    font-size: 14px
+  hr
+    width: 429px
+  label
+    display: inline-block
+    width: 100px
+    text-align: right
+  .name,
+  .type,
+  .action,
+  .category,
+  .converted
+    margin-right: 5px
+  .attrlist
+    margin-left: 128px
+    label
+      margin: 0
+
+  .attr_checkbox
+    vertical-align: middle
+
+  label.attr_name
+    margin-bottom: 0
+    width: auto
+
+  span
+    vertical-align: center
+
+  @include clearfix
+  .field
+    position: relative
+    @include clearfix
+    padding: 5px 5px 5px
+
+
+  > label
+    font-size: 1.1em
+    display: inline-block
+    margin: 0
+      bottom: 5px
+      top: 8px
+
+  .buttons-area
+    text-align: left
+
+.form-labels
+  text-align: right
+  padding: 20px 10px 20px
+
+.error-indicator
+  color: #D00000
+
+//* -- login -- *//
+.login-inputbox
+  font-family: 'Open Sans', sans-serif
+  margin: 100px auto
+  .input-email,
+  .input-password
+    input[type='password']
+      padding-right: 80px
+    position: relative
+    .label
+      text-align: center
+      font-weight: 400
+      font-size: 14px
+      position: absolute
+      top: 5px
+      right: 5px
+      padding: 5px 6px
+  .checkbox
+    padding: 0
+    margin-right: 17px
+    input[type='checkbox']
+      display: none
+    input[type='checkbox'] + label span
+      display: inline-block
+      width: 19px
+      height: 19px
+      margin: -1px 4px 0 0
+      vertical-align: middle
+      background: url('/images/check_radio_sheet.png') left top no-repeat
+      cursor: pointer
+    input[type='checkbox']:checked + label span
+      background: url('/images/check_radio_sheet.png') -19px top no-repeat
+  .btn
+    padding: 4px 39px
+    font-weight: bold
+  hr
+    border-top: 1px solid #cccccc
+    border-bottom: 0px
+    margin: 25px 2px 0px 0px
+
+.resend-verification-inner-box,
+.forgotPW-inner-box,
+.resetPW-inner-box
+  width: 435px
+  margin: 20px auto
+  padding: 10px 20px 20px 30px
+  border: 1px solid #25b5de
+  border-radius: 5px
+  .resend-verification-title,
+  .forgotPW-title,
+  .resetPW-title
+    margin-bottom: 30px
+  .btn
+    margin-top: -25px
+    padding: 6px 109px 6px
+    color: #333333
+    text-shadow: 0px 1px 1px #bebebe
+    font-weight: bold
+
+.resetPW-inner-box
+  width: 590px
+
+/* -- page not found -- */
+.page-not-found
+  color: #97a7b3
+  max-width: 500px
+  padding: 30px 30px 30px
+  border: 1px solid #25b5de
+  border-radius: 5px
+  margin: 50px auto
+  box-shadow: 1px 1px 10px #a7a7a7
+  span
+    color: #6bb1da
+  .funny-content
+    font-weight: 200
+    font-size: 16px
+    line-height: 25px
+
+/* --social dashboard -- */
+.social-dashboard
+  .expandable-content
+    float: left
+    border: 3px solid #16191d
+    border-radius: 3px
+    font-size: 17px
+    box-shadow: 1px 1px 0 #31383d
+    width: 100%
+    .label
+      font-size: 13px
+      padding: 4px
+      display: inline
+      float: left
+    .share-shares >
+      img
+        margin-left: 10px
+  .trend-item
+    float: left
+    width: 100%
+    height: 100px
+    padding: 15px
+    margin-bottom: 1px
+    background-color: #202b31
+    border-bottom: 1px solid #000
+    box-shadow: 0 1px 0 rgb(51, 51, 51)
+    .below-fold
+      float: left
+      width: 100%
+      .top-demographics
+        @include prefix(4)
+        @include span-columns(8, 12)
+      .top-segments
+        @include span-columns(4, 12)
+        @include omega
+    .below-fold
+      padding-top: 15px
+      padding-bottom: 15px
+      .audience-box
+        @include blackBox
+        width: 90%
+        .title
+          @include blueRibbon
+          width: 50%
+
+  .trend-item.active
+    background-color: $black-wood-smoke
+  .trend-item
+    .activity-icon
+      float: left
+      height: 50px
+      width: 50px
+      padding-top: 53px
+      font-size: 12px
+      color: rgb(179, 179, 179)
+      text-align: center
+    .activity-icon.shares
+      background: url('/images/sharing-icon.png') no-repeat
+    .activity-icon.referrals
+      background: url('/images/referral-icon.png') no-repeat
+    // Title (col 1)
+    .title
+      @include span-columns(4, 12)
+      color: $blue-curious
+      font-size: 20px
+      text-shadow: -1px -1px 0 #000
+      line-height: 64px
+    // Shares and referrals (col 2 and 3)
+    .social-numbers
+      @include span-columns(4, 12)
+    .social-numbers >
+      .icons-counts
+        float: left
+        margin: 10px 0 0 20px
+      .icons-counts >
+        div
+          float: left
+          padding-top: 25px
+          margin-right: 20px
+          text-align: center
+    .social-numbers.referrals
+      @include omega
+
+  .trend-item:last-child
+    border-bottom: none
+    box-shadow: none
+
+.social-dashboard
+  .row.demographics
+    height: 172px
+    .percentages
+      color: $blue-curious
+  table.demographics-group
+    width: 100%
+    .dem_img
+      margin: 0 auto
+    tr
+      td
+        text-align: center
+    .labels
+      color: #bdc6ce
+      font-size: 13px
+  .demographics-group
+    tbody >
+      tr:first-child
+        height: 70px
+  .demographicContainer,
+  .demographics-group
+    .dem_img
+      background: url('/images/audience_dem.png') no-repeat
+      height: 50px
+    .gender_group
+      text-align: center
+      height: 100px
+      .text
+        margin-top: 60px
+    .dem_img.male
+      background-position: -10px 0px
+      height: 60px
+      width: 35px
+
+    .dem_img.female
+      background-position: -50px 0px
+      height: 60px
+      width: 35px
+
+    .age_group
+      line-height: 50px
+      color: #171a1e
+      text-align: center
+      font-size: 13px
+      font-weight: bold
+      margin-top: 30px
+      .text
+        margin-top: 20px
+    .dem_img.age_group1
+      background-position: 0 -141px
+      width: 50px
+    .dem_img.age_group2
+      background-position: -54px -141px
+      width: 50px
+    .dem_img.age_group3
+      background-position: -107px -141px
+      width: 50px
+    .dem_img.age_group4
+      background-position: -160px -141px
+      width: 50px
+    .dem_img.age_group5
+      background-position: -212px -141px
+      width: 50px
+    .dem_img.age_group6
+      background-position: -264px -141px
+      width: 50px
+    .income_group
+      line-height: 150px
+      text-align: center
+      font-size: 12px
+      margin-left: 30px
+      .text
+        margin-top: -70px
+
+  .demographics-group
+    tr.income_groups
+      td
+        width: 20%
+        .dem_img
+          background-position: -65px -65px
+          width: 50px
+          height: 60px
+        .dem_img.income_group1
+          background-position: 0 -65px
+        .dem_img.income_group2
+          background-position: -54px -65px
+        .dem_img.income_group3
+          background-position: -304px -65px
+          width: 65px
+        .dem_img.income_group4
+          background-position: -205px -60px
+          width: 75px
+        .dem_img.income_group5
+          background-position: -117px -60px
+          width: 75px
+
+/* =kx expandable row */
+.kx-expandable-row
+  .below-fold
+    display: none
+
+/* =contact us modal */
+.contact-us-modal
+  textarea
+    width: 100%
+    height: 200px
+
+/* =platform dashboard */
+.platform-dashboard
+  .row
+    @include container
+    width: 100%
+    max-width: 100%
+    border: none
+    box-shadow: none
+    background: #000
+    border-radius: 5px
+    margin: 40px 0
+    padding: 10px
+    .col
+      @include span-columns(3, 12)
+      border: none
+      box-shadow: none
+      padding: 2px
+      text-align: center
+      background: #36454c
+      height: 253px
+      border-radius: 5px
+      text-shadow: 0 -2px 0 #000
+
+      label
+        font-size: 50px
+        border-bottom: 2px solid $black
+        box-shadow: 0 1px 0 $grey-scorpion
+        padding-bottom: 40px
+        padding-top: 40px
+      .content
+        padding-top: 40px
+        font-size: 54px
+        color: $blue-pink
+    .col >
+      div
+        background: -webkit-linear-gradient(top, #303b44 0%,#37424c 40%,#36454c 100%)
+        height: 100%
+        padding: 20px
+        border-radius: 5px
+  .row >
+    div:nth-child(1)
+      background: transparent
+      font-size: 60px
+      color: $silver
+      line-height: 70px
+      padding-top: 40px
+    div:nth-child(1) >
+      div
+        background: transparent
+    div:nth-child(4)
+      @include omega
+  .row.segments >
+    div:nth-child(1)
+      padding-top: 0px
+    div:nth-child(2)
+      @include span-columns(9, 12)
+      @include omega
+  .row:nth-child(3)
+    margin-bottom: 0
+.platform-dashboard >
+  h1
+    color: $blue-pink
+    text-align: center
+    margin-bottom: 40px
+
+.progress-bar-detail
+  position: relative
+  min-width: 130px
+  .progress
+    background: #23292e
+    position: absolute
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 20px
+    border-radius: 2px
+    border-bottom: 1px solid #48575e
+    border-right: 1px solid #48575e
+    span
+      color: #fff
+      font-weight: normal
+      position: absolute
+      z-index: 20
+      top: 0px
+      right: 5px
+      opacity: 1
+      font-size: 13px
+      white-space: pre
+  .progress:after
+    content: ""
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    -webkit-box-shadow: inset 1px 1px 2px 2px rgba(0, 0, 0, .8)
+    box-shadow: inset 1px 1px 2px 2px rgba(0, 0, 0, .8)
+    -webkit-transition: all 50ms ease-in-out
+    -moz-transition: all 50ms ease-in-out
+    -ms-transition: all 50ms ease-in-out
+    -o-transition: all 50ms ease-in-out
+    transition: all 50ms ease-in-out
+  .progress:hover:after
+    background: rgba(0, 0, 0, .4)
+  .progress
+    .bar
+      background: #025268
+      background: url(data:image/svg+xmlbase64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAyNTI2OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwOTg0YjgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(left, #025268 0%, #0984b8 100%)
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,#025268), color-stop(100%,#0984b8))
+      background: -webkit-linear-gradient(left, #025268 0%,#0984b8 100%)
+      background: -o-linear-gradient(left, #025268 0%,#0984b8 100%)
+      background: -ms-linear-gradient(left, #025268 0%,#0984b8 100%)
+      background: linear-gradient(to right, #025268 0%,#0984b8 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#025268', endColorstr='#0984b8',GradientType=1 )
+    .bar.bar-success
+      background: #236802
+      background: url(data:image/svg+xmlbase64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzIzNjgwMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1ZmE1MDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+      background: -moz-linear-gradient(left, #236802 0%, #5fa509 100%)
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,#236802), color-stop(100%,#5fa509))
+      background: -webkit-linear-gradient(left, #236802 0%,#5fa509 100%)
+      background: -o-linear-gradient(left, #236802 0%,#5fa509 100%)
+      background: -ms-linear-gradient(left, #236802 0%,#5fa509 100%)
+      background: linear-gradient(to right, #236802 0%,#5fa509 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#236802', endColorstr='#5fa509',GradientType=1 )
+@-moz-document url-prefix()
+  .resource-manager .progress-bar-detail
+    .progress
+      top: -15px
+
+.event-report, .events-compare-report
+  padding: 0px 20px 20px 20px
+
+.event-report
+  .event-traffic-top-attr-signature-chart
+    height: 850px
+    .label-ellipsis
+      width: 200px
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+  .event-traffic-attr-value-trend-chart
+    height: 400px
+
+.events-compare-report
+  .events-uniques-compare-chart
+    min-height: 450px
+  .events-daily-compare-chart
+    min-height: 600px
+
+.horizontal-separator
+  margin-left: 3%
+  margin-top: 25px
+  margin-bottom: 25px
+  width: 96%
+  border-bottom: 1px solid $black
+  box-shadow: 0 1px 0 $grey-scorpion
+
+.highcharts-wrapper
+  margin-top: 30px
+  min-width: 700px
+  position: relative
+  background: #202528
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, .8)
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, .8)
+  padding: 0 20px
+  .highcharts-header
+    margin-bottom: 15px
+    height: 45px
+    text-align: center
+  .event-detail-filter
+    position: absolute
+    top: 8px
+  .report-time-filter
+    position: absolute
+    top: 8px
+    right: 55px
+  .report-row-header
+    margin-left: 10px
+    text-align: center
+    margin-bottom: 20px
+    border-radius: 5px
+  .report-row-header > h4
+    font-size: 20px
+    letter-spacing: 1px
+    padding: 8px 0px
+    font-weight: 400
+    color: #fff
+
+.report-row
+  margin-top: 30px
+  @include container
+  max-width: 100%
+
+.segments-chart
+  height: 700px
+
+.date-bar
+  position: absolute
+  top: 0
+  width: 100%
+  min-width: 600px
+  height: 50px
+  margin: 0 auto
+  background-color: black
+  border: 1px solid #43b6ea
+  border-radius: 5px
+
+.date-bar-chart
+  height: 50px
+
+.cpm-chart
+  width: 100%
+  min-width: 600px
+  height: 250px
+
+.spend-chart
+  width: 100%
+  min-width: 600px
+  height: 250px
+
+.impression-chart
+  width: 100%
+  min-width: 600px
+  height: 250px
+
+.click-chart
+  width: 100%
+  min-width: 600px
+  height: 250px
+
+.chart-container
+  padding-right: 150px
+
+/* Popup dialog */
+.dialog
+  .dialog-close
+    position: absolute
+    top: 0
+    right: 0
+    font-size: 50%
+    cursor: pointer
+  .dialog-header
+    position: relative
+    font-size: 180%
+  .dialog-body
+    margin-top: 10px
+
+.dialog-creative-preview
+  width: 820px
+  margin-left: -410px
+  .preview-area
+    background-color: #fff
+    color: initial
+    padding: 30px 0
+    text-align: center
+    .content
+      display: inline-block
+      text-align: left
+      text-align: initial
+
+#maintenanceMessage
+  width: 568px
+  margin: 200px auto
+  line-height: 35px
+  .msg-title
+    font-size: 30px
+    color: #C5C5C5
+    padding-bottom: 10px
+    border-bottom: 1px solid rgb(98, 106, 122)
+    box-shadow: 0px -1px 0px rgb(46, 46, 51) inset
+  .msg-body
+    margin-top: 10px
+    font-size: 18px
+    color: #fff
+// Reach & Overlap end
+
+.nav-loader-wrapper
+  position: absolute
+  left: 50%
+  top: 50%
+  .nav-loader
+    position: relative
+    left: -50%
+    top: -50%
+    background-image: url('/images/loader.gif')
+    height: 128px
+    // make sure the loader is at the first layer
+    z-index: 99999
+  width: 128px
+
+//Segment Lookalikes
+.lookalikes-dialog
+  width: auto
+  .dialog
+    .chart-inline
+      display: inline-block
+      padding: 20px
+      background: #fff
+      -webkit-border-radius: 3px
+      -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+    .resource-table-section
+      width: 200px
+      padding: 1px
+      display: inline-block
+      vertical-align: top
+      margin-bottom: 15px
+      background: #c8d8e0
+      -webkit-box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+      box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+      .lookalikes-table
+        min-height: 400px
+      .ngViewport
+        min-height: 350px
+      .table-body
+        background: #e3ecf0
+    .dialog-footer
+      .buttons-bar
+        text-align: center
+        a:last-child
+          margin-left: 15px
+
+// Cross Channel Marketing Performance
+.cross-channel-marketing
+  @include container
+  max-width: 100%
+  .filters-section
+    .content-filters-attribution
+      float: left
+      & > *
+        margin-right: 20px
+  .help-text
+    color: $grey-scorpion
+    margin-top: 10px
+    text-align: center
+    i
+      display: inline
+  .summary-stats-data-container
+    margin-top: 15px
+    min-width: 1200px
+    text-align: center
+    border: 1px solid #c9d0d3
+    background: #e3ecf0
+    .summary-block.summary_blocks_4
+      @include span-columns(4, 17)
+      float: none
+      display: inline-table
+    .summary-block.summary_blocks_3
+      @include span-columns(4, 13)
+      float: none
+      margin-right: 2%
+      display: inline-table
+    .summary-block:first-child
+      margin-left: 0
+    .summary-block:last-child
+      margin-right: 0
+  .chart-inline
+    margin-right: .5%
+    padding: 20px 0 20px 0
+    background: #fff
+    -webkit-border-radius: 3px
+    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+  .chart-inline:first-child
+    padding-left: 0
+  .chart-inline:last-child
+    padding-right: 0
+    margin-right: 0
+  .resource-table-section
+    @include span-columns(12, 12)
+    margin-top: 15px
+    margin-right: 40px
+    padding: 5px
+    background: #c8d8e0
+    -webkit-box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    .table-filter
+      margin-bottom: 15px
+    .table-body
+      background: #e3ecf0
+
+//Attribution report
+.attribution-campaign-grid, .attribution-channel-grid
+  .ngViewport
+    height: auto !important
+
+// Reach & Overlap begin
+.reach-overlap-report
+  @include container
+  max-width: 100%
+  .filters-section
+    padding: 10px
+    margin: 10px
+    width: 98%
+    height: 55px
+    .filters-container
+      float: left
+      .filter
+        padding: 5px
+        height: 30px
+    .components-container
+      float: right
+  .content-section
+    padding: 10px
+    .heatmap-section
+      @include span-columns(8, 10)
+      margin: 0 20px 30px 0
+      padding: 10px
+      background: #f6f8f9
+      margin-bottom: 20px
+      border-radius: 3px
+      -webkit-border-radius: 3px
+      -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      table.heatmap
+        margin: 10px auto
+        table-layout: fixed
+        td
+          border: 1px solid #858b8d
+          padding: 10px
+          overflow: hidden
+          height: 20px
+          text-align: center
+        th
+          padding: 10px
+          font-size: 10px
+        th.header
+          border-bottom: 1px solid #858b8d
+          border-right: 1px solid #858b8d
+        th.toplabel
+          vertical-align: bottom
+        tr.divider
+          height: 20px
+
+    .info-section
+      @include span-columns(2, 10)
+      margin-right: 0px
+      .matrix-chart-key.summary-block
+        font-size: 1.2em
+        .title
+          margin-bottom: 0px
+      .summary-block
+        display: table
+        height: 150px
+        padding: 10px
+        background: #f6f8f9
+        margin-top: 0px
+        margin-bottom: 20px
+        border-radius: 3px
+        -webkit-border-radius: 3px
+        text-align: center
+        -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+        .kx-matrix-chart-key
+          padding-top: 10px
+        .kx-matrix-chart-key-samples
+          .empty-description
+            vertical-align: top
+        .title, h3
+          margin-bottom: 10px
+          margin-top: 5px
+          font-size: 25px
+          color: grey
+          height: 40px
+        .value
+          font-size: 40px
+          font-weight: 300
+          margin-top: 20px
+          color: #1982ac
+        .trend
+          color: grey
+          .left-value
+            font-weight: 400
+            margin-left: 20px
+            float: left
+          .right-value
+            font-weight: 400
+            margin-right: 20px
+            float: right
+          .increase
+            color: green
+          .decrease
+            color: red
+
+// Internal Dashboard
+.internal-dashboard
+  margin: 15px 0 0
+  @include container
+  max-width: 100%
+  .stats-section
+    height: 180px
+    .summary-block
+      @include span-columns(5, 15)
+      margin: 0px
+      margin-right: .5%
+  .charts-section
+    .unique-visitor
+      @include span-columns(6, 12)
+      .unique-visitor-chart
+        height: 450px
+    .impressions-pageviews
+      @include span-columns(6, 12)
+      .imps-pageviews-chart
+        height: 450px
+    .chart-inline
+      margin-right: .5%
+      padding: 20px 0 20px 0
+      background: #fff
+      -webkit-border-radius: 3px
+      -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+    .chart-inline:first-child
+      padding-left: 0
+    .chart-inline:last-child
+      padding-right: 0
+      margin-right: 0
+  .segments-section
+    margin-top: 30px
+    margin-bottom: 30px
+    @include span-columns(12, 12)
+    .marquee-segments
+      position: relative
+      overflow: hidden
+      padding-top: 30px
+      margin-right: 1%
+      height: 80px
+      background: #f6f8f9
+      border-radius: 5px
+      -webkit-border-radius: 5px
+      -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+      font-size: 20px
+      // font-weight: 600
+      .segments-ticker
+        position: relative
+        left: 0px
+        top: 0px
+        border-width: 0px
+        border-style: solid
+        font-size: 16px
+        width: 100%
+        overflow: hidden
+        height: 20px
+        .clstsu
+          color: green
+          cursor: hand
+          cursor: pointer
+          padding-bottom: 2px
+          padding-left: 2em
+          padding-right: 2em
+          margin: 0px
+          .segment-name
+            font-weight: 600
+            color: #1982ac
+          .segment-population:
+            font-weight: 600
+
+// Accounts, Create and Edit User form
+.user-settings-form
+  .grid-layout.settings
+    .two-columns
+      margin-top: 20px
+      input
+        width: 250px
+      input[type=checkbox]
+        width: auto
+      .sidebar
+        min-width: 450px
+        .field-label
+          text-align: right
+          margin-right: 25px
+          color: #616e77
+          width: 120px
+          margin-bottom: 20px
+        .field-label-span
+          font-size: 14px
+          margin-right: 10px
+      .centerbar
+        min-width: 500px
+        .field-label
+          text-align: right
+          margin-right: 25px
+          color: #616e77
+          width: 150px
+
+.accounts-form-crud
+  font-family: 'Open Sans', sans-serif
+  font-size: 14px
+  font-weight: 200
+  .centerbar
+    width: 55%
+    input[type=radio], input[type=checkbox]
+      margin-top: 4px
+    .control-group .controls .radio
+      margin-left: 20px
+  .sidebar
+    width: 45%
+    .controls
+      display: block
+    i
+      margin-top: 5px
+    .header
+      position: relative
+      .name
+        margin-top: 0
+        legend:first-child
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+      .actions
+        opacity: .7
+        position: absolute
+        top: 5px
+        right: 0
+        margin-right: 10px
+        -webkit-transition: all 50ms ease-in-out
+        -moz-transition: all 50ms ease-in-out
+        -ms-transition: all 50ms ease-in-out
+        -o-transition: all 50ms ease-in-out
+        transition: all 50ms ease-in-out
+        a
+          background-color: #2b373c
+          width: 24px
+          height: 24px
+          display: inline-block
+          margin-left: 5px
+        a:hover
+          background-color: transparent
+      .actions:hover
+        opacity: 1
+    .organization-select
+      width: 100%
+      overflow: visible
+    .organization-list-container
+      height: 100%
+      .organization-list
+        float: left
+        width: 80%
+      .organization-list >
+        li.organization
+          .organization-item
+            margin: 5px 0
+            position: relative
+            float: left
+            width: 100%
+          .organization-item >
+            .icon-remove
+              position: absolute
+              width: auto
+              top: 0
+              right: 0
+              cursor: pointer
+            div
+              float: left
+              clear: left
+              width: 100%
+            div >
+              .content
+                float: left
+                width: 95%
+    .access-levels
+      height: 100%
+      .checkboxtree
+        width: 60%
+      .text
+        width: 60%
+
+
+// Internal > Traffic Trends
+.internal-traffic-trends
+  @include container
+  max-width: 100%
+  padding: 20px
+
+  .filters-section
+    min-width: 1200px
+    padding-bottom: 10px
+    .breakdown-options
+      display: inline-block
+      margin-right: 20px
+    .breakdown-options > *
+      display: inline-block
+      margin: 0 5px 0 5px
+    .excel-export
+      display: inline-block
+      float: right
+      margin-top: 5px
+
+  .summary-stats-data-container
+    margin-top: 1.5em
+    height: 180px
+    min-width: 1200px
+    text-align: center
+    .summary-block.summary_blocks_5
+      @include span-columns(3, 16)
+      margin-right: 2%
+      display: inline-table
+    .summary-block.summary_blocks_4
+      @include span-columns(4, 17)
+      float: none
+      margin-right: 2%
+      display: inline-table
+    .summary-block:first-child
+      margin-left: 0
+    .summary-block:last-child
+      margin-right: 0
+
+  .value
+    display: block
+    z-index: 999
+
+  .chart-inline
+    margin-right: .5%
+    padding: 20px 0 20px 0
+    background: #fff
+    -webkit-border-radius: 3px
+    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.3)
+
+  .chart-inline:first-child
+    padding-left: 0
+
+  .chart-inline:last-child
+    padding-right: 0
+    margin-right: 0
+
+  .uniques-trend
+    @include span-columns(6, 12)
+    .uniques-trend-chart
+      height: 450px
+
+  .impressions-views-trend
+    @include span-columns(6, 12)
+    .impressions-views-trend-chart
+      height: 450px
+
+  .table-section
+    width: 100%
+    float: left
+    display: inline
+    margin-top: 15px
+    margin-right: 40px
+    padding: 5px
+    background: #c8d8e8
+    -webkit-box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    .sites-table
+      .ngViewport
+        height: auto !important
+    .table-body
+      min-height: 300px
+      background: #e3ecf0
+
+.cross-channel-marketing-performance-campaign,
+.cross-channel-marketing-performance-segment
+  .resource-info-section
+    @include clearfix
+    .resource-name
+      float: left
+    .filter-and-export
+      margin-top: 15px
+      float: right
+      .report-time-filter
+        display: inline-block
+      .report-time-ddl
+        width: 15em
+        height: 30px
+        margin-right: 10px
+
+// Interchange Brokerage
+.icon-with-title
+  display: inline
+  margin-right: 5px
+  a [class^="icon-"], [class*=" icon-"]
+    color: black
+    display: inline
+.content-tabs-brokerage
+  padding-top: 10px
+  padding-left: 10px
+
+.brokerage-segment-form-crud
+  @include clearfix
+  input[type=radio], input[type=checkbox]
+    margin-right: 4px
+  .field
+    @include clearfix
+    position: relative
+    &.resource-description
+      //overflow: initial
+      height: 100px !important
+      width: 100%
+    &.segment
+      width: 100%
+    &.minimum_media_required
+      select
+        margin-right: 3px
+    &.whitelist
+      overflow: visible
+
+  .sidebar
+    @include span-columns(5,10)
+    padding: 20px
+    position: absolute
+    left: 0
+    width: 40%
+    margin-right: 0
+    .field
+      height: initial
+      margin-bottom: 7px
+
+  .description
+    textarea
+      width: 100%
+
+  .centerbar
+    @include span-columns(5 omega, 10)
+    width: 60%
+    .field
+      margin-bottom: 10px
+    .field label
+      text-align: right
+      @include span-columns(3, 10)
+      margin-right: 5%
+    .field > *
+      display: inline-block
+    .resource-form-btns
+      margin-top: 25px
+      .cancel-btn
+        margin-left: 15px
+    .error-message
+      margin-top: 20px
+
+// Supertag > reports
+.supertag-reports
+  @include container
+  max-width: 100%
+  padding: 20px
+  .table-section
+    width: 100%
+    float: left
+    display: inline
+    margin-top: 15px
+    margin-right: 40px
+    padding: 5px
+    background: #c8d8e8
+    -webkit-box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    box-shadow: 1px 1px 0 0 rgba(255, 255, 255, .6)
+    .reports-table
+      .ngViewport
+        height: auto !important
+    .table-body
+      min-height: 300px
+      background: #e3ecf0
+  .filters-section
+    min-width: 1200px
+    padding-bottom: 10px
+    .content-filters > *
+      margin-right: 20px
+    .content-filters-attribution > *
+      margin-right: 20px
+    .content-filters, .content-filters-attribution
+      display: inline-block
+      float: left
+      .select2-choice
+        height: 30px
+        width: 15em
+  .table-header
+    font-family: 'Open Sans', sans-serif
+    margin-left: 10px
+    text-align: center
+    margin-bottom: 20px
+    border-radius: 5px
+
+// Frequency distribution report
+.frequency-distribution-ad-report
+  @include container
+  max-width: 100%
+  .report-header
+    .resource-name
+      float: left
+    .components-container
+      float: right
+  .summary-stats-section
+    clear: both
+    .summary-block.summary_blocks_3
+      @include span-columns(4, 12)
+      margin-right: 5px
+  .resource-table-section
+    padding-left: 5px
+    .tr.subitem, .td.subitem
+      background-color: #CDE0EF !important
+    .th:first-child
+      width: 130px !important
+
+// styles for Bootstrap-multiselect component
+select.multiselect
+  width: auto
+  padding: initial
+.multiselect,.dropdown-toggle
+  .caret
+    margin-left: 4px
+.multiselect-container
+  @include clearfix
+  border: 1px solid rgba(0,0,0,.15) !important
+  border-radius: 4px !important
+  position: absolute !important
+  list-style-type: none !important
+  margin: 0 !important
+  padding: 0 !important
+  .multiselect-search
+    width: 100%
+  li a
+    padding: 0 !important
+    label
+      width: auto !important
+      text-align: left !important
+      margin: 0 !important
+      padding-left: 40px !important
+      input[type=radio], input[type=checkbox]
+        margin-top: 4px
+        margin-right: 0
+        display: block !important
+
+/* --- Inspect Form --- */
+.inspect-form
+  @include clearfix
+  .header
+    margin-left: 10px
+    text-align: center
+    margin-bottom: 20px
+  .field
+    #position: relative
+    @include clearfix
+    input
+      width: 300px
+    .select
+      width: 300px
+      margin-bottom: 10px
+    &.attributes,&.ad-content-category
+      overflow: inherit
+      .select2-container
+        @include span-columns(5, 10)
+  .field.html
+    height: 300px !important
+    margin-bottom: 20px
+  .field.simplehistory-container
+    height: 65px
+    margin-top: 10px
+    margin-bottom: 10px
+    overflow: inherit
+
+  .tag_inspector_results
+    float: left
+    clear: left
+    width: 49.15254%
+    margin-top: 20px
+    margin-left: 34%
+    overflow: hidden
+    background-color: #FCEEB7
+    border: 1px solid #E2D6B1
+    padding: 15px
+    border-radius: 3px
+
+    h3
+      margin: 20px 0 10px 0
+      padding: 0 0 5px 0
+      font-size: 20px
+      border-bottom: 1px solid #E2D6B1
+      text-shadow: 0 1px 0 #fff
+      box-shadow: 0 1px 0 #fff
+
+    .good
+      color: green
+    .bad
+      color: red
+    .section
+      padding: 0 15px 15px 15px
+      clear: both
+      overflow: hidden
+      margin-bottom: 25px
+      float: left
+      width: 100%
+
+    .kruxRequestBody_collapse
+      cursor: pointer
+      margin-left: -26px
+      padding-right: 26px
+
+    #hello_tree .normalUl li
+      margin-left: 30px
+      padding-bottom: 5px
+      list-style-type: circle
+
+    .tabTreeBody
+      margin-left: 10px
+
+    .harView
+      border: 2px solid #EFEFEF
+
+    .harViewBodies
+      // The default css has this positioned absolute (boo)
+      position: relative
+      top: 0
+      bottom: 0
+
+    .tabBodies
+      overflow: inherit
+
+    .url_display
+      text-decoration: underline
+      cursor: pointer
+
+    /* Tree view css from jquery.treeview
+     * **************************************/
+    .treeview
+      padding: 0
+      margin: 0
+      list-style: none
+      ul
+        padding: 0
+        margin: 0
+        list-style: none
+        margin-top: 4px
+      .hitarea
+        background: url(/images/treeview-default.gif) -64px -25px no-repeat
+        height: 16px
+        width: 16px
+        margin-left: -16px
+        float: left
+        cursor: pointer
+      li
+        margin-left: 3px
+        margin-top: -3px
+        padding-left: 18px
+        font-size: 12px
+        img
+          width: 12px
+          height: 12px
+      a
+        cursor: pointer
+        &.selected
+          background-color: #eee
+
+    #treecontrol
+      padding-top: 3px
+      padding-bottom: 3px
+      display: block
+      background: #eee
+      img
+        padding-left: 6px
+      span
+        i
+          display: none
+
+    .treeview
+      .hover
+        color: red
+        cursor: pointer
+      li
+        background: url(/images/treeview-default-line.gif) 0 0 no-repeat
+        &.collapsable, &.expandable
+          background-position: 0 -176px
+      .expandable-hitarea
+        background-position: -80px -3px
+      li
+        &.last
+          background-position: 0 -1766px
+        &.lastCollapsable, &.lastExpandable
+          background-image: url(/images/treeview-default.gif)
+        &.lastCollapsable
+          background-position: 0 -111px
+        &.lastExpandable
+          background-position: -32px -67px
+      div
+        &.lastCollapsable-hitarea, &.lastExpandable-hitarea
+          background-position: 0
+
+    .treeview-red
+      li
+        background-image: url(images/treeview-red-line.gif)
+      .hitarea
+        background-image: url(images/treeview-red.gif)
+      li
+        &.lastCollapsable, &.lastExpandable
+          background-image: url(images/treeview-red.gif)
+
+    .treeview-black
+      li
+        background-image: url(images/treeview-black-line.gif)
+      .hitarea
+        background-image: url(images/treeview-black.gif)
+      li
+        &.lastCollapsable, &.lastExpandable
+          background-image: url(images/treeview-black.gif)
+
+    .treeview-gray
+      li
+        background-image: url(images/treeview-gray-line.gif)
+      .hitarea
+        background-image: url(images/treeview-gray.gif)
+      li
+        &.lastCollapsable, &.lastExpandable
+          background-image: url(images/treeview-gray.gif)
+
+    .treeview-famfamfam
+      li
+        background-image: url(images/treeview-famfamfam-line.gif)
+      .hitarea
+        background-image: url(images/treeview-famfamfam.gif)
+      li
+        &.lastCollapsable, &.lastExpandable
+          background-image: url(images/treeview-famfamfam.gif)
+
+    .treeview .placeholder
+      background: url(images/ajax-loader.gif) 0 0 no-repeat
+      height: 16px
+      width: 16px
+      display: block
+
+    .filetree
+      li
+        padding: 3px 0 2px 16px
+      span
+        &.folder, &.file
+          padding: 1px 0 1px 16px
+          display: block
+        &.folder
+          background: url(images/folder.gif) 0 0 no-repeat
+      li.expandable span.folder
+        background: url(images/folder-closed.gif) 0 0 no-repeat
+      span.file
+        background: url(images/file.gif) 0 0 no-repeat
+
+    .kdebug
+      font-size: 12px
+      color: #333
+      margin-left: 4px
+      border-bottom: 1px dotted #ccc
+      margin-top: 4px
+
+    .same_domain
+      color: #000 !important
+
+    #treefilters
+      position: absolute
+      right: 0px
+      top: 0px
+      padding-right: 8px
+      display: none
+      label
+        padding-left: 4px
+        cursor: pointer
+
+    .tree_legend
+      position: absolute
+      right: 10px
+      top: 50px
+      width: 90px
+      padding: 3px
+      min-height: 120px
+      background: #dddddd
+      border: 1px solid #bbbbbb
+      -moz-border-radius: 6px
+      z-index: 99999
+      display: none
+
+    .legend_header
+      font-weight: 800
+      color: #888888
+      font-size: 10px
+
+    .tree_key
+      position: relative
+      margin: 1px
+      background: #eee
+      border: 1px dotted #fff
+
+    .tree_caption
+      font-size: 9px
+      position: absolute
+      top: 2px
+      left: 20px
+
+    .tree_key img
+      position: relative
+      top: 1px
+      left: 2px
+      width: 14px
+      height: 14px
+
+    .tree_krux_logo
+      position: absolute
+      right: 17px
+      top: 20px
+      z-index: 99999
+      display: none
+
+    #hello_tree
+      position: absolute
+      top: 0px
+      left: 0px
+      width: 100%
+      min-height: 1000px
+      height: 100%
+      padding: 12px
+      z-index: 98999
+      background: #fff
+      cursor: pointer
+
+    #hello_tree2 li
+      background: url(images/bullet-list-item-orange.png) no-repeat scroll 0 3px transparent
+      list-style: none
+      list-style-type: none
+      margin: 0px
+
+    // Firefox net tab tweaks
+    .netInfoBody
+      margin-left: 0px !important
+      margin-top: 14px !important
+
+    .netInfoTabs
+      cursor: pointer
+
+    .netInfoParamName, .netInfoParamValue
+      font-size: 10px
+
+    .netRowHeader
+      display: none !important
+      border: 1px solid #00ff00
+      margin-left: 0px !important
+
+    #exposer_button
+      max-width: 60px
+      text-align: center
+      position: absolute
+      right: 280px
+      color: #222222
+      height: 14px
+      cursor: pointer
+      font-weight: 800
+      padding-left: 5px
+      padding-right: 5px
+      &:hover
+        color: #fff
+      &.on
+        color: #eee
+        background-image: url(images/button-bg.jpg)
+        border: 1px solid #444444
+        -moz-border-radius: 7px
+
+    .latency_1
+      background-color: rgba(30, 170, 0, 0.3)
+    .latency_2
+      background-color: rgba(40, 150, 0, 0.3)
+    .latency_3
+      background-color: rgba(80, 100, 0, 0.3)
+    .latency_4
+      background-color: rgba(120, 50, 0, 0.3)
+    .latency_5
+      background-color: rgba(180, 0, 0, 0.3)
+    .latency_6
+      background-color: rgba(240, 0, 0, 0.25)
+
+    .threat
+      min-width: 24px
+      max-width: 36px
+      height: 14px
+      border: 1px solid #666666
+      margin-left: 2px
+      margin-right: 2px
+      padding-left: 2px
+      padding-right: 2px
+      display: inline-block
+
+    .hide
+      display: none
+
+    .netTable
+      &[hiddenCols~=netHrefCol] TD
+        &[id="netHrefCol"], &.netHrefCol
+          display: none
+      &[hiddenCols~=netStatusCol] TD
+        &[id="netStatusCol"], &.netStatusCol
+          display: none
+      &[hiddenCols~=netDomainCol] TD
+        &[id="netDomainCol"], &.netDomainCol
+          display: none
+      &[hiddenCols~=netSizeCol] TD
+        &[id="netSizeCol"], &.netSizeCol
+          display: none
+      &[hiddenCols~=netTimeCol] TD
+        &[id="netTimeCol"], &.netTimeCol
+          display: none
+    .netTable
+      width: 100%
+    .netInfoRow .netRowHeader
+      display: table-cell
+    .netDebugCol .sourceLine
+      border-right: none
+    /************************************************************************************************/
+    /* Breakpoints */
+    .panelNode-net .netRowHeader
+      display: block
+
+    .netRowHeader
+      cursor: pointer
+      display: none
+      height: 15px
+      margin-right: 0 !important
+
+    // Display brekpoint disc
+    .netRow
+      .netRowHeader
+        background-position: 5px 1px
+      &[breakpoint="true"]
+        .netRowHeader
+          background-image: url(/images/inspector/breakpoint.png)
+        &[disabledBreakpoint="true"] .netRowHeader
+          background-image: url(/images/inspector/breakpointDisabled.png)
+      &.category-xhr:hover .netRowHeader
+        background-color: #F6F6F6
+
+    #netBreakpointBar
+      max-width: 38px
+
+    #netHrefCol > .netHeaderCellBox
+      border-left: 0px
+
+    .netRow .netRowHeader
+      width: 3px
+
+    .netInfoRow .netRowHeader
+      display: table-cell
+
+    .netDebugCol
+      border-right: 1px solid #CCCCCC
+      background-color: #EEEEEE
+      .sourceLine
+        border-right: none
+    .netInfoCol
+      border-top: 1px solid #EEEEEE
+      background: url(/images/inspector/group.gif) repeat-x white
+    .netInfoBody
+      margin: 10px 0 4px 10px
+    .netInfoTabs
+      position: relative
+      padding-left: 17px
+    .netInfoTabs
+      position: relative
+      padding-left: 17px
+
+    .netInfoTab
+      position: relative
+      top: -3px
+      margin-top: 10px
+      padding: 4px 6px
+      border: 1px solid transparent
+      border-bottom: none
+      font-weight: bold
+      color: #565656
+      &:hover
+        cursor: pointer
+      &[selected="true"]
+        cursor: default !important
+        border-color: #D7D7D7
+        -moz-border-radius: 4px 4px 0 0
+        background-color: #FFFFFF
+    .netInfoHeadersText, .netInfoPostText, .netInfoPutText
+      padding-top: 0
+    .netInfoText
+      display: none
+      margin: 0
+      border: 1px solid #D7D7D7
+      border-right: none
+      padding: 8px
+      background-color: #FFFFFF
+      font-family: monospace
+      &[selected="true"]
+        display: block
+    .netInfoHeadersGroup, .netInfoPostParams, .netInfoPostSource
+      margin-bottom: 4px
+      border-bottom: 1px solid #D7D7D7
+      padding-top: 8px
+      padding-bottom: 2px
+      font-family: Lucida Grande, Tahoma, sans-serif
+      font-weight: bold
+      color: #565656
+// Supertag > History > Compare
+// Audience Segments > History > Compare
+.history-compare
+  .td
+    white-space: nowrap
+  .dialog_button
+    margin: 20px 0 0 0
+    text-align: center
+  .scrollable_dialog
+    max-height: 600px
+    overflow-y: auto
+.left_padding_20
+  padding-left: 20px
+
+// Global Frequency Management > Edit Partners form
+.edit-external-partner-form
+  fieldset
+    margin-bottom: 20px
+  fieldset > *
+    display: inline-block
+  fieldset > label
+    text-align: right
+    @include span-columns(3, 10)
+    margin-right: 5%
+  fieldset .value
+    @include span-columns(5, 10)
+  .buttons-bar
+    text-align: center

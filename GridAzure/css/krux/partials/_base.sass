@@ -1,0 +1,221 @@
+/* Import compass and susy */
+@import compass
+@import compass/layout
+@import susy/sass/susy
+
+/* Import colors and mixins */
+@import modules/all
+
+/* Susy grid Settings */
+$container-style: fluid
+$total-columns: 12
+$column-width: 5rem
+$gutter-width: 1rem
+$grid-padding: $gutter-width / 2
+$break: 40em 10
+
+/* Font weights */
+$light: 100
+$regular: 400
+$bold: 600
+
+/* Base Font */
+$base-font-family: Open Sans, sans-serif
+$base-line-height: 1.6
+$base-font-size: 14px
+$base-font-weight: $regular
+$small-base-font-size: 13px
+
+/* Fixed Font */
+$fixed-font-family: monospace
+$fixed-line-height: $base-line-height
+
+$z-indices: (highest: 500, high: 100, medium: 50, low: 10)
+
+/* Base Styles */
+a
+  color: $blue-bahama
+  text-decoration: none
+  &:hover
+    color: $blue-pink
+    text-decoration: none
+    cursor: pointer
+
+body
+  background: $blue-geyser
+  color: $black-outer-space
+  font-family: $base-font-family
+  font-size: $base-font-size
+  font-weight: $base-font-weight
+  line-height: $base-line-height
+
+h1, h2, h3, h4, h5, h6
+  font-size: $bold
+
+legend
+  color: $black-outer-space
+  border: 0
+
+button, input, select, textarea
+  font-family: $base-font-family
+  line-height: $base-line-height
+
+select
+  +background-image-linear-gradient(to bottom, $grey-gallery, $white)
+  +border-radius(5px)
+  border: 1px solid $grey-alto
+  color: $grey-mako
+  font-size: $small-base-font-size
+  height: 28px
+  outline: none
+  padding: 3px
+  white-space: nowrap
+
+::-moz-selection,
+::selection
+  background: $blue-pink
+
+svg
+  font-size: $base-font-size
+
+.kx-content-container
+  margin-top: 15px
+
+.nav-loader-wrapper
+  .nav-loader
+    background-image: url('/images/loader-2.gif')
+
+.grid-container
+  // Comment out the following line if you need to debug/understand how columns are placed
+  // @include susy-grid-background
+  @include container
+
+/* This class makes the label and input element display inline */
+.label-input-inline
+  clear: both
+  label, input
+    float: left
+    margin-right: 15px
+
+/* This class display a red star on the right side of field name */
+.required-indicator
+  display: inline
+  margin-left: 5px
+  padding-top: 5px
+  color: $red
+
+.required:after
+  color: $red
+  content: "*"
+  display: inline
+  margin-left: 5px
+  padding-top: 5px
+
+.help-block
+  font-size: $small-base-font-size
+
+// Reset bootstrap row setting
+.row
+  margin: 0
+  [class*="span"]
+    margin-left: 0
+
+// Reset bootstrap row-fluid setting
+@media (min-width: 1200px)
+  .row-fluid
+    .span3
+      width: 23.5%
+    .span6
+      width: 49%
+    [class*="span"]
+      margin-left: 2%
+
+// Override select2 setting
+.select2-container,
+.select2-results
+  font-size: $small-base-font-size
+
+.select2-container
+  .select2-choice
+    height: 28px
+
+.ng-grid-table
+  .ngViewport
+    height: auto !important
+
+.highlightButton
+  border: 1px solid $red
+  box-shadow: 0 0 5px $red
+
+/* This rule set the chart basic style */
+.chart
+  +border-radius(3px)
+  background: $white
+  height: 500px
+  margin: 5px
+  padding: 10px
+
+/* This rule is understood by all browsers except for IE6/7. It generates a pseudo-element before and
+ * after the content of the element that contains floats. Setting display: table creates an anonymous
+ * table-cell and a new block formatting context. This acts to prevent top-margin collapse and improve
+ * the consistency between modern browsers and IE6/7. */
+.filters-section
+  +border-radius(3px)
+  background: $white
+  margin: 10px 0 0
+  padding: 8px 10px
+  &::before, &::after
+    display: table
+    line-height: 0
+    content: ""
+  &::after
+    clear: both
+
+  .input-prepend, input, select
+    margin-bottom: 0
+  .select2-choice
+    height: 30px
+    width: 15em
+  // wrap up the filters inside content-filters class
+  .content-filters
+    float: left
+    & > *
+      margin-right: 10px
+
+/* This rule set the basic summary block/card style */
+.summary-stats-section
+  margin: 10px 0
+  .summary-block
+    +border-radius(3px)
+    background: $white
+    height: 170px
+    margin-top: 5px
+    margin-bottom: 5px
+    min-width: 250px
+    padding: 10px 15px
+    text-align: center
+    .title
+      color: $grey
+      font-size: 18px
+      height: 55px
+      .sub-title
+        color: $silver-chalice
+        font-size: 14px
+    .value
+      color: $blue-curious
+      font-weight: 300
+      font-size: 36px
+      &.loading
+        color: $grey
+        font-size: 36px
+    .trend
+      color: $grey
+      margin-top: 15px
+      .left-value
+        float: left
+      .right-value
+        float: right
+      .increase
+        color: $green
+      .decrease
+        color: $red

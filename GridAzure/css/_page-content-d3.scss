@@ -1,0 +1,140 @@
+﻿page-content-d3 {
+	min-width: 0 !important;
+
+	@media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+		.page-content {
+			&__header {
+				height: 335px !important;
+			}
+		}
+	}
+
+	.page-content {
+		overflow: hidden;
+		border: 0;
+
+		&__header {
+			height: 295px;
+			border: 0 !important;
+			background-color: rgb(215, 225, 231) !important;
+			border-top: 3px solid rgb(8,45,73) !important;
+		}
+
+		&__cards {
+			background-color: rgb(231,238,242);
+		}
+
+		&__actions {
+			margin-top: 4px;
+			font-size: 14px;
+			font-family: "Arial", "Helvetica", sans-serif;
+
+			&__export {
+
+				.my-dropdown {
+					&__list {
+						right: 19px !important;
+						left: auto !important;
+						min-width: 200px;
+					}
+				}
+			}
+		}
+
+		&__options {
+			margin-top: 10px;
+			font-size: 14px;
+			font-family: "Arial", "Helvetica", sans-serif;
+			float: left;
+			width: 100%;
+			background-color: white;
+			margin-left: 15px;
+			margin-bottom: 15px;
+			border-radius: 4px 4px;
+
+			.options {
+				padding-top: 5px !important;
+
+				@media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+					display: block;
+
+					&__block {
+						float: left;
+					}
+
+					&__filter {
+						margin-left: 10px;
+						z-index: 1000 !important;
+						display: table;
+						margin-top: 10px;
+						float: right;
+						position: relative;
+						margin-bottom: 7px;
+						clear: both;
+
+						.filter {
+							margin-right: 0 !important;
+						}
+					}
+				}
+
+				&__block {
+					float: left;
+					margin-right: 10px;
+					margin-left: 10px;
+				}
+
+				&__event {
+					margin-right: 10px;
+				}
+
+				&__segments {
+					margin-right: 10px;
+				}
+
+				&__campaign {
+					margin-right: 10px;
+				}
+			}
+		}
+
+		&__list {
+			margin-top: 40px;
+			overflow: hidden;
+			height: auto;
+		}
+
+		&__cards {
+			width: 100%;
+			height: 210px;
+			overflow-x: auto;
+			margin-left: 15px;
+			border: 1px #d9d9d9 solid;
+
+			.my-card__header {
+			}
+
+			.my-card .front {
+				height: 170px !important;
+				width: 400px !important;
+			}
+
+			.my-card .back {
+				height: 170px !important;
+				width: 400px !important;
+			}
+
+			.my-card__body {
+				font-weight: bold;
+				font-size: 36px;
+				color: rgb(166,228,249);
+			}
+		}
+
+		&__footer {
+			@extend .footer;
+			border: 1px solid #e5e5e5;
+			min-height: 0 !important;
+		}
+	}
+}

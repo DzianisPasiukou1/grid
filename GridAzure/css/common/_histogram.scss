@@ -1,0 +1,52 @@
+﻿histogram {
+
+	@media only screen and (max-width: 1500px) {
+		.histogram {
+			display: block !important;
+			margin-bottom: 40px;
+		}
+	}
+
+	.histogram {
+		overflow: auto;
+		max-width: 1200px;
+		display: inline;
+	}
+
+	svg {
+		float: left;
+		border: 2px solid #2ba6d5;
+		border-radius: 3px 3px;
+		margin-left: 15px;
+		margin-bottom: 20px;
+	}
+
+	.bar {
+		fill: steelblue;
+	}
+
+	.bar:hover {
+		fill: turquoise;
+	}
+
+	.chart text {
+		font: 12px sans-serif;
+		font-weight: bold;
+	}
+
+	.chart .title {
+		font: 16px sans-serif;
+		font-weight: bold;
+	}
+
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+
+	.x.axis path {
+		display: none;
+	}
+}

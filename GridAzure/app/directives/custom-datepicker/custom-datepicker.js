@@ -15,6 +15,7 @@
 				$(element.find('.date-btn__toggle')).dateRangePicker(scope.config).bind('datepicker-change', function (event, obj) {
 					scope.startDate = obj.date1;
 					scope.endDate = obj.date2;
+					scope.dateRange = Math.abs(scope.endDate.getTime() - scope.startDate.getTime());
 					scope.$apply();
 				}).bind('datepicker-close', function () {
 					scope.isShow = false;

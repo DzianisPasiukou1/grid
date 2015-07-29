@@ -805,8 +805,7 @@ button::-moz-focus-inner {
   min-width: 1930px; }
 
 .my-card {
-  display: inline-block;
-  top: 15px; }
+  display: inline-block; }
   .my-card .front {
     text-align: center;
     font-size: 16px;
@@ -982,6 +981,152 @@ button::-moz-focus-inner {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out; }
 
+core-diagram {
+  font-size: 14px;
+  font-weight: bold; }
+  core-diagram #chart {
+    border: 1px solid #2ba6d5;
+    border-radius: 3px 3px;
+    width: 99%;
+    margin-left: 15px;
+    margin-right: 10px;
+    overflow: auto; }
+  core-diagram svg {
+    /*margin-left: 15%;*/
+    position: relative;
+    left: 15%; }
+  core-diagram .node rect {
+    cursor: move;
+    fill-opacity: 0.9;
+    shape-rendering: crispEdges; }
+  core-diagram .node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff; }
+  core-diagram .link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: 0.2; }
+  core-diagram .link:hover {
+    stroke-opacity: 0.5; }
+
+@media only screen and (max-width: 1500px) {
+  histogram .histogram {
+    display: block !important;
+    margin-bottom: 40px; }
+ }
+histogram .histogram {
+  overflow: auto;
+  max-width: 1200px;
+  display: inline; }
+histogram svg {
+  float: left;
+  border: 2px solid #2ba6d5;
+  border-radius: 3px 3px;
+  margin-left: 15px;
+  margin-bottom: 20px; }
+histogram .bar {
+  fill: steelblue; }
+histogram .bar:hover {
+  fill: turquoise; }
+histogram .chart text {
+  font: 12px sans-serif;
+  font-weight: bold; }
+histogram .chart .title {
+  font: 16px sans-serif;
+  font-weight: bold; }
+histogram .axis path, histogram .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+histogram .x.axis path {
+  display: none; }
+
+.chart-segment {
+  float: left;
+  font-size: 14px;
+  position: relative;
+  padding-left: 5%; }
+  .chart-segment__panel {
+    background-color: #d6ebf6;
+    width: 400px;
+    height: 60px;
+    border-radius: 5px 5px;
+    cursor: pointer;
+    margin-bottom: 80px;
+    border: 1px solid #2d6888; }
+    .chart-segment__panel__text {
+      position: relative;
+      top: 10px;
+      color: #4c8fb2;
+      /*font-weight: bold;*/
+      margin: 20px; }
+  .chart-segment__list {
+    margin-bottom: 10px; }
+    .chart-segment__list__header {
+      width: 400px;
+      height: 30px;
+      background: -webkit-linear-gradient(bottom, white, #afb9bd);
+      /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(bottom, white, #afb9bd);
+      /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(bottom, white, #afb9bd);
+      /* For Firefox 3.6 to 15 */
+      background: linear-gradient(bottom, white, #afb9bd);
+      /* Standard syntax (must be last) */
+      border-radius: 2px 2px;
+      font-weight: bold; }
+      .chart-segment__list__header__text {
+        position: relative;
+        top: 6px;
+        left: 25px; }
+    .chart-segment__list__body__user {
+      height: 30px;
+      padding: 8px; }
+      .chart-segment__list__body__user__icon {
+        color: red;
+        font-weight: bolder;
+        position: relative;
+        top: 1px;
+        cursor: pointer; }
+      .chart-segment__list__body__user_text {
+        /*position: relative;*/ }
+      .chart-segment__list__body__user.odd {
+        background-color: #caddee; }
+
+.mouse-over {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  min-height: 200px;
+  min-width: 400px;
+  z-index: 100; }
+  .mouse-over .mouse-over-simple {
+    padding: 5px 0 0 25px; }
+    .mouse-over .mouse-over-simple__header {
+      text-align: center;
+      font-size: 16px; }
+    .mouse-over .mouse-over-simple__body {
+      font-weight: normal;
+      margin-top: 10px; }
+      .mouse-over .mouse-over-simple__body__value {
+        margin-bottom: 40px; }
+        .mouse-over .mouse-over-simple__body__value__text {
+          display: block; }
+  .mouse-over .mouse-over-medium {
+    padding: 5px 0 0 25px; }
+    .mouse-over .mouse-over-medium__header {
+      text-align: center;
+      font-size: 16px; }
+    .mouse-over .mouse-over-medium__body {
+      font-weight: normal;
+      margin-top: 10px; }
+      .mouse-over .mouse-over-medium__body__header {
+        border-bottom: 1px solid #a39f9f; }
+      .mouse-over .mouse-over-medium__body__blockCampaing {
+        margin-right: 40px; }
+      .mouse-over .mouse-over-medium__body__blockSegm {
+        margin-left: 20px; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -1143,12 +1288,7 @@ button::-moz-focus-inner {
   .page-content__header {
     height: 46px; }
   .page-content__icon {
-    display: inline;
-    /*img {
-			content: url(../content/text.png);
-			width: 44px;
-			height: 40px;
-		}*/ }
+    display: inline; }
     .page-content__icon__text {
       float: left;
       font-size: 40px; }
@@ -1690,8 +1830,7 @@ page-content-cards .page-content__list {
 page-content-cards .page-content__cards {
   width: 100%;
   height: 180px;
-  overflow-x: auto;
-  padding-left: 40px; }
+  overflow-x: auto; }
 page-content-cards .page-content__footer {
   border: 1px solid #e5e5e5;
   min-height: 0 !important; }
@@ -1700,5 +1839,91 @@ page-content-cards .page-content__footer {
   margin: 20px; }
   .navigation .link-container__update {
     margin: 20px 0 10px 0; }
+
+page-content-d3 {
+  min-width: 0 !important; }
+  @media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+    page-content-d3 .page-content__header {
+      height: 335px !important; }
+ }
+  page-content-d3 .page-content {
+    overflow: hidden;
+    border: 0; }
+    page-content-d3 .page-content__header {
+      height: 295px;
+      border: 0 !important;
+      background-color: #d7e1e7 !important;
+      border-top: 3px solid #082d49 !important; }
+    page-content-d3 .page-content__cards {
+      background-color: #e7eef2; }
+    page-content-d3 .page-content__actions {
+      margin-top: 4px;
+      font-size: 14px;
+      font-family: "Arial", "Helvetica", sans-serif; }
+      page-content-d3 .page-content__actions__export .my-dropdown__list, page-content-d3 .page-content__actions__export .split-btn__list, page-content-d3 .page-content__actions__export .checkbox-select__list {
+        right: 19px !important;
+        left: auto !important;
+        min-width: 200px; }
+    page-content-d3 .page-content__options {
+      margin-top: 10px;
+      font-size: 14px;
+      font-family: "Arial", "Helvetica", sans-serif;
+      float: left;
+      width: 100%;
+      background-color: white;
+      margin-left: 15px;
+      margin-bottom: 15px;
+      border-radius: 4px 4px; }
+      page-content-d3 .page-content__options .options {
+        padding-top: 5px !important; }
+        @media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+          page-content-d3 .page-content__options .options {
+            display: block; }
+            page-content-d3 .page-content__options .options__block {
+              float: left; }
+            page-content-d3 .page-content__options .options__filter {
+              margin-left: 10px;
+              z-index: 1000 !important;
+              display: table;
+              margin-top: 10px;
+              float: right;
+              position: relative;
+              margin-bottom: 7px;
+              clear: both; }
+              page-content-d3 .page-content__options .options__filter .filter {
+                margin-right: 0 !important; } }
+        page-content-d3 .page-content__options .options__block {
+          float: left;
+          margin-right: 10px;
+          margin-left: 10px; }
+        page-content-d3 .page-content__options .options__event {
+          margin-right: 10px; }
+        page-content-d3 .page-content__options .options__segments {
+          margin-right: 10px; }
+        page-content-d3 .page-content__options .options__campaign {
+          margin-right: 10px; }
+    page-content-d3 .page-content__list {
+      margin-top: 40px;
+      overflow: hidden;
+      height: auto; }
+    page-content-d3 .page-content__cards {
+      width: 100%;
+      height: 210px;
+      overflow-x: auto;
+      margin-left: 15px;
+      border: 1px #d9d9d9 solid; }
+      page-content-d3 .page-content__cards .my-card .front {
+        height: 170px !important;
+        width: 400px !important; }
+      page-content-d3 .page-content__cards .my-card .back {
+        height: 170px !important;
+        width: 400px !important; }
+      page-content-d3 .page-content__cards .my-card__body {
+        font-weight: bold;
+        font-size: 36px;
+        color: #a6e4f9; }
+    page-content-d3 .page-content__footer {
+      border: 1px solid #e5e5e5;
+      min-height: 0 !important; }
 
 /*# sourceMappingURL=styles.css.map */

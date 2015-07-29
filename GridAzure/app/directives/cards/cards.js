@@ -6,18 +6,20 @@
 			scope: {
 				cards: '=',
 				startDate: '=',
-				endDate: '='
+				endDate: '=',
+				margin: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					$("#card1").flip();
-					$("#card2").flip();
-					$("#card3").flip();
-					$("#card4").flip();
-					$("#card5").flip();
-					$("#card6").flip();
-					$("#card7").flip();
+					var left = 40;
+
+					for (var card in scope.cards) {
+						$('#' + card).flip();
+						$('#' + card).css('left', left);
+
+						left += scope.margin;
+					}
 				});
 			}
 		}
