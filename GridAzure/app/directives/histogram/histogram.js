@@ -7,16 +7,16 @@
 			templateUrl: templatesPath + 'directive-templates/histogram.html',
 			link: function (scope, element, attrs) {
 				var data = [
-  { name: "1", value: 100000 },
-  { name: "2", value: 150000 },
-  { name: "3", value: 170000 },
-  { name: "4", value: 300000 },
-  { name: "5", value: 350000 },
-  { name: "6", value: 400000 },
-   { name: "7", value: 500000 },
-    { name: "8", value: 550000 },
-	 { name: "9", value: 600000 },
-	  { name: "10", value: 700000 }
+							{ name: "1", value: 100000 },
+							{ name: "2", value: 150000 },
+							{ name: "3", value: 170000 },
+							{ name: "4", value: 300000 },
+							{ name: "5", value: 350000 },
+							{ name: "6", value: 400000 },
+							{ name: "7", value: 500000 },
+							{ name: "8", value: 550000 },
+							{ name: "9", value: 600000 },
+							{ name: "10", value: 700000 }
 				];
 
 				var margin = { top: 50, right: 30, bottom: 60, left: 90 },

@@ -1,6 +1,9 @@
 ﻿<button class="split-btn" ng-click="close()">
-	<div ng-if="actions.selected">
+	<div ng-if="actions.selected" ng-if="!actions.isComplex">
 		{{actions.selected.label}}
+	</div>
+	<div ng-if="actions.selected" ng-if="!actions.isComplex">
+		Choose {{actions.selected.label}}
 	</div>
 	<div ng-if="!actions.selected" style="opacity: 0.5">
 		{{typehead}}

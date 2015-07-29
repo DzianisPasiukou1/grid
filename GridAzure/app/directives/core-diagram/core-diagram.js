@@ -10,7 +10,7 @@
 				var units = "Widgets";
 
 				var margin = { top: 10, right: 10, bottom: 10, left: 10 },
-					width = 1200 - margin.left - margin.right,
+					width = 1500 - margin.left - margin.right,
 					height = 740 - margin.top - margin.bottom;
 
 				var formatNumber = d3.format(",.0f"),    // zero decimal places
@@ -76,9 +76,10 @@
 					  .enter().append("g")
 						.attr("class", "node")
 						.attr("transform", function (d) {
-							d.x = Math.max(0, d.mx)
-							d.y = Math.max(0, d.my)
-							return "translate(" + d.transform + ")";
+							//d.x = Math.max(0, d.mx)
+							//d.y = Math.max(0, d.my)
+							//return "translate(" + d.transform + ")";
+							return "translate(" + d.x + "," + d.y + ")";
 						})
 					  .call(d3.behavior.drag()
 						.origin(function (d) { return d; })
@@ -87,7 +88,7 @@
 						})
 						.on("drag", dragmove));
 
-					link.attr("d", path);
+					//link.attr("d", path);
 
 					// add the rectangles for the nodes
 					node.append("rect")

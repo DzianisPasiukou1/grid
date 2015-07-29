@@ -1039,7 +1039,8 @@ histogram .axis path, histogram .axis line {
   stroke: #000;
   shape-rendering: crispEdges; }
 histogram .x.axis path {
-  display: none; }
+  fill: white;
+  /*display: none;*/ }
 
 .chart-segment {
   float: left;
