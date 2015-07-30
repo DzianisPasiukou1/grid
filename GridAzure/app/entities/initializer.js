@@ -21,6 +21,81 @@
 		this.initCardsOpt();
 	};
 
+	Initializer.prototype.initSankey = function () {
+		this.initCardsOpt();
+		this.initSankeyContentOpt();
+	};
+
+	Initializer.prototype.refreshSankey = function () {
+		this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
+		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
+		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
+		this.scope.cardsOptions.margin = 525;
+		this.scope.sankeyData = {
+			"links": [
+				{ "source": "View video", "target": "Log in", "value": "1" },
+				{ "source": "View video", "target": "Add to Cart", "value": "1.5" },
+				{ "source": "Ad Imression", "target": "Log in", "value": "1" },
+				{ "source": "Ad Imression", "target": "Ad Click", "value": "1" },
+				{ "source": "Ad Click", "target": "Log in", "value": ".75" },
+				{ "source": "Log in", "target": "Purchase Complete", "value": "1" },
+				{ "source": "Add to Cart", "target": "Purchase Complete", "value": "1" },
+				{ "source": "Add to Cart", "target": "Carting", "value": 1 },
+				{ "source": "Carting", "target": "Init", "value": 0.5 },
+				{ "source": "Carting", "target": "Log out", "value": 0.5 },
+				{ "source": "Log out", "target": "Log in", "value": 1 },
+				{ "source": "Log in", "target": "Information", "value": 1 },
+				{ "source": "Information", "target": "Examination", "value": 1 }
+			],
+			"nodes": [
+				{ "name": "View video", "color": "rgb(62,145,95)", "transform": "0,0", "mx": "0", "my": "0", "val": "50" },
+				{ "name": "Log in", "color": "rgb(133,133,133)", "transform": "445,0", "mx": "445", "my": "0", "val": "65" },
+				{ "name": "Ad Imression", "color": "rgb(211,46,53)", "transform": "0,415.55555555555554", "mx": "0", "my": "415.55555555555554", "val": "15" },
+				{ "name": "Ad Click", "color": "rgb(20,0,254)", "transform": "699,567.7777777777778", "mx": "699", "my": "567.7777777777778", "val": "20" },
+				{ "name": "Add to Cart", "color": "rgb(157,226,141)", "transform": "827,333.18181818181824", "mx": "827", "my": "333.18181818181824", "val": "30" },
+				{ "name": "Purchase Complete", "color": "rgb(20,58,173)", "transform": "1118,405.55555555555554", "mx": "1118", "my": "405.55555555555554", "val": "12" },
+				{ "name": "Carting", "color": "rgb(123,20,56)", "transform": "1172,3.6327926195491926", "mx": "1172", "my": "3.6327926195491926", "val": "55" },
+				{ "name": "Init", "color": "rgb(0,23,76)", "transform": "1390,82.6327926195492", "mx": "1390", "my": "82.6327926195492", "val": "65" },
+				{ "name": "Log out", "color": "rgb(78,66,12)", "transform": "756,0", "mx": "756", "my": "0", "val": "23" },
+				{ "name": "Information", "color": "rgb(66,66,66)", "transform": "1060,162.6327926195492", "mx": "1060", "my": "162.6327926195492", "val": "33" },
+				{ "name": "Examination", "color": "rgb(12,51,128)", "transform": "1455,390.63279261954915", "mx": "1455", "my": "390.63279261954915", "val": "76" }
+			]
+		};
+		this.scope.histogramData = [{ name: "1", value: 100000 },
+							{ name: "2", value: 150000 },
+							{ name: "3", value: 170000 },
+							{ name: "4", value: 300000 },
+							{ name: "5", value: 350000 },
+							{ name: "6", value: 400000 },
+							{ name: "7", value: 500000 },
+							{ name: "8", value: 550000 },
+							{ name: "9", value: 600000 },
+							{ name: "10", value: 700000 }];
+
+	};
+
+	Initializer.prototype.initSankeyContentOpt = function () {
+		if (this.scope.contentOptions === undefined) {
+			this.scope.contentOptions = {};
+		}
+
+		if (this.scope.contentOptions.eventType === undefined) {
+			this.scope.contentOptions.eventType = this.content.eventType;
+		}
+
+		if (this.scope.contentOptions.segments === undefined) {
+			this.scope.contentOptions.segments = this.content.segments;
+		}
+
+		if (this.scope.contentOptions.campaign === undefined) {
+			this.scope.contentOptions.campaign = this.content.campaign;
+		}
+
+		if (this.scope.filters === undefined) {
+			this.scope.filters = this.content.sankeyFilters;
+		}
+	};
+
 	Initializer.prototype.initCardsOpt = function () {
 		if (this.scope.cardsOptions === undefined) {
 			this.scope.cardsOptions = {};

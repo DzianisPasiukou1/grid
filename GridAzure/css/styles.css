@@ -1162,6 +1162,60 @@ histogram .x.axis .tick {
       .mouse-over .mouse-over-medium__body__blockSegm {
         margin-left: 20px; }
 
+.btn-group button {
+  padding: 0;
+  padding-left: 10px;
+  /*padding-top: 2px;*/
+  height: 35px;
+  border: 1px solid #aaa;
+  white-space: nowrap;
+  color: #444;
+  text-decoration: none;
+  border-radius: 4px;
+  background-clip: padding-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
+  background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
+  background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
+  background-image: linear-gradient(to top, #eee 0%, #fff 50%);
+  text-align: left;
+  line-height: 32px; }
+  .btn-group button .caret {
+    height: 100%;
+    float: right;
+    width: 20px;
+    border: 0;
+    border-left: 1px solid #aaa;
+    border-radius: 0 4px 4px 0;
+    background-clip: padding-box;
+    /*background-color: linear-gradient(to top, #ccc 0%, #eee 60%);*/
+    background: url('../../bower_components/select2/select2.png') no-repeat 0 4px; }
+.btn-group .multiselect-container {
+  left: 0;
+  right: 0; }
+
+.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+  border-bottom-color: transparent !important;
+  -webkit-box-shadow: 0 1px 0 #fff inset !important;
+  box-shadow: 0 1px 0 #fff inset !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  background-color: #eee !important;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(0.5, #eee)) !important;
+  background-image: -webkit-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
+  background-image: -moz-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0) !important;
+  background-image: linear-gradient(to top, #fff 0%, #eee 50%) !important; }
+  .btn-default:active .caret, .btn-default.active .caret, .open > .dropdown-toggle.btn-default .caret {
+    background-position: -18px 3px;
+    border: 0; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -1879,11 +1933,11 @@ page-content-d3 {
   min-width: 0 !important; }
   @media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
     page-content-d3 .page-content__header {
-      height: 350px !important; }
+      height: 380px !important; }
  }
   @media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
     page-content-d3 .page-content__header {
-      height: 440px !important; }
+      height: 415px !important; }
  }
   page-content-d3 .page-content {
     overflow: hidden;
@@ -1891,10 +1945,10 @@ page-content-d3 {
     page-content-d3 .page-content__uploader {
       margin-bottom: 10px; }
     page-content-d3 .page-content__header {
-      height: 295px;
+      height: 325px;
       border: 0 !important;
       background-color: #d7e1e7 !important;
-      border-top: 3px solid #082d49 !important; }
+      border-top: 5px solid #082d49 !important; }
     page-content-d3 .page-content__cards {
       background-color: #e7eef2; }
     page-content-d3 .page-content__actions {
@@ -1976,22 +2030,27 @@ page-content-d3 {
       height: auto; }
     page-content-d3 .page-content__cards {
       width: 100%;
-      height: 210px;
+      height: 235px;
       overflow-x: auto;
       margin-left: 15px;
       border: 1px #d9d9d9 solid; }
+      page-content-d3 .page-content__cards .my-card__header {
+        font-weight: bold; }
       page-content-d3 .page-content__cards .my-card .front {
-        height: 170px !important;
-        width: 400px !important; }
+        height: 190px !important;
+        width: 500px !important; }
       page-content-d3 .page-content__cards .my-card .back {
-        height: 170px !important;
-        width: 400px !important; }
+        height: 190px !important;
+        width: 500px !important; }
       page-content-d3 .page-content__cards .my-card__body {
         font-weight: bold;
-        font-size: 36px;
+        font-size: 50px;
         color: #a6e4f9; }
     page-content-d3 .page-content__footer {
       border: 1px solid #e5e5e5;
       min-height: 0 !important; }
+
+.sankey__btn {
+  margin-top: 20px; }
 
 /*# sourceMappingURL=styles.css.map */

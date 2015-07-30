@@ -12,7 +12,7 @@
 		}
 
 		$scope.cardsOpt = {
-			margin: 415
+			margin: 525
 		}
 
 		$scope.histogramData = [

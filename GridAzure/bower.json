@@ -22,6 +22,7 @@
     "angular-ui-select2": "~0.0.5",
     "angular-translate": "~2.7.2",
     "underscore": "~1.8.3",
-    "bootstrap-daterangepicker": "~2.0.5"
+    "bootstrap-daterangepicker": "~2.0.5",
+    "bootstrap-multiselect": "~0.9.13"
   }
 }

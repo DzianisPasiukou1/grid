@@ -24,6 +24,7 @@
 @import "common/_histogram.scss";
 @import "common/_chart-segment.scss";
 @import "common/_mouse-over.scss";
+@import "common/_kx-multiselect.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
@@ -47,3 +48,5 @@
 @import "_page-content-cards.scss";
 @import "_navigation.scss";
 @import "_page-content-d3.scss";
+
+@import "_sankey.scss";
