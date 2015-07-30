@@ -1,4 +1,5 @@
 ﻿<label>
 	<input type="file" />
-	Upload
+	<span ng-if="!label">Upload</span>
+	<span ng-if="label">{{label}}</span>
 </label>

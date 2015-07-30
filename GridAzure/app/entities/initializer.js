@@ -54,8 +54,10 @@
 			}
 
 			$(document).click(function (event) {
-				this.scope.cardsOptions.cards.clicks.count += 1;
-				this.scope.$apply();
+				if (this.scope.cardsOptions.cards.clicks) {
+					this.scope.cardsOptions.cards.clicks.count += 1;
+					this.scope.$apply();
+				}
 			}.bind(this));
 		};
 	};

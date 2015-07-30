@@ -5,9 +5,10 @@
 			controller: 'contentOptionsD3Ctrl',
 			scope: {
 				options: '=',
-				startDate: '=',
-				endDate: '=',
-				dateRange: '='
+				filters: '=',
+				loading: '=',
+				onDataRangeChanged: '=',
+				past: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
 		}

@@ -1,4 +1,37 @@
-﻿html {
+﻿.input-prepend {
+  display: inline-block; }
+  .input-prepend .add-on {
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    min-width: 16px;
+    padding: 4px 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #bbb;
+    width: 30px;
+    height: 35px !important;
+    padding-top: 7px;
+    border-radius: 4px 0 0 4px; }
+  .input-prepend .date-range-picker {
+    /*width: 210px;*/
+    display: inline-block;
+    width: 220px;
+    /*margin-right: 30px;*/ }
+    .input-prepend .date-range-picker input {
+      width: 190px;
+      height: 35px;
+      border: 1px solid #aaa;
+      border-radius: 0 4px 4px 0;
+      padding-left: 10px; }
+
+html {
   font-size: 10px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-family: sans-serif;
@@ -880,7 +913,6 @@ button::-moz-focus-inner {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -1040,6 +1072,8 @@ histogram .axis path, histogram .axis line {
   shape-rendering: crispEdges; }
 histogram .x.axis path {
   fill: white;
+  /*display: none;*/ }
+histogram .x.axis .tick {
   /*display: none;*/ }
 
 .chart-segment {
@@ -1843,13 +1877,19 @@ page-content-cards .page-content__footer {
 
 page-content-d3 {
   min-width: 0 !important; }
-  @media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
     page-content-d3 .page-content__header {
-      height: 335px !important; }
+      height: 350px !important; }
+ }
+  @media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+    page-content-d3 .page-content__header {
+      height: 440px !important; }
  }
   page-content-d3 .page-content {
     overflow: hidden;
     border: 0; }
+    page-content-d3 .page-content__uploader {
+      margin-bottom: 10px; }
     page-content-d3 .page-content__header {
       height: 295px;
       border: 0 !important;
@@ -1877,34 +1917,55 @@ page-content-d3 {
       border-radius: 4px 4px; }
       page-content-d3 .page-content__options .options {
         padding-top: 5px !important; }
-        @media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+        @media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
           page-content-d3 .page-content__options .options {
             display: block; }
             page-content-d3 .page-content__options .options__block {
               float: left; }
-            page-content-d3 .page-content__options .options__filter {
+            page-content-d3 .page-content__options .options__select {
               margin-left: 10px;
               z-index: 1000 !important;
-              display: table;
               margin-top: 10px;
-              float: right;
+              /*float: right;*/
               position: relative;
               margin-bottom: 7px;
-              clear: both; }
-              page-content-d3 .page-content__options .options__filter .filter {
-                margin-right: 0 !important; } }
+              clear: both;
+              display: inline-block; }
+            page-content-d3 .page-content__options .options .select2-container {
+              display: inline-block; } }
+        @media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+          page-content-d3 .page-content__options .options__select {
+            float: left;
+            display: inline-block; }
+
+          page-content-d3 .page-content__options .options .select2-container {
+            display: block;
+            margin-bottom: 10px; }
+ }
         page-content-d3 .page-content__options .options__block {
           float: left;
           margin-right: 10px;
           margin-left: 10px; }
+        page-content-d3 .page-content__options .options__select {
+          font-weight: normal;
+          display: inline-block; }
+          page-content-d3 .page-content__options .options__select .select2-container .select2-choice {
+            height: 35px; }
+          page-content-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
+            margin-top: 3px; }
+          page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
+            margin-top: 3px; }
         page-content-d3 .page-content__options .options__event {
-          margin-right: 10px; }
+          margin-right: 15px;
+          min-width: 200px; }
         page-content-d3 .page-content__options .options__segments {
-          margin-right: 10px; }
+          margin-right: 5px;
+          min-width: 200px; }
         page-content-d3 .page-content__options .options__campaign {
-          margin-right: 10px; }
+          margin-right: 15px;
+          min-width: 200px; }
     page-content-d3 .page-content__list {
-      margin-top: 40px;
+      margin-top: 5px;
       overflow: hidden;
       height: auto; }
     page-content-d3 .page-content__cards {

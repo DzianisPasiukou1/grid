@@ -4,7 +4,8 @@
 			restrict: 'E',
 			templateUrl: templatesPath + 'directive-templates/upload.html',
 			scope: {
-				upload: '=uploadCallback'
+				upload: '=uploadCallback',
+				label: '='
 			},
 			link: function (scope, element, attrs) {
 				element.find(':file').change(function () {

@@ -1,10 +1,23 @@
 ﻿<div class="options">
 	<div class="options__block">
-		<custom-datepicker></custom-datepicker>
+		<!--<custom-datepicker></custom-datepicker>-->
+		<div class="input-prepend">
+			<!--<span class="add-on glyph-calendar"></span>-->
+			<div kx-date-range="kx-date-range" time-range="past" name="dateRange" ng-model="filters.dateRange" ng-disabled="loading" ng-change="onDateRangeChange()" class="date-range-picker"></div>
+		</div>
 	</div>
-	<div class="options__filter">
-		<split-button class="options__event" actions="eventType.options" selected="eventOpt.selected" typehead="'Choose event type'"></split-button>
-		<split-button class="options__segments" actions="aiSegments.options" selected="segOpt.selected" typehead="'All Segments'"></split-button>
-		<split-button class="options__campaign" actions="aiCampaign.options" selected="camp.selected" typehead="'All Campaigns'"></split-button>
+	<div class="options__select">
+		<select class="options__event" ui-select2="options.eventType.selectOpt" ng-model="options.eventOpt.options.selected" data-placeholder="Choose Event type">
+			<option value=""></option>
+			<option ng-repeat="action in options.eventType.options.actions">{{action.label}}</option>
+		</select>
+		<select class="options__segments" ui-select2="options.segments.selectOpt" ng-model="options.segments.options.selected" data-placeholder="Choose Segments">
+			<option value=""></option>
+			<option ng-repeat="action in options.segments.options.actions">{{action.label}}</option>
+		</select>
+		<select class="options__campaign" ui-select2="options.campaign.selectOpt" ng-model="options.campaign.options.selected" data-placeholder="Choose Campaigns">
+			<option value=""></option>
+			<option ng-repeat="action in options.campaign.options.actions">{{action.label}}</option>
+		</select>
 	</div>
 </div>

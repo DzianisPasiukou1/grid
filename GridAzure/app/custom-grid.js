@@ -1,5 +1,5 @@
 ﻿///#source 1 1 /app/app.js
-angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable'])
+angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
 	.value('templatesPath', 'app/templates/');
 
 ///#source 1 1 /app/constants/class-constant.js
@@ -251,15 +251,18 @@ angular.module('gridTaskApp')
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
-				$timeout(function () {
-					var left = 40;
+				scope.$watch('cards', function (cards) {
+					$timeout(function () {
+						var left = 40;
 
-					for (var card in scope.cards) {
-						$('#' + card).flip();
-						$('#' + card).css('left', left);
+						for (var card in cards) {
+							$('#' + card).css('left', left);
+							$('#' + card).flip();
 
-						left += scope.margin;
-					}
+							left += scope.margin;
+						}
+					})
+
 				});
 			}
 		}
@@ -2019,7 +2022,8 @@ angular.module('gridTaskApp')
 			restrict: 'E',
 			templateUrl: templatesPath + 'directive-templates/upload.html',
 			scope: {
-				upload: '=uploadCallback'
+				upload: '=uploadCallback',
+				label: '='
 			},
 			link: function (scope, element, attrs) {
 				element.find(':file').change(function () {
@@ -2184,8 +2188,10 @@ var Initializer = (function () {
 			}
 
 			$(document).click(function (event) {
-				this.scope.cardsOptions.cards.clicks.count += 1;
-				this.scope.$apply();
+				if (this.scope.cardsOptions.cards.clicks) {
+					this.scope.cardsOptions.cards.clicks.count += 1;
+					this.scope.$apply();
+				}
 			}.bind(this));
 		};
 	};

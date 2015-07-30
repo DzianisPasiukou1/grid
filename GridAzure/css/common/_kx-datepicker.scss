@@ -1,0 +1,39 @@
+﻿.input-prepend {
+	display: inline-block;
+
+	.add-on {
+		display: inline-block;
+		width: auto;
+		height: 20px;
+		min-width: 16px;
+		padding: 4px 5px;
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 20px;
+		text-align: center;
+		text-shadow: 0 1px 0 #ffffff;
+		background-color: #eeeeee;
+		border: 1px solid #ccc;
+		float: left;
+		background-color: #bbb;
+		width: 30px;
+		height: 35px !important;
+		padding-top: 7px;
+		border-radius: 4px 0 0 4px;
+	}
+
+	.date-range-picker {
+		/*width: 210px;*/
+		display: inline-block;
+		width: 220px;
+		/*margin-right: 30px;*/
+
+		input {
+			width: 190px;
+			height: 35px;
+			border: 1px solid #aaa;
+			border-radius: 0 4px 4px 0;
+			padding-left: 10px;
+		}
+	}
+}
