@@ -1955,6 +1955,12 @@ page-content-d3 {
             margin-top: 3px; }
           page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
             margin-top: 3px; }
+          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
+            margin-top: -1px; }
+          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-field input {
+            height: 32px; }
+          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-choice {
+            margin-top: 6px; }
         page-content-d3 .page-content__options .options__event {
           margin-right: 15px;
           min-width: 200px; }
