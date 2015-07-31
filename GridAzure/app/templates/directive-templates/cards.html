@@ -1,4 +1,31 @@
 ﻿<div class="cards-group">
+	<div class="my-card" id="debug">
+		<div class="front">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-info"></span>
+				<span class="my-card__header__text">Debug</span>
+			</div>
+			<div class="my-card__body">
+				<span></span>
+			</div>
+		</div>
+		<div class="back">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-circle-left"></span>
+				<span class="my-card__header__text">Debug</span>
+			</div>
+			<div class="my-card__body">
+				<div class="my-card__body__back">
+					<button class="sankey__btn metro-btn" onclick="location.href = '/navigation'">Back</button>
+				</div>
+				<div class="my-card__body__uploader">
+					<upload class="options__upload" upload-callback="contentOptions.uploadCards" label="'Upload Cards'"></upload>
+					<upload class="options__upload" upload-callback="contentOptions.uploadSankey" label="'Upload Sankey'"></upload>
+					<upload class="options__upload" upload-callback="contentOptions.uploadHistogram" label="'Upload Histogram'"></upload>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="my-card" ng-repeat="(id, card) in cards" id="{{id}}">
 		<div class="front">
 			<div class="my-card__header">

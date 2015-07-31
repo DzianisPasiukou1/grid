@@ -236,13 +236,13 @@ angular.module('gridTaskApp')
 		},
 		segments: {
 			options: {
-				actions: [{ label: 'All segments', isAll: true }, { label: 'First segment' }, { label: 'Second segment' }],
+				actions: [{ label: 'People' }, { label: 'Trees' }, { label: 'Nodes' }, { label: 'Graphs' }, { label: 'Credentials' }],
 			},
 			selectOpt: {}
 		},
 		campaign: {
 			options: {
-				actions: [{ label: 'All campaigns', isAll: true }, { label: 'First campaign' }, { label: 'Second campaign' }],
+				actions: [{ label: 'AIX' }, { label: 'UI Campaign' }, { label: 'Design' }, { label: 'Modes' }, { label: 'KJ Entertainment' }],
 			},
 			selectOpt: {}
 		},
@@ -274,13 +274,19 @@ angular.module('gridTaskApp')
 				cards: '=',
 				startDate: '=',
 				endDate: '=',
-				margin: '='
+				margin: '=',
+				contentOptions: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
+
+				$('#debug').css('left', 40);
+				$('#debug').flip();
+
 				scope.$watch('cards', function (cards) {
 					$timeout(function () {
 						var left = 40;
+						left += scope.margin;
 
 						for (var card in cards) {
 							$('#' + card).css('left', left);
@@ -288,6 +294,8 @@ angular.module('gridTaskApp')
 
 							left += scope.margin;
 						}
+
+						$('.cards-group').css('width', left + 50 + 'px');
 					})
 
 				});

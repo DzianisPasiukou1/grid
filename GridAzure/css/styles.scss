@@ -25,6 +25,7 @@
 @import "common/_chart-segment.scss";
 @import "common/_mouse-over.scss";
 @import "common/_kx-multiselect.scss";
+@import "common/_kx-btn.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
@@ -50,3 +51,5 @@
 @import "_page-content-d3.scss";
 
 @import "_sankey.scss";
+@import "_kx-nav.scss";
+@import "common/_overlay.scss";

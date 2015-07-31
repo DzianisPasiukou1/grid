@@ -31,7 +31,7 @@
 		$scope.contentOptions = {
 			uploadCards: function (data) {
 				$scope.cardsOpt = data;
-				$scope.cardsOpt.margin = 0;
+				$scope.cardsOpt.margin = 525;
 				$scope.$apply();
 			},
 			uploadSankey: function (data) {

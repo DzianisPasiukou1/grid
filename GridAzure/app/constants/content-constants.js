@@ -225,13 +225,13 @@
 		},
 		segments: {
 			options: {
-				actions: [{ label: 'All segments', isAll: true }, { label: 'First segment' }, { label: 'Second segment' }],
+				actions: [{ label: 'People' }, { label: 'Trees' }, { label: 'Nodes' }, { label: 'Graphs' }, { label: 'Credentials' }],
 			},
 			selectOpt: {}
 		},
 		campaign: {
 			options: {
-				actions: [{ label: 'All campaigns', isAll: true }, { label: 'First campaign' }, { label: 'Second campaign' }],
+				actions: [{ label: 'AIX' }, { label: 'UI Campaign' }, { label: 'Design' }, { label: 'Modes' }, { label: 'KJ Entertainment' }],
 			},
 			selectOpt: {}
 		},

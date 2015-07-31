@@ -2,7 +2,9 @@
 	float: left;
 	font-size: 14px;
 	position: relative;
-	padding-left: 5%;
+	padding-left: 40px;
+	margin-top: 80px;
+	margin-right: 0;
 
 	&__panel {
 		background-color: rgb(214,235,246);
@@ -25,6 +27,7 @@
 	&__list {
 		margin-bottom: 10px;
 
+
 		&__header {
 			width: 400px;
 			height: 30px;
@@ -43,6 +46,9 @@
 		}
 
 		&__body {
+			max-height: 300px;
+			overflow: auto;
+
 			&__user {
 				height: 30px;
 				padding: 8px;

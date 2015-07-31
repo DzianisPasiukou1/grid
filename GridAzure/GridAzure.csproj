@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,7 @@
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.5</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -185,16 +187,23 @@
     <Content Include="app\directives\histogram\histogram-controller.js" />
     <Content Include="app\directives\kx-date-range\kx-date-range.js" />
     <Content Include="app\directives\kx-multiselect\kx-multiselect.js" />
+    <Content Include="app\directives\kx-nav-bar\kx-menu.js" />
+    <Content Include="app\directives\kx-nav-bar\kx-nav-bar-controller.js" />
+    <Content Include="app\directives\kx-nav-bar\kx-nav-bar.js" />
+    <Content Include="app\directives\kx-nav-bar\navigation-controller.js" />
     <Content Include="app\directives\kx-stealth-input\kx-stealth-input.js" />
     <Content Include="app\directives\mouse-over\mouse-over.js" />
+    <Content Include="app\directives\overlay\overlay.js" />
     <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3-controller.js" />
     <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3.js" />
     <Content Include="app\directives\page-content-d3\page-content-d3.js" />
     <Content Include="app\extensions\sankey.js" />
+    <Content Include="app\services\navigation-tree-service.js" />
     <Content Include="app\templates\directive-templates\chart-segment.html" />
     <Content Include="app\templates\directive-templates\content-options-d3.html" />
     <Content Include="app\templates\directive-templates\core-diagram.html" />
     <Content Include="app\templates\directive-templates\histogram.html" />
+    <Content Include="app\templates\directive-templates\kx-nav-bar.html" />
     <Content Include="app\templates\directive-templates\mouse-over.html" />
     <Content Include="app\templates\directive-templates\page-content-d3.html" />
     <Content Include="azure-app\config\routes.js" />
@@ -2068,6 +2077,7 @@
     <Content Include="css\fonts\cards.svg" />
     <Content Include="css\fonts\datepicker.svg" />
     <Content Include="css\fonts\icomoon.svg" />
+    <Content Include="css\images\main-logo-k-only.png" />
     <Content Include="css\styles.css">
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
@@ -2388,6 +2398,10 @@
     <Content Include="bower_components\bootstrap-multiselect\tests\lib\MIT.LICENSE" />
     <Content Include="css\common\_kx-multiselect.scss" />
     <Content Include="css\_sankey.scss" />
+    <Content Include="data\cards\scroller.json" />
+    <Content Include="css\common\_kx-btn.scss" />
+    <Content Include="css\_kx-nav.scss" />
+    <Content Include="css\common\_overlay.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
@@ -2407,7 +2421,6 @@
     <Content Include="sources\sources.zip" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\services\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -2418,6 +2431,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

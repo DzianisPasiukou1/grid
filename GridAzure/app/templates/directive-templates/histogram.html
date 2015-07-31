@@ -1,5 +1,11 @@
-﻿<div class="histogram">
-	<svg class="chart">
-	</svg>
+﻿<div class="custom-overlay" overlay overlay-state="state" overlay-style="style" ng-style="style">
+	<div class="custom-overlay__toggle">
+		<span ng-click="state = !state" ng-show="!state" class="glyphicon glyphicon-chevron-left"></span>
+		<span ng-click="state = !state" ng-show="state" class="glyphicon glyphicon-chevron-right"></span>
+	</div>
+	<div class="histogram">
+		<svg class="chart">
+		</svg>
+	</div>
+	<chart-segment selected-users="selectedUsers"></chart-segment>
 </div>
-<chart-segment selected-users="selectedUsers"></chart-segment>

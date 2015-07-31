@@ -10,8 +10,8 @@
 			link: function (scope, element, attrs) {
 				scope.$watch('data', function (data) {
 					if (data) {
-						element.html('<div class="histogram"><svg class="chart"></svg></div><chart-segment selected-users="selectedUsers"></chart-segment>');
-						$compile(element.find('chart-segment'))(scope);
+						//element.html('<div class="custom-overlay" overlay overlay-state="state" overlay-style="style" ng-style="style">	<div class="custom-overlay__toggle"><button ng-click="state = !state">Toggle</button></div><div class="histogram"><svg class="chart"></svg></div><chart-segment selected-users="selectedUsers"></chart-segment></div>');
+						//$compile(element.find('chart-segment'))(scope);
 
 						var margin = { top: 50, right: 30, bottom: 60, left: 90 },
 					width = 960 - margin.left - margin.right,
@@ -47,7 +47,10 @@
 							  .attr("x", function (d) { return x(d.name) + 38; })
 							  .attr("y", function (d) { return y(d.value); })
 							  .attr("height", function (d) { return height - y(d.value); })
-							  .attr("width", x.rangeBand() / 2);
+							  .attr("width", x.rangeBand() / 2)
+							.on('click', function (d) {
+								scope.select(d);
+							});
 
 						chart.append("g")
 							.attr("class", "y axis")

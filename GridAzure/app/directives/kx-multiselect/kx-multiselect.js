@@ -9,6 +9,7 @@
 				$timeout(function () {
 					element.multiselect({
 						inheritClass: true,
+						includeSelectAllOption: true
 						//enableFiltering: true
 					});
 				})

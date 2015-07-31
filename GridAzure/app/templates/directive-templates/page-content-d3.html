@@ -1,18 +1,12 @@
 ﻿<div class="page-content">
-	<div class="page-content__uploader">
-		<upload class="options__upload" upload-callback="contentOptions.uploadCards" label="'Upload Cards'"></upload>
-		<upload class="options__upload" upload-callback="contentOptions.uploadSankey" label="'Upload Sankey'"></upload>
-		<upload class="options__upload" upload-callback="contentOptions.uploadHistogram" label="'Upload Histogram'"></upload>
-	</div>
 	<div class="page-content__header">
 		<div class="page-content__options">
 			<content-options-d3 options="contentOptions" filters="filters"></content-options-d3>
 		</div>
-		<div class="page-content__cards" cards="cardsOptions.cards" start-date="cardsOptions.startDate" end-date="cardsOptions.endDate" margin="cardsOptions.margin">
+		<div class="page-content__cards" cards="cardsOptions.cards" content-options="contentOptions" start-date="cardsOptions.startDate" end-date="cardsOptions.endDate" margin="cardsOptions.margin">
 		</div>
 	</div>
 	<div class="page-content__body">
-
 		<div class="page-content__list">
 			<core-diagram sankey-data="sankeyData"></core-diagram>
 			<histogram histogram-data="histogramData"></histogram>

@@ -7,13 +7,19 @@
 				cards: '=',
 				startDate: '=',
 				endDate: '=',
-				margin: '='
+				margin: '=',
+				contentOptions: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
+
+				$('#debug').css('left', 40);
+				$('#debug').flip();
+
 				scope.$watch('cards', function (cards) {
 					$timeout(function () {
 						var left = 40;
+						left += scope.margin;
 
 						for (var card in cards) {
 							$('#' + card).css('left', left);
@@ -21,6 +27,8 @@
 
 							left += scope.margin;
 						}
+
+						$('.cards-group').css('width', left + 50 + 'px');
 					})
 
 				});

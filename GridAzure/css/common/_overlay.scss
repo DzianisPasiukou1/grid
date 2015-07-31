@@ -1,0 +1,33 @@
+﻿.custom-overlay {
+	min-height: 750px;
+	/*min-width: 500px;*/
+	background-color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+	overflow: auto;
+	/*transition: all linear 0.5s;*/
+	border: 2px solid #0A2841;
+	overflow: auto;
+	height: 0;
+
+	&__toggle {
+		display: inline;
+		float: left;
+		/*border-right: 2px solid #0A2841;*/
+		height: 100%;
+
+		.glyphicon {
+			padding-bottom: 100%;
+			font-size: 16px;
+			padding-top: 50px;
+			padding-right: 10px;
+			height: 100%;
+
+			&:hover {
+				color: #5ccefd;
+			}
+		}
+	}
+
+}
