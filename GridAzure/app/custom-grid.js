@@ -310,6 +310,28 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/chart-segment/chart-segment-controller.js
+angular.module('gridTaskApp')
+	.controller('chartSegmentCtrl', ['$scope', function ($scope) {
+		$scope.deleteUser = function (user, index) {
+			$scope.selectedUsers.splice(index, 1);
+		}
+	}]);
+///#source 1 1 /app/directives/chart-segment/chart-segment.js
+angular.module('gridTaskApp')
+	.directive('chartSegment', ['templatesPath', function (templatesPath) {
+		return {
+			retstrict: 'E',
+			scope: {
+				selectedUsers: '='
+			},
+			controller: 'chartSegmentCtrl',
+			templateUrl: templatesPath + 'directive-templates/chart-segment.html',
+			link: function (scope, element, attrs) {
+
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
 	.controller('checkboxSelectCtrl', ['$scope', 'classes', function ($scope, classes) {
@@ -422,6 +444,195 @@ angular.module('gridTaskApp')
 						else {
 							value.check = false;
 						}
+					}
+				});
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/core-diagram/core-diagram-controller.js
+angular.module('gridTaskApp')
+	.controller('coreDiagramCtrl', ['$scope', function ($scope) {
+	
+	}]);
+///#source 1 1 /app/directives/core-diagram/core-diagram.js
+angular.module('gridTaskApp')
+	.directive('coreDiagram', ['templatesPath', '$compile', function (templatesPath, $compile) {
+		return {
+			restrict: 'E',
+			templateUrl: templatesPath + 'directive-templates/core-diagram.html',
+			controller: 'coreDiagramCtrl',
+			scope: {
+				data: '=sankeyData'
+			},
+			link: function (scope, element, attrs) {
+
+				scope.$watch('data', function (graph) {
+					if (graph) {
+						var units = "Widgets";
+
+						var margin = { top: 0, right: 10, bottom: 10, left: 10 },
+							width = 1500 - margin.left - margin.right,
+							height = 740 - margin.top - margin.bottom;
+
+						var formatNumber = d3.format(",.0f"),    // zero decimal places
+							format = function (d) { return formatNumber(d) + " " + units; },
+							color = d3.scale.category20();
+
+						$('#chart').html('');
+
+						// append the svg canvas to the page
+						var svg = d3.select("#chart").append("svg")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.top + margin.bottom)
+						  .append("g")
+							.attr("transform",
+								  "translate(" + margin.left + "," + margin.top + ")");
+
+						// Set the sankey diagram properties
+						var sankey = d3.sankey()
+							.nodeWidth(25)
+							.nodePadding(35)
+							.size([width, height]);
+
+						var path = sankey.link();
+
+						var nodeMap = {};
+						graph.nodes.forEach(function (x) { nodeMap[x.name] = x; });
+						graph.links = graph.links.map(function (x) {
+							return {
+								source: nodeMap[x.source],
+								target: nodeMap[x.target],
+								value: x.value
+							};
+						});
+
+						sankey
+							.nodes(graph.nodes)
+							.links(graph.links)
+							.layout(32);
+
+						// add in the links
+						var link = svg.append("g").selectAll(".link")
+							.data(graph.links)
+						  .enter().append("path")
+							.attr("class", "link")
+							.attr("d", path)
+							.style("stroke-width", function (d) { return Math.max(1, d.dy); })
+							.style("stroke", function (d) {
+								if (d.source.color) {
+									return d.source.color;
+								}
+								else {
+									return d.source.color = color(d.source.name.replace(/ .*/, ""));
+								}
+							})
+
+
+						// add the link titles
+						link.append("title")
+							  .text(function (d) {
+							  	return d.source.name + " → " +
+										d.target.name + "\n" + format(d.value);
+							  });
+
+						// add in the nodes
+						var node = svg.append("g").selectAll(".node")
+							.data(graph.nodes)
+						  .enter().append("g")
+							.attr("class", "node")
+							.attr("transform", function (d) {
+								//d.x = Math.max(0, d.mx)
+								//d.y = Math.max(0, d.my)
+								//return "translate(" + d.transform + ")";
+								return "translate(" + d.x + "," + d.y + ")";
+							})
+						  .call(d3.behavior.drag()
+							.origin(function (d) { return d; })
+							.on("dragstart", function () {
+								this.parentNode.appendChild(this);
+							})
+							.on("drag", dragmove));
+
+						//link.attr("d", path);
+
+						// add the rectangles for the nodes
+						node.append("rect")
+							.attr("height", function (d) { return d.dy; })
+							.attr("width", sankey.nodeWidth())
+							.style("fill", function (d) {
+								if (d.color) {
+									return d.color = d.color;
+								}
+								else {
+									return d.color = color(d.name.replace(/ .*/, ""));
+								}
+							})
+							.style("stroke", function (d) {
+								return d3.rgb(d.color).darker(2);
+							})
+							.on("mouseover", function (d) {
+								scope.type = {};
+								scope.value = { header: '', data: [] };
+
+								if (d.name == 'Log in') {
+									scope.type.isMedium = true;
+									scope.value.header = "Event: Log In";
+									scope.value.data = {
+										topSegments: ['Moms_2014', 'Affiluent_buyers', 'Auto-Inteders', 'Star Wars', 'Female 25-34'],
+										topCampaings: ['C1_Dx_1', 'F2_DX_2', 'Gofundme DX3', 'Test campaign', 'Random Campaign']
+									};
+								}
+								else {
+									scope.type.isSimple = true;
+									scope.value.header = "Video: ID: 124856";
+									scope.value.data = [{ campaignId: '657H836', adId: '904743' }, { campaignId: '657H836', adId: '904743' }]
+								}
+
+								$('mouse-over').remove();
+
+								scope.parentTop = $('#chart').offset().top;
+
+								element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
+								$compile($('mouse-over'))(scope);
+							}).on("mouseout", function (d) {
+								$('mouse-over').remove();
+							});
+
+
+						// add in the title for the nodes
+						node.append("text")
+							.attr("x", -6)
+							.attr("y", function (d) { return d.dy / 2; })
+							.attr("dy", ".35em")
+							.attr("text-anchor", "end")
+							.attr("transform", null)
+							.text(function (d) { return d.name; })
+						  .filter(function (d) { return d.x < width / 2; })
+							.attr("x", 6 + sankey.nodeWidth())
+							.attr("text-anchor", "start");
+
+						node.append("text")
+							.attr("x", 20)
+							.attr("y", function (d) { return d.dy / 2; })
+							.attr("dy", ".35em")
+							.attr("text-anchor", "end")
+							.attr("transform", null)
+							.text(function (d) { return d.val; })
+						  .filter(function (d) { return d.x < width / 2; })
+							.attr("x", -20 + sankey.nodeWidth())
+							.attr("text-anchor", "start");
+					}
+
+					// the function for moving the nodes
+					function dragmove(d) {
+						d3.select(this).attr("transform",
+							"translate(" + (
+								   d.x = Math.max(0, Math.min(width - d.dx, d3.event.x))
+								) + "," + (
+									   d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))
+								) + ")");
+						sankey.relayout();
+						link.attr("d", path);
 					}
 				});
 			}
@@ -1554,6 +1765,108 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/histogram/histogram-controller.js
+angular.module('gridTaskApp')
+	.controller('histogramCtrl', ['$scope', function ($scope) {
+		$scope.selectedUsers = [];
+
+		$scope.select = function (user) {
+			if (user.name != "1") {
+				$scope.selectedUsers.push({ touchpoints: user.name + ' touchpoints' });
+			}
+			else {
+				$scope.selectedUsers.push({ touchpoints: user.name + ' touchpoint' });
+			}
+
+			$scope.$apply();
+		}
+	}]);
+///#source 1 1 /app/directives/histogram/histogram.js
+angular.module('gridTaskApp')
+	.directive('histogram', ['templatesPath', '$compile', function (templatesPath, $compile) {
+		return {
+			restrict: "E",
+			controller: 'histogramCtrl',
+			scope: {
+				data: '=histogramData'
+			},
+			templateUrl: templatesPath + 'directive-templates/histogram.html',
+			link: function (scope, element, attrs) {
+				scope.$watch('data', function (data) {
+					if (data) {
+						element.find('.chart').remove();
+						element.find('.histogram').append('<svg class="chart"></svg>');
+
+						var margin = { top: 50, right: 30, bottom: 60, left: 90 },
+					width = 700 - margin.left - margin.right,
+					height = 340 - margin.top - margin.bottom;
+
+						var x = d3.scale.ordinal()
+							.domain(data.map(function (d) { return d.name; }))
+							.rangeRoundBands([0, width], .1);
+
+						var y = d3.scale.linear()
+							.domain([0, 900000])
+							.range([height, 0]);
+
+						var xAxis = d3.svg.axis()
+							.scale(x)
+							.orient("bottom");
+
+						var yAxis = d3.svg.axis()
+							.scale(y)
+							.orient("left");
+
+						var chart = d3.select(".chart")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.top + margin.bottom)
+						  .append("g")
+							.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+						chart.selectAll(".bar")
+							  .data(data)
+							  .enter()
+							  .append("rect")
+							  .attr("class", "bar")
+							  .attr("x", function (d) { return x(d.name) + 38; })
+							  .attr("y", function (d) { return y(d.value); })
+							  .attr("height", function (d) { return height - y(d.value); })
+							  .attr("width", x.rangeBand() / 2)
+							.on('click', function (d) {
+								scope.select(d);
+							});
+
+						chart.append("g")
+							.attr("class", "y axis")
+							.call(yAxis)
+						  .append("text")
+							.attr("transform", "rotate(-90)")
+							.attr("x", -height / 2)
+							.attr("y", -10 - margin.bottom)
+							.attr("dy", ".1em")
+							.attr("dx", "40px")
+							.style("text-anchor", "end")
+							.text("Population");
+						chart.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0," + height + ")")
+							.call(xAxis)
+						  .append("text")
+							.attr("x", width / 2)
+							.attr("y", margin.bottom - 25)
+							.attr("dy", ".71em")
+							.style("text-anchor", "end")
+							.text("Touchpoint #");
+						chart.append("text")
+						  .text("Potential Rich histogram")
+						  .attr("x", 200)
+						  .attr("class", "title");
+
+					}
+				})
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/history/history-controller.js
 angular.module('gridTaskApp')
 	.controller('historyCtrl', ['$scope', function ($scope) {
@@ -1595,6 +1908,308 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/kx-date-range/kx-date-range.js
+angular.module('gridTaskApp').directive('kxDateRange', ['$parse', '$translate', function ($parse, $translate) {
+	return {
+		restrict: 'CAE',
+		require: '?ngModel',
+		compile: function (elem, attr) {
+			if (attr.disableEdit) {
+				elem.append("<span class=\"kx-daterangepicker\">\n  <span class=\"add-on glyph-calendar\">\n    <i class=\"icon-calendar icon-large\"></i>\n  </span>\n  <form ng-submit=\"onHitReturn()\">\n    <input kx-stealth-input\n    ng-model=\"inputValue\"\n    ng-change=\"onInputChange()\"\n    ng-class=\"{'ng-invalid': isInvalid}\" readonly></input>\n  </form>\n</span>");
+			} else {
+				elem.append('<span class="kx-daterangepicker">\n  <span class="add-on glyph-calendar">\n    <i class="icon-calendar icon-large"></i>\n  </span>\n  <form ng-submit="onHitReturn()">\n    <input kx-stealth-input\n    ng-model="inputValue"\n    ng-change="onInputChange()"\n    ng-class="{\'ng-invalid\': isInvalid}"></input>\n  </form>\n</span>');
+			}
+			elem.after('<span ng-show="isInvalid" class="help-inline calendar-invalid-msg">{{"Incorrect Date" | translate}}</span>');
+			return function ($scope, elem, attr, ngModelCtrl) {
+				var format, inputRender, isValid, offset, onApplyRange, onModelChange, open, renderRange, separator;
+				isValid = function (arg) {
+					var end, isSyntacticValid, start;
+					start = arg.start, end = arg.end;
+					isSyntacticValid = start.isValid() && end.isValid();
+					return isSyntacticValid && (attr.timeRange === 'future' ? start && end && (moment() <= start && start <= end) : attr.timeRange === 'past' ? start && end && (start <= end && end <= moment()) : start && end);
+				};
+				offset = elem.offset();
+				if (offset.left <= 400) {
+					open = 'right';
+				} else {
+					open = 'left';
+				}
+				format = attr.format || 'MMM DD, YYYY';
+				separator = attr.separator || ' - ';
+				renderRange = function (range) {
+					return range.start.format(format) + separator + range.end.format(format);
+				};
+				onApplyRange = _.bind(function (start, end) {
+					if ((!start.isSame(ngModelCtrl.$viewValue.start)) || (!end.isSame(ngModelCtrl.$viewValue.end))) {
+						$scope.inputValue = renderRange({
+							start: start,
+							end: end
+						});
+						ngModelCtrl.$setViewValue({
+							start: start,
+							end: end
+						});
+						return ngModelCtrl.$setValidity('parses', true);
+					}
+				});
+				$scope.onHitReturn = function () {
+					var data;
+					data = elem.data('daterangepicker');
+					return onApplyRange(data.startDate, data.endDate);
+				};
+				$scope.onInputChange = function () {
+					var dates, picker, range;
+					dates = $scope.inputValue.split(separator);
+					if (dates.length === 2) {
+						range = {
+							start: moment(dates[0], format, true),
+							end: moment(dates[1], format, true)
+						};
+						picker = elem.data('daterangepicker');
+						picker.setStartDate(range.start);
+						picker.setEndDate(range.end);
+						return $scope.isInvalid = !isValid(range);
+					} else {
+						return $scope.isInvalid = true;
+					}
+				};
+				onModelChange = function (dateRange) {
+					var elemData, end, ret, start;
+					if (dateRange && dateRange.start) {
+						start = dateRange.start, end = dateRange.end;
+						elemData = elem.data('daterangepicker');
+						elemData.oldStartDate = start;
+						elemData.oldEndDate = end;
+						elemData.startDate = start;
+						elemData.endDate = end;
+						elemData.updateView();
+						elemData.updateCalendars();
+						ret = renderRange(dateRange);
+						$scope.inputValue = ret;
+						return ret;
+					}
+				};
+				ngModelCtrl.$parsers.push(function (val) {
+					var dates, range;
+					if (_.isString(val)) {
+						dates = val.split(separator);
+						range = {
+							start: moment(dates[0], format, true),
+							end: moment(dates[1], format, true)
+						};
+						ngModelCtrl.$setValidity('parses', isValid(range));
+						if (isValid(range)) {
+							return range;
+						}
+					} else {
+						return val;
+					}
+				});
+				inputRender = ngModelCtrl.$render;
+				ngModelCtrl.$render = function () {
+					inputRender();
+					return elem.trigger('keyup');
+				};
+				return $translate(['Today', 'Yesterday', 'Last 7 Days', 'Last 30 Days', 'This Month', 'Last Month', 'Last 3 Months', 'Apply', 'Cancel', 'From', 'To', 'W', 'Custom Range']).then(function (tr) {
+					var current, end, i, j, modeRanges, options, rangeList, start;
+					ngModelCtrl.$formatters.push(onModelChange);
+					rangeList = [[tr['Today'], [moment(), moment()]], [tr['Yesterday'], [moment().subtract(1, 'days'), moment().subtract(1, 'days')]], [tr['Last 7 Days'], [moment().subtract(7, 'days'), moment().subtract(1, 'days')]], [tr['Last 30 Days'], [moment().subtract(30, 'days'), moment().subtract(1, 'days')]], [tr['This Month'], [moment().startOf('month'), moment().subtract(1, 'days')]], [tr['Last Month'], [moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month')]], [tr['Last 3 Months'], [moment().subtract(3, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month')]]];
+					modeRanges = {
+						'kx-date-range': _.object(rangeList),
+						'exceptToday': _.object(_.rest(rangeList)),
+						'lastYear': {}
+					};
+					for (i = j = 11; j >= 0; i = --j) {
+						current = function () {
+							return moment().subtract('months', i);
+						};
+						start = current().startOf('month');
+						end = i === 0 ? current() : current().endOf('month');
+						modeRanges.lastYear[current().format('MMM YYYY')] = [start, end];
+					}
+					options = {
+						format: format,
+						separator: separator,
+						startDate: moment().subtract('day', 6),
+						endDate: moment(),
+						locale: {
+							applyLabel: tr['Apply'],
+							cancelLabel: tr['Cancel'],
+							fromLabel: tr['From'],
+							toLabel: tr['To'],
+							weekLabel: tr['W'],
+							customRangeLabel: tr['Custom Range']
+						}
+					};
+					if (attr.timeRange === 'future') {
+						_.extend(options, {
+							minDate: moment()
+						});
+					} else if (attr.timeRange === 'past') {
+						_.extend(options, {
+							maxDate: moment(),
+							opens: open,
+							ranges: modeRanges[attr.kxDateRange]
+						});
+					}
+					elem.daterangepicker(options);
+					if (!onModelChange(ngModelCtrl.$modelValue)) {
+						onModelChange({
+							start: options.startDate,
+							end: options.endDate
+						});
+					}
+					elem.on('apply.daterangepicker', function (e, picker) {
+						return onApplyRange(picker.startDate, picker.endDate);
+					});
+
+					$('.daterangepicker.dropdown-menu').css('display', 'none');
+
+					return ngModelCtrl.$render();
+				});
+			};
+		}
+	};
+}]);
+///#source 1 1 /app/directives/kx-multiselect/kx-multiselect.js
+angular.module('gridTaskApp')
+	.directive('kxMultiselect', ['$timeout', function ($timeout) {
+		return {
+			restrict: 'A',
+			scope: {
+				options: '=kxMultiselect'
+			},
+			link: function (scope, element, attrs) {
+				$timeout(function () {
+					element.multiselect({
+						inheritClass: true,
+						includeSelectAllOption: true
+						//enableFiltering: true
+					});
+				})
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/kx-nav-bar/file1.js
+
+///#source 1 1 /app/directives/kx-nav-bar/kx-menu.js
+(function () {
+	angular.module('gridTaskApp').directive('kxMenu', [function () {
+		return {
+			restrict: 'AE',
+			link: function ($scope, elem, attrs) {
+				var current, listItems, menuItems, selected;
+				listItems = null;
+				current = null;
+				selected = null;
+				menuItems = null;
+
+				$scope.session = { user: { id: 1 } };
+
+				return $scope.$watch('session.user.id', function (userId) {
+					var click, close, init, mouseenter, mouseleave, navItem, _ref;
+					if (userId && ((_ref = $scope.navigationTree) != null ? _ref.length : void 0) > 0) {
+						listItems = elem.children('ul').children('li');
+						if (sessionStorage.selectedNav) {
+							navItem = JSON.parse(sessionStorage.selectedNav);
+							selected = listItems.eq(1);
+							selected.addClass('kx-menu-selected');
+						}
+						init = function () {
+							listItems.mouseenter(mouseenter);
+							return listItems.mouseleave(mouseleave);
+						};
+						mouseenter = function (event) {
+							current = listItems.filter(this);
+							current.addClass('kx-menu-open');
+							menuItems = current.children('.kx-submenu').find('a');
+							return menuItems.click(click);
+						};
+						mouseleave = function (event) {
+							if (current) {
+								return close();
+							}
+						};
+						click = function (event) {
+							if (selected) {
+								selected.removeClass('kx-menu-selected');
+							}
+							selected = current;
+							selected.addClass('kx-menu-selected');
+							navItem = {
+								index: _.indexOf(listItems, selected[0])
+							};
+							sessionStorage.selectedNav = JSON.stringify(navItem);
+							return close();
+						};
+						close = function () {
+							current.removeClass('kx-menu-open');
+							current = null;
+							menuItems.off('click');
+							return menuItems = null;
+						};
+						return init();
+					}
+				});
+			}
+		};
+	}]);
+
+}).call(this);
+///#source 1 1 /app/directives/kx-nav-bar/kx-nav-bar-controller.js
+angular.module('gridTaskApp')
+	.controller('kxNavBarCtrl', ['$scope', function ($scope) {
+
+	}]);
+///#source 1 1 /app/directives/kx-nav-bar/kx-nav-bar.js
+angular.module('gridTaskApp')
+	.directive('kxNavBar', ['templatesPath', function myfunction(templatesPath) {
+		return {
+			restrict: 'A',
+			controller: 'kxNavBarCtrl',
+			scope: {
+			},
+			templateUrl: templatesPath + 'directive-templates/kx-nav-bar.html',
+			link: function (scope, element, attrs) {
+			}
+		}
+	}, ]);
+///#source 1 1 /app/directives/kx-nav-bar/navigation-controller.js
+angular.module('gridTaskApp').controller('NavigationCtrl', ['$scope', 'NavigationTree', function ($scope, NavigationTree) {
+	return $scope.navigationTree = NavigationTree.get();
+}]);
+///#source 1 1 /app/directives/kx-stealth-input/kx-stealth-input.js
+angular.module('gridTaskApp').directive('kxStealthInput', function () {
+	return {
+		restrict: "CAE",
+		controller: function ($scope) { },
+		link: function ($scope, elem, attrs) {
+			var focus, hover, update;
+			focus = false;
+			hover = false;
+			update = function () {
+				return elem.toggleClass('stealth-mode', !(focus || hover));
+			};
+			elem.focus(function () {
+				focus = true;
+				return update();
+			});
+			elem.blur(function () {
+				focus = false;
+				return update();
+			});
+			elem.mouseover(function () {
+				hover = true;
+				return update();
+			});
+			elem.mouseout(function () {
+				hover = false;
+				return update();
+			});
+			return update();
+		}
+	};
+});
 ///#source 1 1 /app/directives/loading/loading.js
 angular.module('gridTaskApp')
 	.directive('loading', ['templatesPath', function (templatesPath) {
@@ -1619,6 +2234,41 @@ angular.module('gridTaskApp')
 					element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
 					element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
 				});
+			}
+		}
+	}]);
+///#source 1 1 /app/directives/max-heighter/max-heighter.js
+angular.module('gridTaskApp')
+	.directive('maxHeighter', ['$timeout', function ($timeout) {
+		return {
+			restrict: 'A',
+			scope: {},
+			link: function (scope, element, attrs) {
+				$timeout(function () {
+					resize(10, 300);
+
+					$(window).resize(function () {
+						resize(10, 300);
+					});
+				});
+
+				function resize(size, min) {
+					element.css('max-height', $(window).height() - element.offset().top - size + 'px');
+
+					if ($(window).height() - element.offset().top - size > min) {
+						$timeout(function () {
+							$('.custom-overlay').css('min-height', ($(window).height() - element.offset().top - size) + 'px')
+							$('.custom-overlay').css('top', element.offset().top + 'px')
+						});
+					}
+					else {
+						$timeout(function () {
+							$('.custom-overlay').css('min-height', $(window).height() - $('.page-content__cards').offset().top - 8 + 'px')
+							$('.custom-overlay').css('top', $('.page-content__cards').offset().top + 'px')
+						});
+					}
+
+				}
 			}
 		}
 	}]);
@@ -1689,6 +2339,45 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/mouse-over/mouse-over.js
+angular.module('gridTaskApp')
+	.directive('mouseOver', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
+		return {
+			restrict: 'E',
+			scope: {
+				type: '=',
+				value: '=',
+				parentTop: '=parentTop'
+			},
+			templateUrl: templatesPath + 'directive-templates/mouse-over.html',
+			link: function (scope, element, attrs) {
+				element.find('.mouse-over').css('visibility', 'hidden');
+
+				if (scope.parentTop === undefined) {
+					scope.parentTop = 0;
+				}
+
+				$timeout(function () {
+					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < $(window).height()) {
+						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px');
+					}
+					else {
+						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px');
+					}
+
+					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < $(window).width()) {
+						element.find('.mouse-over').css('left', ($.cursorMessageData.mouseX + 10) + 'px');
+					}
+					else {
+						element.find('.mouse-over').css('left', $(window).width() - element.find('.mouse-over').width() - 10 + 'px');
+					}
+
+					element.find('.mouse-over').css('visibility', 'visible');
+				});
+
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/number-format/number-format.js
 angular.module('gridTaskApp')
 	.directive('numberFormat', [function () {
@@ -1737,6 +2426,57 @@ angular.module('gridTaskApp')
     		}
     	}
     });
+///#source 1 1 /app/directives/overlay/overlay.js
+angular.module('gridTaskApp')
+	.directive('overlay', ['$timeout', function ($timeout) {
+		return {
+			restrict: 'A',
+			scope: {
+				state: '=overlayState',
+				style: '=overlayStyle'
+			},
+			link: function (scope, element, attrs) {
+
+				$timeout(function () {
+					scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+
+					scope.$watch('state', function (state) {
+						if (state) {
+							if (getWindowWidth() + 650 > 1750) {
+								scope.style = { 'left': '650px' }
+							}
+							else {
+								scope.style = { 'left': '0' };
+							}
+						}
+						else {
+							if (scope.style.left != getWindowWidth() - 30 + 'px') {
+								scope.style = { 'left': getWindowWidth() - 30 + 'px', 'overflow': 'hidden' }
+							}
+
+							element.scrollTop(0);
+						}
+					});
+				});
+
+				$(window).resize(function () {
+					if (scope.state) {
+						if (getWindowWidth() + 650 > 1750) {
+							scope.style = { 'left': '650px', 'transition': 'none' }
+						}
+						else {
+							scope.style = { 'left': '0', 'transition': 'none' }
+						}
+					}
+					else {
+						scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+					}
+
+					scope.$apply();
+				});
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/page-content/page-content.js
 angular.module('gridTaskApp')
 	.directive('pageContent', ['templatesPath', '$compile', 'content', function (templatesPath, $compile, content) {
@@ -1912,6 +2652,69 @@ angular.module('gridTaskApp')
 				dateRange: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
+		}
+	}]);
+///#source 1 1 /app/directives/page-content-d3/page-content-d3.js
+angular.module('gridTaskApp')
+	.directive('pageContentD3', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+		return {
+			restrict: 'E',
+			scope: {
+				contentOptions: '=',
+				cardsOptions: '=',
+				sankeyData: '=',
+				histogramData: '=',
+				filters: '='
+			},
+			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
+			link: function (scope, element) {
+				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				initializer.initSankey();
+
+				scope.contentOptions.refresh = function () {
+					initializer.refreshSankey();
+				}
+
+				scope.filters.onDateRangeChange = function () {
+					for (var card in scope.cardsOptions.cards) {
+						if (scope.cardsOptions.cards[card].counter) {
+							scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(this.dateRange.start.toDate(), this.dateRange.end.toDate());
+						}
+					}
+				}
+			}
+		};
+	}])
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js
+angular.module('gridTaskApp')
+	.controller('contentOptionsD3Ctrl', ['$scope', function ($scope) {
+		$scope.$watch('options.searchValue', function (value) {
+			if (!$scope.options.searchOptions) {
+				return;
+			}
+
+			if ($scope.options.searchOptions.selected.label == 'everywhere') {
+				$scope.options.search(value);
+			} else {
+				$scope.options.search($scope.options.searchOptions.selected.label + ':' + value);
+			}
+		});
+
+	}]);
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3.js
+angular.module('gridTaskApp')
+	.directive('contentOptionsD3', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			controller: 'contentOptionsD3Ctrl',
+			scope: {
+				options: '=',
+				filters: '=',
+				loading: '=',
+				onDataRangeChanged: '=',
+				past: '='
+			},
+			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/resize-on/resize-on.js
@@ -2680,6 +3483,317 @@ var Initializer = (function () {
 	return Initializer;
 })();
 
+///#source 1 1 /app/extensions/sankey.js
+d3.sankey = function () {
+	var sankey = {},
+		nodeWidth = 24,
+		nodePadding = 8,
+		size = [1, 1],
+		nodes = [],
+		links = [];
+
+	sankey.nodeWidth = function (_) {
+		if (!arguments.length) return nodeWidth;
+		nodeWidth = +_;
+		return sankey;
+	};
+
+	sankey.nodePadding = function (_) {
+		if (!arguments.length) return nodePadding;
+		nodePadding = +_;
+		return sankey;
+	};
+
+	sankey.nodes = function (_) {
+		if (!arguments.length) return nodes;
+		nodes = _;
+		return sankey;
+	};
+
+	sankey.links = function (_) {
+		if (!arguments.length) return links;
+		links = _;
+		return sankey;
+	};
+
+	sankey.size = function (_) {
+		if (!arguments.length) return size;
+		size = _;
+		return sankey;
+	};
+
+	sankey.layout = function (iterations) {
+		computeNodeLinks();
+		computeNodeValues();
+		computeNodeBreadths();
+		computeNodeDepths(iterations);
+		computeLinkDepths();
+		return sankey;
+	};
+
+	sankey.relayout = function () {
+		computeLinkDepths();
+		return sankey;
+	};
+
+	sankey.link = function () {
+		var curvature = .5;
+
+		function link(d) {
+			var x0 = d.source.x + d.source.dx,
+				x1 = d.target.x,
+				xi = d3.interpolateNumber(x0, x1),
+				x2 = xi(curvature),
+				x3 = xi(1 - curvature),
+				y0 = d.source.y + d.sy + d.dy / 2,
+				y1 = d.target.y + d.ty + d.dy / 2;
+			return "M" + x0 + "," + y0
+				 + "C" + x2 + "," + y0
+				 + " " + x3 + "," + y1
+				 + " " + x1 + "," + y1;
+		}
+
+		link.curvature = function (_) {
+			if (!arguments.length) return curvature;
+			curvature = +_;
+			return link;
+		};
+
+		return link;
+	};
+
+	// Populate the sourceLinks and targetLinks for each node.
+	// Also, if the source and target are not objects, assume they are indices.
+	function computeNodeLinks() {
+		nodes.forEach(function (node) {
+			node.sourceLinks = [];
+			node.targetLinks = [];
+		});
+		links.forEach(function (link) {
+			var source = link.source,
+				target = link.target;
+			if (typeof source === "number") source = link.source = nodes[link.source];
+			if (typeof target === "number") target = link.target = nodes[link.target];
+			source.sourceLinks.push(link);
+			target.targetLinks.push(link);
+		});
+	}
+
+	// Compute the value (size) of each node by summing the associated links.
+	function computeNodeValues() {
+		nodes.forEach(function (node) {
+			node.value = Math.max(
+			  d3.sum(node.sourceLinks, value),
+			  d3.sum(node.targetLinks, value)
+			);
+		});
+	}
+
+	// Iteratively assign the breadth (x-position) for each node.
+	// Nodes are assigned the maximum breadth of incoming neighbors plus one;
+	// nodes with no incoming links are assigned breadth zero, while
+	// nodes with no outgoing links are assigned the maximum breadth.
+	function computeNodeBreadths() {
+		var remainingNodes = nodes,
+			nextNodes,
+			x = 0;
+
+		while (remainingNodes.length) {
+			nextNodes = [];
+			remainingNodes.forEach(function (node) {
+				node.x = x;
+				node.dx = nodeWidth;
+				node.sourceLinks.forEach(function (link) {
+					nextNodes.push(link.target);
+				});
+			});
+			remainingNodes = nextNodes;
+			++x;
+		}
+
+		//
+		moveSinksRight(x);
+		scaleNodeBreadths((size[0] - nodeWidth) / (x - 1));
+	}
+
+	function moveSourcesRight() {
+		nodes.forEach(function (node) {
+			if (!node.targetLinks.length) {
+				node.x = d3.min(node.sourceLinks, function (d) { return d.target.x; }) - 1;
+			}
+		});
+	}
+
+	function moveSinksRight(x) {
+		nodes.forEach(function (node) {
+			if (!node.sourceLinks.length) {
+				node.x = x - 1;
+			}
+		});
+	}
+
+	function scaleNodeBreadths(kx) {
+		nodes.forEach(function (node) {
+			node.x *= kx;
+		});
+	}
+
+	function computeNodeDepths(iterations) {
+		var nodesByBreadth = d3.nest()
+			.key(function (d) { return d.x; })
+			.sortKeys(d3.ascending)
+			.entries(nodes)
+			.map(function (d) { return d.values; });
+
+		//
+		initializeNodeDepth();
+		resolveCollisions();
+		for (var alpha = 1; iterations > 0; --iterations) {
+			relaxRightToLeft(alpha *= .99);
+			resolveCollisions();
+			relaxLeftToRight(alpha);
+			resolveCollisions();
+		}
+
+		function initializeNodeDepth() {
+			var ky = d3.min(nodesByBreadth, function (nodes) {
+				return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+			});
+
+			nodesByBreadth.forEach(function (nodes) {
+				nodes.forEach(function (node, i) {
+					node.y = i;
+					node.dy = node.value * ky;
+				});
+			});
+
+			links.forEach(function (link) {
+				link.dy = link.value * ky;
+			});
+		}
+
+		function relaxLeftToRight(alpha) {
+			nodesByBreadth.forEach(function (nodes, breadth) {
+				nodes.forEach(function (node) {
+					if (node.targetLinks.length) {
+						var y = d3.sum(node.targetLinks, weightedSource) / d3.sum(node.targetLinks, value);
+						node.y += (y - center(node)) * alpha;
+					}
+				});
+			});
+
+			function weightedSource(link) {
+				return center(link.source) * link.value;
+			}
+		}
+
+		function relaxRightToLeft(alpha) {
+			nodesByBreadth.slice().reverse().forEach(function (nodes) {
+				nodes.forEach(function (node) {
+					if (node.sourceLinks.length) {
+						var y = d3.sum(node.sourceLinks, weightedTarget) / d3.sum(node.sourceLinks, value);
+						node.y += (y - center(node)) * alpha;
+					}
+				});
+			});
+
+			function weightedTarget(link) {
+				return center(link.target) * link.value;
+			}
+		}
+
+		function resolveCollisions() {
+			nodesByBreadth.forEach(function (nodes) {
+				var node,
+					dy,
+					y0 = 0,
+					n = nodes.length,
+					i;
+
+				// Push any overlapping nodes down.
+				nodes.sort(ascendingDepth);
+				for (i = 0; i < n; ++i) {
+					node = nodes[i];
+					dy = y0 - node.y;
+					if (dy > 0) node.y += dy;
+					y0 = node.y + node.dy + nodePadding;
+				}
+
+				// If the bottommost node goes outside the bounds, push it back up.
+				dy = y0 - nodePadding - size[1];
+				if (dy > 0) {
+					y0 = node.y -= dy;
+
+					// Push any overlapping nodes back up.
+					for (i = n - 2; i >= 0; --i) {
+						node = nodes[i];
+						dy = node.y + node.dy + nodePadding - y0;
+						if (dy > 0) node.y -= dy;
+						y0 = node.y;
+					}
+				}
+			});
+		}
+
+		function ascendingDepth(a, b) {
+			return a.y - b.y;
+		}
+	}
+
+	function computeLinkDepths() {
+		nodes.forEach(function (node) {
+			node.sourceLinks.sort(ascendingTargetDepth);
+			node.targetLinks.sort(ascendingSourceDepth);
+		});
+		nodes.forEach(function (node) {
+			var sy = 0, ty = 0;
+			node.sourceLinks.forEach(function (link) {
+				link.sy = sy;
+				sy += link.dy;
+			});
+			node.targetLinks.forEach(function (link) {
+				link.ty = ty;
+				ty += link.dy;
+			});
+		});
+
+		function ascendingSourceDepth(a, b) {
+			return a.source.y - b.source.y;
+		}
+
+		function ascendingTargetDepth(a, b) {
+			return a.target.y - b.target.y;
+		}
+	}
+
+	function center(node) {
+		return node.y + node.dy / 2;
+	}
+
+	function value(link) {
+		return link.value;
+	}
+
+	return sankey;
+};
+///#source 1 1 /app/extensions/window-width.js
+function getWindowWidth() {
+	var windowWidth = 0;
+	if (typeof (window.innerWidth) == 'number') {
+		windowWidth = window.innerWidth;
+	}
+	else {
+		if (document.documentElement && document.documentElement.clientWidth) {
+			windowWidth = document.documentElement.clientWidth;
+		}
+		else {
+			if (document.body && document.body.clientWidth) {
+				windowWidth = document.body.clientWidth;
+			}
+		}
+	}
+	return windowWidth;
+}
 ///#source 1 1 /app/extensions/jquery/center.js
 jQuery.fn.center = function () {
 	this.css("position", "absolute");
@@ -3420,3 +4534,465 @@ function ngGridFlexibleHeightPlugin(opts) {
 	};
 }
 
+///#source 1 1 /app/services/navigation-tree-service.js
+angular.module('gridTaskApp').factory('NavigationTree', [function () {
+	return {
+		menu: [],
+		get: function () {
+			return this.menu = this.NAV_TREE;
+		},
+		generate: function () {
+			var i, len, menu, node, ref, subMenu;
+			menu = [];
+			ref = this.NAV_TREE;
+			for (i = 0, len = ref.length; i < len; i++) {
+				node = ref[i];
+				subMenu = this.subTree(node);
+				if (!_.isEmpty(subMenu)) {
+					menu.push(subMenu);
+				}
+			}
+			return menu;
+		},
+		subTree: function (root) {
+			var i, len, node, ref, subTree, tree;
+			tree = {};
+			if (root.nodes != null) {
+				tree = {
+					name: root.name,
+					nodes: []
+				};
+				ref = root.nodes;
+				for (i = 0, len = ref.length; i < len; i++) {
+					node = ref[i];
+					subTree = this.subTree(node);
+					if (!_.isEmpty(subTree)) {
+						tree.nodes.push(subTree);
+					}
+				}
+				if (tree.nodes.length === 0) {
+					tree = {};
+				}
+			} else {
+				if ((root.permissions != null) && this.checkPermission(root.permissions)) {
+					tree = {
+						name: root.name,
+						description: root.description,
+						state: root.state,
+						link: root.link
+					};
+				}
+			}
+			return tree;
+		},
+		checkPermission: function (permissions) {
+			return permissions[0] === 'none' || arrayUtils.intersects(session.allow, permissions);
+		},
+		NAV_TREE: [
+		  {
+		  	name: 'PEOPLE',
+		  	nodes: [
+			  {
+			  	name: 'Actions',
+			  	nodes: [
+				  {
+				  	name: 'Manage Segments',
+				  	description: 'Create segments from 1st and 3rd party data to use in audience targeting, audience insights, and personalization.',
+				  	state: 'segments.switchPage.segmentList',
+				  	link: '/segments/list',
+				  	permissions: ['segments', 'segments_ro']
+				  }, {
+				  	name: 'Manage Events',
+				  	description: 'Create and manage events to get detailed insights on any user action such as clicks, form submissions, video views and more.',
+				  	state: 'events.list',
+				  	link: '/events/list',
+				  	permissions: ['events', 'events_ro']
+				  }, {
+				  	name: 'Manage Funnels',
+				  	description: 'Create funnels to track sequence of events and optimize customer funnel for higher conversions.',
+				  	state: 'funnels.funnelList',
+				  	link: '/funnels/list',
+				  	permissions: ['funnels', 'funnels_ro']
+				  }
+			  	]
+			  }, {
+			  	name: 'Insights',
+			  	nodes: [
+				  {
+				  	name: 'Segment Insights',
+				  	description: 'View segment specific statistics and insights.',
+				  	state: 'audience.switchPage.discovery',
+				  	link: '/audience/discovery',
+				  	permissions: ['segments', 'segments_ro']
+				  }, {
+				  	name: 'Segment Overlaps',
+				  	description: 'View population overlap for all your segments.',
+				  	state: 'audience.overlaps',
+				  	link: '/audience/overlaps',
+				  	permissions: ['segment_overlaps_report']
+				  }, {
+				  	name: 'Attributes',
+				  	description: 'View trends for attribute values.',
+				  	state: 'audience.attributesReport',
+				  	link: '/audience/attributes-report',
+				  	permissions: ['attributes_report']
+				  }, {
+				  	name: 'Data Providers',
+				  	description: 'Compare data provider population with Krux’s  people-data universe.',
+				  	state: 'audience.dataprovidersReport',
+				  	link: '/audience/dataproviders-report',
+				  	permissions: ['dataproviders_report']
+				  }, {
+				  	name: 'Reach Opportunities',
+				  	description: 'Reach and convert people who are similar to your most valuable customers.',
+				  	state: 'opportunities.base2ndParty.chart',
+				  	link: '/opportunities/secondPartyChart/',
+				  	permissions: ['opportunities', 'opportunities_ro']
+				  }, {
+				  	name: 'Audience Profile',
+				  	description: 'Audience Profile Report Organization Level.',
+				  	state: 'audience.profileReportOrgLevel',
+				  	link: '/audience/audience_profile/',
+				  	permissions: []
+				  }
+			  	]
+			  }, {
+			  	name: 'Analytics',
+			  	nodes: [
+				  {
+				  	name: 'Audience',
+				  	description: ' ',
+				  	state: 'audience.audienceAnalytics',
+				  	link: '/audience/audience-analytics',
+				  	permissions: ['audience_analytics']
+				  }, {
+				  	name: 'Engagement',
+				  	description: ' ',
+				  	state: 'audience.engagement',
+				  	link: '/audience/engagement',
+				  	permissions: ['user_engagement_distribution']
+				  }, {
+				  	name: 'Loyalty',
+				  	description: ' ',
+				  	state: 'audience.loyalty',
+				  	link: '/audience/loyalty',
+				  	permissions: ['loyalty_report']
+				  }, {
+				  	name: 'Social Sharing',
+				  	description: '',
+				  	state: 'audience.socialSharing',
+				  	link: '/audience/socialSharing',
+				  	permissions: []
+				  }
+			  	]
+			  }
+		  	]
+		  }, {
+		  	name: 'MARKETING',
+		  	nodes: [
+			  {
+			  	name: 'Performance',
+			  	nodes: [
+				  {
+				  	name: 'Segments',
+				  	description: 'View segment specific performance details.',
+				  	state: 'marketing.segmentPerformance',
+				  	link: '/marketing/performance/?activeTab=audienceSegments',
+				  	permissions: ['marketing_performance']
+				  }, {
+				  	name: 'Campaigns',
+				  	description: 'View campaign specific performance details.',
+				  	state: 'marketing.campaignPerformance',
+				  	link: '/marketing/performance/?activeTab=campaigns',
+				  	permissions: ['marketing_performance']
+				  }, {
+				  	name: 'Sites',
+				  	description: 'View site specific performance details.',
+				  	state: 'marketing.campaignPerformance',
+				  	link: '/marketing/performance/?activeTab=sites',
+				  	permissions: ['marketing_performance']
+				  }, {
+				  	name: 'Reach and Overlap',
+				  	description: 'View reach overlap across channels for campaigns or segments to increase precision.',
+				  	state: 'marketing.reachOverlap',
+				  	link: '/marketing/reach_overlap',
+				  	permissions: ['reach_and_overlap']
+				  }
+			  	]
+			  }, {
+			  	name: 'Real Time Bidding',
+			  	nodes: [
+				  {
+				  	name: 'Manage Campaigns',
+				  	description: '',
+				  	state: 'rtb.campaign.list',
+				  	link: '/rtb/campaign',
+				  	permissions: ['ic_extend', 'ic_extend_ro']
+				  }, {
+				  	name: 'Manage Creatives',
+				  	description: '',
+				  	state: 'rtb.creative.list',
+				  	link: '/rtb/creative',
+				  	permissions: ['ic_extend', 'ic_extend_ro']
+				  }
+			  	]
+			  }, {
+			  	name: 'Customer Journey',
+			  	nodes: [
+				  {
+				  	name: 'Manage Campaign Attribution',
+				  	description: '',
+				  	state: 'marketing.campaignAttribution',
+				  	link: '/marketing/campaign_attribution',
+				  	permissions: ['manage_goals']
+				  }, {
+				  	name: 'Attribution Report',
+				  	description: '',
+				  	state: 'marketing.attribution',
+				  	link: '/marketing/attribution',
+				  	permissions: ['manage_goals', 'attribution_report']
+				  }
+			  	]
+			  }, {
+			  	name: 'Global Frequency',
+			  	nodes: [
+				  {
+				  	name: 'Manage Frequency',
+				  	description: 'Control and fine-tune frequency across all execution systems.',
+				  	state: 'marketing.globalFrequencyManagement',
+				  	link: '/marketing/global_frequency_management',
+				  	permissions: ['global_frequency_management']
+				  }, {
+				  	name: 'Frequency Distribution',
+				  	description: 'Monitor under-performing and wasteful campaign frequency.',
+				  	state: 'marketing.frequencyDistributionReport',
+				  	link: '/frequency-reports',
+				  	permissions: ['frequency_reports']
+				  }
+			  	]
+			  }
+		  	]
+		  }, {
+		  	name: 'LINK',
+		  	nodes: [
+			  {
+			  	name: 'Buyer',
+			  	nodes: [
+				  {
+				  	name: 'Search',
+				  	description: '',
+				  	state: 'buyersConsole.search',
+				  	link: '/buyersConsole/search',
+				  	permissions: ['search_audience_segments']
+				  }, {
+				  	name: 'Manage Orders',
+				  	description: '',
+				  	state: 'order.manageOrders',
+				  	link: '/order/manageOrders',
+				  	permissions: ['ic_brokerage_ui', 'ic_brokerage_ui_ro']
+				  }, {
+				  	name: 'Cart',
+				  	description: '',
+				  	state: 'order.cart',
+				  	link: '/order/cart',
+				  	permissions: ['purchase_segments_manage_orders', 'purchase_segments_manage_orders_ro', 'search_audience_segments']
+				  }, {
+				  	name: 'Billing',
+				  	description: '',
+				  	state: 'buyersConsole.buyerBilling',
+				  	link: '/buyersConsole/buyer_billing',
+				  	permissions: ['purchase_segments_manage_orders']
+				  }
+			  	]
+			  }, {
+			  	name: 'Seller',
+			  	nodes: [
+				  {
+				  	name: 'Manage LinK',
+				  	description: '',
+				  	state: 'interchange.brokerage.list',
+				  	link: '/interchange/link',
+				  	permissions: ['ic_brokerage_ui', 'ic_brokerage_ui_ro']
+				  }, {
+				  	name: 'Manage Orders',
+				  	description: '',
+				  	state: 'interchange.brokerage.orders.list',
+				  	link: '/interchange/link/orders',
+				  	permissions: ['ic_brokerage_ui', 'ic_brokerage_ui_ro']
+				  }, {
+				  	name: 'Billing',
+				  	description: '',
+				  	state: 'buyersConsole.sellerBilling',
+				  	link: '/buyersConsole/seller_billing',
+				  	permissions: ['ic_brokerage_ui', 'ic_brokerage_ui_ro']
+				  }
+			  	]
+			  }
+		  	]
+		  }, {
+		  	name: 'INTERCHANGE',
+		  	nodes: [
+			  {
+			  	name: 'Performance',
+			  	nodes: [
+				  {
+				  	name: 'Yield Analytics',
+				  	description: '',
+				  	state: 'yieldAnalytics.aggregate',
+				  	link: '/interchange/yield_analytics',
+				  	permissions: ['yield_analytics', 'yield_analytics_ro']
+				  }
+			  	]
+			  }, {
+			  	name: 'Partner Management',
+			  	nodes: [
+				  {
+				  	name: 'Manage Accounts',
+				  	description: '',
+				  	state: 'partnerEnablementFramework.list',
+				  	link: '/partner_management',
+				  	permissions: ['manage_partners']
+				  }
+			  	]
+			  }
+		  	]
+		  }, {
+		  	name: 'SUPERTAG',
+		  	nodes: [
+			  {
+			  	name: 'Actions',
+			  	nodes: [
+				  {
+				  	name: 'List Tags',
+				  	description: '',
+				  	state: 'supertag.listTags',
+				  	link: '/supertag/list_tags',
+				  	permissions: ['supertag_full', 'supertag_readonly']
+				  }, {
+				  	name: 'Pending Approval',
+				  	description: '',
+				  	state: 'supertag.pendingApproval.list',
+				  	link: '/supertag/pendingApproval',
+				  	permissions: ['supertag_approve']
+				  }, {
+				  	name: 'Library Tags',
+				  	description: '',
+				  	state: 'supertag.libraryTags',
+				  	link: '/supertag/library_tags',
+				  	permissions: []
+				  }, {
+				  	name: 'Rule manager',
+				  	description: 'Manage supertag named rules',
+				  	state: 'supertag.tagRules',
+				  	link: '/supertag/tag_rules',
+				  	permissions: ['supertag_full']
+				  }
+			  	]
+			  }, {
+			  	name: 'Reports',
+			  	nodes: [
+				  {
+				  	name: 'Tag Summary',
+				  	description: '',
+				  	state: 'supertag.reports.list',
+				  	link: '/supertag/reports',
+				  	permissions: ['supertag_full', 'supertag_readonly']
+				  }, {
+				  	name: 'Tag Inspector',
+				  	description: '',
+				  	state: 'supertag.tagInspectorCode',
+				  	link: '/supertag/tag_inspector?auto_inspect',
+				  	permissions: ['supertag_full', 'supertag_readonly']
+				  }
+			  	]
+			  }
+		  	]
+		  }, {
+		  	name: 'DATA SENTRY',
+		  	nodes: [
+			  {
+			  	name: 'Dashboard',
+			  	description: '',
+			  	state: 'dataSentry.globalDashboard',
+			  	link: '/dataSentry/globalDashboard',
+			  	permissions: ['data_sentry']
+			  }
+		  	]
+		  }, {
+		  	name: 'TOOLS',
+		  	nodes: [
+			  {
+			  	name: 'Settings',
+			  	nodes: [
+				  {
+				  	name: 'Manage Users',
+				  	description: '',
+				  	state: 'account.usersList',
+				  	link: '/account/users',
+				  	permissions: ['manage_users']
+				  }, {
+				  	name: 'Manage Sites',
+				  	description: '',
+				  	state: 'account.sites',
+				  	link: '/account/sites',
+				  	permissions: ['manage_sites']
+				  }, {
+				  	name: 'Manage Settings',
+				  	description: '',
+				  	state: 'account.settings',
+				  	link: '/account/settings',
+				  	permissions: ['none']
+				  }
+			  	]
+			  }, {
+			  	name: 'Internal',
+			  	nodes: [
+				  {
+				  	name: 'Create Organization',
+				  	description: '',
+				  	state: 'organization.create',
+				  	link: '/organization/create',
+				  	permissions: []
+				  }, {
+				  	name: 'Organization Settings',
+				  	description: '',
+				  	state: 'organization.edit',
+				  	link: '/organization/edit/',
+				  	permissions: []
+				  }, {
+				  	name: 'Internal Dashboard',
+				  	description: '',
+				  	state: 'internal.dashboard',
+				  	link: '/internal/dashboard',
+				  	permissions: []
+				  }, {
+				  	name: 'Traffic Trends',
+				  	description: '',
+				  	state: 'internal.traffic_trends',
+				  	link: '/internal/traffic_trends',
+				  	permissions: []
+				  }, {
+				  	name: 'Pipeline Dashboard',
+				  	description: '',
+				  	state: 'dataPipeline',
+				  	link: '/pipeline',
+				  	permissions: []
+				  }
+			  	]
+			  }, {
+			  	name: 'Platform Commands',
+			  	nodes: [
+				  {
+				  	name: 'Generate Krux Standard Segments',
+				  	description: '',
+				  	state: 'platform.generate',
+				  	link: '/platform/generate',
+				  	permissions: []
+				  }
+			  	]
+			  }
+		  	]
+		  }
+		]
+	};
+}]);

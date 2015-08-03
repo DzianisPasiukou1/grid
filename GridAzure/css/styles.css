@@ -1204,6 +1204,8 @@ histogram .x.axis .tick {
   background-image: linear-gradient(to top, #eee 0%, #fff 50%);
   text-align: left;
   line-height: 32px; }
+  .btn-group button span {
+    float: left; }
   .btn-group button .caret {
     height: 100%;
     float: right;

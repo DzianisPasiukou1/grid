@@ -9,11 +9,11 @@
 			link: function (scope, element, attrs) {
 
 				$timeout(function () {
-					scope.style = { 'left': $(window).width() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+					scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
 
 					scope.$watch('state', function (state) {
 						if (state) {
-							if ($(window).width() + 650 > 1750) {
+							if (getWindowWidth() + 650 > 1750) {
 								scope.style = { 'left': '650px' }
 							}
 							else {
@@ -21,18 +21,18 @@
 							}
 						}
 						else {
-							if (scope.style.left != $(window).width() - 30 + 'px') {
-								scope.style = { 'left': $(window).width() - 30 + 'px', 'overflow': 'hidden' }
+							if (scope.style.left != getWindowWidth() - 30 + 'px') {
+								scope.style = { 'left': getWindowWidth() - 30 + 'px', 'overflow': 'hidden' }
 							}
 
-							element.scrollTop();
+							element.scrollTop(0);
 						}
 					});
 				});
 
 				$(window).resize(function () {
 					if (scope.state) {
-						if ($(window).width() + 650 > 1750) {
+						if (getWindowWidth() + 650 > 1750) {
 							scope.style = { 'left': '650px', 'transition': 'none' }
 						}
 						else {
@@ -40,7 +40,7 @@
 						}
 					}
 					else {
-						scope.style = { 'left': $(window).width() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+						scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
 					}
 
 					scope.$apply();

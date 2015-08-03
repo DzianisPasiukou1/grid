@@ -199,6 +199,7 @@
     <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3.js" />
     <Content Include="app\directives\page-content-d3\page-content-d3.js" />
     <Content Include="app\extensions\sankey.js" />
+    <Content Include="app\extensions\window-width.js" />
     <Content Include="app\services\navigation-tree-service.js" />
     <Content Include="app\templates\directive-templates\chart-segment.html" />
     <Content Include="app\templates\directive-templates\content-options-d3.html" />
@@ -2195,10 +2196,6 @@
     <Content Include="bower_components\jquery-date-range-picker\bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\README.md" />
     <Content Include="css\_navigation.scss" />
-    <Content Include="app\custom-grid.js.bundle" />
-    <Content Include="app\custom-grid.min.js.map">
-      <DependentUpon>custom-grid.min.js</DependentUpon>
-    </Content>
     <Content Include="bower_components\moment\.bower.json" />
     <Content Include="css\_page-content-d3.scss" />
     <Content Include="data\sankey\sankeygreenhouse.json" />
@@ -2404,6 +2401,10 @@
     <Content Include="css\_kx-nav.scss" />
     <Content Include="css\common\_overlay.scss" />
     <Content Include="data\sankey\single.json" />
+    <Content Include="app\custom-grid.js.bundle" />
+    <Content Include="app\custom-grid.min.js.map">
+      <DependentUpon>custom-grid.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
