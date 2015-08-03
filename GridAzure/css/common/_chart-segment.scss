@@ -6,6 +6,10 @@
 	margin-top: 80px;
 	margin-right: 0;
 
+	@media only screen and (max-width: 1850px) {
+		margin-top: 0;
+	}
+
 	&__panel {
 		background-color: rgb(214,235,246);
 		width: 400px;
@@ -14,6 +18,8 @@
 		cursor: pointer;
 		margin-bottom: 80px;
 		border: 1px solid rgb(45,104,136);
+
+
 
 		&__text {
 			position: relative;
@@ -46,7 +52,7 @@
 		}
 
 		&__body {
-			max-height: 300px;
+			max-height: 230px;
 			overflow: auto;
 
 			&__user {

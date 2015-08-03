@@ -9,5 +9,7 @@
 			else {
 				$scope.selectedUsers.push({ touchpoints: user.name + ' touchpoint' });
 			}
+
+			$scope.$apply();
 		}
 	}]);

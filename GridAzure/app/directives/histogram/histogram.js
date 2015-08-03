@@ -13,9 +13,12 @@
 						//element.html('<div class="custom-overlay" overlay overlay-state="state" overlay-style="style" ng-style="style">	<div class="custom-overlay__toggle"><button ng-click="state = !state">Toggle</button></div><div class="histogram"><svg class="chart"></svg></div><chart-segment selected-users="selectedUsers"></chart-segment></div>');
 						//$compile(element.find('chart-segment'))(scope);
 
+						element.find('.chart').remove();
+						element.find('.histogram').append('<svg class="chart"></svg>');
+
 						var margin = { top: 50, right: 30, bottom: 60, left: 90 },
-					width = 960 - margin.left - margin.right,
-					height = 500 - margin.top - margin.bottom;
+					width = 700 - margin.left - margin.right,
+					height = 340 - margin.top - margin.bottom;
 
 						var x = d3.scale.ordinal()
 							.domain(data.map(function (d) { return d.name; }))
@@ -75,7 +78,7 @@
 							.text("Touchpoint #");
 						chart.append("text")
 						  .text("Potential Rich histogram")
-						  .attr("x", 300)
+						  .attr("x", 200)
 						  .attr("class", "title");
 
 					}

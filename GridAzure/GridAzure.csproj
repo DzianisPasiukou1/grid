@@ -192,6 +192,7 @@
     <Content Include="app\directives\kx-nav-bar\kx-nav-bar.js" />
     <Content Include="app\directives\kx-nav-bar\navigation-controller.js" />
     <Content Include="app\directives\kx-stealth-input\kx-stealth-input.js" />
+    <Content Include="app\directives\max-heighter\max-heighter.js" />
     <Content Include="app\directives\mouse-over\mouse-over.js" />
     <Content Include="app\directives\overlay\overlay.js" />
     <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3-controller.js" />
@@ -2402,6 +2403,7 @@
     <Content Include="css\common\_kx-btn.scss" />
     <Content Include="css\_kx-nav.scss" />
     <Content Include="css\common\_overlay.scss" />
+    <Content Include="data\sankey\single.json" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

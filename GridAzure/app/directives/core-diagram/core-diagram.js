@@ -13,7 +13,7 @@
 					if (graph) {
 						var units = "Widgets";
 
-						var margin = { top: 10, right: 10, bottom: 10, left: 10 },
+						var margin = { top: 0, right: 10, bottom: 10, left: 10 },
 							width = 1500 - margin.left - margin.right,
 							height = 740 - margin.top - margin.bottom;
 

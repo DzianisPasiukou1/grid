@@ -1021,9 +1021,9 @@ core-diagram {
   core-diagram #chart {
     border: 1px solid #2ba6d5;
     border-radius: 3px 3px;
-    width: 97%;
+    /*width: 97%;*/
     margin-left: 15px;
-    margin-right: 10px;
+    margin-right: 50px;
     overflow: auto;
     text-align: center; }
   core-diagram svg {
@@ -1048,7 +1048,7 @@ core-diagram {
 @media only screen and (max-width: 1500px) {
   histogram .histogram {
     display: block !important;
-    margin-bottom: 40px; }
+    /*margin-bottom: 40px;*/ }
  }
 histogram .histogram {
   overflow: auto;
@@ -1059,7 +1059,7 @@ histogram svg {
   border: 2px solid #2ba6d5;
   border-radius: 3px 3px;
   margin-bottom: 20px;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-left: 10px; }
 histogram .bar {
   fill: steelblue; }
@@ -1088,6 +1088,9 @@ histogram .x.axis .tick {
   padding-left: 40px;
   margin-top: 80px;
   margin-right: 0; }
+  @media only screen and (max-width: 1850px) {
+    .chart-segment {
+      margin-top: 0; } }
   .chart-segment__panel {
     background-color: #d6ebf6;
     width: 400px;
@@ -1122,7 +1125,7 @@ histogram .x.axis .tick {
         top: 6px;
         left: 25px; }
     .chart-segment__list__body {
-      max-height: 300px;
+      max-height: 230px;
       overflow: auto; }
       .chart-segment__list__body__user {
         height: 30px;
@@ -1997,7 +2000,7 @@ page-content-d3 {
               float: left; }
             page-content-d3 .page-content__options .options__select {
               margin-left: 10px;
-              z-index: 1000 !important;
+              z-index: 1 !important;
               margin-top: 10px;
               /*float: right;*/
               position: relative;
@@ -2302,26 +2305,29 @@ a [class^="icon-"], a [class*=" icon-"] {
 	-webkit-font-smoothing: antialiased;
 }*/
 .custom-overlay {
-  min-height: 750px;
+  /*min-height: 400px;*/
   /*min-width: 500px;*/
   background-color: white;
   position: absolute;
   top: 0;
   right: 0;
   overflow: auto;
-  /*transition: all linear 0.5s;*/
+  transition: all linear 0.5s;
   border: 2px solid #0A2841;
   overflow: auto;
-  height: 0; }
+  height: 0;
+  z-index: 1000000; }
   .custom-overlay__toggle {
     display: inline;
     float: left;
     /*border-right: 2px solid #0A2841;*/
-    height: 100%; }
+    height: 99%; }
+    .custom-overlay__toggle__name {
+      font-size: 20px; }
     .custom-overlay__toggle .glyphicon {
       padding-bottom: 100%;
       font-size: 16px;
-      padding-top: 50px;
+      padding-top: 30px;
       padding-right: 10px;
       height: 100%; }
       .custom-overlay__toggle .glyphicon:hover {

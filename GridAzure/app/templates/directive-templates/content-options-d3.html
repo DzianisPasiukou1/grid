@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="options__select">
-		<select class="options__event" ui-select2="options.eventType.selectOpt" ng-model="options.eventOpt.options.selected" data-placeholder="Choose Event type" ng-required="true">
+		<select class="options__event" ui-select2="options.eventType.selectOpt" ng-model="options.eventOpt.options.selected" data-placeholder="Choose Event" ng-required="true">
 			<option value=""></option>
 			<option value="{{action}}" ng-repeat="action in options.eventType.options.actions">{{action.label}}</option>
 		</select>

@@ -12,8 +12,8 @@
 				$timeout(function () {
 					scope.$watch('state', function (state) {
 						if (state) {
-							if ($(window).width() + 450 > 1200) {
-								scope.style = { 'left': '450px' }
+							if ($(window).width() + 650 > 1750) {
+								scope.style = { 'left': '650px' }
 							}
 							else {
 								scope.style = { 'left': '0' };
@@ -27,8 +27,8 @@
 
 				$(window).resize(function () {
 					if (scope.state) {
-						if ($(window).width() + 450 > 1200) {
-							scope.style = { 'left': '450px', 'transition': 'none' }
+						if ($(window).width() + 650 > 1750) {
+							scope.style = { 'left': '650px', 'transition': 'none' }
 						}
 						else {
 							scope.style = { 'left': '0', 'transition': 'none' }
