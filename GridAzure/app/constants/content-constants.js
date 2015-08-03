@@ -240,5 +240,6 @@
 				start: moment(new Date(new Date().setDate(new Date().getDate() - 7))),
 				end: moment(new Date())
 			},
-		}
+		},
+		sankeyPath: "data/sankey/my-graphs.json"
 	});

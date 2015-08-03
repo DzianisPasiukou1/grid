@@ -1,8 +1,6 @@
 ﻿.custom-overlay {
-	/*min-height: 400px;*/
-	/*min-width: 500px;*/
 	background-color: white;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	overflow: auto;
@@ -15,10 +13,9 @@
 	&__toggle {
 		display: inline;
 		float: left;
-		/*border-right: 2px solid #0A2841;*/
 		height: 99%;
 
-		&__name{
+		&__name {
 			font-size: 20px;
 		}
 
@@ -28,11 +25,12 @@
 			padding-top: 30px;
 			padding-right: 10px;
 			height: 100%;
+			cursor: pointer;
+			padding-left: 4px;
 
 			&:hover {
 				color: #5ccefd;
 			}
 		}
 	}
-
 }

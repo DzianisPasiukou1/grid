@@ -2,59 +2,33 @@
 	.directive('maxHeighter', ['$timeout', function ($timeout) {
 		return {
 			restrict: 'A',
+			scope: {},
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					element.css('max-height', $(window).height() - element.position().top - 400 + 'px');
-
-					if ($(window).height() - element.position().top - 400 > 400) {
-						$('.custom-overlay').css('min-height', $(window).height() - element.position().top - 400 + 'px')
-						$('.custom-overlay').css('top', 0 + 'px')
-					}
-					else {
-						$('.custom-overlay').css('min-height', $(window).height() - 140 + 'px')
-						$('.custom-overlay').css('top', -$('.page-content__cards').offset().top - 100 + 'px')
-					}
-
-					if ($('.custom-overlay').css('min-height') === undefined) {
-						$timeout(function () {
-							if ($(window).height() - element.position().top - 400 > 400) {
-								$('.custom-overlay').css('min-height', $(window).height() - element.position().top - 400 + 'px')
-								$('.custom-overlay').css('top', 0 + 'px')
-							}
-							else {
-								$('.custom-overlay').css('min-height', $(window).height() - 140 + 'px')
-								$('.custom-overlay').css('top', -$('.page-content__cards').offset().top - 100 + 'px')
-							}
-						})
-					}
+					resize(10, 300);
 
 					$(window).resize(function () {
-						element.css('max-height', $(window).height() - element.position().top - 400 + 'px');
-
-						if ($(window).height() - element.position().top - 400 > 400) {
-							$('.custom-overlay').css('min-height', $(window).height() - element.position().top - 400 + 'px')
-							$('.custom-overlay').css('top', 0 + 'px')
-						}
-						else {
-							$('.custom-overlay').css('min-height', $(window).height() - 140 + 'px')
-							$('.custom-overlay').css('top', -$('.page-content__cards').offset().top - 100 + 'px')
-						}
-
-						if ($('.custom-overlay').css('min-height') === undefined) {
-							$timeout(function () {
-								if ($(window).height() - element.position().top - 400 > 400) {
-									$('.custom-overlay').css('min-height', $(window).height() - element.position().top - 400 + 'px')
-									$('.custom-overlay').css('top', 0 + 'px')
-								}
-								else {
-									$('.custom-overlay').css('min-height', $(window).height() - 140 + 'px')
-									$('.custom-overlay').css('top', -$('.page-content__cards').offset().top - 100 + 'px')
-								}
-							})
-						}
+						resize(10, 300);
 					});
 				});
 
+				function resize(size, min) {
+					element.css('max-height', $(window).height() - element.offset().top - size + 'px');
+
+					if ($(window).height() - element.offset().top - size > min) {
+						$timeout(function () {
+							$('.custom-overlay').css('min-height', ($(window).height() - element.offset().top - size) + 'px')
+							$('.custom-overlay').css('top', element.offset().top + 'px')
+						});
+					}
+					else {
+						$timeout(function () {
+							$('.custom-overlay').css('min-height', $(window).height() - $('.page-content__cards').offset().top - 8 + 'px')
+							$('.custom-overlay').css('top', $('.page-content__cards').offset().top + 'px')
+						});
+					}
+
+				}
 			}
 		}
 	}]);

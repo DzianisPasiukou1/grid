@@ -10,9 +10,6 @@
 			link: function (scope, element, attrs) {
 				scope.$watch('data', function (data) {
 					if (data) {
-						//element.html('<div class="custom-overlay" overlay overlay-state="state" overlay-style="style" ng-style="style">	<div class="custom-overlay__toggle"><button ng-click="state = !state">Toggle</button></div><div class="histogram"><svg class="chart"></svg></div><chart-segment selected-users="selectedUsers"></chart-segment></div>');
-						//$compile(element.find('chart-segment'))(scope);
-
 						element.find('.chart').remove();
 						element.find('.histogram').append('<svg class="chart"></svg>');
 

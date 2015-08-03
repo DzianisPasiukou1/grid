@@ -251,7 +251,8 @@ angular.module('gridTaskApp')
 				start: moment(new Date(new Date().setDate(new Date().getDate() - 7))),
 				end: moment(new Date())
 			},
-		}
+		},
+		sankeyPath: "data/sankey/my-graphs.json"
 	});
 ///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
@@ -280,13 +281,20 @@ angular.module('gridTaskApp')
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
 
-				$('#debug').css('left', 40);
-				$('#debug').flip();
+				if (scope.contentOptions.enableDebugging) {
+					$timeout(function () {
+						$('#debug').css('left', 40);
+						$('#debug').flip();
+					});
+				}
 
 				scope.$watch('cards', function (cards) {
 					$timeout(function () {
 						var left = 40;
-						left += scope.margin;
+
+						if (scope.contentOptions.enableDebugging) {
+							left += scope.margin;
+						}
 
 						for (var card in cards) {
 							$('#' + card).css('left', left);
@@ -2262,6 +2270,26 @@ var Initializer = (function () {
 
 		if (this.scope.filters === undefined) {
 			this.scope.filters = this.content.sankeyFilters;
+		}
+
+		if (this.scope.sankeyData === undefined) {
+			d3.json(this.content.sankeyPath, function (error, graph) {
+				this.scope.sankeyData = graph;
+			}.bind(this));
+		}
+
+		if (this.scope.histogramData === undefined) {
+			this.scope.histogramData = [{ name: "1", value: 100000 },
+							{ name: "2", value: 150000 },
+							{ name: "3", value: 170000 },
+							{ name: "4", value: 300000 },
+							{ name: "5", value: 350000 },
+							{ name: "6", value: 400000 },
+							{ name: "7", value: 500000 },
+							{ name: "8", value: 550000 },
+							{ name: "9", value: 600000 },
+							{ name: "10", value: 700000 }];
+
 		}
 	};
 

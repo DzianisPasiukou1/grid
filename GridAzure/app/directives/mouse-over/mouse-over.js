@@ -4,14 +4,24 @@
 			restrict: 'E',
 			scope: {
 				type: '=',
-				value: '='
+				value: '=',
+				parentTop: '=parentTop'
 			},
 			templateUrl: templatesPath + 'directive-templates/mouse-over.html',
 			link: function (scope, element, attrs) {
 				element.find('.mouse-over').css('visibility', 'hidden');
 
+				if (scope.parentTop === undefined) {
+					scope.parentTop = 0;
+				}
+
 				$timeout(function () {
-					element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - 500) + 'px');
+					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < $(window).height()) {
+						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px');
+					}
+					else {
+						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px');
+					}
 
 					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < $(window).width()) {
 						element.find('.mouse-over').css('left', ($.cursorMessageData.mouseX + 10) + 'px');

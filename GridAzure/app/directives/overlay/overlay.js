@@ -7,9 +7,10 @@
 				style: '=overlayStyle'
 			},
 			link: function (scope, element, attrs) {
-				scope.style = { 'left': $(window).width() - 30 + 'px' }
 
 				$timeout(function () {
+					scope.style = { 'left': $(window).width() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+
 					scope.$watch('state', function (state) {
 						if (state) {
 							if ($(window).width() + 650 > 1750) {
@@ -20,7 +21,11 @@
 							}
 						}
 						else {
-							scope.style = { 'left': $(window).width() - 30 + 'px', 'overflow': 'hidden' }
+							if (scope.style.left != $(window).width() - 30 + 'px') {
+								scope.style = { 'left': $(window).width() - 30 + 'px', 'overflow': 'hidden' }
+							}
+
+							element.scrollTop();
 						}
 					});
 				});

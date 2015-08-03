@@ -13,13 +13,20 @@
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
 
-				$('#debug').css('left', 40);
-				$('#debug').flip();
+				if (scope.contentOptions.enableDebugging) {
+					$timeout(function () {
+						$('#debug').css('left', 40);
+						$('#debug').flip();
+					});
+				}
 
 				scope.$watch('cards', function (cards) {
 					$timeout(function () {
 						var left = 40;
-						left += scope.margin;
+
+						if (scope.contentOptions.enableDebugging) {
+							left += scope.margin;
+						}
 
 						for (var card in cards) {
 							$('#' + card).css('left', left);
