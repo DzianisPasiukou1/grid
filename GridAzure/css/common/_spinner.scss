@@ -4,7 +4,7 @@
 	top: 0;
 	left: 0;
 	opacity: 0.4;
-	background-color: white;
+	background-color: $white;
 }
 
 .spinner {
@@ -20,12 +20,11 @@
 .container1 > div, .container2 > div, .container3 > div {
 	width: 10px;
 	height: 10px;
-	background-color: #333;
+	background-color: $black;
 	border-radius: 100%;
 	position: absolute;
 	-webkit-animation: bouncedelay 1.2s infinite ease-in-out;
 	animation: bouncedelay 1.2s infinite ease-in-out;
-	/* Prevent first frame from flickering when animation starts */
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }

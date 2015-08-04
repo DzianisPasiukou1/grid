@@ -449,6 +449,195 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/core-diagram/core-diagram-controller.js
+angular.module('gridTaskApp')
+	.controller('coreDiagramCtrl', ['$scope', function ($scope) {
+	
+	}]);
+///#source 1 1 /app/directives/core-diagram/core-diagram.js
+angular.module('gridTaskApp')
+	.directive('coreDiagram', ['templatesPath', '$compile', function (templatesPath, $compile) {
+		return {
+			restrict: 'E',
+			templateUrl: templatesPath + 'directive-templates/core-diagram.html',
+			controller: 'coreDiagramCtrl',
+			scope: {
+				data: '=sankeyData'
+			},
+			link: function (scope, element, attrs) {
+
+				scope.$watch('data', function (graph) {
+					if (graph) {
+						var units = "Widgets";
+
+						var margin = { top: 0, right: 10, bottom: 10, left: 10 },
+							width = 1500 - margin.left - margin.right,
+							height = 740 - margin.top - margin.bottom;
+
+						var formatNumber = d3.format(",.0f"),    // zero decimal places
+							format = function (d) { return formatNumber(d) + " " + units; },
+							color = d3.scale.category20();
+
+						$('#chart').html('');
+
+						// append the svg canvas to the page
+						var svg = d3.select("#chart").append("svg")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.top + margin.bottom)
+						  .append("g")
+							.attr("transform",
+								  "translate(" + margin.left + "," + margin.top + ")");
+
+						// Set the sankey diagram properties
+						var sankey = d3.sankey()
+							.nodeWidth(25)
+							.nodePadding(35)
+							.size([width, height]);
+
+						var path = sankey.link();
+
+						var nodeMap = {};
+						graph.nodes.forEach(function (x) { nodeMap[x.name] = x; });
+						graph.links = graph.links.map(function (x) {
+							return {
+								source: nodeMap[x.source],
+								target: nodeMap[x.target],
+								value: x.value
+							};
+						});
+
+						sankey
+							.nodes(graph.nodes)
+							.links(graph.links)
+							.layout(32);
+
+						// add in the links
+						var link = svg.append("g").selectAll(".link")
+							.data(graph.links)
+						  .enter().append("path")
+							.attr("class", "link")
+							.attr("d", path)
+							.style("stroke-width", function (d) { return Math.max(1, d.dy); })
+							.style("stroke", function (d) {
+								if (d.source.color) {
+									return d.source.color;
+								}
+								else {
+									return d.source.color = color(d.source.name.replace(/ .*/, ""));
+								}
+							})
+
+
+						// add the link titles
+						link.append("title")
+							  .text(function (d) {
+							  	return d.source.name + " → " +
+										d.target.name + "\n" + format(d.value);
+							  });
+
+						// add in the nodes
+						var node = svg.append("g").selectAll(".node")
+							.data(graph.nodes)
+						  .enter().append("g")
+							.attr("class", "node")
+							.attr("transform", function (d) {
+								//d.x = Math.max(0, d.mx)
+								//d.y = Math.max(0, d.my)
+								//return "translate(" + d.transform + ")";
+								return "translate(" + d.x + "," + d.y + ")";
+							})
+						  .call(d3.behavior.drag()
+							.origin(function (d) { return d; })
+							.on("dragstart", function () {
+								this.parentNode.appendChild(this);
+							})
+							.on("drag", dragmove));
+
+						//link.attr("d", path);
+
+						// add the rectangles for the nodes
+						node.append("rect")
+							.attr("height", function (d) { return d.dy; })
+							.attr("width", sankey.nodeWidth())
+							.style("fill", function (d) {
+								if (d.color) {
+									return d.color = d.color;
+								}
+								else {
+									return d.color = color(d.name.replace(/ .*/, ""));
+								}
+							})
+							.style("stroke", function (d) {
+								return d3.rgb(d.color).darker(2);
+							})
+							.on("mouseover", function (d) {
+								scope.type = {};
+								scope.value = { header: '', data: [] };
+
+								if (d.name == 'Log in') {
+									scope.type.isMedium = true;
+									scope.value.header = "Event: Log In";
+									scope.value.data = {
+										topSegments: ['Moms_2014', 'Affiluent_buyers', 'Auto-Inteders', 'Star Wars', 'Female 25-34'],
+										topCampaings: ['C1_Dx_1', 'F2_DX_2', 'Gofundme DX3', 'Test campaign', 'Random Campaign']
+									};
+								}
+								else {
+									scope.type.isSimple = true;
+									scope.value.header = "Video: ID: 124856";
+									scope.value.data = [{ campaignId: '657H836', adId: '904743' }, { campaignId: '657H836', adId: '904743' }]
+								}
+
+								$('mouse-over').remove();
+
+								scope.parentTop = $('#chart').offset().top;
+
+								element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
+								$compile($('mouse-over'))(scope);
+							}).on("mouseout", function (d) {
+								$('mouse-over').remove();
+							});
+
+
+						// add in the title for the nodes
+						node.append("text")
+							.attr("x", -6)
+							.attr("y", function (d) { return d.dy / 2; })
+							.attr("dy", ".35em")
+							.attr("text-anchor", "end")
+							.attr("transform", null)
+							.text(function (d) { return d.name; })
+						  .filter(function (d) { return d.x < width / 2; })
+							.attr("x", 6 + sankey.nodeWidth())
+							.attr("text-anchor", "start");
+
+						node.append("text")
+							.attr("x", 20)
+							.attr("y", function (d) { return d.dy / 2; })
+							.attr("dy", ".35em")
+							.attr("text-anchor", "end")
+							.attr("transform", null)
+							.text(function (d) { return d.val; })
+						  .filter(function (d) { return d.x < width / 2; })
+							.attr("x", -20 + sankey.nodeWidth())
+							.attr("text-anchor", "start");
+					}
+
+					// the function for moving the nodes
+					function dragmove(d) {
+						d3.select(this).attr("transform",
+							"translate(" + (
+								   d.x = Math.max(0, Math.min(width - d.dx, d3.event.x))
+								) + "," + (
+									   d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))
+								) + ")");
+						sankey.relayout();
+						link.attr("d", path);
+					}
+				});
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/custom-datepicker/custom-datepicker.js
 angular.module('gridTaskApp')
 	.directive('customDatepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
@@ -1576,6 +1765,108 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
+///#source 1 1 /app/directives/histogram/histogram-controller.js
+angular.module('gridTaskApp')
+	.controller('histogramCtrl', ['$scope', function ($scope) {
+		$scope.selectedUsers = [];
+
+		$scope.select = function (user) {
+			if (user.name != "1") {
+				$scope.selectedUsers.push({ touchpoints: user.name + ' touchpoints' });
+			}
+			else {
+				$scope.selectedUsers.push({ touchpoints: user.name + ' touchpoint' });
+			}
+
+			$scope.$apply();
+		}
+	}]);
+///#source 1 1 /app/directives/histogram/histogram.js
+angular.module('gridTaskApp')
+	.directive('histogram', ['templatesPath', '$compile', function (templatesPath, $compile) {
+		return {
+			restrict: "E",
+			controller: 'histogramCtrl',
+			scope: {
+				data: '=histogramData'
+			},
+			templateUrl: templatesPath + 'directive-templates/histogram.html',
+			link: function (scope, element, attrs) {
+				scope.$watch('data', function (data) {
+					if (data) {
+						element.find('.chart').remove();
+						element.find('.histogram').append('<svg class="chart"></svg>');
+
+						var margin = { top: 50, right: 30, bottom: 60, left: 90 },
+					width = 700 - margin.left - margin.right,
+					height = 340 - margin.top - margin.bottom;
+
+						var x = d3.scale.ordinal()
+							.domain(data.map(function (d) { return d.name; }))
+							.rangeRoundBands([0, width], .1);
+
+						var y = d3.scale.linear()
+							.domain([0, 900000])
+							.range([height, 0]);
+
+						var xAxis = d3.svg.axis()
+							.scale(x)
+							.orient("bottom");
+
+						var yAxis = d3.svg.axis()
+							.scale(y)
+							.orient("left");
+
+						var chart = d3.select(".chart")
+							.attr("width", width + margin.left + margin.right)
+							.attr("height", height + margin.top + margin.bottom)
+						  .append("g")
+							.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+						chart.selectAll(".bar")
+							  .data(data)
+							  .enter()
+							  .append("rect")
+							  .attr("class", "bar")
+							  .attr("x", function (d) { return x(d.name) + 38; })
+							  .attr("y", function (d) { return y(d.value); })
+							  .attr("height", function (d) { return height - y(d.value); })
+							  .attr("width", x.rangeBand() / 2)
+							.on('click', function (d) {
+								scope.select(d);
+							});
+
+						chart.append("g")
+							.attr("class", "y axis")
+							.call(yAxis)
+						  .append("text")
+							.attr("transform", "rotate(-90)")
+							.attr("x", -height / 2)
+							.attr("y", -10 - margin.bottom)
+							.attr("dy", ".1em")
+							.attr("dx", "40px")
+							.style("text-anchor", "end")
+							.text("Population");
+						chart.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0," + height + ")")
+							.call(xAxis)
+						  .append("text")
+							.attr("x", width / 2)
+							.attr("y", margin.bottom - 25)
+							.attr("dy", ".71em")
+							.style("text-anchor", "end")
+							.text("Touchpoint #");
+						chart.append("text")
+						  .text("Potential Rich histogram")
+						  .attr("x", 200)
+						  .attr("class", "title");
+
+					}
+				})
+			}
+		}
+	}]);
 ///#source 1 1 /app/directives/history/history-controller.js
 angular.module('gridTaskApp')
 	.controller('historyCtrl', ['$scope', function ($scope) {
@@ -2361,6 +2652,69 @@ angular.module('gridTaskApp')
 				dateRange: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
+		}
+	}]);
+///#source 1 1 /app/directives/page-content-d3/page-content-d3.js
+angular.module('gridTaskApp')
+	.directive('pageContentD3', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+		return {
+			restrict: 'E',
+			scope: {
+				contentOptions: '=',
+				cardsOptions: '=',
+				sankeyData: '=',
+				histogramData: '=',
+				filters: '='
+			},
+			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
+			link: function (scope, element) {
+				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				initializer.initSankey();
+
+				scope.contentOptions.refresh = function () {
+					initializer.refreshSankey();
+				}
+
+				scope.filters.onDateRangeChange = function () {
+					for (var card in scope.cardsOptions.cards) {
+						if (scope.cardsOptions.cards[card].counter) {
+							scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(this.dateRange.start.toDate(), this.dateRange.end.toDate());
+						}
+					}
+				}
+			}
+		};
+	}])
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js
+angular.module('gridTaskApp')
+	.controller('contentOptionsD3Ctrl', ['$scope', function ($scope) {
+		$scope.$watch('options.searchValue', function (value) {
+			if (!$scope.options.searchOptions) {
+				return;
+			}
+
+			if ($scope.options.searchOptions.selected.label == 'everywhere') {
+				$scope.options.search(value);
+			} else {
+				$scope.options.search($scope.options.searchOptions.selected.label + ':' + value);
+			}
+		});
+
+	}]);
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3.js
+angular.module('gridTaskApp')
+	.directive('contentOptionsD3', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'E',
+			controller: 'contentOptionsD3Ctrl',
+			scope: {
+				options: '=',
+				filters: '=',
+				loading: '=',
+				onDataRangeChanged: '=',
+				past: '='
+			},
+			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/resize-on/resize-on.js

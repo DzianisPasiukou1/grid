@@ -1,14 +1,14 @@
 ﻿.cursor-message {
 	position: absolute;
 	z-index: 99999;
-	border: 1px solid #D8D8D8;
-	background-color: rgb(83, 133, 84);
+	border: $small-bgrey-border;
+	background-color: $green;
 	padding: 15px;
 	margin: 0;
 	display: none;
-	font-size: 14px;
-	font-family: "Arial", "Helvetica", sans-serif;
+	font-size: $default-font-size - 2px;
+	font-family: $helvetica-family;
 	line-height: 1;
-	border-color: #787878;
-	font-weight: bold;
+	border-color: $dark-grey;
+	font-weight: $bold;
 }

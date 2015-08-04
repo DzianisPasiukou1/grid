@@ -1,11 +1,10 @@
 ﻿core-diagram {
-	font-size: 14px;
-	font-weight: bold;
+	font-size: $default-font-size - 2px;
+	font-weight: $bold;
 
 	#chart {
-		border: 1px solid #2ba6d5;
-		border-radius: 3px 3px;
-		/*width: 97%;*/
+		border: $small-blue-border;
+		border-radius: $default-radius;
 		margin-left: 15px;
 		margin-right: 50px;
 		overflow: auto;
@@ -14,33 +13,31 @@
 	}
 
 	svg {
-		/*margin-left: 15%;*/
 		position: relative;
 		margin-left: 10px;
 		margin-right: 10px;
 	}
 
-	.node rect {
-		cursor: move;
-		fill-opacity: .9;
-		shape-rendering: crispEdges;
-	}
+	.node {
+		&rect {
+			cursor: move;
+			fill-opacity: .9;
+			shape-rendering: crispEdges;
+		}
 
-	.node text {
-		pointer-events: none;
-		text-shadow: 0 1px 0 #fff;
+		&text {
+			pointer-events: none;
+			text-shadow: 0 1px 0 #fff;
+		}
 	}
 
 	.link {
 		fill: none;
-		stroke: #000;
+		stroke: $black;
 		stroke-opacity: .2;
-	}
 
-	.link:hover {
-		stroke-opacity: .5;
-	}
-
-	.text-val {
+		&:hover {
+			stroke-opacity: .5;
+		}
 	}
 }

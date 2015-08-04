@@ -1,25 +1,24 @@
 ﻿.my-panel {
 	display: block;
 	position: relative;
-	background-color: #ffffff;
-	border: 1px #d9d9d9 solid;
+	background-color: $light-white;
+	border: $small-grey-border;
 
 	> .heading, > .content {
 		display: block;
 		position: relative;
 		color: #1d1d1d;
-		border: 1px #d9d9d9 solid;
+		border: $small-grey-border;
 		border-bottom: 0.9px #d9d9d9 solid;
 	}
 
 	> .heading {
 		padding: 0.500rem 0;
-		color: #1e1e1e;
-		background-color: rgb(242,242,242);
+		color: $black;
+		background-color: $white-grey;
 		cursor: default;
 		vertical-align: middle;
-		/*height: 46px;*/
-		font: 600 18px/1 "Segoe UI", "Open Sans", serif;
+		font: 600 18px/1 $segoi-family;
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
@@ -31,7 +30,7 @@
 	}
 
 	> .content {
-		background-color: white;
+		background-color: $white;
 		z-index: 1;
 		font-size: 0.875rem;
 	}

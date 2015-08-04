@@ -1,17 +1,9 @@
-﻿html {
-	font-size: 10px;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	font-family: sans-serif;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-}
-
-body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #333;
-	background-color: #fff;
+﻿body {
+	font-family: $helvetica-family;
+	font-size: $default-font-size - 2px;
+	line-height: $default-line-height;
+	color: $black;
+	background-color: $light-white;
 	margin: 0;
 }
 
@@ -28,92 +20,16 @@ img {
 	border: 0;
 }
 
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-:after, :before {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-@font-face {
-	font-family: 'icomoon';
-	src: url('fonts/icomoon.eot?flqq25');
-	src: url('fonts/icomoon.eot?#iefixflqq25') format('embedded-opentype'), url('fonts/icomoon.ttf?flqq25') format('truetype'), url('fonts/icomoon.woff?flqq25') format('woff'), url('fonts/icomoon.svg?flqq25#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-menu-down:before {
-	content: "\e603";
-	display: inline-block;
-}
-
-.icon-menu-up:before {
-	content: "\e603";
-	-ms-transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	transform: rotate(180deg);
-	display: inline-block;
-	position: relative;
-	bottom: 4px;
-}
-
-.icon-filter:before {
-	content: "\e604";
-}
-
-.icon-arrow-down:before {
-	content: "\e605";
-}
-
-.icon-arrow-up:before {
-	content: "\e605";
-	-ms-transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	transform: rotate(180deg);
-	display: inline-block;
-	position: relative;
-}
-
-.icon-search:before {
-	content: "\e601";
-}
-
-.icon-close:before {
-	content: "\e602";
-}
-
-.icon-text2:before {
-	content: "\e600";
-}
-
 
 input, textarea, keygen, select, button {
-	margin: 0em;
+	margin: 0;
 	font: normal normal normal 13.3333330154419px/normal Arial;
 	text-rendering: auto;
 	color: initial;
 	letter-spacing: normal;
 	word-spacing: normal;
 	text-transform: none;
-	text-indent: 0px;
+	text-indent: 0;
 	text-shadow: none;
 	display: inline-block;
 	text-align: start;
@@ -138,25 +54,26 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 hr {
 	border: 0;
 	height: 0;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	border-top: $small-black-border;
+	border-bottom: $small-grey-border;
 }
 
 a {
-	color: #337ab7;
+	color: $blue;
 	text-decoration: none;
-}
 
-a:hover,
-a:focus {
-	color: #23527c;
-	text-decoration: underline;
-}
+	&:focus {
+		outline: thin dotted;
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px;
+		color: $dark-blue;
+		text-decoration: underline;
+	}
 
-a:focus {
-	outline: thin dotted;
-	outline: 5px auto -webkit-focus-ring-color;
-	outline-offset: -2px;
+	&:hover {
+		color: $dark-blue;
+		text-decoration: underline;
+	}
 }
 
 button::-moz-focus-inner {
@@ -169,14 +86,14 @@ button::-moz-focus-inner {
 }
 
 ::-webkit-scrollbar-track {
-	background-color: #eaeaea;
-	border-left: 1px solid #ccc;
+	background-color: $scroll-track;
+	border-left: 1px solid $scroll-thumb;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ccc;
+	background-color: $scroll-thumb;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #aaa;
+	background-color: $scroll-thumb-hover;
 }

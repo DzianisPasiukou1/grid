@@ -4582,3 +4582,6 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/obj/Release/Package/PackageTmp/css/common/_overlay.scss
 /GridAzure/obj/Release/Package/PackageTmp/css/images/main-logo-k-only.png
 /GridAzure/obj/Release/Package/PackageTmp/data/sankey/single.json
+/GridAzure/node_modules/.bin
+/GridAzure/node_modules/karma
+/GridAzure/obj/Release/Package/PackageTmp/app

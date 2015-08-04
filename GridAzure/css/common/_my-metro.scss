@@ -1,31 +1,29 @@
 ﻿.metro-btn {
-	border-color: #787878;
+	border-color: $dark-grey;
 	padding: 0 1rem;
 	height: 3.125rem;
 	text-align: center;
 	vertical-align: middle;
-	background-color: #ffffff;
-	border: 1px #d9d9d9 solid;
+	background-color: $light-white;
+	border: $small-grey-border;
 	cursor: pointer;
 	display: inline-block;
 	outline: none;
-	font-size: 14px;
-	font-family: "Arial", "Helvetica", sans-serif;
+	font-size: $font-size;
+	font-family: $helvetica-family;
 	line-height: 1;
 	margin: .15625rem 0;
 	position: relative;
-	color: #787878;
-	font-weight: 500;
-	/*transition: all linear 0.1s;*/
+	color: $dark-grey;
+	font-weight: $normal;
+
 	&:hover {
-		border-color: #787878;
+		border-color: $dark-grey;
 	}
 
 	&:active {
-		/*box-shadow: 0 2px 0 #787878;
-		transform: translateY(3px);*/
-		background: #5a5a5a;
-		color: white;
+		background: $black;
+		color: $white;
 		box-shadow: none;
 	}
 }
@@ -55,12 +53,11 @@
 	.input-control.checkbox .check {
 		width: 1.625rem;
 		height: 1.625rem;
-		background-color: #ffffff;
-		border: 1px #d9d9d9 solid;
+		background-color: $light-white;
+		border: $small-grey-border;
 		padding: 0;
 		position: relative;
 		display: inline-block;
-		/*vertical-align: middle;*/
 	}
 
 	.input-control.checkbox.text-left .check {
@@ -72,47 +69,17 @@
 	}
 
 	.input-control.checkbox .check:before {
-		position: absolute;
-		vertical-align: middle;
-		color: transparent;
-		font-size: 0;
-		content: "";
-		height: .3125rem;
-		width: .565rem;
-		background-color: transparent;
+		@include metro-check();
 		border-left: 1px solid;
 		border-bottom: 1px solid;
 		border-color: transparent;
-		left: 50%;
-		top: 8px;
-		margin-left: -3px;
-		margin-top: -3px;
-		display: block;
-		-webkit-transform: rotate(-45deg);
-		transform: rotate(-45deg);
-		transition: all 0.1s linear;
 	}
 
 	.input-control.checkbox .marked:before {
-		position: absolute;
-		vertical-align: middle;
-		color: transparent;
-		font-size: 0;
-		content: "";
-		height: .3125rem;
-		width: .565rem;
-		background-color: transparent;
+		@include metro-check();
 		border-left: 0 !important;
 		border-bottom: 2px solid;
 		border-color: #555555;
-		left: 50%;
-		top: 8px;
-		margin-left: -3px;
-		margin-top: -3px;
-		display: block;
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-		transition: all 0.1s linear;
 	}
 
 	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before {

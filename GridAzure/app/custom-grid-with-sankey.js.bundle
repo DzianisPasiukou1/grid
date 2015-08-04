@@ -20,8 +20,8 @@
 		<file>/app/directives/chart-segment/chart-segment.js</file>
 		<file>/app/directives/checkbox-select/checkbox-select-controller.js</file>
 		<file>/app/directives/checkbox-select/checkbox-select.js</file>
-		<!--<file>/app/directives/core-diagram/core-diagram-controller.js</file>
-		<file>/app/directives/core-diagram/core-diagram.js</file>-->
+		<file>/app/directives/core-diagram/core-diagram-controller.js</file>
+		<file>/app/directives/core-diagram/core-diagram.js</file>
 		<file>/app/directives/custom-datepicker/custom-datepicker.js</file>
 		<file>/app/directives/custom-grid/custom-grid-controller.js</file>
 		<file>/app/directives/custom-grid/custom-grid.js</file>
@@ -40,8 +40,8 @@
 		<file>/app/directives/filter/filter-list/filter-list-controller.js</file>
 		<file>/app/directives/filter/filter-list/filter-list.js</file>
 		<file>/app/directives/graphs/graphs.js</file>
-		<!--<file>/app/directives/histogram/histogram-controller.js</file>
-		<file>/app/directives/histogram/histogram.js</file>-->
+		<file>/app/directives/histogram/histogram-controller.js</file>
+		<file>/app/directives/histogram/histogram.js</file>
 		<file>/app/directives/history/history-controller.js</file>
 		<file>/app/directives/history/history.js</file>
 		<file>/app/directives/kx-date-range/kx-date-range.js</file>
@@ -69,9 +69,9 @@
 		<file>/app/directives/page-content-cards/page-content-cards.js</file>
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js</file>
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards.js</file>
-		<!--<file>/app/directives/page-content-d3/page-content-d3.js</file>
+		<file>/app/directives/page-content-d3/page-content-d3.js</file>
 		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js</file>
-		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3.js</file>-->
+		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3.js</file>
 		<file>/app/directives/resize-on/resize-on.js</file>
 		<file>/app/directives/search/search-controller.js</file>
 		<file>/app/directives/search/search.js</file>

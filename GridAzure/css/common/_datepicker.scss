@@ -1,36 +1,11 @@
-﻿@font-face {
-	font-family: 'datepicker';
-	src: url('fonts/datepicker.eot?72jwq5');
-	src: url('fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('fonts/datepicker.ttf?72jwq5') format('truetype'), url('fonts/datepicker.woff?72jwq5') format('woff'), url('fonts/datepicker.svg?72jwq5#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-[class^="glyph-"], [class*=" glyph-"] {
-	font-family: 'datepicker';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.glyph-calendar:before {
-	content: "\e600";
-}
-
-
-.date-btn {
+﻿.date-btn {
 	@extend .metro-btn;
 
 	&__toggle {
 		@extend .metro-btn;
 
 		&.opened {
-			background-color: #337ab7;
+			background-color: $ocean;
 		}
 	}
 
@@ -42,53 +17,52 @@
 	&__datepicker {
 		position: absolute;
 		z-index: 100;
-		font-size: 14px;
-		background-color: #fff;
+		font-size: $font-size;
+		background-color: $white-grey;
 		-webkit-background-clip: padding-box;
 		background-clip: padding-box;
-		border: 1px solid #ccc;
-		border: 1px solid rgba(0,0,0,.15);
-		-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-		box-shadow: 0 6px 12px rgba(0,0,0,.175);
+		border: $small-black-border;
+		-webkit-box-shadow: $black-shadow;
+		box-shadow: $black-shadow;
 	}
 }
 
 .date-picker-wrapper {
 	padding: 0 !important;
-	font-size: 14px;
-	font-family: "Arial", "Helvetica", sans-serif;
+	font-size: $default-font-size - 2px;
+	font-family: $helvetica-family;
 	z-index: 1000;
 
 	.month-wrapper {
 		border: 0;
-		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+		box-shadow: 0 0 5px 0 $black;
 		border-radius: 0;
 		width: 100% !important;
 
 		.month1 {
 			.caption {
-				background-color: #59cde2;
-				color: #ffffff;
+				background-color: $light-blue;
+				color: $light-white;
 
 				.prev {
 					&:hover {
-						background-color: #59cde2;
-						color: #4547ac;
-						font-weight: bold;
+						background-color: $light-blue;
+						color: $dark-blue;
+						font-weight: $bold;
 					}
 				}
 
 				.next {
 					&:hover {
-						background-color: #59cde2;
-						color: #4547ac;
-						font-weight: bold;
+						background-color: $light-blue;
+						color: $dark-blue;
+						font-weight: $bold;
 					}
 				}
 			}
 
 			th {
-				font-weight: normal !important;
+				font-weight: $normal !important;
 			}
 
 			td {
@@ -96,16 +70,16 @@
 			}
 
 			.day {
-				border: 1px #bcd9e2 solid;
+				border: $small-light-blue-border;
 				text-align: center;
 				width: 30px;
 
 				&:hover {
-					background-color: #4da3ba;
+					background-color: $ocean;
 				}
 
 				&.real-today {
-					background-color: #60a917;
+					background-color: $light-green;
 				}
 			}
 		}

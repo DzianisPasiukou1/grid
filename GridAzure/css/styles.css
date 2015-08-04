@@ -1,70 +1,16 @@
-﻿.input-prepend {
-  display: inline-block; }
-  .input-prepend .add-on {
-    display: inline-block;
-    width: auto;
-    height: 20px;
-    min-width: 16px;
-    padding: 4px 5px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 20px;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    border: 1px solid #ccc;
-    float: left;
-    background-color: #bbb;
-    width: 30px;
-    height: 35px !important;
-    padding-top: 7px;
-    border-radius: 4px 0 0 4px; }
-  .input-prepend .date-range-picker {
-    /*width: 210px;*/
-    display: inline-block;
-    width: 220px;
-    /*margin-right: 30px;*/ }
-    .input-prepend .date-range-picker input {
-      width: 190px;
-      height: 35px;
-      border: 1px solid #aaa;
-      border-radius: 0 4px 4px 0;
-      padding-left: 10px; }
+﻿@font-face {
+  font-family: 'datepicker';
+  src: url('fonts/datepicker.eot?72jwq5');
+  src: url('fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('fonts/datepicker.ttf?72jwq5') format('truetype'), url('fonts/datepicker.woff?72jwq5') format('woff'), url('fonts/datepicker.svg?72jwq5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
 
-html {
-  font-size: 10px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%; }
-
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857;
-  color: #333;
-  background-color: #fff;
-  margin: 0; }
-
-div {
-  display: block; }
-
-ul {
-  list-style: none; }
-
-img {
-  vertical-align: middle;
-  border: 0; }
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-:after, :before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+@font-face {
+  font-family: 'cards';
+  src: url('fonts/cards.eot?cld4v2');
+  src: url('fonts/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('fonts/cards.ttf?cld4v2') format('truetype'), url('fonts/cards.woff?cld4v2') format('woff'), url('fonts/cards.svg?cld4v2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
 
 @font-face {
   font-family: 'icomoon';
@@ -72,6 +18,41 @@ img {
   src: url('fonts/icomoon.eot?#iefixflqq25') format('embedded-opentype'), url('fonts/icomoon.ttf?flqq25') format('truetype'), url('fonts/icomoon.woff?flqq25') format('woff'), url('fonts/icomoon.svg?flqq25#icomoon') format('svg');
   font-weight: normal;
   font-style: normal; }
+
+@font-face {
+  font-family: 'Text Icon';
+  src: url('fonts/text.eot?hxxs7');
+  src: url('fonts/text.eot?#iefixhxxs7') format('embedded-opentype'), url('fonts/text.ttf?hxxs7') format('truetype'), url('fonts/text.woff?hxxs7') format('woff'), url('fonts/text.svg?hxxs7#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'Text Icon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-text2:before {
+  content: "\e600"; }
+
+[class^="glyph-"], [class*=" glyph-"] {
+  font-family: 'datepicker';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.glyph-calendar:before {
+  content: "\e600"; }
 
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
@@ -120,15 +101,79 @@ img {
 .icon-text2:before {
   content: "\e600"; }
 
+.icon-info:before {
+  content: "\e600"; }
+
+.icon-circle-left:before {
+  content: "\e601"; }
+
+.custom-card, .my-card .front, .my-card .back {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 200;
+  cursor: pointer;
+  border: 1px solid #d9d9d9;
+  width: 250px !important;
+  height: 120px !important; }
+
+.input-prepend {
+  display: inline-block; }
+  .input-prepend .add-on {
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    min-width: 16px;
+    padding: 4px 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #bbb;
+    width: 30px;
+    height: 35px !important;
+    padding-top: 7px;
+    border-radius: 4px 0 0 4px; }
+  .input-prepend .date-range-picker {
+    display: inline-block;
+    width: 220px; }
+    .input-prepend .date-range-picker input {
+      width: 190px;
+      height: 35px;
+      border: 1px solid #aaa;
+      border-radius: 0 4px 4px 0;
+      padding-left: 10px; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #333;
+  background-color: #fff;
+  margin: 0; }
+
+div {
+  display: block; }
+
+ul {
+  list-style: none; }
+
+img {
+  vertical-align: middle;
+  border: 0; }
+
 input, textarea, keygen, select, button {
-  margin: 0em;
+  margin: 0;
   font: normal normal normal 13.3333330154419px/normal Arial;
   text-rendering: auto;
   color: initial;
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
-  text-indent: 0px;
+  text-indent: 0;
   text-shadow: none;
   display: inline-block;
   text-align: start; }
@@ -150,20 +195,20 @@ hr {
   border: 0;
   height: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+  border-bottom: 1px solid #d9d9d9; }
 
 a {
   color: #337ab7;
   text-decoration: none; }
-
-a:hover, a:focus {
-  color: #23527c;
-  text-decoration: underline; }
-
-a:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px; }
+  a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    color: #23527c;
+    text-decoration: underline; }
+  a:hover {
+    color: #23527c;
+    text-decoration: underline; }
 
 button::-moz-focus-inner {
   border: 0; }
@@ -188,25 +233,22 @@ button::-moz-focus-inner {
   height: 3.125rem;
   text-align: center;
   vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px #d9d9d9 solid;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
   cursor: pointer;
   display: inline-block;
   outline: none;
   font-size: 14px;
-  font-family: "Arial", "Helvetica", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1;
   margin: 0.15625rem 0;
   position: relative;
   color: #787878;
-  font-weight: 500;
-  /*transition: all linear 0.1s;*/ }
+  font-weight: normal; }
   .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
     border-color: #787878; }
   .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
-    /*box-shadow: 0 2px 0 #787878;
-		transform: translateY(3px);*/
-    background: #5a5a5a;
+    background: #333;
     color: white;
     box-shadow: none; }
 
@@ -228,12 +270,11 @@ button::-moz-focus-inner {
 .metro-checkbox .input-control.checkbox .check, .my-dropdown__list__check .input-control.checkbox .check, .checkbox-select__check .input-control.checkbox .check, .cell-details__check .input-control.checkbox .check, .metro-checkbox .my-dropdown__list__input-control .check, .my-dropdown__list__check .my-dropdown__list__input-control .check, .checkbox-select__check .my-dropdown__list__input-control .check, .cell-details__check .my-dropdown__list__input-control .check, .metro-checkbox .checkbox-select__input-control .check, .my-dropdown__list__check .checkbox-select__input-control .check, .checkbox-select__check .checkbox-select__input-control .check, .cell-details__check .checkbox-select__input-control .check, .metro-checkbox .cell-details__input .check, .my-dropdown__list__check .cell-details__input .check, .checkbox-select__check .cell-details__input .check, .cell-details__check .cell-details__input .check, .metro-checkbox .input-control.checkbox .my-dropdown__list__input-control__span, .my-dropdown__list__check .input-control.checkbox .my-dropdown__list__input-control__span, .checkbox-select__check .input-control.checkbox .my-dropdown__list__input-control__span, .cell-details__check .input-control.checkbox .my-dropdown__list__input-control__span, .metro-checkbox .my-dropdown__list__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span, .cell-details__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span, .metro-checkbox .checkbox-select__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .checkbox-select__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .checkbox-select__input-control .my-dropdown__list__input-control__span, .cell-details__check .checkbox-select__input-control .my-dropdown__list__input-control__span, .metro-checkbox .cell-details__input .my-dropdown__list__input-control__span, .my-dropdown__list__check .cell-details__input .my-dropdown__list__input-control__span, .checkbox-select__check .cell-details__input .my-dropdown__list__input-control__span, .cell-details__check .cell-details__input .my-dropdown__list__input-control__span, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span, .my-dropdown__list__check .input-control.checkbox .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span, .cell-details__check .input-control.checkbox .checkbox-select__input-control__span, .metro-checkbox .my-dropdown__list__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .my-dropdown__list__input-control .checkbox-select__input-control__span, .checkbox-select__check .my-dropdown__list__input-control .checkbox-select__input-control__span, .cell-details__check .my-dropdown__list__input-control .checkbox-select__input-control__span, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .checkbox-select__input-control .checkbox-select__input-control__span, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span, .cell-details__check .checkbox-select__input-control .checkbox-select__input-control__span, .metro-checkbox .cell-details__input .checkbox-select__input-control__span, .my-dropdown__list__check .cell-details__input .checkbox-select__input-control__span, .checkbox-select__check .cell-details__input .checkbox-select__input-control__span, .cell-details__check .cell-details__input .checkbox-select__input-control__span, .metro-checkbox .input-control.checkbox .cell-details__input__check, .my-dropdown__list__check .input-control.checkbox .cell-details__input__check, .checkbox-select__check .input-control.checkbox .cell-details__input__check, .cell-details__check .input-control.checkbox .cell-details__input__check, .metro-checkbox .my-dropdown__list__input-control .cell-details__input__check, .my-dropdown__list__check .my-dropdown__list__input-control .cell-details__input__check, .checkbox-select__check .my-dropdown__list__input-control .cell-details__input__check, .cell-details__check .my-dropdown__list__input-control .cell-details__input__check, .metro-checkbox .checkbox-select__input-control .cell-details__input__check, .my-dropdown__list__check .checkbox-select__input-control .cell-details__input__check, .checkbox-select__check .checkbox-select__input-control .cell-details__input__check, .cell-details__check .checkbox-select__input-control .cell-details__input__check, .metro-checkbox .cell-details__input .cell-details__input__check, .my-dropdown__list__check .cell-details__input .cell-details__input__check, .checkbox-select__check .cell-details__input .cell-details__input__check, .cell-details__check .cell-details__input .cell-details__input__check {
   width: 1.625rem;
   height: 1.625rem;
-  background-color: #ffffff;
-  border: 1px #d9d9d9 solid;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
   padding: 0;
   position: relative;
-  display: inline-block;
-  /*vertical-align: middle;*/ }
+  display: inline-block; }
 .metro-checkbox .input-control.checkbox.text-left .check, .my-dropdown__list__check .input-control.checkbox.text-left .check, .checkbox-select__check .input-control.checkbox.text-left .check, .cell-details__check .input-control.checkbox.text-left .check, .metro-checkbox .text-left.my-dropdown__list__input-control .check, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .check, .checkbox-select__check .text-left.my-dropdown__list__input-control .check, .cell-details__check .text-left.my-dropdown__list__input-control .check, .metro-checkbox .text-left.checkbox-select__input-control .check, .my-dropdown__list__check .text-left.checkbox-select__input-control .check, .checkbox-select__check .text-left.checkbox-select__input-control .check, .cell-details__check .text-left.checkbox-select__input-control .check, .metro-checkbox .text-left.cell-details__input .check, .my-dropdown__list__check .text-left.cell-details__input .check, .checkbox-select__check .text-left.cell-details__input .check, .cell-details__check .text-left.cell-details__input .check, .metro-checkbox .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .my-dropdown__list__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .checkbox-select__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .cell-details__check .input-control.checkbox.text-left .my-dropdown__list__input-control__span, .metro-checkbox .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .cell-details__check .text-left.my-dropdown__list__input-control .my-dropdown__list__input-control__span, .metro-checkbox .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .cell-details__check .text-left.checkbox-select__input-control .my-dropdown__list__input-control__span, .metro-checkbox .text-left.cell-details__input .my-dropdown__list__input-control__span, .my-dropdown__list__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .checkbox-select__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .cell-details__check .text-left.cell-details__input .my-dropdown__list__input-control__span, .metro-checkbox .input-control.checkbox.text-left .checkbox-select__input-control__span, .my-dropdown__list__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .checkbox-select__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .cell-details__check .input-control.checkbox.text-left .checkbox-select__input-control__span, .metro-checkbox .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .checkbox-select__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .cell-details__check .text-left.my-dropdown__list__input-control .checkbox-select__input-control__span, .metro-checkbox .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .checkbox-select__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .cell-details__check .text-left.checkbox-select__input-control .checkbox-select__input-control__span, .metro-checkbox .text-left.cell-details__input .checkbox-select__input-control__span, .my-dropdown__list__check .text-left.cell-details__input .checkbox-select__input-control__span, .checkbox-select__check .text-left.cell-details__input .checkbox-select__input-control__span, .cell-details__check .text-left.cell-details__input .checkbox-select__input-control__span, .metro-checkbox .input-control.checkbox.text-left .cell-details__input__check, .my-dropdown__list__check .input-control.checkbox.text-left .cell-details__input__check, .checkbox-select__check .input-control.checkbox.text-left .cell-details__input__check, .cell-details__check .input-control.checkbox.text-left .cell-details__input__check, .metro-checkbox .text-left.my-dropdown__list__input-control .cell-details__input__check, .my-dropdown__list__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .checkbox-select__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .cell-details__check .text-left.my-dropdown__list__input-control .cell-details__input__check, .metro-checkbox .text-left.checkbox-select__input-control .cell-details__input__check, .my-dropdown__list__check .text-left.checkbox-select__input-control .cell-details__input__check, .checkbox-select__check .text-left.checkbox-select__input-control .cell-details__input__check, .cell-details__check .text-left.checkbox-select__input-control .cell-details__input__check, .metro-checkbox .text-left.cell-details__input .cell-details__input__check, .my-dropdown__list__check .text-left.cell-details__input .cell-details__input__check, .checkbox-select__check .text-left.cell-details__input .cell-details__input__check, .cell-details__check .text-left.cell-details__input .cell-details__input__check {
   margin: 0 0 0 0.3125rem; }
 .metro-checkbox .input-control.checkbox .check:focus, .my-dropdown__list__check .input-control.checkbox .check:focus, .checkbox-select__check .input-control.checkbox .check:focus, .cell-details__check .input-control.checkbox .check:focus, .metro-checkbox .my-dropdown__list__input-control .check:focus, .my-dropdown__list__check .my-dropdown__list__input-control .check:focus, .checkbox-select__check .my-dropdown__list__input-control .check:focus, .cell-details__check .my-dropdown__list__input-control .check:focus, .metro-checkbox .checkbox-select__input-control .check:focus, .my-dropdown__list__check .checkbox-select__input-control .check:focus, .checkbox-select__check .checkbox-select__input-control .check:focus, .cell-details__check .checkbox-select__input-control .check:focus, .metro-checkbox .cell-details__input .check:focus, .my-dropdown__list__check .cell-details__input .check:focus, .checkbox-select__check .cell-details__input .check:focus, .cell-details__check .cell-details__input .check:focus, .metro-checkbox .input-control.checkbox .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .checkbox-select__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .cell-details__check .input-control.checkbox .my-dropdown__list__input-control__span:focus, .metro-checkbox .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .checkbox-select__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .cell-details__check .my-dropdown__list__input-control .my-dropdown__list__input-control__span:focus, .metro-checkbox .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .checkbox-select__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .cell-details__check .checkbox-select__input-control .my-dropdown__list__input-control__span:focus, .metro-checkbox .cell-details__input .my-dropdown__list__input-control__span:focus, .my-dropdown__list__check .cell-details__input .my-dropdown__list__input-control__span:focus, .checkbox-select__check .cell-details__input .my-dropdown__list__input-control__span:focus, .cell-details__check .cell-details__input .my-dropdown__list__input-control__span:focus, .metro-checkbox .input-control.checkbox .checkbox-select__input-control__span:focus, .my-dropdown__list__check .input-control.checkbox .checkbox-select__input-control__span:focus, .checkbox-select__check .input-control.checkbox .checkbox-select__input-control__span:focus, .cell-details__check .input-control.checkbox .checkbox-select__input-control__span:focus, .metro-checkbox .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .my-dropdown__list__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .checkbox-select__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .cell-details__check .my-dropdown__list__input-control .checkbox-select__input-control__span:focus, .metro-checkbox .checkbox-select__input-control .checkbox-select__input-control__span:focus, .my-dropdown__list__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .checkbox-select__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .cell-details__check .checkbox-select__input-control .checkbox-select__input-control__span:focus, .metro-checkbox .cell-details__input .checkbox-select__input-control__span:focus, .my-dropdown__list__check .cell-details__input .checkbox-select__input-control__span:focus, .checkbox-select__check .cell-details__input .checkbox-select__input-control__span:focus, .cell-details__check .cell-details__input .checkbox-select__input-control__span:focus, .metro-checkbox .input-control.checkbox .cell-details__input__check:focus, .my-dropdown__list__check .input-control.checkbox .cell-details__input__check:focus, .checkbox-select__check .input-control.checkbox .cell-details__input__check:focus, .cell-details__check .input-control.checkbox .cell-details__input__check:focus, .metro-checkbox .my-dropdown__list__input-control .cell-details__input__check:focus, .my-dropdown__list__check .my-dropdown__list__input-control .cell-details__input__check:focus, .checkbox-select__check .my-dropdown__list__input-control .cell-details__input__check:focus, .cell-details__check .my-dropdown__list__input-control .cell-details__input__check:focus, .metro-checkbox .checkbox-select__input-control .cell-details__input__check:focus, .my-dropdown__list__check .checkbox-select__input-control .cell-details__input__check:focus, .checkbox-select__check .checkbox-select__input-control .cell-details__input__check:focus, .cell-details__check .checkbox-select__input-control .cell-details__input__check:focus, .metro-checkbox .cell-details__input .cell-details__input__check:focus, .my-dropdown__list__check .cell-details__input .cell-details__input__check:focus, .checkbox-select__check .cell-details__input .cell-details__input__check:focus, .cell-details__check .cell-details__input .cell-details__input__check:focus {
@@ -247,9 +288,6 @@ button::-moz-focus-inner {
   height: 0.3125rem;
   width: 0.565rem;
   background-color: transparent;
-  border-left: 1px solid;
-  border-bottom: 1px solid;
-  border-color: transparent;
   left: 50%;
   top: 8px;
   margin-left: -3px;
@@ -257,7 +295,10 @@ button::-moz-focus-inner {
   display: block;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  transition: all 0.1s linear; }
+  transition: all 0.1s linear;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  border-color: transparent; }
 .metro-checkbox .input-control.checkbox .marked:before, .my-dropdown__list__check .input-control.checkbox .marked:before, .checkbox-select__check .input-control.checkbox .marked:before, .cell-details__check .input-control.checkbox .marked:before, .metro-checkbox .my-dropdown__list__input-control .marked:before, .my-dropdown__list__check .my-dropdown__list__input-control .marked:before, .checkbox-select__check .my-dropdown__list__input-control .marked:before, .cell-details__check .my-dropdown__list__input-control .marked:before, .metro-checkbox .checkbox-select__input-control .marked:before, .my-dropdown__list__check .checkbox-select__input-control .marked:before, .checkbox-select__check .checkbox-select__input-control .marked:before, .cell-details__check .checkbox-select__input-control .marked:before, .metro-checkbox .cell-details__input .marked:before, .my-dropdown__list__check .cell-details__input .marked:before, .checkbox-select__check .cell-details__input .marked:before, .cell-details__check .cell-details__input .marked:before {
   position: absolute;
   vertical-align: middle;
@@ -267,17 +308,17 @@ button::-moz-focus-inner {
   height: 0.3125rem;
   width: 0.565rem;
   background-color: transparent;
-  border-left: 0 !important;
-  border-bottom: 2px solid;
-  border-color: #555555;
   left: 50%;
   top: 8px;
   margin-left: -3px;
   margin-top: -3px;
   display: block;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  transition: all 0.1s linear; }
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  transition: all 0.1s linear;
+  border-left: 0 !important;
+  border-bottom: 2px solid;
+  border-color: #555555; }
 .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before {
   border-color: #555555;
   transition: all 0.1s linear; }
@@ -358,21 +399,20 @@ button::-moz-focus-inner {
 .my-panel, .page-content {
   display: block;
   position: relative;
-  background-color: #ffffff;
-  border: 1px #d9d9d9 solid; }
+  background-color: #fff;
+  border: 1px solid #d9d9d9; }
   .my-panel > .heading, .page-content > .heading, .my-panel > .page-content__header, .page-content > .page-content__header, .my-panel > .content, .page-content > .content, .my-panel > .page-content__body, .page-content > .page-content__body {
     display: block;
     position: relative;
     color: #1d1d1d;
-    border: 1px #d9d9d9 solid;
+    border: 1px solid #d9d9d9;
     border-bottom: 0.9px #d9d9d9 solid; }
   .my-panel > .heading, .page-content > .heading, .my-panel > .page-content__header, .page-content > .page-content__header {
     padding: 0.5rem 0;
-    color: #1e1e1e;
+    color: #333;
     background-color: #f2f2f2;
     cursor: default;
     vertical-align: middle;
-    /*height: 46px;*/
     font: 600 18px/1 "Segoe UI", "Open Sans", serif;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -392,9 +432,9 @@ button::-moz-focus-inner {
   padding: 0 2.1rem 0 1rem;
   height: 3.125rem;
   vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px #d9d9d9 solid;
-  color: #262626;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  color: #333;
   cursor: text;
   display: inline-block;
   outline: none;
@@ -420,7 +460,7 @@ button::-moz-focus-inner {
   position: relative !important;
   right: 29px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: normal;
   top: 4px; }
 .my-search .search-clear, .options__search .search .search-clear, page-content-cards .page-content__options .options__search .search .search-clear {
   position: relative !important;
@@ -428,7 +468,7 @@ button::-moz-focus-inner {
   right: 29px;
   font-size: 20px;
   cursor: pointer;
-  font-weight: 500; }
+  font-weight: normal; }
   .my-search .search-clear:hover, .options__search .search .search-clear:hover {
     color: red; }
   .my-search .search-clear:active, .options__search .search .search-clear:active {
@@ -445,36 +485,6 @@ button::-moz-focus-inner {
   top: 4px;
   font-weight: bold; }
 
-/*.slider {
-	height: 12px;
-	width: 23.4042625%;
-	position: relative;
-	background-color: #999999;
-	margin-bottom: 10px;
-
-	&__complete {
-		height: 100%;
-		width: auto;
-		background-color: #00aba9;
-		z-index: 1;
-		transition: background .3s ease;
-	}
-
-	&__marker {
-		height: 12px;
-		width: 12px;
-		cursor: pointer;
-		position: absolute;
-		top: 0;
-		left: 0;
-		background-color: #1d1d1d;
-		z-index: 2;
-	}
-
-	a {
-		color: #2086bf;
-	}
-}*/
 .split-btn {
   text-transform: capitalize; }
 
@@ -495,8 +505,7 @@ button::-moz-focus-inner {
     display: inline;
     top: 10px; }
   .checkbox-select__expand {
-    position: relative;
-    /*top: 7px;*/ }
+    position: relative; }
   .checkbox-select__list {
     left: 17px; }
 
@@ -509,7 +518,7 @@ button::-moz-focus-inner {
     margin: 0;
     padding: 0;
     list-style: none inside;
-    border-bottom: 2px #1ba1e2 solid;
+    border-bottom: 2px solid #2ba6d5;
     white-space: nowrap;
     overflow: visible; }
 
@@ -538,7 +547,6 @@ button::-moz-focus-inner {
   position: absolute;
   -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
   animation: bouncedelay 1.2s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
 
@@ -641,13 +649,12 @@ button::-moz-focus-inner {
 
 .my-textarea {
   display: block;
-  /*min-height: 200px;*/
   height: 900px;
   min-width: 790px;
   margin: 10px;
   border: none;
-  background: #1e1e1e;
-  color: #00c814; }
+  background: #333;
+  color: #60a917; }
 
 .cursor-message {
   position: absolute;
@@ -658,7 +665,7 @@ button::-moz-focus-inner {
   margin: 0;
   display: none;
   font-size: 14px;
-  font-family: "Arial", "Helvetica", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1;
   border-color: #787878;
   font-weight: bold; }
@@ -690,7 +697,7 @@ button::-moz-focus-inner {
 
 .fade {
   background-color: transparent;
-  background-color: black;
+  background-color: #333;
   opacity: 0.5;
   min-height: 100%;
   min-width: 100%;
@@ -703,22 +710,16 @@ button::-moz-focus-inner {
 .dialog {
   margin: 30px auto;
   opacity: 1 !important;
-  /*max-height: 600px;*/
   max-width: 600px;
   min-width: 500px;
   overflow-y: auto;
   text-align: center;
   position: relative;
-  /*top: 0;
-	right: 0;
-	left: 0;*/
   padding: 10px;
   background-color: #ffffff;
-  color: #1d1d1d;
+  color: #333;
   z-index: 105000;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
-  /*width: 75%;
-	min-width: 400px;*/ }
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3); }
   .dialog__key {
     font-weight: normal !important;
     font-size: 14px !important;
@@ -811,15 +812,8 @@ button::-moz-focus-inner {
   background-color: #1b6eae; }
 
 .opened, .filter-selected .filter__btn {
-  background-color: #2b9fd7;
+  background-color: #337ab7;
   color: white; }
-
-@font-face {
-  font-family: 'cards';
-  src: url('fonts/cards.eot?cld4v2');
-  src: url('fonts/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('fonts/cards.ttf?cld4v2') format('truetype'), url('fonts/cards.woff?cld4v2') format('woff'), url('fonts/cards.svg?cld4v2#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal; }
 
 .card-font {
   font-family: 'cards';
@@ -832,43 +826,21 @@ button::-moz-focus-inner {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-info:before {
-  content: "\e600"; }
-
-.icon-circle-left:before {
-  content: "\e601"; }
-
 .cards-group {
-  /*width: 2300px;*/
-  height: 0;
-  /*max-width: 2000px;*/ }
+  height: 0; }
 
 .my-card {
   display: inline-block; }
   .my-card .front {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 200;
-    background-color: white;
-    width: 250px !important;
-    cursor: pointer;
-    border: 1px #d9d9d9 solid;
-    height: 120px !important; }
+    background-color: white; }
   .my-card .back {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 200;
-    background-color: #f2f2f2;
-    width: 250px !important;
-    cursor: pointer;
-    height: 120px !important;
-    border: 1px #d9d9d9 solid; }
+    background-color: #f2f2f2; }
     .my-card .back .my-card__header {
-      background-color: #858181;
+      background-color: #787878;
       color: white; }
   .my-card__header {
     min-height: 30px;
-    border-bottom: 1px #d9d9d9 solid;
+    border-bottom: 1px solid #d9d9d9;
     padding-top: 4px;
     font-size: 18px;
     padding-right: 10px; }
@@ -878,7 +850,7 @@ button::-moz-focus-inner {
       float: left;
       margin-left: 10px;
       padding-top: 2px;
-      font-weight: lighter; }
+      font-weight: 200; }
   .my-card__body {
     padding-top: 25px;
     font-size: 28px; }
@@ -888,45 +860,8 @@ button::-moz-focus-inner {
       right: 0;
       left: 0; }
 
-.input-datepicker {
-  border-color: #787878;
-  padding: 0 1rem;
-  height: 3.125rem;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px #d9d9d9 solid;
-  color: #262626;
-  cursor: text;
-  display: inline-block;
-  outline: none;
-  font-size: 1.25rem;
-  line-height: 1;
-  margin: 0.15625rem 0;
-  right: 10px; }
-
-@font-face {
-  font-family: 'datepicker';
-  src: url('fonts/datepicker.eot?72jwq5');
-  src: url('fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('fonts/datepicker.ttf?72jwq5') format('truetype'), url('fonts/datepicker.woff?72jwq5') format('woff'), url('fonts/datepicker.svg?72jwq5#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal; }
-
-[class^="glyph-"], [class*=" glyph-"] {
-  font-family: 'datepicker';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.glyph-calendar:before {
-  content: "\e600"; }
-
 .date-btn__toggle.opened, .filter-selected .date-btn__toggle.filter__btn {
-  background-color: #337ab7; }
+  background-color: #4c8fb2; }
 .date-btn__icon {
   position: relative;
   top: 1px; }
@@ -934,34 +869,33 @@ button::-moz-focus-inner {
   position: absolute;
   z-index: 100;
   font-size: 14px;
-  background-color: #fff;
+  background-color: #f2f2f2;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
 
 .date-picker-wrapper {
   padding: 0 !important;
   font-size: 14px;
-  font-family: "Arial", "Helvetica", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   z-index: 1000; }
   .date-picker-wrapper .month-wrapper {
     border: 0;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px 0 #333;
     border-radius: 0;
     width: 100% !important; }
     .date-picker-wrapper .month-wrapper .month1 .caption {
       background-color: #59cde2;
-      color: #ffffff; }
+      color: #fff; }
       .date-picker-wrapper .month-wrapper .month1 .caption .prev:hover {
         background-color: #59cde2;
-        color: #4547ac;
+        color: #23527c;
         font-weight: bold; }
       .date-picker-wrapper .month-wrapper .month1 .caption .next:hover {
         background-color: #59cde2;
-        color: #4547ac;
+        color: #23527c;
         font-weight: bold; }
     .date-picker-wrapper .month-wrapper .month1 th {
       font-weight: normal !important; }
@@ -972,7 +906,7 @@ button::-moz-focus-inner {
       text-align: center;
       width: 30px; }
       .date-picker-wrapper .month-wrapper .month1 .day:hover {
-        background-color: #4da3ba; }
+        background-color: #4c8fb2; }
       .date-picker-wrapper .month-wrapper .month1 .day.real-today {
         background-color: #60a917; }
   .date-picker-wrapper .footer, .date-picker-wrapper .page-content__footer {
@@ -1007,7 +941,7 @@ button::-moz-focus-inner {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098d1;
+    background: #337ab7;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
     -webkit-transform-origin: 50% 100%;
@@ -1025,35 +959,32 @@ core-diagram {
   core-diagram #chart {
     border: 1px solid #2ba6d5;
     border-radius: 3px 3px;
-    /*width: 97%;*/
     margin-left: 15px;
     margin-right: 50px;
     overflow: auto;
     text-align: center;
     min-height: 100px; }
   core-diagram svg {
-    /*margin-left: 15%;*/
     position: relative;
     margin-left: 10px;
     margin-right: 10px; }
-  core-diagram .node rect {
+  core-diagram .noderect {
     cursor: move;
     fill-opacity: 0.9;
     shape-rendering: crispEdges; }
-  core-diagram .node text {
+  core-diagram .nodetext {
     pointer-events: none;
     text-shadow: 0 1px 0 #fff; }
   core-diagram .link {
     fill: none;
-    stroke: #000;
+    stroke: #333;
     stroke-opacity: 0.2; }
-  core-diagram .link:hover {
-    stroke-opacity: 0.5; }
+    core-diagram .link:hover {
+      stroke-opacity: 0.5; }
 
 @media only screen and (max-width: 1500px) {
   histogram .histogram {
-    display: block !important;
-    /*margin-bottom: 40px;*/ }
+    display: block !important; }
  }
 histogram .histogram {
   overflow: auto;
@@ -1068,23 +999,20 @@ histogram svg {
   margin-left: 10px; }
 histogram .bar {
   fill: steelblue; }
-histogram .bar:hover {
-  fill: turquoise; }
-histogram .chart text {
+  histogram .bar:hover {
+    fill: turquoise; }
+histogram .charttext {
   font: 12px sans-serif;
   font-weight: bold; }
-histogram .chart .title {
+histogram .chart.title {
   font: 16px sans-serif;
   font-weight: bold; }
 histogram .axis path, histogram .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #333;
   shape-rendering: crispEdges; }
 histogram .x.axis path {
-  fill: white;
-  /*display: none;*/ }
-histogram .x.axis .tick {
-  /*display: none;*/ }
+  fill: white; }
 
 .chart-segment {
   float: left;
@@ -1097,34 +1025,29 @@ histogram .x.axis .tick {
     .chart-segment {
       margin-top: 0; } }
   .chart-segment__panel {
-    background-color: #d6ebf6;
+    background-color: #59cde2;
+    border-radius: 5px 5px;
+    border: 1px solid #2d6888;
     width: 400px;
     height: 60px;
-    border-radius: 5px 5px;
     cursor: pointer;
-    margin-bottom: 80px;
-    border: 1px solid #2d6888; }
+    margin-bottom: 80px; }
     .chart-segment__panel__text {
       position: relative;
       top: 10px;
       color: #4c8fb2;
-      /*font-weight: bold;*/
       margin: 20px; }
   .chart-segment__list {
     margin-bottom: 10px; }
     .chart-segment__list__header {
       width: 400px;
       height: 30px;
-      background: -webkit-linear-gradient(bottom, white, #afb9bd);
-      /* For Safari 5.1 to 6.0 */
-      background: -o-linear-gradient(bottom, white, #afb9bd);
-      /* For Opera 11.1 to 12.0 */
-      background: -moz-linear-gradient(bottom, white, #afb9bd);
-      /* For Firefox 3.6 to 15 */
-      background: linear-gradient(bottom, white, #afb9bd);
-      /* Standard syntax (must be last) */
       border-radius: 2px 2px;
-      font-weight: bold; }
+      font-weight: bold;
+      background: -webkit-linear-gradient(bottom, white, #afb9bd);
+      background: -o-linear-gradient(bottom, white, #afb9bd);
+      background: -moz-linear-gradient(bottom, white, #afb9bd);
+      background: linear-gradient(bottom, white, #afb9bd); }
       .chart-segment__list__header__text {
         position: relative;
         top: 6px;
@@ -1141,15 +1064,13 @@ histogram .x.axis .tick {
           position: relative;
           top: 1px;
           cursor: pointer; }
-        .chart-segment__list__body__user_text {
-          /*position: relative;*/ }
         .chart-segment__list__body__user.odd {
           background-color: #caddee; }
 
 .mouse-over {
   position: absolute;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   min-height: 200px;
   min-width: 400px;
   z-index: 100; }
@@ -1174,7 +1095,7 @@ histogram .x.axis .tick {
       font-weight: normal;
       margin-top: 10px; }
       .mouse-over .mouse-over-medium__body__header {
-        border-bottom: 1px solid #a39f9f; }
+        border-bottom: 1px solid #2d6888; }
       .mouse-over .mouse-over-medium__body__blockCampaing {
         margin-right: 40px; }
       .mouse-over .mouse-over-medium__body__blockSegm {
@@ -1183,11 +1104,10 @@ histogram .x.axis .tick {
 .btn-group button {
   padding: 0;
   padding-left: 10px;
-  /*padding-top: 2px;*/
   height: 35px;
   border: 1px solid #aaa;
   white-space: nowrap;
-  color: #444;
+  color: #333;
   text-decoration: none;
   border-radius: 4px;
   background-clip: padding-box;
@@ -1214,7 +1134,6 @@ histogram .x.axis .tick {
     border-left: 1px solid #aaa;
     border-radius: 0 4px 4px 0;
     background-clip: padding-box;
-    /*background-color: linear-gradient(to top, #ccc 0%, #eee 60%);*/
     background: url('../../bower_components/select2/select2.png') no-repeat 0 4px; }
 .btn-group .multiselect-container {
   left: 0;
@@ -1245,6 +1164,34 @@ histogram .x.axis .tick {
   background-color: #60c2dd;
   font-size: 15px; }
 
+.custom-overlay {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow: auto;
+  transition: all linear 0.5s;
+  border: 2px solid #0A2841;
+  overflow: auto;
+  height: 0;
+  z-index: 1000000; }
+  .custom-overlay__toggle {
+    display: inline;
+    float: left;
+    height: 99%; }
+    .custom-overlay__toggle__name {
+      font-size: 20px; }
+    .custom-overlay__toggle .glyphicon {
+      padding-bottom: 100%;
+      font-size: 16px;
+      padding-top: 30px;
+      padding-right: 10px;
+      height: 100%;
+      cursor: pointer;
+      padding-left: 4px; }
+      .custom-overlay__toggle .glyphicon:hover {
+        color: #5ccefd; }
+
 .row-name {
   text-align: left; }
   .row-name__value {
@@ -1268,13 +1215,13 @@ histogram .x.axis .tick {
     display: inline; }
   .action__btn {
     font: initial;
-    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 14px;
     margin-right: 10px; }
   .action__dropdown {
     position: relative;
     font: initial;
-    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 14px;
     display: inline;
     margin-right: 10px; }
@@ -1312,7 +1259,7 @@ histogram .x.axis .tick {
     font: inherit;
     font-weight: normal !important; }
   .details-template .content, .details-template .page-content__body {
-    color: #3e3e3e;
+    color: #333;
     min-height: 100px;
     float: left;
     width: 1500px;
@@ -1709,9 +1656,9 @@ histogram .x.axis .tick {
   .custom-ui-grid .ui-grid-row {
     line-height: 1.6em;
     vertical-align: middle;
-    color: #444444;
+    color: #333;
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif; }
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
   .custom-ui-grid .ui-grid-cell {
     border-right: 0;
     background: white !important;
@@ -1761,7 +1708,7 @@ histogram .x.axis .tick {
     top: 3px;
     z-index: 100;
     right: 2.25rem;
-    border-color: black;
+    border-color: #333;
     background: #5a5a5a;
     padding: 0 5px !important;
     color: #787878; }
@@ -2273,33 +2220,5 @@ nav {
   margin: 0;
   min-width: 110px;
   padding: 1em 2em; }
-
-.custom-overlay {
-  background-color: white;
-  position: fixed;
-  top: 0;
-  right: 0;
-  overflow: auto;
-  transition: all linear 0.5s;
-  border: 2px solid #0A2841;
-  overflow: auto;
-  height: 0;
-  z-index: 1000000; }
-  .custom-overlay__toggle {
-    display: inline;
-    float: left;
-    height: 99%; }
-    .custom-overlay__toggle__name {
-      font-size: 20px; }
-    .custom-overlay__toggle .glyphicon {
-      padding-bottom: 100%;
-      font-size: 16px;
-      padding-top: 30px;
-      padding-right: 10px;
-      height: 100%;
-      cursor: pointer;
-      padding-left: 4px; }
-      .custom-overlay__toggle .glyphicon:hover {
-        color: #5ccefd; }
 
 /*# sourceMappingURL=styles.css.map */

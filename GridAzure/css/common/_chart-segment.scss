@@ -1,6 +1,6 @@
 ﻿.chart-segment {
 	float: left;
-	font-size: 14px;
+	font-size: $default-font-size - 2px;
 	position: relative;
 	padding-left: 40px;
 	margin-top: 80px;
@@ -11,21 +11,18 @@
 	}
 
 	&__panel {
-		background-color: rgb(214,235,246);
+		background-color: $light-blue;
+		border-radius: $large-radius;
+		border: $small-dark-blue-border;
 		width: 400px;
 		height: 60px;
-		border-radius: 5px 5px;
 		cursor: pointer;
 		margin-bottom: 80px;
-		border: 1px solid rgb(45,104,136);
-
-
 
 		&__text {
 			position: relative;
 			top: 10px;
-			color: rgb(76,143,178);
-			/*font-weight: bold;*/
+			color: $ocean;
 			margin: 20px;
 		}
 	}
@@ -37,12 +34,10 @@
 		&__header {
 			width: 400px;
 			height: 30px;
-			background: -webkit-linear-gradient(bottom, white, rgb(175,185,189)); /* For Safari 5.1 to 6.0 */
-			background: -o-linear-gradient(bottom, white, rgb(175,185,189)); /* For Opera 11.1 to 12.0 */
-			background: -moz-linear-gradient(bottom, white, rgb(175,185,189)); /* For Firefox 3.6 to 15 */
-			background: linear-gradient(bottom, white, rgb(175,185,189)); /* Standard syntax (must be last) */
-			border-radius: 2px 2px;
-			font-weight: bold;
+			border-radius: $medium-radius;
+			font-weight: $bold;
+
+			@include gradiend-background(bottom, $white, $grey);
 
 			&__text {
 				position: relative;
@@ -60,22 +55,15 @@
 				padding: 8px;
 
 				&__icon {
-					color: red;
-					font-weight: bolder;
+					color: $red;
+					font-weight: $bolder;
 					position: relative;
 					top: 1px;
 					cursor: pointer;
 				}
 
-				&_text {
-					/*position: relative;*/
-				}
-
 				&.odd {
-					background-color: rgb(202,221,238);
-				}
-
-				&.even {
+					background-color: $blue-grey;
 				}
 			}
 		}

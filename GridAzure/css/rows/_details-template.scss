@@ -1,15 +1,15 @@
 ﻿.details-template {
 	position: absolute;
 	font-weight: normal;
-	background-color: white;
+	background-color: $white;
 	width: 100%;
 	padding: 10px;
 	padding-left: 30px;
 	padding-bottom: 0;
 	font: inherit;
-	font-weight: normal !important;
-	border-bottom: 1px solid #e5e5e5;
-	border-top: 1px solid #e5e5e5;
+	font-weight: $normal !important;
+	border-bottom: $small-row-grey-border;
+	border-top: $small-row-grey-border;
 	z-index: 1;
 	top: 1px;
 
@@ -19,11 +19,11 @@
 
 	label {
 		font: inherit;
-		font-weight: normal !important;
+		font-weight: $normal !important;
 	}
 
 	.content {
-		color: rgb(62, 62, 62);
+		color: $black;
 		min-height: 100px;
 		float: left;
 		width: 1500px;

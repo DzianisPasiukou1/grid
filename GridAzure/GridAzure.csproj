@@ -172,6 +172,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\custom-grid-with-sankey.js">
+      <DependentUpon>custom-grid-with-sankey.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="app\custom-grid-with-sankey.min.js">
+      <DependentUpon>custom-grid-with-sankey.js</DependentUpon>
+    </Content>
     <Content Include="app\custom-grid.js">
       <DependentUpon>custom-grid.js.bundle</DependentUpon>
     </Content>
@@ -2086,7 +2092,6 @@
     <Content Include="css\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
-    <Content Include="data\journey.png" />
     <Content Include="Global.asax" />
     <Content Include="css\common\_expand.scss" />
     <Content Include="css\_toggle.scss" />
@@ -2129,7 +2134,6 @@
     <Content Include="css\common\_my-metro.scss" />
     <Content Include="css\common\_my-panel.scss" />
     <Content Include="css\_filter.scss" />
-    <Content Include="css\common\_slider.scss" />
     <Content Include="css\common\_split-button.scss" />
     <Content Include="css\common\_my-dropdown.scss" />
     <Content Include="css\common\_my-search.scss" />
@@ -2155,7 +2159,6 @@
     <Content Include="css\common\_modal-dialog.scss" />
     <Content Include="css\_modal.scss" />
     <Content Include="css\_history.scss" />
-    <Content Include="css\common\_icons.scss" />
     <Content Include="css\_dynamic-actions.scss" />
     <Content Include="bower_components\angular-route\.bower.json" />
     <Content Include="bower_components\angular-route\angular-route.min.js.map" />
@@ -2186,7 +2189,6 @@
     <Content Include="css\fonts\cards.ttf" />
     <Content Include="css\fonts\cards.woff" />
     <Content Include="css\_page-content-cards.scss" />
-    <Content Include="css\common\_input-datepicker.scss" />
     <Content Include="css\common\_datepicker.scss" />
     <Content Include="css\fonts\datepicker.eot" />
     <Content Include="css\fonts\datepicker.ttf" />
@@ -2203,54 +2205,6 @@
     <Content Include="css\common\_core-diagram.scss" />
     <Content Include="css\common\_histogram.scss" />
     <Content Include="css\common\_chart-segment.scss" />
-    <Content Include="css\krux\krux-responsive.sass" />
-    <Content Include="css\krux\light-theme.sass" />
-    <Content Include="css\krux\main.sass" />
-    <Content Include="css\krux\modules\_all.sass" />
-    <Content Include="css\krux\modules\_color.sass" />
-    <Content Include="css\krux\modules\_mixins.sass" />
-    <Content Include="css\krux\partials\_account.sass" />
-    <Content Include="css\krux\partials\_actions-button.sass" />
-    <Content Include="css\krux\partials\_alert.sass" />
-    <Content Include="css\krux\partials\_analytics.sass" />
-    <Content Include="css\krux\partials\_attributes-report.sass" />
-    <Content Include="css\krux\partials\_audience.sass" />
-    <Content Include="css\krux\partials\_base.sass" />
-    <Content Include="css\krux\partials\_button.sass" />
-    <Content Include="css\krux\partials\_buyers-console.sass" />
-    <Content Include="css\krux\partials\_circlepack.sass" />
-    <Content Include="css\krux\partials\_data-providers.sass" />
-    <Content Include="css\krux\partials\_data-sentry.sass" />
-    <Content Include="css\krux\partials\_date-range-picker.sass" />
-    <Content Include="css\krux\partials\_editable-resource-table.sass" />
-    <Content Include="css\krux\partials\_export-to-excel.sass" />
-    <Content Include="css\krux\partials\_frequency-report.sass" />
-    <Content Include="css\krux\partials\_funnels.sass" />
-    <Content Include="css\krux\partials\_geo-chart.sass" />
-    <Content Include="css\krux\partials\_input.sass" />
-    <Content Include="css\krux\partials\_layout.sass" />
-    <Content Include="css\krux\partials\_manage-priority-dialog.sass" />
-    <Content Include="css\krux\partials\_matrix-chart.sass" />
-    <Content Include="css\krux\partials\_meter.sass" />
-    <Content Include="css\krux\partials\_navigation-bar.sass" />
-    <Content Include="css\krux\partials\_ng-grid.sass" />
-    <Content Include="css\krux\partials\_ng-table.sass" />
-    <Content Include="css\krux\partials\_notifications.sass" />
-    <Content Include="css\krux\partials\_opportunities.sass" />
-    <Content Include="css\krux\partials\_organization.sass" />
-    <Content Include="css\krux\partials\_partner-enablement-framework.sass" />
-    <Content Include="css\krux\partials\_rating.sass" />
-    <Content Include="css\krux\partials\_reach-overlap.sass" />
-    <Content Include="css\krux\partials\_rtb.sass" />
-    <Content Include="css\krux\partials\_segment-builder.sass" />
-    <Content Include="css\krux\partials\_segment-overlaps.sass" />
-    <Content Include="css\krux\partials\_social-sharing-report.sass" />
-    <Content Include="css\krux\partials\_supertag.sass" />
-    <Content Include="css\krux\partials\_tagrules.sass" />
-    <Content Include="css\krux\partials\_tooltip.sass" />
-    <Content Include="css\krux\partials\_tree.sass" />
-    <Content Include="css\krux\partials\_treeview.sass" />
-    <Content Include="css\krux\pipeline-report.sass" />
     <Content Include="css\common\_mouse-over.scss" />
     <Content Include="bower_components\d3\.bower.json" />
     <Content Include="bower_components\d3\bower.json" />
@@ -2405,6 +2359,16 @@
     <Content Include="app\custom-grid.min.js.map">
       <DependentUpon>custom-grid.min.js</DependentUpon>
     </Content>
+    <Content Include="app\custom-grid-with-sankey.js.bundle" />
+    <Content Include="app\custom-grid-with-sankey.min.js.map">
+      <DependentUpon>custom-grid-with-sankey.min.js</DependentUpon>
+    </Content>
+    <Content Include="css\modules\_mixin.scss" />
+    <Content Include="css\modules\_fonts.scss" />
+    <Content Include="css\modules\_color.scss" />
+    <Content Include="css\modules\_border.scss" />
+    <Content Include="css\modules\_size.scss" />
+    <Content Include="css\common\_custom-card.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
@@ -2425,6 +2389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="tests\unit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

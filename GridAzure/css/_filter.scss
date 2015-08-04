@@ -39,11 +39,10 @@
 		text-align: left;
 		max-width: 600px;
 		list-style: none;
-		background-color: #fff;
+		background-color: $light-white;
 		-webkit-background-clip: padding-box;
 		background-clip: padding-box;
 		border: 1px solid #ccc;
-		border: 1px solid rgba(0,0,0,.15);
 		-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
 		box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
@@ -57,7 +56,7 @@
 				padding-top: 3%;
 				color: rgb(117,118, 119);
 				font-size: 16px;
-				font-family: "Arial";
+				font-family: $helvetica-family;
 				font-weight: bold;
 			}
 
@@ -71,7 +70,7 @@
 						padding-top: 3%;
 						color: rgb(117,118, 119);
 						font-size: 14px;
-						font-family: "Arial";
+						font-family: $helvetica-family;
 						font-weight: bold;
 					}
 
@@ -80,14 +79,14 @@
 							-webkit-appearance: none;
 							appearance: none;
 							position: relative;
-							border: 1px #d9d9d9 solid;
+							border: $small-grey-border;
 							width: 70%;
 							height: 100%;
 							padding: .3125rem;
 							z-index: 0;
 
 							&:hover {
-								border-color: #787878;
+								border-color: $dark-grey;
 							}
 						}
 					}
@@ -98,7 +97,7 @@
 			&__button {
 				@extend .metro-btn;
 				background-color: rgb(43, 159, 215);
-				color: white;
+				color: $white;
 				margin-top: 20px;
 			}
 		}

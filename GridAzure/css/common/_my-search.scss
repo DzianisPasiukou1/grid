@@ -1,12 +1,12 @@
 ﻿.my-search {
 	input {
-		border-color: #787878;
+		border-color: $dark-grey;
 		padding: 0 2.1rem 0 1rem;
 		height: 3.125rem;
 		vertical-align: middle;
-		background-color: #ffffff;
-		border: 1px #d9d9d9 solid;
-		color: #262626;
+		background-color: $light-white;
+		border: $small-grey-border;
+		color: $black;
 		cursor: text;
 		display: inline-block;
 		outline: none;
@@ -43,7 +43,7 @@
 		position: relative !important;
 		right: 29px;
 		font-size: 20px;
-		font-weight: 500;
+		font-weight: $normal;
 		top: 4px;
 	}
 
@@ -53,7 +53,7 @@
 		right: 29px;
 		font-size: 20px;
 		cursor: pointer;
-		font-weight: 500;
+		font-weight: $normal;
 
 		&:hover {
 			color: red;

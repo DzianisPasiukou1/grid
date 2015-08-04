@@ -1,0 +1,43 @@
+﻿@mixin font($queryString) {
+	font-family: $queryString;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin gradiend-background($pos, $col1, $col2) {
+	background: -webkit-linear-gradient($pos, $col1,$col2);
+	background: -o-linear-gradient($pos, $col1, $col2);
+	background: -moz-linear-gradient($pos, $col1, $col2);
+	background: linear-gradient($pos, $col1, $col2);
+}
+
+@mixin media($queryString) {
+	@media #{$queryString} {
+		@content;
+	}
+}
+
+@mixin metro-check() {
+	position: absolute;
+	vertical-align: middle;
+	color: transparent;
+	font-size: 0;
+	content: "";
+	height: .3125rem;
+	width: .565rem;
+	background-color: transparent;
+	left: 50%;
+	top: 8px;
+	margin-left: -3px;
+	margin-top: -3px;
+	display: block;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	transition: all 0.1s linear;
+}

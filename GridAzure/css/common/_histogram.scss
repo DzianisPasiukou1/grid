@@ -3,7 +3,6 @@
 	@media only screen and (max-width: 1500px) {
 		.histogram {
 			display: block !important;
-			/*margin-bottom: 40px;*/
 		}
 	}
 
@@ -15,7 +14,7 @@
 
 	svg {
 		float: left;
-		border: 2px solid #2ba6d5;
+		border: $medium-blue-border;
 		border-radius: 3px 3px;
 		margin-bottom: 20px;
 		margin-top: 40px;
@@ -24,35 +23,32 @@
 
 	.bar {
 		fill: steelblue;
+
+		&:hover {
+			fill: turquoise;
+		}
 	}
 
-	.bar:hover {
-		fill: turquoise;
-	}
+	.chart {
+		&text {
+			font: $default-font-size - 4px sans-serif;
+			font-weight: $bold;
+		}
 
-	.chart text {
-		font: 12px sans-serif;
-		font-weight: bold;
-	}
-
-	.chart .title {
-		font: 16px sans-serif;
-		font-weight: bold;
+		&.title {
+			font: $default-font-size sans-serif;
+			font-weight: bold;
+		}
 	}
 
 	.axis path,
 	.axis line {
 		fill: none;
-		stroke: #000;
+		stroke: $black;
 		shape-rendering: crispEdges;
 	}
 
 	.x.axis path {
-		fill: white;
-		/*display: none;*/
-	}
-
-	.x.axis .tick {
-		/*display: none;*/
+		fill: $white;
 	}
 }

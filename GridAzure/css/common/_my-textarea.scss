@@ -1,10 +1,9 @@
 ﻿.my-textarea {
 	display: block;
-	/*min-height: 200px;*/
 	height: 900px;
 	min-width: 790px;
 	margin: 10px;
 	border: none;
-	background: rgb(30, 30, 30);
-	color: rgb(0, 200, 20);
+	background: $black;
+	color: $light-green;
 }

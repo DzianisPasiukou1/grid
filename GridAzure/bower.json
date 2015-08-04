@@ -1,28 +1,28 @@
 {
-  "name": "bower",
-  "version": "0.0.0",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.4.0",
-    "jquery": "~2.1.4",
-    "angular-i18n": "~1.4.0",
-    "ng-grid": "~2.0.14",
-    "angular-route": "~1.4.3",
-    "flip": "~1.0.14",
-    "jquery-date-range-picker": "~0.0.7",
-    "angular-ui-grid": "~3.0.1",
-    "d3": "~3.5.6",
-    "angular-ui-select2": "~0.0.5",
-    "angular-translate": "~2.7.2",
-    "underscore": "~1.8.3",
-    "bootstrap-daterangepicker": "~2.0.5",
-    "bootstrap-multiselect": "~0.9.13"
-  }
+	"name": "bower",
+	"version": "0.0.0",
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"angular": "~1.4.0",
+		"jquery": "~2.1.4",
+		"angular-i18n": "~1.4.0",
+		"ng-grid": "~2.0.14",
+		"angular-route": "~1.4.3",
+		"flip": "~1.0.14",
+		"jquery-date-range-picker": "~0.0.7",
+		"angular-ui-grid": "~3.0.1",
+		"d3": "~3.5.6",
+		"angular-ui-select2": "~0.0.5",
+		"angular-translate": "~2.7.2",
+		"underscore": "~1.8.3",
+		"bootstrap-daterangepicker": "~2.0.5",
+		"bootstrap-multiselect": "~0.9.13"
+	}
 }

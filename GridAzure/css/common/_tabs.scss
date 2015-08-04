@@ -8,22 +8,8 @@
 		margin: 0;
 		padding: 0;
 		list-style: none inside;
-		border-bottom: 2px #1ba1e2 solid;
+		border-bottom: $medium-blue-border;
 		white-space: nowrap;
 		overflow: visible;
-
-		&:after {
-		}
-
-		&:before {
-		}
-	}
-
-	&__element {
-		a {
-		}
-
-		tab-content {
-		}
 	}
 }
