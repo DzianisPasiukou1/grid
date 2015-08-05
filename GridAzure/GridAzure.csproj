@@ -2371,6 +2371,11 @@
     <Content Include="css\common\_custom-card.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
+    <Content Include="karma.conf.js" />
+    <Content Include="protractor.conf.js" />
+    <Content Include="test\e2e\routingSpec.js" />
+    <Content Include="test\unit\directives\dropdown\dropdownSpec.js" />
+    <Content Include="test\unit\directives\page-content-cards\pageContentCardsSpec.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2389,7 +2394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="tests\unit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

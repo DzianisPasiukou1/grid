@@ -1,9 +1,8 @@
 ﻿describe('Dropdown Directive Rendering', function () {
 	beforeEach(module('gridTaskApp'));
-	var compile, mockBackend, scope;
-	beforeEach(inject(function ($compile, $httpBackend, $rootScope) {
+	var compile, scope;
+	beforeEach(inject(function ($compile, $rootScope) {
 		compile = $compile;
-		mockBackend = $httpBackend;
 		scope = $rootScope.$new();
 
 		scope.options = {

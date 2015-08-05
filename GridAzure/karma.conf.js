@@ -35,7 +35,7 @@ module.exports = function (config) {
 			'app/**/*.js',
 			'azure-app/**/*.js',
 			'bower_components/angular-mocks/angular-mocks.js',
-			'test/**/*.js',
+			'test/unit/**/*.js',
 			'app/templates/**/*.html'
 		],
 

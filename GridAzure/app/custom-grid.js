@@ -2188,7 +2188,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/page-content/page-content.js
 angular.module('gridTaskApp')
-	.directive('pageContent', ['templatesPath', '$compile', 'content', function (templatesPath, $compile, content) {
+	.directive('pageContent', ['templatesPath',  'content', function (templatesPath, content) {
 		return {
 			restrict: 'E',
 			scope: {
