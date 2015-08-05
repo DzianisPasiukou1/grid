@@ -73,6 +73,8 @@
 		border-left: 1px solid;
 		border-bottom: 1px solid;
 		border-color: transparent;
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
 	}
 
 	.input-control.checkbox .marked:before {
@@ -80,6 +82,8 @@
 		border-left: 0 !important;
 		border-bottom: 2px solid;
 		border-color: #555555;
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
 
 	.input-control.checkbox input[type="checkbox"]:checked ~ .check:before {

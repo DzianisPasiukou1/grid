@@ -293,12 +293,12 @@ button::-moz-focus-inner {
   margin-left: -3px;
   margin-top: -3px;
   display: block;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
   transition: all 0.1s linear;
   border-left: 1px solid;
   border-bottom: 1px solid;
-  border-color: transparent; }
+  border-color: transparent;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg); }
 .metro-checkbox .input-control.checkbox .marked:before, .my-dropdown__list__check .input-control.checkbox .marked:before, .checkbox-select__check .input-control.checkbox .marked:before, .cell-details__check .input-control.checkbox .marked:before, .metro-checkbox .my-dropdown__list__input-control .marked:before, .my-dropdown__list__check .my-dropdown__list__input-control .marked:before, .checkbox-select__check .my-dropdown__list__input-control .marked:before, .cell-details__check .my-dropdown__list__input-control .marked:before, .metro-checkbox .checkbox-select__input-control .marked:before, .my-dropdown__list__check .checkbox-select__input-control .marked:before, .checkbox-select__check .checkbox-select__input-control .marked:before, .cell-details__check .checkbox-select__input-control .marked:before, .metro-checkbox .cell-details__input .marked:before, .my-dropdown__list__check .cell-details__input .marked:before, .checkbox-select__check .cell-details__input .marked:before, .cell-details__check .cell-details__input .marked:before {
   position: absolute;
   vertical-align: middle;
@@ -313,12 +313,12 @@ button::-moz-focus-inner {
   margin-left: -3px;
   margin-top: -3px;
   display: block;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
   transition: all 0.1s linear;
   border-left: 0 !important;
   border-bottom: 2px solid;
-  border-color: #555555; }
+  border-color: #555555;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg); }
 .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .check:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .check:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .my-dropdown__list__input-control__span:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .checkbox-select__input-control__span:before, .metro-checkbox .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .input-control.checkbox input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .my-dropdown__list__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .checkbox-select__input-control input[type="checkbox"]:checked ~ .cell-details__input__check:before, .metro-checkbox .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .my-dropdown__list__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .checkbox-select__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before, .cell-details__check .cell-details__input input[type="checkbox"]:checked ~ .cell-details__input__check:before {
   border-color: #555555;
   transition: all 0.1s linear; }
@@ -1584,7 +1584,6 @@ histogram .x.axis path {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
     .filter filter-list .filter-list {
@@ -1595,7 +1594,7 @@ histogram .x.axis path {
         padding-top: 3%;
         color: #757677;
         font-size: 16px;
-        font-family: "Arial";
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: bold; }
       .filter filter-list .filter-list__options {
         max-height: 400px;
@@ -1604,13 +1603,13 @@ histogram .x.axis path {
           padding-top: 3%;
           color: #757677;
           font-size: 14px;
-          font-family: "Arial";
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-weight: bold; }
         .filter filter-list .filter-list__options__value__input input {
           -webkit-appearance: none;
           appearance: none;
           position: relative;
-          border: 1px #d9d9d9 solid;
+          border: 1px solid #d9d9d9;
           width: 70%;
           height: 100%;
           padding: 0.3125rem;
@@ -1712,12 +1711,6 @@ histogram .x.axis path {
     background: #5a5a5a;
     padding: 0 5px !important;
     color: #787878; }
-    .custom-ui-grid .ui-grid-menu-button:hover {
-      border-color: black; }
-    .custom-ui-grid .ui-grid-menu-button:active {
-      background: #5a5a5a;
-      color: #787878 !important;
-      box-shadow: inset !important; }
     .custom-ui-grid .ui-grid-menu-button .ui-grid-menu {
       padding: 15px 0 !important; }
     .custom-ui-grid .ui-grid-menu-button .ui-grid-icon-menu {
@@ -1828,11 +1821,9 @@ history {
   right: 0;
   width: 55%; }
   .grid-testing page-content .page-content {
-    /*height: 850px;*/
     margin-top: 43px; }
   .grid-testing page-content .custom-grid {
-    width: 100%;
-    /*height: 850px !important;*/ }
+    width: 100%; }
 
 .dynamic-dropdown {
   display: inline; }

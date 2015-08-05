@@ -4585,3 +4585,8 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/node_modules/.bin
 /GridAzure/node_modules/karma
 /GridAzure/obj/Release/Package/PackageTmp/app
+/GridAzure/bower_components/angular-mocks
+/GridAzure/node_modules
+/GridAzure/bower_components
+/GridAzure/bin
+/GridAzure/obj
