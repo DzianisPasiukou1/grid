@@ -2374,6 +2374,13 @@
     <Content Include="karma.conf.js" />
     <Content Include="protractor.conf.js" />
     <Content Include="test\e2e\routingSpec.js" />
+    <Content Include="test\e2e\standartOneSpec.js" />
+    <Content Include="test\unit\controllers\chartSegmentControllerSpec.js" />
+    <Content Include="test\unit\directives\cards\cardsSpec.js" />
+    <Content Include="test\unit\directives\chart-segment\chartSegmentSpec.js" />
+    <Content Include="test\unit\directives\checkbox-select\checkboxSelectSpec.js" />
+    <Content Include="test\unit\directives\core-diagram\coreDiagramSpec.js" />
+    <Content Include="test\unit\directives\custom-ui-grid\customUiGridSpec.js" />
     <Content Include="test\unit\directives\dropdown\dropdownSpec.js" />
     <Content Include="test\unit\directives\page-content-cards\pageContentCardsSpec.js" />
     <Content Include="Web.config" />

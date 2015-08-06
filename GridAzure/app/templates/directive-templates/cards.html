@@ -32,8 +32,10 @@
 				<span class="my-card__header__icon card-font icon-info"></span>
 				<span class="my-card__header__text">{{card.label}}</span>
 			</div>
-			<div class="my-card__body" ng-init="card.count = card.counter.calculate(startDate, endDate) || card.count">
-				<span number-format="card.count"></span>
+			<div ng-if="card.counter">
+				<div class="my-card__body" ng-init="card.count = card.counter.calculate(startDate, endDate) || card.count">
+					<span number-format="card.count"></span>
+				</div>
 			</div>
 		</div>
 		<div class="back">

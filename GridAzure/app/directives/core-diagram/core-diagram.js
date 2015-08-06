@@ -8,7 +8,6 @@
 				data: '=sankeyData'
 			},
 			link: function (scope, element, attrs) {
-
 				scope.$watch('data', function (graph) {
 					if (graph) {
 						var units = "Widgets";
