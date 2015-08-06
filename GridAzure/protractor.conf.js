@@ -11,7 +11,7 @@
 	// spec file. They may include glob patterns.
 	specs: [
 		//'test/e2e/**/*.js'
-		'test/e2e/standartOneSpec.js'
+		'test/e2e/withLoadingUISpec.js'
 	],
 	// Options to be passed to Jasmine-node
 	jasmineNodeOpts: {

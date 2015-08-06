@@ -1,22 +1,30 @@
-﻿describe('Testing grid standart one', function () {
+﻿describe('Testing grid with upload UI', function () {
 	beforeEach(function () {
-		browser.get('/standartOne');
+		browser.get('/withUpload');
+		browser.waitForAngular();
+
+		var btn = element.all(by.css('.my-dropdown__btn')).get(2);
+		btn.click();
+
+		var ui = element.all(by.css('.my-dropdown__list li')).get(4);
+		ui.click();
+
 		browser.waitForAngular();
 	});
 
 	it('should refresh data after click refresh button', function () {
-		var oldText = element(by.css('.row-date__value')).getText();
+		var oldText = element(by.css('.ui-grid-cell-contents')).getText();
 
 		var btn = element(by.css('.options__refresh'));
 		btn.click();
 
-		var newText = element(by.css('.row-date__value')).getText();
+		var newText = element(by.css('.ui-grid-cell-contents')).getText();
 
 		expect(oldText != newText).toBeTruthy();
 	});
 
 	it('should filtrate after show records with not empty inputs', function () {
-		var text = element.all(by.css('.row-date__value')).get(1).getText();
+		var text = element.all(by.css('.ui-grid-cell .ui-grid-cell-contents')).get(0).getText();
 
 		var filterBtn = element(by.css('.filter__btn'));
 		filterBtn.click();
@@ -27,7 +35,7 @@
 		var show = element(by.css('.filter-list__button'));
 		show.click();
 
-		var newText = element.all(by.css('.row-date__value')).get(0).getText();
+		var newText = element.all(by.css('.ui-grid-cell .ui-grid-cell-contents')).get(0).getText();
 
 		expect(text).toEqual(newText);
 	});
@@ -36,7 +44,7 @@
 		var filter = element.all(by.model('searchValue'));
 		filter.sendKeys('200');
 
-		var newText = element.all(by.css('.ngRow')).get(0).getText();
+		var newText = element.all(by.css('.ui-grid-row')).get(0).getText();
 
 		expect(newText).toContain('200');
 
@@ -51,18 +59,18 @@
 
 		filter.sendKeys('200');
 
-		newText = element.all(by.css('.row-date__value')).get(0).getText();
+		newText = element.all(by.css('.ui-grid-cell .ui-grid-cell-contents')).get(0).getText();
 
 		expect(newText).toContain('200');
 	});
 
 	it('should select row after click', function () {
-		var row = element.all(by.css('.ngRow'));
+		var row = element.all(by.css('.ui-grid-row'));
 		row.click();
 
-		expect(element.all(by.css('.ngRow.selected')).count()).toEqual(1);
+		expect(element.all(by.css('.ui-grid-row.ui-grid-row-selected')).count()).toEqual(1);
 
-		expect(element.all(by.css('.ngRow.selected .action')).get(0).isDisplayed()).toBe(true);
+		expect(element.all(by.css('.ui-grid-row.ui-grid-row-selected .action')).get(0).isDisplayed()).toBe(true);
 	});
 });
 

@@ -1,22 +1,22 @@
-﻿describe('Testing grid standart one', function () {
+﻿describe('Testing grid standart two', function () {
 	beforeEach(function () {
-		browser.get('/standartOne');
+		browser.get('/standartTwo');
 		browser.waitForAngular();
 	});
 
 	it('should refresh data after click refresh button', function () {
-		var oldText = element(by.css('.row-date__value')).getText();
+		var oldText = element(by.css('.row-name__value')).getText();
 
 		var btn = element(by.css('.options__refresh'));
 		btn.click();
 
-		var newText = element(by.css('.row-date__value')).getText();
+		var newText = element(by.css('.row-name__value')).getText();
 
 		expect(oldText != newText).toBeTruthy();
 	});
 
 	it('should filtrate after show records with not empty inputs', function () {
-		var text = element.all(by.css('.row-date__value')).get(1).getText();
+		var text = element.all(by.css('.row-name__value')).get(1).getText();
 
 		var filterBtn = element(by.css('.filter__btn'));
 		filterBtn.click();
@@ -27,18 +27,18 @@
 		var show = element(by.css('.filter-list__button'));
 		show.click();
 
-		var newText = element.all(by.css('.row-date__value')).get(0).getText();
+		var newText = element.all(by.css('.row-name__value')).get(0).getText();
 
 		expect(text).toEqual(newText);
 	});
 
 	it('should filtrate after change text of small filter', function () {
 		var filter = element.all(by.model('searchValue'));
-		filter.sendKeys('200');
+		filter.sendKeys('User');
 
 		var newText = element.all(by.css('.ngRow')).get(0).getText();
 
-		expect(newText).toContain('200');
+		expect(newText).toContain('User');
 
 		var btn = element(by.css('.split-btn__toggle'));
 		btn.click();
@@ -49,11 +49,11 @@
 		filter = element.all(by.model('searchValue')).get(0);
 		expect(filter.getText()).toEqual('');
 
-		filter.sendKeys('200');
+		filter.sendKeys('User');
 
-		newText = element.all(by.css('.row-date__value')).get(0).getText();
+		newText = element.all(by.css('.row-name__value')).get(0).getText();
 
-		expect(newText).toContain('200');
+		expect(newText).toContain('User');
 	});
 
 	it('should select row after click', function () {
