@@ -1,6 +1,6 @@
 ﻿.kx-nav {
-	background: #0A2841;
-	border-bottom: 5px solid #0A2841;
+	background: $kx-blue;
+	border-bottom: 5px solid $kx-blue;
 	height: 48px;
 
 	@media (min-width: 1200px) {
@@ -57,14 +57,14 @@
 }
 
 .menu-util .account-util .account-util-menu {
-	background: #fff;
+	background: $light-white;
 	display: none;
 	position: absolute;
 	left: 0;
 }
 
 .menu-util .account-util.open .account-util-menu {
-	border-bottom: 5px solid #0A2841;
+	border-bottom: 5px solid $kx-blue;
 	display: block !important;
 	margin-top: 13px;
 	width: 100%;
@@ -72,7 +72,7 @@
 }
 
 .menu-util .account-util.open {
-	background: #fff;
+	background: $light-white;
 }
 
 .menu-util .account-util.open > a {
@@ -80,8 +80,8 @@
 }
 
 .menu-util .account-util .caret {
-	border-bottom-color: #fff;
-	border-top-color: #fff;
+	border-bottom-color:$light-white;
+	border-top-color: $light-white;
 }
 
 .kx-menu .kx-menu-selected a {
@@ -207,15 +207,6 @@ nav {
 .kx-menu .kx-submenu-inner > div a:hover {
 	color: #1a9bd1;
 }
-
-/*a [class^="icon-"], a [class*=" icon-"] {
-	display: inline;
-}*/
-
-/*[class^="icon-"], [class*=" icon-"], .icon-white {
-	background-image: none;
-	line-height: inherit;
-}*/
 
 .icon-user {
 	background-position: -168px 0;

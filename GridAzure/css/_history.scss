@@ -1,16 +1,7 @@
 ﻿history {
-	/*position: fixed;
-	top: 25%;
-	left: 20%;
-	right: 20%;
-	bottom: 0;
-	font-weight: normal !important;
-	font-size: 14px !important;
-	height: 0;
-	z-index: 1000;*/
 	.history__content {
 		text-align: left;
-		font-size: 16px;
+		font-size: $default-font-size;
 	}
 
 	.dialog {

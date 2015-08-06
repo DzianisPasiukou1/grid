@@ -1,7 +1,7 @@
 ﻿page-content-d3 {
 	min-width: 0 !important;
 
-	@media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
+	@media only screen and (max-width: 912px) {
 		.page-content {
 			&__header {
 				height: 360px !important;
@@ -9,7 +9,7 @@
 		}
 	}
 
-	@media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+	@media only screen and (max-width: 680px) {
 		.page-content {
 			&__header {
 				height: 400px !important;
@@ -20,6 +20,8 @@
 	.page-content {
 		overflow: hidden;
 		border: 0;
+		font-size: $font-size;
+		font-family: $helvetica-family;
 
 		&__uploader {
 			margin-bottom: 10px;
@@ -29,7 +31,7 @@
 			height: 315px;
 			border: 0 !important;
 			background-color: rgb(215, 225, 231) !important;
-			border-top: 5px solid rgb(8,45,73) !important;
+			border-top: 5px solid $kx-blue !important;
 		}
 
 		&__cards {
@@ -38,8 +40,6 @@
 
 		&__actions {
 			margin-top: 4px;
-			font-size: 14px;
-			font-family: "Arial", "Helvetica", sans-serif;
 
 			&__export {
 
@@ -54,20 +54,12 @@
 		}
 
 		&__options {
-			margin-top: 10px;
-			font-size: 14px;
-			font-family: "Arial", "Helvetica", sans-serif;
-			float: left;
-			width: 100%;
-			background-color: white;
-			margin-left: 15px;
-			margin-bottom: 15px;
-			border-radius: 4px 4px;
+			@extend %sankey-options;
 
 			.options {
 				padding-top: 5px !important;
 
-				@media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
+				@media only screen and (max-width: 912px) {
 					display: block;
 
 					&__block {
@@ -75,13 +67,7 @@
 					}
 
 					&__select {
-						margin-left: 10px;
-						z-index: 1 !important;
-						margin-top: 10px;
-						position: relative;
-						margin-bottom: 7px;
-						clear: both;
-						display: inline-block;
+						@include select('912px');
 					}
 
 					.select2-container {
@@ -89,11 +75,10 @@
 					}
 				}
 
-				@media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+				@media only screen and (max-width: 680px) {
 
 					&__select {
-						float: left;
-						display: inline-block;
+						@include select('680px');
 					}
 
 					.select2-container {
@@ -109,32 +94,9 @@
 				}
 
 				&__select {
-					font-weight: normal;
-					display: inline-block;
+					@include select('');
 
-					.select2-container .select2-choice {
-						height: 35px;
-					}
-
-					.select2-container .select2-choice > .select2-chosen {
-						margin-top: 3px;
-					}
-
-					.select2-container .select2-choice .select2-arrow b {
-						margin-top: 3px;
-					}
-
-					.select2-container-multi .select2-search-choice-close {
-						margin-top: -1px;
-					}
-
-					.select2-container-multi .select2-choices .select2-search-field input {
-						height: 32px;
-					}
-
-					.select2-container-multi .select2-choices .select2-search-choice {
-						margin-top: 6px;
-					}
+					@include select2-container;
 				}
 
 				&__event {
@@ -161,58 +123,12 @@
 		}
 
 		&__cards {
-			width: 100%;
-			height: 220px;
-			overflow-x: auto;
-			margin-left: 15px;
-			border: 1px #d9d9d9 solid;
-			overflow-y: hidden;
-
-			.my-card__header {
-				font-weight: bold;
-			}
-
-			.my-card .front {
-				top: -7px;
-				height: 185px !important;
-				width: 500px !important;
-			}
-
-			.my-card .back {
-				top: -7px;
-				height: 185px !important;
-				width: 500px !important;
-			}
-
-			#debug {
-			}
-
-			.my-card__body {
-				font-weight: bold;
-				font-size: 50px;
-				color: rgb(166,228,249);
-				margin-top: 15px;
-
-				&__uploader {
-					position: relative;
-					top: -40px;
-				}
-
-				&__back {
-
-					button {
-						margin-top: 0;
-						position: relative;
-						top: -50px;
-						left: -210px;
-					}
-				}
-			}
+			@extend %sankey-cards;
 		}
 
 		&__footer {
 			@extend .footer;
-			border: 1px solid #e5e5e5;
+			border: $small-row-grey-border;
 			min-height: 0 !important;
 		}
 	}

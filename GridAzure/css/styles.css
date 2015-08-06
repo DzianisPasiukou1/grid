@@ -968,11 +968,11 @@ core-diagram {
     position: relative;
     margin-left: 10px;
     margin-right: 10px; }
-  core-diagram .noderect {
+  core-diagram .node rect {
     cursor: move;
     fill-opacity: 0.9;
     shape-rendering: crispEdges; }
-  core-diagram .nodetext {
+  core-diagram .node text {
     pointer-events: none;
     text-shadow: 0 1px 0 #fff; }
   core-diagram .link {
@@ -1001,10 +1001,10 @@ histogram .bar {
   fill: steelblue; }
   histogram .bar:hover {
     fill: turquoise; }
-histogram .charttext {
+histogram .chart text {
   font: 12px sans-serif;
   font-weight: bold; }
-histogram .chart.title {
+histogram .chart .title {
   font: 16px sans-serif;
   font-weight: bold; }
 histogram .axis path, histogram .axis line {
@@ -1334,12 +1334,7 @@ histogram .x.axis path {
   top: 0;
   bottom: 0;
   background-color: inherit;
-  display: table-cell;
-  /*position: static;*/ }
-.toggle .ngCellText {
-  /*white-space: normal;
-		text-overflow: clip;
-		overflow: auto;*/ }
+  display: table-cell; }
 .toggle .wrap {
   white-space: normal;
   text-overflow: clip;
@@ -1349,7 +1344,7 @@ histogram .x.axis path {
   min-width: 500px;
   margin-top: 20px; }
   .page-content.disabled {
-    background-color: black; }
+    background-color: #333; }
   .page-content__header {
     height: 46px; }
   .page-content__icon {
@@ -1385,7 +1380,7 @@ histogram .x.axis path {
 .custom-grid {
   padding: 0;
   height: 600px; }
-  @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 863px) {
     .custom-grid {
       margin-top: 80px; } }
   .custom-grid__menu .grid-menu {
@@ -1394,7 +1389,7 @@ histogram .x.axis path {
     top: 53px;
     z-index: 100;
     right: 10px; }
-    @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+    @media only screen and (max-width: 863px) {
       .custom-grid__menu .grid-menu {
         top: 99px; } }
     .custom-grid__menu .grid-menu__options {
@@ -1406,7 +1401,7 @@ histogram .x.axis path {
         right: 0;
         left: auto; }
       .custom-grid__menu .grid-menu__options .my-dropdown button {
-        border-color: black;
+        border-color: #333;
         background: #5a5a5a; }
   .custom-grid .ngTopPanel {
     background-color: #5a5a5a;
@@ -1447,7 +1442,7 @@ histogram .x.axis path {
     vertical-align: middle;
     color: #444444;
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     border-bottom: 0;
     display: inline-block; }
     .custom-grid .ngRow.selected {
@@ -1461,8 +1456,7 @@ histogram .x.axis path {
     background-color: #5a5a5a;
     border-right: 1px solid #e5e5e5; }
   .custom-grid .column {
-    text-align: center;
-    /*padding-right: 20px;*/ }
+    text-align: center; }
     .custom-grid .column__sort {
       width: 100%; }
     .custom-grid .column__name {
@@ -1494,7 +1488,7 @@ histogram .x.axis path {
   padding-bottom: 7px;
   margin-left: 4px;
   padding-right: 10px; }
-  @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 863px) {
     .options {
       display: block; }
       .options__block {
@@ -1557,7 +1551,7 @@ histogram .x.axis path {
   float: right;
   margin-right: 80px;
   position: relative; }
-  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 760px) {
     .filter {
       float: left;
       margin-right: 60px; } }
@@ -1737,44 +1731,20 @@ histogram .x.axis path {
     position: relative;
     border: 0; }
 
-modal {
-  /*position: fixed;
-	z-index: 1000;
-	left: 20%;
-	right: 20%;
-	top: 100px;
-	bottom: 0;
-	height: 100%;
-	overflow-y: auto;
+history .history__content {
+  text-align: left;
+  font-size: 16px; }
+history .dialog {
+  height: auto; }
+  history .dialog__entity {
+    text-align: left !important; }
+  history .dialog__key {
+    margin-right: 0 !important; }
+  history .dialog__value {
+    margin-left: 10px !important;
+    float: none !important; }
 
-	.dialog {
-		height: auto;
-	}*/ }
-
-history {
-  /*position: fixed;
-	top: 25%;
-	left: 20%;
-	right: 20%;
-	bottom: 0;
-	font-weight: normal !important;
-	font-size: 14px !important;
-	height: 0;
-	z-index: 1000;*/ }
-  history .history__content {
-    text-align: left;
-    font-size: 16px; }
-  history .dialog {
-    height: auto; }
-    history .dialog__entity {
-      text-align: left !important; }
-    history .dialog__key {
-      margin-right: 0 !important; }
-    history .dialog__value {
-      margin-left: 10px !important;
-      float: none !important; }
-
-@media only screen and (max-width: 1530px), (min-device-width: 1530px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 1530px) {
   .grid-testing textarea {
     width: 100% !important; }
 
@@ -1832,66 +1802,65 @@ history {
     .dynamic-dropdown .dynamic-actions__btn {
       margin-right: 10px; }
 
-@media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 910px) {
   page-content-cards .page-content__header {
     height: 100px !important; }
   page-content-cards .page-content__list .custom-ui-grid {
     margin-top: 20px !important; }
  }
-page-content-cards .page-content__header {
-  height: 55px; }
-page-content-cards .page-content__actions {
-  margin-top: 4px;
+page-content-cards .page-content {
   font-size: 14px;
-  font-family: "Arial", "Helvetica", sans-serif; }
-  page-content-cards .page-content__actions__export .my-dropdown__list, page-content-cards .page-content__actions__export .split-btn__list, page-content-cards .page-content__actions__export .checkbox-select__list {
-    right: 19px !important;
-    left: auto !important;
-    min-width: 200px; }
-page-content-cards .page-content__options {
-  margin-top: 4px;
-  font-size: 14px;
-  font-family: "Arial", "Helvetica", sans-serif;
-  float: left; }
-  page-content-cards .page-content__options .options {
-    padding-top: 0 !important; }
-    @media only screen and (max-width: 910px), (min-device-width: 910px) and (max-device-width: 1024px) {
-      page-content-cards .page-content__options .options {
-        display: block; }
-        page-content-cards .page-content__options .options__block {
-          float: left; }
-        page-content-cards .page-content__options .options__filter {
-          margin-left: 10px;
-          z-index: 1000 !important;
-          display: table;
-          margin-top: 10px;
-          float: right;
-          position: relative;
-          margin-bottom: 7px;
-          clear: both; }
-          page-content-cards .page-content__options .options__filter .filter {
-            margin-right: 0 !important; } }
-    page-content-cards .page-content__options .options__search {
-      float: left;
-      margin-right: 0.75rem !important; }
-    page-content-cards .page-content__options .options__show {
-      float: left; }
-    page-content-cards .page-content__options .options__block {
-      float: left;
-      margin-right: 30px;
-      margin-left: 10px; }
-page-content-cards .page-content__list {
-  margin-top: 10px;
-  overflow: hidden; }
-page-content-cards .page-content__cards {
-  width: 100%;
-  height: 150px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin-top: 10px; }
-page-content-cards .page-content__footer {
-  border: 1px solid #e5e5e5;
-  min-height: 0 !important; }
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  page-content-cards .page-content__header {
+    height: 55px; }
+  page-content-cards .page-content__actions {
+    margin-top: 4px; }
+    page-content-cards .page-content__actions__export .my-dropdown__list, page-content-cards .page-content__actions__export .split-btn__list, page-content-cards .page-content__actions__export .checkbox-select__list {
+      right: 19px !important;
+      left: auto !important;
+      min-width: 200px; }
+  page-content-cards .page-content__options {
+    margin-top: 4px;
+    float: left; }
+    page-content-cards .page-content__options .options {
+      padding-top: 0 !important; }
+      @media only screen and (max-width: 910px) {
+        page-content-cards .page-content__options .options {
+          display: block; }
+          page-content-cards .page-content__options .options__block {
+            float: left; }
+          page-content-cards .page-content__options .options__filter {
+            margin-left: 10px;
+            z-index: 1000 !important;
+            display: table;
+            margin-top: 10px;
+            float: right;
+            position: relative;
+            margin-bottom: 7px;
+            clear: both; }
+            page-content-cards .page-content__options .options__filter .filter {
+              margin-right: 0 !important; } }
+      page-content-cards .page-content__options .options__search {
+        float: left;
+        margin-right: 0.75rem !important; }
+      page-content-cards .page-content__options .options__show {
+        float: left; }
+      page-content-cards .page-content__options .options__block {
+        float: left;
+        margin-right: 30px;
+        margin-left: 10px; }
+  page-content-cards .page-content__list {
+    margin-top: 10px;
+    overflow: hidden; }
+  page-content-cards .page-content__cards {
+    width: 100%;
+    height: 150px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 10px; }
+  page-content-cards .page-content__footer {
+    border: 1px solid #e5e5e5;
+    min-height: 0 !important; }
 
 .navigation {
   margin: 20px; }
@@ -1900,138 +1869,97 @@ page-content-cards .page-content__footer {
 
 page-content-d3 {
   min-width: 0 !important; }
-  @media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 912px) {
     page-content-d3 .page-content__header {
       height: 360px !important; }
  }
-  @media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 680px) {
     page-content-d3 .page-content__header {
       height: 400px !important; }
  }
   page-content-d3 .page-content {
     overflow: hidden;
-    border: 0; }
+    border: 0;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
     page-content-d3 .page-content__uploader {
       margin-bottom: 10px; }
     page-content-d3 .page-content__header {
       height: 315px;
       border: 0 !important;
       background-color: #d7e1e7 !important;
-      border-top: 5px solid #082d49 !important; }
+      border-top: 5px solid #0A2841 !important; }
     page-content-d3 .page-content__cards {
       background-color: #e7eef2; }
     page-content-d3 .page-content__actions {
-      margin-top: 4px;
-      font-size: 14px;
-      font-family: "Arial", "Helvetica", sans-serif; }
+      margin-top: 4px; }
       page-content-d3 .page-content__actions__export .my-dropdown__list, page-content-d3 .page-content__actions__export .split-btn__list, page-content-d3 .page-content__actions__export .checkbox-select__list {
         right: 19px !important;
         left: auto !important;
         min-width: 200px; }
-    page-content-d3 .page-content__options {
-      margin-top: 10px;
-      font-size: 14px;
-      font-family: "Arial", "Helvetica", sans-serif;
-      float: left;
-      width: 100%;
-      background-color: white;
-      margin-left: 15px;
-      margin-bottom: 15px;
-      border-radius: 4px 4px; }
-      page-content-d3 .page-content__options .options {
-        padding-top: 5px !important; }
-        @media only screen and (max-width: 912px), (min-device-width: 912px) and (max-device-width: 1024px) {
-          page-content-d3 .page-content__options .options {
-            display: block; }
-            page-content-d3 .page-content__options .options__block {
-              float: left; }
-            page-content-d3 .page-content__options .options__select {
-              margin-left: 10px;
-              z-index: 1 !important;
-              margin-top: 10px;
-              position: relative;
-              margin-bottom: 7px;
-              clear: both;
-              display: inline-block; }
-            page-content-d3 .page-content__options .options .select2-container {
-              display: inline-block; } }
-        @media only screen and (max-width: 680px), (min-device-width: 680px) and (max-device-width: 1024px) {
+    page-content-d3 .page-content__options .options {
+      padding-top: 5px !important; }
+      @media only screen and (max-width: 912px) {
+        page-content-d3 .page-content__options .options {
+          display: block; }
+          page-content-d3 .page-content__options .options__block {
+            float: left; }
           page-content-d3 .page-content__options .options__select {
-            float: left;
+            margin-left: 10px;
+            z-index: 1 !important;
+            margin-top: 10px;
+            position: relative;
+            margin-bottom: 7px;
+            clear: both;
+            display: inline-block;
+            font-weight: normal;
             display: inline-block; }
-
           page-content-d3 .page-content__options .options .select2-container {
-            display: block;
-            margin-bottom: 10px; }
- }
-        page-content-d3 .page-content__options .options__block {
-          float: left;
-          margin-right: 10px;
-          margin-left: 10px; }
+            display: inline-block; } }
+      @media only screen and (max-width: 680px) {
         page-content-d3 .page-content__options .options__select {
-          font-weight: normal;
+          float: left;
           display: inline-block; }
-          page-content-d3 .page-content__options .options__select .select2-container .select2-choice {
-            height: 35px; }
-          page-content-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
-            margin-top: 3px; }
-          page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
-            margin-top: 3px; }
-          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
-            margin-top: -1px; }
-          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-field input {
-            height: 32px; }
-          page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-choice {
-            margin-top: 6px; }
-        page-content-d3 .page-content__options .options__event {
-          margin-right: 15px;
-          min-width: 200px; }
-        page-content-d3 .page-content__options .options__segments {
-          margin-right: 5px;
-          min-width: 200px; }
-        page-content-d3 .page-content__options .options__campaign {
-          margin-right: 15px;
-          min-width: 200px; }
+
+        page-content-d3 .page-content__options .options .select2-container {
+          display: block;
+          margin-bottom: 10px; }
+ }
+      page-content-d3 .page-content__options .options__block {
+        float: left;
+        margin-right: 10px;
+        margin-left: 10px; }
+      page-content-d3 .page-content__options .options__select {
+        font-weight: normal;
+        display: inline-block; }
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice {
+          height: 35px; }
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
+          margin-top: 3px; }
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
+          margin-top: 3px; }
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
+          margin-top: -1px; }
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-field input {
+          height: 32px; }
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-choice {
+          margin-top: 6px; }
+      page-content-d3 .page-content__options .options__event {
+        margin-right: 15px;
+        min-width: 200px; }
+      page-content-d3 .page-content__options .options__segments {
+        margin-right: 5px;
+        min-width: 200px; }
+      page-content-d3 .page-content__options .options__campaign {
+        margin-right: 15px;
+        min-width: 200px; }
     page-content-d3 .page-content__list {
       margin-top: 15px;
       overflow: hidden;
       height: auto; }
-    page-content-d3 .page-content__cards {
-      width: 100%;
-      height: 220px;
-      overflow-x: auto;
-      margin-left: 15px;
-      border: 1px #d9d9d9 solid;
-      overflow-y: hidden; }
-      page-content-d3 .page-content__cards .my-card__header {
-        font-weight: bold; }
-      page-content-d3 .page-content__cards .my-card .front {
-        top: -7px;
-        height: 185px !important;
-        width: 500px !important; }
-      page-content-d3 .page-content__cards .my-card .back {
-        top: -7px;
-        height: 185px !important;
-        width: 500px !important; }
-      page-content-d3 .page-content__cards .my-card__body {
-        font-weight: bold;
-        font-size: 50px;
-        color: #a6e4f9;
-        margin-top: 15px; }
-        page-content-d3 .page-content__cards .my-card__body__uploader {
-          position: relative;
-          top: -40px; }
-        page-content-d3 .page-content__cards .my-card__body__back button {
-          margin-top: 0;
-          position: relative;
-          top: -50px;
-          left: -210px; }
     page-content-d3 .page-content__footer {
       border: 1px solid #e5e5e5;
       min-height: 0 !important; }
-
-.sankey__btn {
-  margin-top: 20px; }
 
 .kx-nav {
   background: #0A2841;
@@ -2197,13 +2125,6 @@ nav {
 .kx-menu .kx-submenu-inner > div a:hover {
   color: #1a9bd1; }
 
-/*a [class^="icon-"], a [class*=" icon-"] {
-	display: inline;
-}*/
-/*[class^="icon-"], [class*=" icon-"], .icon-white {
-	background-image: none;
-	line-height: inherit;
-}*/
 .icon-user {
   background-position: -168px 0; }
 
@@ -2211,5 +2132,45 @@ nav {
   margin: 0;
   min-width: 110px;
   padding: 1em 2em; }
+
+page-content-d3 .page-content__options {
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+  background-color: white;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  border-radius: 4px 4px; }
+
+page-content-d3 .page-content__cards {
+  width: 100%;
+  height: 220px;
+  overflow-x: auto;
+  margin-left: 15px;
+  border: 1px solid #d9d9d9;
+  overflow-y: hidden; }
+  page-content-d3 .page-content__cards .my-card__header {
+    font-weight: bold; }
+  page-content-d3 .page-content__cards .my-card .front {
+    top: -7px;
+    height: 185px !important;
+    width: 500px !important; }
+  page-content-d3 .page-content__cards .my-card .back {
+    top: -7px;
+    height: 185px !important;
+    width: 500px !important; }
+  page-content-d3 .page-content__cards .my-card__body {
+    font-weight: bold;
+    font-size: 50px;
+    color: #a6e4f9;
+    margin-top: 15px; }
+    page-content-d3 .page-content__cards .my-card__body__uploader {
+      position: relative;
+      top: -40px; }
+    page-content-d3 .page-content__cards .my-card__body__back button {
+      margin-top: 0;
+      position: relative;
+      top: -50px;
+      left: -210px; }
 
 /*# sourceMappingURL=styles.css.map */

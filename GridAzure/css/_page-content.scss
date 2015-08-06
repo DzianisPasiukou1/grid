@@ -4,7 +4,7 @@
 	margin-top: 20px;
 
 	&.disabled {
-		background-color: black;
+		background-color: $black;
 	}
 
 	&__header {
@@ -17,7 +17,7 @@
 
 		&__text {
 			float: left;
-			font-size: 40px;
+			font-size: $larger-font-size;
 		}
 	}
 
@@ -60,6 +60,6 @@
 
 	&__footer {
 		@extend .footer;
-		border: 1px solid #e5e5e5;
+		border: $small-row-grey-border;
 	}
 }

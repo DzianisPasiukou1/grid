@@ -30,12 +30,12 @@
 	}
 
 	.chart {
-		&text {
+		& text {
 			font: $default-font-size - 4px sans-serif;
 			font-weight: $bold;
 		}
 
-		&.title {
+		& .title {
 			font: $default-font-size sans-serif;
 			font-weight: bold;
 		}

@@ -39,3 +39,44 @@
 	display: block;
 	transition: all 0.1s linear;
 }
+
+@mixin select($queryString) {
+	@if $queryString == '912px' {
+		margin-left: 10px;
+		z-index: 1 !important;
+		margin-top: 10px;
+		position: relative;
+		margin-bottom: 7px;
+		clear: both;
+		display: inline-block;
+	}
+
+	@if $queryString == '680px' {
+		float: left;
+		display: inline-block;
+	}
+
+	@else {
+		font-weight: $normal;
+		display: inline-block;
+	}
+}
+
+@mixin filter-list-main {
+	min-width: 300px;
+	position: absolute;
+	z-index: 10000;
+	right: 0;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	max-width: 600px;
+	list-style: none;
+	background-color: $light-white;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}

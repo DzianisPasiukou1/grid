@@ -4,7 +4,7 @@
 	margin-right: 80px;
 	position: relative;
 
-	@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+	@media only screen and (max-width: 760px) {
 		float: left;
 		margin-right: 60px;
 	}
@@ -29,22 +29,7 @@
 	}
 
 	filter-list {
-		min-width: 300px;
-		position: absolute;
-		z-index: 10000;
-		right: 0;
-		padding: 5px 0;
-		margin: 2px 0 0;
-		font-size: 14px;
-		text-align: left;
-		max-width: 600px;
-		list-style: none;
-		background-color: $light-white;
-		-webkit-background-clip: padding-box;
-		background-clip: padding-box;
-		border: 1px solid #ccc;
-		-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-		box-shadow: 0 6px 12px rgba(0,0,0,.175);
+		@include filter-list-main;
 
 		.filter-list {
 			z-index: 50;

@@ -3,6 +3,9 @@
 @import "modules/_color.scss";
 @import "modules/_border.scss";
 @import "modules/_size.scss";
+@import "modules/_stack.scss";
+@import "modules/_ng-grid.scss";
+@import "modules/_ui-grid.scss";
 
 @import "common/_custom-card.scss";
 @import "common/_kx-datepicker.scss";
@@ -48,12 +51,11 @@
 @import "_filter.scss";
 @import "_page.scss";
 @import "_custom-ui-grid.scss";
-@import "_modal.scss";
 @import "_history.scss";
 @import "_grid-testing.scss";
 @import "_dynamic-actions.scss";
 @import "_page-content-cards.scss";
 @import "_navigation.scss";
 @import "_page-content-d3.scss";
-@import "_sankey.scss";
 @import "_kx-nav.scss";
+@import "_sankey.scss";

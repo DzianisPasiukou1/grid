@@ -2157,7 +2157,6 @@
     <Content Include="data\json.zip" />
     <Content Include="css\common\_cursor-message.scss" />
     <Content Include="css\common\_modal-dialog.scss" />
-    <Content Include="css\_modal.scss" />
     <Content Include="css\_history.scss" />
     <Content Include="css\_dynamic-actions.scss" />
     <Content Include="bower_components\angular-route\.bower.json" />
@@ -2349,7 +2348,6 @@
     <Content Include="bower_components\bootstrap-multiselect\docs\less\bootstrap-example.less" />
     <Content Include="bower_components\bootstrap-multiselect\tests\lib\MIT.LICENSE" />
     <Content Include="css\common\_kx-multiselect.scss" />
-    <Content Include="css\_sankey.scss" />
     <Content Include="data\cards\scroller.json" />
     <Content Include="css\common\_kx-btn.scss" />
     <Content Include="css\_kx-nav.scss" />
@@ -2369,6 +2367,10 @@
     <Content Include="css\modules\_border.scss" />
     <Content Include="css\modules\_size.scss" />
     <Content Include="css\common\_custom-card.scss" />
+    <Content Include="css\_sankey.scss" />
+    <Content Include="css\modules\_stack.scss" />
+    <Content Include="css\modules\_ng-grid.scss" />
+    <Content Include="css\modules\_ui-grid.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="karma.conf.js" />
@@ -2382,6 +2384,7 @@
     <Content Include="test\e2e\testingUISpec.js" />
     <Content Include="test\e2e\withDetailsSpec.js" />
     <Content Include="test\e2e\withDetailsUISpec.js" />
+    <Content Include="test\e2e\withDiagramsSpec.js" />
     <Content Include="test\e2e\withLoadingSpec.js" />
     <Content Include="test\e2e\withLoadingUISpec.js" />
     <Content Include="test\e2e\withMenuUISpec.js" />
