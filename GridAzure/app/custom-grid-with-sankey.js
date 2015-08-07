@@ -2,12 +2,6 @@
 angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
 	.value('templatesPath', 'app/templates/');
 
-///#source 1 1 /app/constants/class-constant.js
-angular.module('gridTaskApp')
-	.constant("classes", {
-		menuDown: 'icon-menu-down',
-		menuUp: 'icon-menu-up'
-	});
 ///#source 1 1 /app/constants/content-constants.js
 angular.module('gridTaskApp')
 	.constant('content', {
@@ -252,7 +246,12 @@ angular.module('gridTaskApp')
 				end: moment(new Date())
 			},
 		},
-		sankeyPath: "data/sankey/my-graphs.json"
+		sankeyPath: "data/sankey/my-graphs.json",
+		debugCard: {
+			id: 'debug',
+			text: 'Debug',
+			templateUrl: 'app/templates/directive-templates/debug.html'
+		}
 	});
 ///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
@@ -263,28 +262,27 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/cards/cards-controller.js
 angular.module('gridTaskApp')
 	.controller('cardsCtrl', ['$scope', function ($scope) {
-
+		$scope.cards = $scope.cardsOptions.cards;
+		$scope.startDate = $scope.cardsOptions.startDate;
+		$scope.endDate = $scope.cardsOptions.endDate;
+		$scope.margin = $scope.cardsOptions.margin;
 	}]);
 ///#source 1 1 /app/directives/cards/cards.js
 angular.module('gridTaskApp')
 	.directive('cards', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/cards.html',
 			scope: {
-				cards: '=',
-				startDate: '=',
-				endDate: '=',
-				margin: '=',
+				cardsOptions: '=cards',
 				contentOptions: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
-
 				if (scope.contentOptions.enableDebugging) {
 					$timeout(function () {
-						$('#debug').css('left', 40);
-						$('#debug').flip();
+						$('#' + scope.contentOptions.debugCard.id).css('left', 40);
+						$('#' + scope.contentOptions.debugCard.id).flip();
 					});
 				}
 
@@ -305,7 +303,6 @@ angular.module('gridTaskApp')
 
 						$('.cards-group').css('width', left + 50 + 'px');
 					})
-
 				});
 			}
 		}
@@ -313,6 +310,15 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/chart-segment/chart-segment-controller.js
 angular.module('gridTaskApp')
 	.controller('chartSegmentCtrl', ['$scope', function ($scope) {
+		$scope.panel = {
+			header: {
+				text: 'Selected Users'
+			},
+			btn: {
+				text: 'Create Segment'
+			}
+		}
+
 		$scope.deleteUser = function (user, index) {
 			$scope.selectedUsers.splice(index, 1);
 		}
@@ -321,36 +327,30 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('chartSegment', ['templatesPath', function (templatesPath) {
 		return {
-			retstrict: 'E',
+			retstrict: 'EA',
 			scope: {
 				selectedUsers: '='
 			},
 			controller: 'chartSegmentCtrl',
-			templateUrl: templatesPath + 'directive-templates/chart-segment.html',
-			link: function (scope, element, attrs) {
-
-			}
+			templateUrl: templatesPath + 'directive-templates/chart-segment.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
-	.controller('checkboxSelectCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
 		if ($scope.options.selected === undefined) {
 			$scope.options.selected = {};
+		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
 		}
 
 		$scope.select = function (action) {
 			$scope.isShow = false;
 			$scope.options.selected = action;
 
-			if (action.isAll) {
+			if ($scope.options.selected.isAll) {
 				$scope.options.selected.check = true;
 			}
 			else {
@@ -362,26 +362,22 @@ angular.module('gridTaskApp')
 			}
 		}
 
-		$scope.toggle = function () {
-			$scope.isShow = !$scope.isShow;
-		}
-
 		$scope.checked = function (value) {
 			if (value) {
 				$scope.options.selected = $scope.options.actions.all;
+				$scope.options.selected.check = true;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = true;
 			}
 			else {
 				$scope.options.selected = $scope.options.actions.noOne;
+				$scope.options.selected.check = false;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = false;
 			}
 
 			if ($scope.options.callback) {
@@ -389,55 +385,22 @@ angular.module('gridTaskApp')
 			}
 
 			$scope.isShow = false;
-			setTimeout(function () {
-				$scope.$apply();
-			});
 		};
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
 angular.module('gridTaskApp')
 	.directive('checkboxSelect', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
-				options: '='
+				options: '=checkboxSelect'
 			},
+			replace: true,
 			templateUrl: templatesPath + 'directive-templates/checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
-				element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-
-				scope.$watch('isShow', function (value) {
-					if (!value) {
-						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
-						element.find('.checkbox-select__btn').removeClass('opened');
-					}
-					else {
-						element.find('.checkbox-select__expand').removeClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').addClass(scope.options.showClass);
-						element.find('.checkbox-select__btn').addClass('opened');
-					}
-				});
-
-				$(document).click(function (event) {
-					if (!$(event.target).closest(element).length) {
-						scope.isShow = false;
-						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
-						element.find('checkbox-select__btn').removeClass('opened');
-					}
-				})
-
 				scope.$watch('options.selected', function (value) {
 					if (value) {
-						if (value.isMarked || value.isNotMarked) {
-							element.find('.checkbox-select__input-control__span').addClass('marked');
-						}
-						else {
-							element.find('.checkbox-select__input-control__span').removeClass('marked');
-						}
-
 						if (value.isAll) {
 							value.check = true;
 						}
@@ -452,177 +415,139 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/core-diagram/core-diagram-controller.js
 angular.module('gridTaskApp')
 	.controller('coreDiagramCtrl', ['$scope', function ($scope) {
-	
+		$scope.init = function () {
+		};
 	}]);
 ///#source 1 1 /app/directives/core-diagram/core-diagram.js
 angular.module('gridTaskApp')
 	.directive('coreDiagram', ['templatesPath', '$compile', function (templatesPath, $compile) {
 		return {
-			restrict: 'E',
+			restrict: 'EAC',
 			templateUrl: templatesPath + 'directive-templates/core-diagram.html',
 			controller: 'coreDiagramCtrl',
 			scope: {
 				data: '=sankeyData'
 			},
 			link: function (scope, element, attrs) {
-				scope.$watch('data', function (graph) {
-					if (graph) {
-						var units = "Widgets";
+				var units = "Widgets";
 
-						var margin = { top: 0, right: 10, bottom: 10, left: 10 },
-							width = 1500 - margin.left - margin.right,
-							height = 740 - margin.top - margin.bottom;
-
-						var formatNumber = d3.format(",.0f"),    // zero decimal places
-							format = function (d) { return formatNumber(d) + " " + units; },
-							color = d3.scale.category20();
-
-						$('#chart').html('');
-
-						// append the svg canvas to the page
-						var svg = d3.select("#chart").append("svg")
-							.attr("width", width + margin.left + margin.right)
-							.attr("height", height + margin.top + margin.bottom)
-						  .append("g")
-							.attr("transform",
-								  "translate(" + margin.left + "," + margin.top + ")");
-
-						// Set the sankey diagram properties
-						var sankey = d3.sankey()
-							.nodeWidth(25)
-							.nodePadding(35)
-							.size([width, height]);
-
-						var path = sankey.link();
-
-						var nodeMap = {};
-						graph.nodes.forEach(function (x) { nodeMap[x.name] = x; });
-						graph.links = graph.links.map(function (x) {
-							return {
-								source: nodeMap[x.source],
-								target: nodeMap[x.target],
-								value: x.value
-							};
-						});
-
-						sankey
-							.nodes(graph.nodes)
-							.links(graph.links)
-							.layout(32);
-
-						// add in the links
-						var link = svg.append("g").selectAll(".link")
-							.data(graph.links)
-						  .enter().append("path")
-							.attr("class", "link")
-							.attr("d", path)
-							.style("stroke-width", function (d) { return Math.max(1, d.dy); })
-							.style("stroke", function (d) {
-								if (d.source.color) {
-									return d.source.color;
-								}
-								else {
-									return d.source.color = color(d.source.name.replace(/ .*/, ""));
-								}
-							})
+				var margin = { top: 0, right: 10, bottom: 10, left: 10 },
+					width = 1500 - margin.left - margin.right,
+					height = 740 - margin.top - margin.bottom;
 
 
-						// add the link titles
-						link.append("title")
-							  .text(function (d) {
-							  	return d.source.name + " → " +
-										d.target.name + "\n" + format(d.value);
-							  });
+				var formatNumber = d3.format(",.0f"),
+					format = function (d) { return formatNumber(d) + " " + units; },
+					color = d3.scale.category20();
 
-						// add in the nodes
-						var node = svg.append("g").selectAll(".node")
-							.data(graph.nodes)
-						  .enter().append("g")
-							.attr("class", "node")
-							.attr("transform", function (d) {
-								//d.x = Math.max(0, d.mx)
-								//d.y = Math.max(0, d.my)
-								//return "translate(" + d.transform + ")";
-								return "translate(" + d.x + "," + d.y + ")";
-							})
-						  .call(d3.behavior.drag()
-							.origin(function (d) { return d; })
-							.on("dragstart", function () {
-								this.parentNode.appendChild(this);
-							})
-							.on("drag", dragmove));
+				function init(graph) {
+					element.find('#chart').html('');
 
-						//link.attr("d", path);
+					var svg = d3.select("#chart").append("svg")
+						.attr("width", width + margin.left + margin.right)
+						.attr("height", height + margin.top + margin.bottom)
+					  .append("g")
+						.attr("transform",
+							  "translate(" + margin.left + "," + margin.top + ")");
 
-						// add the rectangles for the nodes
-						node.append("rect")
-							.attr("height", function (d) { return d.dy; })
-							.attr("width", sankey.nodeWidth())
-							.style("fill", function (d) {
-								if (d.color) {
-									return d.color = d.color;
-								}
-								else {
-									return d.color = color(d.name.replace(/ .*/, ""));
-								}
-							})
-							.style("stroke", function (d) {
-								return d3.rgb(d.color).darker(2);
-							})
-							.on("mouseover", function (d) {
-								scope.type = {};
-								scope.value = { header: '', data: [] };
+					var sankey = d3.sankey()
+						.nodeWidth(25)
+						.nodePadding(35)
+						.size([width, height]);
 
-								if (d.name == 'Log in') {
-									scope.type.isMedium = true;
-									scope.value.header = "Event: Log In";
-									scope.value.data = {
-										topSegments: ['Moms_2014', 'Affiluent_buyers', 'Auto-Inteders', 'Star Wars', 'Female 25-34'],
-										topCampaings: ['C1_Dx_1', 'F2_DX_2', 'Gofundme DX3', 'Test campaign', 'Random Campaign']
-									};
-								}
-								else {
-									scope.type.isSimple = true;
-									scope.value.header = "Video: ID: 124856";
-									scope.value.data = [{ campaignId: '657H836', adId: '904743' }, { campaignId: '657H836', adId: '904743' }]
-								}
+					var path = sankey.link();
 
-								$('mouse-over').remove();
+					var nodeMap = {};
+					graph.nodes.forEach(function (x) { nodeMap[x.name] = x; });
+					graph.links = graph.links.map(function (x) {
+						return {
+							source: nodeMap[x.source],
+							target: nodeMap[x.target],
+							value: x.value
+						};
+					});
 
-								scope.parentTop = $('#chart').offset().top;
+					sankey
+						.nodes(graph.nodes)
+						.links(graph.links)
+						.layout(32);
 
-								element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
-								$compile($('mouse-over'))(scope);
-							}).on("mouseout", function (d) {
-								$('mouse-over').remove();
-							});
+					var link = svg.append("g").selectAll(".link")
+						.data(graph.links)
+					  .enter().append("path")
+						.attr("class", "link")
+						.attr("d", path)
+						.style("stroke-width", function (d) { return Math.max(1, d.dy); })
+						.style("stroke", function (d) {
+							if (d.source.color) {
+								return d.source.color;
+							}
+							else {
+								return d.source.color = color(d.source.name.replace(/ .*/, ""));
+							}
+						})
 
 
-						// add in the title for the nodes
-						node.append("text")
-							.attr("x", -6)
-							.attr("y", function (d) { return d.dy / 2; })
-							.attr("dy", ".35em")
-							.attr("text-anchor", "end")
-							.attr("transform", null)
-							.text(function (d) { return d.name; })
-						  .filter(function (d) { return d.x < width / 2; })
-							.attr("x", 6 + sankey.nodeWidth())
-							.attr("text-anchor", "start");
+					link.append("title")
+						  .text(function (d) {
+						  	return d.source.name + " → " +
+									d.target.name + "\n" + format(d.value);
+						  });
 
-						node.append("text")
-							.attr("x", 20)
-							.attr("y", function (d) { return d.dy / 2; })
-							.attr("dy", ".35em")
-							.attr("text-anchor", "end")
-							.attr("transform", null)
-							.text(function (d) { return d.val; })
-						  .filter(function (d) { return d.x < width / 2; })
-							.attr("x", -20 + sankey.nodeWidth())
-							.attr("text-anchor", "start");
-					}
+					var node = svg.append("g").selectAll(".node")
+						.data(graph.nodes)
+					  .enter().append("g")
+						.attr("class", "node")
+						.attr("transform", function (d) {
+							return "translate(" + d.x + "," + d.y + ")";
+						})
+					  .call(d3.behavior.drag()
+						.origin(function (d) { return d; })
+						.on("dragstart", function () {
+							this.parentNode.appendChild(this);
+						})
+						.on("drag", dragmove));
 
-					// the function for moving the nodes
+					node.append("rect")
+						.attr("height", function (d) { return d.dy; })
+						.attr("width", sankey.nodeWidth())
+						.style("fill", function (d) {
+							if (d.color) {
+								return d.color = d.color;
+							}
+							else {
+								return d.color = color(d.name.replace(/ .*/, ""));
+							}
+						})
+						.style("stroke", function (d) {
+							return d3.rgb(d.color).darker(2);
+						})
+						.on("mouseover", mouseover)
+						.on("mouseout", mouseout);
+
+
+					node.append("text")
+						.attr("x", -6)
+						.attr("y", function (d) { return d.dy / 2; })
+						.attr("dy", ".35em")
+						.attr("text-anchor", "end")
+						.attr("transform", null)
+						.text(function (d) { return d.name; })
+					  .filter(function (d) { return d.x < width / 2; })
+						.attr("x", 6 + sankey.nodeWidth())
+						.attr("text-anchor", "start");
+
+					node.append("text")
+						.attr("x", 20)
+						.attr("y", function (d) { return d.dy / 2; })
+						.attr("dy", ".35em")
+						.attr("text-anchor", "end")
+						.attr("transform", null)
+						.text(function (d) { return d.val; })
+					  .filter(function (d) { return d.x < width / 2; })
+						.attr("x", -20 + sankey.nodeWidth())
+						.attr("text-anchor", "start");
+
 					function dragmove(d) {
 						d3.select(this).attr("transform",
 							"translate(" + (
@@ -632,8 +557,45 @@ angular.module('gridTaskApp')
 								) + ")");
 						sankey.relayout();
 						link.attr("d", path);
+					};
+
+					function mouseover(d) {
+						scope.type = {};
+						scope.value = { header: '', data: [] };
+
+						if (d.name == 'Log in') {
+							scope.type.isMedium = true;
+							scope.value.header = "Event: Log In";
+							scope.value.data = {
+								topSegments: ['Moms_2014', 'Affiluent_buyers', 'Auto-Inteders', 'Star Wars', 'Female 25-34'],
+								topCampaings: ['C1_Dx_1', 'F2_DX_2', 'Gofundme DX3', 'Test campaign', 'Random Campaign']
+							};
+						}
+						else {
+							scope.type.isSimple = true;
+							scope.value.header = "Video: ID: 124856";
+							scope.value.data = [{ campaignId: '657H836', adId: '904743' }, { campaignId: '657H836', adId: '904743' }]
+						}
+
+						$('mouse-over').remove();
+
+						scope.parentTop = $('#chart').offset().top;
+
+						element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
+						$compile($('mouse-over'))(scope);
+					}
+
+					function mouseout(d) {
+						$('mouse-over').remove();
+					}
+				}
+
+				scope.$watch('data', function (graph) {
+					if (graph) {
+						init(graph);
 					}
 				});
+
 			}
 		}
 	}]);
@@ -1324,14 +1286,7 @@ angular.module('gridTaskApp')
 
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
-	.controller('dropdownCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('dropdownCtrl', ['$scope', function ($scope) {
 		if (!$scope.options.isMenu) {
 			$scope.options.selected = $scope.options.values[0];
 
@@ -1363,19 +1318,14 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'directive-templates/dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
-						element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
 						element.find('.my-dropdown__btn').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('.my-dropdown__expand').removeClass(scope.options.hideClass);
-						element.find('.my-dropdown__expand').addClass(scope.options.showClass);
 						element.find('.my-dropdown__btn').addClass('opened');
 					}
 				});
@@ -1384,8 +1334,6 @@ angular.module('gridTaskApp')
 					if (element.find('ul').is(':visible')) {
 						if (!$(event.target).closest(element).length) {
 							element.find('ul').hide();
-							element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
-							element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
 							element.find('.my-dropdown__btn').removeClass('opened');
 						}
 					}
@@ -1717,7 +1665,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/filter/filter.js
 angular.module('gridTaskApp')
-	.directive('filter', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('filter', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -1735,19 +1683,13 @@ angular.module('gridTaskApp')
 					}
 				})
 
-				element.find('span.expand').addClass(classes.menuDown);
-
 				scope.$watch('listState', function (value) {
 					if (value) {
 						element.find('filter-list').resize();
 						element.addClass('filter-selected');
-						element.find('span.expand').removeClass(classes.menuDown);
-						element.find('span.expand').addClass(classes.menuUp);
 					}
 					else {
 						element.removeClass('filter-selected');
-						element.find('span.expand').addClass(classes.menuDown);
-						element.find('span.expand').removeClass(classes.menuUp);
 					}
 				});
 			}
@@ -2832,7 +2774,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/split-button/split-button.js
 angular.module('gridTaskApp')
-	.directive('splitButton', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('splitButton', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -2845,19 +2787,14 @@ angular.module('gridTaskApp')
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('.expand').addClass(classes.menuDown);
 
 				scope.toggle = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('.expand').removeClass(classes.menuDown);
-						element.find('.expand').addClass(classes.menuUp);
 						element.find('.split-btn__toggle').addClass('opened');
 					}
 				}
@@ -2865,8 +2802,6 @@ angular.module('gridTaskApp')
 				scope.close = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				}
@@ -2874,8 +2809,6 @@ angular.module('gridTaskApp')
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				})
@@ -3090,6 +3023,26 @@ var Initializer = (function () {
 
 		if (this.scope.contentOptions.campaign === undefined) {
 			this.scope.contentOptions.campaign = this.content.campaign;
+		}
+
+		if (this.scope.contentOptions.debugCard === undefined) {
+			this.scope.contentOptions.debugCard = {};
+		}
+
+		if (this.scope.contentOptions.debugCard.id === undefined) {
+			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
+		}
+
+		if (this.scope.contentOptions.debugCard.text === undefined) {
+			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
+		}
+
+		if (this.scope.contentOptions.debugCard.body === undefined) {
+			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
+		}
+
+		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
+			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
 		}
 
 		if (this.scope.filters === undefined) {
@@ -5017,3 +4970,29 @@ angular.module('gridTaskApp').factory('NavigationTree', [function () {
 		]
 	};
 }]);
+///#source 1 1 /app/directives/gr-template/gr-template.js
+angular.module('gridTaskApp')
+	.directive('grTemplate', ['myTemplateService', 'templatesPath', function (myTemplateService, templatesPath) {
+		return {
+			restrict: 'EAC',
+			scope: {
+				template: '=grTemplate',
+				name: '@grName'
+			},
+			replace: true,
+			require: '?^grName',
+			templateUrl: templatesPath + 'directive-templates/gr-template.html',
+			link: function (scope, element, attrs) {
+				myTemplateService.put(scope.template, scope.name);
+
+				scope.templateUrl = scope.name;
+			}
+		}
+	}]);
+///#source 1 1 /app/services/my-template-service.js
+angular.module('gridTaskApp')
+	.service('myTemplateService', ['$http', '$templateCache', function ($http, $templateCache) {
+		this.put = function (template, name) {
+			$templateCache.put(name, template)
+		}
+	}]);

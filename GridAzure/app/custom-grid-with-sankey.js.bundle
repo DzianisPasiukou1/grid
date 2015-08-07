@@ -11,7 +11,6 @@
 	<!--The order of the <file> elements determines the order of the files in the bundle.-->
 	<files>
 		<file>/app/app.js</file>
-		<file>/app/constants/class-constant.js</file>
 		<file>/app/constants/content-constants.js</file>
 		<file>/app/constants/grid-constants.js</file>
 		<file>/app/directives/cards/cards-controller.js</file>
@@ -91,5 +90,7 @@
 		<file>/app/plugins/ngGridCsvExportPlugin.js</file>
 		<file>/app/plugins/ngGridFlexibleHeightPlugin.js</file>
 		<file>/app/services/navigation-tree-service.js</file>
+		<file>/app/directives/gr-template/gr-template.js</file>
+		<file>/app/services/my-template-service.js</file>
 	</files>
 </bundle>

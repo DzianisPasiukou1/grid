@@ -2,12 +2,6 @@
 angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
 	.value('templatesPath', 'app/templates/');
 
-///#source 1 1 /app/constants/class-constant.js
-angular.module('gridTaskApp')
-	.constant("classes", {
-		menuDown: 'icon-menu-down',
-		menuUp: 'icon-menu-up'
-	});
 ///#source 1 1 /app/constants/content-constants.js
 angular.module('gridTaskApp')
 	.constant('content', {
@@ -252,7 +246,12 @@ angular.module('gridTaskApp')
 				end: moment(new Date())
 			},
 		},
-		sankeyPath: "data/sankey/my-graphs.json"
+		sankeyPath: "data/sankey/my-graphs.json",
+		debugCard: {
+			id: 'debug',
+			text: 'Debug',
+			templateUrl: 'app/templates/directive-templates/debug.html'
+		}
 	});
 ///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
@@ -263,28 +262,27 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/cards/cards-controller.js
 angular.module('gridTaskApp')
 	.controller('cardsCtrl', ['$scope', function ($scope) {
-
+		$scope.cards = $scope.cardsOptions.cards;
+		$scope.startDate = $scope.cardsOptions.startDate;
+		$scope.endDate = $scope.cardsOptions.endDate;
+		$scope.margin = $scope.cardsOptions.margin;
 	}]);
 ///#source 1 1 /app/directives/cards/cards.js
 angular.module('gridTaskApp')
 	.directive('cards', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/cards.html',
 			scope: {
-				cards: '=',
-				startDate: '=',
-				endDate: '=',
-				margin: '=',
+				cardsOptions: '=cards',
 				contentOptions: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
-
 				if (scope.contentOptions.enableDebugging) {
 					$timeout(function () {
-						$('#debug').css('left', 40);
-						$('#debug').flip();
+						$('#' + scope.contentOptions.debugCard.id).css('left', 40);
+						$('#' + scope.contentOptions.debugCard.id).flip();
 					});
 				}
 
@@ -305,7 +303,6 @@ angular.module('gridTaskApp')
 
 						$('.cards-group').css('width', left + 50 + 'px');
 					})
-
 				});
 			}
 		}
@@ -313,6 +310,15 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/chart-segment/chart-segment-controller.js
 angular.module('gridTaskApp')
 	.controller('chartSegmentCtrl', ['$scope', function ($scope) {
+		$scope.panel = {
+			header: {
+				text: 'Selected Users'
+			},
+			btn: {
+				text: 'Create Segment'
+			}
+		}
+
 		$scope.deleteUser = function (user, index) {
 			$scope.selectedUsers.splice(index, 1);
 		}
@@ -321,36 +327,30 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('chartSegment', ['templatesPath', function (templatesPath) {
 		return {
-			retstrict: 'E',
+			retstrict: 'EA',
 			scope: {
 				selectedUsers: '='
 			},
 			controller: 'chartSegmentCtrl',
-			templateUrl: templatesPath + 'directive-templates/chart-segment.html',
-			link: function (scope, element, attrs) {
-
-			}
+			templateUrl: templatesPath + 'directive-templates/chart-segment.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select-controller.js
 angular.module('gridTaskApp')
-	.controller('checkboxSelectCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
 		if ($scope.options.selected === undefined) {
 			$scope.options.selected = {};
+		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
 		}
 
 		$scope.select = function (action) {
 			$scope.isShow = false;
 			$scope.options.selected = action;
 
-			if (action.isAll) {
+			if ($scope.options.selected.isAll) {
 				$scope.options.selected.check = true;
 			}
 			else {
@@ -362,26 +362,22 @@ angular.module('gridTaskApp')
 			}
 		}
 
-		$scope.toggle = function () {
-			$scope.isShow = !$scope.isShow;
-		}
-
 		$scope.checked = function (value) {
 			if (value) {
 				$scope.options.selected = $scope.options.actions.all;
+				$scope.options.selected.check = true;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = true;
 			}
 			else {
 				$scope.options.selected = $scope.options.actions.noOne;
+				$scope.options.selected.check = false;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = false;
 			}
 
 			if ($scope.options.callback) {
@@ -389,55 +385,22 @@ angular.module('gridTaskApp')
 			}
 
 			$scope.isShow = false;
-			setTimeout(function () {
-				$scope.$apply();
-			});
 		};
 	}]);
 ///#source 1 1 /app/directives/checkbox-select/checkbox-select.js
 angular.module('gridTaskApp')
 	.directive('checkboxSelect', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
-				options: '='
+				options: '=checkboxSelect'
 			},
+			replace: true,
 			templateUrl: templatesPath + 'directive-templates/checkbox-select.html',
 			controller: 'checkboxSelectCtrl',
 			link: function (scope, element, attrs) {
-				element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-
-				scope.$watch('isShow', function (value) {
-					if (!value) {
-						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
-						element.find('.checkbox-select__btn').removeClass('opened');
-					}
-					else {
-						element.find('.checkbox-select__expand').removeClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').addClass(scope.options.showClass);
-						element.find('.checkbox-select__btn').addClass('opened');
-					}
-				});
-
-				$(document).click(function (event) {
-					if (!$(event.target).closest(element).length) {
-						scope.isShow = false;
-						element.find('.checkbox-select__expand').addClass(scope.options.hideClass);
-						element.find('.checkbox-select__expand').removeClass(scope.options.showClass);
-						element.find('checkbox-select__btn').removeClass('opened');
-					}
-				})
-
 				scope.$watch('options.selected', function (value) {
 					if (value) {
-						if (value.isMarked || value.isNotMarked) {
-							element.find('.checkbox-select__input-control__span').addClass('marked');
-						}
-						else {
-							element.find('.checkbox-select__input-control__span').removeClass('marked');
-						}
-
 						if (value.isAll) {
 							value.check = true;
 						}
@@ -1136,14 +1099,7 @@ angular.module('gridTaskApp')
 
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
-	.controller('dropdownCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('dropdownCtrl', ['$scope', function ($scope) {
 		if (!$scope.options.isMenu) {
 			$scope.options.selected = $scope.options.values[0];
 
@@ -1175,19 +1131,14 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'directive-templates/dropdown.html',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
 
 				element.click(function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
-						element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
 						element.find('.my-dropdown__btn').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('.my-dropdown__expand').removeClass(scope.options.hideClass);
-						element.find('.my-dropdown__expand').addClass(scope.options.showClass);
 						element.find('.my-dropdown__btn').addClass('opened');
 					}
 				});
@@ -1196,8 +1147,6 @@ angular.module('gridTaskApp')
 					if (element.find('ul').is(':visible')) {
 						if (!$(event.target).closest(element).length) {
 							element.find('ul').hide();
-							element.find('.my-dropdown__expand').addClass(scope.options.hideClass);
-							element.find('.my-dropdown__expand').removeClass(scope.options.showClass);
 							element.find('.my-dropdown__btn').removeClass('opened');
 						}
 					}
@@ -1529,7 +1478,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/filter/filter.js
 angular.module('gridTaskApp')
-	.directive('filter', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('filter', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -1547,19 +1496,13 @@ angular.module('gridTaskApp')
 					}
 				})
 
-				element.find('span.expand').addClass(classes.menuDown);
-
 				scope.$watch('listState', function (value) {
 					if (value) {
 						element.find('filter-list').resize();
 						element.addClass('filter-selected');
-						element.find('span.expand').removeClass(classes.menuDown);
-						element.find('span.expand').addClass(classes.menuUp);
 					}
 					else {
 						element.removeClass('filter-selected');
-						element.find('span.expand').addClass(classes.menuDown);
-						element.find('span.expand').removeClass(classes.menuUp);
 					}
 				});
 			}
@@ -2479,7 +2422,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/split-button/split-button.js
 angular.module('gridTaskApp')
-	.directive('splitButton', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('splitButton', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -2492,19 +2435,14 @@ angular.module('gridTaskApp')
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
 				element.find('ul').hide();
-				element.find('.expand').addClass(classes.menuDown);
 
 				scope.toggle = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 					else {
 						element.find('ul').show();
-						element.find('.expand').removeClass(classes.menuDown);
-						element.find('.expand').addClass(classes.menuUp);
 						element.find('.split-btn__toggle').addClass('opened');
 					}
 				}
@@ -2512,8 +2450,6 @@ angular.module('gridTaskApp')
 				scope.close = function () {
 					if (element.find('ul').is(':visible')) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				}
@@ -2521,8 +2457,6 @@ angular.module('gridTaskApp')
 				$(document).click(function (event) {
 					if (!$(event.target).closest(element).length) {
 						element.find('ul').hide();
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
 						element.find('.split-btn__toggle').removeClass('opened');
 					}
 				})
@@ -2737,6 +2671,26 @@ var Initializer = (function () {
 
 		if (this.scope.contentOptions.campaign === undefined) {
 			this.scope.contentOptions.campaign = this.content.campaign;
+		}
+
+		if (this.scope.contentOptions.debugCard === undefined) {
+			this.scope.contentOptions.debugCard = {};
+		}
+
+		if (this.scope.contentOptions.debugCard.id === undefined) {
+			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
+		}
+
+		if (this.scope.contentOptions.debugCard.text === undefined) {
+			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
+		}
+
+		if (this.scope.contentOptions.debugCard.body === undefined) {
+			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
+		}
+
+		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
+			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
 		}
 
 		if (this.scope.filters === undefined) {
@@ -4664,3 +4618,29 @@ angular.module('gridTaskApp').factory('NavigationTree', [function () {
 		]
 	};
 }]);
+///#source 1 1 /app/directives/gr-template/gr-template.js
+angular.module('gridTaskApp')
+	.directive('grTemplate', ['myTemplateService', 'templatesPath', function (myTemplateService, templatesPath) {
+		return {
+			restrict: 'EAC',
+			scope: {
+				template: '=grTemplate',
+				name: '@grName'
+			},
+			replace: true,
+			require: '?^grName',
+			templateUrl: templatesPath + 'directive-templates/gr-template.html',
+			link: function (scope, element, attrs) {
+				myTemplateService.put(scope.template, scope.name);
+
+				scope.templateUrl = scope.name;
+			}
+		}
+	}]);
+///#source 1 1 /app/services/my-template-service.js
+angular.module('gridTaskApp')
+	.service('myTemplateService', ['$http', '$templateCache', function ($http, $templateCache) {
+		this.put = function (template, name) {
+			$templateCache.put(name, template)
+		}
+	}]);

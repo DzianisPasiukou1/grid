@@ -3,16 +3,14 @@
 		<div class="page-content__options">
 			<content-options-d3 options="contentOptions" filters="filters"></content-options-d3>
 		</div>
-		<div class="page-content__cards" cards="cardsOptions.cards" content-options="contentOptions" start-date="cardsOptions.startDate" end-date="cardsOptions.endDate" margin="cardsOptions.margin">
+		<div class="page-content__cards" cards="cardsOptions" content-options="contentOptions">
 		</div>
 	</div>
 	<div class="page-content__body">
 		<div class="page-content__list">
-			<core-diagram sankey-data="sankeyData"></core-diagram>
+			<div class="core-diagram" sankey-data="sankeyData"></div>
 			<histogram histogram-data="histogramData"></histogram>
 		</div>
 	</div>
-	<!--<div class="page-content__footer">
-	</div>-->
 </div>
 

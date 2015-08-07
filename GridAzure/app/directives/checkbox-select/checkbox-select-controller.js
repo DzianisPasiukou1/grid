@@ -1,21 +1,18 @@
 ﻿angular.module('gridTaskApp')
-	.controller('checkboxSelectCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('checkboxSelectCtrl', ['$scope', function ($scope) {
 		if ($scope.options.selected === undefined) {
 			$scope.options.selected = {};
+		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
 		}
 
 		$scope.select = function (action) {
 			$scope.isShow = false;
 			$scope.options.selected = action;
 
-			if (action.isAll) {
+			if ($scope.options.selected.isAll) {
 				$scope.options.selected.check = true;
 			}
 			else {
@@ -27,26 +24,22 @@
 			}
 		}
 
-		$scope.toggle = function () {
-			$scope.isShow = !$scope.isShow;
-		}
-
 		$scope.checked = function (value) {
 			if (value) {
 				$scope.options.selected = $scope.options.actions.all;
+				$scope.options.selected.check = true;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = true;
 			}
 			else {
 				$scope.options.selected = $scope.options.actions.noOne;
+				$scope.options.selected.check = false;
 
 				if ($scope.options.selected === undefined) {
 					$scope.options.selected = {};
 				}
-				$scope.options.selected.check = false;
 			}
 
 			if ($scope.options.callback) {
@@ -54,8 +47,5 @@
 			}
 
 			$scope.isShow = false;
-			setTimeout(function () {
-				$scope.$apply();
-			});
 		};
 	}]);

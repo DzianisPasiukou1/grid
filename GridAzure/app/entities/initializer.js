@@ -91,6 +91,26 @@
 			this.scope.contentOptions.campaign = this.content.campaign;
 		}
 
+		if (this.scope.contentOptions.debugCard === undefined) {
+			this.scope.contentOptions.debugCard = {};
+		}
+
+		if (this.scope.contentOptions.debugCard.id === undefined) {
+			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
+		}
+
+		if (this.scope.contentOptions.debugCard.text === undefined) {
+			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
+		}
+
+		if (this.scope.contentOptions.debugCard.body === undefined) {
+			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
+		}
+
+		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
+			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
+		}
+
 		if (this.scope.filters === undefined) {
 			this.scope.filters = this.content.sankeyFilters;
 		}

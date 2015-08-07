@@ -1,22 +1,18 @@
 ﻿angular.module('gridTaskApp')
 	.directive('cards', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/cards.html',
 			scope: {
-				cards: '=',
-				startDate: '=',
-				endDate: '=',
-				margin: '=',
+				cardsOptions: '=cards',
 				contentOptions: '='
 			},
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
-
 				if (scope.contentOptions.enableDebugging) {
 					$timeout(function () {
-						$('#debug').css('left', 40);
-						$('#debug').flip();
+						$('#' + scope.contentOptions.debugCard.id).css('left', 40);
+						$('#' + scope.contentOptions.debugCard.id).flip();
 					});
 				}
 
@@ -37,7 +33,6 @@
 
 						$('.cards-group').css('width', left + 50 + 'px');
 					})
-
 				});
 			}
 		}

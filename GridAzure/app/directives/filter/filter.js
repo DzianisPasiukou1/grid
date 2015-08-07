@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('filter', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('filter', ['templatesPath', function (templatesPath) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -17,19 +17,13 @@
 					}
 				})
 
-				element.find('span.expand').addClass(classes.menuDown);
-
 				scope.$watch('listState', function (value) {
 					if (value) {
 						element.find('filter-list').resize();
 						element.addClass('filter-selected');
-						element.find('span.expand').removeClass(classes.menuDown);
-						element.find('span.expand').addClass(classes.menuUp);
 					}
 					else {
 						element.removeClass('filter-selected');
-						element.find('span.expand').addClass(classes.menuDown);
-						element.find('span.expand').removeClass(classes.menuUp);
 					}
 				});
 			}

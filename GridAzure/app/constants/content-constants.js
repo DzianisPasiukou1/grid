@@ -241,5 +241,10 @@
 				end: moment(new Date())
 			},
 		},
-		sankeyPath: "data/sankey/my-graphs.json"
+		sankeyPath: "data/sankey/my-graphs.json",
+		debugCard: {
+			id: 'debug',
+			text: 'Debug',
+			templateUrl: 'app/templates/directive-templates/debug.html'
+		}
 	});

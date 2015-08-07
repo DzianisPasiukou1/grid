@@ -35,6 +35,7 @@
 @import "common/_kx-multiselect.scss";
 @import "common/_kx-btn.scss";
 @import "common/_overlay.scss";
+@import "common/_upload.scss";
 
 @import "rows/_date.scss";
 @import "rows/_name.scss";
@@ -44,18 +45,19 @@
 @import "rows/_details.scss";
 @import "rows/_details-template.scss";
 
-@import "_toggle.scss";
-@import "_page-content.scss";
-@import "_grid.scss";
-@import "_content-options.scss";
-@import "_filter.scss";
-@import "_page.scss";
-@import "_custom-ui-grid.scss";
-@import "_history.scss";
-@import "_grid-testing.scss";
-@import "_dynamic-actions.scss";
-@import "_page-content-cards.scss";
-@import "_navigation.scss";
-@import "_page-content-d3.scss";
-@import "_kx-nav.scss";
-@import "_sankey.scss";
+@import "partials/_toggle.scss";
+@import "partials/_page-content.scss";
+@import "partials/_grid.scss";
+@import "partials/_content-options.scss";
+@import "partials/_filter.scss";
+@import "partials/_page.scss";
+@import "partials/_custom-ui-grid.scss";
+@import "partials/_history.scss";
+@import "partials/_grid-testing.scss";
+@import "partials/_dynamic-actions.scss";
+@import "partials/_page-content-cards.scss";
+@import "partials/_navigation.scss";
+@import "partials/_page-content-d3.scss";
+@import "partials/_kx-nav.scss";
+@import "partials/_sankey.scss";
+@import "partials/_debug.scss";

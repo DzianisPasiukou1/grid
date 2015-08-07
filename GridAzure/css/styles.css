@@ -227,7 +227,7 @@ button::-moz-focus-inner {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa; }
 
-.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .action__btn, .options__refresh, .options__upload label, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn {
+.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .options__upload label, .debug__uploader__btn label, .action__btn, .options__refresh, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn, .debug__back__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -245,9 +245,9 @@ button::-moz-focus-inner {
   position: relative;
   color: #787878;
   font-weight: normal; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .action__btn:hover, .options__refresh:hover, .options__upload label:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .options__upload label:hover, .debug__uploader__btn label:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover, .debug__back__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .action__btn:active, .options__refresh:active, .options__upload label:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .options__upload label:active, .debug__uploader__btn label:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active, .debug__back__btn:active {
     background: #333;
     color: white;
     box-shadow: none; }
@@ -953,10 +953,10 @@ button::-moz-focus-inner {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out; }
 
-core-diagram {
+.core-diagram {
   font-size: 14px;
   font-weight: bold; }
-  core-diagram #chart {
+  .core-diagram #chart {
     border: 1px solid #2ba6d5;
     border-radius: 3px 3px;
     margin-left: 15px;
@@ -964,22 +964,22 @@ core-diagram {
     overflow: auto;
     text-align: center;
     min-height: 100px; }
-  core-diagram svg {
+  .core-diagram svg {
     position: relative;
     margin-left: 10px;
     margin-right: 10px; }
-  core-diagram .node rect {
+  .core-diagram .node rect {
     cursor: move;
     fill-opacity: 0.9;
     shape-rendering: crispEdges; }
-  core-diagram .node text {
+  .core-diagram .node text {
     pointer-events: none;
     text-shadow: 0 1px 0 #fff; }
-  core-diagram .link {
+  .core-diagram .link {
     fill: none;
     stroke: #333;
     stroke-opacity: 0.2; }
-    core-diagram .link:hover {
+    .core-diagram .link:hover {
       stroke-opacity: 0.5; }
 
 @media only screen and (max-width: 1500px) {
@@ -1191,6 +1191,15 @@ histogram .x.axis path {
       padding-left: 4px; }
       .custom-overlay__toggle .glyphicon:hover {
         color: #5ccefd; }
+
+.options__upload, .debug__uploader__btn {
+  margin-right: 10px;
+  position: relative; }
+  .options__upload label, .debug__uploader__btn label {
+    padding-top: 8px; }
+  .options__upload input, .debug__uploader__btn input {
+    position: absolute;
+    top: -9999px; }
 
 .row-name {
   text-align: left; }
@@ -1519,14 +1528,6 @@ histogram .x.axis path {
   .options__refresh {
     margin-right: 10px;
     position: relative; }
-  .options__upload {
-    margin-right: 10px;
-    position: relative; }
-    .options__upload label {
-      padding-top: 8px; }
-    .options__upload input {
-      position: absolute;
-      top: -9999px; }
   .options__more {
     position: relative;
     margin-right: 10px; }
@@ -1943,7 +1944,8 @@ page-content-d3 {
         page-content-d3 .page-content__options .options__select .select2-container .select2-choice {
           height: 35px; }
         page-content-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
-          margin-top: 3px; }
+          margin-top: 3px;
+          font-size: 16px; }
         page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
           margin-top: 3px; }
         page-content-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
@@ -2159,6 +2161,16 @@ page-content-d3 .page-content__cards {
   overflow-y: hidden; }
   page-content-d3 .page-content__cards .my-card__header {
     font-weight: bold; }
+  page-content-d3 .page-content__cards .my-card__body {
+    font-weight: bold;
+    font-size: 50px;
+    color: #a6e4f9;
+    margin-top: 15px; }
+    page-content-d3 .page-content__cards .my-card__body__back button {
+      margin-top: 0;
+      position: relative;
+      top: -50px;
+      left: -210px; }
   page-content-d3 .page-content__cards .my-card .front {
     top: -7px;
     height: 185px !important;
@@ -2167,18 +2179,13 @@ page-content-d3 .page-content__cards {
     top: -7px;
     height: 185px !important;
     width: 500px !important; }
-  page-content-d3 .page-content__cards .my-card__body {
-    font-weight: bold;
-    font-size: 50px;
-    color: #a6e4f9;
-    margin-top: 15px; }
-    page-content-d3 .page-content__cards .my-card__body__uploader {
-      position: relative;
-      top: -40px; }
-    page-content-d3 .page-content__cards .my-card__body__back button {
-      margin-top: 0;
-      position: relative;
-      top: -50px;
-      left: -210px; }
+
+.debug {
+  position: relative;
+  top: -40px; }
+  .debug__back {
+    margin-right: 400px;
+    margin-top: -10px;
+    margin-bottom: 10px; }
 
 /*# sourceMappingURL=styles.css.map */

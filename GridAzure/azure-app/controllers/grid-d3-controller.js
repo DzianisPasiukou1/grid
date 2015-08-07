@@ -29,6 +29,10 @@
 				$scope.histogramData = data;
 				$scope.$apply();
 			},
-			enableDebugging: true
+			enableDebugging: true,
+			debugCard: {
+				//text: 'test',
+				//template: 'Hello world'
+			}
 		}
 	}])

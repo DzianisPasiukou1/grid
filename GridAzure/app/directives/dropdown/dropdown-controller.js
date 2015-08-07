@@ -1,12 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('dropdownCtrl', ['$scope', 'classes', function ($scope, classes) {
-		if (!$scope.options.showClass) {
-			$scope.options.showClass = classes.menuUp;
-		}
-		if (!$scope.options.hideClass) {
-			$scope.options.hideClass = classes.menuDown;
-		}
-
+	.controller('dropdownCtrl', ['$scope', function ($scope) {
 		if (!$scope.options.isMenu) {
 			$scope.options.selected = $scope.options.values[0];
 

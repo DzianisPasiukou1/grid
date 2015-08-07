@@ -184,11 +184,13 @@
     <Content Include="app\custom-grid.min.js">
       <DependentUpon>custom-grid.js</DependentUpon>
     </Content>
+    <Content Include="app\directives\any-other-click\any-other-click.js" />
     <Content Include="app\directives\chart-segment\chart-segment.js" />
     <Content Include="app\directives\chart-segment\chart-segment-controller.js" />
     <Content Include="app\directives\core-diagram\core-diagram-controller.js" />
     <Content Include="app\directives\core-diagram\core-diagram.js" />
     <Content Include="app\directives\custom-grid\grid-menu\grid-menu.js" />
+    <Content Include="app\directives\gr-template\gr-template.js" />
     <Content Include="app\directives\histogram\histogram.js" />
     <Content Include="app\directives\histogram\histogram-controller.js" />
     <Content Include="app\directives\kx-date-range\kx-date-range.js" />
@@ -206,16 +208,21 @@
     <Content Include="app\directives\page-content-d3\page-content-d3.js" />
     <Content Include="app\extensions\sankey.js" />
     <Content Include="app\extensions\window-width.js" />
+    <Content Include="app\localization\locations\locations-en.js" />
+    <Content Include="app\localization\locations\locations-ru.js" />
+    <Content Include="app\localization\translation.js" />
+    <Content Include="app\services\my-template-service.js" />
     <Content Include="app\services\navigation-tree-service.js" />
     <Content Include="app\templates\directive-templates\chart-segment.html" />
     <Content Include="app\templates\directive-templates\content-options-d3.html" />
     <Content Include="app\templates\directive-templates\core-diagram.html" />
+    <Content Include="app\templates\directive-templates\debug.html" />
+    <Content Include="app\templates\directive-templates\gr-template.html" />
     <Content Include="app\templates\directive-templates\histogram.html" />
     <Content Include="app\templates\directive-templates\kx-nav-bar.html" />
     <Content Include="app\templates\directive-templates\mouse-over.html" />
     <Content Include="app\templates\directive-templates\page-content-d3.html" />
     <Content Include="azure-app\config\routes.js" />
-    <Content Include="app\constants\class-constant.js" />
     <Content Include="app\directives\cards\cards-controller.js" />
     <Content Include="app\directives\cards\cards.js" />
     <Content Include="app\entities\counter.js" />
@@ -2094,16 +2101,16 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="css\common\_expand.scss" />
-    <Content Include="css\_toggle.scss" />
+    <Content Include="css\partials\_toggle.scss" />
     <Content Include="css\common\_wrap.scss" />
     <Content Include="css\rows\_date.scss" />
     <Content Include="css\rows\_name.scss" />
     <Content Include="css\rows\_trend.scss" />
     <Content Include="css\rows\_value.scss" />
     <Content Include="css\styles.scss" />
-    <Content Include="css\_grid.scss" />
-    <Content Include="css\_content-options.scss" />
-    <Content Include="css\_page-content.scss" />
+    <Content Include="css\partials\_grid.scss" />
+    <Content Include="css\partials\_content-options.scss" />
+    <Content Include="css\partials\_page-content.scss" />
     <Content Include="bower.json" />
     <Content Include="bower_components\angular-i18n\.bower.json" />
     <Content Include="bower_components\angular-i18n\bower.json" />
@@ -2133,13 +2140,13 @@
     <Content Include="css\rows\_action.scss" />
     <Content Include="css\common\_my-metro.scss" />
     <Content Include="css\common\_my-panel.scss" />
-    <Content Include="css\_filter.scss" />
+    <Content Include="css\partials\_filter.scss" />
     <Content Include="css\common\_split-button.scss" />
     <Content Include="css\common\_my-dropdown.scss" />
     <Content Include="css\common\_my-search.scss" />
     <Content Include="css\common\_checkbox-select.scss" />
     <Content Include="css\rows\_details.scss" />
-    <Content Include="css\_page.scss" />
+    <Content Include="css\partials\_page.scss" />
     <Content Include="css\rows\_details-template.scss" />
     <Content Include="data\grid\data-with-details.json" />
     <Content Include="css\common\_tabs.scss" />
@@ -2150,15 +2157,15 @@
     <Content Include="css\common\_common.scss" />
     <Content Include="docs\grid.docx" />
     <Content Include="css\common\_my-textarea.scss" />
-    <Content Include="css\_grid-testing.scss" />
+    <Content Include="css\partials\_grid-testing.scss" />
     <Content Include="bower_components\ng-grid\build\ng-grid.min.js.map">
       <DependentUpon>ng-grid.min.js</DependentUpon>
     </Content>
     <Content Include="data\json.zip" />
     <Content Include="css\common\_cursor-message.scss" />
     <Content Include="css\common\_modal-dialog.scss" />
-    <Content Include="css\_history.scss" />
-    <Content Include="css\_dynamic-actions.scss" />
+    <Content Include="css\partials\_history.scss" />
+    <Content Include="css\partials\_dynamic-actions.scss" />
     <Content Include="bower_components\angular-route\.bower.json" />
     <Content Include="bower_components\angular-route\angular-route.min.js.map" />
     <Content Include="bower_components\angular-route\bower.json" />
@@ -2174,7 +2181,7 @@
     <Content Include="bower_components\angular-ui-grid\ui-grid.eot" />
     <Content Include="bower_components\angular-ui-grid\ui-grid.ttf" />
     <Content Include="bower_components\angular-ui-grid\ui-grid.woff" />
-    <Content Include="css\_custom-ui-grid.scss" />
+    <Content Include="css\partials\_custom-ui-grid.scss" />
     <Content Include="css\common\_cards.scss" />
     <Content Include="bower_components\flip\.bower.json" />
     <Content Include="bower_components\flip\.bowerrc" />
@@ -2187,7 +2194,7 @@
     <Content Include="css\fonts\cards.eot" />
     <Content Include="css\fonts\cards.ttf" />
     <Content Include="css\fonts\cards.woff" />
-    <Content Include="css\_page-content-cards.scss" />
+    <Content Include="css\partials\_page-content-cards.scss" />
     <Content Include="css\common\_datepicker.scss" />
     <Content Include="css\fonts\datepicker.eot" />
     <Content Include="css\fonts\datepicker.ttf" />
@@ -2196,9 +2203,9 @@
     <Content Include="bower_components\jquery-date-range-picker\.bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\bower.json" />
     <Content Include="bower_components\jquery-date-range-picker\README.md" />
-    <Content Include="css\_navigation.scss" />
+    <Content Include="css\partials\_navigation.scss" />
     <Content Include="bower_components\moment\.bower.json" />
-    <Content Include="css\_page-content-d3.scss" />
+    <Content Include="css\partials\_page-content-d3.scss" />
     <Content Include="data\sankey\sankeygreenhouse.json" />
     <Content Include="data\sankey\my-graphs.json" />
     <Content Include="css\common\_core-diagram.scss" />
@@ -2350,7 +2357,7 @@
     <Content Include="css\common\_kx-multiselect.scss" />
     <Content Include="data\cards\scroller.json" />
     <Content Include="css\common\_kx-btn.scss" />
-    <Content Include="css\_kx-nav.scss" />
+    <Content Include="css\partials\_kx-nav.scss" />
     <Content Include="css\common\_overlay.scss" />
     <Content Include="data\sankey\single.json" />
     <Content Include="app\custom-grid.js.bundle" />
@@ -2367,10 +2374,12 @@
     <Content Include="css\modules\_border.scss" />
     <Content Include="css\modules\_size.scss" />
     <Content Include="css\common\_custom-card.scss" />
-    <Content Include="css\_sankey.scss" />
+    <Content Include="css\partials\_sankey.scss" />
     <Content Include="css\modules\_stack.scss" />
     <Content Include="css\modules\_ng-grid.scss" />
     <Content Include="css\modules\_ui-grid.scss" />
+    <Content Include="css\common\_upload.scss" />
+    <Content Include="css\partials\_debug.scss" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="karma.conf.js" />
