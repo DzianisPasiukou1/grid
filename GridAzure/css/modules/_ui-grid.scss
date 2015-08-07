@@ -8,6 +8,10 @@
 	line-height: 18px;
 }
 
+@mixin ui-grid-header-viewport{
+	width: 100% !important;
+}
+
 @mixin ui-grid-header-canvas {
 	background-color: #5a5a5a;
 }
@@ -25,6 +29,7 @@
 @mixin ui-grid-viewport {
 	overflow-x: hidden !important;
 	border: 0;
+	width: 100% !important;
 }
 
 @mixin ui-grid-row {
@@ -94,6 +99,15 @@
 	background: $ui-grey;
 	padding: 0 5px !important;
 	color: $dark-grey;
+
+	&:hover {
+		color: $dark-grey;
+	}
+
+	&:active {
+		color: $dark-grey;
+		border-color: $black;
+	}
 }
 
 @mixin ui-grid-menu {

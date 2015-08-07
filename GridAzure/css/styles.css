@@ -1622,7 +1622,7 @@ histogram .x.axis path {
   padding: 0;
   height: 600px;
   width: 100%; }
-  @media only screen and (max-width: 863px), (min-device-width: 863px) and (max-device-width: 1024px) {
+  @media only screen and (max-width: 863px) {
     .custom-ui-grid {
       margin-top: 80px; } }
   .custom-ui-grid .ui-grid-header-cell-row {
@@ -1635,6 +1635,8 @@ histogram .x.axis path {
     line-height: 18px; }
   .custom-ui-grid .ui-grid-header-canvas {
     background-color: #5a5a5a; }
+  .custom-ui-grid .ui-grid-header-viewport {
+    width: 100% !important; }
   .custom-ui-grid .ui-grid-header-cell {
     border-radius: 1px;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
@@ -1645,7 +1647,8 @@ histogram .x.axis path {
     margin-top: 6px; }
   .custom-ui-grid .ui-grid-viewport {
     overflow-x: hidden !important;
-    border: 0; }
+    border: 0;
+    width: 100% !important; }
   .custom-ui-grid .ui-grid-row {
     line-height: 1.6em;
     vertical-align: middle;
@@ -1705,6 +1708,11 @@ histogram .x.axis path {
     background: #5a5a5a;
     padding: 0 5px !important;
     color: #787878; }
+    .custom-ui-grid .ui-grid-menu-button:hover {
+      color: #787878; }
+    .custom-ui-grid .ui-grid-menu-button:active {
+      color: #787878;
+      border-color: #333; }
     .custom-ui-grid .ui-grid-menu-button .ui-grid-menu {
       padding: 15px 0 !important; }
     .custom-ui-grid .ui-grid-menu-button .ui-grid-icon-menu {

@@ -12,6 +12,28 @@
 				}
 
 				$timeout(function () {
+					this.scope.gridApi.core.on.columnVisibilityChanged(this.scope, function () {
+						var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
+							if (b.visible) {
+								return a + b.minWidth;
+							}
+							else {
+								return a;
+							}
+						}, 0);
+
+						if ($(window).width() < totalWidth) {
+							$('.page-content').css('minWidth', totalWidth + 'px');
+						}
+						else {
+							$('.page-content').css('minWidth', '500px');
+						}
+
+						console.log('resize');
+						console.log('total-width = ' + totalWidth);
+						console.log('window width = ' + $(window).width());
+					}.bind(this));
+
 					var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
 						return a + b.minWidth;
 					}, 0);
