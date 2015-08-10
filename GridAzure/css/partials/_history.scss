@@ -1,21 +1,17 @@
-﻿history {
+﻿.modal {
 	.history__content {
 		text-align: left;
 		font-size: $default-font-size;
-	}
 
-	.dialog {
-		height: auto;
-
-		&__entity {
+		.dialog__entity {
 			text-align: left !important;
 		}
 
-		&__key {
+		.dialog__key {
 			margin-right: 0 !important;
 		}
 
-		&__value {
+		.dialog__value {
 			margin-left: 10px !important;
 			float: none !important;
 		}

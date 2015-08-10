@@ -220,6 +220,7 @@
     <Content Include="app\templates\directive-templates\content-options-d3.html" />
     <Content Include="app\templates\directive-templates\core-diagram.html" />
     <Content Include="app\templates\directive-templates\debug.html" />
+    <Content Include="app\templates\directive-templates\edit-entity.html" />
     <Content Include="app\templates\directive-templates\gr-template.html" />
     <Content Include="app\templates\directive-templates\histogram.html" />
     <Content Include="app\templates\directive-templates\kx-nav-bar.html" />
@@ -251,8 +252,6 @@
     <Content Include="app\directives\filter\filter-list\filter-list.js" />
     <Content Include="app\directives\filter\filter.js" />
     <Content Include="app\directives\custom-grid\grid-menu\grid-menu-controller.js" />
-    <Content Include="app\directives\history\history-controller.js" />
-    <Content Include="app\directives\history\history.js" />
     <Content Include="app\directives\loading\loading.js" />
     <Content Include="app\directives\modal\modal-controller.js" />
     <Content Include="app\directives\modal\modal.js" />

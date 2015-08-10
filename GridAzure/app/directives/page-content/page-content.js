@@ -19,7 +19,7 @@
 				});
 
 				scope.$watch('data', function (data) {
-					if (data) {
+					if (Array.isArray(data)) {
 						initializer.refreshData(data);
 					}
 				});

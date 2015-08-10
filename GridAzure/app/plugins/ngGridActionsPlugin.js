@@ -501,28 +501,28 @@
 		}
 
 		var editRow = function (row) {
-			if ($('modal').length != 0) {
-				$('modal').remove();
+			if ($('div[modal]').length != 0) {
+				$('div[modal]').remove();
 			}
 
 			self.scope.rowEditing = row;
 
-			$('body').append('<modal value="rowEditing"></modal>');
-			var modal = $('modal');
+			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+			var modal = $('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 
 
 		var historyRow = function (row) {
-			if ($('history').length != 0) {
-				$('history').remove();
+			if ($('div[modal]').length != 0) {
+				$('div[modal]').remove();
 			}
 
 			self.scope.rowHistoried = row;
 
-			$('body').append('<history value="rowHistoried.actions.history"></history>');
-			var history = $('history');
-			self.compile(history)(self.scope);
+			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+			var modal = $('div[modal]');
+			self.compile(modal)(self.scope);
 		}
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);

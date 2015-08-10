@@ -1,11 +1,12 @@
 ﻿angular.module('gridTaskApp')
 	.directive('histogram', ['templatesPath', '$compile', function (templatesPath, $compile) {
 		return {
-			restrict: "E",
+			restrict: "EA",
 			controller: 'histogramCtrl',
 			scope: {
 				data: '=histogramData'
 			},
+			require: '?histogramData',
 			templateUrl: templatesPath + 'directive-templates/histogram.html',
 			link: function (scope, element, attrs) {
 				scope.$watch('data', function (data) {

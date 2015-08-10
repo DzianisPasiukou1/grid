@@ -13,25 +13,27 @@
 							$scope.gridApi.expandable.toggleRowExpansion(row.entity);
 						};
 						row.actions.setCheck = function () {
-							var data = $scope.gridApi.grid.rows;
+							if ($scope.contentOptions.checks) {
+								var data = $scope.gridApi.grid.rows;
 
-							var isCheckArray = data.filter(function (value) {
-								if (value.isCheck) {
-									return true;
+								var isCheckArray = data.filter(function (value) {
+									if (value.isCheck) {
+										return true;
+									}
+								});
+
+								if (isCheckArray.length == 0) {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
 								}
-							});
+								else if (isCheckArray.length == data.length) {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
+								}
+								else {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
+								}
 
-							if (isCheckArray.length == 0) {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
+								$scope.gridApi.grid.refresh();
 							}
-							else if (isCheckArray.length == data.length) {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
-							}
-							else {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
-							}
-
-							$scope.gridApi.grid.refresh();
 						};
 						row.actions.copyRow = copyRow;
 						row.actions.deleteRow = deleteRow;
@@ -209,8 +211,8 @@
 
 			$scope.editingRow = row;
 
-			$('body').append('<modal value="editingRow"></modal>');
-			var modal = $('modal');
+			$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+			var modal = $('div[modal]');
 			$compile(modal)($scope);
 		}
 
@@ -222,9 +224,9 @@
 
 			$scope.historiedRow = row;
 
-			$('body').append('<history value="historiedRow.actions.history"></history>');
-			var history = $('history');
-			$compile(history)($scope);
+			$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+			var modal = $('div[modal]');
+			$compile(modal)($scope);
 		}
 
 		$scope.$watch('data', function (data) {

@@ -31,7 +31,7 @@
 
 					if (scope.dropdownOpt.isVisible) {
 						if (scope.dropdownOpt.width === undefined) {
-							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+							scope.dropdownOpt.width = element.parent().find('div[dropdown]').width();
 						}
 						scope.totalWidth += scope.dropdownOpt.width;
 
@@ -89,7 +89,7 @@
 
 					if (scope.dropdownOpt.isVisible) {
 						if (scope.dropdownOpt.width === undefined) {
-							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+							scope.dropdownOpt.width = element.parent().find('div[dropdown]').width();
 						}
 						scope.totalWidth += scope.dropdownOpt.width;
 

@@ -525,15 +525,15 @@
 
 				if (this.scope.view) {
 					if (this.scope.view.isGrid) {
-						this.$compile($('custom-grid'))(this.scope);
+						this.$compile($('div[custom-grid]'))(this.scope);
 					}
 				}
 			}
 		}
 		else {
-			if (view) {
-				if (view.isGrid) {
-					this.$compile($('custom-grid'))(this.scope);
+			if (this.scope.view) {
+				if (this.scope.view.isGrid) {
+					this.$compile($('div[custom-grid]'))(this.scope);
 				}
 			}
 		}

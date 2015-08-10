@@ -1,10 +1,8 @@
 ﻿angular.module('gridTaskApp')
-	.controller('modalCtrl', ['$scope', function ($scope) {
+	.controller('modalCtrl', ['$scope', '$element', '$timeout', function ($scope, $element, $timeout) {
 		$scope.isModal = true;
 
 		$scope.fields = [];
-
-		$scope.myEntity = {};
 
 		$scope.myEntity = angular.copy($scope.value.entity);
 
@@ -31,4 +29,15 @@
 			$scope.isModal = false;
 		};
 
+		$scope.resize = function () {
+			$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
+			$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+		};
+
+		$scope.onInclude = function () {
+			$timeout(function () {
+				$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
+				$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+			});
+		}
 	}]);

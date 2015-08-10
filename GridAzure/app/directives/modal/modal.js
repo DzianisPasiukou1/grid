@@ -1,30 +1,30 @@
 ﻿angular.module('gridTaskApp')
 	.directive('modal', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/modal.html',
 			scope: {
-				value: '='
+				value: '=',
+				bodyTemplateUrl: '@',
+				bodyTemplate: '@',
+				enableSave: '='
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {
 				scope.$watch('isModal', function (value) {
 					$timeout(function () {
 						if (!value) {
-							$('body').css('overflow', 'inherit');
-							element.remove();
+							angular.element(element).remove();
 						}
 						else {
 							element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
 							element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
-							$('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
 				$(window).resize(function () {
-					element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-					element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
+					scope.reize();
 				});
 			}
 		}

@@ -41,8 +41,6 @@
 		<file>/app/directives/graphs/graphs.js</file>
 		<file>/app/directives/histogram/histogram-controller.js</file>
 		<file>/app/directives/histogram/histogram.js</file>
-		<file>/app/directives/history/history-controller.js</file>
-		<file>/app/directives/history/history.js</file>
 		<file>/app/directives/kx-date-range/kx-date-range.js</file>
 		<file>/app/directives/kx-multiselect/kx-multiselect.js</file>
 		<file>/app/directives/kx-nav-bar/file1.js</file>

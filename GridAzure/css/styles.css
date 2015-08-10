@@ -983,35 +983,35 @@ button::-moz-focus-inner {
       stroke-opacity: 0.5; }
 
 @media only screen and (max-width: 1500px) {
-  histogram .histogram {
+  .histogram-content .histogram {
     display: block !important; }
  }
-histogram .histogram {
+.histogram-content .histogram {
   overflow: auto;
   max-width: 1200px;
   display: inline; }
-histogram svg {
+.histogram-content svg {
   float: left;
   border: 2px solid #2ba6d5;
   border-radius: 3px 3px;
   margin-bottom: 20px;
   margin-top: 40px;
   margin-left: 10px; }
-histogram .bar {
+.histogram-content .bar {
   fill: steelblue; }
-  histogram .bar:hover {
+  .histogram-content .bar:hover {
     fill: turquoise; }
-histogram .chart text {
+.histogram-content .chart text {
   font: 12px sans-serif;
   font-weight: bold; }
-histogram .chart .title {
+.histogram-content .chart .title {
   font: 16px sans-serif;
   font-weight: bold; }
-histogram .axis path, histogram .axis line {
+.histogram-content .axis path, .histogram-content .axis line {
   fill: none;
   stroke: #333;
   shape-rendering: crispEdges; }
-histogram .x.axis path {
+.histogram-content .x.axis path {
   fill: white; }
 
 .chart-segment {
@@ -1745,16 +1745,14 @@ histogram .x.axis path {
     position: relative;
     border: 0; }
 
-history .history__content {
+.modal .history__content {
   text-align: left;
   font-size: 16px; }
-history .dialog {
-  height: auto; }
-  history .dialog__entity {
+  .modal .history__content .dialog__entity {
     text-align: left !important; }
-  history .dialog__key {
+  .modal .history__content .dialog__key {
     margin-right: 0 !important; }
-  history .dialog__value {
+  .modal .history__content .dialog__value {
     margin-left: 10px !important;
     float: none !important; }
 

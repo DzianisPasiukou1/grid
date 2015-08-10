@@ -699,25 +699,27 @@ angular.module('gridTaskApp')
 							$scope.gridApi.expandable.toggleRowExpansion(row.entity);
 						};
 						row.actions.setCheck = function () {
-							var data = $scope.gridApi.grid.rows;
+							if ($scope.contentOptions.checks) {
+								var data = $scope.gridApi.grid.rows;
 
-							var isCheckArray = data.filter(function (value) {
-								if (value.isCheck) {
-									return true;
+								var isCheckArray = data.filter(function (value) {
+									if (value.isCheck) {
+										return true;
+									}
+								});
+
+								if (isCheckArray.length == 0) {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
 								}
-							});
+								else if (isCheckArray.length == data.length) {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
+								}
+								else {
+									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
+								}
 
-							if (isCheckArray.length == 0) {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
+								$scope.gridApi.grid.refresh();
 							}
-							else if (isCheckArray.length == data.length) {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
-							}
-							else {
-								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
-							}
-
-							$scope.gridApi.grid.refresh();
 						};
 						row.actions.copyRow = copyRow;
 						row.actions.deleteRow = deleteRow;
@@ -895,8 +897,8 @@ angular.module('gridTaskApp')
 
 			$scope.editingRow = row;
 
-			$('body').append('<modal value="editingRow"></modal>');
-			var modal = $('modal');
+			$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+			var modal = $('div[modal]');
 			$compile(modal)($scope);
 		}
 
@@ -908,9 +910,9 @@ angular.module('gridTaskApp')
 
 			$scope.historiedRow = row;
 
-			$('body').append('<history value="historiedRow.actions.history"></history>');
-			var history = $('history');
-			$compile(history)($scope);
+			$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+			var modal = $('div[modal]');
+			$compile(modal)($scope);
 		}
 
 		$scope.$watch('data', function (data) {
@@ -1121,7 +1123,7 @@ angular.module('gridTaskApp')
 
 					if (scope.dropdownOpt.isVisible) {
 						if (scope.dropdownOpt.width === undefined) {
-							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+							scope.dropdownOpt.width = element.parent().find('div[dropdown]').width();
 						}
 						scope.totalWidth += scope.dropdownOpt.width;
 
@@ -1179,7 +1181,7 @@ angular.module('gridTaskApp')
 
 					if (scope.dropdownOpt.isVisible) {
 						if (scope.dropdownOpt.width === undefined) {
-							scope.dropdownOpt.width = element.parent().find('dropdown').width();
+							scope.dropdownOpt.width = element.parent().find('div[dropdown]').width();
 						}
 						scope.totalWidth += scope.dropdownOpt.width;
 
@@ -1448,47 +1450,6 @@ angular.module('gridTaskApp')
 			},
 			templateUrl: templatesPath + 'directive-templates/graphs.html',
 			link: function (scope, element, attrs) {
-			}
-		}
-	}]);
-///#source 1 1 /app/directives/history/history-controller.js
-angular.module('gridTaskApp')
-	.controller('historyCtrl', ['$scope', function ($scope) {
-		$scope.isModal = true;
-
-		$scope.close = function () {
-			$scope.isModal = false;
-		};
-	}]);
-///#source 1 1 /app/directives/history/history.js
-angular.module('gridTaskApp')
-	.directive('history', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
-		return {
-			restrict: 'E',
-			templateUrl: templatesPath + 'directive-templates/history.html',
-			controller: 'historyCtrl',
-			scope: {
-				history: '=value'
-			},
-			link: function (scope, element, attrs) {
-				scope.$watch('isModal', function (value) {
-					$timeout(function () {
-						if (!value) {
-							$('body').css('overflow', 'inherit');
-							element.remove();
-						}
-						else {
-							element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-							element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
-							$('body').css('overflow', 'hidden');
-						}
-					});
-				})
-
-				$(window).resize(function () {
-					element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-					element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
-				});
 			}
 		}
 	}]);
@@ -1858,12 +1819,10 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/modal/modal-controller.js
 angular.module('gridTaskApp')
-	.controller('modalCtrl', ['$scope', function ($scope) {
+	.controller('modalCtrl', ['$scope', '$element', '$timeout', function ($scope, $element, $timeout) {
 		$scope.isModal = true;
 
 		$scope.fields = [];
-
-		$scope.myEntity = {};
 
 		$scope.myEntity = angular.copy($scope.value.entity);
 
@@ -1890,35 +1849,46 @@ angular.module('gridTaskApp')
 			$scope.isModal = false;
 		};
 
+		$scope.resize = function () {
+			$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
+			$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+		};
+
+		$scope.onInclude = function () {
+			$timeout(function () {
+				$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
+				$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+			});
+		}
 	}]);
 ///#source 1 1 /app/directives/modal/modal.js
 angular.module('gridTaskApp')
 	.directive('modal', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/modal.html',
 			scope: {
-				value: '='
+				value: '=',
+				bodyTemplateUrl: '@',
+				bodyTemplate: '@',
+				enableSave: '='
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {
 				scope.$watch('isModal', function (value) {
 					$timeout(function () {
 						if (!value) {
-							$('body').css('overflow', 'inherit');
-							element.remove();
+							angular.element(element).remove();
 						}
 						else {
 							element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
 							element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
-							$('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
 				$(window).resize(function () {
-					element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-					element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
+					scope.reize();
 				});
 			}
 		}
@@ -2083,7 +2053,7 @@ angular.module('gridTaskApp')
 				});
 
 				scope.$watch('data', function (data) {
-					if (data) {
+					if (Array.isArray(data)) {
 						initializer.refreshData(data);
 					}
 				});
@@ -2996,15 +2966,15 @@ var Initializer = (function () {
 
 				if (this.scope.view) {
 					if (this.scope.view.isGrid) {
-						this.$compile($('custom-grid'))(this.scope);
+						this.$compile($('div[custom-grid]'))(this.scope);
 					}
 				}
 			}
 		}
 		else {
-			if (view) {
-				if (view.isGrid) {
-					this.$compile($('custom-grid'))(this.scope);
+			if (this.scope.view) {
+				if (this.scope.view.isGrid) {
+					this.$compile($('div[custom-grid]'))(this.scope);
 				}
 			}
 		}
@@ -3887,28 +3857,28 @@ function ngGridActionsPlugin(opts, compile) {
 		}
 
 		var editRow = function (row) {
-			if ($('modal').length != 0) {
-				$('modal').remove();
+			if ($('div[modal]').length != 0) {
+				$('div[modal]').remove();
 			}
 
 			self.scope.rowEditing = row;
 
-			$('body').append('<modal value="rowEditing"></modal>');
-			var modal = $('modal');
+			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+			var modal = $('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 
 
 		var historyRow = function (row) {
-			if ($('history').length != 0) {
-				$('history').remove();
+			if ($('div[modal]').length != 0) {
+				$('div[modal]').remove();
 			}
 
 			self.scope.rowHistoried = row;
 
-			$('body').append('<history value="rowHistoried.actions.history"></history>');
-			var history = $('history');
-			self.compile(history)(self.scope);
+			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+			var modal = $('div[modal]');
+			self.compile(modal)(self.scope);
 		}
 
 		self.scope.$watch('catHashKeys()', innerRecalcForData);

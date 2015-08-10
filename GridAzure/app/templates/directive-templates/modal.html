@@ -2,12 +2,12 @@
 	<div class="fade">
 	</div>
 	<div class="dialog">
-		<h1>{{::'editEntity' | translate}}</h1>
-		<div ng-repeat="(key, value) in myEntity" class="dialog__entity">
-			<span class="dialog__key">{{key}}</span><input class="dialog__value" ng-model="myEntity[key]" />
+		<div ng-include="bodyTemplateUrl" ng-if="!bodyTemplate" onload="onInclude()">
+		</div>
+		<div ng-if="bodyTemplate" gr-template="bodyTemplate" gr-name="editEntityTemplate">
 		</div>
 		<div class="dialog-btn">
-			<button class="save-btn" ng-click="save()">{{::'save' | translate}}</button>
+			<button class="save-btn" ng-if="enableSave" ng-click="save()">{{::'save' | translate}}</button>
 			<button class="close-btn" ng-click="close()">{{::'close' | translate}}</button>
 		</div>
 	</div>
