@@ -73,7 +73,7 @@
 		self.scope.uiGridOptions = {
 		}
 
-		self.scope.CONTENT = JSON.stringify({
+		self.scope.content = JSON.stringify({
 			contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions, uiGridOptions: self.scope.uiGridOptions
 		}, function (key, value) {
 			if (typeof value === 'function') {
@@ -86,42 +86,42 @@
 
 		var tempContent = '';
 
-		for (var i = 0; i < self.scope.CONTENT.length - 1; i++) {
-			if (self.scope.CONTENT[i] == "\\") {
-				if (self.scope.CONTENT[i + 1] == "r") {
+		for (var i = 0; i < self.scope.content.length - 1; i++) {
+			if (self.scope.content[i] == "\\") {
+				if (self.scope.content[i + 1] == "r") {
 					tempContent += "\r";
 					i++;
 				}
-				else if (self.scope.CONTENT[i + 1] == "n") {
+				else if (self.scope.content[i + 1] == "n") {
 					tempContent += "\n";
 					i++;
 				}
-				else if (self.scope.CONTENT[i + 1] == "t") {
+				else if (self.scope.content[i + 1] == "t") {
 					tempContent += "\t";
 					i++;
 				}
 				else {
-					tempContent += self.scope.CONTENT[i];
+					tempContent += self.scope.content[i];
 				}
 			}
 			else {
-				tempContent += self.scope.CONTENT[i];
+				tempContent += self.scope.content[i];
 			}
 
-			if (i == self.scope.CONTENT.length - 2) {
-				tempContent += self.scope.CONTENT[i + 1];
+			if (i == self.scope.content.length - 2) {
+				tempContent += self.scope.content[i + 1];
 			}
 
 		}
 
 
-		self.scope.CONTENT = tempContent;
+		self.scope.content = tempContent;
 
 		self.scope.isValid = true;
 
 		self.scope.textChange = function () {
 			try {
-				var temp = self.scope.CONTENT.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
+				var temp = self.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
 
 				temp = JSON.parse(temp, function (key, value) {
 					if (value && typeof value === "string" && value.substr(0, 8) == "function") {

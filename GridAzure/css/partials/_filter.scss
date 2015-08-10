@@ -28,7 +28,7 @@
 		bottom: 1px;
 	}
 
-	filter-list {
+	&__list {
 		@include filter-list-main;
 
 		.filter-list {

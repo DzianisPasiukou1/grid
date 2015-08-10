@@ -8,7 +8,7 @@
 				uiGridOptions: '=',
 				cardsOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-CONTENT-cards.html',
+			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initCards();

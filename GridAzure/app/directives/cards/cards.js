@@ -16,7 +16,9 @@
 					});
 				}
 
-				scope.$watch('cards', function (cards) {
+				scope.$watch('cardsOptions.cards', function (cards) {
+					scope.cards = scope.cardsOptions.cards;
+
 					$timeout(function () {
 						var left = 40;
 

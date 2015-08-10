@@ -15,7 +15,7 @@
 			margin: 50
 		}
 
-		element = compile("<div cards='cardsOptions' CONTENT-options='contentOptions'></div>")(scope);
+		element = compile("<div cards='cardsOptions' content-options='contentOptions'></div>")(scope);
 		scope.$digest()
 
 		$timeout.flush(100);

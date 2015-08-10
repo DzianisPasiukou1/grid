@@ -2,7 +2,7 @@
 angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
 	.value('templatesPath', 'app/templates/');
 
-///#source 1 1 /app/constants/CONTENT-constants.js
+///#source 1 1 /app/constants/content-constants.js
 angular.module('gridTaskApp')
 	.constant('CONTENT', {
 		checks: {
@@ -293,7 +293,9 @@ angular.module('gridTaskApp')
 					});
 				}
 
-				scope.$watch('cards', function (cards) {
+				scope.$watch('cardsOptions.cards', function (cards) {
+					scope.cards = scope.cardsOptions.cards;
+
 					$timeout(function () {
 						var left = 40;
 
@@ -654,13 +656,14 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('customGrid', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			controller: 'customGridCtrl',
 			scope: {
 				data: '=gridData',
 				exportTo: '=',
 				options: '=gridOptions'
 			},
+			require: ['?^gridData', '?^gridOptions'],
 			templateUrl: templatesPath + 'directive-templates/custom-grid.html',
 			link: function (scope, element, attrs) {
 			}
@@ -668,29 +671,87 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/custom-grid/grid-menu/grid-menu-controller.js
 angular.module('gridTaskApp')
-	.controller('gridMenuCtrl', ['$scope', function ($scope) {
-		$scope.options = {
-			isMenu: true,
-			label: '',
-			values: [],
-			isCheckbox: true,
-			onCheck: function (action, index) {
+	.controller('gridMenuCtrl', ['$scope', 'MENU', function ($scope, MENU) {
+		$scope.options = $scope.options.menu;
+
+		if ($scope.options === undefined) {
+			$scope.options = {};
+		}
+
+		if ($scope.options.isMenu === undefined) {
+			$scope.options.isMenu = false;
+		}
+
+		if ($scope.options.label === undefined) {
+			$scope.options.label = '';
+		}
+
+		if ($scope.options.values === undefined) {
+			$scope.options.values = [];
+		}
+
+		if ($scope.options.isCheckbox === undefined) {
+			$scope.options.isCheckbox = true;
+		}
+
+		if ($scope.options.onCheck === undefined) {
+			$scope.options.onCheck = function (action, index) {
 				$scope.columns[index].toggleVisible();
 
 				$scope.resize(action);
-			},
-			withSave: false,
-			onSave: function () {
-			},
-			callback: function (action) {
 			}
-		};
+		}
+
+		if ($scope.options.withSave === undefined) {
+			$scope.options.withSave = false;
+		}
+
+		if ($scope.options.onSave === undefined) {
+			$scope.options.onSave = function () {
+			}
+		}
+
+		if ($scope.options.callback === undefined) {
+			$scope.options.callback = function (action) {
+			}
+		}
+
+		if ($scope.options.parentSelector === undefined) {
+			$scope.options.parentSelector = MENU.parentSelector;
+		}
+
+		if ($scope.options.parentMinWidth === undefined) {
+			$scope.options.parentMinWidth = MENU.parentMinWidth;
+		}
+
+		$scope.resize = function (action) {
+			var totalWidth = $scope.columns.reduce(function (a, b) {
+				if (b.visible) {
+					return a + b.minWidth;
+				} else {
+					return a;
+				}
+			}, 0);
+
+			for (var j = 0; j < $scope.colCache.length; j++) {
+				if ($scope.colCache[j].label == action.label) {
+					$scope.colCache.splice(j, 1);
+				}
+			}
+
+			if ($(window).width() < totalWidth) {
+				$($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
+			}
+			else {
+				$($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
+			}
+		}
 	}]);
 ///#source 1 1 /app/directives/custom-grid/grid-menu/grid-menu.js
 angular.module('gridTaskApp')
 	.directive('gridMenu', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/grid-menu.html',
 			controller: 'gridMenuCtrl',
 			link: function (scope, element, attrs) {
@@ -803,29 +864,6 @@ angular.module('gridTaskApp')
 						});
 					}
 				});
-
-				scope.resize = function (action) {
-					var totalWidth = scope.columns.reduce(function (a, b) {
-						if (b.visible) {
-							return a + b.minWidth;
-						} else {
-							return a;
-						}
-					}, 0);
-
-					for (var j = 0; j < scope.colCache.length; j++) {
-						if (scope.colCache[j].label == action.label) {
-							scope.colCache.splice(j, 1);
-						}
-					}
-
-					if ($(window).width() < totalWidth) {
-						$('.page-CONTENT').css('minWidth', totalWidth + 'px');
-					}
-					else {
-						$('.page-CONTENT').css('minWidth', '500px');
-					}
-				}
 			}
 		}
 	}]);
@@ -833,7 +871,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('rowCheck', [function () {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			scope: {
 				value: '=rowCheck'
 			},
@@ -1128,13 +1166,14 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('customUiGrid', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
 				data: '=gridData',
 				options: '=gridOptions',
 				contentOptions: '='
 			},
 			controller: 'customUiGridCtrl',
+			require: ['?^gridData', '?^gridOptions'],
 			templateUrl: templatesPath + 'directive-templates/custom-ui-grid.html',
 			link: function (scope, element, attrs) {
 			}
@@ -1142,96 +1181,35 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/custom-ui-grid/ui-grid-menu/ui-grid-menu.js
 angular.module('gridTaskApp')
-	.directive('uiGridCustomMenu', ['$timeout', 'uiGridGridMenuService', function ($timeout, uiGridGridMenuService) {
+	.directive('uiGridCustomMenu', ['$timeout', function ($timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
+			controller: 'uiGridMenuCtrl',
 			link: function (scope, element, attrs) {
 				var self = {};
 				self.scope = scope;
-				self.uiGridGridMenuService = uiGridGridMenuService;
-
-				if (self.scope.options.showResponsMenu) {
-					self.scope.options.enableGridMenu = true;
-				}
 
 				$timeout(function () {
 					this.scope.gridApi.core.on.columnVisibilityChanged(this.scope, function () {
-						var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
-							if (b.visible) {
-								return a + b.minWidth;
-							}
-							else {
-								return a;
-							}
-						}, 0);
+						var totalWidth = scope.getTotalWidth();
 
-						if ($(window).width() < totalWidth) {
-							$('.page-CONTENT').css('minWidth', totalWidth + 'px');
-						}
-						else {
-							$('.page-CONTENT').css('minWidth', '500px');
-						}
-
-						console.log('resize');
-						console.log('total-width = ' + totalWidth);
-						console.log('window width = ' + $(window).width());
+						scope.changeMinWidth(totalWidth);
 					}.bind(this));
 
-					var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
-						return a + b.minWidth;
-					}, 0);
+					var totalWidth = scope.getTotalWidth();
 
 					var isAllVisible = true;
 
-					if ($(window).width() < totalWidth) {
-						for (var i = this.scope.gridApi.grid.columns.length - 2; i > 1; i--) {
-							if (this.scope.gridApi.grid.columns[i].visible) {
-								this.uiGridGridMenuService.toggleColumnVisibility(this.scope.gridApi.grid.columns[i]);
-								totalWidth -= this.scope.gridApi.grid.columns[i].minWidth;
-								isAllVisible = false;
-							}
-							if ($(window).width() > totalWidth) {
-								break;
-							}
-						}
-					}
+					scope.resize(totalWidth);
 
 					if (!isAllVisible && !self.scope.options.enableGridMenu) {
 						self.scope.options.enableGridMenu = true;
 					}
 
 					$(window).resize(function () {
-						var totalWidth = this.scope.gridApi.grid.columns.reduce(function (a, b) {
-							if (b.visible) {
-								return a + b.minWidth;
-							}
-							else {
-								return a;
-							}
-						}, 0);
+						var totalWidth = scope.getTotalWidth();
 
-						if ($(window).width() < totalWidth) {
-							for (var i = this.scope.gridApi.grid.columns.length - 2; i > 1; i--) {
-								if (this.scope.gridApi.grid.columns[i].visible) {
-									this.uiGridGridMenuService.toggleColumnVisibility(this.scope.gridApi.grid.columns[i]);
-									totalWidth -= this.scope.gridApi.grid.columns[i].minWidth;
-								}
-								if ($(window).width() > totalWidth) {
-									break;
-								}
-							}
-						}
-						else {
-							for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
-								if (!this.scope.gridApi.grid.columns[i].visible) {
-									if ($(window).width() < totalWidth + this.scope.gridApi.grid.columns[i].minWidth) {
-										break;
-									}
-									this.uiGridGridMenuService.toggleColumnVisibility(this.scope.gridApi.grid.columns[i]);
-									totalWidth += this.scope.gridApi.grid.columns[i].minWidth;
-								}
-							}
-						}
+						scope.resize(totalWidth);
 
 						if (!self.scope.options.showResponsMenu) {
 
@@ -1303,9 +1281,9 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('dropdown', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
-				options: '=dropdownOptions'
+				options: '=dropdown'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'directive-templates/dropdown.html',
@@ -1317,7 +1295,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('dynamicDropdown', ['templatesPath', '$compile', '$timeout', function (templatesPath, $compile, $timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			scope: {
 				origOpt: '=',
 				dropdownOpt: '=',
@@ -1461,11 +1439,6 @@ angular.module('gridTaskApp')
 						this.isVisible = value;
 					}
 				}
-
-				scope.$watch('toResize', function (value) {
-					if (value) {
-					}
-				});
 
 				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
 					scope.totalWidth = 20;
@@ -1639,31 +1612,14 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('filter', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
-				listState: '=',
-				filterOptions: '=options',
-				filtrate: '='
+				filterOptions: '=filter',
+				filtrate: '=onFiltrate'
 			},
 			controller: 'filterCtrl',
 			templateUrl: templatesPath + 'directive-templates/filter.html',
 			link: function (scope, element, attrs) {
-				$(document).click(function (event) {
-					if (!$(event.target).closest(element).length) {
-						scope.listState = false;
-						scope.$apply();
-					}
-				})
-
-				scope.$watch('listState', function (value) {
-					if (value) {
-						element.find('filter-list').resize();
-						element.addClass('filter-selected');
-					}
-					else {
-						element.removeClass('filter-selected');
-					}
-				});
 			}
 		}
 	}]);
@@ -1679,7 +1635,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('filterList', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/filter-list.html',
 			controller: 'filterListCtrl',
 			link: function (scope, element, attrs) {
@@ -1690,13 +1646,12 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('graphs', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			scope: {
 				graphs: '='
 			},
 			templateUrl: templatesPath + 'directive-templates/graphs.html',
 			link: function (scope, element, attrs) {
-
 			}
 		}
 	}]);
@@ -2412,7 +2367,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/page-CONTENT.js
+///#source 1 1 /app/directives/page-content/page-content.js
 angular.module('gridTaskApp')
 	.directive('pageContent', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
@@ -2424,7 +2379,7 @@ angular.module('gridTaskApp')
 				gridOptions: '=',
 				uiGridOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-CONTENT.html',
+			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 
@@ -2457,7 +2412,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/CONTENT-options/CONTENT-options-controller.js
+///#source 1 1 /app/directives/page-content/content-options/content-options-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2473,7 +2428,7 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/CONTENT-options/CONTENT-options.js
+///#source 1 1 /app/directives/page-content/content-options/content-options.js
 angular.module('gridTaskApp')
 	.directive('contentOptions', ['templatesPath', function (templatesPath) {
 		return {
@@ -2482,10 +2437,10 @@ angular.module('gridTaskApp')
 			scope: {
 				options: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/CONTENT-options.html'
+			templateUrl: templatesPath + 'directive-templates/content-options.html'
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-body/page-CONTENT-body.js
+///#source 1 1 /app/directives/page-content/page-content-body/page-content-body.js
 angular.module('gridTaskApp')
 	.directive('pageContentBody', [function () {
 		return {
@@ -2500,7 +2455,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-footer/page-CONTENT-footer.js
+///#source 1 1 /app/directives/page-content/page-content-footer/page-content-footer.js
 angular.module('gridTaskApp')
 	.directive('pageContentFooter', [function () {
 		return {
@@ -2515,7 +2470,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-header/page-CONTENT-header.js
+///#source 1 1 /app/directives/page-content/page-content-header/page-content-header.js
 angular.module('gridTaskApp')
 	.directive('pageContentHeader', [function () {
 		return {
@@ -2530,7 +2485,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT-cards/page-CONTENT-cards.js
+///#source 1 1 /app/directives/page-content-cards/page-content-cards.js
 angular.module('gridTaskApp')
 	.directive('pageContentCards', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
@@ -2541,7 +2496,7 @@ angular.module('gridTaskApp')
 				uiGridOptions: '=',
 				cardsOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-CONTENT-cards.html',
+			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initCards();
@@ -2558,7 +2513,7 @@ angular.module('gridTaskApp')
 			}
 		};
 	}])
-///#source 1 1 /app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards-controller.js
+///#source 1 1 /app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsCardsCtrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2574,7 +2529,7 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards.js
+///#source 1 1 /app/directives/page-content-cards/content-options-cards/content-options-cards.js
 angular.module('gridTaskApp')
 	.directive('contentOptionsCards', ['templatesPath', function (templatesPath) {
 		return {
@@ -2583,10 +2538,10 @@ angular.module('gridTaskApp')
 			scope: {
 				options: '=',
 			},
-			templateUrl: templatesPath + 'directive-templates/CONTENT-options-cards.html'
+			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
 		}
 	}]);
-///#source 1 1 /app/directives/page-CONTENT-d3/page-CONTENT-d3.js
+///#source 1 1 /app/directives/page-content-d3/page-content-d3.js
 angular.module('gridTaskApp')
 	.directive('pageContentD3', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
@@ -2598,7 +2553,7 @@ angular.module('gridTaskApp')
 				histogramData: '=',
 				filters: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-CONTENT-d3.html',
+			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initSankey();
@@ -2617,7 +2572,7 @@ angular.module('gridTaskApp')
 			}
 		};
 	}])
-///#source 1 1 /app/directives/page-CONTENT-d3/CONTENT-options-cards/CONTENT-options-d3-controller.js
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsD3Ctrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2633,7 +2588,7 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-CONTENT-d3/CONTENT-options-cards/CONTENT-options-d3.js
+///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3.js
 angular.module('gridTaskApp')
 	.directive('contentOptionsD3', ['templatesPath', function (templatesPath) {
 		return {
@@ -2646,7 +2601,7 @@ angular.module('gridTaskApp')
 				onDataRangeChanged: '=',
 				past: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/CONTENT-options-d3.html'
+			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/resize-on/resize-on.js
@@ -2887,7 +2842,7 @@ var Initializer = (function () {
 	function Initializer(scope, element, CONTENT, templatesPath, $compile) {
 		this.scope = scope;
 		this.element = element;
-		this.CONTENT = CONTENT;
+		this.content = CONTENT;
 		this.templatesPath = templatesPath;
 		this.$compile = $compile;
 	}
@@ -2912,9 +2867,9 @@ var Initializer = (function () {
 	};
 
 	Initializer.prototype.refreshSankey = function () {
-		this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
-		this.scope.cardsOptions.startDate = this.CONTENT.cardsOptions.startDate;
-		this.scope.cardsOptions.endDate = this.CONTENT.cardsOptions.endDate;
+		this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
+		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
+		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
 		this.scope.sankeyData = {
 			"links": [
@@ -2965,15 +2920,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.eventType === undefined) {
-			this.scope.contentOptions.eventType = this.CONTENT.eventType;
+			this.scope.contentOptions.eventType = this.content.eventType;
 		}
 
 		if (this.scope.contentOptions.segments === undefined) {
-			this.scope.contentOptions.segments = this.CONTENT.segments;
+			this.scope.contentOptions.segments = this.content.segments;
 		}
 
 		if (this.scope.contentOptions.campaign === undefined) {
-			this.scope.contentOptions.campaign = this.CONTENT.campaign;
+			this.scope.contentOptions.campaign = this.content.campaign;
 		}
 
 		if (this.scope.contentOptions.debugCard === undefined) {
@@ -2981,19 +2936,19 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.debugCard.id === undefined) {
-			this.scope.contentOptions.debugCard.id = this.CONTENT.debugCard.id;
+			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
 		}
 
 		if (this.scope.contentOptions.debugCard.text === undefined) {
-			this.scope.contentOptions.debugCard.text = this.CONTENT.debugCard.text;
+			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
 		}
 
 		if (this.scope.contentOptions.debugCard.body === undefined) {
-			this.scope.contentOptions.debugCard.body = this.CONTENT.debugCard.body;
+			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
 		}
 
 		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
-			this.scope.contentOptions.debugCard.templateUrl = this.CONTENT.debugCard.templateUrl;
+			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions === undefined) {
@@ -3001,15 +2956,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
-			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+			this.scope.contentOptions.datepickerOptions.startDate = this.content.cardsOptions.startDate;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
-			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+			this.scope.contentOptions.datepickerOptions.endDate = this.content.cardsOptions.endDate;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
-			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+			this.scope.contentOptions.datepickerOptions.dateRange = this.content.cardsOptions.dateRange;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
@@ -3021,11 +2976,11 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.filters === undefined) {
-			this.scope.filters = this.CONTENT.sankeyFilters;
+			this.scope.filters = this.content.sankeyFilters;
 		}
 
 		if (this.scope.sankeyData === undefined) {
-			d3.json(this.CONTENT.sankeyPath, function (error, graph) {
+			d3.json(this.content.sankeyPath, function (error, graph) {
 				this.scope.sankeyData = graph;
 			}.bind(this));
 		}
@@ -3050,10 +3005,10 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.cardsOptions.cards === undefined) {
-			this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
+			this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
 
 			if (this.scope.cardsOptions.margin === undefined) {
-				this.scope.cardsOptions.margin = this.CONTENT.cardsOptions.margin;
+				this.scope.cardsOptions.margin = this.content.cardsOptions.margin;
 			}
 
 			for (var card in this.scope.cardsOptions.cards) {
@@ -3081,17 +3036,17 @@ var Initializer = (function () {
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = true;
 			if ($('loading').length == 0) {
-				this.element.find(this.CONTENT.listSelector).append(this.CONTENT.loadingTemplate);
+				this.element.find(this.content.listSelector).append(this.content.loadingTemplate);
 				this.$compile($('loading'))(this.scope);
 			}
 		}
 
 		if (this.scope.contentOptions.checks === undefined) {
-			this.scope.contentOptions.checks = this.CONTENT.checks;
+			this.scope.contentOptions.checks = this.content.checks;
 		}
 
 		if (this.scope.contentOptions.mores === undefined) {
-			this.scope.contentOptions.mores = this.CONTENT.mores;
+			this.scope.contentOptions.mores = this.content.mores;
 		}
 
 		if (this.scope.contentOptions.filtrate === undefined) {
@@ -3155,9 +3110,9 @@ var Initializer = (function () {
 			}.bind(this);
 		}
 
-		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';
@@ -3167,15 +3122,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
-			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+			this.scope.contentOptions.datepickerOptions.startDate = this.content.cardsOptions.startDate;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
-			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+			this.scope.contentOptions.datepickerOptions.endDate = this.content.cardsOptions.endDate;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
-			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+			this.scope.contentOptions.datepickerOptions.dateRange = this.content.cardsOptions.dateRange;
 		}
 
 		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
@@ -3189,7 +3144,7 @@ var Initializer = (function () {
 
 	Initializer.prototype.initCardsGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.CONTENT.exports;
+			this.scope.exports = this.content.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
@@ -3198,14 +3153,14 @@ var Initializer = (function () {
 
 	Initializer.prototype.initGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.CONTENT.exports;
+			this.scope.exports = this.content.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
 		}
 
 		if (this.scope.views === undefined) {
-			this.scope.views = this.CONTENT.views;
+			this.scope.views = this.content.views;
 			this.scope.views.options.callback = function (action) {
 				this.scope.view = action;
 			}.bind(this);
@@ -3214,14 +3169,14 @@ var Initializer = (function () {
 		if (this.scope.grid === undefined) {
 			this.scope.grid = {};
 
-			this.scope.grid.name = this.CONTENT.gridName;
+			this.scope.grid.name = this.content.gridName;
 			if (Array.isArray(this.scope.data)) {
 				this.scope.grid.count = this.scope.data.length;
 			}
 		}
 
 		if (this.scope.grid.name === undefined) {
-			this.scope.grid.name = this.CONTENT.gridName;
+			this.scope.grid.name = this.content.gridName;
 		}
 
 		if (this.scope.grid.count === undefined) {
@@ -3237,39 +3192,39 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.data === undefined) {
-			this.scope.gridOptions.data = this.CONTENT.ngGridOpt.data;
+			this.scope.gridOptions.data = this.content.ngGridOpt.data;
 		}
 
 		if (this.scope.gridOptions.multiSelect === undefined) {
-			this.scope.gridOptions.multiSelect = this.CONTENT.ngGridOpt.multiSelect;
+			this.scope.gridOptions.multiSelect = this.content.ngGridOpt.multiSelect;
 		}
 
 		if (this.scope.gridOptions.rowTemplate === undefined) {
-			this.scope.gridOptions.rowTemplate = this.CONTENT.ngGridOpt.rowTemplate;
+			this.scope.gridOptions.rowTemplate = this.content.ngGridOpt.rowTemplate;
 		}
 
 		if (this.scope.gridOptions.filterOptions === undefined) {
-			this.scope.gridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
+			this.scope.gridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.gridOptions.rowHeight === undefined) {
-			this.scope.gridOptions.rowHeight = this.CONTENT.ngGridOpt.rowHeight;
+			this.scope.gridOptions.rowHeight = this.content.ngGridOpt.rowHeight;
 		}
 
 		if (this.scope.gridOptions.headerRowHeight === undefined) {
-			this.scope.gridOptions.headerRowHeight = this.CONTENT.ngGridOpt.headerRowHeight;
+			this.scope.gridOptions.headerRowHeight = this.content.ngGridOpt.headerRowHeight;
 		}
 
 		if (this.scope.gridOptions.showFooter === undefined) {
-			this.scope.gridOptions.showFooter = this.CONTENT.ngGridOpt.showFooter;
+			this.scope.gridOptions.showFooter = this.content.ngGridOpt.showFooter;
 		}
 
 		if (this.scope.gridOptions.footerRowHeight === undefined) {
-			this.scope.gridOptions.footerRowHeight = this.CONTENT.ngGridOpt.footerRowHeight;
+			this.scope.gridOptions.footerRowHeight = this.content.ngGridOpt.footerRowHeight;
 		}
 
 		if (this.scope.gridOptions.footerTemplate === undefined) {
-			this.scope.gridOptions.footerTemplate = this.CONTENT.ngGridOpt.footerTemplate;
+			this.scope.gridOptions.footerTemplate = this.content.ngGridOpt.footerTemplate;
 		}
 
 		if (this.scope.gridOptions.init === undefined) {
@@ -3281,15 +3236,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.detailsTemplate === undefined && this.scope.gridOptions.withDetails) {
-			this.scope.gridOptions.detailsTemplate = this.CONTENT.ngGridOpt.detailsTemplate;
+			this.scope.gridOptions.detailsTemplate = this.content.ngGridOpt.detailsTemplate;
 		}
 
 		if (this.scope.gridOptions.rowActions === undefined) {
-			this.scope.gridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
+			this.scope.gridOptions.rowActions = this.content.ngGridOpt.rowActions;
 		}
 
 		if (this.scope.gridOptions.rowCheckAction === undefined) {
-			this.scope.gridOptions.rowCheckAction = this.CONTENT.ngGridOpt.rowCheckAction;
+			this.scope.gridOptions.rowCheckAction = this.content.ngGridOpt.rowCheckAction;
 		}
 
 		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
@@ -3331,26 +3286,26 @@ var Initializer = (function () {
 			this.scope.uiGridOptions = {};
 		}
 
-		for (var prop in this.CONTENT.uiGridOpt) {
+		for (var prop in this.content.uiGridOpt) {
 			if (this.scope.uiGridOptions[prop] === undefined) {
-				this.scope.uiGridOptions[prop] = this.CONTENT.uiGridOpt[prop];
+				this.scope.uiGridOptions[prop] = this.content.uiGridOpt[prop];
 			}
 		}
 
 		if (this.scope.uiGridOptions.filterOptions === undefined) {
-			this.scope.uiGridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
+			this.scope.uiGridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.uiGridOptions.rowActions === undefined) {
-			this.scope.uiGridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
+			this.scope.uiGridOptions.rowActions = this.content.ngGridOpt.rowActions;
 		}
 
 	};
 
 	Initializer.prototype.refreshOpt = function () {
-		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';

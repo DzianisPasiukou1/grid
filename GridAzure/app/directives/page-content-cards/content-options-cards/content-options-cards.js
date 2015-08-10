@@ -6,6 +6,6 @@
 			scope: {
 				options: '=',
 			},
-			templateUrl: templatesPath + 'directive-templates/CONTENT-options-cards.html'
+			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
 		}
 	}]);

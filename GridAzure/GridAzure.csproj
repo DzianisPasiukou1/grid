@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\constants\menu-constants.js" />
     <Content Include="app\custom-grid-with-sankey.js">
       <DependentUpon>custom-grid-with-sankey.js.bundle</DependentUpon>
     </Content>
@@ -189,7 +190,9 @@
     <Content Include="app\directives\chart-segment\chart-segment-controller.js" />
     <Content Include="app\directives\core-diagram\core-diagram-controller.js" />
     <Content Include="app\directives\core-diagram\core-diagram.js" />
+    <Content Include="app\directives\custom-datepicker\custom-datepicker-controller.js" />
     <Content Include="app\directives\custom-grid\grid-menu\grid-menu.js" />
+    <Content Include="app\directives\custom-ui-grid\ui-grid-menu\ui-grid-menu-controller.js" />
     <Content Include="app\directives\gr-template\gr-template.js" />
     <Content Include="app\directives\histogram\histogram.js" />
     <Content Include="app\directives\histogram\histogram-controller.js" />
@@ -325,7 +328,6 @@
     <Content Include="azure-app\templates\navigation.html" />
     <Content Include="app\templates\directive-templates\page-content-cards.html" />
     <Content Include="app\templates\directive-templates\page-content.html" />
-    <Content Include="app\templates\directive-templates\page.html" />
     <Content Include="app\templates\grid-templates\cell-templates\fields\action.html" />
     <Content Include="app\templates\grid-templates\cell-templates\fields\date.html" />
     <Content Include="app\templates\grid-templates\cell-templates\fields\details.html" />

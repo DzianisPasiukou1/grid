@@ -1,21 +1,21 @@
 ﻿<button class="split-btn" ng-click="close()">
 	<div ng-if="actions.selected">
 		<div ng-if="!actions.isComplex">
-			{{actions.selected.label}}
+			{{actions.selected.label | translate}}
 		</div>
 		<div ng-if="actions.isComplex">
-			Choose {{actions.selected.label}}
+			{{::'choose' | translate}} {{actions.selected.label | translate}}
 		</div>
 	</div>
 
 	<div ng-if="!actions.selected" style="opacity: 0.5">
-		{{typehead}}
+		{{typehead | translate}}
 	</div>
 	<button class="split-btn__toggle" ng-click="toggle()" ng-class="{'opened' : isShow}" any-other-click="isShow=false">
 		<span class="expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}">
 		</span>
 	</button>
 	<ul class="split-btn__list" ng-show="isShow">
-		<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
+		<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label | translate}}</a> </li>
 	</ul>
 </button>

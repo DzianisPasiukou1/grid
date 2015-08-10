@@ -1,7 +1,7 @@
 ﻿<div class="mouse-over">
 	<div class="mouse-over-simple" ng-show="type.isSimple">
 		<div class="mouse-over-simple__header">
-			<span class="mouse-over-simple__header__text">{{value.header}}</span>
+			<span class="mouse-over-simple__header__text">{{value.header | translate}}</span>
 		</div>
 		<div class="mouse-over-simple__body">
 			<div ng-repeat="val in value.data" class="mouse-over-simple__body__value">
@@ -12,23 +12,23 @@
 	</div>
 	<div class="mouse-over-medium" ng-show="type.isMedium">
 		<div class="mouse-over-medium__header">
-			<span class="mouse-over-simple__medium__text">{{value.header}}</span>
+			<span class="mouse-over-simple__medium__text">{{value.header | translate}}</span>
 		</div>
 		<div class="mouse-over-medium__body">
 			<div class="mouse-over-medium__body__blockSegm" style="float:left">
 				<span class="mouse-over-medium__body__header">
-					Top Segments
+					{{:: 'topSegments' | translate}}
 				</span>
 				<div ng-repeat="prop in value.data.topSegments">
-					<span class="mouse-over-medium__body__value__text">{{prop}}</span>
+					<span class="mouse-over-medium__body__value__text">{{prop | translate}}</span>
 				</div>
 			</div>
 			<div class="mouse-over-medium__body__blockCampaing" style="float:right">
 				<span class="mouse-over-medium__body__header">
-					Top Campaigns
+					{{:: 'topCampaigns' | translate}}
 				</span>
 				<div ng-repeat="prop in value.data.topCampaings">
-					<span class="mouse-over-medium__body__value__text">{{prop}}</span>
+					<span class="mouse-over-medium__body__value__text">{{prop | translate}}</span>
 				</div>
 			</div>
 		</div>

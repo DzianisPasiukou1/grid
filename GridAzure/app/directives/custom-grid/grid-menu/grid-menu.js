@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('gridMenu', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/grid-menu.html',
 			controller: 'gridMenuCtrl',
 			link: function (scope, element, attrs) {
@@ -114,29 +114,6 @@
 						});
 					}
 				});
-
-				scope.resize = function (action) {
-					var totalWidth = scope.columns.reduce(function (a, b) {
-						if (b.visible) {
-							return a + b.minWidth;
-						} else {
-							return a;
-						}
-					}, 0);
-
-					for (var j = 0; j < scope.colCache.length; j++) {
-						if (scope.colCache[j].label == action.label) {
-							scope.colCache.splice(j, 1);
-						}
-					}
-
-					if ($(window).width() < totalWidth) {
-						$('.page-CONTENT').css('minWidth', totalWidth + 'px');
-					}
-					else {
-						$('.page-CONTENT').css('minWidth', '500px');
-					}
-				}
 			}
 		}
 	}]);

@@ -9,7 +9,7 @@
 				histogramData: '=',
 				filters: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-CONTENT-d3.html',
+			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initSankey();

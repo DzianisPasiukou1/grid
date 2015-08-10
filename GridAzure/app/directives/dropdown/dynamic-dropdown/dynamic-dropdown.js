@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('dynamicDropdown', ['templatesPath', '$compile', '$timeout', function (templatesPath, $compile, $timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			scope: {
 				origOpt: '=',
 				dropdownOpt: '=',
@@ -145,11 +145,6 @@
 						this.isVisible = value;
 					}
 				}
-
-				scope.$watch('toResize', function (value) {
-					if (value) {
-					}
-				});
 
 				scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
 					scope.totalWidth = 20;

@@ -227,7 +227,7 @@ button::-moz-focus-inner {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa; }
 
-.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .options__upload label, .debug__uploader__btn label, .action__btn, .options__refresh, .filter__btn, .filter filter-list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn, .debug__back__btn {
+.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .options__upload label, .debug__uploader__btn label, .action__btn, .options__refresh, .filter__btn, .filter__list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn, .debug__back__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -245,9 +245,9 @@ button::-moz-focus-inner {
   position: relative;
   color: #787878;
   font-weight: normal; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .options__upload label:hover, .debug__uploader__btn label:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter filter-list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover, .debug__back__btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .options__upload label:hover, .debug__uploader__btn label:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter__list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover, .debug__back__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .options__upload label:active, .debug__uploader__btn label:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter filter-list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active, .debug__back__btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .options__upload label:active, .debug__uploader__btn label:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter__list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active, .debug__back__btn:active {
     background: #333;
     color: white;
     box-shadow: none; }
@@ -396,18 +396,18 @@ button::-moz-focus-inner {
     text-align: center;
     background-color: white !important; }
 
-.my-panel, .page-CONTENT {
+.my-panel, .page-content {
   display: block;
   position: relative;
   background-color: #fff;
   border: 1px solid #d9d9d9; }
-  .my-panel > .heading, .page-CONTENT > .heading, .my-panel > .page-content__header, .page-CONTENT > .page-content__header, .my-panel > .CONTENT, .page-CONTENT > .CONTENT, .my-panel > .page-content__body, .page-CONTENT > .page-content__body {
+  .my-panel > .heading, .page-content > .heading, .my-panel > .page-content__header, .page-content > .page-content__header, .my-panel > .content, .page-content > .content, .my-panel > .page-content__body, .page-content > .page-content__body {
     display: block;
     position: relative;
     color: #1d1d1d;
     border: 1px solid #d9d9d9;
     border-bottom: 0.9px #d9d9d9 solid; }
-  .my-panel > .heading, .page-CONTENT > .heading, .my-panel > .page-content__header, .page-CONTENT > .page-content__header {
+  .my-panel > .heading, .page-content > .heading, .my-panel > .page-content__header, .page-content > .page-content__header {
     padding: 0.5rem 0;
     color: #333;
     background-color: #f2f2f2;
@@ -418,16 +418,16 @@ button::-moz-focus-inner {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-  .my-panel > .heading > .title, .page-CONTENT > .heading > .title, .my-panel > .page-content__header > .title, .page-CONTENT > .page-content__header > .title {
+  .my-panel > .heading > .title, .page-content > .heading > .title, .my-panel > .page-content__header > .title, .page-content > .page-content__header > .title {
     margin-left: 0.625rem; }
-  .my-panel > .CONTENT, .page-CONTENT > .CONTENT, .my-panel > .page-content__body, .page-CONTENT > .page-content__body {
+  .my-panel > .content, .page-content > .content, .my-panel > .page-content__body, .page-content > .page-content__body {
     background-color: white;
     z-index: 1;
     font-size: 0.875rem; }
-  .my-panel > .footer, .page-CONTENT > .footer, .my-panel > .page-content__footer, .page-CONTENT > .page-content__footer {
+  .my-panel > .footer, .page-content > .footer, .my-panel > .page-content__footer, .page-content > .page-content__footer {
     min-height: 50px; }
 
-.my-search input, .options__search .search input, page-CONTENT-cards .page-content__options .options__search .search input {
+.my-search input, .options__search .search input, page-content-cards .page-content__options .options__search .search input {
   border-color: #787878;
   padding: 0 2.1rem 0 1rem;
   height: 3.125rem;
@@ -456,13 +456,13 @@ button::-moz-focus-inner {
   height: 0; }
 .my-search input[type="search"]::-webkit-search-decoration, .options__search .search input[type="search"]::-webkit-search-decoration, .my-search input[type="search"]::-webkit-search-cancel-button, .options__search .search input[type="search"]::-webkit-search-cancel-button, .my-search input[type="search"]::-webkit-search-results-button, .options__search .search input[type="search"]::-webkit-search-results-button, .my-search input[type="search"]::-webkit-search-results-decoration, .options__search .search input[type="search"]::-webkit-search-results-decoration {
   display: none; }
-.my-search .search-span, .options__search .search .search-span, page-CONTENT-cards .page-content__options .options__search .search .search-span {
+.my-search .search-span, .options__search .search .search-span, page-content-cards .page-content__options .options__search .search .search-span {
   position: relative !important;
   right: 29px;
   font-size: 20px;
   font-weight: normal;
   top: 4px; }
-.my-search .search-clear, .options__search .search .search-clear, page-CONTENT-cards .page-content__options .options__search .search .search-clear {
+.my-search .search-clear, .options__search .search .search-clear, page-content-cards .page-content__options .options__search .search .search-clear {
   position: relative !important;
   top: 5px;
   right: 29px;
@@ -1267,7 +1267,7 @@ histogram .x.axis path {
   .details-template label {
     font: inherit;
     font-weight: normal !important; }
-  .details-template .CONTENT, .details-template .page-content__body {
+  .details-template .content, .details-template .page-content__body {
     color: #333;
     min-height: 100px;
     float: left;
@@ -1278,28 +1278,28 @@ histogram .x.axis path {
     border: 1px solid #95cfeb;
     margin-bottom: 10px;
     min-height: 120px; }
-    .details-template .CONTENT .details-information, .details-template .page-content__body .details-information {
+    .details-template .content .details-information, .details-template .page-content__body .details-information {
       display: inline; }
-      .details-template .CONTENT .details-information .headers, .details-template .page-content__body .details-information .headers {
+      .details-template .content .details-information .headers, .details-template .page-content__body .details-information .headers {
         float: left; }
-        .details-template .CONTENT .details-information .headers span, .details-template .page-content__body .details-information .headers span {
+        .details-template .content .details-information .headers span, .details-template .page-content__body .details-information .headers span {
           display: block;
           text-align: right; }
-      .details-template .CONTENT .details-information .props, .details-template .page-content__body .details-information .props {
+      .details-template .content .details-information .props, .details-template .page-content__body .details-information .props {
         float: left; }
-        .details-template .CONTENT .details-information .props span, .details-template .page-content__body .details-information .props span {
+        .details-template .content .details-information .props span, .details-template .page-content__body .details-information .props span {
           display: block;
           margin-left: 10px; }
-    .details-template .CONTENT .overview, .details-template .page-content__body .overview {
+    .details-template .content .overview, .details-template .page-content__body .overview {
       display: inline; }
-      .details-template .CONTENT .overview .headers, .details-template .page-content__body .overview .headers {
+      .details-template .content .overview .headers, .details-template .page-content__body .overview .headers {
         float: left; }
-        .details-template .CONTENT .overview .headers span, .details-template .page-content__body .overview .headers span {
+        .details-template .content .overview .headers span, .details-template .page-content__body .overview .headers span {
           display: block;
           text-align: right; }
-      .details-template .CONTENT .overview .props, .details-template .page-content__body .overview .props {
+      .details-template .content .overview .props, .details-template .page-content__body .overview .props {
         float: left; }
-        .details-template .CONTENT .overview .props span, .details-template .page-content__body .overview .props span {
+        .details-template .content .overview .props span, .details-template .page-content__body .overview .props span {
           display: block;
           margin-left: 10px; }
   .details-template p {
@@ -1349,10 +1349,10 @@ histogram .x.axis path {
   text-overflow: clip;
   overflow: auto; }
 
-.page-CONTENT {
+.page-content {
   min-width: 500px;
   margin-top: 20px; }
-  .page-CONTENT.disabled {
+  .page-content.disabled {
     background-color: #333; }
   .page-content__header {
     height: 46px; }
@@ -1375,9 +1375,11 @@ histogram .x.axis path {
     display: inline;
     right: 0; }
     .page-content__actions__export {
-      margin-right: 20px; }
+      margin-right: 20px;
+      display: inline-block; }
     .page-content__actions__view {
-      margin-right: 10px; }
+      margin-right: 10px;
+      display: inline-block; }
   .page-content__body {
     padding: 0;
     border: 0 !important; }
@@ -1530,7 +1532,8 @@ histogram .x.axis path {
     position: relative; }
   .options__more {
     position: relative;
-    margin-right: 10px; }
+    margin-right: 10px;
+    display: inline-block; }
   .options__filter {
     display: inline; }
   .options__block {
@@ -1546,6 +1549,8 @@ histogram .x.axis path {
     float: right;
     position: relative;
     text-transform: capitalize; }
+  .options__filt {
+    display: inline; }
 
 .filter {
   display: inline;
@@ -1564,7 +1569,7 @@ histogram .x.axis path {
   .filter__name {
     position: relative;
     bottom: 1px; }
-  .filter filter-list {
+  .filter__list {
     min-width: 300px;
     position: absolute;
     z-index: 10000;
@@ -1581,26 +1586,26 @@ histogram .x.axis path {
     border: 1px solid #ccc;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
-    .filter filter-list .filter-list {
+    .filter__list .filter-list {
       z-index: 50;
       padding-left: 20px;
       text-transform: uppercase; }
-      .filter filter-list .filter-list__header {
+      .filter__list .filter-list__header {
         padding-top: 3%;
         color: #757677;
         font-size: 16px;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: bold; }
-      .filter filter-list .filter-list__options {
+      .filter__list .filter-list__options {
         max-height: 400px;
         overflow-y: auto; }
-        .filter filter-list .filter-list__options__value__header {
+        .filter__list .filter-list__options__value__header {
           padding-top: 3%;
           color: #757677;
           font-size: 14px;
           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-weight: bold; }
-        .filter filter-list .filter-list__options__value__input input {
+        .filter__list .filter-list__options__value__input input {
           -webkit-appearance: none;
           appearance: none;
           position: relative;
@@ -1609,9 +1614,9 @@ histogram .x.axis path {
           height: 100%;
           padding: 0.3125rem;
           z-index: 0; }
-          .filter filter-list .filter-list__options__value__input input:hover {
+          .filter__list .filter-list__options__value__input input:hover {
             border-color: #787878; }
-      .filter filter-list .filter-list__button {
+      .filter__list .filter-list__button {
         background-color: #2b9fd7;
         color: white;
         margin-top: 20px; }
@@ -1757,7 +1762,7 @@ history .dialog {
   .grid-testing textarea {
     width: 100% !important; }
 
-  .grid-testing page-CONTENT {
+  .grid-testing page-content {
     position: relative !important; }
  }
 .grid-testing .generate-btn {
@@ -1794,14 +1799,14 @@ history .dialog {
   min-width: 0 !important;
   position: relative;
   left: 0; }
-.grid-testing page-CONTENT {
+.grid-testing page-content {
   position: absolute;
   top: 0;
   right: 0;
   width: 55%; }
-  .grid-testing page-CONTENT .page-CONTENT {
+  .grid-testing page-content .page-content {
     margin-top: 43px; }
-  .grid-testing page-CONTENT .custom-grid {
+  .grid-testing page-content .custom-grid {
     width: 100%; }
 
 .dynamic-dropdown {
@@ -1812,33 +1817,33 @@ history .dialog {
       margin-right: 10px; }
 
 @media only screen and (max-width: 910px) {
-  page-CONTENT-cards .page-content__header {
+  page-content-cards .page-content__header {
     height: 100px !important; }
-  page-CONTENT-cards .page-content__list .custom-ui-grid {
+  page-content-cards .page-content__list .custom-ui-grid {
     margin-top: 20px !important; }
  }
-page-CONTENT-cards .page-CONTENT {
+page-content-cards .page-content {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  page-CONTENT-cards .page-content__header {
+  page-content-cards .page-content__header {
     height: 55px; }
-  page-CONTENT-cards .page-content__actions {
+  page-content-cards .page-content__actions {
     margin-top: 4px; }
-    page-CONTENT-cards .page-content__actions__export .my-dropdown__list, page-CONTENT-cards .page-content__actions__export .split-btn__list, page-CONTENT-cards .page-content__actions__export .checkbox-select__list {
+    page-content-cards .page-content__actions__export .my-dropdown__list, page-content-cards .page-content__actions__export .split-btn__list, page-content-cards .page-content__actions__export .checkbox-select__list {
       right: 19px !important;
       left: auto !important;
       min-width: 200px; }
-  page-CONTENT-cards .page-content__options {
+  page-content-cards .page-content__options {
     margin-top: 4px;
     float: left; }
-    page-CONTENT-cards .page-content__options .options {
+    page-content-cards .page-content__options .options {
       padding-top: 0 !important; }
       @media only screen and (max-width: 910px) {
-        page-CONTENT-cards .page-content__options .options {
+        page-content-cards .page-content__options .options {
           display: block; }
-          page-CONTENT-cards .page-content__options .options__block {
+          page-content-cards .page-content__options .options__block {
             float: left; }
-          page-CONTENT-cards .page-content__options .options__filter {
+          page-content-cards .page-content__options .options__filter {
             margin-left: 10px;
             z-index: 1000 !important;
             display: table;
@@ -1847,27 +1852,27 @@ page-CONTENT-cards .page-CONTENT {
             position: relative;
             margin-bottom: 7px;
             clear: both; }
-            page-CONTENT-cards .page-content__options .options__filter .filter {
+            page-content-cards .page-content__options .options__filter .filter {
               margin-right: 0 !important; } }
-      page-CONTENT-cards .page-content__options .options__search {
+      page-content-cards .page-content__options .options__search {
         float: left;
         margin-right: 0.75rem !important; }
-      page-CONTENT-cards .page-content__options .options__show {
+      page-content-cards .page-content__options .options__show {
         float: left; }
-      page-CONTENT-cards .page-content__options .options__block {
+      page-content-cards .page-content__options .options__block {
         float: left;
         margin-right: 30px;
         margin-left: 10px; }
-  page-CONTENT-cards .page-content__list {
+  page-content-cards .page-content__list {
     margin-top: 10px;
     overflow: hidden; }
-  page-CONTENT-cards .page-content__cards {
+  page-content-cards .page-content__cards {
     width: 100%;
     height: 150px;
     overflow-x: auto;
     overflow-y: hidden;
     margin-top: 10px; }
-  page-CONTENT-cards .page-content__footer {
+  page-content-cards .page-content__footer {
     border: 1px solid #e5e5e5;
     min-height: 0 !important; }
 
@@ -1876,44 +1881,44 @@ page-CONTENT-cards .page-CONTENT {
   .navigation .link-container__update {
     margin: 20px 0 10px 0; }
 
-page-CONTENT-d3 {
+page-content-d3 {
   min-width: 0 !important; }
   @media only screen and (max-width: 912px) {
-    page-CONTENT-d3 .page-content__header {
+    page-content-d3 .page-content__header {
       height: 360px !important; }
  }
   @media only screen and (max-width: 680px) {
-    page-CONTENT-d3 .page-content__header {
+    page-content-d3 .page-content__header {
       height: 400px !important; }
  }
-  page-CONTENT-d3 .page-CONTENT {
+  page-content-d3 .page-content {
     overflow: hidden;
     border: 0;
     font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-    page-CONTENT-d3 .page-content__uploader {
+    page-content-d3 .page-content__uploader {
       margin-bottom: 10px; }
-    page-CONTENT-d3 .page-content__header {
+    page-content-d3 .page-content__header {
       height: 315px;
       border: 0 !important;
       background-color: #d7e1e7 !important;
       border-top: 5px solid #0A2841 !important; }
-    page-CONTENT-d3 .page-content__cards {
+    page-content-d3 .page-content__cards {
       background-color: #e7eef2; }
-    page-CONTENT-d3 .page-content__actions {
+    page-content-d3 .page-content__actions {
       margin-top: 4px; }
-      page-CONTENT-d3 .page-content__actions__export .my-dropdown__list, page-CONTENT-d3 .page-content__actions__export .split-btn__list, page-CONTENT-d3 .page-content__actions__export .checkbox-select__list {
+      page-content-d3 .page-content__actions__export .my-dropdown__list, page-content-d3 .page-content__actions__export .split-btn__list, page-content-d3 .page-content__actions__export .checkbox-select__list {
         right: 19px !important;
         left: auto !important;
         min-width: 200px; }
-    page-CONTENT-d3 .page-content__options .options {
+    page-content-d3 .page-content__options .options {
       padding-top: 5px !important; }
       @media only screen and (max-width: 912px) {
-        page-CONTENT-d3 .page-content__options .options {
+        page-content-d3 .page-content__options .options {
           display: block; }
-          page-CONTENT-d3 .page-content__options .options__block {
+          page-content-d3 .page-content__options .options__block {
             float: left; }
-          page-CONTENT-d3 .page-content__options .options__select {
+          page-content-d3 .page-content__options .options__select {
             margin-left: 10px;
             z-index: 1 !important;
             margin-top: 10px;
@@ -1923,51 +1928,51 @@ page-CONTENT-d3 {
             display: inline-block;
             font-weight: normal;
             display: inline-block; }
-          page-CONTENT-d3 .page-content__options .options .select2-container {
+          page-content-d3 .page-content__options .options .select2-container {
             display: inline-block; } }
       @media only screen and (max-width: 680px) {
-        page-CONTENT-d3 .page-content__options .options__select {
+        page-content-d3 .page-content__options .options__select {
           float: left;
           display: inline-block; }
 
-        page-CONTENT-d3 .page-content__options .options .select2-container {
+        page-content-d3 .page-content__options .options .select2-container {
           display: block;
           margin-bottom: 10px; }
  }
-      page-CONTENT-d3 .page-content__options .options__block {
+      page-content-d3 .page-content__options .options__block {
         float: left;
         margin-right: 10px;
         margin-left: 10px; }
-      page-CONTENT-d3 .page-content__options .options__select {
+      page-content-d3 .page-content__options .options__select {
         font-weight: normal;
         display: inline-block; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container .select2-choice {
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice {
           height: 35px; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice > .select2-chosen {
           margin-top: 3px;
           font-size: 16px; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
+        page-content-d3 .page-content__options .options__select .select2-container .select2-choice .select2-arrow b {
           margin-top: 3px; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-search-choice-close {
           margin-top: -1px; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-field input {
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-field input {
           height: 32px; }
-        page-CONTENT-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-choice {
+        page-content-d3 .page-content__options .options__select .select2-container-multi .select2-choices .select2-search-choice {
           margin-top: 6px; }
-      page-CONTENT-d3 .page-content__options .options__event {
+      page-content-d3 .page-content__options .options__event {
         margin-right: 15px;
         min-width: 200px; }
-      page-CONTENT-d3 .page-content__options .options__segments {
+      page-content-d3 .page-content__options .options__segments {
         margin-right: 5px;
         min-width: 200px; }
-      page-CONTENT-d3 .page-content__options .options__campaign {
+      page-content-d3 .page-content__options .options__campaign {
         margin-right: 15px;
         min-width: 200px; }
-    page-CONTENT-d3 .page-content__list {
+    page-content-d3 .page-content__list {
       margin-top: 15px;
       overflow: hidden;
       height: auto; }
-    page-CONTENT-d3 .page-content__footer {
+    page-content-d3 .page-content__footer {
       border: 1px solid #e5e5e5;
       min-height: 0 !important; }
 
@@ -2143,7 +2148,7 @@ nav {
   min-width: 110px;
   padding: 1em 2em; }
 
-page-CONTENT-d3 .page-content__options {
+page-content-d3 .page-content__options {
   margin-top: 10px;
   float: left;
   width: 100%;
@@ -2152,30 +2157,30 @@ page-CONTENT-d3 .page-content__options {
   margin-bottom: 15px;
   border-radius: 4px 4px; }
 
-page-CONTENT-d3 .page-content__cards {
+page-content-d3 .page-content__cards {
   width: 100%;
   height: 220px;
   overflow-x: auto;
   margin-left: 15px;
   border: 1px solid #d9d9d9;
   overflow-y: hidden; }
-  page-CONTENT-d3 .page-content__cards .my-card__header {
+  page-content-d3 .page-content__cards .my-card__header {
     font-weight: bold; }
-  page-CONTENT-d3 .page-content__cards .my-card__body {
+  page-content-d3 .page-content__cards .my-card__body {
     font-weight: bold;
     font-size: 50px;
     color: #a6e4f9;
     margin-top: 15px; }
-    page-CONTENT-d3 .page-content__cards .my-card__body__back button {
+    page-content-d3 .page-content__cards .my-card__body__back button {
       margin-top: 0;
       position: relative;
       top: -50px;
       left: -210px; }
-  page-CONTENT-d3 .page-content__cards .my-card .front {
+  page-content-d3 .page-content__cards .my-card .front {
     top: -7px;
     height: 185px !important;
     width: 500px !important; }
-  page-CONTENT-d3 .page-content__cards .my-card .back {
+  page-content-d3 .page-content__cards .my-card .back {
     top: -7px;
     height: 185px !important;
     width: 500px !important; }

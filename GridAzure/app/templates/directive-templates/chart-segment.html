@@ -1,7 +1,7 @@
 ﻿<div class="chart-segment">
 	<div class="chart-segment__list">
 		<div class="chart-segment__list__header">
-			<span class="chart-segment__list__header__text">{{::panel.header.text | translate}}</span>
+			<span class="chart-segment__list__header__text">{{panel.header.text | translate}}</span>
 		</div>
 		<div class="chart-segment__list__body">
 			<div ng-repeat="user in selectedUsers" class="chart-segment__list__body__user" ng-class="{'even' : $even, 'odd': $odd}">

@@ -11,7 +11,7 @@
 	<!--The order of the <file> elements determines the order of the files in the bundle.-->
 	<files>
 		<file>/app/app.js</file>
-		<file>/app/constants/CONTENT-constants.js</file>
+		<file>/app/constants/content-constants.js</file>
 		<file>/app/constants/grid-constants.js</file>
 		<file>/app/directives/cards/cards-controller.js</file>
 		<file>/app/directives/cards/cards.js</file>
@@ -59,18 +59,18 @@
 		<file>/app/directives/number-format/number-format.js</file>
 		<file>/app/directives/on-finish-render/onFinishRender.js</file>
 		<file>/app/directives/overlay/overlay.js</file>
-		<file>/app/directives/page-CONTENT/page-CONTENT.js</file>
-		<file>/app/directives/page-CONTENT/CONTENT-options/CONTENT-options-controller.js</file>
-		<file>/app/directives/page-CONTENT/CONTENT-options/CONTENT-options.js</file>
-		<file>/app/directives/page-CONTENT/page-CONTENT-body/page-CONTENT-body.js</file>
-		<file>/app/directives/page-CONTENT/page-CONTENT-footer/page-CONTENT-footer.js</file>
-		<file>/app/directives/page-CONTENT/page-CONTENT-header/page-CONTENT-header.js</file>
-		<file>/app/directives/page-CONTENT-cards/page-CONTENT-cards.js</file>
-		<file>/app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards-controller.js</file>
-		<file>/app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards.js</file>
-		<file>/app/directives/page-CONTENT-d3/page-CONTENT-d3.js</file>
-		<file>/app/directives/page-CONTENT-d3/CONTENT-options-cards/CONTENT-options-d3-controller.js</file>
-		<file>/app/directives/page-CONTENT-d3/CONTENT-options-cards/CONTENT-options-d3.js</file>
+		<file>/app/directives/page-content/page-content.js</file>
+		<file>/app/directives/page-content/content-options/content-options-controller.js</file>
+		<file>/app/directives/page-content/content-options/content-options.js</file>
+		<file>/app/directives/page-content/page-content-body/page-content-body.js</file>
+		<file>/app/directives/page-content/page-content-footer/page-content-footer.js</file>
+		<file>/app/directives/page-content/page-content-header/page-content-header.js</file>
+		<file>/app/directives/page-content-cards/page-content-cards.js</file>
+		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js</file>
+		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards.js</file>
+		<file>/app/directives/page-content-d3/page-content-d3.js</file>
+		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js</file>
+		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3.js</file>
 		<file>/app/directives/resize-on/resize-on.js</file>
 		<file>/app/directives/search/search-controller.js</file>
 		<file>/app/directives/search/search.js</file>

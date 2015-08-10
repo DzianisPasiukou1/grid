@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('rowCheck', [function () {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			scope: {
 				value: '=rowCheck'
 			},

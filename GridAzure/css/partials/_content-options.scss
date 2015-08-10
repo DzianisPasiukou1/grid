@@ -72,6 +72,7 @@
 	&__more {
 		position: relative;
 		margin-right: 10px;
+		display: inline-block;
 	}
 
 	&__filter {
@@ -103,5 +104,9 @@
 		float: right;
 		position: relative;
 		text-transform: capitalize;
+	}
+
+	&__filt{
+		display: inline;
 	}
 }

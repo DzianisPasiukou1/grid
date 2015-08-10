@@ -12,7 +12,7 @@
 			scope.data = data;
 		});
 
-		element = $compile('<custom-ui-grid grid-data="data" CONTENT-options="contentOptions" grid-options="uiGridOptions"></custom-ui-grid>')(scope);
+		element = $compile('<custom-ui-grid grid-data="data" content-options="contentOptions" grid-options="uiGridOptions"></custom-ui-grid>')(scope);
 		scope.$digest();
 
 		elementScope = element.isolateScope();

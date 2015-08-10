@@ -23,7 +23,7 @@
 	}))
 
 	it('should render grid', function () {
-		var element = compile('<page-CONTENT-cards grid="grid" grid-data="data"></page-CONTENT-cards>')(scope);
+		var element = compile('<page-content-cards grid="grid" grid-data="data"></page-content-cards>')(scope);
 		scope.$digest();
 
 		expect(element.find('.ui-grid')).toBeDefined();

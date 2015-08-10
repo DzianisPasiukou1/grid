@@ -2,26 +2,26 @@
 	<div class="fade">
 	</div>
 	<div class="dialog">
-		<h1>History</h1>
-		<div class="message" ng-if="history.length == 0">History is empty.</div>
+		<h1>{{::'history' | translate}}</h1>
+		<div class="message" ng-if="history.length == 0">{{::'historyEmpty' | translate}}.</div>
 		<div class="history__content" ng-repeat="hist in history">
 			<div class="dialog__oldVal">
-				Old value: <div ng-repeat="(key, value) in hist.oldObj" class="dialog__entity">
-					<span class="dialog__key">{{key}}</span>:<span class="dialog__value">{{value}}</span>
+				{{::'oldValue' | translate}}: <div ng-repeat="(key, value) in hist.oldObj" class="dialog__entity">
+					<span class="dialog__key">{{key | translate}}</span>:<span class="dialog__value">{{value | translate}}</span>
 				</div>
 			</div>
 			<div class="dialog__newVal">
-				New value: <div ng-repeat="(key, value) in hist.newObj" class="dialog__entity">
-					<span class="dialog__key">{{key}}</span>:<span class="dialog__value">{{value}}</span>
+				{{::'newValue' | translate}}: <div ng-repeat="(key, value) in hist.newObj" class="dialog__entity">
+					<span class="dialog__key">{{key | translate}}</span>:<span class="dialog__value">{{value | translate}}</span>
 				</div>
 			</div>
 			<div class="dialog__dateChange">
-				Date change: <span>{{hist.dateChange | date}}</span>
+				{{::'dateChange' | translate}}: <span>{{hist.dateChange | date}}</span>
 			</div>
 			<hr />
 		</div>
 		<div class="dialog-btn">
-			<button class="close-btn" ng-click="close()">Close</button>
+			<button class="close-btn" ng-click="close()">{{::'close' | translate}}</button>
 		</div>
 	</div>
 </div>

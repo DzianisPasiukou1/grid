@@ -32,7 +32,7 @@
 			enableDebugging: true,
 			debugCard: {
 				//text: 'test',
-				//template: 'Hello world'
+				//template: 'app/templates/directive-templates/chart-segment.html'
 			}
 		}
 	}])

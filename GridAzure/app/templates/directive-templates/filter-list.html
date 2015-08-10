@@ -1,11 +1,11 @@
 ﻿<div class="filter-list">
 	<div class="filter-list__header">
-		Filter list
+		{{::'filterList' | translate}}
 	</div>
 	<div class="filter-list__options">
 		<div class="filter-list__options__value" ng-repeat="opt in filterOptions">
 			<div class="filter-list__options__value__header">
-				{{opt.label}}
+				{{opt.label | translate}}
 			</div>
 			<div class="filter-list__options__value__input">
 				<input type="text" ng-model="opt.filter" />
@@ -13,6 +13,6 @@
 		</div>
 	</div>
 	<div>
-		<button class="filter-list__button" ng-click="showRecords()">Show records</button>
+		<button class="filter-list__button" ng-click="showRecords()">{{::'showRecords' | translate}}</button>
 	</div>
 </div>

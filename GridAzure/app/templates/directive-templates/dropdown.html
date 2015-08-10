@@ -1,10 +1,10 @@
 ﻿<div class="my-dropdown" any-other-click="isShow=false">
 	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
-		<span class="my-dropdown__text">{{options.label}}{{options.selected.label}}</span>
+		<span class="my-dropdown__text">{{options.label | translate}}{{options.selected.label | translate}}</span>
 		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}"></span>
 	</button>
 	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
-		<span class="my-dropdown__text">{{options.label}}</span>
+		<span class="my-dropdown__text">{{options.label | translate}}</span>
 		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}"></span>
 	</button>
 
@@ -13,14 +13,14 @@
 			<div ng-if="options.isCheckbox">
 				<div class="my-dropdown__list__check">
 					<label class="my-dropdown__list__input-control">
-						<input type="checkbox" ng-model="action.isVisible" ng-change="options.onCheck(action, $index)" id="{{action.label}}">
+						<input type="checkbox" ng-model="action.isVisible" ng-change="options.onCheck(action, $index)" id="{{action.label | translate}}">
 						<span class="my-dropdown__list__input-control__span"></span>
 					</label>
 				</div>
-				<label class="my-dropdown__list__label" for="{{action.label}}">{{action.label}}</label>
+				<label class="my-dropdown__list__label" for="{{action.label | translate}}">{{action.label | translate}}</label>
 			</div>
-			<a ng-click="select(action)" ng-if="!options.isCheckbox">{{action.label}}</a>
+			<a ng-click="select(action)" ng-if="!options.isCheckbox">{{action.label | translate}}</a>
 		</li>
-		<button ng-if="options.withSave" ng-click="options.onSave()" class="my-dropdown__save">Save</button>
+		<button ng-if="options.withSave" ng-click="options.onSave()" class="my-dropdown__save">{{::'save' | translate}}</button>
 	</ul>
 </div>

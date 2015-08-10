@@ -1,26 +1,26 @@
-﻿<div class="page-CONTENT">
+﻿<div class="page-content">
 	<div class="page-content__header">
 		<div class="page-content__icon">
 			<span class="page-content__icon__text icon-text2"></span>
 		</div>
 		<div class="page-content__name">
-			{{grid.name}}
+			{{grid.name | translate}}
 		</div>
 		<div class="page-content__count">
-			{{grid.count}} records
+			{{grid.count}} {{::'records' | translate}}
 		</div>
 		<div class="page-content__actions">
-			<dropdown class="page-content__actions__export" dropdown-options="exports.options"></dropdown>
-			<dropdown class="page-content__actions__view" dropdown-options="views.options"></dropdown>
+			<div class="page-content__actions__export" dropdown="exports.options"></div>
+			<div class="page-content__actions__view" dropdown="views.options"></div>
 		</div>
 	</div>
 	<div class="page-content__body">
 		<div class="page-content__options">
-			<CONTENT-options options="contentOptions"></CONTENT-options>
+			<content-options options="contentOptions"></content-options>
 		</div>
 		<div class="page-content__list">
-			<custom-grid grid-data="data" export-to="exports.options.selected" ng-show="views.options.selected.isGrid" grid-options="gridOptions"></custom-grid>
-			<custom-ui-grid grid-data="data" ng-if="views.options.selected.isUiGrid" grid-options="uiGridOptions" CONTENT-options="contentOptions"></custom-ui-grid>
+			<div custom-grid grid-data="data" export-to="exports.options.selected" ng-show="views.options.selected.isGrid" grid-options="gridOptions"></div>
+			<div custom-ui-grid grid-data="data" ng-if="views.options.selected.isUiGrid" grid-options="uiGridOptions" content-options="contentOptions"></div>
 		</div>
 	</div>
 	<div class="page-content__footer">

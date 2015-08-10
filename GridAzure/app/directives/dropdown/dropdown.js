@@ -1,9 +1,9 @@
 ﻿angular.module('gridTaskApp')
 	.directive('dropdown', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
-				options: '=dropdownOptions'
+				options: '=dropdown'
 			},
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'directive-templates/dropdown.html',
