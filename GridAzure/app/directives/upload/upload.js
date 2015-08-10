@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('upload', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/upload.html',
 			scope: {
 				upload: '=uploadCallback',

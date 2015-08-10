@@ -9,14 +9,6 @@
 			controller: 'searchCtrl',
 			templateUrl: templatesPath + 'directive-templates/search.html',
 			link: function (scope, element, attrs) {
-				scope.$watch('searchValue', function (value) {
-					if (value.length > 0) {
-						scope.edited = false;
-					}
-					else {
-						scope.edited = true;
-					}
-				})
 			}
 		}
 	}]);

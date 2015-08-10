@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$interval', function ($scope, templatesPath, $compile, $interval) {
+	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', function ($scope, templatesPath, $compile) {
 
 		$scope.options.onRegisterApi = function (gridApi) {
 			$scope.gridApi = gridApi;

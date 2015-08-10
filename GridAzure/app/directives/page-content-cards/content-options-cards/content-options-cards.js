@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('contentOptionsCards', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			controller: 'contentOptionsCardsCtrl',
 			scope: {
 				options: '=',

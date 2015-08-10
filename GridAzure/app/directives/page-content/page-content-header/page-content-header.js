@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('pageContentHeader', [function () {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			link: function (scope, element, attrs) {
 				element.append(scope.contentOptions.contentHeaderTempalte);
 

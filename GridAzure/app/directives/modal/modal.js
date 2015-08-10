@@ -15,16 +15,17 @@
 					$timeout(function () {
 						if (!value) {
 							angular.element(element).remove();
+							$('body').css('overflow', 'inherit');
 						}
 						else {
-							element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-							element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
+							scope.resize();
+							$('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
 				$(window).resize(function () {
-					scope.reize();
+					scope.resize();
 				});
 			}
 		}

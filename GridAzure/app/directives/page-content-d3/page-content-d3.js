@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('pageContentD3', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
 				contentOptions: '=',
 				cardsOptions: '=',

@@ -7,11 +7,7 @@
 			},
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					element.multiselect({
-						inheritClass: true,
-						includeSelectAllOption: true
-						//enableFiltering: true
-					});
+					element.multiselect(scope.options);
 				})
 			}
 		}

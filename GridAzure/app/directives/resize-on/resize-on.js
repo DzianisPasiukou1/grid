@@ -1,7 +1,7 @@
 ﻿angular.module('gridTaskApp')
 	.directive('resizeOn', [function () {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			link: function (scope, element, attrs) {
 				element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
 

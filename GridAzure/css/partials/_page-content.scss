@@ -2,6 +2,7 @@
 	@extend .my-panel;
 	min-width: 500px;
 	margin-top: 20px;
+	overflow-x: hidden;
 
 	&.disabled {
 		background-color: $black;

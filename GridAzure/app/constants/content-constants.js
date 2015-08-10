@@ -227,13 +227,19 @@
 			options: {
 				actions: [{ label: 'People' }, { label: 'Trees' }, { label: 'Nodes' }, { label: 'Graphs' }, { label: 'Credentials' }],
 			},
-			selectOpt: {}
+			selectOpt: {
+				inheritClass: true,
+				includeSelectAllOption: true
+			}
 		},
 		campaign: {
 			options: {
 				actions: [{ label: 'AIX' }, { label: 'UI Campaign' }, { label: 'Design' }, { label: 'Modes' }, { label: 'KJ Entertainment' }],
 			},
-			selectOpt: {}
+			selectOpt: {
+				inheritClass: true,
+				includeSelectAllOption: true
+			}
 		},
 		sankeyFilters: {
 			dateRange: {

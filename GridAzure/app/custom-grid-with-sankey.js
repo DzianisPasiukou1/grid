@@ -232,13 +232,19 @@ angular.module('gridTaskApp')
 			options: {
 				actions: [{ label: 'People' }, { label: 'Trees' }, { label: 'Nodes' }, { label: 'Graphs' }, { label: 'Credentials' }],
 			},
-			selectOpt: {}
+			selectOpt: {
+				inheritClass: true,
+				includeSelectAllOption: true
+			}
 		},
 		campaign: {
 			options: {
 				actions: [{ label: 'AIX' }, { label: 'UI Campaign' }, { label: 'Design' }, { label: 'Modes' }, { label: 'KJ Entertainment' }],
 			},
-			selectOpt: {}
+			selectOpt: {
+				inheritClass: true,
+				includeSelectAllOption: true
+			}
 		},
 		sankeyFilters: {
 			dateRange: {
@@ -889,7 +895,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/custom-ui-grid/custom-ui-grid-controller.js
 angular.module('gridTaskApp')
-	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$interval', function ($scope, templatesPath, $compile, $interval) {
+	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', function ($scope, templatesPath, $compile) {
 
 		$scope.options.onRegisterApi = function (gridApi) {
 			$scope.gridApi = gridApi;
@@ -1200,9 +1206,15 @@ angular.module('gridTaskApp')
 
 					var totalWidth = scope.getTotalWidth();
 
+					scope.resize(totalWidth);
+
 					var isAllVisible = true;
 
-					scope.resize(totalWidth);
+					for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
+						if (!this.scope.gridApi.grid.columns[i].visible) {
+							isAllVisible = false;
+						}
+					}
 
 					if (!isAllVisible && !self.scope.options.enableGridMenu) {
 						self.scope.options.enableGridMenu = true;
@@ -1933,17 +1945,11 @@ angular.module('gridTaskApp')
 			},
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					element.multiselect({
-						inheritClass: true,
-						includeSelectAllOption: true
-						//enableFiltering: true
-					});
+					element.multiselect(scope.options);
 				})
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/kx-nav-bar/file1.js
-
 ///#source 1 1 /app/directives/kx-nav-bar/kx-menu.js
 (function () {
 	angular.module('gridTaskApp').directive('kxMenu', [function () {
@@ -2064,27 +2070,20 @@ angular.module('gridTaskApp').directive('kxStealthInput', function () {
 });
 ///#source 1 1 /app/directives/loading/loading.js
 angular.module('gridTaskApp')
-	.directive('loading', ['templatesPath', function (templatesPath) {
+	.directive('loading', ['templatesPath', 'LOADING', function (templatesPath, LOADING) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
+			scope: {
+				parent: '='
+			},
 			templateUrl: templatesPath + 'directive-templates/loading.html',
-			link: function (scope, element, attrs) {
-				element.css('height', element.parent().parent().height() + 'px');
-				element.css('width', element.parent().parent().width() + 'px');
-
-				element.find('.loading-disabled').css('top', 0);
-
-				element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
-				element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
+			controller: 'loadingCtrl',
+			controllerAs: 'ctrl',
+			link: function (scope, element, attrs, ctrl) {
+				ctrl.resize();
 
 				$(window).resize(function () {
-					element.css('height', element.parent().parent().height() + 'px');
-					element.css('width', element.parent().parent().width() + 'px');
-
-					element.find('.loading-disabled').css('top', 0);
-
-					element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
-					element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
+					ctrl.resize();
 				});
 			}
 		}
@@ -2093,34 +2092,16 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('maxHeighter', ['$timeout', function ($timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			scope: {},
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					resize(10, 300);
+					element.css('max-height', $(window).height() - element.offset().top - 10 + 'px');
 
 					$(window).resize(function () {
-						resize(10, 300);
+						element.css('max-height', $(window).height() - element.offset().top - 10 + 'px');
 					});
 				});
-
-				function resize(size, min) {
-					element.css('max-height', $(window).height() - element.offset().top - size + 'px');
-
-					if ($(window).height() - element.offset().top - size > min) {
-						$timeout(function () {
-							$('.custom-overlay').css('min-height', ($(window).height() - element.offset().top - size) + 'px')
-							$('.custom-overlay').css('top', element.offset().top + 'px')
-						});
-					}
-					else {
-						$timeout(function () {
-							$('.custom-overlay').css('min-height', $(window).height() - $('.page-content__cards').offset().top - 8 + 'px')
-							$('.custom-overlay').css('top', $('.page-content__cards').offset().top + 'px')
-						});
-					}
-
-				}
 			}
 		}
 	}]);
@@ -2132,6 +2113,8 @@ angular.module('gridTaskApp')
 		$scope.fields = [];
 
 		$scope.myEntity = angular.copy($scope.value.entity);
+
+		$scope.modal = 'modal-ctrl';
 
 		$scope.save = function () {
 			if (!Array.isArray($scope.value.actions.history)) {
@@ -2157,14 +2140,16 @@ angular.module('gridTaskApp')
 		};
 
 		$scope.resize = function () {
-			$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
-			$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+			$scope.fade = {
+				height: $element.find('.' + $scope.modal).prop('scrollHeight') + 'px'
+			}
 		};
 
 		$scope.onInclude = function () {
 			$timeout(function () {
-				$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
-				$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+				$scope.fade = {
+					height: $element.find('.' + $scope.modal).prop('scrollHeight') + 'px'
+				}
 			});
 		}
 	}]);
@@ -2186,16 +2171,17 @@ angular.module('gridTaskApp')
 					$timeout(function () {
 						if (!value) {
 							angular.element(element).remove();
+							$('body').css('overflow', 'inherit');
 						}
 						else {
-							element.find('.fade').css('height', element.find('.modal').prop('scrollHeight') + 'px');
-							element.find('.fade').css('width', element.find('.modal').prop('scrollWidth') + 'px');
+							scope.resize();
+							$('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
 				$(window).resize(function () {
-					scope.reize();
+					scope.resize();
 				});
 			}
 		}
@@ -2291,16 +2277,16 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('overlay', ['$timeout', function ($timeout) {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			scope: {
 				state: '=overlayState',
-				style: '=overlayStyle'
+				style: '=overlayStyle',
+				selectors: '=',
+				toggleMinWidth: '='
 			},
+			controller: 'overlayCtrl',
 			link: function (scope, element, attrs) {
-
 				$timeout(function () {
-					scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
-
 					scope.$watch('state', function (state) {
 						if (state) {
 							if (getWindowWidth() + 650 > 1750) {
@@ -2311,28 +2297,41 @@ angular.module('gridTaskApp')
 							}
 						}
 						else {
-							if (scope.style.left != getWindowWidth() - 30 + 'px') {
-								scope.style = { 'left': getWindowWidth() - 30 + 'px', 'overflow': 'hidden' }
+							if (scope.style.left != getWindowWidth() - scope.toggleMinWidth + 'px') {
+								scope.style = { 'left': getWindowWidth() - scope.toggleMinWidth + 'px', 'overflow': 'hidden' }
 							}
 
 							element.scrollTop(0);
 						}
 					});
+
+					scope.setToggle();
 				});
 
 				$(window).resize(function () {
 					if (scope.state) {
 						if (getWindowWidth() + 650 > 1750) {
-							scope.style = { 'left': '650px', 'transition': 'none' }
+							scope.style = {
+								'left': '650px',
+								'transition': 'none'
+							}
 						}
 						else {
-							scope.style = { 'left': '0', 'transition': 'none' }
+							scope.style = {
+								'left': '0',
+								'transition': 'none'
+							}
 						}
 					}
 					else {
-						scope.style = { 'left': getWindowWidth() - 30 + 'px', 'transition': 'none', 'overflow': 'hidden' }
+						scope.style = {
+							'left': getWindowWidth() - scope.toggleMinWidth + 'px',
+							'transition': 'none',
+							'overflow': 'hidden'
+						}
 					}
 
+					scope.setToggle();
 					scope.$apply();
 				});
 			}
@@ -2342,7 +2341,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContent', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
 				data: '=gridData',
 				contentOptions: '=',
@@ -2415,7 +2414,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContentBody', [function () {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			link: function (scope, element, attrs) {
 				element.append(scope.contentOptions.contentBodyTemplate);
 
@@ -2430,7 +2429,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContentFooter', [function () {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			link: function (scope, element, attrs) {
 				element.append(scope.contentOptions.contentFooterTempalte);
 
@@ -2445,7 +2444,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContentHeader', [function () {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			link: function (scope, element, attrs) {
 				element.append(scope.contentOptions.contentHeaderTempalte);
 
@@ -2460,7 +2459,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContentCards', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
 				data: '=gridData',
 				contentOptions: '=',
@@ -2504,7 +2503,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('contentOptionsCards', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			controller: 'contentOptionsCardsCtrl',
 			scope: {
 				options: '=',
@@ -2516,7 +2515,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('pageContentD3', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			scope: {
 				contentOptions: '=',
 				cardsOptions: '=',
@@ -2543,7 +2542,23 @@ angular.module('gridTaskApp')
 			}
 		};
 	}])
-///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js
+///#source 1 1 /app/directives/page-content-d3/content-options-d3/content-options-d3.js
+angular.module('gridTaskApp')
+	.directive('contentOptionsD3', ['templatesPath', function (templatesPath) {
+		return {
+			restrict: 'EA',
+			controller: 'contentOptionsD3Ctrl',
+			scope: {
+				options: '=',
+				filters: '=',
+				loading: '=',
+				onDataRangeChanged: '=',
+				past: '='
+			},
+			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
+		}
+	}]);
+///#source 1 1 /app/directives/page-content-d3/content-options-d3/content-options-d3-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsD3Ctrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2559,27 +2574,11 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-content-d3/content-options-cards/content-options-d3.js
-angular.module('gridTaskApp')
-	.directive('contentOptionsD3', ['templatesPath', function (templatesPath) {
-		return {
-			restrict: 'E',
-			controller: 'contentOptionsD3Ctrl',
-			scope: {
-				options: '=',
-				filters: '=',
-				loading: '=',
-				onDataRangeChanged: '=',
-				past: '='
-			},
-			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
-		}
-	}]);
 ///#source 1 1 /app/directives/resize-on/resize-on.js
 angular.module('gridTaskApp')
 	.directive('resizeOn', [function () {
 		return {
-			restrict: 'A',
+			restrict: 'EAC',
 			link: function (scope, element, attrs) {
 				element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
 
@@ -2615,15 +2614,18 @@ angular.module('gridTaskApp')
 	.controller('searchCtrl', ['$scope', function ($scope) {
 		$scope.edited = false;
 
-		$scope.focus = function () {
-		};
-
-		$scope.blur = function () {
-		}
-
 		$scope.clear = function () {
 			$scope.searchValue = '';
 		};
+
+		$scope.$watch('searchValue', function (value) {
+			if (value.length > 0) {
+				$scope.edited = false;
+			}
+			else {
+				$scope.edited = true;
+			}
+		})
 	}]);
 ///#source 1 1 /app/directives/search/search.js
 angular.module('gridTaskApp')
@@ -2637,14 +2639,6 @@ angular.module('gridTaskApp')
 			controller: 'searchCtrl',
 			templateUrl: templatesPath + 'directive-templates/search.html',
 			link: function (scope, element, attrs) {
-				scope.$watch('searchValue', function (value) {
-					if (value.length > 0) {
-						scope.edited = false;
-					}
-					else {
-						scope.edited = true;
-					}
-				})
 			}
 		}
 	}]);
@@ -2696,7 +2690,7 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.directive('upload', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/upload.html',
 			scope: {
 				upload: '=uploadCallback',

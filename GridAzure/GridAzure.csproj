@@ -172,7 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\constants\loading-constant.js" />
     <Content Include="app\constants\menu-constants.js" />
+    <Content Include="app\constants\overlay-constant.js" />
     <Content Include="app\custom-grid-with-sankey.js">
       <DependentUpon>custom-grid-with-sankey.js.bundle</DependentUpon>
     </Content>
@@ -203,11 +205,13 @@
     <Content Include="app\directives\kx-nav-bar\kx-nav-bar.js" />
     <Content Include="app\directives\kx-nav-bar\navigation-controller.js" />
     <Content Include="app\directives\kx-stealth-input\kx-stealth-input.js" />
+    <Content Include="app\directives\loading\loading-controller.js" />
     <Content Include="app\directives\max-heighter\max-heighter.js" />
     <Content Include="app\directives\mouse-over\mouse-over.js" />
+    <Content Include="app\directives\overlay\overlay-controller.js" />
     <Content Include="app\directives\overlay\overlay.js" />
-    <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3-controller.js" />
-    <Content Include="app\directives\page-content-d3\content-options-cards\content-options-d3.js" />
+    <Content Include="app\directives\page-content-d3\content-options-d3\content-options-d3-controller.js" />
+    <Content Include="app\directives\page-content-d3\content-options-d3\content-options-d3.js" />
     <Content Include="app\directives\page-content-d3\page-content-d3.js" />
     <Content Include="app\extensions\sankey.js" />
     <Content Include="app\extensions\window-width.js" />

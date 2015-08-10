@@ -43,7 +43,6 @@
 		<file>/app/directives/histogram/histogram.js</file>
 		<file>/app/directives/kx-date-range/kx-date-range.js</file>
 		<file>/app/directives/kx-multiselect/kx-multiselect.js</file>
-		<file>/app/directives/kx-nav-bar/file1.js</file>
 		<file>/app/directives/kx-nav-bar/kx-menu.js</file>
 		<file>/app/directives/kx-nav-bar/kx-nav-bar-controller.js</file>
 		<file>/app/directives/kx-nav-bar/kx-nav-bar.js</file>
@@ -67,8 +66,8 @@
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js</file>
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards.js</file>
 		<file>/app/directives/page-content-d3/page-content-d3.js</file>
-		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3-controller.js</file>
-		<file>/app/directives/page-content-d3/content-options-cards/content-options-d3.js</file>
+	<file>/app/directives/page-content-d3/content-options-d3/content-options-d3.js</file>
+	<file>/app/directives/page-content-d3/content-options-d3/content-options-d3-controller.js</file>
 		<file>/app/directives/resize-on/resize-on.js</file>
 		<file>/app/directives/search/search-controller.js</file>
 		<file>/app/directives/search/search.js</file>

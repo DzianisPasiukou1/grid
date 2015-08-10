@@ -16,9 +16,15 @@
 
 					var totalWidth = scope.getTotalWidth();
 
+					scope.resize(totalWidth);
+
 					var isAllVisible = true;
 
-					scope.resize(totalWidth);
+					for (var i = 0; i < this.scope.gridApi.grid.columns.length; i++) {
+						if (!this.scope.gridApi.grid.columns[i].visible) {
+							isAllVisible = false;
+						}
+					}
 
 					if (!isAllVisible && !self.scope.options.enableGridMenu) {
 						self.scope.options.enableGridMenu = true;

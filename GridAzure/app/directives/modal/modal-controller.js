@@ -6,6 +6,8 @@
 
 		$scope.myEntity = angular.copy($scope.value.entity);
 
+		$scope.modal = 'modal-ctrl';
+
 		$scope.save = function () {
 			if (!Array.isArray($scope.value.actions.history)) {
 				$scope.value.actions.history = [];
@@ -30,14 +32,16 @@
 		};
 
 		$scope.resize = function () {
-			$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
-			$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+			$scope.fade = {
+				height: $element.find('.' + $scope.modal).prop('scrollHeight') + 'px'
+			}
 		};
 
 		$scope.onInclude = function () {
 			$timeout(function () {
-				$element.find('.fade').css('height', $element.find('.modal').prop('scrollHeight') + 'px');
-				$element.find('.fade').css('width', $element.find('.modal').prop('scrollWidth') + 'px');
+				$scope.fade = {
+					height: $element.find('.' + $scope.modal).prop('scrollHeight') + 'px'
+				}
 			});
 		}
 	}]);

@@ -1351,7 +1351,8 @@ button::-moz-focus-inner {
 
 .page-content {
   min-width: 500px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  overflow-x: hidden; }
   .page-content.disabled {
     background-color: #333; }
   .page-content__header {

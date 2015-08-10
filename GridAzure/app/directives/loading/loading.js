@@ -1,25 +1,18 @@
 ﻿angular.module('gridTaskApp')
-	.directive('loading', ['templatesPath', function (templatesPath) {
+	.directive('loading', ['templatesPath', 'LOADING', function (templatesPath, LOADING) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
+			scope: {
+				parent: '='
+			},
 			templateUrl: templatesPath + 'directive-templates/loading.html',
-			link: function (scope, element, attrs) {
-				element.css('height', element.parent().parent().height() + 'px');
-				element.css('width', element.parent().parent().width() + 'px');
-
-				element.find('.loading-disabled').css('top', 0);
-
-				element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
-				element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
+			controller: 'loadingCtrl',
+			controllerAs: 'ctrl',
+			link: function (scope, element, attrs, ctrl) {
+				ctrl.resize();
 
 				$(window).resize(function () {
-					element.css('height', element.parent().parent().height() + 'px');
-					element.css('width', element.parent().parent().width() + 'px');
-
-					element.find('.loading-disabled').css('top', 0);
-
-					element.find('.loading-disabled').css('height', element.parent().parent().height() + 'px');
-					element.find('.loading-disabled').css('width', element.parent().parent().width() + 'px');
+					ctrl.resize();
 				});
 			}
 		}
