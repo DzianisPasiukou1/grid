@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.constant('content', {
+	.constant('CONTENT', {
 		checks: {
 			options: {
 				actions: {
@@ -246,5 +246,12 @@
 			id: 'debug',
 			text: 'Debug',
 			templateUrl: 'app/templates/directive-templates/debug.html'
+		},
+		datepickerOptions: {
+			config: {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
 		}
 	});

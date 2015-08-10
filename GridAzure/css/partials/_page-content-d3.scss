@@ -1,8 +1,8 @@
-﻿page-content-d3 {
+﻿page-CONTENT-d3 {
 	min-width: 0 !important;
 
 	@media only screen and (max-width: 912px) {
-		.page-content {
+		.page-CONTENT {
 			&__header {
 				height: 360px !important;
 			}
@@ -10,14 +10,14 @@
 	}
 
 	@media only screen and (max-width: 680px) {
-		.page-content {
+		.page-CONTENT {
 			&__header {
 				height: 400px !important;
 			}
 		}
 	}
 
-	.page-content {
+	.page-CONTENT {
 		overflow: hidden;
 		border: 0;
 		font-size: $font-size;

@@ -1,6 +1,6 @@
-﻿page-content-cards {
+﻿page-CONTENT-cards {
 	@media only screen and (max-width: 910px) {
-		.page-content {
+		.page-CONTENT {
 			&__header {
 				height: 100px !important;
 			}
@@ -13,7 +13,7 @@
 		}
 	}
 
-	.page-content {
+	.page-CONTENT {
 		font-size: $font-size;
 		font-family: $helvetica-family;
 

@@ -1,10 +1,11 @@
 ﻿angular.module('gridTaskApp')
 	.directive('coreDiagram', ['templatesPath', '$compile', function (templatesPath, $compile) {
 		return {
-			restrict: 'EAC',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/core-diagram.html',
 			controller: 'coreDiagramCtrl',
 			scope: {
+				opt: '=coreDiagram',
 				data: '=sankeyData'
 			},
 			link: function (scope, element, attrs) {
@@ -174,7 +175,6 @@
 						init(graph);
 					}
 				});
-
 			}
 		}
 	}]);

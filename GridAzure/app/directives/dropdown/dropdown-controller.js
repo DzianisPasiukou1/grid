@@ -17,5 +17,7 @@
 			if ($scope.options.callback) {
 				$scope.options.callback(action);
 			}
+
+			$scope.isShow = false;
 		}
 	}]);

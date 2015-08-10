@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('pageContentCards', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+	.directive('pageContentCards', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -8,16 +8,16 @@
 				uiGridOptions: '=',
 				cardsOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
+			templateUrl: templatesPath + 'directive-templates/page-CONTENT-cards.html',
 			link: function (scope, element) {
-				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initCards();
 
-				scope.$watch('cardsOptions.dateRange', function (date) {
+				scope.$watch('contentOptions.datepickerOptions.dateRange', function (date) {
 					if (date) {
 						for (var card in scope.cardsOptions.cards) {
 							if (scope.cardsOptions.cards[card].counter) {
-								scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(scope.cardsOptions.startDate, scope.cardsOptions.endDate);
+								scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(scope.contentOptions.datepickerOptions.startDate, scope.contentOptions.datepickerOptions.endDate);
 							}
 						}
 					}

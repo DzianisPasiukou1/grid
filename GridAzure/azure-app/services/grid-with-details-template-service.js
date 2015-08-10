@@ -6,12 +6,12 @@
 			callback(data);
 		}
 	}])
-	.factory('DetailsTemplateData', ['constantOfData', function (constantOfData) {
+	.factory('DetailsTemplateData', ['DATA', function (DATA) {
 
 		var data = function () {
 			var array = [];
 
-			for (var i = 0; i < constantOfData.count; i++) {
+			for (var i = 0; i < DATA.count; i++) {
 
 				var obj = {
 					priority: 'None',

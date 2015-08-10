@@ -11,11 +11,11 @@
 	<div ng-if="!actions.selected" style="opacity: 0.5">
 		{{typehead}}
 	</div>
-	<button class="split-btn__toggle" ng-click="toggle()">
-		<span class="expand">
+	<button class="split-btn__toggle" ng-click="toggle()" ng-class="{'opened' : isShow}" any-other-click="isShow=false">
+		<span class="expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}">
 		</span>
 	</button>
-	<ul class="split-btn__list">
+	<ul class="split-btn__list" ng-show="isShow">
 		<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
 	</ul>
 </button>

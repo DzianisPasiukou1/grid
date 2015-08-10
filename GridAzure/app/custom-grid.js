@@ -2,9 +2,9 @@
 angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
 	.value('templatesPath', 'app/templates/');
 
-///#source 1 1 /app/constants/content-constants.js
+///#source 1 1 /app/constants/CONTENT-constants.js
 angular.module('gridTaskApp')
-	.constant('content', {
+	.constant('CONTENT', {
 		checks: {
 			options: {
 				actions: {
@@ -251,11 +251,18 @@ angular.module('gridTaskApp')
 			id: 'debug',
 			text: 'Debug',
 			templateUrl: 'app/templates/directive-templates/debug.html'
+		},
+		datepickerOptions: {
+			config: {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
 		}
 	});
 ///#source 1 1 /app/constants/grid-constants.js
 angular.module('gridTaskApp')
-	 .constant("constantOfData", {
+	 .constant("DATA", {
 	 	count: 100,
 	 	startDate: new Date(2000, 1, 1)
 	 });
@@ -263,8 +270,8 @@ angular.module('gridTaskApp')
 angular.module('gridTaskApp')
 	.controller('cardsCtrl', ['$scope', function ($scope) {
 		$scope.cards = $scope.cardsOptions.cards;
-		$scope.startDate = $scope.cardsOptions.startDate;
-		$scope.endDate = $scope.cardsOptions.endDate;
+		$scope.startDate = $scope.contentOptions.datepickerOptions.startDate;
+		$scope.endDate = $scope.contentOptions.datepickerOptions.endDate;
 		$scope.margin = $scope.cardsOptions.margin;
 	}]);
 ///#source 1 1 /app/directives/cards/cards.js
@@ -414,57 +421,24 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/custom-datepicker/custom-datepicker.js
 angular.module('gridTaskApp')
-	.directive('customDatepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('customDatepicker', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/custom-datepicker.html',
+			scope: {
+				opt: '=customDatepicker'
+			},
+			controller: 'customDatepickerCtrl',
 			link: function (scope, element, attrs) {
-				element.find('.expand').addClass(classes.menuDown);
-
-				scope.config = {
-					singleMonth: true,
-					showShortcuts: false,
-					showTopbar: false
-				};
-
-				$(element.find('.date-btn__toggle')).dateRangePicker(scope.config).bind('datepicker-change', function (event, obj) {
-					scope.startDate = obj.date1;
-					scope.endDate = obj.date2;
-					scope.dateRange = Math.abs(scope.endDate.getTime() - scope.startDate.getTime());
+				element.find('.date-btn__toggle').dateRangePicker(scope.opt.config).bind('datepicker-change', function (event, obj) {
+					scope.opt.startDate = obj.date1;
+					scope.opt.endDate = obj.date2;
+					scope.opt.dateRange = Math.abs(scope.opt.endDate.getTime() - scope.opt.startDate.getTime());
 					scope.$apply();
 				}).bind('datepicker-close', function () {
 					scope.isShow = false;
-
-					element.find('.expand').addClass(classes.menuDown);
-					element.find('.expand').removeClass(classes.menuUp);
-					element.find('.date-btn__toggle').removeClass('opened');
+					scope.$apply();
 				});
-
-				scope.toggle = function () {
-					scope.isShow = !scope.isShow;
-
-					if (scope.isShow) {
-						element.find('.expand').removeClass(classes.menuDown);
-						element.find('.expand').addClass(classes.menuUp);
-						element.find('.date-btn__toggle').addClass('opened');
-						$(element.find('.date-btn__toggle')).data('dateRangePicker').open();
-					}
-					else {
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
-						element.find('.date-btn__toggle').removeClass('opened');
-						$(element.find('.date-btn__toggle')).data('dateRangePicker').close();
-					}
-				}
-
-				scope.close = function () {
-					scope.isShow = false;
-					$(element.find('.date-btn__toggle')).data('dateRangePicker').close();
-
-					element.find('.expand').addClass(classes.menuDown);
-					element.find('.expand').removeClass(classes.menuUp);
-					element.find('.date-btn__toggle').removeClass('opened');
-				}
 			}
 		}
 	}])
@@ -642,10 +616,10 @@ angular.module('gridTaskApp')
 					}
 
 					if ($(window).width() < totalWidth) {
-						$('.page-content').css('minWidth', totalWidth + 'px');
+						$('.page-CONTENT').css('minWidth', totalWidth + 'px');
 					}
 					else {
-						$('.page-content').css('minWidth', '500px');
+						$('.page-CONTENT').css('minWidth', '500px');
 					}
 				}
 			}
@@ -988,10 +962,10 @@ angular.module('gridTaskApp')
 						}, 0);
 
 						if ($(window).width() < totalWidth) {
-							$('.page-content').css('minWidth', totalWidth + 'px');
+							$('.page-CONTENT').css('minWidth', totalWidth + 'px');
 						}
 						else {
-							$('.page-content').css('minWidth', '500px');
+							$('.page-CONTENT').css('minWidth', '500px');
 						}
 
 						console.log('resize');
@@ -1117,6 +1091,8 @@ angular.module('gridTaskApp')
 			if ($scope.options.callback) {
 				$scope.options.callback(action);
 			}
+
+			$scope.isShow = false;
 		}
 	}]);
 ///#source 1 1 /app/directives/dropdown/dropdown.js
@@ -1130,27 +1106,6 @@ angular.module('gridTaskApp')
 			controller: 'dropdownCtrl',
 			templateUrl: templatesPath + 'directive-templates/dropdown.html',
 			link: function (scope, element, attrs) {
-				element.find('ul').hide();
-
-				element.click(function () {
-					if (element.find('ul').is(':visible')) {
-						element.find('ul').hide();
-						element.find('.my-dropdown__btn').removeClass('opened');
-					}
-					else {
-						element.find('ul').show();
-						element.find('.my-dropdown__btn').addClass('opened');
-					}
-				});
-
-				$(document).click(function (event) {
-					if (element.find('ul').is(':visible')) {
-						if (!$(event.target).closest(element).length) {
-							element.find('ul').hide();
-							element.find('.my-dropdown__btn').removeClass('opened');
-						}
-					}
-				})
 			}
 		}
 	}]);
@@ -2151,9 +2106,9 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-content/page-content.js
+///#source 1 1 /app/directives/page-CONTENT/page-CONTENT.js
 angular.module('gridTaskApp')
-	.directive('pageContent', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+	.directive('pageContent', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -2163,9 +2118,9 @@ angular.module('gridTaskApp')
 				gridOptions: '=',
 				uiGridOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-content.html',
+			templateUrl: templatesPath + 'directive-templates/page-CONTENT.html',
 			link: function (scope, element) {
-				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 
 				scope.$watch('contentOptions', function (opt) {
 					initializer.init();
@@ -2196,7 +2151,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-content/content-options/content-options-controller.js
+///#source 1 1 /app/directives/page-CONTENT/CONTENT-options/CONTENT-options-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsCtrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2212,7 +2167,7 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-content/content-options/content-options.js
+///#source 1 1 /app/directives/page-CONTENT/CONTENT-options/CONTENT-options.js
 angular.module('gridTaskApp')
 	.directive('contentOptions', ['templatesPath', function (templatesPath) {
 		return {
@@ -2221,10 +2176,10 @@ angular.module('gridTaskApp')
 			scope: {
 				options: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/content-options.html'
+			templateUrl: templatesPath + 'directive-templates/CONTENT-options.html'
 		}
 	}]);
-///#source 1 1 /app/directives/page-content/page-content-body/page-content-body.js
+///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-body/page-CONTENT-body.js
 angular.module('gridTaskApp')
 	.directive('pageContentBody', [function () {
 		return {
@@ -2239,7 +2194,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-content/page-content-footer/page-content-footer.js
+///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-footer/page-CONTENT-footer.js
 angular.module('gridTaskApp')
 	.directive('pageContentFooter', [function () {
 		return {
@@ -2254,7 +2209,7 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-content/page-content-header/page-content-header.js
+///#source 1 1 /app/directives/page-CONTENT/page-CONTENT-header/page-CONTENT-header.js
 angular.module('gridTaskApp')
 	.directive('pageContentHeader', [function () {
 		return {
@@ -2269,9 +2224,9 @@ angular.module('gridTaskApp')
 			}
 		}
 	}]);
-///#source 1 1 /app/directives/page-content-cards/page-content-cards.js
+///#source 1 1 /app/directives/page-CONTENT-cards/page-CONTENT-cards.js
 angular.module('gridTaskApp')
-	.directive('pageContentCards', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+	.directive('pageContentCards', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -2280,16 +2235,16 @@ angular.module('gridTaskApp')
 				uiGridOptions: '=',
 				cardsOptions: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-content-cards.html',
+			templateUrl: templatesPath + 'directive-templates/page-CONTENT-cards.html',
 			link: function (scope, element) {
-				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initCards();
 
-				scope.$watch('cardsOptions.dateRange', function (date) {
+				scope.$watch('contentOptions.datepickerOptions.dateRange', function (date) {
 					if (date) {
 						for (var card in scope.cardsOptions.cards) {
 							if (scope.cardsOptions.cards[card].counter) {
-								scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(scope.cardsOptions.startDate, scope.cardsOptions.endDate);
+								scope.cardsOptions.cards[card].count = scope.cardsOptions.cards[card].counter.calculate(scope.contentOptions.datepickerOptions.startDate, scope.contentOptions.datepickerOptions.endDate);
 							}
 						}
 					}
@@ -2297,7 +2252,7 @@ angular.module('gridTaskApp')
 			}
 		};
 	}])
-///#source 1 1 /app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js
+///#source 1 1 /app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards-controller.js
 angular.module('gridTaskApp')
 	.controller('contentOptionsCardsCtrl', ['$scope', function ($scope) {
 		$scope.$watch('options.searchValue', function (value) {
@@ -2313,7 +2268,7 @@ angular.module('gridTaskApp')
 		});
 
 	}]);
-///#source 1 1 /app/directives/page-content-cards/content-options-cards/content-options-cards.js
+///#source 1 1 /app/directives/page-CONTENT-cards/CONTENT-options-cards/CONTENT-options-cards.js
 angular.module('gridTaskApp')
 	.directive('contentOptionsCards', ['templatesPath', function (templatesPath) {
 		return {
@@ -2321,11 +2276,8 @@ angular.module('gridTaskApp')
 			controller: 'contentOptionsCardsCtrl',
 			scope: {
 				options: '=',
-				startDate: '=',
-				endDate: '=',
-				dateRange: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
+			templateUrl: templatesPath + 'directive-templates/CONTENT-options-cards.html'
 		}
 	}]);
 ///#source 1 1 /app/directives/resize-on/resize-on.js
@@ -2419,6 +2371,14 @@ angular.module('gridTaskApp')
 
 			$scope.close();
 		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
+		}
+
+		$scope.close = function () {
+			$scope.isShow = false;
+		}
 	}]);
 ///#source 1 1 /app/directives/split-button/split-button.js
 angular.module('gridTaskApp')
@@ -2434,32 +2394,6 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'directive-templates/split-button.html',
 			controller: 'splitButtonCtrl',
 			link: function (scope, element, attrs) {
-				element.find('ul').hide();
-
-				scope.toggle = function () {
-					if (element.find('ul').is(':visible')) {
-						element.find('ul').hide();
-						element.find('.split-btn__toggle').removeClass('opened');
-					}
-					else {
-						element.find('ul').show();
-						element.find('.split-btn__toggle').addClass('opened');
-					}
-				}
-
-				scope.close = function () {
-					if (element.find('ul').is(':visible')) {
-						element.find('ul').hide();
-						element.find('.split-btn__toggle').removeClass('opened');
-					}
-				}
-
-				$(document).click(function (event) {
-					if (!$(event.target).closest(element).length) {
-						element.find('ul').hide();
-						element.find('.split-btn__toggle').removeClass('opened');
-					}
-				})
 			}
 		}
 	}]);
@@ -2581,10 +2515,10 @@ var Counter = (function () {
 })();
 ///#source 1 1 /app/entities/initializer.js
 var Initializer = (function () {
-	function Initializer(scope, element, content, templatesPath, $compile) {
+	function Initializer(scope, element, CONTENT, templatesPath, $compile) {
 		this.scope = scope;
 		this.element = element;
-		this.content = content;
+		this.CONTENT = CONTENT;
 		this.templatesPath = templatesPath;
 		this.$compile = $compile;
 	}
@@ -2609,9 +2543,9 @@ var Initializer = (function () {
 	};
 
 	Initializer.prototype.refreshSankey = function () {
-		this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
-		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
-		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
+		this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
+		this.scope.cardsOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		this.scope.cardsOptions.endDate = this.CONTENT.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
 		this.scope.sankeyData = {
 			"links": [
@@ -2662,15 +2596,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.eventType === undefined) {
-			this.scope.contentOptions.eventType = this.content.eventType;
+			this.scope.contentOptions.eventType = this.CONTENT.eventType;
 		}
 
 		if (this.scope.contentOptions.segments === undefined) {
-			this.scope.contentOptions.segments = this.content.segments;
+			this.scope.contentOptions.segments = this.CONTENT.segments;
 		}
 
 		if (this.scope.contentOptions.campaign === undefined) {
-			this.scope.contentOptions.campaign = this.content.campaign;
+			this.scope.contentOptions.campaign = this.CONTENT.campaign;
 		}
 
 		if (this.scope.contentOptions.debugCard === undefined) {
@@ -2678,27 +2612,51 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.contentOptions.debugCard.id === undefined) {
-			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
+			this.scope.contentOptions.debugCard.id = this.CONTENT.debugCard.id;
 		}
 
 		if (this.scope.contentOptions.debugCard.text === undefined) {
-			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
+			this.scope.contentOptions.debugCard.text = this.CONTENT.debugCard.text;
 		}
 
 		if (this.scope.contentOptions.debugCard.body === undefined) {
-			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
+			this.scope.contentOptions.debugCard.body = this.CONTENT.debugCard.body;
 		}
 
 		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
-			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
+			this.scope.contentOptions.debugCard.templateUrl = this.CONTENT.debugCard.templateUrl;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions === undefined) {
+			this.scope.contentOptions.datepickerOptions = {};
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
+			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
+			this.scope.contentOptions.datepickerOptions.config = {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
 		}
 
 		if (this.scope.filters === undefined) {
-			this.scope.filters = this.content.sankeyFilters;
+			this.scope.filters = this.CONTENT.sankeyFilters;
 		}
 
 		if (this.scope.sankeyData === undefined) {
-			d3.json(this.content.sankeyPath, function (error, graph) {
+			d3.json(this.CONTENT.sankeyPath, function (error, graph) {
 				this.scope.sankeyData = graph;
 			}.bind(this));
 		}
@@ -2714,7 +2672,6 @@ var Initializer = (function () {
 							{ name: "8", value: 550000 },
 							{ name: "9", value: 600000 },
 							{ name: "10", value: 700000 }];
-
 		}
 	};
 
@@ -2724,22 +2681,10 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.cardsOptions.cards === undefined) {
-			this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
-
-			if (this.scope.cardsOptions.startDate === undefined) {
-				this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
-			}
-
-			if (this.scope.cardsOptions.endDate === undefined) {
-				this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
-			}
-
-			if (this.scope.cardsOptions.dateRange === undefined) {
-				this.scope.cardsOptions.dateRange = this.content.cardsOptions.dateRange;
-			}
+			this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
 
 			if (this.scope.cardsOptions.margin === undefined) {
-				this.scope.cardsOptions.margin = this.content.cardsOptions.margin;
+				this.scope.cardsOptions.margin = this.CONTENT.cardsOptions.margin;
 			}
 
 			for (var card in this.scope.cardsOptions.cards) {
@@ -2767,17 +2712,17 @@ var Initializer = (function () {
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = true;
 			if ($('loading').length == 0) {
-				this.element.find(this.content.listSelector).append(this.content.loadingTemplate);
+				this.element.find(this.CONTENT.listSelector).append(this.CONTENT.loadingTemplate);
 				this.$compile($('loading'))(this.scope);
 			}
 		}
 
 		if (this.scope.contentOptions.checks === undefined) {
-			this.scope.contentOptions.checks = this.content.checks;
+			this.scope.contentOptions.checks = this.CONTENT.checks;
 		}
 
 		if (this.scope.contentOptions.mores === undefined) {
-			this.scope.contentOptions.mores = this.content.mores;
+			this.scope.contentOptions.mores = this.CONTENT.mores;
 		}
 
 		if (this.scope.contentOptions.filtrate === undefined) {
@@ -2841,17 +2786,41 @@ var Initializer = (function () {
 			}.bind(this);
 		}
 
-		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';
+
+		if (this.scope.contentOptions.datepickerOptions === undefined) {
+			this.scope.contentOptions.datepickerOptions = {};
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
+			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
+			this.scope.contentOptions.datepickerOptions.config = {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
+		}
 	};
 
 	Initializer.prototype.initCardsGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.content.exports;
+			this.scope.exports = this.CONTENT.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
@@ -2860,14 +2829,14 @@ var Initializer = (function () {
 
 	Initializer.prototype.initGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.content.exports;
+			this.scope.exports = this.CONTENT.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
 		}
 
 		if (this.scope.views === undefined) {
-			this.scope.views = this.content.views;
+			this.scope.views = this.CONTENT.views;
 			this.scope.views.options.callback = function (action) {
 				this.scope.view = action;
 			}.bind(this);
@@ -2876,14 +2845,14 @@ var Initializer = (function () {
 		if (this.scope.grid === undefined) {
 			this.scope.grid = {};
 
-			this.scope.grid.name = this.content.gridName;
+			this.scope.grid.name = this.CONTENT.gridName;
 			if (Array.isArray(this.scope.data)) {
 				this.scope.grid.count = this.scope.data.length;
 			}
 		}
 
 		if (this.scope.grid.name === undefined) {
-			this.scope.grid.name = this.content.gridName;
+			this.scope.grid.name = this.CONTENT.gridName;
 		}
 
 		if (this.scope.grid.count === undefined) {
@@ -2899,39 +2868,39 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.data === undefined) {
-			this.scope.gridOptions.data = this.content.ngGridOpt.data;
+			this.scope.gridOptions.data = this.CONTENT.ngGridOpt.data;
 		}
 
 		if (this.scope.gridOptions.multiSelect === undefined) {
-			this.scope.gridOptions.multiSelect = this.content.ngGridOpt.multiSelect;
+			this.scope.gridOptions.multiSelect = this.CONTENT.ngGridOpt.multiSelect;
 		}
 
 		if (this.scope.gridOptions.rowTemplate === undefined) {
-			this.scope.gridOptions.rowTemplate = this.content.ngGridOpt.rowTemplate;
+			this.scope.gridOptions.rowTemplate = this.CONTENT.ngGridOpt.rowTemplate;
 		}
 
 		if (this.scope.gridOptions.filterOptions === undefined) {
-			this.scope.gridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
+			this.scope.gridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.gridOptions.rowHeight === undefined) {
-			this.scope.gridOptions.rowHeight = this.content.ngGridOpt.rowHeight;
+			this.scope.gridOptions.rowHeight = this.CONTENT.ngGridOpt.rowHeight;
 		}
 
 		if (this.scope.gridOptions.headerRowHeight === undefined) {
-			this.scope.gridOptions.headerRowHeight = this.content.ngGridOpt.headerRowHeight;
+			this.scope.gridOptions.headerRowHeight = this.CONTENT.ngGridOpt.headerRowHeight;
 		}
 
 		if (this.scope.gridOptions.showFooter === undefined) {
-			this.scope.gridOptions.showFooter = this.content.ngGridOpt.showFooter;
+			this.scope.gridOptions.showFooter = this.CONTENT.ngGridOpt.showFooter;
 		}
 
 		if (this.scope.gridOptions.footerRowHeight === undefined) {
-			this.scope.gridOptions.footerRowHeight = this.content.ngGridOpt.footerRowHeight;
+			this.scope.gridOptions.footerRowHeight = this.CONTENT.ngGridOpt.footerRowHeight;
 		}
 
 		if (this.scope.gridOptions.footerTemplate === undefined) {
-			this.scope.gridOptions.footerTemplate = this.content.ngGridOpt.footerTemplate;
+			this.scope.gridOptions.footerTemplate = this.CONTENT.ngGridOpt.footerTemplate;
 		}
 
 		if (this.scope.gridOptions.init === undefined) {
@@ -2943,15 +2912,15 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.gridOptions.detailsTemplate === undefined && this.scope.gridOptions.withDetails) {
-			this.scope.gridOptions.detailsTemplate = this.content.ngGridOpt.detailsTemplate;
+			this.scope.gridOptions.detailsTemplate = this.CONTENT.ngGridOpt.detailsTemplate;
 		}
 
 		if (this.scope.gridOptions.rowActions === undefined) {
-			this.scope.gridOptions.rowActions = this.content.ngGridOpt.rowActions;
+			this.scope.gridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
 		}
 
 		if (this.scope.gridOptions.rowCheckAction === undefined) {
-			this.scope.gridOptions.rowCheckAction = this.content.ngGridOpt.rowCheckAction;
+			this.scope.gridOptions.rowCheckAction = this.CONTENT.ngGridOpt.rowCheckAction;
 		}
 
 		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
@@ -2993,26 +2962,26 @@ var Initializer = (function () {
 			this.scope.uiGridOptions = {};
 		}
 
-		for (var prop in this.content.uiGridOpt) {
+		for (var prop in this.CONTENT.uiGridOpt) {
 			if (this.scope.uiGridOptions[prop] === undefined) {
-				this.scope.uiGridOptions[prop] = this.content.uiGridOpt[prop];
+				this.scope.uiGridOptions[prop] = this.CONTENT.uiGridOpt[prop];
 			}
 		}
 
 		if (this.scope.uiGridOptions.filterOptions === undefined) {
-			this.scope.uiGridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
+			this.scope.uiGridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.uiGridOptions.rowActions === undefined) {
-			this.scope.uiGridOptions.rowActions = this.content.ngGridOpt.rowActions;
+			this.scope.uiGridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
 		}
 
 	};
 
 	Initializer.prototype.refreshOpt = function () {
-		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';
@@ -3074,12 +3043,6 @@ var Initializer = (function () {
 					if (this.scope.view.isGrid) {
 						this.$compile($('custom-grid'))(this.scope);
 					}
-					else if (this.scope.view.isUiGrid) {
-						//this.$compile($('custom-ui-grid'))(this.scope);
-					}
-				}
-				else {
-					//this.$compile($('.custom-ui-grid'))(this.scope);
 				}
 			}
 		}
@@ -3088,12 +3051,6 @@ var Initializer = (function () {
 				if (view.isGrid) {
 					this.$compile($('custom-grid'))(this.scope);
 				}
-				else if (view.isUiGrid) {
-					//this.$compile($('custom-ui-grid'))(this.scope);
-				}
-			}
-			else {
-				//this.$compile($('.custom-ui-grid'))(this.scope);
 			}
 		}
 

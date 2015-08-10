@@ -2,11 +2,11 @@
 	var compile, scope, element, elementScope;
 
 	beforeEach(module('gridTaskApp'));
-	beforeEach(inject(function ($compile, $rootScope, content) {
+	beforeEach(inject(function ($compile, $rootScope, CONTENT) {
 		compile = $compile;
 		scope = $rootScope.$new();
 
-		scope.options = content.checks.options;
+		scope.options = CONTENT.checks.options;
 		scope.options.callback = function (action) {
 			this.callbackValue = 100;
 		}

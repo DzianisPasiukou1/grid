@@ -6,7 +6,7 @@
 			callback(data);
 		}
 	}])
-	.factory('StandartTwoData', ['constantOfData', function (constantOfData) {
+	.factory('StandartTwoData', ['DATA', function (DATA) {
 		var names = ['Adids Originals Purchase', 'Affiliate User Match', 'Auto Trader App Visit', 'Auto Trader Home Page', 'Click Tracker Example', 'Coming to my home page', 'Contact Seller', 'Customer Registration']
 		var types = ['Purchase', 'Default', 'Page View', 'Krux Click Tracker', 'Ad', 'Form', 'Subscription']
 		var categories = ['ecommerce', 'User Match', 'Site Visit', 'User Action', 'Form Data'];
@@ -16,7 +16,7 @@
 		var data = function () {
 			var array = [];
 
-			for (var i = 0; i < constantOfData.count; i++) {
+			for (var i = 0; i < DATA.count; i++) {
 				var name = names[Math.floor(Math.random() * names.length)];
 				var type = types[Math.floor(Math.random() * types.length)];
 				var category = categories[Math.floor(Math.random() * categories.length)];

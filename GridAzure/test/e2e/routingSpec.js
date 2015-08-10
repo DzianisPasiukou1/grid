@@ -12,7 +12,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/standartOne');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -24,7 +24,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/standartTwo');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -36,7 +36,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withDetailsTemplate');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -48,7 +48,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withUpload');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -60,7 +60,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withLoading');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -72,7 +72,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/testing');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -84,7 +84,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withMenu');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -96,7 +96,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withCards');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});
@@ -108,7 +108,7 @@
 		expect(browser.getLocationAbsUrl()).toEqual('/withDiagrams');
 
 		browser.wait(function () {
-			return $('.page-content').isPresent();
+			return $('.page-CONTENT').isPresent();
 		}, 10000, 'message to log to console if element is not present after that time');
 
 	});

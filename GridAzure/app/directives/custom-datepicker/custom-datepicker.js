@@ -1,55 +1,22 @@
 ﻿angular.module('gridTaskApp')
-	.directive('customDatepicker', ['templatesPath', 'classes', function (templatesPath, classes) {
+	.directive('customDatepicker', ['templatesPath', function (templatesPath) {
 		return {
-			restrict: 'E',
+			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/custom-datepicker.html',
+			scope: {
+				opt: '=customDatepicker'
+			},
+			controller: 'customDatepickerCtrl',
 			link: function (scope, element, attrs) {
-				element.find('.expand').addClass(classes.menuDown);
-
-				scope.config = {
-					singleMonth: true,
-					showShortcuts: false,
-					showTopbar: false
-				};
-
-				$(element.find('.date-btn__toggle')).dateRangePicker(scope.config).bind('datepicker-change', function (event, obj) {
-					scope.startDate = obj.date1;
-					scope.endDate = obj.date2;
-					scope.dateRange = Math.abs(scope.endDate.getTime() - scope.startDate.getTime());
+				element.find('.date-btn__toggle').dateRangePicker(scope.opt.config).bind('datepicker-change', function (event, obj) {
+					scope.opt.startDate = obj.date1;
+					scope.opt.endDate = obj.date2;
+					scope.opt.dateRange = Math.abs(scope.opt.endDate.getTime() - scope.opt.startDate.getTime());
 					scope.$apply();
 				}).bind('datepicker-close', function () {
 					scope.isShow = false;
-
-					element.find('.expand').addClass(classes.menuDown);
-					element.find('.expand').removeClass(classes.menuUp);
-					element.find('.date-btn__toggle').removeClass('opened');
+					scope.$apply();
 				});
-
-				scope.toggle = function () {
-					scope.isShow = !scope.isShow;
-
-					if (scope.isShow) {
-						element.find('.expand').removeClass(classes.menuDown);
-						element.find('.expand').addClass(classes.menuUp);
-						element.find('.date-btn__toggle').addClass('opened');
-						$(element.find('.date-btn__toggle')).data('dateRangePicker').open();
-					}
-					else {
-						element.find('.expand').addClass(classes.menuDown);
-						element.find('.expand').removeClass(classes.menuUp);
-						element.find('.date-btn__toggle').removeClass('opened');
-						$(element.find('.date-btn__toggle')).data('dateRangePicker').close();
-					}
-				}
-
-				scope.close = function () {
-					scope.isShow = false;
-					$(element.find('.date-btn__toggle')).data('dateRangePicker').close();
-
-					element.find('.expand').addClass(classes.menuDown);
-					element.find('.expand').removeClass(classes.menuUp);
-					element.find('.date-btn__toggle').removeClass('opened');
-				}
 			}
 		}
 	}])

@@ -1,8 +1,8 @@
 ﻿var Initializer = (function () {
-	function Initializer(scope, element, content, templatesPath, $compile) {
+	function Initializer(scope, element, CONTENT, templatesPath, $compile) {
 		this.scope = scope;
 		this.element = element;
-		this.content = content;
+		this.CONTENT = CONTENT;
 		this.templatesPath = templatesPath;
 		this.$compile = $compile;
 	}
@@ -27,9 +27,9 @@
 	};
 
 	Initializer.prototype.refreshSankey = function () {
-		this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
-		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
-		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
+		this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
+		this.scope.cardsOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		this.scope.cardsOptions.endDate = this.CONTENT.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
 		this.scope.sankeyData = {
 			"links": [
@@ -80,15 +80,15 @@
 		}
 
 		if (this.scope.contentOptions.eventType === undefined) {
-			this.scope.contentOptions.eventType = this.content.eventType;
+			this.scope.contentOptions.eventType = this.CONTENT.eventType;
 		}
 
 		if (this.scope.contentOptions.segments === undefined) {
-			this.scope.contentOptions.segments = this.content.segments;
+			this.scope.contentOptions.segments = this.CONTENT.segments;
 		}
 
 		if (this.scope.contentOptions.campaign === undefined) {
-			this.scope.contentOptions.campaign = this.content.campaign;
+			this.scope.contentOptions.campaign = this.CONTENT.campaign;
 		}
 
 		if (this.scope.contentOptions.debugCard === undefined) {
@@ -96,27 +96,51 @@
 		}
 
 		if (this.scope.contentOptions.debugCard.id === undefined) {
-			this.scope.contentOptions.debugCard.id = this.content.debugCard.id;
+			this.scope.contentOptions.debugCard.id = this.CONTENT.debugCard.id;
 		}
 
 		if (this.scope.contentOptions.debugCard.text === undefined) {
-			this.scope.contentOptions.debugCard.text = this.content.debugCard.text;
+			this.scope.contentOptions.debugCard.text = this.CONTENT.debugCard.text;
 		}
 
 		if (this.scope.contentOptions.debugCard.body === undefined) {
-			this.scope.contentOptions.debugCard.body = this.content.debugCard.body;
+			this.scope.contentOptions.debugCard.body = this.CONTENT.debugCard.body;
 		}
 
 		if (this.scope.contentOptions.debugCard.templateUrl === undefined && this.scope.contentOptions.debugCard.template === undefined) {
-			this.scope.contentOptions.debugCard.templateUrl = this.content.debugCard.templateUrl;
+			this.scope.contentOptions.debugCard.templateUrl = this.CONTENT.debugCard.templateUrl;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions === undefined) {
+			this.scope.contentOptions.datepickerOptions = {};
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
+			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
+			this.scope.contentOptions.datepickerOptions.config = {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
 		}
 
 		if (this.scope.filters === undefined) {
-			this.scope.filters = this.content.sankeyFilters;
+			this.scope.filters = this.CONTENT.sankeyFilters;
 		}
 
 		if (this.scope.sankeyData === undefined) {
-			d3.json(this.content.sankeyPath, function (error, graph) {
+			d3.json(this.CONTENT.sankeyPath, function (error, graph) {
 				this.scope.sankeyData = graph;
 			}.bind(this));
 		}
@@ -132,7 +156,6 @@
 							{ name: "8", value: 550000 },
 							{ name: "9", value: 600000 },
 							{ name: "10", value: 700000 }];
-
 		}
 	};
 
@@ -142,22 +165,10 @@
 		}
 
 		if (this.scope.cardsOptions.cards === undefined) {
-			this.scope.cardsOptions.cards = this.content.cardsOptions.cards;
-
-			if (this.scope.cardsOptions.startDate === undefined) {
-				this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
-			}
-
-			if (this.scope.cardsOptions.endDate === undefined) {
-				this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
-			}
-
-			if (this.scope.cardsOptions.dateRange === undefined) {
-				this.scope.cardsOptions.dateRange = this.content.cardsOptions.dateRange;
-			}
+			this.scope.cardsOptions.cards = this.CONTENT.cardsOptions.cards;
 
 			if (this.scope.cardsOptions.margin === undefined) {
-				this.scope.cardsOptions.margin = this.content.cardsOptions.margin;
+				this.scope.cardsOptions.margin = this.CONTENT.cardsOptions.margin;
 			}
 
 			for (var card in this.scope.cardsOptions.cards) {
@@ -185,17 +196,17 @@
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = true;
 			if ($('loading').length == 0) {
-				this.element.find(this.content.listSelector).append(this.content.loadingTemplate);
+				this.element.find(this.CONTENT.listSelector).append(this.CONTENT.loadingTemplate);
 				this.$compile($('loading'))(this.scope);
 			}
 		}
 
 		if (this.scope.contentOptions.checks === undefined) {
-			this.scope.contentOptions.checks = this.content.checks;
+			this.scope.contentOptions.checks = this.CONTENT.checks;
 		}
 
 		if (this.scope.contentOptions.mores === undefined) {
-			this.scope.contentOptions.mores = this.content.mores;
+			this.scope.contentOptions.mores = this.CONTENT.mores;
 		}
 
 		if (this.scope.contentOptions.filtrate === undefined) {
@@ -259,17 +270,41 @@
 			}.bind(this);
 		}
 
-		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';
+
+		if (this.scope.contentOptions.datepickerOptions === undefined) {
+			this.scope.contentOptions.datepickerOptions = {};
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.startDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.startDate = this.CONTENT.cardsOptions.startDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.endDate === undefined) {
+			this.scope.contentOptions.datepickerOptions.endDate = this.CONTENT.cardsOptions.endDate;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.dateRange === undefined) {
+			this.scope.contentOptions.datepickerOptions.dateRange = this.CONTENT.cardsOptions.dateRange;
+		}
+
+		if (this.scope.contentOptions.datepickerOptions.config === undefined) {
+			this.scope.contentOptions.datepickerOptions.config = {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
+		}
 	};
 
 	Initializer.prototype.initCardsGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.content.exports;
+			this.scope.exports = this.CONTENT.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
@@ -278,14 +313,14 @@
 
 	Initializer.prototype.initGrid = function () {
 		if (this.scope.exports === undefined) {
-			this.scope.exports = this.content.exports;
+			this.scope.exports = this.CONTENT.exports;
 			this.scope.exports.options.callback = function (action) {
 				this.scope.export = action;
 			}.bind(this);
 		}
 
 		if (this.scope.views === undefined) {
-			this.scope.views = this.content.views;
+			this.scope.views = this.CONTENT.views;
 			this.scope.views.options.callback = function (action) {
 				this.scope.view = action;
 			}.bind(this);
@@ -294,14 +329,14 @@
 		if (this.scope.grid === undefined) {
 			this.scope.grid = {};
 
-			this.scope.grid.name = this.content.gridName;
+			this.scope.grid.name = this.CONTENT.gridName;
 			if (Array.isArray(this.scope.data)) {
 				this.scope.grid.count = this.scope.data.length;
 			}
 		}
 
 		if (this.scope.grid.name === undefined) {
-			this.scope.grid.name = this.content.gridName;
+			this.scope.grid.name = this.CONTENT.gridName;
 		}
 
 		if (this.scope.grid.count === undefined) {
@@ -317,39 +352,39 @@
 		}
 
 		if (this.scope.gridOptions.data === undefined) {
-			this.scope.gridOptions.data = this.content.ngGridOpt.data;
+			this.scope.gridOptions.data = this.CONTENT.ngGridOpt.data;
 		}
 
 		if (this.scope.gridOptions.multiSelect === undefined) {
-			this.scope.gridOptions.multiSelect = this.content.ngGridOpt.multiSelect;
+			this.scope.gridOptions.multiSelect = this.CONTENT.ngGridOpt.multiSelect;
 		}
 
 		if (this.scope.gridOptions.rowTemplate === undefined) {
-			this.scope.gridOptions.rowTemplate = this.content.ngGridOpt.rowTemplate;
+			this.scope.gridOptions.rowTemplate = this.CONTENT.ngGridOpt.rowTemplate;
 		}
 
 		if (this.scope.gridOptions.filterOptions === undefined) {
-			this.scope.gridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
+			this.scope.gridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.gridOptions.rowHeight === undefined) {
-			this.scope.gridOptions.rowHeight = this.content.ngGridOpt.rowHeight;
+			this.scope.gridOptions.rowHeight = this.CONTENT.ngGridOpt.rowHeight;
 		}
 
 		if (this.scope.gridOptions.headerRowHeight === undefined) {
-			this.scope.gridOptions.headerRowHeight = this.content.ngGridOpt.headerRowHeight;
+			this.scope.gridOptions.headerRowHeight = this.CONTENT.ngGridOpt.headerRowHeight;
 		}
 
 		if (this.scope.gridOptions.showFooter === undefined) {
-			this.scope.gridOptions.showFooter = this.content.ngGridOpt.showFooter;
+			this.scope.gridOptions.showFooter = this.CONTENT.ngGridOpt.showFooter;
 		}
 
 		if (this.scope.gridOptions.footerRowHeight === undefined) {
-			this.scope.gridOptions.footerRowHeight = this.content.ngGridOpt.footerRowHeight;
+			this.scope.gridOptions.footerRowHeight = this.CONTENT.ngGridOpt.footerRowHeight;
 		}
 
 		if (this.scope.gridOptions.footerTemplate === undefined) {
-			this.scope.gridOptions.footerTemplate = this.content.ngGridOpt.footerTemplate;
+			this.scope.gridOptions.footerTemplate = this.CONTENT.ngGridOpt.footerTemplate;
 		}
 
 		if (this.scope.gridOptions.init === undefined) {
@@ -361,15 +396,15 @@
 		}
 
 		if (this.scope.gridOptions.detailsTemplate === undefined && this.scope.gridOptions.withDetails) {
-			this.scope.gridOptions.detailsTemplate = this.content.ngGridOpt.detailsTemplate;
+			this.scope.gridOptions.detailsTemplate = this.CONTENT.ngGridOpt.detailsTemplate;
 		}
 
 		if (this.scope.gridOptions.rowActions === undefined) {
-			this.scope.gridOptions.rowActions = this.content.ngGridOpt.rowActions;
+			this.scope.gridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
 		}
 
 		if (this.scope.gridOptions.rowCheckAction === undefined) {
-			this.scope.gridOptions.rowCheckAction = this.content.ngGridOpt.rowCheckAction;
+			this.scope.gridOptions.rowCheckAction = this.CONTENT.ngGridOpt.rowCheckAction;
 		}
 
 		if (this.scope.gridOptions.beforeSelectionChange === undefined) {
@@ -411,26 +446,26 @@
 			this.scope.uiGridOptions = {};
 		}
 
-		for (var prop in this.content.uiGridOpt) {
+		for (var prop in this.CONTENT.uiGridOpt) {
 			if (this.scope.uiGridOptions[prop] === undefined) {
-				this.scope.uiGridOptions[prop] = this.content.uiGridOpt[prop];
+				this.scope.uiGridOptions[prop] = this.CONTENT.uiGridOpt[prop];
 			}
 		}
 
 		if (this.scope.uiGridOptions.filterOptions === undefined) {
-			this.scope.uiGridOptions.filterOptions = this.content.ngGridOpt.filterOptions;
+			this.scope.uiGridOptions.filterOptions = this.CONTENT.ngGridOpt.filterOptions;
 		}
 
 		if (this.scope.uiGridOptions.rowActions === undefined) {
-			this.scope.uiGridOptions.rowActions = this.content.ngGridOpt.rowActions;
+			this.scope.uiGridOptions.rowActions = this.CONTENT.ngGridOpt.rowActions;
 		}
 
 	};
 
 	Initializer.prototype.refreshOpt = function () {
-		this.scope.contentOptions.filterOptions = this.content.filterOptions(this.scope.data);
+		this.scope.contentOptions.filterOptions = this.CONTENT.filterOptions(this.scope.data);
 
-		this.scope.contentOptions.searchOptions = this.content.searchOptions(this.scope.data);
+		this.scope.contentOptions.searchOptions = this.CONTENT.searchOptions(this.scope.data);
 		this.scope.contentOptions.searchOptions.selected = this.scope.contentOptions.searchOptions[0];
 
 		this.scope.contentOptions.searchValue = '';
@@ -492,12 +527,6 @@
 					if (this.scope.view.isGrid) {
 						this.$compile($('custom-grid'))(this.scope);
 					}
-					else if (this.scope.view.isUiGrid) {
-						//this.$compile($('custom-ui-grid'))(this.scope);
-					}
-				}
-				else {
-					//this.$compile($('.custom-ui-grid'))(this.scope);
 				}
 			}
 		}
@@ -506,12 +535,6 @@
 				if (view.isGrid) {
 					this.$compile($('custom-grid'))(this.scope);
 				}
-				else if (view.isUiGrid) {
-					//this.$compile($('custom-ui-grid'))(this.scope);
-				}
-			}
-			else {
-				//this.$compile($('.custom-ui-grid'))(this.scope);
 			}
 		}
 

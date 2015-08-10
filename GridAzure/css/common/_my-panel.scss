@@ -4,7 +4,7 @@
 	background-color: $light-white;
 	border: $small-grey-border;
 
-	> .heading, > .content {
+	> .heading, > .CONTENT {
 		display: block;
 		position: relative;
 		color: #1d1d1d;
@@ -29,7 +29,7 @@
 		margin-left: .625rem;
 	}
 
-	> .content {
+	> .CONTENT {
 		background-color: $white;
 		z-index: 1;
 		font-size: 0.875rem;

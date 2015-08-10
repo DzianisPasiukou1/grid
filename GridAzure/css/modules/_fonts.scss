@@ -36,7 +36,7 @@
 }
 
 .icon-text2:before {
-	content: "\e600";
+	CONTENT: "\e600";
 }
 
 
@@ -45,7 +45,7 @@
 }
 
 .glyph-calendar:before {
-	content: "\e600";
+	CONTENT: "\e600";
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -53,12 +53,12 @@
 }
 
 .icon-menu-down:before {
-	content: "\e603";
+	CONTENT: "\e603";
 	display: inline-block;
 }
 
 .icon-menu-up:before {
-	content: "\e603";
+	CONTENT: "\e603";
 	-ms-transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
@@ -68,15 +68,15 @@
 }
 
 .icon-filter:before {
-	content: "\e604";
+	CONTENT: "\e604";
 }
 
 .icon-arrow-down:before {
-	content: "\e605";
+	CONTENT: "\e605";
 }
 
 .icon-arrow-up:before {
-	content: "\e605";
+	CONTENT: "\e605";
 	-ms-transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
@@ -85,23 +85,23 @@
 }
 
 .icon-search:before {
-	content: "\e601";
+	CONTENT: "\e601";
 }
 
 .icon-close:before {
-	content: "\e602";
+	CONTENT: "\e602";
 }
 
 .icon-text2:before {
-	content: "\e600";
+	CONTENT: "\e600";
 }
 
 .icon-info:before {
-	content: "\e600";
+	CONTENT: "\e600";
 }
 
 .icon-circle-left:before {
-	content: "\e601";
+	CONTENT: "\e601";
 }
 
 $card-font: 'cards';

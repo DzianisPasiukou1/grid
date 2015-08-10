@@ -10,6 +10,6 @@
 				onDataRangeChanged: '=',
 				past: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/content-options-d3.html'
+			templateUrl: templatesPath + 'directive-templates/CONTENT-options-d3.html'
 		}
 	}]);

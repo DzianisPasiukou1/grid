@@ -15,4 +15,12 @@
 
 			$scope.close();
 		}
+
+		$scope.toggle = function () {
+			$scope.isShow = !$scope.isShow;
+		}
+
+		$scope.close = function () {
+			$scope.isShow = false;
+		}
 	}]);

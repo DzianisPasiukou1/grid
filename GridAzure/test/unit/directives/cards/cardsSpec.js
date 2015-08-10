@@ -2,20 +2,20 @@
 	var scope, element, elementScope, compile, timeout;
 
 	beforeEach(module('gridTaskApp'));
-	beforeEach(inject(function ($compile, $rootScope, content, $timeout) {
+	beforeEach(inject(function ($compile, $rootScope, CONTENT, $timeout) {
 		compile = $compile;
 		timeout = $timeout;
 		scope = $rootScope.$new();
 
 		scope.contentOptions = {};
 		scope.cardsOptions = {
-			cards: content.cardsOptions.cards,
+			cards: CONTENT.cardsOptions.cards,
 			startDate: new Date(),
 			endDate: new Date(),
 			margin: 50
 		}
 
-		element = compile("<div cards='cardsOptions' content-options='contentOptions'></div>")(scope);
+		element = compile("<div cards='cardsOptions' CONTENT-options='contentOptions'></div>")(scope);
 		scope.$digest()
 
 		$timeout.flush(100);

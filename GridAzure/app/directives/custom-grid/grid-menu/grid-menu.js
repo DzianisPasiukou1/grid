@@ -131,10 +131,10 @@
 					}
 
 					if ($(window).width() < totalWidth) {
-						$('.page-content').css('minWidth', totalWidth + 'px');
+						$('.page-CONTENT').css('minWidth', totalWidth + 'px');
 					}
 					else {
-						$('.page-content').css('minWidth', '500px');
+						$('.page-CONTENT').css('minWidth', '500px');
 					}
 				}
 			}

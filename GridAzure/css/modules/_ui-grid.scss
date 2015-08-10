@@ -73,7 +73,7 @@
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	content: "\e605";
+	CONTENT: "\e605";
 }
 
 @mixin ui-grid-icon-up-dir-before {
@@ -86,7 +86,7 @@
 }
 
 @mixin ui-grid-icon-blank-before {
-	content: none;
+	CONTENT: none;
 }
 
 @mixin ui-grid-menu-button {

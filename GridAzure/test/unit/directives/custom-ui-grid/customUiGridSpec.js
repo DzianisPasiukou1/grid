@@ -2,9 +2,9 @@
 	var scope, elementScope, element;
 
 	beforeEach(module('gridTaskApp'));
-	beforeEach(inject(function ($compile, $rootScope, content, templatesPath, gridStandartOneService) {
+	beforeEach(inject(function ($compile, $rootScope, CONTENT, templatesPath, gridStandartOneService) {
 		scope = $rootScope.$new();
-		var initializer = new Initializer(scope, null, content, templatesPath, $compile);
+		var initializer = new Initializer(scope, null, CONTENT, templatesPath, $compile);
 		initializer.init();
 
 		scope.data = [];
@@ -12,7 +12,7 @@
 			scope.data = data;
 		});
 
-		element = $compile('<custom-ui-grid grid-data="data" content-options="contentOptions" grid-options="uiGridOptions"></custom-ui-grid>')(scope);
+		element = $compile('<custom-ui-grid grid-data="data" CONTENT-options="contentOptions" grid-options="uiGridOptions"></custom-ui-grid>')(scope);
 		scope.$digest();
 
 		elementScope = element.isolateScope();

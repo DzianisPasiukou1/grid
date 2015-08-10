@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('pageContentD3', ['templatesPath', 'content', '$compile', function (templatesPath, content, $compile) {
+	.directive('pageContentD3', ['templatesPath', 'CONTENT', '$compile', function (templatesPath, CONTENT, $compile) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -9,9 +9,9 @@
 				histogramData: '=',
 				filters: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
+			templateUrl: templatesPath + 'directive-templates/page-CONTENT-d3.html',
 			link: function (scope, element) {
-				var initializer = new Initializer(scope, element, content, templatesPath, $compile);
+				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 				initializer.initSankey();
 
 				scope.contentOptions.refresh = function () {

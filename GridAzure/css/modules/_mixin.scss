@@ -19,7 +19,7 @@
 
 @mixin media($queryString) {
 	@media #{$queryString} {
-		@content;
+		@CONTENT;
 	}
 }
 
@@ -28,7 +28,7 @@
 	vertical-align: middle;
 	color: transparent;
 	font-size: 0;
-	content: "";
+	CONTENT: "";
 	height: .3125rem;
 	width: .565rem;
 	background-color: transparent;

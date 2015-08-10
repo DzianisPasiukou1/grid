@@ -5,10 +5,7 @@
 			controller: 'contentOptionsCardsCtrl',
 			scope: {
 				options: '=',
-				startDate: '=',
-				endDate: '=',
-				dateRange: '='
 			},
-			templateUrl: templatesPath + 'directive-templates/content-options-cards.html'
+			templateUrl: templatesPath + 'directive-templates/CONTENT-options-cards.html'
 		}
 	}]);

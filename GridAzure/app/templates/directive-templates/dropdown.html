@@ -1,14 +1,14 @@
-﻿<div class="my-dropdown">
-	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu">
+﻿<div class="my-dropdown" any-other-click="isShow=false">
+	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
 		<span class="my-dropdown__text">{{options.label}}{{options.selected.label}}</span>
-		<span class="my-dropdown__expand"></span>
+		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}"></span>
 	</button>
-	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu">
+	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
 		<span class="my-dropdown__text">{{options.label}}</span>
-		<span class="my-dropdown__expand"></span>
+		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}"></span>
 	</button>
 
-	<ul class="my-dropdown__list">
+	<ul class="my-dropdown__list" ng-show="isShow">
 		<li ng-repeat="action in options.values">
 			<div ng-if="options.isCheckbox">
 				<div class="my-dropdown__list__check">
