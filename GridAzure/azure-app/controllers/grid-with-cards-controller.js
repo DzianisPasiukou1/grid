@@ -8,7 +8,10 @@
 		getData();
 
 		$scope.uiGridOptions = {
-			showResponsMenu: true
+			showResponsMenu: true,
+			enableAction: true,
+			enableDetails: true,
+			disableCheck: false
 		}
 
 		$scope.cardsOpt = {

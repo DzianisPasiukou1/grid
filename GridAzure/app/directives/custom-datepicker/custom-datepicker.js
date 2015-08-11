@@ -8,14 +8,16 @@
 			},
 			controller: 'customDatepickerCtrl',
 			link: function (scope, element, attrs) {
-				element.find('.date-btn__toggle').dateRangePicker(scope.opt.config).bind('datepicker-change', function (event, obj) {
+				element.find(scope.dateBtnSelector).dateRangePicker(scope.opt.config).bind('datepicker-change', function (event, obj) {
 					scope.opt.startDate = obj.date1;
 					scope.opt.endDate = obj.date2;
 					scope.opt.dateRange = Math.abs(scope.opt.endDate.getTime() - scope.opt.startDate.getTime());
 					scope.$apply();
 				}).bind('datepicker-close', function () {
 					scope.isShow = false;
-					scope.$apply();
+					if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
+						scope.$apply();
+					}
 				});
 			}
 		}

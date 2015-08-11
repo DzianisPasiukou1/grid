@@ -1,62 +1,65 @@
 ﻿angular.module('gridTaskApp')
-	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', function ($scope, templatesPath, $compile) {
+	.controller('customUiGridCtrl', ['$scope', 'templatesPath', '$compile', '$rootScope', function ($scope, templatesPath, $compile, $rootScope) {
 
 		$scope.options.onRegisterApi = function (gridApi) {
 			$scope.gridApi = gridApi;
 
-			if ($scope.options.enableAction) {
-				gridApi.core.on.rowsRendered($scope, function () {
-					$scope.gridApi.grid.rows.forEach(function (row) {
+			gridApi.core.on.rowsRendered($scope, function () {
+				$scope.gridApi.grid.rows.forEach(function (row) {
+					if ($scope.options.enableAction) {
 						row.actions = angular.copy($scope.options.rowActions);
+						row.actions.static = new Row(row, $rootScope, $compile)
+						row.actions.history = [];
+						row.actions.options.callback = function (action) {
+							if (action.isEdit) {
+								row.actions.static.edit();
+							}
+							else if (action.isCopy) {
+								row.actions.static.copy();
+							}
+							else if (action.isDelete) {
+								row.actions.static.delete($scope.data);
+							}
+							else if (action.isHistory) {
+								row.actions.static.history();
+							}
+						};
+					}
+					else {
+						row.actions = {};
+					}
+					if ($scope.options.enableDetails) {
 						row.actions.tab = 2;
 						row.actions.expand = function () {
 							$scope.gridApi.expandable.toggleRowExpansion(row.entity);
 						};
+						row.actions.disableCheck = $scope.options.disableCheck;
+					}
+					if ($scope.contentOptions.checks) {
 						row.actions.setCheck = function () {
-							if ($scope.contentOptions.checks) {
-								var data = $scope.gridApi.grid.rows;
+							var data = $scope.gridApi.grid.rows;
 
-								var isCheckArray = data.filter(function (value) {
-									if (value.isCheck) {
-										return true;
-									}
-								});
+							var isCheckArray = data.filter(function (value) {
+								if (value.isCheck) {
+									return true;
+								}
+							});
 
-								if (isCheckArray.length == 0) {
-									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
-								}
-								else if (isCheckArray.length == data.length) {
-									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
-								}
-								else {
-									$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
-								}
+							if (isCheckArray.length == 0) {
+								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.noOne;
+							}
+							else if (isCheckArray.length == data.length) {
+								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.all;
+							}
+							else {
+								$scope.contentOptions.checks.options.selected = $scope.contentOptions.checks.options.actions.marked;
+							}
 
-								$scope.gridApi.grid.refresh();
-							}
-						};
-						row.actions.copyRow = copyRow;
-						row.actions.deleteRow = deleteRow;
-						row.actions.editRow = editRow;
-						row.actions.historyRow = historyRow;
-						row.actions.history = [];
-						row.actions.options.callback = function (action) {
-							if (action.isEdit) {
-								row.actions.editRow(row);
-							}
-							else if (action.isCopy) {
-								row.actions.copyRow(row);
-							}
-							else if (action.isDelete) {
-								row.actions.deleteRow(row.entity, $scope.data, row);
-							}
-							else if (action.isHistory) {
-								row.actions.historyRow(row);
-							}
-						};
-					})
-				});
-			}
+							$scope.gridApi.grid.refresh();
+						}
+					};
+				})
+			});
 
 			$scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);
 
@@ -162,72 +165,6 @@
 		$scope.$watch('options.filterOptions.filterText', function (text) {
 			$scope.gridApi.grid.refresh();
 		});
-
-		var copyRow = function (row) {
-			var s = JSON.stringify(row.entity);
-
-			if (window.clipboardData && clipboardData.setData) {
-				clipboardData.setData('text', s);
-
-				if ($.cursorMessage) {
-					$.cursorMessage('Row is copied to clipboard.');
-				}
-			}
-			else {
-				$('body').append('<input id="holdtext" style="display: none"/>')
-
-				var elm = $("#holdtext");
-				elm.val(s);
-				elm.select();
-
-				try {
-					document.execCommand('copy');
-
-					if ($.cursorMessage) {
-						$.cursorMessage('Row is copied to clipboard.');
-					}
-
-				}
-				catch (e) {
-					if ($.cursorMessage) {
-						$.cursorMessage('Copied ended with error.', { backgroundColor: 'rgb(143, 59, 59)' });
-					}
-
-				}
-				finally {
-					elm.remove('#holdtext');
-				}
-			};
-		}
-
-		var deleteRow = function (entity, data, row) {
-			data.splice(data.indexOf(entity), 1);
-		}
-
-		var editRow = function (row) {
-			if ($('modal').length != 0) {
-				$('modal').remove();
-			}
-
-			$scope.editingRow = row;
-
-			$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
-			var modal = $('div[modal]');
-			$compile(modal)($scope);
-		}
-
-
-		var historyRow = function (row) {
-			if ($('history').length != 0) {
-				$('history').remove();
-			}
-
-			$scope.historiedRow = row;
-
-			$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
-			var modal = $('div[modal]');
-			$compile(modal)($scope);
-		}
 
 		$scope.$watch('data', function (data) {
 			if ($scope.options.reInit) {

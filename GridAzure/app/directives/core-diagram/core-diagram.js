@@ -20,6 +20,10 @@
 					format = function (d) { return formatNumber(d) + " " + units; },
 					color = d3.scale.category20();
 
+				if (scope.data) {
+					init(scope.data);
+				}
+
 				function init(graph) {
 					element.find('#chart').html('');
 

@@ -22,7 +22,8 @@
 		};
 
 		$scope.uiGridOptions = {
-			showResponsMenu: true
+			showResponsMenu: true,
+			reInit: true
 		}
 
 		$scope.gridOptions = {
