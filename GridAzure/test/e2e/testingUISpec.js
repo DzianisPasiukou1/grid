@@ -8,7 +8,8 @@
 		var btn = element.all(by.css('.my-dropdown__btn')).get(2);
 		btn.click();
 
-		var ui = element.all(by.css('.my-dropdown__list li')).get(4);
+		var ui = element.all(by.linkText('UI Grid'));
+
 		ui.click();
 
 		browser.waitForAngular();

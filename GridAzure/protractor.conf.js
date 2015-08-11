@@ -5,13 +5,12 @@
 	baseUrl: 'http://localhost:62473/',
 	// Capabilities to be passed to the WebDriver instance
 	capabilities: {
-		'browserName': 'chrome'
+		'browserName': 'firefox'
 	},
 	// Spec patterns are relative to the location of the
 	// spec file. They may include glob patterns.
 	specs: [
 		'test/e2e/**/*.js'
-		//'test/e2e/withLoadingUISpec.js'
 	],
 	// Options to be passed to Jasmine-node
 	jasmineNodeOpts: {

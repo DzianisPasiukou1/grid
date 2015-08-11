@@ -1,4 +1,5 @@
 ﻿describe('Testing grid standart two UI', function () {
+
 	beforeEach(function () {
 		browser.get('/standartTwo');
 		browser.waitForAngular();
@@ -6,7 +7,8 @@
 		var btn = element.all(by.css('.my-dropdown__btn')).get(2);
 		btn.click();
 
-		var ui = element.all(by.css('.my-dropdown__list li')).get(4);
+		var ui = element.all(by.linkText('UI Grid'));
+
 		ui.click();
 
 		browser.waitForAngular();
@@ -65,7 +67,7 @@
 	});
 
 	it('should select row after click', function () {
-		var row = element.all(by.css('.ui-grid-row'));
+		var row = element.all(by.css('.ui-grid-row')).get(0);
 		row.click();
 
 		expect(element.all(by.css('.ui-grid-row.ui-grid-row-selected')).count()).toEqual(1);

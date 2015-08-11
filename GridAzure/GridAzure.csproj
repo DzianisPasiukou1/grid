@@ -2389,6 +2389,7 @@
     <Content Include="index.html" />
     <Content Include="karma.conf.js" />
     <Content Include="protractor.conf.js" />
+    <Content Include="test\e2e\findByTextLocator.js" />
     <Content Include="test\e2e\withCardsUISpec.js" />
     <Content Include="test\e2e\routingSpec.js" />
     <Content Include="test\e2e\standartOneSpec.js" />
