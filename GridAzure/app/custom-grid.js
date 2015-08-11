@@ -275,6 +275,9 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/cards/cards-controller.js
 angular.module('gridTaskApp')
 	.controller('cardsCtrl', ['$scope', function ($scope) {
+		$scope.startLeft = 40;
+		$scope.groupMarginRight = 50;
+
 		$scope.cards = $scope.cardsOptions.cards;
 		$scope.startDate = $scope.contentOptions.datepickerOptions.startDate;
 		$scope.endDate = $scope.contentOptions.datepickerOptions.endDate;
@@ -294,8 +297,11 @@ angular.module('gridTaskApp')
 			link: function (scope, element, attrs) {
 				if (scope.contentOptions.enableDebugging) {
 					$timeout(function () {
-						$('#' + scope.contentOptions.debugCard.id).css('left', 40);
-						$('#' + scope.contentOptions.debugCard.id).flip();
+						element.find('#' + scope.contentOptions.debugCard.id).flip();
+
+						scope.contentOptions.debugCard.style = {
+							left: scope.startLeft
+						}
 					});
 				}
 
@@ -303,20 +309,25 @@ angular.module('gridTaskApp')
 					scope.cards = scope.cardsOptions.cards;
 
 					$timeout(function () {
-						var left = 40;
+						var left = scope.startLeft;
 
 						if (scope.contentOptions.enableDebugging) {
 							left += scope.margin;
 						}
 
 						for (var card in cards) {
-							$('#' + card).css('left', left);
-							$('#' + card).flip();
+							element.find('#' + card).flip();
+
+							cards[card].style = {
+								left: left
+							}
 
 							left += scope.margin;
 						}
 
-						$('.cards-group').css('width', left + 50 + 'px');
+						scope.groupStyle = {
+							width: left + scope.groupMarginRight
+						}
 					})
 				});
 			}
@@ -1891,7 +1902,9 @@ angular.module('gridTaskApp')
 			},
 			templateUrl: templatesPath + 'directive-templates/mouse-over.html',
 			link: function (scope, element, attrs) {
-				element.find('.mouse-over').css('visibility', 'hidden');
+				scope.style = {
+					visibility: 'hidden'
+				}
 
 				if (scope.parentTop === undefined) {
 					scope.parentTop = 0;
@@ -1899,20 +1912,19 @@ angular.module('gridTaskApp')
 
 				$timeout(function () {
 					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < $(window).height()) {
-						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px');
+						scope.style.top = ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px';
 					}
 					else {
-						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px');
+						scope.style.top = ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px';
 					}
 
 					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < $(window).width()) {
-						element.find('.mouse-over').css('left', ($.cursorMessageData.mouseX + 10) + 'px');
+						scope.style.left = ($.cursorMessageData.mouseX + 10) + 'px';
 					}
 					else {
-						element.find('.mouse-over').css('left', $(window).width() - element.find('.mouse-over').width() - 10 + 'px');
+						scope.style.left = $(window).width() - element.find('.mouse-over').width() - 10 + 'px';
 					}
-
-					element.find('.mouse-over').css('visibility', 'visible');
+					scope.style.visibility = 'visible'
 				});
 
 			}
@@ -1968,63 +1980,27 @@ angular.module('gridTaskApp')
     });
 ///#source 1 1 /app/directives/overlay/overlay.js
 angular.module('gridTaskApp')
-	.directive('overlay', ['$timeout', function ($timeout) {
+	.directive('overlay', ['$timeout', 'templatesPath', function ($timeout, templatesPath) {
 		return {
 			restrict: 'EAC',
 			scope: {
-				state: '=overlayState',
-				style: '=overlayStyle',
 				selectors: '=',
 				toggleMinWidth: '='
 			},
 			controller: 'overlayCtrl',
+			templateUrl: templatesPath + 'directive-templates/overlay.html',
+			transclude: true,
+			replace: true,
 			link: function (scope, element, attrs) {
 				$timeout(function () {
 					scope.$watch('state', function (state) {
-						if (state) {
-							if (getWindowWidth() + 650 > 1750) {
-								scope.style = { 'left': '650px' }
-							}
-							else {
-								scope.style = { 'left': '0' };
-							}
-						}
-						else {
-							if (scope.style.left != getWindowWidth() - scope.toggleMinWidth + 'px') {
-								scope.style = { 'left': getWindowWidth() - scope.toggleMinWidth + 'px', 'overflow': 'hidden' }
-							}
-
-							element.scrollTop(0);
-						}
+						scope.setToggle();
 					});
-
-					scope.setToggle();
 				});
 
 				$(window).resize(function () {
-					if (scope.state) {
-						if (getWindowWidth() + 650 > 1750) {
-							scope.style = {
-								'left': '650px',
-								'transition': 'none'
-							}
-						}
-						else {
-							scope.style = {
-								'left': '0',
-								'transition': 'none'
-							}
-						}
-					}
-					else {
-						scope.style = {
-							'left': getWindowWidth() - scope.toggleMinWidth + 'px',
-							'transition': 'none',
-							'overflow': 'hidden'
-						}
-					}
-
-					scope.setToggle();
+					scope.setToggle(true);
+					scope.style.transition = 'none';
 					scope.$apply();
 				});
 			}
@@ -2434,12 +2410,13 @@ var Counter = (function () {
 })();
 ///#source 1 1 /app/entities/initializer.js
 var Initializer = (function () {
-	function Initializer(scope, element, CONTENT, templatesPath, $compile) {
+	function Initializer(scope, element, CONTENT, templatesPath, $compile, jsonService) {
 		this.scope = scope;
 		this.element = element;
 		this.content = CONTENT;
 		this.templatesPath = templatesPath;
 		this.$compile = $compile;
+		this.jsonService = jsonService;
 	}
 
 	Initializer.prototype.init = function () {
@@ -2466,47 +2443,13 @@ var Initializer = (function () {
 		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
 		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
-		this.scope.sankeyData = {
-			"links": [
-				{ "source": "View video", "target": "Log in", "value": "1" },
-				{ "source": "View video", "target": "Add to Cart", "value": "1.5" },
-				{ "source": "Ad Imression", "target": "Log in", "value": "1" },
-				{ "source": "Ad Imression", "target": "Ad Click", "value": "1" },
-				{ "source": "Ad Click", "target": "Log in", "value": ".75" },
-				{ "source": "Log in", "target": "Purchase Complete", "value": "1" },
-				{ "source": "Add to Cart", "target": "Purchase Complete", "value": "1" },
-				{ "source": "Add to Cart", "target": "Carting", "value": 1 },
-				{ "source": "Carting", "target": "Init", "value": 0.5 },
-				{ "source": "Carting", "target": "Log out", "value": 0.5 },
-				{ "source": "Log out", "target": "Log in", "value": 1 },
-				{ "source": "Log in", "target": "Information", "value": 1 },
-				{ "source": "Information", "target": "Examination", "value": 1 }
-			],
-			"nodes": [
-				{ "name": "View video", "color": "rgb(62,145,95)", "transform": "0,0", "mx": "0", "my": "0", "val": "50" },
-				{ "name": "Log in", "color": "rgb(133,133,133)", "transform": "445,0", "mx": "445", "my": "0", "val": "65" },
-				{ "name": "Ad Imression", "color": "rgb(211,46,53)", "transform": "0,415.55555555555554", "mx": "0", "my": "415.55555555555554", "val": "15" },
-				{ "name": "Ad Click", "color": "rgb(20,0,254)", "transform": "699,567.7777777777778", "mx": "699", "my": "567.7777777777778", "val": "20" },
-				{ "name": "Add to Cart", "color": "rgb(157,226,141)", "transform": "827,333.18181818181824", "mx": "827", "my": "333.18181818181824", "val": "30" },
-				{ "name": "Purchase Complete", "color": "rgb(20,58,173)", "transform": "1118,405.55555555555554", "mx": "1118", "my": "405.55555555555554", "val": "12" },
-				{ "name": "Carting", "color": "rgb(123,20,56)", "transform": "1172,3.6327926195491926", "mx": "1172", "my": "3.6327926195491926", "val": "55" },
-				{ "name": "Init", "color": "rgb(0,23,76)", "transform": "1390,82.6327926195492", "mx": "1390", "my": "82.6327926195492", "val": "65" },
-				{ "name": "Log out", "color": "rgb(78,66,12)", "transform": "756,0", "mx": "756", "my": "0", "val": "23" },
-				{ "name": "Information", "color": "rgb(66,66,66)", "transform": "1060,162.6327926195492", "mx": "1060", "my": "162.6327926195492", "val": "33" },
-				{ "name": "Examination", "color": "rgb(12,51,128)", "transform": "1455,390.63279261954915", "mx": "1455", "my": "390.63279261954915", "val": "76" }
-			]
-		};
-		this.scope.histogramData = [{ name: "1", value: 100000 },
-							{ name: "2", value: 150000 },
-							{ name: "3", value: 170000 },
-							{ name: "4", value: 300000 },
-							{ name: "5", value: 350000 },
-							{ name: "6", value: 400000 },
-							{ name: "7", value: 500000 },
-							{ name: "8", value: 550000 },
-							{ name: "9", value: 600000 },
-							{ name: "10", value: 700000 }];
 
+		this.jsonService.get('data/sankey/my-graphs.json').then(function (data) {
+			this.scope.sankeyData = data;
+		}.bind(this));
+		this.jsonService.get('data/histogram/default.json').then(function (data) {
+			this.scope.histogramData = data;
+		}.bind(this));
 	};
 
 	Initializer.prototype.initSankeyContentOpt = function () {
@@ -2581,16 +2524,9 @@ var Initializer = (function () {
 		}
 
 		if (this.scope.histogramData === undefined) {
-			this.scope.histogramData = [{ name: "1", value: 100000 },
-							{ name: "2", value: 150000 },
-							{ name: "3", value: 170000 },
-							{ name: "4", value: 300000 },
-							{ name: "5", value: 350000 },
-							{ name: "6", value: 400000 },
-							{ name: "7", value: 500000 },
-							{ name: "8", value: 550000 },
-							{ name: "9", value: 600000 },
-							{ name: "10", value: 700000 }];
+			this.jsonService.get('data/histogram/default.json').then(function (data) {
+				this.scope.histogramData = data;
+			}.bind(this));
 		}
 	};
 

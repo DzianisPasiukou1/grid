@@ -218,6 +218,7 @@
     <Content Include="app\localization\locations\locations-en.js" />
     <Content Include="app\localization\locations\locations-ru.js" />
     <Content Include="app\localization\translation.js" />
+    <Content Include="app\services\json-service.js" />
     <Content Include="app\services\my-template-service.js" />
     <Content Include="app\services\navigation-tree-service.js" />
     <Content Include="app\templates\directive-templates\chart-segment.html" />
@@ -229,6 +230,7 @@
     <Content Include="app\templates\directive-templates\histogram.html" />
     <Content Include="app\templates\directive-templates\kx-nav-bar.html" />
     <Content Include="app\templates\directive-templates\mouse-over.html" />
+    <Content Include="app\templates\directive-templates\overlay.html" />
     <Content Include="app\templates\directive-templates\page-content-d3.html" />
     <Content Include="azure-app\config\routes.js" />
     <Content Include="app\directives\cards\cards-controller.js" />
@@ -2385,6 +2387,7 @@
     <Content Include="css\modules\_ui-grid.scss" />
     <Content Include="css\common\_upload.scss" />
     <Content Include="css\partials\_debug.scss" />
+    <Content Include="data\histogram\default.json" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="karma.conf.js" />

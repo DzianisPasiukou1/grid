@@ -11,8 +11,11 @@
 			link: function (scope, element, attrs) {
 				if (scope.contentOptions.enableDebugging) {
 					$timeout(function () {
-						$('#' + scope.contentOptions.debugCard.id).css('left', 40);
-						$('#' + scope.contentOptions.debugCard.id).flip();
+						element.find('#' + scope.contentOptions.debugCard.id).flip();
+
+						scope.contentOptions.debugCard.style = {
+							left: scope.startLeft
+						}
 					});
 				}
 
@@ -20,20 +23,25 @@
 					scope.cards = scope.cardsOptions.cards;
 
 					$timeout(function () {
-						var left = 40;
+						var left = scope.startLeft;
 
 						if (scope.contentOptions.enableDebugging) {
 							left += scope.margin;
 						}
 
 						for (var card in cards) {
-							$('#' + card).css('left', left);
-							$('#' + card).flip();
+							element.find('#' + card).flip();
+
+							cards[card].style = {
+								left: left
+							}
 
 							left += scope.margin;
 						}
 
-						$('.cards-group').css('width', left + 50 + 'px');
+						scope.groupStyle = {
+							width: left + scope.groupMarginRight
+						}
 					})
 				});
 			}

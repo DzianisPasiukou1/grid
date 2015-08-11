@@ -1,21 +1,21 @@
-﻿<div class="mouse-over">
-	<div class="mouse-over-simple" ng-show="type.isSimple">
+﻿<div class="mouse-over" ng-style="style">
+	<div class="mouse-over-simple" ng-if="type.isSimple">
 		<div class="mouse-over-simple__header">
 			<span class="mouse-over-simple__header__text">{{value.header | translate}}</span>
 		</div>
 		<div class="mouse-over-simple__body">
 			<div ng-repeat="val in value.data" class="mouse-over-simple__body__value">
-				<span class="mouse-over-simple__body__value__text">Campaing ID: {{val.campaignId}}</span>
-				<span class="mouse-over-simple__body__value__text">Ad ID: {{val.adId}}</span>
+				<span class="mouse-over-simple__body__value__text">{{::'Campaing ID' | translate}}: {{val.campaignId}}</span>
+				<span class="mouse-over-simple__body__value__text">{{::'Ad ID' | translate}}: {{val.adId}}</span>
 			</div>
 		</div>
 	</div>
-	<div class="mouse-over-medium" ng-show="type.isMedium">
+	<div class="mouse-over-medium" ng-if="type.isMedium">
 		<div class="mouse-over-medium__header">
 			<span class="mouse-over-simple__medium__text">{{value.header | translate}}</span>
 		</div>
 		<div class="mouse-over-medium__body">
-			<div class="mouse-over-medium__body__blockSegm" style="float:left">
+			<div class="mouse-over-medium__body__blockSegm" ng-style="{float: 'left'}">
 				<span class="mouse-over-medium__body__header">
 					{{:: 'topSegments' | translate}}
 				</span>
@@ -23,7 +23,7 @@
 					<span class="mouse-over-medium__body__value__text">{{prop | translate}}</span>
 				</div>
 			</div>
-			<div class="mouse-over-medium__body__blockCampaing" style="float:right">
+			<div class="mouse-over-medium__body__blockCampaing" ng-style="{float: 'right'}">
 				<span class="mouse-over-medium__body__header">
 					{{:: 'topCampaigns' | translate}}
 				</span>
@@ -32,5 +32,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="mouse-over-custom" ng-if="type.isCustom">
+		<div ng-if="type.templateUrl" ng-include="type.templateUrl">
+		</div>
+		<div ng-if="!type.templateUrl" gr-template="type.template" gr-name="mouseOverTemplate"></div>
 	</div>
 </div>

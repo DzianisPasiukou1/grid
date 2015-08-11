@@ -11,7 +11,7 @@
 			this.callbackValue = 100;
 		}
 
-		element = compile('<checkbox-select options="options"></checkbox-select>')(scope);
+		element = compile('<div checkbox-select="options"></div>')(scope);
 		scope.$digest();
 
 		elementScope = element.isolateScope();

@@ -87,45 +87,311 @@
 		{ "source": "Waste water - Other Waste", "target": "Nitrous Oxide", "value": "0.3" }
 	],
 	"nodes": [
-		{ "name": "Energy" },
-		{ "name": "Industrial Processes" },
-		{ "name": "Electricity and heat" },
-		{ "name": "Industry" },
-		{ "name": "Land Use Change" },
-		{ "name": "Agriculture" },
-		{ "name": "Waste" },
-		{ "name": "Transportation" },
-		{ "name": "Other Fuel Combustion" },
-		{ "name": "Fugitive Emissions" },
-		{ "name": "Road" },
-		{ "name": "Air" },
-		{ "name": "Rail - Ship and Other Transport" },
-		{ "name": "Residential Buildings" },
-		{ "name": "Commercial Buildings" },
-		{ "name": "Unallocated Fuel Combustion" },
-		{ "name": "Iron and Steel" },
+		{
+			"name": "Energy",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Industrial Processes",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Electricity and heat",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Industry",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Land Use Change",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Agriculture",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Waste",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Transportation",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Other Fuel Combustion",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Fugitive Emissions",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Road",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Air",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Rail - Ship and Other Transport",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Residential Buildings",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Commercial Buildings",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Unallocated Fuel Combustion",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Iron and Steel",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
 		{ "name": "Aluminium Non-Ferrous Metals" },
 		{ "name": "Machinery" },
-		{ "name": "Pulp - Paper and Printing" },
-		{ "name": "Food and Tobacco" },
-		{ "name": "Chemicals" },
-		{ "name": "Cement" },
-		{ "name": "Other Industry" },
-		{ "name": "T and D Losses" },
-		{ "name": "Coal Mining" },
-		{ "name": "Oil and Gas Processing" },
-		{ "name": "Deforestation" },
-		{ "name": "Harvest \/ Management" },
-		{ "name": "Agricultural Energy Use" },
-		{ "name": "Agriculture Soils" },
-		{ "name": "Livestock and Manure" },
-		{ "name": "Rice Cultivation" },
-		{ "name": "Other Agriculture" },
-		{ "name": "Landfills" },
-		{ "name": "Waste water - Other Waste" },
-		{ "name": "Carbon Dioxide" },
-		{ "name": "HFCs - PFCs" },
-		{ "name": "Methane" },
-		{ "name": "Nitrous Oxide" }
+		{
+			"name": "Pulp - Paper and Printing",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Food and Tobacco",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Chemicals",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Cement",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Other Industry",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "T and D Losses",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Coal Mining",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Oil and Gas Processing",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Deforestation",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Harvest \/ Management",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Agricultural Energy Use",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Agriculture Soils",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Livestock and Manure",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Rice Cultivation",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Other Agriculture",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Landfills",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Waste water - Other Waste",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Carbon Dioxide",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "HFCs - PFCs",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Methane",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		},
+		{
+			"name": "Nitrous Oxide",
+			"mouseover": {
+				"type": { "isSimple": "true" },
+				"header": "Video: ID: 124856",
+				"data": [ { "campaignId": "657H836", "adId": "904743" }, { "campaignId": "657H836", "adId": "904743" } ]
+			}
+		}
 	]
 }

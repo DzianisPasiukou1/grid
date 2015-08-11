@@ -1,5 +1,5 @@
-﻿<div class="cards-group">
-	<div class="my-card" id="{{contentOptions.debugCard.id}}" ng-if="contentOptions.enableDebugging">
+﻿<div class="cards-group" ng-style="groupStyle">
+	<div class="my-card" id="{{contentOptions.debugCard.id}}" ng-if="contentOptions.enableDebugging" ng-style="contentOptions.debugCard.style">
 		<div class="front">
 			<div class="my-card__header">
 				<span class="my-card__header__icon card-font icon-info"></span>
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="my-card" ng-repeat="(id, card) in cards" id="{{id}}">
+	<div class="my-card" ng-repeat="(id, card) in cards" id="{{id}}" ng-style="card.style">
 		<div class="front">
 			<div class="my-card__header">
 				<span class="my-card__header__icon card-font icon-info"></span>

@@ -1,7 +1,7 @@
 ﻿<div class="page-content">
 	<div class="page-content__header">
 		<div class="page-content__options">
-			<content-options-d3 options="contentOptions" filters="filters"></content-options-d3>
+			<div content-options-d3 options="contentOptions" filters="filters"></div>
 		</div>
 		<div class="page-content__cards" cards="cardsOptions" content-options="contentOptions">
 		</div>
@@ -9,7 +9,9 @@
 	<div class="page-content__body">
 		<div class="page-content__list">
 			<div class="core-diagram" core-diagram="{}" sankey-data="sankeyData"></div>
-			<div class="histogram-content" histogram histogram-data="histogramData"></div>
+			<div overlay>
+				<div class="histogram-content" histogram histogram-data="histogramData"></div>
+			</div>
 		</div>
 	</div>
 </div>

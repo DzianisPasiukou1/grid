@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('overlayCtrl', ['$scope', '$element', 'OVERLAY', function ($scope, $element, OVERLAY) {
+	.controller('overlayCtrl', ['$scope', 'OVERLAY', '$timeout', function ($scope, OVERLAY, $timeout) {
 		if ($scope.selectors === undefined) {
 			$scope.selectors = {};
 		}
@@ -26,21 +26,42 @@
 			overflow: 'hidden'
 		};
 
-		$scope.setToggle = function () {
-			var size = 10;
-			var min = 300;
+		$scope.setToggle = function (isResize) {
+			$timeout(function () {
+				if ($scope.state) {
+					if (getWindowWidth() + 650 > 1750) {
+						$scope.style = {
+							'left': '650px'
+						}
+					}
+					else {
+						$scope.style = {
+							'left': '0'
+						}
+					}
+				}
+				else {
+					$scope.style = {
+						'left': getWindowWidth() - $scope.toggleMinWidth + 'px',
+						'overflow': 'hidden'
+					}
 
-			if ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size > min) {
-				$element.css({
-					'min-height': ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size) + 'px',
-					'top': $($scope.selectors.heighterSelector).offset().top + 'px'
-				});
-			}
-			else {
-				$element.css({
-					'min-height': $(window).height() - $($scope.selectors.alignTopSelector).offset().top - 8 + 'px',
-					'top': $($scope.selectors.alignTopSelector).offset().top + 'px'
-				});
-			}
+					if ($scope.state === undefined || isResize) {
+						$scope.style.transition = 'none';
+					}
+				}
+
+				var size = 10;
+				var min = 300;
+
+				if ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size > min) {
+					$scope.style.minHeight = ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size) + 'px';
+					$scope.style.top = $($scope.selectors.heighterSelector).offset().top + 'px';
+				}
+				else {
+					$scope.style.minHeight = $(window).height() - $($scope.selectors.alignTopSelector).offset().top - 8 + 'px';
+					$scope.style.top = $($scope.selectors.alignTopSelector).offset().top + 'px';
+				}
+			})
 		}
 	}]);

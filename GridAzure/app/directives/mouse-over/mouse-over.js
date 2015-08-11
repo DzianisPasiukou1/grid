@@ -9,7 +9,9 @@
 			},
 			templateUrl: templatesPath + 'directive-templates/mouse-over.html',
 			link: function (scope, element, attrs) {
-				element.find('.mouse-over').css('visibility', 'hidden');
+				scope.style = {
+					visibility: 'hidden'
+				}
 
 				if (scope.parentTop === undefined) {
 					scope.parentTop = 0;
@@ -17,20 +19,19 @@
 
 				$timeout(function () {
 					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < $(window).height()) {
-						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px');
+						scope.style.top = ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px';
 					}
 					else {
-						element.find('.mouse-over').css('top', ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px');
+						scope.style.top = ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px';
 					}
 
 					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < $(window).width()) {
-						element.find('.mouse-over').css('left', ($.cursorMessageData.mouseX + 10) + 'px');
+						scope.style.left = ($.cursorMessageData.mouseX + 10) + 'px';
 					}
 					else {
-						element.find('.mouse-over').css('left', $(window).width() - element.find('.mouse-over').width() - 10 + 'px');
+						scope.style.left = $(window).width() - element.find('.mouse-over').width() - 10 + 'px';
 					}
-
-					element.find('.mouse-over').css('visibility', 'visible');
+					scope.style.visibility = 'visible'
 				});
 
 			}
