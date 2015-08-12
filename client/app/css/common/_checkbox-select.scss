@@ -1,0 +1,42 @@
+﻿.checkbox-select {
+	display: inline;
+
+	&__btn {
+		@extend .metro-btn;
+		display: inline;
+		padding-left:35px;
+	}
+
+	&__check {
+		@extend .metro-checkbox;
+		margin-left: 0 !important;
+		display: inline;
+		position: relative;
+		bottom: 3px;
+		left: 30px;
+		z-index: 100;
+	}
+
+	&__input-control {
+		@extend .input-control;
+		@extend .checkbox;
+
+		&__span {
+			@extend .check;
+			position: absolute;
+			display: inline;
+			top: 10px;
+		}
+	}
+
+
+	&__expand {
+		@extend .expand;
+		position: relative;
+	}
+
+	&__list {
+		@extend .my-dropdown__list;
+		left: 17px;
+	}
+}

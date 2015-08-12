@@ -1,0 +1,10 @@
+﻿<button class="date-btn" ng-click="close()">
+	<span class="date-btn__icon glyph-calendar"></span>
+	<span class="date-btn__text">{{opt.startDate | date}} - {{opt.endDate | date}}</span>
+	<button class="date-btn__toggle" ng-click="toggle()" ng-class="{'opened': isShow}">
+		<span class="expand" ng-class="{ 'icon-menu-up': isShow, 'icon-menu-down': !isShow }">
+		</span>
+	</button>
+	<div class="date-btn__datepicker" ng-if="isShow">
+	</div>
+</button>

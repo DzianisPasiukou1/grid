@@ -6,3 +6,8 @@ client/bower_components
 dist
 /server/config/local.env.js
 npm-debug.log
+/bin
+/obj
+/Properties
+/grid.csproj
+/grid.sln.GhostDoc.xml

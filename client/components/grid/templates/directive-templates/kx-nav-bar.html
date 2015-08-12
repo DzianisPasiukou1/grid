@@ -1,0 +1,31 @@
+﻿<nav class="kx-nav row-fluid">
+	<div class="span12">
+		<div class="row-fluid">
+			<div class="kx-menu span8" ng-controller="NavigationCtrl" kx-menu>
+				<a class="brand kx-navbar-icon" href="#"><img src="../../../css/images/main-logo-k-only.png" class="main-logo"></a>
+				<ul>
+					<li ng-repeat="node in navigationTree">
+						<a href="#">{{node.name}}</a>
+						<div class="kx-submenu">
+							<div class="kx-submenu-inner">
+								<div ng-repeat="subNode in node.nodes">
+									<h4 ng-if="subNode.nodes">{{subNode.name | translate}}</h4>
+									<ul ng-if="subNode.nodes">
+										<li ng-repeat="path in subNode.nodes">
+											<a href="#">{{path.name | translate}}</a>
+										</li>
+									</ul>
+									<ul ng-if="!subNode.nodes">
+										<li>
+											<a href="#">{{subNode.name | translate}}</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>

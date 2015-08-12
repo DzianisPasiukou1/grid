@@ -1,0 +1,15 @@
+﻿angular.module('gridExpressApp')
+	.controller('chartSegmentCtrl', ['$scope', function ($scope) {
+		$scope.panel = {
+			header: {
+				text: 'Selected Users'
+			},
+			btn: {
+				text: 'Create Segment'
+			}
+		}
+
+		$scope.deleteUser = function (user, index) {
+			$scope.selectedUsers.splice(index, 1);
+		}
+	}]);

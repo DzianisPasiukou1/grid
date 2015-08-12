@@ -1,0 +1,12 @@
+﻿.dynamic-dropdown {
+	display: inline;
+
+	.dynamic-actions {
+		display: inline;
+
+		&__btn {
+			@extend .metro-btn;
+			margin-right: 10px;
+		}
+	}
+}

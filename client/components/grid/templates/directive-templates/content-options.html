@@ -1,0 +1,13 @@
+﻿<div class="options">
+	<div class="options__block">
+		<div checkbox-select="options.checks.options" class="options__check"></div>
+		<button class="options__refresh" ng-click="options.refresh()">Refresh</button>
+		<div dropdown="options.mores.options" class="options__more"></div>
+		<upload class="options__upload" ng-show="options.upload" upload-callback="options.upload"></upload>
+	</div>
+	<div class="options__filter">
+		<search class="options__search" search-value="options.searchValue"></search>
+		<split-button class="options__show" actions="options.searchOptions" selected="options.show" search="options.searchValue"></split-button>
+		<div class="options__filt" filter="options.filterOptions" on-filtrate="options.filtrate"></div>
+	</div>
+</div>

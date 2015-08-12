@@ -1,0 +1,14 @@
+﻿%upload {
+	label {
+		padding-top: 8px;
+		@extend .metro-btn;
+	}
+
+	input {
+		position: absolute;
+		top: -9999px;
+	}
+
+	margin-right: 10px;
+	position: relative;
+}

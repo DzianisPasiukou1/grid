@@ -1,0 +1,36 @@
+﻿.custom-overlay {
+	background-color: $white;
+	position: fixed;
+	top: 0;
+	right: 0;
+	overflow: auto;
+	transition: all linear 0.5s;
+	border: 2px solid $kx-blue;
+	overflow: auto;
+	height: 0;
+	z-index: 1000000;
+
+	&__toggle {
+		display: inline;
+		float: left;
+		height: 99%;
+
+		&__name {
+			font-size: 20px;
+		}
+
+		.glyphicon {
+			padding-bottom: 100%;
+			font-size: 16px;
+			padding-top: 30px;
+			padding-right: 10px;
+			height: 100%;
+			cursor: pointer;
+			padding-left: 4px;
+
+			&:hover {
+				color: #5ccefd;
+			}
+		}
+	}
+}

@@ -1,0 +1,219 @@
+﻿.kx-nav {
+	background: $kx-blue;
+	border-bottom: 5px solid $kx-blue;
+	height: 48px;
+
+	@media (min-width: 1200px) {
+		.row-fluid .span7 {
+			width: 57.26496%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.row-fluid .span8 {
+			width: 65.81197% !important;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.row-fluid .span4 {
+			width: 31.62393% !important;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.row-fluid [class*="span"] {
+			display: block;
+			width: 100%;
+			min-height: 30px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			float: left;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.row-fluid .span7 {
+			width: 57.26496%;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.row-fluid .span5 {
+			width: 40.17094%;
+			margin-left: 2%;
+		}
+	}
+}
+
+.menu-util .account-util > a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.row-fluid {
+	width: 100%;
+}
+
+.menu-util .account-util .account-util-menu {
+	background: $light-white;
+	display: none;
+	position: absolute;
+	left: 0;
+}
+
+.menu-util .account-util.open .account-util-menu {
+	border-bottom: 5px solid $kx-blue;
+	display: block !important;
+	margin-top: 13px;
+	width: 100%;
+	z-index: 500;
+}
+
+.menu-util .account-util.open {
+	background: $light-white;
+}
+
+.menu-util .account-util.open > a {
+	color: #3e4549;
+}
+
+.menu-util .account-util .caret {
+	border-bottom-color:$light-white;
+	border-top-color: $light-white;
+}
+
+.kx-menu .kx-menu-selected a {
+	color: #5ccefd;
+	font-weight: 600;
+}
+
+nav {
+	display: block;
+}
+
+.kx-menu .kx-navbar-icon {
+	float: left;
+	padding: 10px;
+}
+
+.kx-menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+	ul {
+		list-style: none;
+		margin-left: 0;
+	}
+
+	ul, ol {
+		padding: 0;
+	}
+}
+
+
+
+.menu-util .account-util {
+	margin: 0;
+	min-width: 110px;
+	padding: 1em 2em;
+}
+
+.menu-util .account-util.open .account-util-menu a {
+	color: #3e4549;
+	font-weight: 600;
+	line-height: 35px;
+	padding: 1em 2em;
+
+	&:hover {
+		text-decoration: none;
+		color: #008CC5 !important;
+	}
+}
+
+.kx-menu > ul > li {
+	display: inline-block;
+	line-height: 20px;
+}
+
+.kx-menu > ul > li > a {
+	color: #fff;
+	display: inline-block;
+	font-weight: 500;
+	padding: 1em 1.5em;
+	text-decoration: none;
+	font-family: Open Sans,sans-serif;
+	font-size: 14px;
+}
+
+.menu-util .org-switcher-off {
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	color: #fff;
+	margin-top: 10px;
+	padding: 3px 10px;
+}
+
+.kx-menu-open .kx-submenu {
+	display: block !important;
+	padding-bottom: 15px;
+	border-bottom: 5px solid #0A2841;
+	z-index: 500;
+}
+
+.kx-menu .kx-submenu {
+	background: #fff;
+	display: none;
+	position: absolute;
+}
+
+.kx-menu .kx-submenu-inner > div {
+	float: left;
+	padding: 1em 2em 0;
+}
+
+.kx-menu .kx-submenu h4 {
+	color: #008CC5;
+	font-size: 160%;
+	font-weight: 100;
+}
+
+.kx-menu .kx-submenu-inner > div ul {
+	margin-top: 20px;
+}
+
+.kx-menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kx-menu > ul > li.kx-menu-open a, .kx-menu > ul > li.kx-menu-open > a:hover {
+	background: #fff;
+	color: #3e4549;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.kx-menu .kx-submenu-inner > div a {
+	line-height: 35px;
+}
+
+.kx-menu .kx-submenu-inner > div a:hover {
+	color: #1a9bd1;
+}
+
+.icon-user {
+	background-position: -168px 0;
+}
+
+.menu-util .account-util {
+	margin: 0;
+	min-width: 110px;
+	padding: 1em 2em;
+}

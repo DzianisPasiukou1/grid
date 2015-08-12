@@ -64,7 +64,8 @@ module.exports = function (grunt) {
       },
       injectCss: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/*.css'
+          '<%= yeoman.client %>/{app,components}/**/*.css',
+		  '<%= yeoman.client %>/{assets}/**/*.css'
         ],
         tasks: ['injector:css']
       },
@@ -91,7 +92,8 @@ module.exports = function (grunt) {
           
           '!{.tmp,<%= yeoman.client %>}{app,components}/**/*.spec.js',
           '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
-          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+		  '<%= yeoman.client %>/{assets}/**/*.css'
         ],
         options: {
           livereload: true
@@ -493,7 +495,8 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css'
+            '<%= yeoman.client %>/{app,components}/**/*.css',
+		  '<%= yeoman.client %>/{assets}/**/*.css'
           ]
         }
       }

@@ -1,15 +1,78 @@
 'use strict';
 
+
+
 angular.module('gridExpressApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'btford.socket-io',
-  'ui.router'
+  'ui.router',
+  'ngGrid',
+  'ui.grid',
+  'ui.grid.selection',
+  'ui.grid.expandable',
+  'ui.select2',
+  'pascalprecht.translate'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   	$urlRouterProvider
       .otherwise('/');
+
+  	$stateProvider.state('standartOne', {
+  		url: '/standartOne',
+  		templateUrl: 'app/templates/grids/grid-standart-one.html',
+  		controller: 'gridStandartOneCtrl'
+  	})
+		.state('standartTwo', {
+			url: '/standartTwo',
+			templateUrl: 'app/templates/grids/grid-standart-two.html',
+			controller: 'gridStandartTwoCtrl'
+		})
+		.state('withDetailsTemplate', {
+			url: '/withDetailsTemplate',
+			templateUrl: 'app/templates/grids/grid-with-details-template.html',
+			controller: 'gridWithDetailsCtrl'
+		})
+		.state('withUpload', {
+			url: '/withUpload',
+			templateUrl: 'app/templates/grids/grid-with-upload.html',
+			controller: 'gridUploadCtrl'
+		})
+		.state('withLoading', {
+			url: '/withLoading',
+			templateUrl: 'app/templates/grids/grid-with-loading.html',
+			controller: 'gridLoadingCtrl'
+		})
+		.state('testing', {
+			url: '/testing',
+			templateUrl: 'app/templates/grids/grid-testing.html',
+			controller: 'gridTestingCtrl',
+			controllerAs: 'ctrl'
+		})
+		.state('withMenu', {
+			url: '/withMenu',
+			templateUrl: 'app/templates/grids/grid-with-menu.html',
+			controller: 'gridWithMenuCtrl'
+		})
+		.state('withCards', {
+			url: '/withCards',
+			templateUrl: 'app/templates/grids/grid-with-cards.html',
+			controller: 'gridWithCardsCtrl'
+		})
+		.state('withDiagrams', {
+			url: '/withDiagrams',
+			templateUrl: 'app/templates/grids/grid-d3.html',
+			controller: 'gridD3Ctrl'
+		})
+		.state('download', {
+			url: '/download',
+			templateUrl: 'app/templates/download.html'
+		})
+  	.state('navigation', {
+  		url: '/',
+  		templateUrl: 'app/templates/navigation.html'
+  	});
 
   	$locationProvider.html5Mode(true);
   	$httpProvider.interceptors.push('authInterceptor');
@@ -51,4 +114,5 @@ angular.module('gridExpressApp', [
   			}
   		});
   	});
-  });
+  }).value('templatesPath', 'components/grid/templates/');
+

@@ -1,0 +1,135 @@
+﻿.page-content-d3 {
+	min-width: 0 !important;
+
+	@media only screen and (max-width: 912px) {
+		.page-content {
+			&__header {
+				height: 360px !important;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 680px) {
+		.page-content {
+			&__header {
+				height: 400px !important;
+			}
+		}
+	}
+
+	.page-content {
+		overflow: hidden;
+		border: 0;
+		font-size: $font-size;
+		font-family: $helvetica-family;
+
+		&__uploader {
+			margin-bottom: 10px;
+		}
+
+		&__header {
+			height: 315px;
+			border: 0 !important;
+			background-color: rgb(215, 225, 231) !important;
+			border-top: 5px solid $kx-blue !important;
+		}
+
+		&__cards {
+			background-color: rgb(231,238,242);
+		}
+
+		&__actions {
+			margin-top: 4px;
+
+			&__export {
+
+				.my-dropdown {
+					&__list {
+						right: 19px !important;
+						left: auto !important;
+						min-width: 200px;
+					}
+				}
+			}
+		}
+
+		&__options {
+			@extend %sankey-options;
+
+			.options {
+				padding-top: 5px !important;
+
+				@media only screen and (max-width: 912px) {
+					display: block;
+
+					&__block {
+						float: left;
+					}
+
+					&__select {
+						@include select('912px');
+					}
+
+					.select2-container {
+						display: inline-block;
+					}
+				}
+
+				@media only screen and (max-width: 680px) {
+
+					&__select {
+						@include select('680px');
+					}
+
+					.select2-container {
+						display: block;
+						margin-bottom: 10px;
+					}
+				}
+
+				&__block {
+					float: left;
+					margin-right: 10px;
+					margin-left: 10px;
+				}
+
+				&__select {
+					@include select('');
+
+					@include select2-container;
+				}
+
+				&__event {
+					margin-right: 15px;
+					min-width: 200px;
+				}
+
+				&__segments {
+					margin-right: 5px;
+					min-width: 200px;
+				}
+
+				&__campaign {
+					margin-right: 15px;
+					min-width: 200px;
+				}
+			}
+		}
+
+		&__list {
+			margin-top: 15px;
+			overflow: hidden;
+			height: auto;
+		}
+
+		&__cards {
+			@extend %sankey-cards;
+		}
+
+		&__footer {
+			@extend .footer;
+			border: $small-row-grey-border;
+			min-height: 0 !important;
+		}
+	}
+}

@@ -1,0 +1,97 @@
+﻿.custom-ui-grid {
+	padding: 0;
+	height: 600px;
+	width: 100%;
+
+	@media only screen and (max-width: 863px) {
+		margin-top: 80px;
+	}
+
+	.ui-grid-header-cell-row {
+		@include ui-grid-header-cell-row;
+	}
+
+	.ui-grid-header-canvas {
+		@include ui-grid-header-canvas;
+	}
+
+	.ui-grid-header-viewport{
+		@include ui-grid-header-viewport;
+	}
+
+	.ui-grid-header-cell {
+		@include ui-grid-header-cell;
+	}
+
+	.ui-grid-cell-contents {
+		@include ui-grid-cell-contents;
+	}
+
+	.ui-grid-viewport {
+		@include ui-grid-viewport;
+	}
+
+	.ui-grid-row {
+		@include ui-grid-row;
+	}
+
+	.ui-grid-cell {
+		@include ui-grid-cell;
+	}
+
+	.ui-grid-icon-down-dir {
+		&:before {
+			@include ui-grid-icon-down-dir-before;
+		}
+	}
+
+	.ui-grid-icon-up-dir {
+		&:before {
+			@include ui-grid-icon-up-dir-before;
+		}
+	}
+
+	.ui-grid-icon-blank::before {
+		@include ui-grid-icon-blank-before;
+	}
+
+	.ui-grid-menu-button {
+		@include ui-grid-menu-button;
+
+		.ui-grid-menu {
+			@include ui-grid-menu;
+		}
+
+		.ui-grid-icon-menu {
+			@include ui-grid-icon-menu;
+		}
+
+		.ui-grid-menu-mid {
+			@include ui-grid-menu-mid;
+		}
+
+		.ui-grid-menu-item {
+			@include ui-grid-menu-item;
+		}
+	}
+
+	.cell-details {
+		padding-top: 10px;
+	}
+
+	.grid-footer {
+		@include grid-footer;
+	}
+
+	.action {
+		position: relative;
+		top: 5px;
+		left: 10px;
+		text-align: left;
+	}
+
+	.details-template {
+		position: relative;
+		border: 0;
+	}
+}

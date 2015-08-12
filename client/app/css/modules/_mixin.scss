@@ -1,0 +1,82 @@
+﻿@mixin font($queryString) {
+	font-family: $queryString;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin gradiend-background($pos, $col1, $col2) {
+	background: -webkit-linear-gradient($pos, $col1,$col2);
+	background: -o-linear-gradient($pos, $col1, $col2);
+	background: -moz-linear-gradient($pos, $col1, $col2);
+	background: linear-gradient($pos, $col1, $col2);
+}
+
+@mixin media($queryString) {
+	@media #{$queryString} {
+		@CONTENT;
+	}
+}
+
+@mixin metro-check() {
+	position: absolute;
+	vertical-align: middle;
+	color: transparent;
+	font-size: 0;
+	CONTENT: "";
+	height: .3125rem;
+	width: .565rem;
+	background-color: transparent;
+	left: 50%;
+	top: 8px;
+	margin-left: -3px;
+	margin-top: -3px;
+	display: block;
+	transition: all 0.1s linear;
+}
+
+@mixin select($queryString) {
+	@if $queryString == '912px' {
+		margin-left: 10px;
+		z-index: 1 !important;
+		margin-top: 10px;
+		position: relative;
+		margin-bottom: 7px;
+		clear: both;
+		display: inline-block;
+	}
+
+	@if $queryString == '680px' {
+		float: left;
+		display: inline-block;
+	}
+
+	@else {
+		font-weight: $normal;
+		display: inline-block;
+	}
+}
+
+@mixin filter-list-main {
+	min-width: 300px;
+	position: absolute;
+	z-index: 10000;
+	right: 0;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	max-width: 600px;
+	list-style: none;
+	background-color: $light-white;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
