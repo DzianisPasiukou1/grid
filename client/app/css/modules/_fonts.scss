@@ -1,31 +1,33 @@
-﻿@font-face {
+﻿$place : '../../../assets/';
+
+@font-face {
 	font-family: 'datepicker';
-	src: url('fonts/datepicker.eot?72jwq5');
-	src: url('fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('fonts/datepicker.ttf?72jwq5') format('truetype'), url('fonts/datepicker.woff?72jwq5') format('woff'), url('fonts/datepicker.svg?72jwq5#icomoon') format('svg');
+	src: url('#{$place}fonts/datepicker.eot?72jwq5');
+	src: url('#{$place}fonts/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('#{$place}fonts/datepicker.ttf?72jwq5') format('truetype'), url('#{$place}fonts/datepicker.woff?72jwq5') format('woff'), url('#{$place}fonts/datepicker.svg?72jwq5#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'cards';
-	src: url('fonts/cards.eot?cld4v2');
-	src: url('fonts/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('fonts/cards.ttf?cld4v2') format('truetype'), url('fonts/cards.woff?cld4v2') format('woff'), url('fonts/cards.svg?cld4v2#icomoon') format('svg');
+	src: url('#{$place}fonts/cards.eot?cld4v2');
+	src: url('#{$place}fonts/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('#{$place}fonts/cards.ttf?cld4v2') format('truetype'), url('#{$place}fonts/cards.woff?cld4v2') format('woff'), url('#{$place}fonts/cards.svg?cld4v2#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'icomoon';
-	src: url('fonts/icomoon.eot?flqq25');
-	src: url('fonts/icomoon.eot?#iefixflqq25') format('embedded-opentype'), url('fonts/icomoon.ttf?flqq25') format('truetype'), url('fonts/icomoon.woff?flqq25') format('woff'), url('fonts/icomoon.svg?flqq25#icomoon') format('svg');
+	src: url('#{$place}fonts/icomoon.eot?flqq25');
+	src: url('#{$place}fonts/icomoon.eot?#iefixflqq25') format('embedded-opentype'), url('#{$place}fonts/icomoon.ttf?flqq25') format('truetype'), url('#{$place}fonts/icomoon.woff?flqq25') format('woff'), url('#{$place}fonts/icomoon.svg?flqq25#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Text Icon';
-	src: url('fonts/text.eot?hxxs7');
-	src: url('fonts/text.eot?#iefixhxxs7') format('embedded-opentype'), url('fonts/text.ttf?hxxs7') format('truetype'), url('fonts/text.woff?hxxs7') format('woff'), url('fonts/text.svg?hxxs7#icomoon') format('svg');
+	src: url('#{$place}fonts/text.eot?hxxs7');
+	src: url('#{$place}fonts/text.eot?#iefixhxxs7') format('embedded-opentype'), url('#{$place}fonts/text.ttf?hxxs7') format('truetype'), url('#{$place}fonts/text.woff?hxxs7') format('woff'), url('#{$place}fonts/text.svg?hxxs7#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
