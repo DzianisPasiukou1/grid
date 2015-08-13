@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 angular.module('gridExpressApp', [
   'ngCookies',
   'ngResource',
