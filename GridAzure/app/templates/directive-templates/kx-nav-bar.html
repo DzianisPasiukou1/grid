@@ -26,6 +26,25 @@
 					</li>
 				</ul>
 			</div>
+			<div class="menu-util span4">
+				<ul class="row-fluid">
+					<li class="span7">
+						<div class="org-switcher-off" ng-hide="session.other_organizations.length">
+							<span class="ng-binding">Krux Demo Client</span>
+						</div>
+					</li>
+					<li class="span5 account-util dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i> krux-user
+							<b class="caret"></b>
+						</a>
+						<ul class="account-util-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="#">{{"Account" | translate}}</a></li>
+							<li><a href="#">{{"Logout" | translate}}</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </nav>
