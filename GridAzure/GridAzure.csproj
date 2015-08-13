@@ -2261,6 +2261,7 @@
     <Content Include="css\common\_upload.scss" />
     <Content Include="css\partials\_debug.scss" />
     <Content Include="data\histogram\default.json" />
+    <None Include="Properties\PublishProfiles\grid-asp.pubxml" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />
     <Content Include="karma.conf.js" />
