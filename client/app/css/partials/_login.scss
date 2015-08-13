@@ -1,0 +1,18 @@
+﻿.login {
+	margin-top: 250px;
+	width: 300px;
+	border: 1px solid #25b5de;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: rgb(209, 221, 227);
+
+	&__window {
+	}
+
+	&__btn {
+		@extend .metro-btn;
+
+		float: right;
+		width: 100px;
+	}
+}

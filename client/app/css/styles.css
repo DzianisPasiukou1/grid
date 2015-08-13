@@ -227,7 +227,7 @@ button::-moz-focus-inner {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa; }
 
-.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .options__upload label, .debug__uploader__btn label, .action__btn, .options__refresh, .filter__btn, .filter__list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn, .debug__back__btn {
+.metro-btn, .my-dropdown__btn, .my-dropdown__save, .split-btn, .split-btn__toggle, .checkbox-select__btn, .save-btn, .close-btn, .date-btn, .date-btn__toggle, .options__upload label, .debug__uploader__btn label, .action__btn, .options__refresh, .filter__btn, .filter__list .filter-list__button, .custom-ui-grid .ui-grid-menu-button, .grid-testing .generate-btn, .dynamic-dropdown .dynamic-actions__btn, .debug__back__btn, .login__btn {
   border-color: #787878;
   padding: 0 1rem;
   height: 3.125rem;
@@ -245,9 +245,9 @@ button::-moz-focus-inner {
   position: relative;
   color: #787878;
   font-weight: normal; }
-  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .options__upload label:hover, .debug__uploader__btn label:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter__list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover, .debug__back__btn:hover {
+  .metro-btn:hover, .my-dropdown__btn:hover, .my-dropdown__save:hover, .split-btn:hover, .split-btn__toggle:hover, .checkbox-select__btn:hover, .save-btn:hover, .close-btn:hover, .date-btn:hover, .date-btn__toggle:hover, .options__upload label:hover, .debug__uploader__btn label:hover, .action__btn:hover, .options__refresh:hover, .filter__btn:hover, .filter__list .filter-list__button:hover, .custom-ui-grid .ui-grid-menu-button:hover, .grid-testing .generate-btn:hover, .dynamic-dropdown .dynamic-actions__btn:hover, .debug__back__btn:hover, .login__btn:hover {
     border-color: #787878; }
-  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .options__upload label:active, .debug__uploader__btn label:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter__list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active, .debug__back__btn:active {
+  .metro-btn:active, .my-dropdown__btn:active, .my-dropdown__save:active, .split-btn:active, .split-btn__toggle:active, .checkbox-select__btn:active, .save-btn:active, .close-btn:active, .date-btn:active, .date-btn__toggle:active, .options__upload label:active, .debug__uploader__btn label:active, .action__btn:active, .options__refresh:active, .filter__btn:active, .filter__list .filter-list__button:active, .custom-ui-grid .ui-grid-menu-button:active, .grid-testing .generate-btn:active, .dynamic-dropdown .dynamic-actions__btn:active, .debug__back__btn:active, .login__btn:active {
     background: #333;
     color: white;
     box-shadow: none; }
@@ -2191,5 +2191,16 @@ nav {
     margin-right: 400px;
     margin-top: -10px;
     margin-bottom: 10px; }
+
+.login {
+  margin-top: 250px;
+  width: 300px;
+  border: 1px solid #25b5de;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d1dde3; }
+  .login__btn {
+    float: right;
+    width: 100px; }
 
 /*# sourceMappingURL=styles.css.map */
