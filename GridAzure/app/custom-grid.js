@@ -1934,6 +1934,10 @@ angular.module('gridTaskApp')
 				$timeout(function () {
 					scope.$watch('state', function (state) {
 						scope.setToggle();
+
+						if (state == false) {
+							element.scrollTop(0);
+						}
 					});
 				});
 

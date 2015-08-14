@@ -59,6 +59,12 @@
 		}
 	}
 
+	@media (max-width: 767px) {
+		.row-fluid {
+			display: block !important;
+		}
+	}
+
 	.menu-util .account-util > a {
 		color: #fff;
 		text-decoration: none;
@@ -231,7 +237,7 @@
 		padding: 1em 2em;
 
 		&.dropdown {
-			margin-left: 10px;
+			margin: 0 10px 0 10px;
 
 			:hover {
 				color: rgb(26, 155, 209);
@@ -250,16 +256,10 @@
 	}
 
 	.menu-util {
-		margin-left: 40px;
+		display: block;
 
 		ul {
 			margin-bottom: 0 !important;
-		}
-
-		@media (max-width: 767px) {
-			ul {
-				display: block;
-			}
 		}
 	}
 }

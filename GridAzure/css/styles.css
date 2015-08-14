@@ -1158,11 +1158,27 @@ button::-moz-focus-inner {
 .kx-btn {
   height: 33px;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   border-radius: 3px;
-  border: 1px solid #58acc4;
+  border: 1px solid;
   background-color: #60c2dd;
-  font-size: 15px; }
+  font-size: 15px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  padding: 4px 39px;
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  line-height: 20px; }
+  .kx-btn:hover {
+    color: #fff;
+    background-color: #2f96b4;
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear; }
 
 .custom-overlay {
   background-color: white;
@@ -1172,9 +1188,8 @@ button::-moz-focus-inner {
   overflow: auto;
   transition: all linear 0.5s;
   border: 2px solid #0A2841;
-  overflow: auto;
   height: 0;
-  z-index: 1000000; }
+  z-index: 1; }
   .custom-overlay__toggle {
     display: inline;
     float: left;
@@ -1182,7 +1197,6 @@ button::-moz-focus-inner {
     .custom-overlay__toggle__name {
       font-size: 20px; }
     .custom-overlay__toggle .glyphicon {
-      padding-bottom: 100%;
       font-size: 16px;
       padding-top: 30px;
       padding-right: 10px;
@@ -1882,14 +1896,6 @@ page-content-cards .page-content {
 
 .page-content-d3 {
   min-width: 0 !important; }
-  @media only screen and (max-width: 912px) {
-    .page-content-d3 .page-content__header {
-      height: 360px !important; }
- }
-  @media only screen and (max-width: 680px) {
-    .page-content-d3 .page-content__header {
-      height: 400px !important; }
- }
   .page-content-d3 .page-content {
     overflow: hidden;
     border: 0;
@@ -1898,12 +1904,13 @@ page-content-cards .page-content {
     .page-content-d3 .page-content__uploader {
       margin-bottom: 10px; }
     .page-content-d3 .page-content__header {
-      height: 315px;
+      height: auto;
       border: 0 !important;
       background-color: #d7e1e7 !important;
       border-top: 5px solid #0A2841 !important; }
     .page-content-d3 .page-content__cards {
-      background-color: #e7eef2; }
+      background-color: #e7eef2;
+      margin-bottom: 5px; }
     .page-content-d3 .page-content__actions {
       margin-top: 4px; }
       .page-content-d3 .page-content__actions__export .my-dropdown__list, .page-content-d3 .page-content__actions__export .split-btn__list, .page-content-d3 .page-content__actions__export .checkbox-select__list {
@@ -1912,7 +1919,7 @@ page-content-cards .page-content {
         min-width: 200px; }
     .page-content-d3 .page-content__options .options {
       padding-top: 5px !important; }
-      @media only screen and (max-width: 912px) {
+      @media only screen and (max-width: 905px) {
         .page-content-d3 .page-content__options .options {
           display: block; }
           .page-content-d3 .page-content__options .options__block {
@@ -1937,6 +1944,15 @@ page-content-cards .page-content {
         .page-content-d3 .page-content__options .options .select2-container {
           display: block;
           margin-bottom: 10px; }
+
+        .page-content-d3 .page-content__options .options .kx-btn {
+          margin-top: 0 !important; }
+ }
+      @media only screen and (max-width: 1035px) {
+        .page-content-d3 .page-content__options .options .kx-btn {
+          display: block;
+          margin-top: 2px;
+          margin-left: 10px; }
  }
       .page-content-d3 .page-content__options .options__block {
         float: left;
@@ -2019,6 +2035,10 @@ page-content-cards .page-content {
     .kx-nav .row-fluid .span5 {
       width: 40.17094%;
       margin-left: 2%; }
+ }
+  @media (max-width: 767px) {
+    .kx-nav .row-fluid {
+      display: block !important; }
  }
   .kx-nav .menu-util .account-util > a {
     color: #fff;
@@ -2131,7 +2151,7 @@ page-content-cards .page-content {
     min-width: 110px;
     padding: 1em 2em; }
     .kx-nav .menu-util .account-util.dropdown {
-      margin-left: 10px; }
+      margin: 0 10px 0 10px; }
       .kx-nav .menu-util .account-util.dropdown :hover {
         color: #1a9bd1; }
       .kx-nav .menu-util .account-util.dropdown .account-util-menu {
@@ -2139,13 +2159,9 @@ page-content-cards .page-content {
     .kx-nav .menu-util .account-util.dropdown.open :hover {
       color: black; }
   .kx-nav .menu-util {
-    margin-left: 40px; }
+    display: block; }
     .kx-nav .menu-util ul {
       margin-bottom: 0 !important; }
-    @media (max-width: 767px) {
-      .kx-nav .menu-util ul {
-        display: block; }
- }
 
 .page-content-d3 .page-content__options {
   margin-top: 10px;
