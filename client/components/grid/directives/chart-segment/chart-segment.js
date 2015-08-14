@@ -5,6 +5,7 @@
 			scope: {
 				selectedUsers: '='
 			},
+			replace: true,
 			controller: 'chartSegmentCtrl',
 			templateUrl: templatesPath + 'directive-templates/chart-segment.html'
 		}

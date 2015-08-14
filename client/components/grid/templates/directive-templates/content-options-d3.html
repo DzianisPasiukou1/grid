@@ -9,10 +9,10 @@
 			<option value=""></option>
 			<option value="{{action}}" ng-repeat="action in options.eventType.options.actions">{{action.label|translate}}</option>
 		</select>
-		<select class="options__segments kx-multiselect" kx-multiselect="options.segments.selectOpt" ng-change="options.segments.options.onChange()" ng-model="options.segments.options.selected" multiple="true" data-placeholder="Choose Segments">
+		<select class="options__segments kx-multiselect" kx-multiselect="options.segments.selectOpt" ng-change="options.segments.options.onChange()" ng-model="options.segments.options.selected" multiple="true" data-placeholder="{{::'Choose Segments' | translate}}">
 			<option value="{{action}}" ng-repeat="action in options.segments.options.actions">{{action.label|translate}}</option>
 		</select>
-		<select class="options__campaign kx-multiselect" kx-multiselect="options.campaign.selectOpt" ng-change="options.campaign.options.onChange()" ng-model="options.campaign.options.selected" data-placeholder="Choose Campaigns" multiple="true">
+		<select class="options__campaign kx-multiselect" kx-multiselect="options.campaign.selectOpt" ng-change="options.campaign.options.onChange()" ng-model="options.campaign.options.selected" data-placeholder="{{::'Choose Campaigns' | translate}}" multiple="true">
 			<option value="{{action}}" ng-repeat="action in options.campaign.options.actions">{{action.label|translate}}</option>
 		</select>
 	</div>

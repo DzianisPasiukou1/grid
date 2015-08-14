@@ -1,4 +1,6 @@
-﻿angular.module('gridExpressApp')
+﻿var templatesPath = 'components/grid/templates/';
+
+angular.module('gridExpressApp')
 	.constant('CONTENT', {
 		checks: {
 			options: {
@@ -39,14 +41,14 @@
 		ngGridOpt: {
 			data: 'data',
 			multiSelect: false,
-			rowTemplate: 'components/grid/templates/grid-templates/row-templates/row-with-detalis.html',
+			rowTemplate: templatesPath + 'grid-templates/row-templates/row-with-detalis.html',
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
 			showFooter: true,
 			footerRowHeight: 30,
-			footerTemplate: 'components/grid/templates/grid-templates/grid-footer.html',
-			detailsTemplate: 'components/grid/templates/grid-templates/details-templates/details.html',
+			footerTemplate: templatesPath + 'grid-templates/grid-footer.html',
+			detailsTemplate: templatesPath + 'grid-templates/details-templates/details.html',
 			rowActions: {
 				options: {
 					label: 'Actions',
@@ -85,25 +87,25 @@
 			noUnselect: true,
 			enableExpandable: true,
 			enableRowHeaderSelection: false,
-			expandableRowTemplate: 'components/grid/templates/grid-templates/details-templates/details.html',
+			expandableRowTemplate: templatesPath + 'grid-templates/details-templates/details.html',
 			expandableRowHeight: 220,
 			selectionRowHeaderWidth: 35,
 			enableExpandableRowHeader: false,
 			enableFiltering: true,
-			rowTemplate: 'components/grid/templates/ui-grid-templates/row.html',
+			rowTemplate: templatesPath + 'ui-grid-templates/row.html',
 			expandableRowScope: {
 				subGridVariable: 'subGridScopeVariable'
 			},
 			gridFooterTemplate: '<div class="grid-footer"></div>',
-			headerTemplate: 'components/grid/templates/ui-grid-templates/header.html',
-			headerCellTemplate: 'components/grid/templates/ui-grid-templates/cell-templates/header.html',
+			headerTemplate: templatesPath + 'ui-grid-templates/header.html',
+			headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html',
 			reInit: true,
 			enableDetails: true,
-			detailsCellTemplate: 'components/grid/templates/ui-grid-templates/cell-templates/details.html',
+			detailsCellTemplate: templatesPath +'ui-grid-templates/cell-templates/details.html',
 			detailsWidth: 60,
 			detailsMinWidth: 60,
 			enableAction: true,
-			actionsCellTemplate: 'components/grid/templates/ui-grid-templates/cell-templates/action.html',
+			actionsCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/action.html',
 			actionsWidth: 250,
 			actionsMinWidth: 115,
 			columnMinWidth: 80,
@@ -251,7 +253,7 @@
 		debugCard: {
 			id: 'debug',
 			text: 'Debug',
-			templateUrl: 'components/grid/templates/directive-templates/debug.html'
+			templateUrl: templatesPath + 'directive-templates/debug.html'
 		},
 		datepickerOptions: {
 			config: {
