@@ -1101,59 +1101,88 @@ button::-moz-focus-inner {
       .mouse-over .mouse-over-medium__body__blockSegm {
         margin-left: 20px; }
 
-.btn-group button {
-  padding: 0;
-  padding-left: 10px;
-  height: 35px;
-  border: 1px solid #aaa;
-  white-space: nowrap;
-  color: #333;
-  text-decoration: none;
-  border-radius: 4px;
-  background-clip: padding-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
-  background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
-  background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
-  background-image: linear-gradient(to top, #eee 0%, #fff 50%);
-  text-align: left;
-  line-height: 32px; }
-  .btn-group button span {
-    float: left; }
-  .btn-group button .caret {
-    height: 100%;
-    float: right;
-    width: 20px;
-    border: 0;
-    border-left: 1px solid #aaa;
-    border-radius: 0 4px 4px 0;
+.ms-parent {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .ms-parent button {
+    padding: 0;
+    padding-left: 10px;
+    height: 35px;
+    border: 1px solid #aaa;
+    white-space: nowrap;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
     background-clip: padding-box;
-    background: url('../../bower_components/select2/select2.png') no-repeat 0 4px; }
-.btn-group .multiselect-container {
-  left: 0;
-  right: 0; }
-
-.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-  border-bottom-color: transparent !important;
-  -webkit-box-shadow: 0 1px 0 #fff inset !important;
-  box-shadow: 0 1px 0 #fff inset !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  background-color: #eee !important;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(0.5, #eee)) !important;
-  background-image: -webkit-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
-  background-image: -moz-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0) !important;
-  background-image: linear-gradient(to top, #fff 0%, #eee 50%) !important; }
-  .btn-default:active .caret, .btn-default.active .caret, .open > .dropdown-toggle.btn-default .caret {
-    background-position: -18px 3px;
-    border: 0; }
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
+    background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
+    background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(to top, #eee 0%, #fff 50%);
+    text-align: left;
+    line-height: 32px;
+    font-family: "Segoe UI", "Open Sans", serif;
+    font-size: 16px; }
+    .ms-parent button span {
+      padding-top: 1px; }
+    .ms-parent button div {
+      height: 100%;
+      float: right;
+      width: 20px;
+      border: 0;
+      border-left: 1px solid #aaa;
+      border-radius: 0 4px 4px 0;
+      background-clip: padding-box;
+      border: 1px solid #aaa;
+      background: url('../../bower_components/select2/select2.png') no-repeat 0 4px; }
+    .ms-parent button .open {
+      background: url('../../bower_components/select2/select2.png') no-repeat 3px 5px;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+      border: 0;
+      border-radius: 4px 0 0 4px; }
+  .ms-parent .multiselect-container {
+    left: 0;
+    right: 0; }
+  .ms-parent button:focus {
+    border-bottom-color: transparent !important;
+    -webkit-box-shadow: 0 1px 0 #fff inset !important;
+    box-shadow: 0 1px 0 #fff inset !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    background-color: #eee !important;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(0.5, #eee)) !important;
+    background-image: -webkit-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
+    background-image: -moz-linear-gradient(center bottom, #fff 0%, #eee 50%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0) !important;
+    background-image: linear-gradient(to top, #fff 0%, #eee 50%) !important; }
+    .ms-parent button:focus .caret {
+      background-position: -18px 3px;
+      border: 0; }
+  .ms-parent .ms-drop ul {
+    padding: 0; }
+  .ms-parent .ms-drop label {
+    font-weight: normal;
+    font-size: 14px;
+    padding: 5px 0 5px 8px;
+    width: 100%;
+    margin: 0; }
+    .ms-parent .ms-drop label input {
+      vertical-align: bottom;
+      margin-bottom: 1px; }
+    .ms-parent .ms-drop label:hover {
+      background-color: whitesmoke;
+      cursor: pointer; }
 
 .kx-btn {
   height: 33px;
@@ -1951,7 +1980,7 @@ page-content-cards .page-content {
       @media only screen and (max-width: 1035px) {
         .page-content-d3 .page-content__options .options .kx-btn {
           display: block;
-          margin-top: 2px;
+          margin-top: 5px;
           margin-left: 10px; }
  }
       .page-content-d3 .page-content__options .options__block {

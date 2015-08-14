@@ -1588,7 +1588,7 @@ angular.module('gridTaskApp')
 			},
 			link: function (scope, element, attrs) {
 				$timeout(function () {
-					element.multiselect(scope.options);
+					element.multipleSelect(scope.options);
 				})
 			}
 		}
