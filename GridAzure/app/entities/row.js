@@ -1,4 +1,6 @@
-﻿var Row = function () {
+﻿var templatesPath = 'app/templates/';
+
+var Row = function () {
 	function Row(elm, rootScope, compile) {
 		this.elm = elm;
 		this.scope = rootScope.$new();
@@ -12,7 +14,7 @@
 
 		this.scope.editingRow = this.elm;
 
-		$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+		$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
 		var modal = $('div[modal]');
 		this.compile(modal)(this.scope);
 	}
@@ -28,7 +30,7 @@
 
 		this.scope.historiedRow = this.elm;
 
-		$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+		$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
 		var modal = $('div[modal]');
 		this.compile(modal)(this.scope);
 	}

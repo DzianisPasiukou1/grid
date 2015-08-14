@@ -1,4 +1,6 @@
-﻿function ngGridActionsPlugin(opts, compile) {
+﻿var templatesPath = 'app/templates/';
+
+function ngGridActionsPlugin(opts, compile) {
 	var self = this;
 	self.grid = null;
 	self.scope = null;
@@ -507,7 +509,7 @@
 
 			self.scope.rowEditing = row;
 
-			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="app/templates/directive-templates/edit-entity.html"></modal>');
+			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
 			var modal = $('div[modal]');
 			self.compile(modal)(self.scope);
 		}
@@ -520,7 +522,7 @@
 
 			self.scope.rowHistoried = row;
 
-			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="app/templates/directive-templates/history.html"></history>');
+			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
 			var modal = $('div[modal]');
 			self.compile(modal)(self.scope);
 		}
