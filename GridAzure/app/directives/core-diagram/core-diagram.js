@@ -72,11 +72,11 @@
 						})
 
 
-					link.append("title")
-						  .text(function (d) {
-						  	return d.source.name + " → " +
-									d.target.name + "\n" + format(d.value);
-						  });
+					//link.append("title")
+					//	  .text(function (d) {
+					//	  	return d.source.name + " → " +
+					//				d.target.name + "\n" + format(d.value);
+					//	  });
 
 					var node = svg.append("g").selectAll(".node")
 						.data(graph.nodes)

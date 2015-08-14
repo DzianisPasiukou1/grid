@@ -1724,6 +1724,10 @@
     <Content Include="bower_components\angular-i18n\zh.js" />
     <Content Include="bower_components\angular-i18n\zu-za.js" />
     <Content Include="bower_components\angular-i18n\zu.js" />
+    <Content Include="bower_components\angular-mocks\angular-mocks.js" />
+    <Content Include="bower_components\angular-mocks\ngAnimateMock.js" />
+    <Content Include="bower_components\angular-mocks\ngMock.js" />
+    <Content Include="bower_components\angular-mocks\ngMockE2E.js" />
     <Content Include="bower_components\angular-route\angular-route.js" />
     <Content Include="bower_components\angular-route\angular-route.min.js" />
     <Content Include="bower_components\angular-route\index.js" />
@@ -1919,6 +1923,10 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\multiple-select\demos\index.html" />
+    <Content Include="bower_components\multiple-select\jquery.multiple.select.js" />
+    <Content Include="bower_components\multiple-select\multiple-select.css" />
+    <Content Include="bower_components\multiple-select\multiple-select.png" />
     <Content Include="bower_components\ng-grid\build\ng-grid.debug.js" />
     <Content Include="bower_components\ng-grid\build\ng-grid.js" />
     <Content Include="bower_components\ng-grid\build\ng-grid.min.js" />
@@ -2363,6 +2371,14 @@
     <Content Include="bower_components\bootstrap-sass\package.json" />
     <Content Include="bower_components\bootstrap-sass\README.md" />
     <Content Include="bower_components\bootstrap-sass\sache.json" />
+    <Content Include="bower_components\multiple-select\.bower.json" />
+    <Content Include="bower_components\multiple-select\LICENSE" />
+    <Content Include="bower_components\multiple-select\multiple-select.jquery.json" />
+    <Content Include="bower_components\multiple-select\README.md" />
+    <Content Include="bower_components\angular-mocks\.bower.json" />
+    <Content Include="bower_components\angular-mocks\bower.json" />
+    <Content Include="bower_components\angular-mocks\package.json" />
+    <Content Include="bower_components\angular-mocks\README.md" />
     <None Include="Properties\PublishProfiles\grid-asp.pubxml" />
     <None Include="Properties\PublishProfiles\gridazure.pubxml" />
     <Content Include="index.html" />

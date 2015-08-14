@@ -357,6 +357,7 @@ angular.module('gridTaskApp')
 			scope: {
 				selectedUsers: '='
 			},
+			replace: true,
 			controller: 'chartSegmentCtrl',
 			templateUrl: templatesPath + 'directive-templates/chart-segment.html'
 		}
@@ -521,11 +522,11 @@ angular.module('gridTaskApp')
 						})
 
 
-					link.append("title")
-						  .text(function (d) {
-						  	return d.source.name + " → " +
-									d.target.name + "\n" + format(d.value);
-						  });
+					//link.append("title")
+					//	  .text(function (d) {
+					//	  	return d.source.name + " → " +
+					//				d.target.name + "\n" + format(d.value);
+					//	  });
 
 					var node = svg.append("g").selectAll(".node")
 						.data(graph.nodes)
@@ -2019,13 +2020,14 @@ angular.module('gridTaskApp')
 			restrict: 'EAC',
 			scope: {},
 			link: function (scope, element, attrs) {
+
 				$timeout(function () {
-					element.css('max-height', $(window).height() - element.offset().top - 10 + 'px');
+					element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
 
 					$(window).resize(function () {
-						element.css('max-height', $(window).height() - element.offset().top - 10 + 'px');
+						element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
 					});
-				});
+				}, 100);
 			}
 		}
 	}]);
@@ -3515,6 +3517,25 @@ function getWindowWidth() {
 	}
 	return windowWidth;
 }
+function getWindowHeight() {
+	var windowHeight = 0;
+	if (typeof (window.innerHeight) == 'number') {
+		windowHeight = window.innerHeight;
+	}
+	else {
+		if (document.documentElement && document.documentElement.clientHeight) {
+			windowHeight = document.documentElement.clientHeight;
+		}
+		else {
+			if (document.body && document.body.clientHeight) {
+				windowHeight = document.body.clientHeight;
+			}
+		}
+	}
+	return windowHeight;
+}
+
+
 ///#source 1 1 /app/extensions/jquery/center.js
 jQuery.fn.center = function () {
 	this.css("position", "absolute");
