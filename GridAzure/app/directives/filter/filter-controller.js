@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('filterCtrl', ['$scope', function ($scope) {
+	.controller('filterCtrl', ['$scope', '$element', function ($scope, $element) {
 		$scope.listState = false;
 
 		$scope.filterClick = function () {

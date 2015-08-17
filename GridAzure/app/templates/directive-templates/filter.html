@@ -4,5 +4,7 @@
 		<span class="filter__name">{{::'filter'|translate}}</span>
 		<span class="expand" ng-class="{'icon-menu-up': listState, 'icon-menu-down' : !listState}"></span>
 	</button>
-	<div class="filter__list" filter-list ng-show="listState" resize-on></div>
+	<div ng-show="listState">
+		<div class="filter__list" filter-list resize-on="listState" parent=".filter"></div>
+	</div>
 </div>

@@ -31,8 +31,6 @@
 		controller: "gridD3Ctrl"
 	}).when("/download", {
 		templateUrl: "azure-app/templates/download.html"
-	}).when("/navigation", {
-		templateUrl: "azure-app/templates/navigation.html",
 	})
     .otherwise({
     	redirectTo: '/'

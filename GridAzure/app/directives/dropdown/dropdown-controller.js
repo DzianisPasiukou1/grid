@@ -1,5 +1,9 @@
 ﻿angular.module('gridTaskApp')
 	.controller('dropdownCtrl', ['$scope', function ($scope) {
+		if ($scope.options === undefined) {
+			$scope.options = {};
+		}
+
 		if (!$scope.options.isMenu) {
 			$scope.options.selected = $scope.options.values[0];
 

@@ -1197,6 +1197,10 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/dropdown/dropdown-controller.js
 angular.module('gridTaskApp')
 	.controller('dropdownCtrl', ['$scope', function ($scope) {
+		if ($scope.options === undefined) {
+			$scope.options = {};
+		}
+
 		if (!$scope.options.isMenu) {
 			$scope.options.selected = $scope.options.values[0];
 
@@ -1530,7 +1534,7 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/filter/filter-controller.js
 angular.module('gridTaskApp')
-	.controller('filterCtrl', ['$scope', function ($scope) {
+	.controller('filterCtrl', ['$scope', '$element', function ($scope, $element) {
 		$scope.listState = false;
 
 		$scope.filterClick = function () {
@@ -2474,33 +2478,38 @@ angular.module('gridTaskApp')
 ///#source 1 1 /app/directives/resize-on/resize-on.js
 angular.module('gridTaskApp')
 	.directive('resizeOn', [function () {
+
+		function resize_on(element, parent) {
+			element.css('width', ($(parent).position().left + $(parent).width()) + 'px');
+
+			if (element.width() < element.css('min-width').replace('px', '')) {
+				element.css('right', 'auto');
+				element.css('width', '450px');
+				element.css('left', $(parent).position().left + 'px');
+			}
+			else {
+				element.css('right', '0');
+				element.css('left', 'auto');
+			}
+
+		}
+
 		return {
-			restrict: 'EAC',
+			restrict: 'AC',
+			scope: {
+				event: '=resizeOn',
+				parent: '@'
+			},
 			link: function (scope, element, attrs) {
-				element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
-
-				if (element.width() < element.css('min-width').replace('px', '')) {
-					element.css('right', 'auto');
-					element.css('width', '450px');
-					element.css('left', element.parent().position().left + 'px');
-				}
-				else {
-					element.css('right', '0');
-					element.css('left', 'auto');
-				}
-
-				element.css('top', element.parent().height() + 'px');
+				element.css('top', $(scope.parent).height() + 'px');
 
 				$(window).resize(function () {
-					element.css('width', (element.parent().position().left + element.parent().width()) + 'px');
+					resize_on(element, scope.parent);
+				});
 
-					if (element.width() < element.css('min-width').replace('px', '')) {
-						element.css('right', 'auto');
-						element.css('width', '450px');
-						element.css('left', element.parent().position().left + 'px');
-					} else {
-						element.css('right', '0');
-						element.css('left', 'auto');
+				scope.$watch('event', function (value) {
+					if (value) {
+						resize_on(element, scope.parent);
 					}
 				});
 			}

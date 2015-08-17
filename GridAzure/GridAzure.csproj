@@ -69,6 +69,7 @@
     <Content Include="app\directives\custom-grid\grid-menu\grid-menu.js" />
     <Content Include="app\directives\custom-ui-grid\ui-grid-menu\ui-grid-menu-controller.js" />
     <Content Include="app\directives\gr-template\gr-template.js" />
+    <Content Include="app\directives\hide-render\hide-render.js" />
     <Content Include="app\directives\histogram\histogram.js" />
     <Content Include="app\directives\histogram\histogram-controller.js" />
     <Content Include="app\directives\kx-date-range\kx-date-range.js" />
