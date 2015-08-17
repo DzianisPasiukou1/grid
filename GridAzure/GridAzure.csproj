@@ -88,6 +88,7 @@
     <Content Include="app\directives\page-content-d3\content-options-d3\content-options-d3.js" />
     <Content Include="app\directives\page-content-d3\page-content-d3.js" />
     <Content Include="app\entities\row.js" />
+    <Content Include="app\extensions\jquery\on-position-changed.js" />
     <Content Include="app\extensions\sankey.js" />
     <Content Include="app\extensions\window-width.js" />
     <Content Include="app\localization\locations\locations-en.js" />

@@ -1740,19 +1740,30 @@ angular.module('gridTaskApp')
 	}]);
 ///#source 1 1 /app/directives/max-heighter/max-heighter.js
 angular.module('gridTaskApp')
-	.directive('maxHeighter', ['$timeout', function ($timeout) {
+	.directive('maxHeighter', ['$timeout', '$interval', function ($timeout, $interval) {
+		function init_height(element) {
+			element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
+		}
+
 		return {
 			restrict: 'EAC',
 			scope: {},
-			link: function (scope, element, attrs) {
+			compile: function (element, attrs) {
+				element.onPositionChanged(function () {
+					init_height(element);
+				}, 0);
 
-				$timeout(function () {
-					element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
+				return {
+					post: function (scope, element, attrs) {
+						$timeout(function () {
+							init_height(element)
+						});
 
-					$(window).resize(function () {
-						element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
-					});
-				}, 100);
+						$(window).resize(function () {
+							init_height(element)
+						});
+					}
+				}
 			}
 		}
 	}]);
