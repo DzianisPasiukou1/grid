@@ -2260,6 +2260,7 @@ angular.module('gridTaskApp')
 			templateUrl: templatesPath + 'directive-templates/page-content.html',
 			link: function (scope, element) {
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
+				initializer.init();
 
 				scope.$watch('contentOptions', function (opt) {
 					initializer.init();

@@ -97,6 +97,7 @@
     <Content Include="app\services\json-service.js" />
     <Content Include="app\services\my-template-service.js" />
     <Content Include="app\services\navigation-tree-service.js" />
+    <Content Include="app\templates.js" />
     <Content Include="app\templates\directive-templates\chart-segment.html" />
     <Content Include="app\templates\directive-templates\content-options-d3.html" />
     <Content Include="app\templates\directive-templates\core-diagram.html" />
