@@ -30,22 +30,22 @@
 		}
 
 		$scope.changeMinWidth = function (totalWidth) {
-			if ($('body')[0].scrollWidth < totalWidth) {
-				$($scope.parentSelector).css('minWidth', totalWidth + 'px');
+			if (angular.element('body')[0].scrollWidth < totalWidth) {
+				angular.element($scope.parentSelector).css('minWidth', totalWidth + 'px');
 			}
 			else {
-				$($scope.parentSelector).css('minWidth', $scope.parentMinWidth + 'px');
+				angular.element($scope.parentSelector).css('minWidth', $scope.parentMinWidth + 'px');
 			}
 		}
 
 		$scope.resize = function (totalWidth) {
-			if ($('body')[0].scrollWidth < totalWidth) {
+			if (angular.element('body')[0].scrollWidth < totalWidth) {
 				for (var i = $scope.gridApi.grid.columns.length - 2; i > 1; i--) {
 					if ($scope.gridApi.grid.columns[i].visible) {
 						uiGridGridMenuService.toggleColumnVisibility($scope.gridApi.grid.columns[i]);
 						totalWidth -= $scope.gridApi.grid.columns[i].minWidth;
 					}
-					if ($(window).width() > totalWidth) {
+					if (angular.element(window).width() > totalWidth) {
 						break;
 					}
 				}
@@ -53,7 +53,7 @@
 			else {
 				for (var i = 0; i < $scope.gridApi.grid.columns.length; i++) {
 					if (!$scope.gridApi.grid.columns[i].visible) {
-						if ($(window).width() < totalWidth + $scope.gridApi.grid.columns[i].minWidth) {
+						if (angular.element(window).width() < totalWidth + $scope.gridApi.grid.columns[i].minWidth) {
 							break;
 						}
 						uiGridGridMenuService.toggleColumnVisibility($scope.gridApi.grid.columns[i]);

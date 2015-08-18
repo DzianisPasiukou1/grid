@@ -8,14 +8,14 @@ var Row = function () {
 	}
 
 	Row.prototype.edit = function () {
-		if ($('modal').length != 0) {
-			$('modal').remove();
+		if (angular.element('modal').length != 0) {
+			angular.element('modal').remove();
 		}
 
 		this.scope.editingRow = this.elm;
 
-		$('body').append('<div modal value="editingRow" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
-		var modal = $('div[modal]');
+		angular.element('body').append('<div modal value="editingRow" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
+		var modal = angular.element('div[modal]');
 		this.compile(modal)(this.scope);
 	}
 
@@ -24,14 +24,14 @@ var Row = function () {
 	}
 
 	Row.prototype.history = function () {
-		if ($('history').length != 0) {
-			$('history').remove();
+		if (angular.element('history').length != 0) {
+			angular.element('history').remove();
 		}
 
 		this.scope.historiedRow = this.elm;
 
-		$('body').append('<div modal value="historiedRow.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
-		var modal = $('div[modal]');
+		angular.element('body').append('<div modal value="historiedRow.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
+		var modal = angular.element('div[modal]');
 		this.compile(modal)(this.scope);
 	}
 
@@ -46,9 +46,9 @@ var Row = function () {
 			}
 		}
 		else {
-			$('body').append('<input id="holdtext" style="display: none"/>')
+			angular.element('body').append('<input id="holdtext" style="display: none"/>')
 
-			var elm = $("#holdtext");
+			var elm = angular.element("#holdtext");
 			elm.val(s);
 			elm.select();
 

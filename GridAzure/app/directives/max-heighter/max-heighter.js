@@ -18,7 +18,7 @@
 							init_height(element)
 						});
 
-						$(window).resize(function () {
+						angular.element(window).resize(function () {
 							init_height(element)
 						});
 					}

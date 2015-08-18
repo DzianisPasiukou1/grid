@@ -30,7 +30,7 @@
 						self.scope.options.enableGridMenu = true;
 					}
 
-					$(window).resize(function () {
+					angular.element(window).resize(function () {
 						var totalWidth = scope.getTotalWidth();
 
 						scope.resize(totalWidth);

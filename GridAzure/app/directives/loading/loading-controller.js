@@ -8,13 +8,13 @@
 
 		self.resize = function () {
 			self.element = {
-				height: $(self.parent).height() + 'px',
-				width: $(self.parent).width() + 'px'
+				height: angular.element(self.parent).height() + 'px',
+				width: angular.element(self.parent).width() + 'px'
 			};
 
 			self.disabled = {
-				height: $(self.parent).height() + 'px',
-				width: $(self.parent).width() + 'px',
+				height: angular.element(self.parent).height() + 'px',
+				width: angular.element(self.parent).width() + 'px',
 				top: 0
 			};
 		}

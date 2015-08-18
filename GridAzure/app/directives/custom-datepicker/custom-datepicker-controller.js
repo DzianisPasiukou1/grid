@@ -9,7 +9,7 @@
 				$element.find($scope.dateBtnSelector).data('dateRangePicker').open();
 			}
 			else {
-				$($scope.dateBtnSelector).data('dateRangePicker').close();
+				angular.element($scope.dateBtnSelector).data('dateRangePicker').close();
 			}
 		};
 

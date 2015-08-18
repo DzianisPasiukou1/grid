@@ -120,8 +120,8 @@ function ngGridActionsPlugin(opts, compile) {
 					self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
 				}
 				else {
-					$('.details-template').parent().removeClass('toggle');
-					$('.details-template').remove();
+					angular.element('.details-template').parent().removeClass('toggle');
+					angular.element('.details-template').remove();
 				}
 			}
 
@@ -171,8 +171,8 @@ function ngGridActionsPlugin(opts, compile) {
 				self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
 			}
 			else {
-				$('.details-template').parent().removeClass('toggle');
-				$('.details-template').remove();
+				angular.element('.details-template').parent().removeClass('toggle');
+				angular.element('.details-template').remove();
 			}
 		});
 
@@ -210,41 +210,41 @@ function ngGridActionsPlugin(opts, compile) {
 
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(result);
 					}).fail(function () {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(template);
 
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
-						$('.details-template').css('top', rowHeight + 'px');
+						angular.element('.details-template').css('top', rowHeight + 'px');
 						row.elm.addClass('toggle');
 						var top = Math.round(row.elm.position().top);
-						var children = $(row.elm).parent().children();
+						var children = angular.element(row.elm).parent().children();
 
 						for (var i = 0; i < children.length; i++) {
-							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', step + 'px');
+							if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+								angular.element(children[i]).css('top', step + 'px');
 								step += rowHeight;
 							}
 						}
 					});
 				}
 				else {
-					$('.details-template').remove();
+					angular.element('.details-template').remove();
 					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
-					$('.details-template').css('top', rowHeight + 'px');
+					angular.element('.details-template').css('top', rowHeight + 'px');
 					row.elm.addClass('toggle');
 					var top = Math.round(row.elm.position().top);
-					var children = $(row.elm).parent().children();
+					var children = angular.element(row.elm).parent().children();
 
 					for (var i = 0; i < children.length; i++) {
-						if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-							$(children[i]).css('top', step + 'px');
+						if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+							angular.element(children[i]).css('top', step + 'px');
 							step += rowHeight;
 						}
 					}
@@ -252,15 +252,15 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 			else {
 				row.elm.addClass('toggle');
-				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+				angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 				var top = Math.round(row.elm.position().top);
-				var children = $(row.elm).parent().children();
+				var children = angular.element(row.elm).parent().children();
 				var step = step;
 
 				for (var i = 0; i < children.length; i++) {
-					if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-						$(children[i]).css('top', step + 'px');
+					if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+						angular.element(children[i]).css('top', step + 'px');
 						step += rowHeight;
 					}
 				}
@@ -276,18 +276,18 @@ function ngGridActionsPlugin(opts, compile) {
 
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(result);
 					}).fail(function () {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(template);
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
-						$('.details-template').css('top', row.elm.height() + 'px');
+						angular.element('.details-template').css('top', row.elm.height() + 'px');
 
 						var top = Math.round(row.elm.position().top);
-						var children = $(row.elm).parent().children();
+						var children = angular.element(row.elm).parent().children();
 						var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
 						self.scope.step = step;
 
@@ -295,12 +295,12 @@ function ngGridActionsPlugin(opts, compile) {
 						self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 						self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-						$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+						angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 						for (var i = 0; i < children.length; i++) {
-							if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+							if (angular.element(children[i]).css('top').replace('px', '') == row.elm.position().top) {
 								for (var j = i + 1; j < children.length; j++) {
-									$(children[j]).css('top', step + 'px');
+									angular.element(children[j]).css('top', step + 'px');
 									step += rowHeight;
 								}
 							}
@@ -308,14 +308,14 @@ function ngGridActionsPlugin(opts, compile) {
 					});;
 				}
 				else {
-					$('.details-template').remove();
+					angular.element('.details-template').remove();
 					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
-					$('.details-template').css('top', row.elm.height() + 'px');
+					angular.element('.details-template').css('top', row.elm.height() + 'px');
 
 					var top = Math.round(row.elm.position().top);
-					var children = $(row.elm).parent().children();
+					var children = angular.element(row.elm).parent().children();
 					var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
 					self.scope.step = step;
 
@@ -323,12 +323,12 @@ function ngGridActionsPlugin(opts, compile) {
 					self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 					self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-					$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+					angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 					for (var i = 0; i < children.length; i++) {
-						if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+						if (angular.element(children[i]).css('top').replace('px', '') == row.elm.position().top) {
 							for (var j = i + 1; j < children.length; j++) {
-								$(children[j]).css('top', step + 'px');
+								angular.element(children[j]).css('top', step + 'px');
 								step += rowHeight;
 							}
 						}
@@ -337,7 +337,7 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
-				var children = $(row.elm).parent().children();
+				var children = angular.element(row.elm).parent().children();
 				var step = row.elm.position().top + row.elm.context.scrollHeight;
 				self.scope.step = step;
 
@@ -345,11 +345,11 @@ function ngGridActionsPlugin(opts, compile) {
 				self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 				self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+				angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 				for (var i = 0; i < children.length; i++) {
-					if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-						$(children[i]).css('top', step + 'px');
+					if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+						angular.element(children[i]).css('top', step + 'px');
 						step += rowHeight;
 					}
 				}
@@ -364,20 +364,20 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 
 			row.clone.elm.removeClass('toggle');
-			$('.details-template').remove();
+			angular.element('.details-template').remove();
 			row.actions.isToggle = false;
 			self.grid.$canvas.css('height', self.canvasHeight + 'px');
 			self.scope.newCanvasHeight = self.canvasHeight;
 
 			var top = Math.round(row.clone.elm.position().top);
-			var children = $(row.clone.elm).parent().children();
+			var children = angular.element(row.clone.elm).parent().children();
 			var step = row.clone.elm.position().top + rowHeigth;
 
-			$(row.clone.elm).css('height', rowHeigth + 'px');
+			angular.element(row.clone.elm).css('height', rowHeigth + 'px');
 
 			for (var i = 0; i < children.length; i++) {
-				if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-					$(children[i]).css('top', step + 'px');
+				if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+					angular.element(children[i]).css('top', step + 'px');
 					step += rowHeigth;
 				}
 			}
@@ -389,20 +389,20 @@ function ngGridActionsPlugin(opts, compile) {
 
 		var closeToggleRow = function (row, detailsClass, template, rowHeigth, reInit) {
 			row.elm.removeClass('toggle');
-			$('.details-template').remove();
+			angular.element('.details-template').remove();
 			row.orig.actions.isToggle = false;
 			self.grid.$canvas.css('height', self.canvasHeight + 'px');
 			self.scope.newCanvasHeight = self.canvasHeight;
 
 			var top = Math.round(row.elm.position().top);
-			var children = $(row.elm).parent().children();
+			var children = angular.element(row.elm).parent().children();
 			var step = row.elm.position().top + rowHeigth;
 
-			$(row.elm).css('height', rowHeigth + 'px');
+			angular.element(row.elm).css('height', rowHeigth + 'px');
 
 			for (var i = 0; i < children.length; i++) {
-				if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-					$(children[i]).css('top', step + 'px');
+				if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+					angular.element(children[i]).css('top', step + 'px');
 					step += rowHeigth;
 				}
 			}
@@ -435,9 +435,9 @@ function ngGridActionsPlugin(opts, compile) {
 				}
 			}
 			else {
-				$(row.clone.elm).append('<input id="holdtext" style="display: none"/>')
+				angular.element(row.clone.elm).append('<input id="holdtext" style="display: none"/>')
 
-				var elm = $("#holdtext");
+				var elm = angular.element("#holdtext");
 				elm.val(s);
 				elm.select();
 
@@ -503,27 +503,27 @@ function ngGridActionsPlugin(opts, compile) {
 		}
 
 		var editRow = function (row) {
-			if ($('div[modal]').length != 0) {
-				$('div[modal]').remove();
+			if (angular.element('div[modal]').length != 0) {
+				angular.element('div[modal]').remove();
 			}
 
 			self.scope.rowEditing = row;
 
-			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
-			var modal = $('div[modal]');
+			angular.element('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
+			var modal = angular.element('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 
 
 		var historyRow = function (row) {
-			if ($('div[modal]').length != 0) {
-				$('div[modal]').remove();
+			if (angular.element('div[modal]').length != 0) {
+				angular.element('div[modal]').remove();
 			}
 
 			self.scope.rowHistoried = row;
 
-			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
-			var modal = $('div[modal]');
+			angular.element('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
+			var modal = angular.element('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 

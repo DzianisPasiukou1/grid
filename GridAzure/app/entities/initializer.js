@@ -139,7 +139,7 @@
 				this.scope.cardsOptions.cards[card].counter = new Counter(this.scope.cardsOptions.cards[card]);
 			}
 
-			$(document).click(function (event) {
+			angular.element(document).click(function (event) {
 				if (this.scope.cardsOptions.cards.clicks) {
 					this.scope.cardsOptions.cards.clicks.count += 1;
 					this.scope.$apply();
@@ -155,9 +155,9 @@
 
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = true;
-			if ($('loading').length == 0) {
+			if (angular.element('loading').length == 0) {
 				this.element.find(this.content.listSelector).append(this.content.loadingTemplate);
-				this.$compile($('loading'))(this.scope);
+				this.$compile(angular.element('loading'))(this.scope);
 			}
 		}
 
@@ -485,7 +485,7 @@
 
 				if (this.scope.view) {
 					if (this.scope.view.isGrid) {
-						this.$compile($('div[custom-grid]'))(this.scope);
+						this.$compile(angular.element('div[custom-grid]'))(this.scope);
 					}
 				}
 			}
@@ -493,7 +493,7 @@
 		else {
 			if (this.scope.view) {
 				if (this.scope.view.isGrid) {
-					this.$compile($('div[custom-grid]'))(this.scope);
+					this.$compile(angular.element('div[custom-grid]'))(this.scope);
 				}
 			}
 		}

@@ -1,6 +1,6 @@
-﻿jQuery.fn.onPositionChanged = function (trigger, millis) {
+﻿angular.element.fn.onPositionChanged = function (trigger, millis) {
 	if (millis == null) millis = 100;
-	var o = $(this[0]);
+	var o = angular.element(this[0]);
 	if (o.length < 1) return o;
 
 	var lastPos = null;
@@ -12,12 +12,12 @@
 		var newPos = o.position();
 		var newOff = o.offset();
 		if (lastPos.top != newPos.top || lastPos.left != newPos.left) {
-			$(this).trigger('onPositionChanged', { lastPos: lastPos, newPos: newPos });
+			angular.element(this).trigger('onPositionChanged', { lastPos: lastPos, newPos: newPos });
 			if (typeof (trigger) == "function") trigger(lastPos, newPos);
 			lastPos = o.position();
 		}
 		if (lastOff.top != newOff.top || lastOff.left != newOff.left) {
-			$(this).trigger('onOffsetChanged', { lastOff: lastOff, newOff: newOff });
+			angular.element(this).trigger('onOffsetChanged', { lastOff: lastOff, newOff: newOff });
 			if (typeof (trigger) == "function") trigger(lastOff, newOff);
 			lastOff = o.offset();
 		}

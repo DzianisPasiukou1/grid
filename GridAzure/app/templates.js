@@ -824,17 +824,21 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('app/templates/directive-templates/overlay.html',
-    "<div class=\"custom-overlay\" ng-style=\"style\">\r" +
+    "<div class=\"custom-overlay\" style=\"position:relative\">\r" +
     "\n" +
-    "\t<div class=\"custom-overlay__toggle\">\r" +
+    "\t<div ng-style=\"style\" style=\"position:absolute\">\r" +
     "\n" +
-    "\t\t<span ng-click=\"state = !state\" ng-show=\"!state\" class=\"glyphicon glyphicon-chevron-left\"></span>\r" +
+    "\t\t<div class=\"custom-overlay__toggle\">\r" +
     "\n" +
-    "\t\t<span ng-click=\"state = !state\" ng-show=\"state\" class=\"glyphicon glyphicon-chevron-right\"></span>\r" +
+    "\t\t\t<span ng-click=\"state = !state\" ng-show=\"!state\" class=\"glyphicon glyphicon-chevron-left\"></span>\r" +
+    "\n" +
+    "\t\t\t<span ng-click=\"state = !state\" ng-show=\"state\" class=\"glyphicon glyphicon-chevron-right\"></span>\r" +
+    "\n" +
+    "\t\t</div>\r" +
+    "\n" +
+    "\t\t<ng-transclude></ng-transclude>\r" +
     "\n" +
     "\t</div>\r" +
-    "\n" +
-    "\t<ng-transclude></ng-transclude>\r" +
     "\n" +
     "</div>\r" +
     "\n"

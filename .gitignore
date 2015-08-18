@@ -4590,3 +4590,4 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/bower_components
 /GridAzure/bin
 /GridAzure/obj
+/.nuget

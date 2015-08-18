@@ -152,7 +152,7 @@
 						return onApplyRange(picker.startDate, picker.endDate);
 					});
 
-					$('.daterangepicker.dropdown-menu').css('display', 'none');
+					angular.element('.daterangepicker.dropdown-menu').css('display', 'none');
 
 					return ngModelCtrl.$render();
 				});

@@ -16,14 +16,14 @@
 							return a + b.minWidth;
 						}, 0);
 
-						if ($(window).width() < totalWidth) {
+						if (angular.element(window).width() < totalWidth) {
 							for (var i = value.length - 2; i > 1; i--) {
 								if (value[i].visible) {
 									value[i].toggleVisible();
 									totalWidth -= value[i].minWidth;
 									scope.colCache.push({ label: value[i].field, element: value[i] });
 								}
-								if ($(window).width() > totalWidth) {
+								if (angular.element(window).width() > totalWidth) {
 									break;
 								}
 							}
@@ -37,7 +37,7 @@
 							scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 						}
 
-						$(window).resize(function () {
+						angular.element(window).resize(function () {
 							var totalWidth = value.reduce(function (a, b) {
 								if (b.visible) {
 									return a + b.minWidth;
@@ -46,14 +46,14 @@
 								}
 							}, 0);
 
-							if ($(window).width() < totalWidth) {
+							if (angular.element(window).width() < totalWidth) {
 								for (var i = value.length - 2; i > 1; i--) {
 									if (value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth -= value[i].minWidth;
 										scope.colCache.push({ label: value[i].field, element: value[i] });
 									}
-									if ($(window).width() > totalWidth) {
+									if (angular.element(window).width() > totalWidth) {
 										break;
 									}
 								}
@@ -70,7 +70,7 @@
 											}
 										}
 
-										if ($(window).width() < totalWidth) {
+										if (angular.element(window).width() < totalWidth) {
 											value[i].toggleVisible();
 											totalWidth -= value[i].minWidth;
 

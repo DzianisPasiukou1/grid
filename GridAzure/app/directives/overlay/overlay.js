@@ -21,7 +21,7 @@
 					});
 				});
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					scope.setToggle(true);
 					scope.style.transition = 'none';
 					scope.$apply();

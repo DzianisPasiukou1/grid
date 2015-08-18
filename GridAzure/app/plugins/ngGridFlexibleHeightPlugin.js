@@ -10,7 +10,7 @@
 		var innerRecalcForData = function () {
 			var gridId = self.grid.gridId;
 			var footerPanelSel = '.' + gridId + ' .ngFooterPanel';
-			var extraHeight = self.grid.$topPanel.height() + $(footerPanelSel).height();
+			var extraHeight = self.grid.$topPanel.height() + angular.element(footerPanelSel).height();
 			console.log('extra=' + extraHeight);
 			var naturalHeight = self.grid.$canvas.height() + 1;
 			if (opts != null) {

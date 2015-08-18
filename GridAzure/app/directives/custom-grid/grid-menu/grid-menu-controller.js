@@ -67,11 +67,11 @@
 				}
 			}
 
-			if ($(window).width() < totalWidth) {
-				$($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
+			if (angular.element(window).width() < totalWidth) {
+				angular.element($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
 			}
 			else {
-				$($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
+				angular.element($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
 			}
 		}
 	}]);

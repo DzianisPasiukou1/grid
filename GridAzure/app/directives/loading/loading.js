@@ -11,7 +11,7 @@
 			link: function (scope, element, attrs, ctrl) {
 				ctrl.resize();
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					ctrl.resize();
 				});
 			}

@@ -142,16 +142,16 @@
 					function mouseover(d) {
 						scope.mouseOverInit(d);
 
-						$('mouse-over').remove();
+						angular.element('mouse-over').remove();
 
-						scope.parentTop = $('#chart').offset().top;
+						scope.parentTop = angular.element('#chart').offset().top;
 
 						element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
-						$compile($('mouse-over'))(scope);
+						$compile(angular.element('mouse-over'))(scope);
 					}
 
 					function mouseout(d) {
-						$('mouse-over').remove();
+						angular.element('mouse-over').remove();
 					}
 				}
 

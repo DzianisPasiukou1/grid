@@ -17,7 +17,7 @@
 					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 						if (!scope.dynamicOpt.values[i].isVisible) {
 							scope.totalWidth += scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
 								break;
 							}
@@ -50,12 +50,12 @@
 						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -79,7 +79,7 @@
 						if (scope.dynamicOpt.values[i].isVisible) {
 							scope.dynamicOpt.values[i].toggleVisible(false);
 							scope.totalWidth -= scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 								break;
 							}
 						}
@@ -108,12 +108,12 @@
 						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -155,7 +155,7 @@
 						scope.totalWidth += scope.dynamicOpt.values[i].width;
 					}
 
-					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 						dynamic();
 					}
 					else {
@@ -186,7 +186,7 @@
 
 
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					if (element.parent().offset().left != 0) {
 						scope.offset = element.parent().offset();
 					}
@@ -203,7 +203,7 @@
 						scope.totalWidth += scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 						scope.dynamicOpt.values.sort(function (a, b) {
 							if (a.priority > b.priority) {
 								return -1;
@@ -223,7 +223,7 @@
 								scope.dynamicOpt.values[i].toggleVisible(false);
 							}
 
-							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth += scope.dynamicOpt.values[i].width;
 								scope.dynamicOpt.values[i].toggleVisible(true);
 								countVisible += 1;
@@ -261,7 +261,7 @@
 								scope.dynamicOpt.values[i].toggleVisible(false);
 							}
 
-							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth += scope.dynamicOpt.values[i].width;
 								scope.dynamicOpt.values[i].toggleVisible(true);
 								countVisible += 1;

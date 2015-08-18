@@ -1211,15 +1211,18 @@ button::-moz-focus-inner {
 
 .custom-overlay {
   background-color: white;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
-  overflow: auto;
   transition: all linear 0.5s;
   border: 2px solid #0A2841;
   height: 0;
   z-index: 1;
   width: 100%; }
+  .custom-overlay__transclude {
+    height: 100%;
+    overflow-y: auto;
+    position: absolute; }
   .custom-overlay__toggle {
     display: inline;
     float: left;
@@ -2030,8 +2033,6 @@ page-content-cards .page-content {
   @media (max-width: 767px) {
     .kx-nav [class*="span"], .kx-nav .uneditable-input[class*="span"], .kx-nav .row-fluid [class*="span"] {
       float: none;
-      width: 100%;
-      margin-left: 0;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box; }
@@ -2040,6 +2041,12 @@ page-content-cards .page-content {
       width: 100%;
       display: block; }
  }
+  @media (max-width: 500px) {
+    .kx-nav {
+      margin-left: 20px;
+      margin-right: 20px; }
+      .kx-nav .row-fluid {
+        padding-left: 0; } }
   @media (min-width: 1200px) {
     .kx-nav .row-fluid .span8 {
       width: 65.81197% !important; }

@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('overlayCtrl', ['$scope', 'OVERLAY', '$timeout', function ($scope, OVERLAY, $timeout) {
+	.controller('overlayCtrl', ['$scope', 'OVERLAY', '$timeout', '$element', function ($scope, OVERLAY, $timeout, $element) {
 		if ($scope.selectors === undefined) {
 			$scope.selectors = {};
 		}
@@ -22,45 +22,53 @@
 
 		$scope.style = {
 			left: getWindowWidth() - $scope.toggleMinWidth + 'px',
-			transition: 'none',
+			transition: '',
 			overflow: 'hidden'
 		};
+
+		$scope.transcludeStyle = {
+		}
 
 		$scope.setToggle = function (isResize) {
 			$timeout(function () {
 				if ($scope.state) {
 					if (getWindowWidth() + 650 > 1750) {
-						$scope.style = {
-							'left': '650px'
-						}
+						$scope.style.left = '650px';
 					}
 					else {
-						$scope.style = {
-							'left': '0'
-						}
+						$scope.style.left = 0;
 					}
+
+					$scope.transcludeStyle.width = angular.element('body').prop('scrollWidth') - $scope.style.left.toString().replace('px', '') - $scope.toggleMinWidth + 'px';
 				}
 				else {
-					$scope.style = {
-						'left': getWindowWidth() - $scope.toggleMinWidth + 'px',
-						'overflow': 'hidden'
-					}
+					$scope.style.left = angular.element('body').prop('scrollWidth') - $scope.toggleMinWidth + 'px';
+
+					$scope.style.overflow = 'hidden';
 
 					if ($scope.state === undefined || isResize) {
 						$scope.style.transition = 'none';
 					}
 				}
 
+				if ($scope.state !== undefined && !isResize) {
+					$scope.style.transition = '';
+				}
+
 				var size = 10;
 				var min = 300;
 
-				if ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size > min) {
-					$scope.style.minHeight = ($(window).height() - $($scope.selectors.heighterSelector).offset().top - size) + 'px';
-					$scope.style.top = $($scope.selectors.heighterSelector).offset().top + 'px';
+				if (angular.element(window).height() - angular.element($scope.selectors.heighterSelector).offset().top - size > min) {
+					$scope.style.minHeight = (angular.element('body').prop('scrollHeight') - angular.element($scope.selectors.heighterSelector).offset().top - size) + 'px';
+
+					$scope.style.top = 0;
 				}
 				else {
-					$scope.style.minHeight = $(window).height() - $($scope.selectors.alignTopSelector).offset().top - 8 + 'px';
-					$scope.style.top = $($scope.selectors.alignTopSelector).offset().top + 'px';
+					$scope.style.minHeight = angular.element('body').prop('scrollHeight') - angular.element($scope.selectors.alignTopSelector).offset().top - 8 + 'px';
+
+					if (angular.element($scope.selectors.alignTopSelector).offset().top - $element.offset().top != 0) {
+						$scope.style.top = angular.element($scope.selectors.alignTopSelector).offset().top - $element.offset().top + 'px';
+					}
 				}
 			})
 		}

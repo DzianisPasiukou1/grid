@@ -557,11 +557,11 @@ angular.module('gridTaskApp')
 				}
 			}
 
-			if ($(window).width() < totalWidth) {
-				$($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
+			if (angular.element(window).width() < totalWidth) {
+				angular.element($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
 			}
 			else {
-				$($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
+				angular.element($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
 			}
 		}
 	}]);
@@ -584,14 +584,14 @@ angular.module('gridTaskApp')
 							return a + b.minWidth;
 						}, 0);
 
-						if ($(window).width() < totalWidth) {
+						if (angular.element(window).width() < totalWidth) {
 							for (var i = value.length - 2; i > 1; i--) {
 								if (value[i].visible) {
 									value[i].toggleVisible();
 									totalWidth -= value[i].minWidth;
 									scope.colCache.push({ label: value[i].field, element: value[i] });
 								}
-								if ($(window).width() > totalWidth) {
+								if (angular.element(window).width() > totalWidth) {
 									break;
 								}
 							}
@@ -605,7 +605,7 @@ angular.module('gridTaskApp')
 							scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
 						}
 
-						$(window).resize(function () {
+						angular.element(window).resize(function () {
 							var totalWidth = value.reduce(function (a, b) {
 								if (b.visible) {
 									return a + b.minWidth;
@@ -614,14 +614,14 @@ angular.module('gridTaskApp')
 								}
 							}, 0);
 
-							if ($(window).width() < totalWidth) {
+							if (angular.element(window).width() < totalWidth) {
 								for (var i = value.length - 2; i > 1; i--) {
 									if (value[i].visible) {
 										value[i].toggleVisible();
 										totalWidth -= value[i].minWidth;
 										scope.colCache.push({ label: value[i].field, element: value[i] });
 									}
-									if ($(window).width() > totalWidth) {
+									if (angular.element(window).width() > totalWidth) {
 										break;
 									}
 								}
@@ -638,7 +638,7 @@ angular.module('gridTaskApp')
 											}
 										}
 
-										if ($(window).width() < totalWidth) {
+										if (angular.element(window).width() < totalWidth) {
 											value[i].toggleVisible();
 											totalWidth -= value[i].minWidth;
 
@@ -969,7 +969,7 @@ angular.module('gridTaskApp')
 						self.scope.options.enableGridMenu = true;
 					}
 
-					$(window).resize(function () {
+					angular.element(window).resize(function () {
 						var totalWidth = scope.getTotalWidth();
 
 						scope.resize(totalWidth);
@@ -1078,7 +1078,7 @@ angular.module('gridTaskApp')
 					for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 						if (!scope.dynamicOpt.values[i].isVisible) {
 							scope.totalWidth += scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
 								break;
 							}
@@ -1111,12 +1111,12 @@ angular.module('gridTaskApp')
 						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -1140,7 +1140,7 @@ angular.module('gridTaskApp')
 						if (scope.dynamicOpt.values[i].isVisible) {
 							scope.dynamicOpt.values[i].toggleVisible(false);
 							scope.totalWidth -= scope.dynamicOpt.values[i].width;
-							if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 								break;
 							}
 						}
@@ -1169,12 +1169,12 @@ angular.module('gridTaskApp')
 						scope.totalWidth -= scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left > $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left > angular.element('body').prop('scrollWidth')) {
 						for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 							if (scope.dynamicOpt.values[i].isVisible) {
 								scope.dynamicOpt.values[i].toggleVisible(false);
 								scope.totalWidth -= scope.dynamicOpt.values[i].width;
-								if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+								if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 									break;
 								}
 							}
@@ -1216,7 +1216,7 @@ angular.module('gridTaskApp')
 						scope.totalWidth += scope.dynamicOpt.values[i].width;
 					}
 
-					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 						dynamic();
 					}
 					else {
@@ -1247,7 +1247,7 @@ angular.module('gridTaskApp')
 
 
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					if (element.parent().offset().left != 0) {
 						scope.offset = element.parent().offset();
 					}
@@ -1264,7 +1264,7 @@ angular.module('gridTaskApp')
 						scope.totalWidth += scope.dropdownOpt.width;
 					}
 
-					if (scope.totalWidth + scope.offset.left < $('body').prop('scrollWidth')) {
+					if (scope.totalWidth + scope.offset.left < angular.element('body').prop('scrollWidth')) {
 						scope.dynamicOpt.values.sort(function (a, b) {
 							if (a.priority > b.priority) {
 								return -1;
@@ -1284,7 +1284,7 @@ angular.module('gridTaskApp')
 								scope.dynamicOpt.values[i].toggleVisible(false);
 							}
 
-							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth += scope.dynamicOpt.values[i].width;
 								scope.dynamicOpt.values[i].toggleVisible(true);
 								countVisible += 1;
@@ -1322,7 +1322,7 @@ angular.module('gridTaskApp')
 								scope.dynamicOpt.values[i].toggleVisible(false);
 							}
 
-							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < $('body').prop('scrollWidth')) {
+							if (scope.totalWidth + scope.offset.left + scope.dynamicOpt.values[i].width < angular.element('body').prop('scrollWidth')) {
 								scope.totalWidth += scope.dynamicOpt.values[i].width;
 								scope.dynamicOpt.values[i].toggleVisible(true);
 								countVisible += 1;
@@ -1577,7 +1577,7 @@ angular.module('gridTaskApp').directive('kxDateRange', ['$parse', '$translate', 
 						return onApplyRange(picker.startDate, picker.endDate);
 					});
 
-					$('.daterangepicker.dropdown-menu').css('display', 'none');
+					angular.element('.daterangepicker.dropdown-menu').css('display', 'none');
 
 					return ngModelCtrl.$render();
 				});
@@ -1732,7 +1732,7 @@ angular.module('gridTaskApp')
 			link: function (scope, element, attrs, ctrl) {
 				ctrl.resize();
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					ctrl.resize();
 				});
 			}
@@ -1759,7 +1759,7 @@ angular.module('gridTaskApp')
 							init_height(element)
 						});
 
-						$(window).resize(function () {
+						angular.element(window).resize(function () {
 							init_height(element)
 						});
 					}
@@ -1833,16 +1833,16 @@ angular.module('gridTaskApp')
 					$timeout(function () {
 						if (!value) {
 							angular.element(element).remove();
-							$('body').css('overflow', 'inherit');
+							angular.element('body').css('overflow', 'inherit');
 						}
 						else {
 							scope.resize();
-							$('body').css('overflow', 'hidden');
+							angular.element('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					scope.resize();
 				});
 			}
@@ -1869,18 +1869,18 @@ angular.module('gridTaskApp')
 				}
 
 				$timeout(function () {
-					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < $(window).height()) {
+					if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < angular.element(window).height()) {
 						scope.style.top = ($.cursorMessageData.mouseY - scope.parentTop + 15) + 'px';
 					}
 					else {
 						scope.style.top = ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - scope.parentTop - 20) + 'px';
 					}
 
-					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < $(window).width()) {
+					if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < angular.element(window).width()) {
 						scope.style.left = ($.cursorMessageData.mouseX + 10) + 'px';
 					}
 					else {
-						scope.style.left = $(window).width() - element.find('.mouse-over').width() - 10 + 'px';
+						scope.style.left = angular.element(window).width() - element.find('.mouse-over').width() - 10 + 'px';
 					}
 					scope.style.visibility = 'visible'
 				});
@@ -1960,7 +1960,7 @@ angular.module('gridTaskApp')
 					});
 				});
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					scope.setToggle(true);
 					scope.style.transition = 'none';
 					scope.$apply();
@@ -2148,12 +2148,12 @@ angular.module('gridTaskApp')
 	.directive('resizeOn', [function () {
 
 		function resize_on(element, parent) {
-			element.css('width', ($(parent).position().left + $(parent).width()) + 'px');
+			element.css('width', (angular.element(parent).position().left + angular.element(parent).width()) + 'px');
 
 			if (element.width() < element.css('min-width').replace('px', '')) {
 				element.css('right', 'auto');
 				element.css('width', '450px');
-				element.css('left', $(parent).position().left + 'px');
+				element.css('left', angular.element(parent).position().left + 'px');
 			}
 			else {
 				element.css('right', '0');
@@ -2169,9 +2169,9 @@ angular.module('gridTaskApp')
 				parent: '@'
 			},
 			link: function (scope, element, attrs) {
-				element.css('top', $(scope.parent).height() + 'px');
+				element.css('top', angular.element(scope.parent).height() + 'px');
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					resize_on(element, scope.parent);
 				});
 
@@ -2518,7 +2518,7 @@ var Initializer = (function () {
 				this.scope.cardsOptions.cards[card].counter = new Counter(this.scope.cardsOptions.cards[card]);
 			}
 
-			$(document).click(function (event) {
+			angular.element(document).click(function (event) {
 				if (this.scope.cardsOptions.cards.clicks) {
 					this.scope.cardsOptions.cards.clicks.count += 1;
 					this.scope.$apply();
@@ -2534,9 +2534,9 @@ var Initializer = (function () {
 
 		if (this.scope.contentOptions.loading) {
 			this.scope.contentOptions.isLoading = true;
-			if ($('loading').length == 0) {
+			if (angular.element('loading').length == 0) {
 				this.element.find(this.content.listSelector).append(this.content.loadingTemplate);
-				this.$compile($('loading'))(this.scope);
+				this.$compile(angular.element('loading'))(this.scope);
 			}
 		}
 
@@ -2864,7 +2864,7 @@ var Initializer = (function () {
 
 				if (this.scope.view) {
 					if (this.scope.view.isGrid) {
-						this.$compile($('div[custom-grid]'))(this.scope);
+						this.$compile(angular.element('div[custom-grid]'))(this.scope);
 					}
 				}
 			}
@@ -2872,7 +2872,7 @@ var Initializer = (function () {
 		else {
 			if (this.scope.view) {
 				if (this.scope.view.isGrid) {
-					this.$compile($('div[custom-grid]'))(this.scope);
+					this.$compile(angular.element('div[custom-grid]'))(this.scope);
 				}
 			}
 		}
@@ -3215,60 +3215,60 @@ function getWindowHeight() {
 }
 
 
-///#source 1 1 /app/extensions/jquery/center.js
-jQuery.fn.center = function () {
+///#source 1 1 /app/extensions/angular/center.js
+angular.element.fn.center = function () {
 	this.css("position", "absolute");
-	this.css("top", Math.max(0, (($(this.parent()).height() - $(this).outerHeight()) / 2) +
-                                                $(this.parent()).scrollTop()) + "px");
-	this.css("left", Math.max(0, (($(this.parent()).width() - $(this).outerWidth()) / 2) +
-                                                $(this.parent()).scrollLeft()) + "px");
+	this.css("top", Math.max(0, ((angular.element(this.parent()).height() - angular.element(this).outerHeight()) / 2) +
+                                                angular.element(this.parent()).scrollTop()) + "px");
+	this.css("left", Math.max(0, ((angular.element(this.parent()).width() - angular.element(this).outerWidth()) / 2) +
+                                                angular.element(this.parent()).scrollLeft()) + "px");
 	this.css("z-index", 10000);
 	return this;
 }
-///#source 1 1 /app/extensions/jquery/cursorMessage.js
-if (jQuery) {
-	(function ($) {
-		$.cursorMessageData = {}; // needed for e.g. timeoutId
+///#source 1 1 /app/extensions/angular/cursorMessage.js
+if (angular.element) {
+	(function () {
+		angular.element.cursorMessageData = {}; // needed for e.g. timeoutId
 		//start registring mouse coцridnates from the start!
 
-		$(window).ready(function (e) {
-			if ($('.cursor-message').length == 0) {
-				$('body').append('<div class="cursor-message">&nbsp;</div>');
-				$('.cursor-message').hide();
+		angular.element(window).ready(function (e) {
+			if (angular.element('.cursor-message').length == 0) {
+				angular.element('body').append('<div class="cursor-message">&nbsp;</div>');
+				angular.element('.cursor-message').hide();
 			}
 
-			$('body').mousemove(function (e) {
-				$.cursorMessageData.mouseX = e.pageX;
-				$.cursorMessageData.mouseY = e.pageY;
-				if ($.cursorMessageData.options != undefined) $._showCursorMessage();
+			angular.element('body').mousemove(function (e) {
+				angular.element.cursorMessageData.mouseX = e.pageX;
+				angular.element.cursorMessageData.mouseY = e.pageY;
+				if (angular.element.cursorMessageData.options != undefined) angular.element._showCursorMessage();
 			});
 		});
-		$.extend({
+		angular.element.extend({
 			cursorMessage: function (message, options) {
 				if (options == undefined) options = {};
 				if (options.offsetX == undefined) options.offsetX = 5;
 				if (options.offsetY == undefined) options.offsetY = 5;
 				if (options.hideTimeout == undefined) options.hideTimeout = 2000;
 
-				$('.cursor-message').html(message).fadeIn('slow');
-				if (jQuery.cursorMessageData.hideTimeoutId != undefined) clearTimeout(jQuery.cursorMessageData.hideTimeoutId);
-				if (options.hideTimeout > 0) jQuery.cursorMessageData.hideTimeoutId = setTimeout($.hideCursorMessage, options.hideTimeout);
-				jQuery.cursorMessageData.options = options;
-				$._showCursorMessage();
+				angular.element('.cursor-message').html(message).fadeIn('slow');
+				if (angular.element.cursorMessageData.hideTimeoutId != undefined) clearTimeout(angular.element.cursorMessageData.hideTimeoutId);
+				if (options.hideTimeout > 0) angular.element.cursorMessageData.hideTimeoutId = setTimeout(angular.element.hideCursorMessage, options.hideTimeout);
+				angular.element.cursorMessageData.options = options;
+				angular.element._showCursorMessage();
 			},
 			hideCursorMessage: function () {
-				$('.cursor-message').fadeOut('slow');
+				angular.element('.cursor-message').fadeOut('slow');
 			},
 			_showCursorMessage: function () {
-				$('.cursor-message').css({ top: ($.cursorMessageData.mouseY + $.cursorMessageData.options.offsetY + 30) + 'px', left: ($.cursorMessageData.mouseX + $.cursorMessageData.options.offsetX - 150) });
+				angular.element('.cursor-message').css({ top: (angular.element.cursorMessageData.mouseY + angular.element.cursorMessageData.options.offsetY + 30) + 'px', left: (angular.element.cursorMessageData.mouseX + angular.element.cursorMessageData.options.offsetX - 150) });
 
-				if ($.cursorMessageData.options.backgroundColor) {
-					$('.cursor-message').css({ 'background-color': $.cursorMessageData.options.backgroundColor });
+				if (angular.element.cursorMessageData.options.backgroundColor) {
+					angular.element('.cursor-message').css({ 'background-color': angular.element.cursorMessageData.options.backgroundColor });
 				}
 
 			}
 		});
-	})(jQuery);
+	})(angular.element);
 }
 ///#source 1 1 /app/plugins/ngGridActionsPlugin.js
 var templatesPath = 'app/templates/';
@@ -3393,8 +3393,8 @@ function ngGridActionsPlugin(opts, compile) {
 					self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
 				}
 				else {
-					$('.details-template').parent().removeClass('toggle');
-					$('.details-template').remove();
+					angular.element('.details-template').parent().removeClass('toggle');
+					angular.element('.details-template').remove();
 				}
 			}
 
@@ -3444,8 +3444,8 @@ function ngGridActionsPlugin(opts, compile) {
 				self.grid.$canvas.css('height', self.scope.newCanvasHeight + 'px');
 			}
 			else {
-				$('.details-template').parent().removeClass('toggle');
-				$('.details-template').remove();
+				angular.element('.details-template').parent().removeClass('toggle');
+				angular.element('.details-template').remove();
 			}
 		});
 
@@ -3483,41 +3483,41 @@ function ngGridActionsPlugin(opts, compile) {
 
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(result);
 					}).fail(function () {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(template);
 
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
-						$('.details-template').css('top', rowHeight + 'px');
+						angular.element('.details-template').css('top', rowHeight + 'px');
 						row.elm.addClass('toggle');
 						var top = Math.round(row.elm.position().top);
-						var children = $(row.elm).parent().children();
+						var children = angular.element(row.elm).parent().children();
 
 						for (var i = 0; i < children.length; i++) {
-							if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-								$(children[i]).css('top', step + 'px');
+							if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+								angular.element(children[i]).css('top', step + 'px');
 								step += rowHeight;
 							}
 						}
 					});
 				}
 				else {
-					$('.details-template').remove();
+					angular.element('.details-template').remove();
 					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
-					$('.details-template').css('top', rowHeight + 'px');
+					angular.element('.details-template').css('top', rowHeight + 'px');
 					row.elm.addClass('toggle');
 					var top = Math.round(row.elm.position().top);
-					var children = $(row.elm).parent().children();
+					var children = angular.element(row.elm).parent().children();
 
 					for (var i = 0; i < children.length; i++) {
-						if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-							$(children[i]).css('top', step + 'px');
+						if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+							angular.element(children[i]).css('top', step + 'px');
 							step += rowHeight;
 						}
 					}
@@ -3525,15 +3525,15 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 			else {
 				row.elm.addClass('toggle');
-				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+				angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 				var top = Math.round(row.elm.position().top);
-				var children = $(row.elm).parent().children();
+				var children = angular.element(row.elm).parent().children();
 				var step = step;
 
 				for (var i = 0; i < children.length; i++) {
-					if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-						$(children[i]).css('top', step + 'px');
+					if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+						angular.element(children[i]).css('top', step + 'px');
 						step += rowHeight;
 					}
 				}
@@ -3549,18 +3549,18 @@ function ngGridActionsPlugin(opts, compile) {
 
 				if (template.substr(template.length - 4) == 'html') {
 					$.get(template, function (result) {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(result);
 					}).fail(function () {
-						$('.details-template').remove();
+						angular.element('.details-template').remove();
 						detElm = angular.element(template);
 					}).always(function () {
 						row.elm.append(detElm);
 						self.compile(detElm)(self.scope);
-						$('.details-template').css('top', row.elm.height() + 'px');
+						angular.element('.details-template').css('top', row.elm.height() + 'px');
 
 						var top = Math.round(row.elm.position().top);
-						var children = $(row.elm).parent().children();
+						var children = angular.element(row.elm).parent().children();
 						var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
 						self.scope.step = step;
 
@@ -3568,12 +3568,12 @@ function ngGridActionsPlugin(opts, compile) {
 						self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 						self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-						$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+						angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 						for (var i = 0; i < children.length; i++) {
-							if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+							if (angular.element(children[i]).css('top').replace('px', '') == row.elm.position().top) {
 								for (var j = i + 1; j < children.length; j++) {
-									$(children[j]).css('top', step + 'px');
+									angular.element(children[j]).css('top', step + 'px');
 									step += rowHeight;
 								}
 							}
@@ -3581,14 +3581,14 @@ function ngGridActionsPlugin(opts, compile) {
 					});;
 				}
 				else {
-					$('.details-template').remove();
+					angular.element('.details-template').remove();
 					detElm = angular.element(template);
 					row.elm.append(detElm);
 					self.compile(detElm)(self.scope);
-					$('.details-template').css('top', row.elm.height() + 'px');
+					angular.element('.details-template').css('top', row.elm.height() + 'px');
 
 					var top = Math.round(row.elm.position().top);
-					var children = $(row.elm).parent().children();
+					var children = angular.element(row.elm).parent().children();
 					var step = row.elm.position().top + row.elm.find('.details-template').height() + rowHeight;
 					self.scope.step = step;
 
@@ -3596,12 +3596,12 @@ function ngGridActionsPlugin(opts, compile) {
 					self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 					self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-					$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+					angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 					for (var i = 0; i < children.length; i++) {
-						if ($(children[i]).css('top').replace('px', '') == row.elm.position().top) {
+						if (angular.element(children[i]).css('top').replace('px', '') == row.elm.position().top) {
 							for (var j = i + 1; j < children.length; j++) {
-								$(children[j]).css('top', step + 'px');
+								angular.element(children[j]).css('top', step + 'px');
 								step += rowHeight;
 							}
 						}
@@ -3610,7 +3610,7 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 			else {
 				var top = Math.round(row.elm.position().top);
-				var children = $(row.elm).parent().children();
+				var children = angular.element(row.elm).parent().children();
 				var step = row.elm.position().top + row.elm.context.scrollHeight;
 				self.scope.step = step;
 
@@ -3618,11 +3618,11 @@ function ngGridActionsPlugin(opts, compile) {
 				self.grid.$canvas.css('height', self.canvasHeight + row.elm.context.scrollHeight + 'px');
 				self.scope.newCanvasHeight = self.canvasHeight + row.elm.context.scrollHeight;
 
-				$(row.elm).css('height', row.elm.context.scrollHeight + 'px');
+				angular.element(row.elm).css('height', row.elm.context.scrollHeight + 'px');
 
 				for (var i = 0; i < children.length; i++) {
-					if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-						$(children[i]).css('top', step + 'px');
+					if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+						angular.element(children[i]).css('top', step + 'px');
 						step += rowHeight;
 					}
 				}
@@ -3637,20 +3637,20 @@ function ngGridActionsPlugin(opts, compile) {
 			}
 
 			row.clone.elm.removeClass('toggle');
-			$('.details-template').remove();
+			angular.element('.details-template').remove();
 			row.actions.isToggle = false;
 			self.grid.$canvas.css('height', self.canvasHeight + 'px');
 			self.scope.newCanvasHeight = self.canvasHeight;
 
 			var top = Math.round(row.clone.elm.position().top);
-			var children = $(row.clone.elm).parent().children();
+			var children = angular.element(row.clone.elm).parent().children();
 			var step = row.clone.elm.position().top + rowHeigth;
 
-			$(row.clone.elm).css('height', rowHeigth + 'px');
+			angular.element(row.clone.elm).css('height', rowHeigth + 'px');
 
 			for (var i = 0; i < children.length; i++) {
-				if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-					$(children[i]).css('top', step + 'px');
+				if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+					angular.element(children[i]).css('top', step + 'px');
 					step += rowHeigth;
 				}
 			}
@@ -3662,20 +3662,20 @@ function ngGridActionsPlugin(opts, compile) {
 
 		var closeToggleRow = function (row, detailsClass, template, rowHeigth, reInit) {
 			row.elm.removeClass('toggle');
-			$('.details-template').remove();
+			angular.element('.details-template').remove();
 			row.orig.actions.isToggle = false;
 			self.grid.$canvas.css('height', self.canvasHeight + 'px');
 			self.scope.newCanvasHeight = self.canvasHeight;
 
 			var top = Math.round(row.elm.position().top);
-			var children = $(row.elm).parent().children();
+			var children = angular.element(row.elm).parent().children();
 			var step = row.elm.position().top + rowHeigth;
 
-			$(row.elm).css('height', rowHeigth + 'px');
+			angular.element(row.elm).css('height', rowHeigth + 'px');
 
 			for (var i = 0; i < children.length; i++) {
-				if (parseInt($(children[i]).css('top').replace('px', '')) > top) {
-					$(children[i]).css('top', step + 'px');
+				if (parseInt(angular.element(children[i]).css('top').replace('px', '')) > top) {
+					angular.element(children[i]).css('top', step + 'px');
 					step += rowHeigth;
 				}
 			}
@@ -3708,9 +3708,9 @@ function ngGridActionsPlugin(opts, compile) {
 				}
 			}
 			else {
-				$(row.clone.elm).append('<input id="holdtext" style="display: none"/>')
+				angular.element(row.clone.elm).append('<input id="holdtext" style="display: none"/>')
 
-				var elm = $("#holdtext");
+				var elm = angular.element("#holdtext");
 				elm.val(s);
 				elm.select();
 
@@ -3776,27 +3776,27 @@ function ngGridActionsPlugin(opts, compile) {
 		}
 
 		var editRow = function (row) {
-			if ($('div[modal]').length != 0) {
-				$('div[modal]').remove();
+			if (angular.element('div[modal]').length != 0) {
+				angular.element('div[modal]').remove();
 			}
 
 			self.scope.rowEditing = row;
 
-			$('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
-			var modal = $('div[modal]');
+			angular.element('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
+			var modal = angular.element('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 
 
 		var historyRow = function (row) {
-			if ($('div[modal]').length != 0) {
-				$('div[modal]').remove();
+			if (angular.element('div[modal]').length != 0) {
+				angular.element('div[modal]').remove();
 			}
 
 			self.scope.rowHistoried = row;
 
-			$('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
-			var modal = $('div[modal]');
+			angular.element('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
+			var modal = angular.element('div[modal]');
 			self.compile(modal)(self.scope);
 		}
 
@@ -3924,7 +3924,7 @@ function ngGridFlexibleHeightPlugin(opts) {
 		var innerRecalcForData = function () {
 			var gridId = self.grid.gridId;
 			var footerPanelSel = '.' + gridId + ' .ngFooterPanel';
-			var extraHeight = self.grid.$topPanel.height() + $(footerPanelSel).height();
+			var extraHeight = self.grid.$topPanel.height() + angular.element(footerPanelSel).height();
 			console.log('extra=' + extraHeight);
 			var naturalHeight = self.grid.$canvas.height() + 1;
 			if (opts != null) {

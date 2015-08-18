@@ -66,8 +66,8 @@
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards-controller.js</file>
 		<file>/app/directives/page-content-cards/content-options-cards/content-options-cards.js</file>
 		<file>/app/directives/page-content-d3/page-content-d3.js</file>
-	<file>/app/directives/page-content-d3/content-options-d3/content-options-d3.js</file>
-	<file>/app/directives/page-content-d3/content-options-d3/content-options-d3-controller.js</file>
+		<file>/app/directives/page-content-d3/content-options-d3/content-options-d3.js</file>
+		<file>/app/directives/page-content-d3/content-options-d3/content-options-d3-controller.js</file>
 		<file>/app/directives/resize-on/resize-on.js</file>
 		<file>/app/directives/search/search-controller.js</file>
 		<file>/app/directives/search/search.js</file>
@@ -81,8 +81,8 @@
 		<file>/app/entities/initializer.js</file>
 		<file>/app/extensions/sankey.js</file>
 		<file>/app/extensions/window-width.js</file>
-		<file>/app/extensions/jquery/center.js</file>
-		<file>/app/extensions/jquery/cursorMessage.js</file>
+		<file>/app/extensions/angular/center.js</file>
+		<file>/app/extensions/angular/cursorMessage.js</file>
 		<file>/app/plugins/ngGridActionsPlugin.js</file>
 		<file>/app/plugins/ngGridCsvExportPlugin.js</file>
 		<file>/app/plugins/ngGridFlexibleHeightPlugin.js</file>

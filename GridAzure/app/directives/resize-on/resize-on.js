@@ -2,12 +2,12 @@
 	.directive('resizeOn', [function () {
 
 		function resize_on(element, parent) {
-			element.css('width', ($(parent).position().left + $(parent).width()) + 'px');
+			element.css('width', (angular.element(parent).position().left + angular.element(parent).width()) + 'px');
 
 			if (element.width() < element.css('min-width').replace('px', '')) {
 				element.css('right', 'auto');
 				element.css('width', '450px');
-				element.css('left', $(parent).position().left + 'px');
+				element.css('left', angular.element(parent).position().left + 'px');
 			}
 			else {
 				element.css('right', '0');
@@ -23,9 +23,9 @@
 				parent: '@'
 			},
 			link: function (scope, element, attrs) {
-				element.css('top', $(scope.parent).height() + 'px');
+				element.css('top', angular.element(scope.parent).height() + 'px');
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					resize_on(element, scope.parent);
 				});
 

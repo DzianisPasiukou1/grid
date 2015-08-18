@@ -81,8 +81,8 @@
 		<file>/app/entities/initializer.js</file>
 		<file>/app/extensions/sankey.js</file>
 		<file>/app/extensions/window-width.js</file>
-		<file>/app/extensions/jquery/center.js</file>
-		<file>/app/extensions/jquery/cursorMessage.js</file>
+		<file>/app/extensions/angular/center.js</file>
+		<file>/app/extensions/angular/cursorMessage.js</file>
 		<file>/app/plugins/ngGridActionsPlugin.js</file>
 		<file>/app/plugins/ngGridCsvExportPlugin.js</file>
 		<file>/app/plugins/ngGridFlexibleHeightPlugin.js</file>

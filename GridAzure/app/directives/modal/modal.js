@@ -15,16 +15,16 @@
 					$timeout(function () {
 						if (!value) {
 							angular.element(element).remove();
-							$('body').css('overflow', 'inherit');
+							angular.element('body').css('overflow', 'inherit');
 						}
 						else {
 							scope.resize();
-							$('body').css('overflow', 'hidden');
+							angular.element('body').css('overflow', 'hidden');
 						}
 					});
 				})
 
-				$(window).resize(function () {
+				angular.element(window).resize(function () {
 					scope.resize();
 				});
 			}
