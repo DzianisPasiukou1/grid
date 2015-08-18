@@ -4591,3 +4591,7 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/bin
 /GridAzure/obj
 /.nuget
+/.vs
+/packages
+/PublishScripts
+/GridAzure/Properties
