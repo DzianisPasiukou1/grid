@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('overlayCtrl', ['$scope', 'OVERLAY', '$timeout', '$element', function ($scope, OVERLAY, $timeout, $element) {
+	.controller('overlayCtrl', ['$scope', 'OVERLAY', '$timeout', '$element', '$window', function ($scope, OVERLAY, $timeout, $element, $window) {
 		if ($scope.selectors === undefined) {
 			$scope.selectors = {};
 		}
@@ -39,7 +39,7 @@
 						$scope.style.left = 0;
 					}
 
-					$scope.transcludeStyle.width = angular.element('body').prop('scrollWidth') - $scope.style.left.toString().replace('px', '') - $scope.toggleMinWidth + 'px';
+					$scope.transcludeStyle.width = angular.element('body').prop('scrollWidth') - $scope.style.left.toString().replace('px', '') - $scope.toggleMinWidth - 5 + 'px';
 				}
 				else {
 					$scope.style.left = angular.element('body').prop('scrollWidth') - $scope.toggleMinWidth + 'px';
@@ -58,7 +58,7 @@
 				var size = 10;
 				var min = 300;
 
-				if (angular.element(window).height() - angular.element($scope.selectors.heighterSelector).offset().top - size > min) {
+				if (angular.element($window).height() - angular.element($scope.selectors.heighterSelector).offset().top - size > min) {
 					$scope.style.minHeight = (angular.element('body').prop('scrollHeight') - angular.element($scope.selectors.heighterSelector).offset().top - size) + 'px';
 
 					$scope.style.top = 0;

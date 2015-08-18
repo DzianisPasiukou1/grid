@@ -1,17 +1,21 @@
 ﻿angular.module('gridTaskApp')
-	.directive('resizeOn', [function () {
+	.directive('resizeOn', ['$window', function ($window) {
 
-		function resize_on(element, parent) {
+		function resize_on(element, parent, width) {
 			element.css('width', (angular.element(parent).position().left + angular.element(parent).width()) + 'px');
 
 			if (element.width() < element.css('min-width').replace('px', '')) {
-				element.css('right', 'auto');
-				element.css('width', '450px');
-				element.css('left', angular.element(parent).position().left + 'px');
+				element.css({
+					right: 'auto',
+					width: width + 'px',
+					left: angular.element(parent).position().left + 'px'
+				})
 			}
 			else {
-				element.css('right', '0');
-				element.css('left', 'auto');
+				element.css({
+					right: 0,
+					left: 'auto'
+				})
 			}
 
 		}
@@ -20,18 +24,27 @@
 			restrict: 'AC',
 			scope: {
 				event: '=resizeOn',
-				parent: '@'
+				parent: '@',
+				width: '=resizeWidth'
 			},
 			link: function (scope, element, attrs) {
+				scope.width = scope.width || 450;
+
 				element.css('top', angular.element(scope.parent).height() + 'px');
 
-				angular.element(window).resize(function () {
-					resize_on(element, scope.parent);
+				var resize = function () {
+					resize_on(element, scope.parent, scope.width);
+				};
+
+				angular.element($window).resize(resize);
+
+				scope.$on('$destroy', function () {
+					angular.element($window).off("resize", resize);
 				});
 
 				scope.$watch('event', function (value) {
 					if (value) {
-						resize_on(element, scope.parent);
+						resize_on(element, scope.parent, scope.width);
 					}
 				});
 			}

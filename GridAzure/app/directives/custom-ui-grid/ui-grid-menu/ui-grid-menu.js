@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('uiGridCustomMenu', ['$timeout', function ($timeout) {
+	.directive('uiGridCustomMenu', ['$timeout', '$window', function ($timeout, $window) {
 		return {
 			restrict: 'EA',
 			controller: 'uiGridMenuCtrl',
@@ -30,7 +30,7 @@
 						self.scope.options.enableGridMenu = true;
 					}
 
-					angular.element(window).resize(function () {
+					var resize = function () {
 						var totalWidth = scope.getTotalWidth();
 
 						scope.resize(totalWidth);
@@ -53,7 +53,13 @@
 							}
 						}
 
-					}.bind(this));
+					}.bind(this);
+
+					angular.element($window).resize(resize);
+
+					scope.$on('$destroy', function () {
+						angular.element($window).off("resize", resize);
+					});
 				}.bind(self));
 			}
 		}

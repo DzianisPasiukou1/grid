@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('uiGridMenuCtrl', ['$scope', 'MENU', 'uiGridGridMenuService', function ($scope, MENU, uiGridGridMenuService) {
+	.controller('uiGridMenuCtrl', ['$scope', 'MENU', 'uiGridGridMenuService', '$window', function ($scope, MENU, uiGridGridMenuService, $window) {
 		if ($scope.options.menu === undefined) {
 			$scope.options.menu = {};
 		}
@@ -45,7 +45,7 @@
 						uiGridGridMenuService.toggleColumnVisibility($scope.gridApi.grid.columns[i]);
 						totalWidth -= $scope.gridApi.grid.columns[i].minWidth;
 					}
-					if (angular.element(window).width() > totalWidth) {
+					if (angular.element($window).width() > totalWidth) {
 						break;
 					}
 				}
@@ -53,7 +53,7 @@
 			else {
 				for (var i = 0; i < $scope.gridApi.grid.columns.length; i++) {
 					if (!$scope.gridApi.grid.columns[i].visible) {
-						if (angular.element(window).width() < totalWidth + $scope.gridApi.grid.columns[i].minWidth) {
+						if (angular.element($window).width() < totalWidth + $scope.gridApi.grid.columns[i].minWidth) {
 							break;
 						}
 						uiGridGridMenuService.toggleColumnVisibility($scope.gridApi.grid.columns[i]);

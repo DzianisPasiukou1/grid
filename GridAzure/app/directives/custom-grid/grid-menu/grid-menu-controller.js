@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.controller('gridMenuCtrl', ['$scope', 'MENU', function ($scope, MENU) {
+	.controller('gridMenuCtrl', ['$scope', 'MENU', '$window', function ($scope, MENU, $window) {
 		$scope.options = $scope.options.menu;
 
 		if ($scope.options === undefined) {
@@ -67,7 +67,7 @@
 				}
 			}
 
-			if (angular.element(window).width() < totalWidth) {
+			if (angular.element($window).width() < totalWidth) {
 				angular.element($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
 			}
 			else {

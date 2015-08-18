@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('modal', ['templatesPath', '$timeout', function (templatesPath, $timeout) {
+	.directive('modal', ['templatesPath', '$timeout', '$window', function (templatesPath, $timeout, $window) {
 		return {
 			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/modal.html',
@@ -11,6 +11,18 @@
 			},
 			controller: 'modalCtrl',
 			link: function (scope, element, attrs) {
+				var resize;
+
+				resize = function () {
+					scope.resize();
+				};
+
+				angular.element($window).resize(resize);
+
+				scope.$on('$destroy', function () {
+					angular.element($window).off("resize", resize);
+				});
+
 				scope.$watch('isModal', function (value) {
 					$timeout(function () {
 						if (!value) {
@@ -23,10 +35,6 @@
 						}
 					});
 				})
-
-				angular.element(window).resize(function () {
-					scope.resize();
-				});
 			}
 		}
 	}]);

@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('overlay', ['$timeout', 'templatesPath', function ($timeout, templatesPath) {
+	.directive('overlay', ['$timeout', 'templatesPath', '$window', function ($timeout, templatesPath, $window) {
 		return {
 			restrict: 'EAC',
 			scope: {
@@ -11,6 +11,12 @@
 			transclude: true,
 			replace: true,
 			link: function (scope, element, attrs) {
+				var resize = function () {
+					scope.setToggle(true);
+					scope.style.transition = 'none';
+					scope.$apply();
+				};
+
 				$timeout(function () {
 					scope.$watch('state', function (state) {
 						scope.setToggle();
@@ -21,10 +27,10 @@
 					});
 				});
 
-				angular.element(window).resize(function () {
-					scope.setToggle(true);
-					scope.style.transition = 'none';
-					scope.$apply();
+				angular.element($window).resize(resize);
+
+				scope.$on('$destroy', function () {
+					angular.element($window).off("resize", resize);
 				});
 			}
 		}

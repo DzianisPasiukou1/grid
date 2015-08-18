@@ -7,11 +7,6 @@
 		}
 
 		self.resize = function () {
-			self.element = {
-				height: angular.element(self.parent).height() + 'px',
-				width: angular.element(self.parent).width() + 'px'
-			};
-
 			self.disabled = {
 				height: angular.element(self.parent).height() + 'px',
 				width: angular.element(self.parent).width() + 'px',

@@ -48,18 +48,6 @@
     <Content Include="app\constants\loading-constant.js" />
     <Content Include="app\constants\menu-constants.js" />
     <Content Include="app\constants\overlay-constant.js" />
-    <Content Include="app\custom-grid-with-sankey.js">
-      <DependentUpon>custom-grid-with-sankey.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="app\custom-grid-with-sankey.min.js">
-      <DependentUpon>custom-grid-with-sankey.js</DependentUpon>
-    </Content>
-    <Content Include="app\custom-grid.js">
-      <DependentUpon>custom-grid.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="app\custom-grid.min.js">
-      <DependentUpon>custom-grid.js</DependentUpon>
-    </Content>
     <Content Include="app\directives\any-other-click\any-other-click.js" />
     <Content Include="app\directives\chart-segment\chart-segment.js" />
     <Content Include="app\directives\chart-segment\chart-segment-controller.js" />
@@ -2336,14 +2324,6 @@
     <Content Include="css\partials\_kx-nav.scss" />
     <Content Include="css\common\_overlay.scss" />
     <Content Include="data\sankey\single.json" />
-    <Content Include="app\custom-grid.js.bundle" />
-    <Content Include="app\custom-grid.min.js.map">
-      <DependentUpon>custom-grid.min.js</DependentUpon>
-    </Content>
-    <Content Include="app\custom-grid-with-sankey.js.bundle" />
-    <Content Include="app\custom-grid-with-sankey.min.js.map">
-      <DependentUpon>custom-grid-with-sankey.min.js</DependentUpon>
-    </Content>
     <Content Include="css\modules\_mixin.scss" />
     <Content Include="css\modules\_fonts.scss" />
     <Content Include="css\modules\_color.scss" />

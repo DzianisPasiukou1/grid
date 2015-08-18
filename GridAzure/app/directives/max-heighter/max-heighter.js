@@ -1,7 +1,12 @@
 ﻿angular.module('gridTaskApp')
-	.directive('maxHeighter', ['$timeout', '$interval', function ($timeout, $interval) {
+	.directive('maxHeighter', ['$timeout', '$window', function ($timeout, $window) {
 		function init_height(element) {
-			element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
+			if (getWindowHeight() - element.offset().top > 0) {
+				element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
+			}
+			else {
+				element.css('max-height', 100 + 'px');
+			}
 		}
 
 		return {
@@ -14,12 +19,18 @@
 
 				return {
 					post: function (scope, element, attrs) {
+						var resize = function () {
+							init_height(element);
+						}
+
 						$timeout(function () {
 							init_height(element)
 						});
 
-						angular.element(window).resize(function () {
-							init_height(element)
+						angular.element($window).resize(resize);
+
+						scope.$on('$destroy', function () {
+							angular.element($window).off("resize", resize);
 						});
 					}
 				}

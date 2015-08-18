@@ -832,7 +832,8 @@ button::-moz-focus-inner {
 .my-card {
   display: inline-block; }
   .my-card .front {
-    background-color: white; }
+    background-color: white;
+    transform-style: flat !important; }
   .my-card .back {
     background-color: #f2f2f2; }
     .my-card .back .my-card__header {

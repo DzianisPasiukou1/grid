@@ -33,7 +33,8 @@
 
 		$scope.resize = function () {
 			$scope.fade = {
-				height: $element.find('.' + $scope.modal).prop('scrollHeight') + 'px'
+				height: $element.find('.' + 'dialog').prop('scrollHeight') + 60 + 'px',
+				width: $element.find('.' + 'dialog').prop('scrollWidth') + 'px'
 			}
 		};
 

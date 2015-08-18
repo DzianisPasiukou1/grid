@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('dynamicDropdown', ['templatesPath', '$compile', '$timeout', function (templatesPath, $compile, $timeout) {
+	.directive('dynamicDropdown', ['templatesPath', '$compile', '$timeout', '$window', function (templatesPath, $compile, $timeout, $window) {
 		return {
 			restrict: 'EA',
 			scope: {
@@ -184,9 +184,7 @@
 					scope.dropdownOpt.style = { "z-index": "9" };
 				});
 
-
-
-				angular.element(window).resize(function () {
+				var resize = function () {
 					if (element.parent().offset().left != 0) {
 						scope.offset = element.parent().offset();
 					}
@@ -289,6 +287,12 @@
 					}
 
 					scope.$apply()
+				};
+
+				angular.element($window).resize(resize);
+
+				scope.$on('$destroy', function () {
+					angular.element($window).off("resize", resize);
 				});
 			}
 		}

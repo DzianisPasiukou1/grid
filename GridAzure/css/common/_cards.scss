@@ -12,6 +12,7 @@
 	.front {
 		@extend .custom-card;
 		background-color: $white;
+		transform-style: flat !important;
 	}
 
 	.back {
