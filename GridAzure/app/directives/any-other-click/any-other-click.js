@@ -1,12 +1,14 @@
 ﻿var directiveName = "anyOtherClick";
 
 angular.module('gridTaskApp')
-	.directive('anyOtherClick', ['$document', "$parse", function ($document, $parse) {
+	.directive('anyOtherClick', ["$parse", 'anyOtherClickFactory', function ($parse, anyOtherClickFactory) {
 		return {
 			restrict: 'A',
 			link: function (scope, element, attr, controller) {
-				var anyOtherClickFunction = $parse(attr[directiveName]);
-				var documentClickHandler = function (event) {
+				var anyOtherClickFunction, documentClickHandler;
+
+				anyOtherClickFunction = $parse(attr[directiveName]);
+				documentClickHandler = function (event) {
 					var eventOutsideTarget = (element[0] !== event.target) && (0 === element.find(event.target).length);
 					if (eventOutsideTarget) {
 						scope.$apply(function () {
@@ -14,10 +16,10 @@ angular.module('gridTaskApp')
 						});
 					}
 				};
+				anyOtherClickFactory._register(documentClickHandler);
 
-				$document.on("click", documentClickHandler);
 				scope.$on("$destroy", function () {
-					$document.off("click", documentClickHandler);
+					anyOtherClickFactory._destroy(documentClickHandler);
 				});
 			},
 		}

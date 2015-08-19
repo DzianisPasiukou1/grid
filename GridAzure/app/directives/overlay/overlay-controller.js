@@ -70,6 +70,7 @@
 						$scope.style.top = angular.element($scope.selectors.alignTopSelector).offset().top - $element.offset().top + 'px';
 					}
 				}
+
 			})
 		}
 	}]);

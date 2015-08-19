@@ -13,7 +13,6 @@
 			link: function (scope, element, attrs) {
 				var resize = function () {
 					scope.setToggle(true);
-					scope.style.transition = 'none';
 					scope.$apply();
 				};
 
@@ -27,9 +26,12 @@
 					});
 				});
 
+				element.parent().onPositionChanged(resize, 0);
+
 				angular.element($window).resize(resize);
 
 				scope.$on('$destroy', function () {
+					element.parent().off("onPositionChanged", resize);
 					angular.element($window).off("resize", resize);
 				});
 			}
