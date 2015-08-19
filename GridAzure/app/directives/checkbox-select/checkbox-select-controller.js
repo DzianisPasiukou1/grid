@@ -4,48 +4,45 @@
 			$scope.options.selected = {};
 		}
 
+		if ($scope.options.callback) {
+			$scope.$on('checkboxSelect', function (event, data) {
+				$scope.options.callback(data);
+			});
+		}
+
+		$scope.$watch('options.selected', function (value) {
+			if (value) {
+				if (value.isAll) {
+					value.check = true;
+				}
+				else {
+					value.check = false;
+				}
+			}
+		});
+
 		$scope.toggle = function () {
 			$scope.isShow = !$scope.isShow;
 		}
 
-		$scope.select = function (action) {
+		$scope.turnOff = function () {
 			$scope.isShow = false;
+		}
+
+		$scope.select = function (action) {
+			$scope.turnOff();
 			$scope.options.selected = action;
-
-			if ($scope.options.selected.isAll) {
-				$scope.options.selected.check = true;
-			}
-			else {
-				$scope.options.selected.check = false;
-			}
-
-			if ($scope.options.callback) {
-				$scope.options.callback(action);
-			}
+			$scope.$emit('checkboxSelect', action);
 		}
 
 		$scope.checked = function (value) {
+			$scope.turnOff();
 			if (value) {
 				$scope.options.selected = $scope.options.actions.all;
-				$scope.options.selected.check = true;
-
-				if ($scope.options.selected === undefined) {
-					$scope.options.selected = {};
-				}
 			}
 			else {
 				$scope.options.selected = $scope.options.actions.noOne;
-				$scope.options.selected.check = false;
-
-				if ($scope.options.selected === undefined) {
-					$scope.options.selected = {};
-				}
 			}
-
-			if ($scope.options.callback) {
-				$scope.options.callback($scope.options.selected);
-			}
-
-			$scope.isShow = false;
+			$scope.$emit('checkboxSelect', $scope.options.selected);
 		};
 	}]);

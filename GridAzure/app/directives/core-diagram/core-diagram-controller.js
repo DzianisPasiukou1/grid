@@ -1,7 +1,12 @@
 ﻿angular.module('gridTaskApp')
-	.controller('coreDiagramCtrl', ['$scope', function ($scope) {
-		$scope.mouseOverInit = function (d) {
-			$scope.type = d.mouseover.type;
-			$scope.value = { header: d.mouseover.header, data: d.mouseover.data };
-		};
+	.controller('coreDiagramCtrl', ['chartFactory', '$scope', '$parse', function (chartFactory, $scope, $parse) {
+		$scope.chart = chartFactory.getChart($scope.data, $scope.opt);
+
+		$scope.mouseOverInit = function (data) {
+			$scope.type = $parse('mouseover.type')(data);
+			$scope.value = {
+				header: $parse('mouseover.header')(data),
+				data: $parse('mouseover.data')(data)
+			};
+		}
 	}]);

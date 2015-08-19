@@ -13,26 +13,19 @@
 					scope.$on('debugFlip', function (event, id) {
 						element.find('#' + scope.contentOptions.debugCard.id).flip();
 					})
-
 					$timeout(function () {
 						scope.enableDebugging(true);
 					});
 				}
-
 				scope.$watch('cardsOptions.cards', function (cards) {
 					scope.refresh(cards);
-
-					for (var card in cards) {
-						scope.$on('cardFlip', function (event, id) {
-							element.find('#' + id).flip();
-						})
-					}
-
+					scope.$on('cardFlip', function (event, id) {
+						element.find('#' + id).flip();
+					})
 					$timeout(function () {
 						scope.flipAll();
 					})
 				});
-
 				scope.$on('$destroy', function () {
 					scope.clear();
 				})

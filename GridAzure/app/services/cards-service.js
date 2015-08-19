@@ -32,23 +32,18 @@
 					instance.debugCard.style = {
 						left: instance.startLeft
 					}
-
 					instance.startLeft += instance.margin;
 				}
 			},
 			flipAll: function () {
 				var left = instance.startLeft;
-
 				for (var i in instance.cards) {
 					this.flipCard(i);
-
 					instance.cards[i].style = {
 						left: left
 					}
-
 					left += instance.margin;
 				}
-
 				angular.extend(instance.groupStyle, {
 					width: left + instance.groupMarginRight
 				});

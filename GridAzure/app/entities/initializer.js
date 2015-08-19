@@ -109,6 +109,8 @@
 		if (this.scope.sankeyData === undefined) {
 			d3.json(this.content.sankeyPath, function (error, graph) {
 				this.scope.sankeyData = graph;
+
+				this.scope.$apply();
 			}.bind(this));
 		}
 
