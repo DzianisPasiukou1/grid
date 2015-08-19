@@ -1,10 +1,27 @@
 ﻿angular.module('gridTaskApp')
-	.controller('cardsCtrl', ['$scope', function ($scope) {
-		$scope.startLeft = 40;
-		$scope.groupMarginRight = 50;
+	.controller('cardsCtrl', ['$scope', 'cardsFactory', function ($scope, cardsFactory) {
+		cardsFactory.register($scope.cardsOptions.cards,
+			$scope.contentOptions.datepickerOptions.startDate,
+			$scope.contentOptions.datepickerOptions.endDate,
+			$scope.cardsOptions.margin,
+			$scope.contentOptions);
 
-		$scope.cards = $scope.cardsOptions.cards;
-		$scope.startDate = $scope.contentOptions.datepickerOptions.startDate;
-		$scope.endDate = $scope.contentOptions.datepickerOptions.endDate;
-		$scope.margin = $scope.cardsOptions.margin;
+		angular.extend($scope, cardsFactory.getInstance());
+
+		$scope.refresh = function (cards) {
+			cardsFactory.refresh(cards);
+			angular.extend($scope, cardsFactory.getInstance());
+		}
+
+		$scope.enableDebugging = function (isDebug) {
+			cardsFactory.enableDebugging(isDebug);
+		}
+
+		$scope.flipAll = function () {
+			cardsFactory.flipAll();
+		}
+
+		$scope.clear = function () {
+			cardsFactory.clear();
+		}
 	}]);

@@ -10,40 +10,32 @@
 			controller: 'cardsCtrl',
 			link: function (scope, element, attrs) {
 				if (scope.contentOptions.enableDebugging) {
-					$timeout(function () {
+					scope.$on('debugFlip', function (event, id) {
 						element.find('#' + scope.contentOptions.debugCard.id).flip();
+					})
 
-						scope.contentOptions.debugCard.style = {
-							left: scope.startLeft
-						}
+					$timeout(function () {
+						scope.enableDebugging(true);
 					});
 				}
 
 				scope.$watch('cardsOptions.cards', function (cards) {
-					scope.cards = scope.cardsOptions.cards;
+					scope.refresh(cards);
+
+					for (var card in cards) {
+						scope.$on('cardFlip', function (event, id) {
+							element.find('#' + id).flip();
+						})
+					}
 
 					$timeout(function () {
-						var left = scope.startLeft;
-
-						if (scope.contentOptions.enableDebugging) {
-							left += scope.margin;
-						}
-
-						for (var card in cards) {
-							element.find('#' + card).flip();
-
-							cards[card].style = {
-								left: left
-							}
-
-							left += scope.margin;
-						}
-
-						scope.groupStyle = {
-							width: left + scope.groupMarginRight
-						}
+						scope.flipAll();
 					})
 				});
+
+				scope.$on('$destroy', function () {
+					scope.clear();
+				})
 			}
 		}
 	}]);

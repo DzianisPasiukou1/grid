@@ -83,6 +83,7 @@
     <Content Include="app\localization\locations\locations-ru.js" />
     <Content Include="app\localization\translation.js" />
     <Content Include="app\services\any-other-click-service.js" />
+    <Content Include="app\services\cards-service.js" />
     <Content Include="app\services\json-service.js" />
     <Content Include="app\services\my-template-service.js" />
     <Content Include="app\services\navigation-tree-service.js" />
@@ -2596,6 +2597,7 @@
     <Content Include="test\unit\directives\dropdown\dropdownSpec.js" />
     <Content Include="test\unit\directives\page-content-cards\pageContentCardsSpec.js" />
     <Content Include="test\unit\services\any-other-click-service.js" />
+    <Content Include="test\unit\services\cards-service.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
