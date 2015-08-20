@@ -4599,3 +4599,7 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /GridAzure/scripts/_references.js
 /GridAzure/GridAzure.csproj
 .nuget
+/GridAzure.sln
+/GridAzure/Web.config
+/GridAzure/Web.Debug.config
+/GridAzure/Web.Release.config
