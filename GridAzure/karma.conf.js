@@ -5,7 +5,7 @@ module.exports = function (config) {
 	config.set({
 
 		// base path that will be used to resolve all patterns (eg. files, exclude)
-		basePath: '',
+		basePath: 'src/',
 
 
 		// frameworks to use
@@ -15,26 +15,26 @@ module.exports = function (config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-			'bower_components/jquery/dist/jquery.min.js',
-			'bower_components/angular/angular.js',
-			'bower_components/angular-route/angular-route.min.js',
-			'bower_components/angular-i18n/angular-locale_en-us.js',
-			'bower_components/angular-ui-grid/ui-grid.min.js',
-			'bower_components/flip/dist/jquery.flip.min.js',
-			'bower_components/jquery-date-range-picker/moment.min.js',
-			'bower_components/jquery-date-range-picker/jquery.daterangepicker.js',
-			'bower_components/ng-grid/ng-grid-2.0.14.min.js',
-			'bower_components/d3/d3.min.js',
-			'bower_components/select2/select2.min.js',
-			'bower_components/angular-ui-select2/src/select2.js',
-			'bower_components/angular-translate/angular-translate.min.js',
-			'bower_components/underscore/underscore-min.js',
-			'bower_components/bootstrap-daterangepicker/daterangepicker.js',
-			'bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
-			'bower_components/bootstrap/dist/js/bootstrap.js',
+			'vendor/jquery/dist/jquery.min.js',
+			'vendor/angular/angular.js',
+			'vendor/angular-route/angular-route.min.js',
+			'vendor/angular-i18n/angular-locale_en-us.js',
+			'vendor/angular-ui-grid/ui-grid.min.js',
+			'vendor/flip/dist/jquery.flip.min.js',
+			'vendor/jquery-date-range-picker/moment.min.js',
+			'vendor/jquery-date-range-picker/jquery.daterangepicker.js',
+			'vendor/ng-grid/ng-grid-2.0.14.min.js',
+			'vendor/d3/d3.min.js',
+			'vendor/select2/select2.min.js',
+			'vendor/angular-ui-select2/src/select2.js',
+			'vendor/angular-translate/angular-translate.min.js',
+			'vendor/underscore/underscore-min.js',
+			'vendor/bootstrap-daterangepicker/daterangepicker.js',
+			'vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
+			'vendor/bootstrap/dist/js/bootstrap.js',
 			'app/**/*.js',
 			'azure-app/**/*.js',
-			'bower_components/angular-mocks/angular-mocks.js',
+			'vendor/angular-mocks/angular-mocks.js',
 			'test/unit/**/*.js',
 			'app/templates/**/*.html'
 		],
