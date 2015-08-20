@@ -1,0 +1,75 @@
+﻿.grid-testing {
+	@media only screen and (max-width: 1530px) {
+		textarea {
+			width: 100% !important;
+		}
+
+		page-content {
+			position: relative !important;
+		}
+	}
+
+	.generate-btn {
+		@extend .metro-btn;
+		margin-left: 50px;
+		background-color: rgb(134, 81, 81);
+		color: black;
+		font-weight: bold;
+	}
+
+	.validators-group {
+		margin-left: 50px;
+		font-size: 20px;
+
+		.success {
+			color: green;
+			-webkit-transition: all linear 0.3s;
+			-moz-transition: all linear 0.3s;
+			-ms-transition: all linear 0.3s;
+			-o-transition: all linear 0.3s;
+			transition: all linear 0.3s;
+			opacity: 1;
+
+			&.ng-hide {
+				transition: all linear 0.3s;
+			}
+		}
+
+		.failed {
+			color: red;
+			-webkit-transition: all linear 0.3s;
+			-moz-transition: all linear 0.3s;
+			-ms-transition: all linear 0.3s;
+			-o-transition: all linear 0.3s;
+			transition: all linear 0.3s;
+			opacity: 1;
+
+			&.ng-hide {
+				opacity: 0 !important;
+			}
+		}
+	}
+
+	textarea {
+		height: 850px !important;
+		width: 43%;
+		min-width: 0 !important;
+		position: relative;
+		left: 0;
+	}
+
+	page-content {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 55%;
+
+		.page-content {
+			margin-top: 43px;
+		}
+
+		.custom-grid {
+			width: 100%;
+		}
+	}
+}
