@@ -1,5 +1,5 @@
 angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
-  'use strict';
+	'use strict';
 
   $templateCache.put('app/templates/directive-templates/cards.html',
     "<div class=\"cards-group\" ng-style=\"groupStyle\">\r" +

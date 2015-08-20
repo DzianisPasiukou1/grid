@@ -6,7 +6,7 @@
 			$http.get(url).success(function (data) {
 				deferred.resolve(data);
 			}).error(function () {
-				def.reject("Failed to json.");
+			    deferred.reject("Failed to json.");
 			});;
 
 			return deferred.promise;
