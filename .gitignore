@@ -4595,3 +4595,7 @@ GridAzure/obj/Release/_WPPLastBuildInfo.txt
 /packages
 /PublishScripts
 /GridAzure/Properties
+/GridAzure/.settings
+/GridAzure/scripts/_references.js
+/GridAzure/GridAzure.csproj
+.nuget
