@@ -1,4 +1,4 @@
-﻿var templatesPath = 'app/templates/';
+﻿var templatesPath = '/src/app/templates/';
 
 angular.module('gridTaskApp')
 	.constant('CONTENT', {
@@ -101,7 +101,7 @@ angular.module('gridTaskApp')
 			headerCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/header.html',
 			reInit: true,
 			enableDetails: true,
-			detailsCellTemplate: templatesPath +'ui-grid-templates/cell-templates/details.html',
+			detailsCellTemplate: templatesPath + 'ui-grid-templates/cell-templates/details.html',
 			detailsWidth: 60,
 			detailsMinWidth: 60,
 			enableAction: true,

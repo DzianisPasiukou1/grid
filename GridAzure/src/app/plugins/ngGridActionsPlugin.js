@@ -1,4 +1,4 @@
-﻿var templatesPath = 'app/templates/';
+﻿var templatesPath = '/src/app/templates/';
 
 function ngGridActionsPlugin(opts, compile) {
 	var self = this;

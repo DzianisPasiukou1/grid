@@ -1,7 +1,6 @@
-﻿angular.module('gridTaskApp').directive('kxStealthInput', function () {
+﻿angular.module('gridTaskApp').directive('kxStealthInput', [function () {
 	return {
 		restrict: "CAE",
-		controller: function ($scope) { },
 		link: function ($scope, elem, attrs) {
 			var focus, hover, update;
 			focus = false;
@@ -28,4 +27,4 @@
 			return update();
 		}
 	};
-});
+}]);

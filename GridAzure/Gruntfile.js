@@ -7,7 +7,7 @@
 		ngtemplates: {
 			myapp: {
 				options: {
-					base: "/",
+					prefix: '/',
 					module: "gridTaskApp",
 				},
 				src: fileBase + "app/templates/**/*.html",
@@ -78,7 +78,7 @@
 					  { expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
 			},
 			assets: {
-				files: [{ expand: true, flatten: true, src: [fileBase + 'data/**/*.json'], dest: releaseBase + 'json', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
+				files: [ { expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
 			},
 			src: {
 				files: [
@@ -109,14 +109,14 @@
 			}
 		},
 		wiredep: {
-
-			task: {
+			test: {
 				src: [
-				  'test.html'
+				  distBase + 'test.html'
 				],
 				options: {
 				}
 			}
+
 		}
 	});
 
@@ -137,12 +137,16 @@
 		'watch:src'
 	]);
 
+	grunt.registerTask('error', [
+		'watch:error'
+	])
+
 	grunt.registerTask('test', [
 		'karma'
 	])
 
 	grunt.registerTask('release', [
-		'clean',
+		//'clean',
 		 'ngtemplates',
 		'copy:css',
 		'copy:assets',

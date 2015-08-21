@@ -1,4 +1,4 @@
-﻿var templatesPath = 'app/templates/';
+﻿var templatesPath = '/src/app/templates/';
 
 var Row = function () {
 	function Row(elm, rootScope, compile) {

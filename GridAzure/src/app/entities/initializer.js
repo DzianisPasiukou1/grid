@@ -1,11 +1,13 @@
 ﻿var Initializer = (function () {
-	function Initializer(scope, element, CONTENT, templatesPath, $compile, jsonService) {
+	function Initializer(scope, element, CONTENT, templatesPath, $compile, jsonService, HISTOGRAM, SANKEY) {
 		this.scope = scope;
 		this.element = element;
 		this.content = CONTENT;
 		this.templatesPath = templatesPath;
 		this.$compile = $compile;
 		this.jsonService = jsonService;
+		this.HISTOGRAM = HISTOGRAM;
+		this.SANKEY = SANKEY;
 	}
 
 	Initializer.prototype.init = function () {
@@ -107,17 +109,11 @@
 		}
 
 		if (this.scope.sankeyData === undefined) {
-			d3.json(this.content.sankeyPath, function (error, graph) {
-				this.scope.sankeyData = graph;
-
-				this.scope.$apply();
-			}.bind(this));
+			this.scope.sankeyData = this.SANKEY.data;
 		}
 
 		if (this.scope.histogramData === undefined) {
-			this.jsonService.get('data/histogram/default.json').then(function (data) {
-				this.scope.histogramData = data;
-			}.bind(this));
+			this.scope.histogramData = this.HISTOGRAM.data;
 		}
 	};
 

@@ -1205,3 +1205,5 @@
 /// <reference path="../dist/src/vendor/underscore/underscore-min.js" />
 /// <reference path="../dist/src/vendor/underscore/underscore.js" />
 /// <reference path="../release/grid.js" />
+/// <reference path="../src/app/constants/sankey-constants.js" />
+/// <reference path="../src/app/constants/histogram-constants.js" />

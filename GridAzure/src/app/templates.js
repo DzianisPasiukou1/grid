@@ -1,7 +1,7 @@
 angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('src/app/templates/directive-templates/cards.html',
+  $templateCache.put('/src/app/templates/directive-templates/cards.html',
     "<div class=\"cards-group\" ng-style=\"groupStyle\">\r" +
     "\n" +
     "\t<div class=\"my-card\" id=\"{{contentOptions.debugCard.id}}\" ng-if=\"contentOptions.enableDebugging\" ng-style=\"contentOptions.debugCard.style\">\r" +
@@ -96,7 +96,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/chart-segment.html',
+  $templateCache.put('/src/app/templates/directive-templates/chart-segment.html',
     "<div class=\"chart-segment\">\r" +
     "\n" +
     "\t<div class=\"chart-segment__list\">\r" +
@@ -131,7 +131,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/checkbox-select.html',
+  $templateCache.put('/src/app/templates/directive-templates/checkbox-select.html',
     "<div class=\"checkbox-select\" any-other-click=\"isShow=false\">\r" +
     "\n" +
     "\t<div class=\"checkbox-select__check\">\r" +
@@ -167,7 +167,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/content-options-cards.html',
+  $templateCache.put('/src/app/templates/directive-templates/content-options-cards.html',
     "<div class=\"options\">\r" +
     "\n" +
     "\t<div class=\"options__block\">\r" +
@@ -191,7 +191,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/content-options-d3.html',
+  $templateCache.put('/src/app/templates/directive-templates/content-options-d3.html',
     "<div class=\"options\">\r" +
     "\n" +
     "\t<div class=\"options__block\">\r" +
@@ -235,7 +235,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/content-options.html',
+  $templateCache.put('/src/app/templates/directive-templates/content-options.html',
     "<div class=\"options\">\r" +
     "\n" +
     "\t<div class=\"options__block\">\r" +
@@ -265,13 +265,13 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/core-diagram.html',
+  $templateCache.put('/src/app/templates/directive-templates/core-diagram.html',
     "<p id=\"chart\" max-heighter>\r" +
     "\n"
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/custom-datepicker.html',
+  $templateCache.put('/src/app/templates/directive-templates/custom-datepicker.html',
     "<button class=\"date-btn\" ng-click=\"close()\">\r" +
     "\n" +
     "\t<span class=\"date-btn__icon glyph-calendar\"></span>\r" +
@@ -295,7 +295,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/custom-grid.html',
+  $templateCache.put('/src/app/templates/directive-templates/custom-grid.html',
     "<div class=\"custom-grid\" ng-grid=\"options\">\r" +
     "\n" +
     "\t<div grid-menu class=\"custom-grid__menu\"></div>\r" +
@@ -307,14 +307,14 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/custom-ui-grid.html',
+  $templateCache.put('/src/app/templates/directive-templates/custom-ui-grid.html',
     "<div ui-grid=\"options\" class=\"custom-ui-grid\" ui-grid-selection ui-grid-expandable ui-grid-custom-menu>\r" +
     "\n" +
     "</div>"
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/debug.html',
+  $templateCache.put('/src/app/templates/directive-templates/debug.html',
     "<div class=\"debug\">\r" +
     "\n" +
     "\t<div class=\"debug__back\">\r" +
@@ -338,7 +338,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/dropdown.html',
+  $templateCache.put('/src/app/templates/directive-templates/dropdown.html',
     "<div class=\"my-dropdown\" any-other-click=\"isShow=false\">\r" +
     "\n" +
     "\t<button type=\"button\" class=\"my-dropdown__btn\" ng-show=\"!options.isMenu\" ng-click=\"isShow = !isShow\" ng-class=\"{'opened' : isShow}\">\r" +
@@ -394,7 +394,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/edit-entity.html',
+  $templateCache.put('/src/app/templates/directive-templates/edit-entity.html',
     "<h1>{{::'editEntity' | translate}}</h1>\r" +
     "\n" +
     "<div ng-repeat=\"(key, value) in myEntity\" class=\"dialog__entity\">\r" +
@@ -406,7 +406,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/filter-list.html',
+  $templateCache.put('/src/app/templates/directive-templates/filter-list.html',
     "<div class=\"filter-list\">\r" +
     "\n" +
     "\t<div class=\"filter-list__header\">\r" +
@@ -445,7 +445,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/filter.html',
+  $templateCache.put('/src/app/templates/directive-templates/filter.html',
     "<div class=\"filter\" any-other-click=\"listState=false\" ng-class=\"{'filter-selected' : listState}\">\r" +
     "\n" +
     "\t<button class=\"filter__btn\" ng-click=\"filterClick()\">\r" +
@@ -469,14 +469,14 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/gr-template.html',
+  $templateCache.put('/src/app/templates/directive-templates/gr-template.html',
     "<div ng-include=\"templateUrl\">\r" +
     "\n" +
     "</div>"
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/graphs.html',
+  $templateCache.put('/src/app/templates/directive-templates/graphs.html',
     "<div ng-repeat=\"graph in graphs\" class=\"graphs\" ng-style=\"graph.style\">\r" +
     "\n" +
     "\t<div class=\"graph\">\r" +
@@ -487,7 +487,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/grid-menu.html',
+  $templateCache.put('/src/app/templates/directive-templates/grid-menu.html',
     "<div class=\"grid-menu\" ng-show=\"isShow\">\r" +
     "\n" +
     "\t<div class=\"grid-menu__options\" dropdown=\"options\"></div>\r" +
@@ -496,7 +496,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/histogram.html',
+  $templateCache.put('/src/app/templates/directive-templates/histogram.html',
     "<div class=\"histogram\">\r" +
     "\n" +
     "\t<svg class=\"chart\">\r" +
@@ -510,7 +510,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/history.html',
+  $templateCache.put('/src/app/templates/directive-templates/history.html',
     "<h1>{{::'history' | translate}}</h1>\r" +
     "\n" +
     "<div class=\"message\" ng-if=\"value.length == 0\">{{::'historyEmpty' | translate}}.</div>\r" +
@@ -550,7 +550,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/kx-nav-bar.html',
+  $templateCache.put('/src/app/templates/directive-templates/kx-nav-bar.html',
     "<nav class=\"kx-nav row-fluid\">\r" +
     "\n" +
     "\t<div class=\"span12\">\r" +
@@ -653,7 +653,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/loading.html',
+  $templateCache.put('/src/app/templates/directive-templates/loading.html',
     "<div class=\"loading\" ng-style=\"ctrl.element\">\r" +
     "\n" +
     "\t<div class=\"loading-disabled\" ng-style=\"ctrl.disabled\">\r" +
@@ -705,7 +705,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/modal.html',
+  $templateCache.put('/src/app/templates/directive-templates/modal.html',
     "<div class=\"modal\" ng-class=\"modal\" ng-if=\"isModal\">\r" +
     "\n" +
     "\t<div class=\"fade\" ng-style=\"fade\">\r" +
@@ -737,7 +737,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/mouse-over.html',
+  $templateCache.put('/src/app/templates/directive-templates/mouse-over.html',
     "<div class=\"mouse-over\" ng-style=\"style\">\r" +
     "\n" +
     "\t<div class=\"mouse-over-simple\" ng-if=\"type.isSimple\">\r" +
@@ -823,7 +823,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/overlay.html',
+  $templateCache.put('/src/app/templates/directive-templates/overlay.html',
     "<div class=\"custom-overlay\" ng-style=\"style\">\r" +
     "\n" +
     "\t<div class=\"custom-overlay__toggle\">\r" +
@@ -841,7 +841,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/page-content-cards.html',
+  $templateCache.put('/src/app/templates/directive-templates/page-content-cards.html',
     "<div class=\"page-content\">\r" +
     "\n" +
     "\t<div class=\"page-content__header\">\r" +
@@ -885,7 +885,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/page-content-d3.html',
+  $templateCache.put('/src/app/templates/directive-templates/page-content-d3.html',
     "<div class=\"page-content\">\r" +
     "\n" +
     "\t<div class=\"page-content__header\">\r" +
@@ -927,7 +927,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/page-content.html',
+  $templateCache.put('/src/app/templates/directive-templates/page-content.html',
     "<div class=\"page-content\">\r" +
     "\n" +
     "\t<div class=\"page-content__header\">\r" +
@@ -989,7 +989,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/search.html',
+  $templateCache.put('/src/app/templates/directive-templates/search.html',
     "<div class=\"search\">\r" +
     "\n" +
     "\t<input type=\"search\" ng-model=\"searchValue\" />\r" +
@@ -1009,7 +1009,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/split-button.html',
+  $templateCache.put('/src/app/templates/directive-templates/split-button.html',
     "<button class=\"split-btn\" ng-click=\"close()\">\r" +
     "\n" +
     "\t<div ng-if=\"actions.selected\">\r" +
@@ -1054,7 +1054,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/ui-grid-menu.html',
+  $templateCache.put('/src/app/templates/directive-templates/ui-grid-menu.html',
     "<div class=\"ui-grid-menu\">\r" +
     "\n" +
     "\t<dropdown class=\"ui-grid-menu__options\" dropdown-options=\"options\"></dropdown>\r" +
@@ -1064,7 +1064,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/directive-templates/upload.html',
+  $templateCache.put('/src/app/templates/directive-templates/upload.html',
     "<label>\r" +
     "\n" +
     "\t<input type=\"file\" />\r" +
@@ -1078,7 +1078,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/cell-without-sort.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/cell-without-sort.html',
     "<div class=\"ngHeaderSortColumn {{col.headerClass}}\" ng-style=\"{'cursor': col.cursor}\" ng-class=\"{ 'ngSorted': !noSortVisible }\">\r" +
     "\n" +
     "\t<div ng-click=\"col.sort($event)\" ng-class=\"'colt' + col.index\" class=\"ngHeaderText\">\r" +
@@ -1109,7 +1109,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/cell.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/cell.html',
     "<div class=\"column\" ng-style=\"{'cursor': col.cursor}\" ng-class=\"{ 'ngSorted': !noSortVisible }\" ng-class=\"{ 'ngSorted': !noSortVisible }\">\r" +
     "\n" +
     "\t<div class=\"column__sort\" ng-click=\"col.sort($event)\" ng-style=\"{'height': col.headerRowHeight}\">\r" +
@@ -1139,7 +1139,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/action.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/action.html',
     "<div class=\"action\" ng-if=\"row.orig.actions.values.isShow\" ng-style=\"dropdownOpt.style\">\r" +
     "\n" +
     "\t<div class=\"dynamic-dropdown\" dynamic-dropdown orig-opt=\"row.orig.actions.values.options\" dropdown-opt=\"dropdownOpt\" col=\"col\" row=\"row\" re-init=\"row.orig.actions.values\"></div>\r" +
@@ -1151,7 +1151,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/date.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/date.html',
     "<div class=\"row-date\">\r" +
     "\n" +
     "\t<div class=\"row-date__value wrap\">\r" +
@@ -1164,7 +1164,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/details.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/details.html',
     "<div class=\"cell-details\">\r" +
     "\n" +
     "\t<span class=\"cell-details__expand\" details row=\"row\" details-class=\"'toggle'\" ng-class=\"{'icon-menu-down' : !row.orig.actions.isToggle, 'icon-menu-up': row.orig.actions.isToggle}\"></span>\r" +
@@ -1186,7 +1186,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/name.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/name.html',
     "<div class=\"row-name wrap\">\r" +
     "\n" +
     "\t<i class=\"glyphicon glyphicon-picture\"></i>\r" +
@@ -1201,7 +1201,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/status.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/status.html',
     "<div class=\"row-status\">\r" +
     "\n" +
     "\t<div class=\"row-status__value\">\r" +
@@ -1214,7 +1214,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/trend.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/trend.html',
     "<div class=\"row-trend wrap\">\r" +
     "\n" +
     "\t<div class=\"row-trend__value \">\r" +
@@ -1227,7 +1227,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/type.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/type.html',
     "<div class=\"row-type\">\r" +
     "\n" +
     "\t<div class=\"row-type__value wrap\">\r" +
@@ -1240,7 +1240,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/cell-templates/fields/value.html',
+  $templateCache.put('/src/app/templates/grid-templates/cell-templates/fields/value.html',
     "<div class=\"row-value\">\r" +
     "\n" +
     "\t<div class=\"row-value__value\">\r" +
@@ -1253,7 +1253,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/details-templates/details-example1.html',
+  $templateCache.put('/src/app/templates/grid-templates/details-templates/details-example1.html',
     "<div class=\"details-template\">\r" +
     "\n" +
     "\tDefrault template 1\r" +
@@ -1264,7 +1264,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/details-templates/details-example2.html',
+  $templateCache.put('/src/app/templates/grid-templates/details-templates/details-example2.html',
     "<div class=\"details-template\">\r" +
     "\n" +
     "\tOther details template\r" +
@@ -1276,7 +1276,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/details-templates/details-upload.html',
+  $templateCache.put('/src/app/templates/grid-templates/details-templates/details-upload.html',
     "<div class=\"details-template\">\r" +
     "\n" +
     "\tFrom upload template\r" +
@@ -1288,7 +1288,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/details-templates/details.html',
+  $templateCache.put('/src/app/templates/grid-templates/details-templates/details.html',
     "<div class=\"details-template\" ng-init=\"row.actions.tab = row.actions.tab || 2\">\r" +
     "\n" +
     "\t<ul>\r" +
@@ -1358,7 +1358,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/dynamic-actions.html',
+  $templateCache.put('/src/app/templates/grid-templates/dynamic-actions.html',
     "<div ng-repeat=\"o in dynamicOpt.values\" class=\"dynamic-actions\" ng-class=\"o.label\" ng-show=\"o.isVisible\" on-finish-render=\"ngRepeatFinished\">\r" +
     "\n" +
     "\t<button class=\"dynamic-actions__btn\" ng-click=\"dynamicOpt.callback(o)\">{{o.label | translate}}</button>\r" +
@@ -1367,7 +1367,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/grid-footer.html',
+  $templateCache.put('/src/app/templates/grid-templates/grid-footer.html',
     "<div ng-show=\"showFooter\" class=\"ngFooterPanel\" ng-class=\"{'ui-widget-CONTENT': jqueryUITheme, 'ui-corner-bottom': jqueryUITheme}\" ng-style=\"footerStyle()\">\r" +
     "\n" +
     "\t<div class=\"ngPagerContainer\" style=\"float: right; margin-top: 10px;\" ng-show=\"enablePaging\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">\r" +
@@ -1404,12 +1404,12 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/row-templates/header-row.html',
+  $templateCache.put('/src/app/templates/grid-templates/row-templates/header-row.html',
     "<div ng-style=\"{ height: col.headerRowHeight }\" ng-repeat=\"col in renderedColumns\" ng-class=\"col.colIndex()\" class=\"ngHeaderCell\" ng-header-cell></div>"
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/row-templates/row-with-detalis.html',
+  $templateCache.put('/src/app/templates/grid-templates/row-templates/row-with-detalis.html',
     "<div ng-style=\"{ 'cursor': row.cursor }\" ng-repeat=\"col in renderedColumns\" ng-class=\"col.colIndex()\" class=\"ngCell {{col.cellClass}}\" row-check=\"row\" ng-click=\"row.orig.actions.select(row)\">\r" +
     "\n" +
     "\t<div ng-cell>\r" +
@@ -1423,7 +1423,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/grid-templates/row-templates/row.html',
+  $templateCache.put('/src/app/templates/grid-templates/row-templates/row.html',
     "<div ng-style=\"{ 'cursor': row.cursor }\" ng-repeat=\"col in renderedColumns\" ng-class=\"col.colIndex()\" class=\"ngCell \" row-check=\"row\" ng-click=\"row.orig.actions.select(row)\">\r" +
     "\n" +
     "\t<div ng-cell>\r" +
@@ -1435,7 +1435,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/ui-grid-templates/cell-templates/action.html',
+  $templateCache.put('/src/app/templates/ui-grid-templates/cell-templates/action.html',
     "<div class=\"action\" ng-if=\"row.isSelected\" ng-style=\"dropdownOpt.style\">\r" +
     "\n" +
     "\t<div class=\"dynamic-dropdown\" dynamic-dropdown orig-opt=\"row.actions.options\" dropdown-opt=\"dropdownOpt\" col=\"col\" row=\"row\" re-init=\"row.actions.options\"></div>\r" +
@@ -1447,7 +1447,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/ui-grid-templates/cell-templates/details.html',
+  $templateCache.put('/src/app/templates/ui-grid-templates/cell-templates/details.html',
     "<div class=\"cell-details\">\r" +
     "\n" +
     "\t<span class=\"cell-details__expand\" ng-click=\"row.actions.expand(row)\" ng-if=\"grid.options.enableExpandable\" ng-class=\"{'icon-menu-down' : !row.isExpanded, 'icon-menu-up': row.isExpanded}\"></span>\r" +
@@ -1469,7 +1469,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/ui-grid-templates/cell-templates/header.html',
+  $templateCache.put('/src/app/templates/ui-grid-templates/cell-templates/header.html',
     "<div ng-class=\"{ 'sortable': sortable }\">\r" +
     "\n" +
     "\t<div class=\"ui-grid-cell-contents\" col-index=\"renderIndex\" title=\"TOOLTIP\">\r" +
@@ -1497,7 +1497,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/ui-grid-templates/header.html',
+  $templateCache.put('/src/app/templates/ui-grid-templates/header.html',
     "<div class=\"ui-grid-header\">\r" +
     "\n" +
     "\t<div class=\"ui-grid-top-panel\">\r" +
@@ -1528,7 +1528,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('src/app/templates/ui-grid-templates/row.html',
+  $templateCache.put('/src/app/templates/ui-grid-templates/row.html',
     "<div ng-click=\"grid.appScope.fnOne(row)\"\r" +
     "\n" +
     "\t ng-repeat=\"col in colContainer.renderedColumns track by col.colDef.name\"\r" +
