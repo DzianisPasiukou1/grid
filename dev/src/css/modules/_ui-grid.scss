@@ -1,0 +1,136 @@
+﻿@mixin ui-grid-header-cell-row {
+	background-color: $ui-grey;
+	border-right: $small-row-grey-border;
+	color: $ui-light-grey;
+	font-size: 13px;
+	text-decoration: none;
+	height: 40px;
+	line-height: 18px;
+}
+
+@mixin ui-grid-header-viewport{
+	width: 100% !important;
+}
+
+@mixin ui-grid-header-canvas {
+	background-color: #5a5a5a;
+}
+
+@mixin ui-grid-header-cell {
+	@include ng-header-cell;
+	border-right: 0;
+}
+
+@mixin ui-grid-cell-contents {
+	text-align: center;
+	margin-top: 6px;
+}
+
+@mixin ui-grid-viewport {
+	overflow-x: hidden !important;
+	border: 0;
+	width: 100% !important;
+}
+
+@mixin ui-grid-row {
+	line-height: 1.6em;
+	vertical-align: middle;
+	color: $black;
+	font-size: $font-size;
+	font-family: $helvetica-family;
+}
+
+@mixin ui-grid-cell {
+	border-right: 0;
+	background: $white !important;
+	border-top: $small-row-grey-border;
+	text-align: center;
+	padding-top: 7px;
+	overflow: visible;
+	cursor: pointer;
+
+	&.checked {
+		background-color: $checked !important;
+	}
+
+	&.expanded {
+		background-color: $expanded !important;
+	}
+
+	&.selected {
+		background-color: $selected !important;
+		font-weight: $bold;
+	}
+}
+
+@mixin ui-grid-icon-down-dir-before {
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	CONTENT: "\e605";
+}
+
+@mixin ui-grid-icon-up-dir-before {
+	@include ui-grid-icon-down-dir-before;
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	display: inline-block;
+	position: relative;
+}
+
+@mixin ui-grid-icon-blank-before {
+	CONTENT: none;
+}
+
+@mixin ui-grid-menu-button {
+	@extend .metro-btn;
+	position: absolute;
+	top: 3px;
+	z-index: 100;
+	right: 2.25rem;
+	border-color: $black;
+	background: $ui-grey;
+	padding: 0 5px !important;
+	color: $dark-grey;
+
+	&:hover {
+		color: $dark-grey;
+	}
+
+	&:active {
+		color: $dark-grey;
+		border-color: $black;
+	}
+}
+
+@mixin ui-grid-menu {
+	padding: 15px 0 !important;
+}
+
+@mixin ui-grid-icon-menu {
+	position: relative;
+	top: 5px;
+	right: -2px;
+}
+
+@mixin ui-grid-menu-mid {
+	overflow: visible !important;
+}
+
+@mixin ui-grid-menu-item {
+	text-align: left;
+	text-transform: capitalize;
+	background: $white !important;
+}
+
+@mixin grid-footer {
+	height: 30px;
+	background-color: $ui-grey;
+}

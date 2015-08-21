@@ -1,0 +1,3 @@
+﻿<div ng-repeat="o in dynamicOpt.values" class="dynamic-actions" ng-class="o.label" ng-show="o.isVisible" on-finish-render="ngRepeatFinished">
+	<button class="dynamic-actions__btn" ng-click="dynamicOpt.callback(o)">{{o.label | translate}}</button>
+</div>

@@ -1,0 +1,58 @@
+﻿.card-font {
+	@include font($card-font);
+}
+
+.cards-group {
+	height: 0;
+}
+
+.my-card {
+	display: inline-block;
+
+	.front {
+		@extend .custom-card;
+		background-color: $white;
+		transform-style: flat !important;
+	}
+
+	.back {
+		@extend .custom-card;
+		background-color: $white-grey;
+
+		.my-card__header {
+			background-color: $dark-grey;
+			color: $white;
+		}
+	}
+
+	&__header {
+		min-height: 30px;
+		border-bottom: $small-grey-border;
+		padding-top: 4px;
+		font-size: $default-font-size + 2px;
+		padding-right: 10px;
+
+		&__text {
+			margin-right: 10px;
+		}
+
+		&__icon {
+			float: left;
+			margin-left: 10px;
+			padding-top: 2px;
+			font-weight: $card-font-weight;
+		}
+	}
+
+	&__body {
+		padding-top: 25px;
+		font-size: $large-font-size;
+
+		&__graphs {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			left: 0;
+		}
+	}
+}

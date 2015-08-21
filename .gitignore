@@ -1,0 +1,6 @@
+dev/node_modules
+dev/src/vendor
+publish/packages
+publish/.vs
+publish/bin
+publish/obj

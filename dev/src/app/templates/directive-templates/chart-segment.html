@@ -1,0 +1,16 @@
+﻿<div class="chart-segment">
+	<div class="chart-segment__list">
+		<div class="chart-segment__list__header">
+			<span class="chart-segment__list__header__text">{{panel.header.text | translate}}</span>
+		</div>
+		<div class="chart-segment__list__body">
+			<div ng-repeat="user in selectedUsers" class="chart-segment__list__body__user" ng-class="{'even' : $even, 'odd': $odd}">
+				<span class="chart-segment__list__body__user__icon icon-close" ng-click="deleteUser(user, $index)"></span>
+				<span class="chart-segment__list__body__user__text">{{::'usersInteract' | translate}}{{user.touchpoints}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="chart-segment__btn">
+		<button class="kx-btn">{{::panel.btn.text | translate}}</button>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+﻿.my-panel {
+	display: block;
+	position: relative;
+	background-color: $light-white;
+	border: $small-grey-border;
+
+	> .heading, > .content {
+		display: block;
+		position: relative;
+		color: #1d1d1d;
+		border: $small-grey-border;
+		border-bottom: 0.9px #d9d9d9 solid;
+	}
+
+	> .heading {
+		padding: 0.500rem 0;
+		color: $black;
+		background-color: $white-grey;
+		cursor: default;
+		vertical-align: middle;
+		font: 600 18px/1 $segoi-family;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	> .heading > .title {
+		margin-left: .625rem;
+	}
+
+	> .content {
+		background-color: $white;
+		z-index: 1;
+		font-size: 0.875rem;
+	}
+
+	> .footer {
+		min-height: 50px;
+	}
+}

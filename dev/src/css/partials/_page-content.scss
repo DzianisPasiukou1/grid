@@ -1,0 +1,68 @@
+﻿.page-content {
+	@extend .my-panel;
+	min-width: 500px;
+	margin-top: 20px;
+	overflow-x: hidden;
+
+	&.disabled {
+		background-color: $black;
+	}
+
+	&__header {
+		@extend .heading;
+		height: 46px;
+	}
+
+	&__icon {
+		display: inline;
+
+		&__text {
+			float: left;
+			font-size: $larger-font-size;
+		}
+	}
+
+	&__name {
+		display: inline;
+		float: left;
+		padding-top: 8px;
+		margin-right: 5px;
+	}
+
+	&__count {
+		display: inline;
+		float: left;
+		padding-top: 8px;
+	}
+
+	&__actions {
+		position: absolute;
+		display: inline;
+		right: 0;
+
+		&__export {
+			margin-right: 20px;
+			display: inline-block;
+		}
+
+		&__view {
+			margin-right: 10px;
+			display: inline-block;
+		}
+	}
+
+	&__body {
+		@extend .content;
+		padding: 0;
+		border: 0 !important;
+	}
+
+	&__list {
+		height: 600px;
+	}
+
+	&__footer {
+		@extend .footer;
+		border: $small-row-grey-border;
+	}
+}

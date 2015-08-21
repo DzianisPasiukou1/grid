@@ -1,0 +1,15 @@
+﻿.row-trend {
+	input {
+		width: 50%;
+	}
+
+	trend-slider {
+		.slider {
+			margin-bottom: 0;
+		}
+	}
+
+	&__value {
+		display: inline-block;
+	}
+}
