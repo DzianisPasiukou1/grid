@@ -25,6 +25,7 @@
     "bootstrap-daterangepicker": "~2.0.5",
     "bootstrap-multiselect": "~0.9.13",
     "angular-mocks": "~1.4.3",
-    "multiple-select": "~1.1.0"
+    "multiple-select": "~1.1.0",
+    "bootstrap-css-only": "~3.3.5"
   }
 }

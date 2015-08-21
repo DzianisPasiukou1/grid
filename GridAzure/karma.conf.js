@@ -33,7 +33,7 @@ module.exports = function (config) {
 			'vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
 			'vendor/bootstrap/dist/js/bootstrap.js',
 			'app/**/*.js',
-			'azure-app/**/*.js',
+			'../dist/azure-app/**/*.js',
 			'vendor/angular-mocks/angular-mocks.js',
 			'test/unit/**/*.js',
 			'app/templates/**/*.html'

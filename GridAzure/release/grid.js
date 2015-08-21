@@ -1,5 +1,5 @@
 angular.module('gridTaskApp', ['ngGrid', 'ui.grid', 'ui.grid.selection', 'ui.grid.expandable', 'ui.select2', 'pascalprecht.translate'])
-	.value('templatesPath', 'app/templates/');
+	.value('templatesPath', '/src/app/templates/');
 
 var templatesPath = 'app/templates/';
 
@@ -5912,13 +5912,13 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t<div class=\"kx-menu span8\" ng-controller=\"NavigationCtrl\" kx-menu>\r" +
     "\n" +
-    "\t\t\t\t<a class=\"brand kx-navbar-icon\" href=\"#\"><img src=\"../../../css/images/main-logo-k-only.png\" class=\"main-logo\"></a>\r" +
+    "\t\t\t\t<a class=\"brand kx-navbar-icon\"><img class=\"main-logo\"></a>\r" +
     "\n" +
     "\t\t\t\t<ul>\r" +
     "\n" +
     "\t\t\t\t\t<li ng-repeat=\"node in navigationTree\">\r" +
     "\n" +
-    "\t\t\t\t\t\t<a href=\"#\">{{node.name}}</a>\r" +
+    "\t\t\t\t\t\t<a>{{node.name}}</a>\r" +
     "\n" +
     "\t\t\t\t\t\t<div class=\"kx-submenu\">\r" +
     "\n" +
@@ -5932,7 +5932,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t\t\t\t\t\t<li ng-repeat=\"path in subNode.nodes\">\r" +
     "\n" +
-    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\">{{path.name | translate}}</a>\r" +
+    "\t\t\t\t\t\t\t\t\t\t\t<a>{{path.name | translate}}</a>\r" +
     "\n" +
     "\t\t\t\t\t\t\t\t\t\t</li>\r" +
     "\n" +
@@ -5942,7 +5942,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t\t\t\t\t\t<li>\r" +
     "\n" +
-    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\">{{subNode.name | translate}}</a>\r" +
+    "\t\t\t\t\t\t\t\t\t\t\t<a>{{subNode.name | translate}}</a>\r" +
     "\n" +
     "\t\t\t\t\t\t\t\t\t\t</li>\r" +
     "\n" +
@@ -5976,7 +5976,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t<li class=\"span5 account-util dropdown\">\r" +
     "\n" +
-    "\t\t\t\t\t\t<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\r" +
+    "\t\t\t\t\t\t<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\">\r" +
     "\n" +
     "\t\t\t\t\t\t\t<i class=\"icon-user\"></i> krux-user\r" +
     "\n" +
@@ -5986,9 +5986,9 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t\t<ul class=\"account-util-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\r" +
     "\n" +
-    "\t\t\t\t\t\t\t<li><a href=\"#\">{{\"Account\" | translate}}</a></li>\r" +
+    "\t\t\t\t\t\t\t<li><a href=\"\">{{\"Account\" | translate}}</a></li>\r" +
     "\n" +
-    "\t\t\t\t\t\t\t<li><a href=\"#\">{{\"Logout\" | translate}}</a></li>\r" +
+    "\t\t\t\t\t\t\t<li><a href=\"\">{{\"Logout\" | translate}}</a></li>\r" +
     "\n" +
     "\t\t\t\t\t\t</ul>\r" +
     "\n" +

@@ -27,7 +27,7 @@
 
 
 		.row-fluid {
-			padding-left: 0
+			padding-left: 0;
 		}
 	}
 
@@ -78,9 +78,17 @@
 		text-decoration: none;
 	}
 
+	.main-logo {
+		content: url("../assets/images/main-logo-k-only.png");
+	}
+
 	.row-fluid {
 		width: 100%;
 		display: flex;
+
+		a {
+			cursor: pointer;
+		}
 	}
 
 	.menu-util .account-util .account-util-menu {

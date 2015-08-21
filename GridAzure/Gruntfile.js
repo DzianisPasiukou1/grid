@@ -1,12 +1,13 @@
 ﻿module.exports = function (grunt) {
 	var fileBase = 'src/';
 	var releaseBase = 'release/';
+	var distBase = "dist/";
 
 	grunt.initConfig({
 		ngtemplates: {
 			myapp: {
 				options: {
-					base: "",
+					base: "/",
 					module: "gridTaskApp",
 				},
 				src: fileBase + "app/templates/**/*.html",
@@ -40,13 +41,20 @@
 			}
 		},
 		watch: {
-			scripts: {
+			error: {
 				files: [fileBase + 'app/**/*.js'],
 				tasks: ['jshint'],
 				options: {
 					interrupt: true
 				},
 			},
+			src: {
+				files: [fileBase + 'app/**/*.js'],
+				tasks: ['copy:src'],
+				options: {
+					interrupt: false
+				},
+			}
 		},
 		jshint: {
 			options: {
@@ -65,11 +73,18 @@
 			},
 		},
 		copy: {
-			main: {
+			css: {
 				files: [
-					  { expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase, filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'data/**/*.json'], dest: releaseBase + 'json', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'css/fonts/*'], dest: releaseBase + 'fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'css/images/*'], dest: releaseBase + 'images', filter: 'isFile' }
-				]
+					  { expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
 			},
+			assets: {
+				files: [{ expand: true, flatten: true, src: [fileBase + 'data/**/*.json'], dest: releaseBase + 'json', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
+			},
+			src: {
+				files: [
+					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: distBase, filter: 'isFile' }
+				]
+			}
 		},
 		concat: {
 			basic: {
@@ -92,6 +107,16 @@
 					},
 				}
 			}
+		},
+		wiredep: {
+
+			task: {
+				src: [
+				  'test.html'
+				],
+				options: {
+				}
+			}
 		}
 	});
 
@@ -106,8 +131,10 @@
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-bundler');
 	grunt.loadNpmTasks('grunt-angular-templates');
+	grunt.loadNpmTasks('grunt-wiredep');
 
 	grunt.registerTask('default', [
+		'watch:src'
 	]);
 
 	grunt.registerTask('test', [
@@ -116,9 +143,10 @@
 
 	grunt.registerTask('release', [
 		'clean',
-		 'ngtemplates', //templatecache
-		'copy', //copy css
-		'concat', //concat scripts
-		'uglify' //minimize scripts
+		 'ngtemplates',
+		'copy:css',
+		'copy:assets',
+		'concat',
+		'uglify'
 	])
 };

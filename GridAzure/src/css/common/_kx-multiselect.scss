@@ -42,11 +42,11 @@
 			border-radius: 0 4px 4px 0;
 			background-clip: padding-box;
 			border: 1px solid #aaa;
-			background: url('../../bower_components/select2/select2.png') no-repeat 0 4px;
+			background: url('../vendor/select2/select2.png') no-repeat 0 4px;
 		}
 
 		.open {
-			background: url('../../bower_components/select2/select2.png') no-repeat 3px 5px;
+			background: url('../vendor/select2/select2.png') no-repeat 3px 5px;
 			-webkit-transform: rotate(180deg);
 			-moz-transform: rotate(180deg);
 			-ms-transform: rotate(180deg);
