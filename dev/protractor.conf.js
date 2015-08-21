@@ -10,7 +10,7 @@
 	// Spec patterns are relative to the location of the
 	// spec file. They may include glob patterns.
 	specs: [
-		'src/test/e2e/**/*.js'
+		'dist/test/e2e/**/*.js'
 		//'test/e2e/ui/ui-grid.js'
 	],
 	// Options to be passed to Jasmine-node

@@ -153,6 +153,7 @@
 	])
 	
 	grunt.registerTask('publish', [
+		'release',
 		'copy:publish'
 	]);
 	

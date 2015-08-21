@@ -16,3 +16,4 @@ publish/obj
 /publish/UpgradeLog.htm
 /publish/publish/Properties/PublishProfiles
 *.csproj
+/dev/typings

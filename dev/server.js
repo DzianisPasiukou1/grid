@@ -5,10 +5,16 @@ var port = process.env.PORT || 9000;
 var app = express();
 
 app.use('/src' , express.static(__dirname + '/src'));
+app.use('/dist' , express.static(__dirname + '/dist'));
 
 app.get('/', function (req, res) {
-	res.sendfile(path.join(__dirname, 'src/index.html'));
+	res.sendfile(path.join(__dirname, 'dist/index.html'));
 });
+
+ app.get('*', function(req, res) {
+      // res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
+	  res.sendfile(path.join(__dirname, 'dist/index.html'));
+    });
 
 app.listen(port);
 console.log('Server listen on port: ' + port);
