@@ -1,0 +1,73 @@
+﻿.options {
+	padding-top: 10px;
+	padding-bottom: 7px;
+	margin-left: 25px;
+	padding-right: 10px;
+
+	&__check {
+		margin-right: 10px;
+		position: relative;
+
+		button {
+			@extend .metro-btn;
+			display: inline;
+
+			.row-check {
+				margin-left: 0 !important;
+			}
+
+			.expand {
+				display: inline;
+				margin-left: 8px;
+				font-size: 10px;
+				top: 1px;
+			}
+		}
+	}
+
+	&__refresh {
+		@extend .metro-btn;
+		margin-right: 10px;
+		position: relative;
+	}
+
+	&__more {
+		position: relative;
+
+		.expand {
+			top: 1px;
+			font-size: 10px;
+		}
+	}
+
+	&__search {
+		float: right;
+
+		.search {
+			@extend .my-search;
+		}
+	}
+
+	&__show {
+		float: right;
+		position: relative;
+		text-transform: capitalize;
+
+		.split-btn {
+			@extend .metro-btn;
+			text-transform: capitalize;
+		}
+
+		.split-toggle {
+			@extend .metro-btn;
+
+			span {
+				top: 1px;
+				font-size: 10px;
+			}
+		}
+
+		&:hover {
+		}
+	}
+}

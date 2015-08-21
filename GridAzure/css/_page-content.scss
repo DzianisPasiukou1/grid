@@ -1,0 +1,59 @@
+﻿.page-content {
+	@extend .my-panel;
+
+	&__header {
+		@extend .heading;
+	}
+
+	&__icon {
+		display: inline;
+
+		img {
+			width: 44px;
+			height: 40px;
+			content: url(../content/text.png);
+		}
+	}
+
+	&__name {
+		display: inline;
+	}
+
+	&__count {
+		display: inline;
+	}
+
+	&__options {
+	}
+
+	&__actions {
+		@extend .actions-group;
+
+		&__export {
+			margin-right: 20px;
+
+			.expand {
+				top: 1px;
+				font-size: 10px;
+			}
+		}
+
+		&__view {
+			margin-right: 10px;
+
+			.expand {
+				top: 1px;
+				font-size: 10px;
+			}
+		}
+	}
+
+	&__body {
+		@extend .content;
+		padding: 0;
+	}
+
+	&__footer {
+		@extend .footer;
+	}
+}

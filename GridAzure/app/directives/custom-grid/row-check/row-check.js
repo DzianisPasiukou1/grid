@@ -1,0 +1,19 @@
+﻿angular.module('gridTaskApp')
+	.directive('rowCheck', [function () {
+		return {
+			restrict: 'A',
+			scope: {
+				value: '=rowCheck'
+			},
+			link: function (scope, element, attrs) {
+				scope.$watch('value.entity.isCheck', function (value) {
+					if (value) {
+						element.parent().addClass('checked');
+					}
+					else {
+						element.parent().removeClass('checked');
+					}
+				});
+			}
+		}
+	}]);

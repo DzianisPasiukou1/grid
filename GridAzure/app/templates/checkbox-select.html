@@ -1,0 +1,13 @@
+﻿<button type="button">
+	<div class="row-check">
+		<label class="input-control checkbox">
+			<input type="checkbox" ng-model="check" />
+			<span class="check"></span>
+		</label>
+	</div>
+	<span class="expand glyphicon"></span>
+</button>
+
+<ul class="actions-dropdown">
+	<li ng-repeat="action in actions" ng-click="select(action)"><a>{{action.label}}</a> </li>
+</ul>

@@ -1,0 +1,11 @@
+﻿.row-trend {
+	input {
+		width: 50%;
+	}
+
+	&__value {
+		display: inline;
+		position: absolute;
+		margin-left: 10px;
+	}
+}

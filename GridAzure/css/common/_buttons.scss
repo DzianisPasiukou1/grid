@@ -1,0 +1,19 @@
+﻿.row-btn {
+	@extend .metro-btn;
+	display: inline;
+}
+
+.row-check {
+	@extend .metro-checkbox;
+	margin-left: 10px;
+
+	label {
+		display: inline;
+	}
+
+	.expand {
+		font-size: 10px;
+	}
+
+	display: inline;
+}
