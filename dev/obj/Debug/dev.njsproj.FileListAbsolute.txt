@@ -1,2 +1,0 @@
-D:\Projects\azure-code\dev\obj\Debug\dev.njsprojResolveAssemblyReference.cache
-D:\Projects\azure-code\dev\bin\Microsoft.NodejsTools.WebRole.dll

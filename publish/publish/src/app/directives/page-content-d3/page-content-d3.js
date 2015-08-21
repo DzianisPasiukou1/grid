@@ -11,6 +11,8 @@
 			},
 			templateUrl: templatesPath + 'directive-templates/page-content-d3.html',
 			link: function (scope, element) {
+				element.addClass('page-content-d3');				
+				
 				var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile, jsonService, HISTOGRAM, SANKEY);
 				initializer.initSankey();
 

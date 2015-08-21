@@ -6,6 +6,8 @@ publish/packages
 publish/.vs
 publish/bin
 publish/obj
+dev/bin
+dev/obj
 /publish/publish/obj
 /publish/publish/bin
 /publish/publish/publish.csproj
