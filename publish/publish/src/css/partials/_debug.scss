@@ -1,0 +1,20 @@
+﻿.debug {
+	position: relative;
+	top: -40px;
+
+	&__back {
+		margin-right: 400px;
+		margin-top: -10px;
+		margin-bottom: 10px;
+
+		&__btn {
+			@extend .metro-btn;
+		}
+	}
+
+	&__uploader {
+		&__btn {
+			@extend %upload;
+		}
+	}
+}

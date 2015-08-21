@@ -84,6 +84,13 @@
 				files: [
 					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: distBase, filter: 'isFile' }
 				]
+			},
+			publish:{
+				files: [
+					{expand: true, flatten: false, src: [fileBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{expand: true, flatten: false, src: [distBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{expand: true, flatten: false, src: [releaseBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+				]
 			}
 		},
 		concat: {
@@ -144,7 +151,11 @@
 	grunt.registerTask('test', [
 		'karma'
 	])
-
+	
+	grunt.registerTask('publish', [
+		'copy:publish'
+	]);
+	
 	grunt.registerTask('release', [
 		//'clean',
 		 'ngtemplates',

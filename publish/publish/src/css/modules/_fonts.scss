@@ -1,0 +1,122 @@
+﻿$font-folder: '../assets/fonts';
+
+@font-face {
+	font-family: 'datepicker';
+	src: url('#{$font-folder}/datepicker.eot?72jwq5');
+	src: url('#{$font-folder}/datepicker.eot?#iefix72jwq5') format('embedded-opentype'), url('#{$font-folder}/datepicker.ttf?72jwq5') format('truetype'), url('#{$font-folder}/datepicker.woff?72jwq5') format('woff'), url('#{$font-folder}/datepicker.svg?72jwq5#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'cards';
+	src: url('#{$font-folder}/cards.eot?cld4v2');
+	src: url('#{$font-folder}/cards.eot?#iefixcld4v2') format('embedded-opentype'), url('#{$font-folder}/cards.ttf?cld4v2') format('truetype'), url('#{$font-folder}/cards.woff?cld4v2') format('woff'), url('#{$font-folder}/cards.svg?cld4v2#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src: url('#{$font-folder}/icomoon.eot?flqq25');
+	src: url('#{$font-folder}/icomoon.eot?#iefixflqq25') format('embedded-opentype'), url('#{$font-folder}/icomoon.ttf?flqq25') format('truetype'), url('#{$font-folder}/icomoon.woff?flqq25') format('woff'), url('#{$font-folder}/icomoon.svg?flqq25#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Text Icon';
+	src: url('#{$font-folder}/text.eot?hxxs7');
+	src: url('#{$font-folder}/text.eot?#iefixhxxs7') format('embedded-opentype'), url('fonts/text.ttf?hxxs7') format('truetype'), url('#{$font-folder}/text.woff?hxxs7') format('woff'), url('#{$font-folder}/text.svg?hxxs7#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+	@include font('Text Icon')
+}
+
+.icon-text2:before {
+	CONTENT: "\e600";
+}
+
+
+[class^="glyph-"], [class*=" glyph-"] {
+	@include font('datepicker')
+}
+
+.glyph-calendar:before {
+	CONTENT: "\e600";
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	@include font('icomoon')
+}
+
+.icon-menu-down:before {
+	CONTENT: "\e603";
+	display: inline-block;
+}
+
+.icon-menu-up:before {
+	CONTENT: "\e603";
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	display: inline-block;
+	position: relative;
+	bottom: 4px;
+}
+
+.icon-filter:before {
+	CONTENT: "\e604";
+}
+
+.icon-arrow-down:before {
+	CONTENT: "\e605";
+}
+
+.icon-arrow-up:before {
+	CONTENT: "\e605";
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	display: inline-block;
+	position: relative;
+}
+
+.icon-search:before {
+	CONTENT: "\e601";
+}
+
+.icon-close:before {
+	CONTENT: "\e602";
+}
+
+.icon-text2:before {
+	CONTENT: "\e600";
+}
+
+.icon-info:before {
+	CONTENT: "\e600";
+}
+
+.icon-circle-left:before {
+	CONTENT: "\e601";
+}
+
+$card-font: 'cards';
+$default-font-size: 16px;
+$small-font-size: 10px;
+$large-font-size: 28px;
+$larger-font-size: 40px;
+$font-size: 14px;
+
+$helvetica-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$segoi-family: "Segoe UI", "Open Sans", serif;
+
+$card-font-weight: 200;
+$bold: bold;
+$bolder: bolder;
+$normal: normal;

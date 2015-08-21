@@ -1,0 +1,81 @@
+﻿{ 
+		"cards": {
+			"testing1": {
+				"label": "Testing 1",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing2": {
+				"label": "Testing 2",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing3": {
+				"label": "Testing 3",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing4": {
+				"label": "Testing 4",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing5": {
+				"label": "Testing 5",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing6": {
+				"label": "Testing 6",
+				"count": 1910000,
+				"graphs": [
+					{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+					{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+				]
+			},
+			"testing7": {
+			"label": "Testing 7",
+			"count": 1910000,
+			"graphs": [
+				{ "style": { "background-color": "rgb(10, 124, 130)", "height": "30px" } },
+				{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+				{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+				{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } },
+				{ "style": { "background-color": "rgb(57, 124, 100)", "height": "30px" } }
+			]
+		}
+	}
+}

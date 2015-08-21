@@ -1,0 +1,91 @@
+﻿.date-btn {
+	@extend .metro-btn;
+
+	&__toggle {
+		@extend .metro-btn;
+
+		&.opened {
+			background-color: $ocean;
+		}
+	}
+
+	&__icon {
+		position: relative;
+		top: 1px;
+	}
+
+	&__datepicker {
+		position: absolute;
+		z-index: 100;
+		font-size: $font-size;
+		background-color: $white-grey;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		border: $small-black-border;
+		-webkit-box-shadow: $black-shadow;
+		box-shadow: $black-shadow;
+	}
+}
+
+.date-picker-wrapper {
+	padding: 0 !important;
+	font-size: $default-font-size - 2px;
+	font-family: $helvetica-family;
+	z-index: 1000;
+
+	.month-wrapper {
+		border: 0;
+		box-shadow: 0 0 5px 0 $black;
+		border-radius: 0;
+		width: 100% !important;
+
+		.month1 {
+			.caption {
+				background-color: $light-blue;
+				color: $light-white;
+
+				.prev {
+					&:hover {
+						background-color: $light-blue;
+						color: $dark-blue;
+						font-weight: $bold;
+					}
+				}
+
+				.next {
+					&:hover {
+						background-color: $light-blue;
+						color: $dark-blue;
+						font-weight: $bold;
+					}
+				}
+			}
+
+			th {
+				font-weight: $normal !important;
+			}
+
+			td {
+				padding: 2px;
+			}
+
+			.day {
+				border: $small-light-blue-border;
+				text-align: center;
+				width: 30px;
+
+				&:hover {
+					background-color: $ocean;
+				}
+
+				&.real-today {
+					background-color: $light-green;
+				}
+			}
+		}
+	}
+
+	.footer {
+		padding-top: 0 !important;
+	}
+}

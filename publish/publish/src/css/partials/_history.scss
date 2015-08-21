@@ -1,0 +1,19 @@
+﻿.modal {
+	.history__content {
+		text-align: left;
+		font-size: $default-font-size;
+
+		.dialog__entity {
+			text-align: left !important;
+		}
+
+		.dialog__key {
+			margin-right: 0 !important;
+		}
+
+		.dialog__value {
+			margin-left: 10px !important;
+			float: none !important;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 dev/node_modules
 dev/src/vendor
+publish/publish/src/vendor
 dev/.settings
 publish/packages
 publish/.vs
@@ -9,3 +10,9 @@ publish/obj
 /publish/publish/bin
 /publish/publish/publish.csproj
 /publish/publish/publish.csproj.user
+*.settings
+*.njsproj
+/publish/UpgradeLog2.htm
+/publish/UpgradeLog.htm
+/publish/publish/Properties/PublishProfiles
+*.csproj

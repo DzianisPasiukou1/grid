@@ -1,0 +1,54 @@
+﻿.histogram-content {
+
+	@media only screen and (max-width: 1500px) {
+		.histogram {
+			display: block !important;
+		}
+	}
+
+	.histogram {
+		overflow: auto;
+		max-width: 1200px;
+		display: inline;
+	}
+
+	svg {
+		float: left;
+		border: $medium-blue-border;
+		border-radius: 3px 3px;
+		margin-bottom: 20px;
+		margin-top: 40px;
+		margin-left: 10px;
+	}
+
+	.bar {
+		fill: steelblue;
+
+		&:hover {
+			fill: turquoise;
+		}
+	}
+
+	.chart {
+		& text {
+			font: $default-font-size - 4px sans-serif;
+			font-weight: $bold;
+		}
+
+		& .title {
+			font: $default-font-size sans-serif;
+			font-weight: bold;
+		}
+	}
+
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: $black;
+		shape-rendering: crispEdges;
+	}
+
+	.x.axis path {
+		fill: $white;
+	}
+}

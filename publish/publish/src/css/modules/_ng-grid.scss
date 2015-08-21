@@ -1,0 +1,76 @@
+﻿@mixin ng-top-panel {
+	background-color: $ui-grey;
+	border-right: $small-row-grey-border;
+	color: $ui-light-grey;
+	font-size: $font-size - 1px;
+	text-decoration: none;
+	min-height: 18px;
+	line-height: 18px;
+	overflow: hidden;
+	z-index: 0;
+}
+
+
+@mixin ng-header-cell {
+	border-radius: 1px;
+	box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
+	text-transform: uppercase;
+}
+
+@mixin ng-header-text {
+	text-align: center;
+	margin-top: 10px;
+}
+
+@mixin ng-vertical-bar {
+	width: 0;
+}
+
+@mixin ng-viewport {
+	overflow-x: hidden;
+	border: 0;
+}
+
+@mixin ng-cell-text {
+	padding: 0;
+}
+
+@mixin ng-cell {
+	text-align: center;
+	background-color: initial;
+	overflow: visible !important;
+	position: absolute;
+	padding-top: 20px;
+	vertical-align: middle;
+	display: block;
+}
+
+@mixin ng-row {
+	background: $white;
+	border-top: $small-row-grey-border;
+	line-height: 1.6em;
+	vertical-align: middle;
+	color: #444444;
+	font-size: $font-size;
+	font-family: $helvetica-family;
+	border-bottom: 0;
+	display: inline-block;
+
+	&.selected {
+		background-color: $selected !important;
+		font-weight: $bold;
+	}
+
+	&.checked {
+		background-color: $checked;
+	}
+
+	&.toggle {
+		background-color: $expanded;
+	}
+}
+
+@mixin ng-footer-panel {
+	background-color: $ui-grey;
+	border-right: $small-row-grey-border;
+}

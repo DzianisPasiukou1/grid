@@ -1,0 +1,121 @@
+﻿.custom-grid {
+	padding: 0;
+	height: 600px;
+
+	@media only screen and (max-width: 863px) {
+		margin-top: 80px;
+	}
+
+	&__menu {
+		.grid-menu {
+			position: absolute;
+			float: right;
+			top: 53px;
+			z-index: 100;
+			right: 10px;
+
+			@media only screen and (max-width: 863px) {
+				top: 99px;
+			}
+
+			&__options {
+				position: relative;
+				text-transform: capitalize;
+
+				ul {
+					position: absolute;
+					z-index: 1000;
+					right: 0;
+					left: auto;
+				}
+
+				.my-dropdown {
+					button {
+						border-color: $black;
+						background: $ui-grey;
+					}
+				}
+			}
+		}
+	}
+
+	.ngTopPanel {
+		@include ng-top-panel;
+	}
+
+	.ngHeaderCell {
+		@include ng-header-cell;
+	}
+
+	.ngHeaderText {
+		@include ng-header-text;
+	}
+
+	.ngVerticalBar {
+		@include ng-vertical-bar;
+	}
+
+	.ngViewport {
+		@include ng-viewport;
+	}
+
+	.ngCellText {
+		@include ng-cell-text;
+	}
+
+	.ngCell {
+		@include ng-cell;
+	}
+
+	.ngRow {
+		@include ng-row;
+	}
+
+	.ngFooterPanel {
+		@include ng-footer-panel;
+	}
+
+
+	.column {
+		text-align: center;
+
+		&__sort {
+			width: 100%;
+		}
+
+		&__name {
+			padding-top: 10px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			&__span {
+				width: auto;
+			}
+		}
+
+		&__sort-down {
+			z-index: 10000;
+			display: inline;
+			position: absolute;
+
+			span {
+				position: relative;
+				top: 1px;
+				left: 3px;
+			}
+		}
+
+		&__sort-up {
+			z-index: 100;
+			display: inline;
+			position: absolute;
+
+			span {
+				position: relative;
+				top: 1px;
+				left: 3px;
+			}
+		}
+	}
+}

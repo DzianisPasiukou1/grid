@@ -1,0 +1,7 @@
+﻿<div class="custom-overlay" ng-style="style">
+	<div class="custom-overlay__toggle">
+		<span ng-click="state = !state" ng-show="!state" class="glyphicon glyphicon-chevron-left"></span>
+		<span ng-click="state = !state" ng-show="state" class="glyphicon glyphicon-chevron-right"></span>
+	</div>
+	<ng-transclude class="custom-overlay__transclude" ng-style="transcludeStyle"></ng-transclude>
+</div>

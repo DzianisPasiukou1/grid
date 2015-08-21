@@ -1,0 +1,176 @@
+﻿.save-btn {
+	@extend .metro-btn;
+}
+
+.close-btn {
+	@extend .metro-btn;
+}
+
+.dialog-btn {
+	text-align: right;
+}
+
+.dialog-overlay {
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-height: 100%;
+	min-width: 100%;
+	z-index: 1049;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	overflow: auto;
+	outline: 0;
+	display: block;
+}
+
+.fade {
+	background-color: transparent;
+	background-color: $black;
+	opacity: 0.5;
+	min-height: 100%;
+	min-width: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	overflow: auto;
+}
+
+.dialog {
+	margin: 30px auto;
+	opacity: 1 !important;
+	max-width: 600px;
+	min-width: 500px;
+	overflow-y: auto;
+	text-align: center;
+	position: relative;
+	padding: 10px;
+	background-color: #ffffff;
+	color: $black;
+	z-index: 105000;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+
+	&__key {
+		font-weight: normal !important;
+		font-size: 14px !important;
+		text-align: right !important;
+		text-transform: capitalize;
+		margin-right: 20px;
+	}
+
+	&__value {
+		margin-right: 30%;
+		float: right;
+	}
+
+	&__entity {
+		text-align: right;
+		margin: 10px;
+	}
+}
+
+.dialog .dialog-close-button {
+	position: absolute;
+	height: 1.5rem;
+	width: 1.5rem;
+	min-height: 1.5rem;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1rem;
+	font-weight: $normal;
+	padding: .125rem 0 .625rem 0;
+	z-index: 3;
+	outline: none;
+	cursor: pointer;
+	background-color: #ffffff;
+	color: #777777;
+	top: .25rem;
+	right: .25rem;
+}
+
+.dialog .dialog-close-button:hover {
+	background-color: #cde6f7;
+	color: #2a8dd4;
+}
+
+.dialog .dialog-close-button:hover:after {
+	border-color: #2a8dd4;
+}
+
+.dialog .dialog-close-button:active {
+	background-color: #92c0e0;
+	color: #ffffff;
+}
+
+.dialog .dialog-close-button:after {
+	border-color: #777777;
+	CONTENT: '\D7';
+	line-height: 1;
+}
+
+.dialog.success {
+	background-color: #60a917;
+	color: #ffffff;
+}
+
+.dialog.success .dialog-close-button {
+	background-color: #7ad61d;
+	color: #ffffff;
+}
+
+.dialog.success .dialog-close-button:active {
+	background-color: #128023;
+}
+
+.dialog.warning {
+	background-color: #fa6800;
+	color: #ffffff;
+}
+
+.dialog.warning .dialog-close-button {
+	background-color: #c29008;
+	color: #ffffff;
+}
+
+.dialog.warning .dialog-close-button:active {
+	background-color: #bf5a15;
+}
+
+.dialog.alert {
+	background-color: #ce352c;
+	color: #ffffff;
+}
+
+.dialog.alert .dialog-close-button {
+	background-color: #da5a53;
+	color: #ffffff;
+}
+
+.dialog.alert .dialog-close-button:active {
+	background-color: #9a1616;
+}
+
+.dialog.info {
+	background-color: #1ba1e2;
+	color: #ffffff;
+}
+
+.dialog.info .dialog-close-button {
+	background-color: #59cde2;
+	color: #ffffff;
+}
+
+.dialog.info .dialog-close-button:active {
+	background-color: #1b6eae;
+}

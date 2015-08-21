@@ -1,0 +1,4 @@
+﻿<h1>{{::'editEntity' | translate}}</h1>
+<div ng-repeat="(key, value) in myEntity" class="dialog__entity">
+	<span class="dialog__key">{{key}}</span><input class="dialog__value" ng-model="myEntity[key]" />
+</div>
