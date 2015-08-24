@@ -2506,6 +2506,10 @@ angular.module('gridTaskApp')
 				var size = 10;
 				var min = 300;
 
+				if (angular.element($scope.selectors.heighterSelector).length == 0){
+					return;
+				}
+
 				if (angular.element($window).height() - angular.element($scope.selectors.heighterSelector).offset().top - size > min) {
 					$scope.style.minHeight = (angular.element('body').prop('scrollHeight') - angular.element($scope.selectors.heighterSelector).offset().top - size) + 'px';
 
@@ -2539,7 +2543,7 @@ angular.module('gridTaskApp')
 					scope.setToggle(true);
 					scope.$apply();
 				};
-
+				
 				$timeout(function () {
 					scope.$watch('state', function (state) {
 						scope.setToggle();
@@ -3061,13 +3065,8 @@ var Initializer = (function () {
 		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
 		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
-
-		this.jsonService.get('data/sankey/my-graphs.json').then(function (data) {
-			this.scope.sankeyData = data;
-		}.bind(this));
-		this.jsonService.get('data/histogram/default.json').then(function (data) {
-			this.scope.histogramData = data;
-		}.bind(this));
+		this.scope.sankeyData = this.SANKEY.data;
+		this.scope.histogramData = this.HISTOGRAM.data;
 	};
 
 	Initializer.prototype.initSankeyContentOpt = function () {
@@ -4859,7 +4858,7 @@ angular.module('gridTaskApp')
 				this.formatNumber = d3.format(",.0f");
 				this.color = d3.scale.category20();
 
-				this.data = data;
+				this.data = angular.copy(data);
 				this.opt = opt;
 
 				this.handlers = [];
@@ -5021,7 +5020,7 @@ angular.module('gridTaskApp')
 			};
 
 			Chart.prototype.refreshData = function (data) {
-				this.data = data;
+				this.data = angular.copy(data);
 			};
 
 			Chart.prototype._removeListeners = function () {
@@ -5037,7 +5036,7 @@ angular.module('gridTaskApp')
 					this.svg.remove();
 				}
 
-				this.svg = this.node = this.link = this.path = this.sankey = null;
+				this.svg = this.node = this.link = this.path = this.sankey = this.data = null;
 			};
 
 			return Chart;
@@ -5851,7 +5850,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t<div class=\"debug__back\">\r" +
     "\n" +
-    "\t\t<button class=\"debug__back__btn\" onclick=\"location.href = '#/'\">{{::'back' | translate}}</button>\r" +
+    "\t\t<button class=\"debug__back__btn\" onclick=\"location.href = '/'\">{{::'back' | translate}}</button>\r" +
     "\n" +
     "\t</div>\r" +
     "\n" +

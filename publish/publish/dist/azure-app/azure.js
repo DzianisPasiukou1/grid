@@ -39,10 +39,10 @@ angular.module("azureApp").config(['$routeProvider', '$locationProvider', functi
     	redirectTo: '/'
     });
 	
-	//$locationProvider.html5Mode({
-	//	enabled: true,
-	//	requireBase: false
-	//});
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 }]);
 
 angular.module('gridTaskApp')

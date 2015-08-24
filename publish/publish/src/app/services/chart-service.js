@@ -13,7 +13,7 @@
 				this.formatNumber = d3.format(",.0f");
 				this.color = d3.scale.category20();
 
-				this.data = data;
+				this.data = angular.copy(data);
 				this.opt = opt;
 
 				this.handlers = [];
@@ -175,7 +175,7 @@
 			};
 
 			Chart.prototype.refreshData = function (data) {
-				this.data = data;
+				this.data = angular.copy(data);
 			};
 
 			Chart.prototype._removeListeners = function () {
@@ -191,7 +191,7 @@
 					this.svg.remove();
 				}
 
-				this.svg = this.node = this.link = this.path = this.sankey = null;
+				this.svg = this.node = this.link = this.path = this.sankey = this.data = null;
 			};
 
 			return Chart;

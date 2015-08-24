@@ -58,6 +58,10 @@
 				var size = 10;
 				var min = 300;
 
+				if (angular.element($scope.selectors.heighterSelector).length == 0){
+					return;
+				}
+
 				if (angular.element($window).height() - angular.element($scope.selectors.heighterSelector).offset().top - size > min) {
 					$scope.style.minHeight = (angular.element('body').prop('scrollHeight') - angular.element($scope.selectors.heighterSelector).offset().top - size) + 'px';
 

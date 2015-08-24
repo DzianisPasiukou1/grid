@@ -62,7 +62,7 @@
 			},
 			azure: {
 				files: {
-					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js']
+					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js','!' +  distBase + 'azure-app/azure.min.js']
 				}
 			}
 		},
@@ -148,7 +148,7 @@
 				dest: releaseBase + 'grid.js',
 			},
 			azure: {
-				src: [distBase + 'azure-app/**/*.js'],
+				src: [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js','!' +  distBase + 'azure-app/azure.min.js'],
 				dest: distBase + '/azure-app/azure.js',
 			}
 		},
