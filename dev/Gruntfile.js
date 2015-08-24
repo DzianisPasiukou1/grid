@@ -4,6 +4,14 @@
 	var distBase = "dist/";
 
 	grunt.initConfig({
+		 pkg: grunt.file.readJSON('package.json'),
+		 meta: {
+            basePath: '/',
+            srcPath: fileBase,
+			devPath: distBase,
+            deployPath: releaseBase
+        },
+		fixturesPath: releaseBase,
 		ngtemplates: {
 			myapp: {
 				options: {
@@ -19,13 +27,42 @@
 				configFile: 'karma.conf.js'
 			}
 		},
-		uglify: {
-			options: {
-
+		protractor:{
+			test:{
+				options:{
+				configFile: "protractor.conf.js",
+				keepAlive: true,
+				noColor: false
+				}
+			}
+		},
+		webdrivermanager:{
+			out_dir: './selenium',
+			capabilities: {
+				browserName: 'chrome'
 			},
-			my_target: {
+			seleniumArgs: [],
+			seleniumPort: 4444,
+			ignore_ssl: false,
+			proxy: false,
+			method: 'GET'
+		},
+		protractor_webdriver:{
+			targ:{
+				options:{
+					command: 'webdriver-manager start'
+				}
+			}
+		},
+		uglify: {
+			grid: {
 				files: {
 					'release/grid.min.js': [fileBase + 'app/**/*.js']
+				}
+			},
+			azure: {
+				files: {
+					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js']
 				}
 			}
 		},
@@ -36,11 +73,15 @@
 			},
 			target: {
 				files: {
-					'release/grid.min.css': [fileBase + 'css/styles.css']
+					'src/css/styles.min.css': [fileBase + 'css/styles.css']
 				}
 			}
 		},
 		watch: {
+			options: {
+				livereload: true,
+				port: 9000
+			},
 			error: {
 				files: [fileBase + 'app/**/*.js'],
 				tasks: ['jshint'],
@@ -54,6 +95,14 @@
 				options: {
 					interrupt: false
 				},
+			},
+			sass: {
+				files: [fileBase + 'css/**/*.scss'],
+				tasks: ['sass', 'cssmin'],
+				options: {
+					livereload: true,
+					 port: 9000,
+				}
 			}
 		},
 		jshint: {
@@ -72,7 +121,7 @@
 				src: [fileBase + 'app/**/*.js']
 			},
 		},
-		copy: {
+		copy: {	
 			css: {
 				files: [
 					  { expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
@@ -94,9 +143,13 @@
 			}
 		},
 		concat: {
-			basic: {
+			grid: {
 				src: [fileBase + 'app/**/*.js'],
 				dest: releaseBase + 'grid.js',
+			},
+			azure: {
+				src: [distBase + 'azure-app/**/*.js'],
+				dest: distBase + '/azure-app/azure.js',
 			}
 		},
 		clean: [releaseBase],
@@ -124,9 +177,80 @@
 				}
 			}
 
+		},
+		'angular-builder': {
+			options:{
+				mainModule: 'gridTaskApp'
+			},
+			app: {
+			 	src: 'src/**/*.js',
+				 dest: 'release/test.js'
+			}
+		},
+		sass:{
+			compile: {
+				files: [
+               	 {
+					style: 'compressed',
+                    src: ["src/css/styles.scss"],
+                    dest: "src/css/styles.css",
+               	 }
+            	]
+			}
+		},
+		express:{
+			dev:{
+				options: {
+					script: 'server.js',
+					background: false,
+					port: 9000
+				}
+			}
+		},
+		 htmlbuild: {
+       	 release: {
+            src: distBase + 'index.html',
+            dest: releaseBase + 'main.html',
+            options: {
+                beautify: true,
+                relative: false,
+                scripts: {
+                    grid: [
+                        '<%= meta.deployPath %>grid.min.js'
+                    ],
+					azure: [
+						'<%= meta.devPath %>/azure-app/azure.min.js'
+					]
+                },
+                styles: {
+                    bundle: [
+                        '<%= meta.deployPath %>/styles/styles.min.css',
+                    ]
+                },
+                sections: {
+                    views: '<%= fixturesPath %>/views/**/*.html',
+                    templates: '<%= fixturesPath %>/templates/**/*.html',
+                    layout: {
+                        header: '<%= fixturesPath %>/layout/header.html',
+                        footer: '<%= fixturesPath %>/layout/footer.html'
+                    }
+                },
+                data: {
+                    version: "0.1.0",
+                    title: "test",
+                },
+            }
+        },
+		 },
+		replace: {
+			azure:{
+				files: [
+					{expand: true, flatten: true, src:['../publish/publish/release/main.html'], dest:'../publish/publish'}
+				]
+			}
 		}
 	});
-
+	
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -134,14 +258,23 @@
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-bundler');
 	grunt.loadNpmTasks('grunt-angular-templates');
 	grunt.loadNpmTasks('grunt-wiredep');
+	grunt.loadNpmTasks('grunt-angular-builder');
+	grunt.loadNpmTasks('grunt-protractor-runner');
+	grunt.loadNpmTasks('grunt-webdriver-manager');
+	grunt.loadNpmTasks('grunt-protractor-webdriver');
+	grunt.loadNpmTasks('grunt-express-server');
+	grunt.loadNpmTasks('grunt-html-build');
+ 	grunt.loadNpmTasks('grunt-replace');
 
 	grunt.registerTask('default', [
-		'watch:src'
+		'sass',
+		'watch:sass',
 	]);
 
 	grunt.registerTask('error', [
@@ -151,18 +284,41 @@
 	grunt.registerTask('test', [
 		'karma'
 	])	
+	
+	grunt.registerTask('e2e', [
+		'protractor'
+	])
 						
 	grunt.registerTask('publish', [
 		'release',
-		'copy:publish'
+		'copy:publish',
+		'replace:azure'
 	]);
+	
+	grunt.registerTask('compile-sass', [
+		'sass',
+		'cssmin'
+	])
+	
+	grunt.registerTask('server', [
+		'sass',
+		'express:dev'
+	])
+	
+	grunt.registerTask('index-release', [
+		'concat:azure',
+		'uglify:azure',
+		'htmlbuild'
+	])
 	
 	grunt.registerTask('release', [
 		//'clean',
+		'index-release',
+		'compile-sass',
 		 'ngtemplates',
 		'copy:css',
 		'copy:assets',
-		'concat',
-		'uglify'
+		'concat:grid',
+		'uglify:grid'
 	])
 };

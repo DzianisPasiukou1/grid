@@ -2,7 +2,7 @@
 	// The address of a running Selenium server
 	seleniumAddress: 'http://localhost:4444/wd/hub',
 	// The URL where the server we are testing is running
-	baseUrl: 'http://localhost:62473/',
+	baseUrl: 'http://localhost:9000/',
 	// Capabilities to be passed to the WebDriver instance
 	capabilities: {
 		'browserName': 'chrome'
