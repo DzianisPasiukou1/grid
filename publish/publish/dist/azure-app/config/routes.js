@@ -31,11 +31,13 @@
 		controller: "gridD3Ctrl"
 	}).when("/download", {
 		templateUrl: "/dist/azure-app/templates/download.html"
+	}).when("/navigation", {
+		templateUrl: "/dist/azure-app/templates/navigation.html"
 	})
     .otherwise({
     	redirectTo: '/'
     });
-
+	
 	//$locationProvider.html5Mode({
 	//	enabled: true,
 	//	requireBase: false

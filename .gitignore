@@ -19,3 +19,4 @@ dev/obj
 /publish/publish/Properties/PublishProfiles
 *.csproj
 /dev/typings
+dev/.sass-cache

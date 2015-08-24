@@ -319,7 +319,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t<div class=\"debug__back\">\r" +
     "\n" +
-    "\t\t<button class=\"debug__back__btn\" onclick=\"location.href = '/navigation'\">{{::'back' | translate}}</button>\r" +
+    "\t\t<button class=\"debug__back__btn\" onclick=\"location.href = '#/'\">{{::'back' | translate}}</button>\r" +
     "\n" +
     "\t</div>\r" +
     "\n" +
