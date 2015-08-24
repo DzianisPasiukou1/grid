@@ -248,6 +248,11 @@
 					{expand: true, flatten: true, src:['../publish/publish/release/main.html'], dest:'../publish/publish'}
 				]
 			}
+		},
+		shell:{
+			openSite: {
+				command: 'start http://localhost:9000'
+			}
 		}
 	});
 	
@@ -271,6 +276,7 @@
 	grunt.loadNpmTasks('grunt-express-server');
 	grunt.loadNpmTasks('grunt-html-build');
  	grunt.loadNpmTasks('grunt-replace');
+	grunt.loadNpmTasks('grunt-shell');
 
 	grunt.registerTask('default', [
 		'sass',
@@ -281,7 +287,7 @@
 		'watch:error'
 	])
 
-	grunt.registerTask('test', [
+	grunt.registerTask('unit', [
 		'karma'
 	])	
 	
@@ -302,6 +308,7 @@
 	
 	grunt.registerTask('server', [
 		'sass',
+		'shell',
 		'express:dev'
 	])
 	

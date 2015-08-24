@@ -20,3 +20,4 @@ dev/obj
 *.csproj
 /dev/typings
 dev/.sass-cache
+/publish/*.sln

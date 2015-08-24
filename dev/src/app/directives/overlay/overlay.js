@@ -15,7 +15,7 @@
 					scope.setToggle(true);
 					scope.$apply();
 				};
-
+				
 				$timeout(function () {
 					scope.$watch('state', function (state) {
 						scope.setToggle();

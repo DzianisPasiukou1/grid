@@ -33,6 +33,7 @@
     "grunt-protractor-runner": "^2.1.0",
     "grunt-protractor-webdriver": "^0.2.0",
     "grunt-replace": "^0.10.2",
+    "grunt-shell": "^1.1.2",
     "grunt-webdriver-manager": "0.0.5",
     "grunt-wiredep": "^2.0.0",
     "jasmine-core": "^2.3.4",

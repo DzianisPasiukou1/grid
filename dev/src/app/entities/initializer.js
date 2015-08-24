@@ -34,13 +34,8 @@
 		this.scope.cardsOptions.startDate = this.content.cardsOptions.startDate;
 		this.scope.cardsOptions.endDate = this.content.cardsOptions.endDate;
 		this.scope.cardsOptions.margin = 525;
-
-		this.jsonService.get('data/sankey/my-graphs.json').then(function (data) {
-			this.scope.sankeyData = data;
-		}.bind(this));
-		this.jsonService.get('data/histogram/default.json').then(function (data) {
-			this.scope.histogramData = data;
-		}.bind(this));
+		this.scope.sankeyData = this.SANKEY.data;
+		this.scope.histogramData = this.HISTOGRAM.data;
 	};
 
 	Initializer.prototype.initSankeyContentOpt = function () {
