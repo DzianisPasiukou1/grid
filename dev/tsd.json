@@ -12,10 +12,13 @@
       "commit": "8f081073e6cb416f901b272810d8b04d6e01c9e0"
     },
     "jquery/jquery.d.ts": {
-      "commit": "8f081073e6cb416f901b272810d8b04d6e01c9e0"
+      "commit": "c5a2f44bab06cf9f2bcc14530171daac1cebff6c"
     },
     "angularjs/angular.d.ts": {
-      "commit": "8f081073e6cb416f901b272810d8b04d6e01c9e0"
+      "commit": "c5a2f44bab06cf9f2bcc14530171daac1cebff6c"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "c5a2f44bab06cf9f2bcc14530171daac1cebff6c"
     }
   }
 }

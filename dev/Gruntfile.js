@@ -150,8 +150,8 @@
 
 	grunt.registerTask('test', [
 		'karma'
-	])
-	
+	])	
+						
 	grunt.registerTask('publish', [
 		'release',
 		'copy:publish'

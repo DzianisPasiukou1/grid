@@ -1,6 +1,6 @@
 ﻿describe('Chart Segment Controller', function () {
 	var ctrl, scope;
-
+	
 	beforeEach(module('gridTaskApp'));
 	beforeEach(inject(function ($controller, $rootScope) {
 		scope = $rootScope.$new();
