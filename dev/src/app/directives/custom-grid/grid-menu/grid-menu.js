@@ -1,5 +1,5 @@
 ﻿angular.module('gridTaskApp')
-	.directive('gridMenu', ['templatesPath', '$window', function (templatesPath, $window) {
+	.directive('gridMenu', ['templatesPath', '$window','menuUtils', function (templatesPath, $window, menuUtils) {
 		return {
 			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/grid-menu.html',
