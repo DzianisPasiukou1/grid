@@ -5,12 +5,12 @@
 		.module('gridTaskApp')
 		.controller('gridMenuCtrl', gridMenuCtrl);
 
-	gridMenuCtrl.$inject = ['$scope', '$window', 'menuUtils'];
+	gridMenuCtrl.$inject = ['menuUtils'];
 
-	function gridMenuCtrl($scope, $window, menuUtils) {
+	function gridMenuCtrl(menuUtils) {
 		var self = this;
 
 		self.menu = menuUtils;
-		self.menu.register($scope.columns, $scope.options.menu);
+		self.menu.register(self.columns, self.options);
 	};
 } ());
