@@ -298,12 +298,9 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/src/app/templates/directive-templates/custom-grid.html',
     "<div class=\"custom-grid\" ng-grid=\"options\">\r" +
     "\n" +
-    "\t<div grid-menu class=\"custom-grid__menu\"></div>\r" +
+    "\t<div grid-menu class=\"custom-grid__menu\" options=\"options.menu\" columns=\"columns\"></div>\r" +
     "\n" +
-    "</div>\r" +
-    "\n" +
-    "\r" +
-    "\n"
+    "</div>"
   );
 
 
@@ -343,7 +340,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t<button type=\"button\" class=\"my-dropdown__btn\" ng-show=\"!options.isMenu\" ng-click=\"isShow = !isShow\" ng-class=\"{'opened' : isShow}\">\r" +
     "\n" +
-    "\t\t<span class=\"my-dropdown__text\">{{options.label | translate}}{{options.selected.label | translate}}</span>\r" +
+    "\t\t<span class=\"my-dropdown__text\" ng-show=\"!options.isCheckbox\">{{options.label | translate}}{{options.selected.label | translate}}</span>\r" +
     "\n" +
     "\t\t<span class=\"my-dropdown__expand\" ng-class=\"{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}\"></span>\r" +
     "\n" +
@@ -369,7 +366,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t<label class=\"my-dropdown__list__input-control\">\r" +
     "\n" +
-    "\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"action.isVisible\" ng-change=\"options.onCheck(action, $index)\" id=\"{{action.label | translate}}\">\r" +
+    "\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"action.isVisible\" ng-change=\"options.onCheck(action, $index)\" id=\"{{action.label}}\">\r" +
     "\n" +
     "\t\t\t\t\t\t<span class=\"my-dropdown__list__input-control__span\"></span>\r" +
     "\n" +
@@ -488,9 +485,9 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/src/app/templates/directive-templates/grid-menu.html',
-    "<div class=\"grid-menu\" ng-show=\"isShow\">\r" +
+    "<div class=\"grid-menu\" ng-show=\"gridMenuCtrl.isShow\">\r" +
     "\n" +
-    "\t<div class=\"grid-menu__options\" dropdown=\"options\"></div>\r" +
+    "\t<div class=\"grid-menu__options\" dropdown=\"gridMenuCtrl.menu.opt\"></div>\r" +
     "\n" +
     "</div>"
   );

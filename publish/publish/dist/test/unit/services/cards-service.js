@@ -9,7 +9,5 @@
 
 	it("register", function () {
 		factory.register([], new Date, new Date, 145, {});
-
-		console.log(factory.getInstance().groupMarginRight);
 	});
 })

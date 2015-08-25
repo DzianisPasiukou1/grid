@@ -29,10 +29,10 @@
 
 			Chart.prototype._renderSvg = function () {
 				this.svg = d3.select("#chart").append("svg")
-						.attr("width", this.width + this.margin.left + this.margin.right)
-						.attr("height", this.height + this.margin.top + this.margin.bottom)
-						.append("g")
-						.attr("transform", this._transform.bind(this));
+					.attr("width", this.width + this.margin.left + this.margin.right)
+					.attr("height", this.height + this.margin.top + this.margin.bottom)
+					.append("g")
+					.attr("transform", this._transform.bind(this));
 			};
 
 			Chart.prototype._renderSankey = function () {
@@ -65,13 +65,13 @@
 
 			Chart.prototype._renderNode = function () {
 				this.node = this.svg.append("g").selectAll(".node")
-						.data(this.data.nodes)
-					    .enter().append("g")
-						.attr("class", "node")
-						.attr("transform", function (d) {
-							return "translate(" + d.x + "," + d.y + ")";
-						})
-					  .call(d3.behavior.drag()
+					.data(this.data.nodes)
+					.enter().append("g")
+					.attr("class", "node")
+					.attr("transform", function (d) {
+						return "translate(" + d.x + "," + d.y + ")";
+					})
+					.call(d3.behavior.drag()
 						.origin(function (d) {
 							return d;
 						})
@@ -120,7 +120,7 @@
 					.attr("text-anchor", "end")
 					.attr("transform", null)
 					.text(function (d) { return d.name; })
-				  .filter(function (d) { return d.x < this.width / 2; }.bind(this))
+					.filter(function (d) { return d.x < this.width / 2; }.bind(this))
 					.attr("x", 6 + this.sankey.nodeWidth())
 					.attr("text-anchor", "start");
 
@@ -131,7 +131,7 @@
 					.attr("text-anchor", "end")
 					.attr("transform", null)
 					.text(function (d) { return d.val; })
-				  .filter(function (d) { return d.x < this.width / 2; }.bind(this))
+					.filter(function (d) { return d.x < this.width / 2; }.bind(this))
 					.attr("x", -20 + this.sankey.nodeWidth())
 					.attr("text-anchor", "start");
 			};
@@ -152,9 +152,9 @@
 
 			Chart.prototype._initSankey = function () {
 				this.sankey
-				.nodes(this.data.nodes)
-				.links(this.data.links)
-				.layout(32);
+					.nodes(this.data.nodes)
+					.links(this.data.links)
+					.layout(32);
 			};
 
 			Chart.prototype.mouseover = function (d) {
@@ -195,7 +195,7 @@
 			};
 
 			return Chart;
-		}();
+		} ();
 
 		return {
 			getChart: function (data, opt) {

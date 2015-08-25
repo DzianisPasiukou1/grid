@@ -771,208 +771,80 @@ angular.module('gridTaskApp')
 			}
 		};
 	}]);
-angular.module('gridTaskApp')
-	.controller('gridMenuCtrl', ['$scope', 'MENU', '$window', function ($scope, MENU, $window) {
-		$scope.options = $scope.options.menu;
+(function () {
+	'use strict'
 
-		if ($scope.options === undefined) {
-			$scope.options = {};
-		}
+	angular
+		.module('gridTaskApp')
+		.controller('gridMenuCtrl', gridMenuCtrl);
 
-		if ($scope.options.isMenu === undefined) {
-			$scope.options.isMenu = false;
-		}
+	gridMenuCtrl.$inject = ['menuUtils'];
 
-		if ($scope.options.label === undefined) {
-			$scope.options.label = '';
-		}
+	function gridMenuCtrl(menuUtils) {
+		var self = this;
 
-		if ($scope.options.values === undefined) {
-			$scope.options.values = [];
-		}
+		self.menu = menuUtils;
+		self.menu.register(self.columns, self.options);
+	};
+} ());
 
-		if ($scope.options.isCheckbox === undefined) {
-			$scope.options.isCheckbox = true;
-		}
+(function () {
+	'use strict'
 
-		if ($scope.options.onCheck === undefined) {
-			$scope.options.onCheck = function (action, index) {
-				$scope.columns[index].toggleVisible();
+	angular
+		.module('gridTaskApp')
+		.directive('gridMenu', gridMenu);
 
-				$scope.resize(action);
-			}
-		}
+	gridMenu.$inject = ['templatesPath', '$window', 'menuUtils'];
 
-		if ($scope.options.withSave === undefined) {
-			$scope.options.withSave = false;
-		}
-
-		if ($scope.options.onSave === undefined) {
-			$scope.options.onSave = function () {
-			}
-		}
-
-		if ($scope.options.callback === undefined) {
-			$scope.options.callback = function (action) {
-			}
-		}
-
-		if ($scope.options.parentSelector === undefined) {
-			$scope.options.parentSelector = MENU.parentSelector;
-		}
-
-		if ($scope.options.parentMinWidth === undefined) {
-			$scope.options.parentMinWidth = MENU.parentMinWidth;
-		}
-
-		$scope.resize = function (action) {
-			var totalWidth = $scope.columns.reduce(function (a, b) {
-				if (b.visible) {
-					return a + b.minWidth;
-				} else {
-					return a;
-				}
-			}, 0);
-
-			for (var j = 0; j < $scope.colCache.length; j++) {
-				if ($scope.colCache[j].label == action.label) {
-					$scope.colCache.splice(j, 1);
-				}
-			}
-
-			if (angular.element($window).width() < totalWidth) {
-				angular.element($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
-			}
-			else {
-				angular.element($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
-			}
-		}
-	}]);
-angular.module('gridTaskApp')
-	.directive('gridMenu', ['templatesPath', '$window', function (templatesPath, $window) {
-		return {
+	function gridMenu(templatesPath, $window, menuUtils) {
+		var menu = {
 			restrict: 'EA',
 			templateUrl: templatesPath + 'directive-templates/grid-menu.html',
 			controller: 'gridMenuCtrl',
-			link: function (scope, element, attrs) {
-
-				scope.$watch('columns', function (value) {
-					if (Array.isArray(value) && value.length > 0) {
-
-						scope.colCache = [];
-						scope.options.values = [];
-
-						var totalWidth = value.reduce(function (a, b) {
-							return a + b.minWidth;
-						}, 0);
-
-						if (angular.element($window).width() < totalWidth) {
-							for (var i = value.length - 2; i > 1; i--) {
-								if (value[i].visible) {
-									value[i].toggleVisible();
-									totalWidth -= value[i].minWidth;
-									scope.colCache.push({ label: value[i].field, element: value[i] });
-								}
-								if (angular.element($window).width() > totalWidth) {
-									break;
-								}
-							}
-						}
-
-						if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
-							scope.isShow = true;
-						}
-
-						for (var i = 0; i < value.length; i++) {
-							scope.options.values.push({ label: value[i].field, element: value[i], isVisible: value[i].visible });
-						}
-					}
-				});
-
-				var resize = function () {
-					var totalWidth = scope.columns.reduce(function (a, b) {
-						if (b.visible) {
-							return a + b.minWidth;
-						} else {
-							return a;
-						}
-					}, 0);
-
-					if (angular.element($window).width() < totalWidth) {
-						for (var i = scope.columns.length - 2; i > 1; i--) {
-							if (scope.columns[i].visible) {
-								scope.columns[i].toggleVisible();
-								totalWidth -= scope.columns[i].minWidth;
-								scope.colCache.push({ label: scope.columns[i].field, element: scope.columns[i] });
-							}
-							if (angular.element($window).width() > totalWidth) {
-								break;
-							}
-						}
-					}
-					else {
-						for (var i = 0; i < scope.columns.length; i++) {
-							if (!scope.columns[i].visible) {
-								scope.columns[i].toggleVisible();
-								totalWidth += scope.columns[i].minWidth;
-
-								for (var j = 0; j < scope.colCache.length; j++) {
-									if (scope.colCache[j].label == scope.columns[i].field) {
-										scope.colCache.splice(j, 1);
-									}
-								}
-
-								if (angular.element($window).width() < totalWidth) {
-									scope.columns[i].toggleVisible();
-									totalWidth -= scope.columns[i].minWidth;
-
-									var isExist = false;
-									for (var j = 0; j < scope.colCache.length; j++) {
-										if (scope.colCache[j].label == scope.columns[i].field) {
-											isExist = true;
-										}
-									}
-									if (!isExist) {
-										scope.colCache.push({ label: scope.columns[i].field, element: scope.columns[i] });
-									}
-									else {
-										scope.colCache = [];
-
-										for (var j = 0; j < scope.columns.length; j++) {
-											if (!scope.columns[j].visible) {
-												scope.colCache.push({ label: scope.columns[j].field, element: scope.columns[j] });
-											}
-										}
-									}
-									break;
-								}
-							}
-
-						}
-					}
-
-					scope.options.values = [];
-
-					for (var i = 0; i < scope.columns.length; i++) {
-						scope.options.values.push({ label: scope.columns[i].field, element: scope.columns[i], isVisible: scope.columns[i].visible });
-					}
-
-					if (scope.colCache.length > 0 || scope.$parent.options.showResponsMenu) {
-						scope.isShow = true;
-					}
-					else {
-						scope.isShow = false;
-					}
-				}
-
-				angular.element($window).resize(resize);
-
-				scope.$on('$destroy', function () {
-					angular.element($window).off("resize", resize);
-				});
-			}
+			controllerAs: 'gridMenuCtrl',
+			scope: {
+				columns: '=',
+				options: '='
+			},
+			link: menuLink,
+			bindToController: true
 		}
-	}]);
+
+		return menu;
+
+		function menuLink(scope, element, attrs, ctrl) {
+			scope.$watch('columns', function (value) {
+				if (Array.isArray(value) && value.length > 0) {
+					ctrl.menu.refreshColumns(value);
+					ctrl.isShow = ctrl.menu.getIsMenu();
+
+					ctrl.menu.toggleColumns(angular.element($window).width());
+				}
+			});
+
+			ctrl.isShow = ctrl.menu.getIsMenu();
+
+			var nToggle = function () {
+				toggle(angular.element($window).width());
+			}
+
+			var toggle = angular.bind(
+				ctrl.menu,
+				ctrl.menu.toggleColumns
+				);
+
+			angular.element($window).resize(nToggle);
+
+			scope.$on('$destroy', function () {
+				ctrl.menu.destroy();
+				angular.element($window).off("resize", nToggle);
+			});
+		};
+	};
+} ())
+
+
 angular.module('gridTaskApp')
 	.directive('rowCheck', [function () {
 		return {
@@ -4874,10 +4746,10 @@ angular.module('gridTaskApp')
 
 			Chart.prototype._renderSvg = function () {
 				this.svg = d3.select("#chart").append("svg")
-						.attr("width", this.width + this.margin.left + this.margin.right)
-						.attr("height", this.height + this.margin.top + this.margin.bottom)
-						.append("g")
-						.attr("transform", this._transform.bind(this));
+					.attr("width", this.width + this.margin.left + this.margin.right)
+					.attr("height", this.height + this.margin.top + this.margin.bottom)
+					.append("g")
+					.attr("transform", this._transform.bind(this));
 			};
 
 			Chart.prototype._renderSankey = function () {
@@ -4910,13 +4782,13 @@ angular.module('gridTaskApp')
 
 			Chart.prototype._renderNode = function () {
 				this.node = this.svg.append("g").selectAll(".node")
-						.data(this.data.nodes)
-					    .enter().append("g")
-						.attr("class", "node")
-						.attr("transform", function (d) {
-							return "translate(" + d.x + "," + d.y + ")";
-						})
-					  .call(d3.behavior.drag()
+					.data(this.data.nodes)
+					.enter().append("g")
+					.attr("class", "node")
+					.attr("transform", function (d) {
+						return "translate(" + d.x + "," + d.y + ")";
+					})
+					.call(d3.behavior.drag()
 						.origin(function (d) {
 							return d;
 						})
@@ -4965,7 +4837,7 @@ angular.module('gridTaskApp')
 					.attr("text-anchor", "end")
 					.attr("transform", null)
 					.text(function (d) { return d.name; })
-				  .filter(function (d) { return d.x < this.width / 2; }.bind(this))
+					.filter(function (d) { return d.x < this.width / 2; }.bind(this))
 					.attr("x", 6 + this.sankey.nodeWidth())
 					.attr("text-anchor", "start");
 
@@ -4976,7 +4848,7 @@ angular.module('gridTaskApp')
 					.attr("text-anchor", "end")
 					.attr("transform", null)
 					.text(function (d) { return d.val; })
-				  .filter(function (d) { return d.x < this.width / 2; }.bind(this))
+					.filter(function (d) { return d.x < this.width / 2; }.bind(this))
 					.attr("x", -20 + this.sankey.nodeWidth())
 					.attr("text-anchor", "start");
 			};
@@ -4997,9 +4869,9 @@ angular.module('gridTaskApp')
 
 			Chart.prototype._initSankey = function () {
 				this.sankey
-				.nodes(this.data.nodes)
-				.links(this.data.links)
-				.layout(32);
+					.nodes(this.data.nodes)
+					.links(this.data.links)
+					.layout(32);
 			};
 
 			Chart.prototype.mouseover = function (d) {
@@ -5040,7 +4912,7 @@ angular.module('gridTaskApp')
 			};
 
 			return Chart;
-		}();
+		} ();
 
 		return {
 			getChart: function (data, opt) {
@@ -5056,12 +4928,227 @@ angular.module('gridTaskApp')
 			$http.get(url).success(function (data) {
 				deferred.resolve(data);
 			}).error(function () {
-			    deferred.reject("Failed to json.");
+				deferred.reject("Failed to json.");
 			});;
 
 			return deferred.promise;
 		}
 	}]);
+(function () {
+	'use strict'
+
+	angular
+		.module('gridTaskApp')
+		.factory('menuUtils', menuUtils);
+
+	menuUtils.$inject = ['MENU', '$window'];
+
+	function menuUtils(MENU, $window) {
+		return {
+			register: function (columns, opt) {
+				this.opt = opt;
+
+				this.opt = this.opt || {};
+				this.opt.isMenu = this.opt.isMenu || false;
+				this.opt.label = this.opt.label || '';
+				this.opt.values = this.opt.values || [];
+				this.opt.isCheckbox = this.opt.isCheckbox || true;
+				this.opt.withSave = this.opt.withSave || false;
+				this.opt.onSave = this.opt.onSave || function () {
+				}
+				this.opt.callback = this.opt.callback || function (action) {
+				}
+				this.opt.onCheck = this.opt.onCheck || angular.bind(this, this.check);
+				this.opt.parentSelector = this.opt.parentSelector || MENU.parentSelector;
+				this.opt.parentMinWidth = this.opt.parentMinWidth || MENU.parentMinWidth;
+
+				if (!Number.isFinite(this.opt.countBlockLastColumn)) {
+					this.opt.countBlockLastColumn = 1;
+				}
+
+				if (!Number.isFinite(this.opt.countBlockFirstColumn)) {
+					this.opt.countBlockFirstColumn = 1;
+				}
+
+				this.colCache = [];
+
+				this.columns = columns;
+
+				this._calcAllWidth();
+				this._pushValues();
+			},
+			destroy: function () {
+				this.opt = this.colCache = this.columns = this.totalWidth = this.visibleWidth = null;
+			},
+			getColCache: function () {
+				return this.colCache;
+			},
+			getColumns: function () {
+				return this.columns;
+			},
+			getTotalWidth: function (isRecalc) {
+				if (isRecalc) {
+					this._calcTotalWidth();
+				}
+
+				return this.totalWidth;
+			},
+			getVisibleWidth: function (isRecalc) {
+				if (isRecalc) {
+					this._calcVisibleWidth();
+				}
+
+				return this.visibleWidth;
+			},
+			getIsMenu: function () {
+				return this.colCache.length > 0 || this.opt.showResponsMenu;
+			},
+			getOptions: function () {
+				return this.opt;
+			},
+			refreshColumns: function (columns) {
+				this.columns = columns;
+				this.colCache = [];
+
+				this._calcAllWidth();
+				this._pushValues();
+			},
+			toggleVisible: function (index) {
+				this.columns[index].toggleVisible();
+				this._changeOptVisible(this.columns[index]);
+
+				if (!this.columns[index].visible) {
+					this.colCache.push({
+						label: this.columns[index].field,
+						element: this.columns[index]
+					});
+
+					this.visibleWidth -= this.columns[index].minWidth;
+				}
+				else {
+					angular.forEach(this.colCache, function (col, index) {
+						if (col.element == this.columns[index]) {
+							this.colCache.splice(index, 1);
+						}
+					}, this);
+
+					this.visibleWidth += this.columns[index].minWidth;
+				}
+			},
+			toggleColumns: function (windowWidth) {
+				if (windowWidth < this.visibleWidth) {
+					this._toBackFor(function (item, index) {
+						if (item.visible) {
+							this.toggleVisible(index);
+
+							if (windowWidth > this.visibleWidth) {
+								return -1;
+							}
+						}
+					}, this);
+				}
+				else {
+					this._toNextFor(function (item, index) {
+						if (!item.visible) {
+							if (windowWidth > this.visibleWidth + item.minWidth) {
+								this.toggleVisible(index);
+							}
+							else {
+								return -1;
+							}
+						}
+					}, this);
+				}
+			},
+			check: function (action, index) {
+				this.toggleVisible(index);
+
+				if (angular.element($window).width() < this.visibleWidth) {
+					angular.element(this.opt.parentSelector).css({
+						minWidth: this.visibleWidth + 'px'
+					});
+				}
+				else {
+					angular.element(this.opt.parentSelector).css({
+						minWidth: this.opt.parentMinWidth + 'px'
+					});
+				}
+			},
+			_calcVisibleWidth: function () {
+				this.visibleWidth = this.columns.reduce(function (a, b) {
+					if (b.visible) {
+						return a + b.minWidth;
+					} else {
+						return a;
+					}
+				}, 0);
+			},
+			_calcTotalWidth: function () {
+				this.totalWidth = this.columns.reduce(
+					function (a, b) {
+						return a + b.minWidth;
+					}, 0);
+			},
+			_calcAllWidth: function () {
+				this._calcTotalWidth();
+				this._calcVisibleWidth();
+			},
+			_pushValues: function () {
+				this.opt.values = [];
+
+				this._toNextFor(function (item, index) {
+					this.opt.values.push({
+						label: item.field,
+						element: item,
+						isVisible: item.visible
+					});
+				}, this);
+			},
+			_changeOptVisible: function (element) {
+				angular.forEach(this.opt.values, function (item, index) {
+					if (item.element == element) {
+						item.isVisible = element.visible;
+					}
+				});
+			},
+			_toNextFor: function (func, context) {
+				for (var i = 0; i < this.columns.length; i++) {
+					if (angular.isFunction(func)) {
+						var nFunc;
+
+						nFunc = angular.bind(context, func, this.columns[i], i);
+						var ret = nFunc(this.columns[i], i);
+
+						if (ret == -1) {
+							break;
+						}
+					}
+					else {
+						throw new Error("Wrong function.");
+					}
+				}
+			},
+			_toBackFor: function (func, context) {
+				for (var i = this.columns.length - this.opt.countBlockLastColumn - 1; i > this.opt.countBlockFirstColumn; i--) {
+					if (angular.isFunction(func)) {
+						var nFunc;
+
+						nFunc = angular.bind(context, func, this.columns[i], i);
+						var ret = nFunc(this.columns[i], i);
+
+						if (ret == -1) {
+							break;
+						}
+					}
+					else {
+						throw new Error("Wrong function.");
+					}
+				}
+			}
+		}
+	};
+} ());
+
 angular.module('gridTaskApp')
 	.service('myTemplateService', ['$http', '$templateCache', function ($http, $templateCache) {
 		this.put = function (template, name) {
@@ -5829,12 +5916,9 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('/src/app/templates/directive-templates/custom-grid.html',
     "<div class=\"custom-grid\" ng-grid=\"options\">\r" +
     "\n" +
-    "\t<div grid-menu class=\"custom-grid__menu\"></div>\r" +
+    "\t<div grid-menu class=\"custom-grid__menu\" options=\"options.menu\" columns=\"columns\"></div>\r" +
     "\n" +
-    "</div>\r" +
-    "\n" +
-    "\r" +
-    "\n"
+    "</div>"
   );
 
 
@@ -5874,7 +5958,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t<button type=\"button\" class=\"my-dropdown__btn\" ng-show=\"!options.isMenu\" ng-click=\"isShow = !isShow\" ng-class=\"{'opened' : isShow}\">\r" +
     "\n" +
-    "\t\t<span class=\"my-dropdown__text\">{{options.label | translate}}{{options.selected.label | translate}}</span>\r" +
+    "\t\t<span class=\"my-dropdown__text\" ng-show=\"!options.isCheckbox\">{{options.label | translate}}{{options.selected.label | translate}}</span>\r" +
     "\n" +
     "\t\t<span class=\"my-dropdown__expand\" ng-class=\"{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}\"></span>\r" +
     "\n" +
@@ -5900,7 +5984,7 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t\t\t\t<label class=\"my-dropdown__list__input-control\">\r" +
     "\n" +
-    "\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"action.isVisible\" ng-change=\"options.onCheck(action, $index)\" id=\"{{action.label | translate}}\">\r" +
+    "\t\t\t\t\t\t<input type=\"checkbox\" ng-model=\"action.isVisible\" ng-change=\"options.onCheck(action, $index)\" id=\"{{action.label}}\">\r" +
     "\n" +
     "\t\t\t\t\t\t<span class=\"my-dropdown__list__input-control__span\"></span>\r" +
     "\n" +
@@ -6019,9 +6103,9 @@ angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('/src/app/templates/directive-templates/grid-menu.html',
-    "<div class=\"grid-menu\" ng-show=\"isShow\">\r" +
+    "<div class=\"grid-menu\" ng-show=\"gridMenuCtrl.isShow\">\r" +
     "\n" +
-    "\t<div class=\"grid-menu__options\" dropdown=\"options\"></div>\r" +
+    "\t<div class=\"grid-menu__options\" dropdown=\"gridMenuCtrl.menu.opt\"></div>\r" +
     "\n" +
     "</div>"
   );

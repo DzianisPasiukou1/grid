@@ -1,36 +1,16 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridMenuCtrl', ['$scope', '$window', 'menuUtils', function ($scope, $window, menuUtils) {
-		if (options.onCheck === undefined) {
-			options.onCheck = function (action, index) {
-				$scope.columns[index].toggleVisible();
+﻿(function () {
+	'use strict'
 
-				$scope.resize(action);
-			}
-		}
+	angular
+		.module('gridTaskApp')
+		.controller('gridMenuCtrl', gridMenuCtrl);
 
-		$scope.menuUtils = menuUtils;
-		$scope.menuUtils.register($scope.columns, $scope.options.menu);
+	gridMenuCtrl.$inject = ['menuUtils'];
 
-		$scope.resize = function (action) {
-			var totalWidth = $scope.columns.reduce(function (a, b) {
-				if (b.visible) {
-					return a + b.minWidth;
-				} else {
-					return a;
-				}
-			}, 0);
+	function gridMenuCtrl(menuUtils) {
+		var self = this;
 
-			for (var j = 0; j < $scope.colCache.length; j++) {
-				if ($scope.colCache[j].label == action.label) {
-					$scope.colCache.splice(j, 1);
-				}
-			}
-
-			if (angular.element($window).width() < totalWidth) {
-				angular.element($scope.options.parentSelector).css('minWidth', totalWidth + 'px');
-			}
-			else {
-				angular.element($scope.options.parentSelector).css('minWidth', $scope.options.parentMinWidth + 'px');
-			}
-		}
-	}]);
+		self.menu = menuUtils;
+		self.menu.register(self.columns, self.options);
+	};
+} ());
