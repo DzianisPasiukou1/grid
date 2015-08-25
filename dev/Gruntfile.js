@@ -4,8 +4,8 @@
 	var distBase = "dist/";
 
 	grunt.initConfig({
-		 pkg: grunt.file.readJSON('package.json'),
-		 meta: {
+		pkg: grunt.file.readJSON('package.json'),
+		meta: {
             basePath: '/',
             srcPath: fileBase,
 			devPath: distBase,
@@ -27,16 +27,16 @@
 				configFile: 'karma.conf.js'
 			}
 		},
-		protractor:{
-			test:{
-				options:{
-				configFile: "protractor.conf.js",
-				keepAlive: true,
-				noColor: false
+		protractor: {
+			test: {
+				options: {
+					configFile: "protractor.conf.js",
+					keepAlive: true,
+					noColor: false
 				}
 			}
 		},
-		webdrivermanager:{
+		webdrivermanager: {
 			out_dir: './selenium',
 			capabilities: {
 				browserName: 'chrome'
@@ -47,9 +47,9 @@
 			proxy: false,
 			method: 'GET'
 		},
-		protractor_webdriver:{
-			targ:{
-				options:{
+		protractor_webdriver: {
+			targ: {
+				options: {
 					command: 'webdriver-manager start'
 				}
 			}
@@ -62,7 +62,7 @@
 			},
 			azure: {
 				files: {
-					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js','!' +  distBase + 'azure-app/azure.min.js']
+					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js', '!' + distBase + 'azure-app/azure.min.js']
 				}
 			}
 		},
@@ -101,7 +101,7 @@
 				tasks: ['sass', 'cssmin'],
 				options: {
 					livereload: true,
-					 port: 9000,
+					port: 9000,
 				}
 			}
 		},
@@ -121,24 +121,24 @@
 				src: [fileBase + 'app/**/*.js']
 			},
 		},
-		copy: {	
+		copy: {
 			css: {
 				files: [
-					  { expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
+					{ expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
 			},
 			assets: {
-				files: [ { expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
+				files: [{ expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
 			},
 			src: {
 				files: [
 					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: distBase, filter: 'isFile' }
 				]
 			},
-			publish:{
+			publish: {
 				files: [
-					{expand: true, flatten: false, src: [fileBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
-					{expand: true, flatten: false, src: [distBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
-					{expand: true, flatten: false, src: [releaseBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{ expand: true, flatten: false, src: [distBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{ expand: true, flatten: false, src: [releaseBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
 				]
 			}
 		},
@@ -148,7 +148,7 @@
 				dest: releaseBase + 'grid.js',
 			},
 			azure: {
-				src: [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js','!' +  distBase + 'azure-app/azure.min.js'],
+				src: [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js', '!' + distBase + 'azure-app/azure.min.js'],
 				dest: distBase + '/azure-app/azure.js',
 			}
 		},
@@ -171,7 +171,7 @@
 		wiredep: {
 			test: {
 				src: [
-				  distBase + 'test.html'
+					distBase + 'test.html'
 				],
 				options: {
 				}
@@ -179,27 +179,27 @@
 
 		},
 		'angular-builder': {
-			options:{
+			options: {
 				mainModule: 'gridTaskApp'
 			},
 			app: {
-			 	src: 'src/**/*.js',
-				 dest: 'release/test.js'
+				src: 'src/**/*.js',
+				dest: 'release/test.js'
 			}
 		},
-		sass:{
+		sass: {
 			compile: {
 				files: [
-               	 {
-					style: 'compressed',
-                    src: ["src/css/styles.scss"],
-                    dest: "src/css/styles.css",
-               	 }
-            	]
+					{
+						style: 'compressed',
+						src: ["src/css/styles.scss"],
+						dest: "src/css/styles.css",
+					}
+				]
 			}
 		},
-		express:{
-			dev:{
+		express: {
+			dev: {
 				options: {
 					script: 'server.js',
 					background: false,
@@ -207,55 +207,55 @@
 				}
 			}
 		},
-		 htmlbuild: {
-       	 release: {
-            src: distBase + 'index.html',
-            dest: releaseBase + 'main.html',
-            options: {
-                beautify: true,
-                relative: false,
-                scripts: {
-                    grid: [
-                        '<%= meta.deployPath %>grid.min.js'
-                    ],
-					azure: [
-						'<%= meta.devPath %>/azure-app/azure.min.js'
-					]
-                },
-                styles: {
-                    bundle: [
-                        '<%= meta.deployPath %>/styles/styles.min.css',
-                    ]
-                },
-                sections: {
-                    views: '<%= fixturesPath %>/views/**/*.html',
-                    templates: '<%= fixturesPath %>/templates/**/*.html',
-                    layout: {
-                        header: '<%= fixturesPath %>/layout/header.html',
-                        footer: '<%= fixturesPath %>/layout/footer.html'
-                    }
-                },
-                data: {
-                    version: "0.1.0",
-                    title: "test",
-                },
-            }
-        },
-		 },
+		htmlbuild: {
+			release: {
+				src: distBase + 'index.html',
+				dest: releaseBase + 'main.html',
+				options: {
+					beautify: true,
+					relative: false,
+					scripts: {
+						grid: [
+							'<%= meta.deployPath %>grid.min.js'
+						],
+						azure: [
+							'<%= meta.devPath %>/azure-app/azure.min.js'
+						]
+					},
+					styles: {
+						bundle: [
+							'<%= meta.deployPath %>/styles/styles.min.css',
+						]
+					},
+					sections: {
+						views: '<%= fixturesPath %>/views/**/*.html',
+						templates: '<%= fixturesPath %>/templates/**/*.html',
+						layout: {
+							header: '<%= fixturesPath %>/layout/header.html',
+							footer: '<%= fixturesPath %>/layout/footer.html'
+						}
+					},
+					data: {
+						version: "0.1.0",
+						title: "test",
+					},
+				}
+			},
+		},
 		replace: {
-			azure:{
+			azure: {
 				files: [
-					{expand: true, flatten: true, src:['../publish/publish/release/main.html'], dest:'../publish/publish'}
+					{ expand: true, flatten: true, src: ['../publish/publish/release/main.html'], dest: '../publish/publish' }
 				]
 			}
 		},
-		shell:{
+		shell: {
 			openSite: {
 				command: 'start http://localhost:9000'
 			}
 		}
 	});
-	
+
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -275,7 +275,7 @@
 	grunt.loadNpmTasks('grunt-protractor-webdriver');
 	grunt.loadNpmTasks('grunt-express-server');
 	grunt.loadNpmTasks('grunt-html-build');
- 	grunt.loadNpmTasks('grunt-replace');
+	grunt.loadNpmTasks('grunt-replace');
 	grunt.loadNpmTasks('grunt-shell');
 
 	grunt.registerTask('default', [
@@ -289,40 +289,40 @@
 
 	grunt.registerTask('unit', [
 		'karma'
-	])	
-	
+	])
+
 	grunt.registerTask('e2e', [
 		'protractor'
 	])
-						
+
 	grunt.registerTask('publish', [
 		'release',
 		'copy:publish',
 		'replace:azure'
 	]);
-	
+
 	grunt.registerTask('compile-sass', [
 		'sass',
 		'cssmin'
 	])
-	
+
 	grunt.registerTask('server', [
 		'sass',
 		'shell',
 		'express:dev'
 	])
-	
+
 	grunt.registerTask('index-release', [
 		'concat:azure',
 		'uglify:azure',
 		'htmlbuild'
 	])
-	
+
 	grunt.registerTask('release', [
-		//'clean',
+	//'clean',
 		'index-release',
 		'compile-sass',
-		 'ngtemplates',
+		'ngtemplates',
 		'copy:css',
 		'copy:assets',
 		'concat:grid',

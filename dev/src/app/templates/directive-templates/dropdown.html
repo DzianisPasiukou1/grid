@@ -1,6 +1,6 @@
 ﻿<div class="my-dropdown" any-other-click="isShow=false">
 	<button type="button" class="my-dropdown__btn" ng-show="!options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
-		<span class="my-dropdown__text">{{options.label | translate}}{{options.selected.label | translate}}</span>
+		<span class="my-dropdown__text" ng-show="!options.isCheckbox">{{options.label | translate}}{{options.selected.label | translate}}</span>
 		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': isShow, 'icon-menu-down' : !isShow}"></span>
 	</button>
 	<button type="button" class="my-dropdown__btn" ng-show="options.isMenu" ng-click="isShow = !isShow" ng-class="{'opened' : isShow}">
@@ -13,7 +13,7 @@
 			<div ng-if="options.isCheckbox">
 				<div class="my-dropdown__list__check">
 					<label class="my-dropdown__list__input-control">
-						<input type="checkbox" ng-model="action.isVisible" ng-change="options.onCheck(action, $index)" id="{{action.label | translate}}">
+						<input type="checkbox" ng-model="action.isVisible" ng-change="options.onCheck(action, $index)" id="{{action.label}}">
 						<span class="my-dropdown__list__input-control__span"></span>
 					</label>
 				</div>

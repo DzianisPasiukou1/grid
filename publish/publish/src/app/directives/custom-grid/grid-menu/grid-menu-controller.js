@@ -1,56 +1,15 @@
 ﻿angular.module('gridTaskApp')
-	.controller('gridMenuCtrl', ['$scope', 'MENU', '$window', function ($scope, MENU, $window) {
-		$scope.options = $scope.options.menu;
-
-		if ($scope.options === undefined) {
-			$scope.options = {};
-		}
-
-		if ($scope.options.isMenu === undefined) {
-			$scope.options.isMenu = false;
-		}
-
-		if ($scope.options.label === undefined) {
-			$scope.options.label = '';
-		}
-
-		if ($scope.options.values === undefined) {
-			$scope.options.values = [];
-		}
-
-		if ($scope.options.isCheckbox === undefined) {
-			$scope.options.isCheckbox = true;
-		}
-
-		if ($scope.options.onCheck === undefined) {
-			$scope.options.onCheck = function (action, index) {
+	.controller('gridMenuCtrl', ['$scope', '$window', 'menuUtils', function ($scope, $window, menuUtils) {
+		if (options.onCheck === undefined) {
+			options.onCheck = function (action, index) {
 				$scope.columns[index].toggleVisible();
 
 				$scope.resize(action);
 			}
 		}
 
-		if ($scope.options.withSave === undefined) {
-			$scope.options.withSave = false;
-		}
-
-		if ($scope.options.onSave === undefined) {
-			$scope.options.onSave = function () {
-			}
-		}
-
-		if ($scope.options.callback === undefined) {
-			$scope.options.callback = function (action) {
-			}
-		}
-
-		if ($scope.options.parentSelector === undefined) {
-			$scope.options.parentSelector = MENU.parentSelector;
-		}
-
-		if ($scope.options.parentMinWidth === undefined) {
-			$scope.options.parentMinWidth = MENU.parentMinWidth;
-		}
+		$scope.menuUtils = menuUtils;
+		$scope.menuUtils.register($scope.columns, $scope.options.menu);
 
 		$scope.resize = function (action) {
 			var totalWidth = $scope.columns.reduce(function (a, b) {

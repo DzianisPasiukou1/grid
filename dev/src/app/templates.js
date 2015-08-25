@@ -1,4 +1,4 @@
-angular.module('gridTaskApp').run(['$templateCache', function($templateCache) {
+angular.module('gridTaskApp').run(['$templateCache', function ($templateCache) {
   'use strict';
 
   $templateCache.put('/src/app/templates/directive-templates/cards.html',
