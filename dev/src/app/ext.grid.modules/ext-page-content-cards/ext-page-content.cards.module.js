@@ -9,5 +9,5 @@
 			'ext.grid.cards',
 			'ext.grid.uiGrid'
 		])
-		.value('extPageContentCardsTemplatesPath', 'src/app/ext.grid.modules/ext-page-content-cards/templates/');
+		.constant('extPageContentCardsTemplatesPath', 'src/app/ext.grid.modules/ext-page-content-cards/templates/');
 } ());
