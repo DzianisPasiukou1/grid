@@ -16,17 +16,20 @@
 		function filterClick() {
 			$scope.listState = !$scope.listState;
 
-			if (vm.listState) {
-				vm.filterOptions.forEach(function (opt) {
-					opt.filter = "";
-				});
+			if ($scope.listState) {
+				clear();
 			}
 		};
 
 		function showRecords() {
 			$scope.listState = false;
-
 			vm.filtrate(vm.filterOptions);
+		};
+
+		function clear() {
+			vm.filterOptions.forEach(function (opt) {
+				opt.filter = "";
+			});
 		};
 	};
 } ());

@@ -40,9 +40,9 @@
 		vm.options.reInit = vm.options.reInit || false;
 		vm.options.enableDetails = vm.options.enableDetails || true;
 		vm.options.detailsCellTemplate = vm.options.detailsCellTemplate || templatesPath + 'ui-grid-templates/cell-templates/details.html';
-		vm.options.detailsWidth = vm.options.enableDetails || 60;
-		vm.options.detailsMinWidth = vm.options.enableDetails || 60;
-		vm.options.enableAction = vm.options.enableDetails || true;
+		vm.options.detailsWidth = vm.options.detailsWidth || 60;
+		vm.options.detailsMinWidth = vm.options.detailsMinWidth || 60;
+		vm.options.enableAction = vm.options.enableAction || true;
 		vm.options.actionsCellTemplate = vm.options.actionsCellTemplate || templatesPath + 'ui-grid-templates/cell-templates/action.html';
 		vm.options.actionsWidth = vm.options.actionsWidth || 250;
 		vm.options.actionsMinWidth = vm.options.actionsWidth || 115;
@@ -56,6 +56,8 @@
 
 		vm.singleFilter = singleFilter;
 		vm.rowChangedClass = rowChangedClass;
+		
+		$scope.$watch('vm.options.filterOptions.filterText', filterTextChanged);
 
 		function cellClass(grid, row, col) {
 			if (row.isChecked) {

@@ -17,14 +17,14 @@
 			};
 
 			Row.prototype.edit = function () {
-				if (angular.element('modal').length != 0) {
-					angular.element('modal').remove();
+				if (angular.element('ext-modal').length != 0) {
+					angular.element('ext-modal').remove();
 				}
 
 				this.scope.editingRow = this.elm;
 
-				angular.element('body').append('<div modal value="editingRow" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
-				var modal = angular.element('div[modal]');
+				angular.element('body').append('<div ext-modal value="editingRow" enable-save="true" body-template-url="' + templatesPath + 'edit-entity.html"></div>');
+				var modal = angular.element('div[ext-modal]');
 				this.compile(modal)(this.scope);
 			};
 
@@ -33,14 +33,14 @@
 			};
 
 			Row.prototype.history = function () {
-				if (angular.element('history').length != 0) {
-					angular.element('history').remove();
+				if (angular.element('ext-history').length != 0) {
+					angular.element('ext-history').remove();
 				}
 
 				this.scope.historiedRow = this.elm;
 
-				angular.element('body').append('<div modal value="historiedRow.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
-				var modal = angular.element('div[modal]');
+				angular.element('body').append('<div ext-modal value="historiedRow.actions.history"  body-template-url="' + templatesPath + 'history.html"></div>');
+				var modal = angular.element('div[ext-modal]');
 				this.compile(modal)(this.scope);
 			};
 
@@ -62,10 +62,10 @@
 					elm.select();
 
 					try {
-						$document.execCommand('copy');
+						$document[0].execCommand('copy');
 
-						if ($.cursorMessage) {
-							$.cursorMessage('Row is copied to clipboard.');
+						if (angular.element.cursorMessage) {
+							angular.element.cursorMessage('Row is copied to clipboard.');
 						}
 
 					}
