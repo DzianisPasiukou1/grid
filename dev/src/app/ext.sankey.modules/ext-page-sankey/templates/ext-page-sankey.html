@@ -1,0 +1,18 @@
+﻿<div class="page-content">
+	<div class="page-content__header">
+		<div class="page-content__options">
+			<div ext-options-sankey options="vm.contentOptions" filters="vm.filters"></div>
+		</div>
+		<div class="page-content__cards" ext-cards="vm.cardsOptions" content-options="vm.contentOptions">
+		</div>
+	</div>
+	<div class="page-content__body">
+		<div class="page-content__list">
+			<div class="core-diagram" ext-sankey="{}" sankey-data="vm.sankeyData"></div>
+			<div ext-overlay>
+				<div class="histogram-content" ext-histogram histogram-data="vm.histogramData"></div>
+			</div>
+		</div>
+	</div>
+</div>
+

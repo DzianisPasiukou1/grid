@@ -1,0 +1,10 @@
+﻿<button class="date-btn" ng-click="vm.close()">
+	<span class="date-btn__icon glyph-calendar"></span>
+	<span class="date-btn__text">{{vm.opt.startDate | date}} - {{vm.opt.endDate | date}}</span>
+	<button class="date-btn__toggle" ng-click="vm.toggle()" ng-class="{'opened': vm.isShow}">
+		<span class="expand" ng-class="{ 'icon-menu-up': vm.isShow, 'icon-menu-down': !vm.isShow }">
+		</span>
+	</button>
+	<div class="date-btn__datepicker" ng-if="vm.isShow">
+	</div>
+</button>

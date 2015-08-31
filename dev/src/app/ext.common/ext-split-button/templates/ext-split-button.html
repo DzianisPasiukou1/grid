@@ -1,0 +1,21 @@
+﻿<button class="split-btn" ng-click="vm.close()">
+	<div ng-if="vm.actions.selected">
+		<div ng-if="!vm.actions.isComplex">
+			{{vm.actions.selected.label}}
+		</div>
+		<div ng-if="vm.actions.isComplex">
+			Choose {{vm.actions.selected.label}}
+		</div>
+	</div>
+
+	<div ng-if="!vm.actions.selected" style="opacity: 0.5">
+		{{typehead}}
+	</div>
+	<button class="split-btn__toggle" ng-click="vm.toggle()" ng-class="{'opened' : vm.isShow}" any-other-click="vm.isShow=false">
+		<span class="expand" ng-class="{'icon-menu-up': vm.isShow, 'icon-menu-down' : !vm.isShow}">
+		</span>
+	</button>
+	<ul class="split-btn__list" ng-show="vm.isShow">
+		<li ng-repeat="action in vm.actions" ng-click="vm.select(action)"><a>{{action.label}}</a> </li>
+	</ul>
+</button>

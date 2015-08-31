@@ -1,0 +1,41 @@
+﻿<div class="mouse-over" ng-style="vm.style">
+	<div class="mouse-over-simple" ng-if="vm.type.isSimple">
+		<div class="mouse-over-simple__header">
+			<span class="mouse-over-simple__header__text">{{vm.value.header}}</span>
+		</div>
+		<div class="mouse-over-simple__body">
+			<div ng-repeat="val in value.data" class="mouse-over-simple__body__value">
+				<span class="mouse-over-simple__body__value__text">{{::'Campaing ID'}}: {{vm.val.campaignId}}</span>
+				<span class="mouse-over-simple__body__value__text">{{::'Ad ID'}}: {{vm.val.adId}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="mouse-over-medium" ng-if="vm.type.isMedium">
+		<div class="mouse-over-medium__header">
+			<span class="mouse-over-simple__medium__text">{{vm.value.header}}</span>
+		</div>
+		<div class="mouse-over-medium__body">
+			<div class="mouse-over-medium__body__blockSegm" ng-style="{float: 'left'}">
+				<span class="mouse-over-medium__body__header">
+					{{::'Top Segments'}}
+				</span>
+				<div ng-repeat="prop in vm.value.data.topSegments">
+					<span class="mouse-over-medium__body__value__text">{{prop}}</span>
+				</div>
+			</div>
+			<div class="mouse-over-medium__body__blockCampaing" ng-style="{float: 'right'}">
+				<span class="mouse-over-medium__body__header">
+					{{::'Top Campaigns'}}
+				</span>
+				<div ng-repeat="prop in vm.value.data.topCampaings">
+					<span class="mouse-over-medium__body__value__text">{{prop}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mouse-over-custom" ng-if="vm.type.isCustom">
+		<div ng-if="vm.type.templateUrl" ng-include="vm.type.templateUrl">
+		</div>
+		<div ng-if="!vm.type.templateUrl" gr-template="vm.type.template" gr-name="mouseOverTemplate"></div>
+	</div>
+</div>

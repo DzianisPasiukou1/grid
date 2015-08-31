@@ -1,0 +1,24 @@
+﻿<div class="options">
+	<div class="options__block">
+		<div class="input-prepend">
+			<div kx-date-range="kx-date-range" time-range="vm.past" name="vm.dateRange" ng-model="vm.filters.dateRange" ng-disabled="vm.loading"
+			ng-change="vm.filters.onDateRangeChange()" class="date-range-picker"></div>
+		</div>
+	</div>
+	<div class="options__select">
+		<select class="options__event" ui-select2="vm.options.eventType.selectOpt" ng-model="vm.options.eventOpt.options.selected"
+		data-placeholder="Choose Event" ng-required="true">
+			<option value=""></option>
+			<option value="{{action}}" ng-repeat="action in vm.options.eventType.options.actions">{{action.label}}</option>
+		</select>
+		<select class="options__segments kx-multiselect" kx-multiselect="vm.options.segments.selectOpt" ng-change="vm.options.segments.options.onChange()"
+		ng-model="vm.options.segments.options.selected" multiple="true" data-placeholder="{{::'Choose Segments' | translate}}">
+			<option value="{{action}}" ng-repeat="action in vm.options.segments.options.actions">{{action.label}}</option>
+		</select>
+		<select class="options__campaign kx-multiselect" kx-multiselect="vm.options.campaign.selectOpt" ng-change="vm.options.campaign.options.onChange()"
+		ng-model="vm.options.campaign.options.selected" data-placeholder="{{::'Choose Campaigns' | translate}}" multiple="true">
+			<option value="{{action}}" ng-repeat="action in vm.options.campaign.options.actions">{{action.label}}</option>
+		</select>
+	</div>
+	<button class="kx-btn" ng-click="vm.options.refresh()">Update</button>
+</div>

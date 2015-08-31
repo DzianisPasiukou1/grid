@@ -1,0 +1,15 @@
+﻿<div class="checkbox-select" any-other-click="vm.isShow=false">
+	<div class="checkbox-select__check">
+		<label class="checkbox-select__input-control">
+			<input type="checkbox" ng-model="vm.options.selected.check" ng-change="vm.checked(vm.options.selected.check)" />
+			<span class="checkbox-select__input-control__span" ng-class="{'marked':vm.options.selected.isMarked || vm.options.selected.isNotMarked}"></span>
+		</label>
+	</div>
+	<button type="button" class="checkbox-select__btn" ng-class="{'opened' : vm.isShow}" ng-click="vm.toggle()">
+		<span class="checkbox-select__expand" ng-class="{'icon-menu-down': !vm.isShow, 'icon-menu-up': vm.isShow}"></span>
+	</button>
+
+	<ul class="checkbox-select__list" ng-show="vm.isShow">
+		<li ng-repeat="action in options.actions" ng-click="vm.select(action)"><a>{{vm.action.label}}</a></li>
+	</ul>
+</div>

@@ -103,6 +103,13 @@
 					livereload: true,
 					port: 9000,
 				}
+			},
+			htmlbuild: {
+				files: [fileBase + 'app/**/*.js'],
+				tasks: ['htmlbuild:index'],
+				options: {
+					interrupt: false
+				},
 			}
 		},
 		jshint: {
@@ -241,6 +248,82 @@
 					},
 				}
 			},
+			index: {
+				src: distBase + 'index.html',
+				dest: distBase + 'test.html',
+				options: {
+					beautify: true,
+					relative: false,
+					scripts: {
+						common: [
+							'<%= meta.srcPath %>app/ext.common/any-other-click/**/any-other-click.module.js',
+							'<%= meta.srcPath %>app/ext.common/any-other-click/**/!(any-other-click.module)*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-on-finish-render/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/gr-template/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-datepicker/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-dropdown/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-json/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-loading/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-max-heighter/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-number-format/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-resize-on/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-search/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-split-button/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-upload/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext-upload/**/*.js',
+							'<%= meta.srcPath %>app/ext.common/ext.common.module.js'
+						],
+						grid: [
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-cards/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-checkbox-select/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-filter/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-content-options/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-content-options-cards/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-grid/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-modal/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-ui-grid/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-page-content/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext-page-content-cards/**/*.js',
+							'<%= meta.srcPath %>app/ext.grid.modules/ext.grid.module.js',
+						],
+						sankey: [
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-histogram/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-mouse-over/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-overlay/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-sankey/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/kx-stealth-input/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/kx-date-range/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/kx-multiselect/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/kx-nav-bar/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-options-sankey/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext-page-sankey/**/*.js',
+							'<%= meta.srcPath %>app/ext.sankey.modules/ext.sankey.module.js',
+						],
+						extensions: [
+							'<%= meta.srcPath %>app/ext.extensions/*.js',
+						],
+						app: [
+							'<%= meta.srcPath %>app/app.js',
+						]
+					},
+					styles: {
+						bundle: [
+						]
+					},
+					sections: {
+						views: '<%= fixturesPath %>/views/**/*.html',
+						templates: '<%= fixturesPath %>/templates/**/*.html',
+						layout: {
+							header: '<%= fixturesPath %>/layout/header.html',
+							footer: '<%= fixturesPath %>/layout/footer.html'
+						}
+					},
+					data: {
+						version: "0.1.0",
+						title: "test",
+					},
+				}
+			}
 		},
 		replace: {
 			azure: {
@@ -304,18 +387,23 @@
 	grunt.registerTask('compile-sass', [
 		'sass',
 		'cssmin'
-	])
+	]);
 
 	grunt.registerTask('server', [
 		'sass',
 		'shell',
 		'express:dev'
-	])
+	]);
 
 	grunt.registerTask('index-release', [
 		'concat:azure',
 		'uglify:azure',
 		'htmlbuild'
+	]);
+
+	grunt.registerTask('dev', [
+		'htmlbuild:index',
+		'watch:htmlbuild'
 	])
 
 	grunt.registerTask('release', [

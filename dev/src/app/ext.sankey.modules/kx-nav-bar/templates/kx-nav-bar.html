@@ -1,0 +1,50 @@
+﻿<nav class="kx-nav row-fluid">
+	<div class="span12">
+		<div class="row-fluid">
+			<div class="kx-menu span8" ng-controller="NavigationCtrl as vm" kx-menu>
+				<a class="brand kx-navbar-icon"><img class="main-logo"></a>
+				<ul>
+					<li ng-repeat="node in vm.navigationTree">
+						<a>{{node.name}}</a>
+						<div class="kx-submenu">
+							<div class="kx-submenu-inner">
+								<div ng-repeat="subNode in node.nodes">
+									<h4 ng-if="subNode.nodes">{{subNode.name}}</h4>
+									<ul ng-if="subNode.nodes">
+										<li ng-repeat="path in subNode.nodes">
+											<a>{{path.name}}</a>
+										</li>
+									</ul>
+									<ul ng-if="!subNode.nodes">
+										<li>
+											<a>{{subNode.name}}</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="menu-util span4">
+				<ul class="row-fluid">
+					<li class="span7">
+						<div class="org-switcher-off" ng-hide="session.other_organizations.length">
+							<span class="ng-binding">Krux Demo Client</span>
+						</div>
+					</li>
+					<li class="span5 account-util dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="">
+							<i class="icon-user"></i> krux-user
+							<b class="caret"></b>
+						</a>
+						<ul class="account-util-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="">{{"Account"}}</a></li>
+							<li><a href="">{{"Logout"}}</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>

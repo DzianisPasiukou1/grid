@@ -1,0 +1,46 @@
+﻿<div class="cards-group" ng-style="vm.groupStyle">
+	<div class="my-card" id="{{vm.contentOptions.debugCard.id}}" ng-if="vm.contentOptions.enableDebugging" ng-style="vm.contentOptions.debugCard.style">
+		<div class="front">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-info"></span>
+				<span class="my-card__header__text">{{vm.contentOptions.debugCard.text}}</span>
+			</div>
+			<div class="my-card__body">
+				<span>{{vm.contentOptions.debugCard.body}}</span>
+			</div>
+		</div>
+		<div class="back">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-circle-left"></span>
+				<span class="my-card__header__text">{{vm.contentOptions.debugCard.text}}</span>
+			</div>
+			<div class="my-card__body">
+				<div ng-if="vm.contentOptions.debugCard.templateUrl" ng-include="vm.contentOptions.debugCard.templateUrl">
+				</div>
+				<div ng-if="!vm.contentOptions.debugCard.templateUrl" gr-template="vm.contentOptions.debugCard.template" gr-name="vm.debugTemplate"></div>
+			</div>
+		</div>
+	</div>
+	<div class="my-card" ng-repeat="(id, card) in vm.cards" id="{{id}}" ng-style="card.style">
+		<div class="front">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-info"></span>
+				<span class="my-card__header__text">{{card.label}}</span>
+			</div>
+			<div ng-if="card.counter">
+				<div class="my-card__body" ng-init="card.count = card.counter.calculate(startDate, endDate) || card.count">
+					<span ext-number-format="card.count"></span>
+				</div>
+			</div>
+		</div>
+		<div class="back">
+			<div class="my-card__header">
+				<span class="my-card__header__icon card-font icon-circle-left"></span>
+				<span class="my-card__header__text">{{card.label}}</span>
+			</div>
+			<div class="my-card__body">
+				<div class="my-card__body__graphs" ext-graphs="card.graphs"></div>
+			</div>
+		</div>
+	</div>
+</div>

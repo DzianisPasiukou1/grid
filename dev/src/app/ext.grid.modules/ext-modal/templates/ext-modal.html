@@ -1,0 +1,14 @@
+﻿<div class="modal" ng-class="modal" ng-if="vm.isModal">
+	<div class="fade" ng-style="fade">
+	</div>
+	<div class="dialog">
+		<div ng-include="vm.bodyTemplateUrl" ng-if="!vm.bodyTemplate" onload="vm.onInclude()">
+		</div>
+		<div ng-if="vm.bodyTemplate" gr-template="vm.bodyTemplate" gr-name="vm.editEntityTemplate">
+		</div>
+		<div class="dialog-btn">
+			<button class="save-btn" ng-if="vm.enableSave" ng-click="vm.save()">Save</button>
+			<button class="close-btn" ng-click="vm.close()">Close</button>
+		</div>
+	</div>
+</div>

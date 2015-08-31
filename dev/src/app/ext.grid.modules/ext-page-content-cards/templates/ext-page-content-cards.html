@@ -1,0 +1,20 @@
+﻿<div class="page-content">
+	<div class="page-content__header">
+		<div class="page-content__options">
+			<ext-content-options-cards options="vm.contentOptions"></ext-content-options-cards>
+		</div>
+		<div class="page-content__actions">
+			<div class="page-content__actions__export" ext-dropdown="vm.exports.options"></div>
+		</div>
+	</div>
+	<div class="page-content__body">
+		<div class="page-content__cards" content-options="vm.contentOptions" ext-cards="vm.cardsOptions">
+		</div>
+		<div class="page-content__list">
+			<div ext-ui-grid grid-data="vm.data" grid-options="vm.uiGridOptions" content-options="vm.contentOptions"></div>
+		</div>
+	</div>
+	<div class="page-content__footer">
+	</div>
+</div>
+

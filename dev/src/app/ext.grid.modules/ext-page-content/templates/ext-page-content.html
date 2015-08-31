@@ -1,0 +1,29 @@
+﻿<div class="page-content">
+	<div class="page-content__header">
+		<div class="page-content__icon">
+			<span class="page-content__icon__text icon-text2"></span>
+		</div>
+		<div class="page-content__name">
+			{{vm.grid.gridName}}
+		</div>
+		<div class="page-content__count">
+			{{vm.grid.count}} records
+		</div>
+		<div class="page-content__actions">
+			<div class="page-content__actions__export" ext-dropdown="vm.grid.exports.options"></div>
+			<div class="page-content__actions__view" ext-dropdown="vm.grid.views.options"></div>
+		</div>
+	</div>
+	<div class="page-content__body">
+		<div class="page-content__options">
+			<ext-content-options options="vm.contentOptions"></ext-content-options>
+		</div>
+		<div class="page-content__list">
+			<!--<div ext-grid grid-data="vm.data" export-to="vm.grid.exports.options.selected" ng-show="vm.views.options.selected.isGrid" grid-options="vm.gridOptions"></div>
+			<div ext-ui-grid grid-data="vm.data" ng-if="vm.grid.views.options.selected.isUiGrid" grid-options="vm.uiGridOptions" content-options="vm.contentOptions"></div>-->
+		</div>
+	</div>
+	<div class="page-content__footer">
+	</div>
+</div>
+
