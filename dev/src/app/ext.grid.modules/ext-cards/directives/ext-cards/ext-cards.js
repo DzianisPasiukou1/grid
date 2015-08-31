@@ -28,7 +28,7 @@
 				scope.$on('debugFlip', debugFlip);
 				$timeout(enableDebugging);
 			}
-			scope.$watch('cardsOptions.cards', cardsChanged);
+			scope.$watch('vm.cardsOptions.cards', cardsChanged);
 			scope.$on('$destroy', destroy);
 
 			function enableDebugging() {

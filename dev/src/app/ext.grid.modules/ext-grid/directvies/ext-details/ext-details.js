@@ -14,6 +14,7 @@
 				row: '=',
 				detailsClass: '='
 			},
+			controller: 'ExtDetailsController',
 			controllerAs: 'vm',
 			bindToController: true,
 			link: link

@@ -90,9 +90,9 @@
 					this.visibleWidth -= this.columns[index].minWidth;
 				}
 				else {
-					angular.forEach(this.colCache, function (col, index) {
+					angular.forEach(this.colCache, function (col, i) {
 						if (col.element == this.columns[index]) {
-							this.colCache.splice(index, 1);
+							this.colCache.splice(i, 1);
 						}
 					}, this);
 

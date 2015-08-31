@@ -5,28 +5,13 @@
 		.module('ext.grid.contentOptions')
 		.factory('initContentOptionsUtils', initOptionsUtils);
 
-	initOptionsUtils.$inject = [];
+	initOptionsUtils.$inject = ['$log', 'EXT_CONTENT_OPTIONS'];
 
-	function initOptionsUtils() {
+	function initOptionsUtils($log, EXT_CONTENT_OPTIONS) {
 		var utils = {};
 
-		utils.checks = {
-			options: {
-				actions: {
-					all: { label: 'All', isAll: true },
-					noOne: { label: 'No one', isNoOne: true },
-					marked: { label: 'Marked', isMarked: true },
-					notMarked: { label: 'Not marked', isNotMarked: true }
-				}
-			}
-		};
-		utils.mores = {
-			options: {
-				label: 'More',
-				values: [{ label: 'View reports' }],
-				isMenu: true
-			}
-		};
+		utils.checks = EXT_CONTENT_OPTIONS.checks;
+		utils.mores = EXT_CONTENT_OPTIONS.mores;
 		utils.initOpt = initOpt;
 
 		return utils;
@@ -37,9 +22,18 @@
 			contentOptions.checks = contentOptions.checks || this.checks;
 			contentOptions.mores = contentOptions.mores || this.mores;
 			contentOptions.filterOptions = contentOptions.filterOptions || [];
-			contentOptions.filtrate = contentOptions.filtrate || function () { };
+			contentOptions.filtrate = contentOptions.filtrate || filtrate;
+			contentOptions.refreshCallback = refresh;
 
 			return contentOptions;
+
+			function filtrate() {
+				$log.warn('Call default empty function on filtrate.');
+			};
+
+			function refresh() {
+				$log.warn('Call default empty function on refresh.');
+			};
 		};
 	};
 } ());

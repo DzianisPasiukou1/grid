@@ -11,14 +11,14 @@
 		var vm = this;
 		vm.edited = false;
 		vm.clear = clear;
-		$scope.$watch('searchValue', searchValueChanged);
+		$scope.$watch('vm.searchValue', searchValueChanged);
 
 		function clear() {
 			vm.searchValue = '';
 		};
 
 		function searchValueChanged(value) {
-			if (Array.isArray(value) && value.length > 0) {
+			if (angular.isString(value) && value.length > 0) {
 				vm.edited = false;
 			}
 			else {

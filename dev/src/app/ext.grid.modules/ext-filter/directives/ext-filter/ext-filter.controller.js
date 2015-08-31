@@ -5,17 +5,16 @@
 		.module('ext.grid.filter')
 		.controller('ExtFilterController', ExtFilterController);
 
-	ExtFilterController.$inject = [];
+	ExtFilterController.$inject = ['$scope'];
 
-	function ExtFilterController() {
+	function ExtFilterController($scope) {
 		var vm = this;
 
-		vm.listState = false;
 		vm.filterClick = filterClick;
 		vm.showRecords = showRecords;
 
 		function filterClick() {
-			vm.listState = !vm.listState;
+			$scope.listState = !$scope.listState;
 
 			if (vm.listState) {
 				vm.filterOptions.forEach(function (opt) {
@@ -25,7 +24,7 @@
 		};
 
 		function showRecords() {
-			vm.listState = false;
+			$scope.listState = false;
 
 			vm.filtrate(vm.filterOptions);
 		};

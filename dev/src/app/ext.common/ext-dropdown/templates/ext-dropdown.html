@@ -1,5 +1,5 @@
 ﻿<div class="my-dropdown" any-other-click="vm.isShow=false">
-	<button type="button" class="my-dropdown__btn" ng-show="!vm.options.isMenu" ng-click="vm.isShow = !isShow" ng-class="{'opened' : vm.isShow}">
+	<button type="button" class="my-dropdown__btn" ng-show="!vm.options.isMenu" ng-click="vm.isShow = !vm.isShow" ng-class="{'opened' : vm.isShow}">
 		<span class="my-dropdown__text" ng-show="!vm.options.isCheckbox">{{vm.options.label}}{{vm.options.selected.label}}</span>
 		<span class="my-dropdown__expand" ng-class="{'icon-menu-up': vm.isShow, 'icon-menu-down' : !vm.isShow}"></span>
 	</button>

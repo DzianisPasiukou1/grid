@@ -1,4 +1,4 @@
-var templatesPath = 'templates/';
+var templatesPath = 'src/app/ext.grid.modules/ext-grid/templates/';
 
 function ExtGridActionsPlugin(opts, compile) {
 	var self = this;
@@ -503,27 +503,27 @@ function ExtGridActionsPlugin(opts, compile) {
 		}
 
 		var editRow = function (row) {
-			if (angular.element('div[modal]').length != 0) {
-				angular.element('div[modal]').remove();
+			if (angular.element('div[ext-modal]').length != 0) {
+				angular.element('div[ext-modal]').remove();
 			}
 
 			self.scope.rowEditing = row;
 
-			angular.element('body').append('<div modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'directive-templates/edit-entity.html"></modal>');
-			var modal = angular.element('div[modal]');
+			angular.element('body').append('<div ext-modal value="rowEditing" enable-save="true" body-template-url="' + templatesPath + 'edit-entity.html"></modal>');
+			var modal = angular.element('div[ext-modal]');
 			self.compile(modal)(self.scope);
 		}
 
 
 		var historyRow = function (row) {
-			if (angular.element('div[modal]').length != 0) {
-				angular.element('div[modal]').remove();
+			if (angular.element('div[ext-modal]').length != 0) {
+				angular.element('div[ext-modal]').remove();
 			}
 
 			self.scope.rowHistoried = row;
 
-			angular.element('body').append('<div modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'directive-templates/history.html"></history>');
-			var modal = angular.element('div[modal]');
+			angular.element('body').append('<div ext-modal value="rowHistoried.actions.history"  body-template-url="' + templatesPath + 'history.html"></history>');
+			var modal = angular.element('div[ext-modal]');
 			self.compile(modal)(self.scope);
 		}
 

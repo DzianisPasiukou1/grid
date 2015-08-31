@@ -10,7 +10,7 @@
 	function ExtContentOptionsCardsController($scope) {
 		var vm = this;
 
-		$scope.$watch('options.searchValue', searchValueChanged);
+		$scope.$watch('vm.options.searchValue', searchValueChanged);
 
 		function searchValueChanged(value) {
 			if (!vm.options.searchOptions) {

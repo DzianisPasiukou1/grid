@@ -35,7 +35,7 @@
 			var isFindAct, indexAct;
 
 			for (var i = 0; i < gridOptions.plugins.length; i++) {
-				if (gridOptions.plugins[i].constructor.name == 'ngGridActionsPlugin') {
+				if (gridOptions.plugins[i].constructor.name == 'ExtGridActionsPlugin') {
 					isFindAct = true;
 					indexAct = i;
 					break;

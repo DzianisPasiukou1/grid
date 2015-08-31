@@ -5,9 +5,9 @@
 		.module('ext.common.grTemplate')
 		.directive('grTemplate', grTemplate);
 
-	grTemplate.$inject = ['myTemplateService', 'extGrTemplateTemplatesPath'];
+	grTemplate.$inject = ['grTemplateService', 'extGrTemplateTemplatesPath'];
 
-	function grTemplate(myTemplateService, templatesPath) {
+	function grTemplate(grTemplateService, templatesPath) {
 
 		var grTemplateDirective = {
 			restrict: 'EAC',
@@ -17,13 +17,13 @@
 			},
 			replace: true,
 			templateUrl: templatesPath + 'gr-template.html',
-			link: grTemlateLink
+			link: link
 		};
 
 		return grTemplateDirective;
 
-		function grTemlateLink(scope, element, attrs) {
-			myTemplateService.put(scope.template, scope.name);
+		function link(scope, element, attrs) {
+			grTemplateService.put(scope.template, scope.name);
 
 			scope.templateUrl = scope.name;
 		};

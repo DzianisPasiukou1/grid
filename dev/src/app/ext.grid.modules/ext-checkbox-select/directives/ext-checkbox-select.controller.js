@@ -12,11 +12,12 @@
 
 		vm.options.selected = vm.options.selected || {};
 
-		if (vm.options.callback) {
+		if (angular.isFunction(vm.options.callback)) {
 			$scope.$on('checkboxSelect', checkboxSelect);
 		}
 
-		$scope.$watch('options.selected', changedSelected);
+		$scope.$watch('vm.options.selected', changedSelected);
+		$scope.$watch('vm.options.callback', changedCallback);
 
 		vm.toggle = toggle;
 		vm.turnOff = turnOff;
@@ -38,8 +39,14 @@
 			}
 		};
 
+		function changedCallback(callback) {
+			if (angular.isFunction(callback)) {
+				$scope.$on('checkboxSelect', checkboxSelect);
+			}
+		};
+
 		function toggle() {
-			vm.isShow = !$scope.isShow;
+			vm.isShow = !vm.isShow;
 		};
 
 		function turnOff() {
@@ -49,18 +56,19 @@
 		function select(action) {
 			vm.turnOff();
 			vm.options.selected = action;
-			vm.$emit('checkboxSelect', action);
+			$scope.$emit('checkboxSelect', action);
 		};
 
 		function checked(value) {
 			vm.turnOff();
-			
+
 			if (value) {
-				vm.options.selected = $scope.options.actions.all;
+				vm.options.selected = vm.options.actions.all;
 			}
 			else {
-				vm.options.selected = $scope.options.actions.noOne;
+				vm.options.selected = vm.options.actions.noOne;
 			}
+
 			$scope.$emit('checkboxSelect', vm.options.selected);
 		};
 	};

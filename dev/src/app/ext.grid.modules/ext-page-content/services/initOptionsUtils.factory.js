@@ -17,6 +17,7 @@
 		utils.renderLoading = renderLoading;
 		utils.initContentOpt = initContentOpt;
 		utils.refreshContentOpt = refreshContentOpt;
+		utils.convertFilterOptions = convertFilterOptions;
 
 		return utils;
 
@@ -83,13 +84,25 @@
 		};
 
 		function filtrate(value) {
-			this.gridOptions.filterOptions.filterText = value;
-			this.uiGridOptions.filterOptions.filterText = value;
+			var filterText = convertFilterOptions(value).filterText;
+
+			if (angular.isDefined(this.gridOptions.filterOptions)) {
+				this.gridOptions.filterOptions.filterText = filterText;
+			}
+
+			if (angular.isDefined(this.uiGridOptions.filterOptions)) {
+				this.uiGridOptions.filterOptions.filterText = filterText;
+			}
 		};
 
 		function search(value) {
-			this.gridOptions.filterOptions.filterText = value;
-			this.uiGridOptions.filterOptions.filterText = value;
+			if (angular.isDefined(this.gridOptions.filterOptions)) {
+				this.gridOptions.filterOptions.filterText = value;
+			}
+
+			if (angular.isDefined(this.uiGridOptions.filterOptions)) {
+				this.uiGridOptions.filterOptions.filterText = value;
+			}
 		};
 
 		function refresh() {
@@ -136,6 +149,18 @@
 			}
 
 			return options;
+		};
+
+		function convertFilterOptions(options) {
+			var convertOpt = { filterText: '' };
+
+			for (var i = 0; i < options.length; i++) {
+
+				if (options[i].filter) {
+					convertOpt.filterText += options[i].label + ':' + options[i].filter + ';';
+				}
+			}
+			return convertOpt;
 		};
 	};
 } ());

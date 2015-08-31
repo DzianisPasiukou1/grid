@@ -5,31 +5,30 @@
 		.module('ext.grid.main')
 		.controller('ExtGridController', ExtGridController);
 
-	ExtGridController.$inject = ['extGridTemplatesPath', '$compile'];
+	ExtGridController.$inject = ['extGridTemplatesPath', '$compile', '$scope', '$timeout'];
 
-	function ExtGridController(templatesPath, $compile) {
-		var vm = this;
-
-		vm.options = vm.options || {};
-		vm.options.data = vm.options.data || [];
-		vm.options.multiSelect = vm.options.multiSelect || false;
-		vm.options.rowTemplate = vm.options.rowTemplate || templatesPath + 'grid-templates/row-templates/row-with-detalis.html';
-		vm.options.filterOptions = vm.options.filterOptions || { filterText: '' };
-		vm.options.rowHeight = vm.options.rowHeight || 60;
-		vm.options.headerRowHeight = vm.options.headerRowHeight || 40;
-		vm.options.showFooter = vm.options.showFooter || true;
-		vm.options.footerRowHeight = vm.options.footerRowHeight || 30;
-		vm.options.footerTemplate = vm.options.footerTemplate || templatesPath + 'grid-templates/grid-footer.html';
-		vm.options.init = vm.options.init || init;
-		vm.options.detailsTemplate = vm.options.data || templatesPath + 'grid-templates/details-templates/details.html';
-		vm.options.rowActions = vm.options.rowActions || getRowActions();
-		vm.options.rowCheckAction = vm.options.rowCheckAction || rowCheckAction;
-		vm.options.beforeSelectionChange = vm.options.beforeSelectionChange || beforeSelectionChange;
-		vm.options.pluginActionOpt = vm.options.pluginActionOpt || getPluginActionOpt();
-		vm.options.plugins = getPlugins();
+	function ExtGridController(templatesPath, $compile, $scope, $timeout) {
+		$scope.options = $scope.options || {};
+		$scope.options.data = $scope.options.data || 'data';
+		$scope.options.multiSelect = $scope.options.multiSelect || false;
+		$scope.options.rowTemplate = $scope.options.rowTemplate || templatesPath + 'grid-templates/row-templates/row-with-detalis.html';
+		$scope.options.filterOptions = $scope.options.filterOptions || { filterText: '' };
+		$scope.options.rowHeight = $scope.options.rowHeight || 60;
+		$scope.options.headerRowHeight = $scope.options.headerRowHeight || 40;
+		$scope.options.showFooter = $scope.options.showFooter || true;
+		$scope.options.footerRowHeight = $scope.options.footerRowHeight || 30;
+		$scope.options.footerTemplate = $scope.options.footerTemplate || templatesPath + 'grid-templates/grid-footer.html';
+		$scope.options.init = $scope.options.init || init;
+		$scope.options.detailsTemplate = $scope.options.data || templatesPath + 'grid-templates/details-templates/details.html';
+		$scope.options.rowActions = $scope.options.rowActions || getRowActions();
+		$scope.options.rowCheckAction = $scope.options.rowCheckAction || angular.bind($scope, rowCheckAction);
+		$scope.options.beforeSelectionChange = $scope.options.beforeSelectionChange || beforeSelectionChange;
+		$scope.options.pluginActionOpt = $scope.options.pluginActionOpt || getPluginActionOpt();
+		$scope.options.plugins = getPlugins();
+		$scope.options.columnDefs = $scope.options.columnDefs || initColumnDef($scope.data);
 
 		function init() {
-			vm.options.isLoading = false;
+			$scope.options.isLoading = false;
 		};
 
 		function getRowActions() {
@@ -69,30 +68,61 @@
 
 		function getPluginActionOpt() {
 			var pluginActionOpt = {
-				values: vm.options.rowActions,
-				detailsTemplate: vm.options.detailsTemplate,
-				detailsCondition: vm.options.detailsCondition,
-				onCheck: vm.options.rowCheckAction,
-				contentOptions: vm.contentOptions
+				values: $scope.options.rowActions,
+				detailsTemplate: $scope.options.detailsTemplate,
+				detailsCondition: $scope.options.detailsCondition,
+				onCheck: $scope.options.rowCheckAction,
+				contentOptions: $scope.contentOptions
 			};
 
 			return pluginActionOpt;
 		};
 
 		function getPlugins() {
-			vm.options.plugins = vm.options.plugins || [];
+			var plugins = $scope.options.plugins || [];
 
 			var isFindAct = false;
-			for (var i = 0; i < vm.options.plugins.length; i++) {
-				if (vm.options.plugins[i].constructor.name == 'ExtGridActionsPlugin') {
+			for (var i = 0; i < plugins.length; i++) {
+				if (plugins[i].constructor.name == 'ExtGridActionsPlugin') {
 					isFindAct = true;
 					break;
 				}
 			}
 
 			if (!isFindAct) {
-				vm.options.plugins.push(new ExtGridActionsPlugin(vm.pluginActionOpt, $compile));
+				plugins.push(new ExtGridActionsPlugin($scope.options.pluginActionOpt, $compile));
 			}
-		}
+
+			return plugins;
+		};
+
+		function initColumnDef(data) {
+			var columns = [];
+
+			columns.push({ field: 'details', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/details.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 60, minWidth: 60, isColumn: true });
+
+			if (data[0]) {
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].isColumn) {
+						return;
+					}
+				}
+
+				for (var field in data[0]) {
+					columns.push({
+						field: field,
+						displayName: field,
+						headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html',
+						isColumn: true
+					})
+				}
+			}
+
+			columns.push({
+				field: 'action', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/action.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 300, minWidth: 150, isColumn: true
+			});
+
+			return columns;
+		};
 	};
 } ());

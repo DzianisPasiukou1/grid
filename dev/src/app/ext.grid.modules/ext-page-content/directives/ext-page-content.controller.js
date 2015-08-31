@@ -9,18 +9,19 @@
 
 	function ExtPageContentController($scope, initUtils, $element) {
 		var vm = this;
-		
+
 		vm.grid = vm.grid || {};
 		vm.contentOptions = vm.contentOptions || {};
 		vm.gridOptions = vm.gridOptions || {};
 		vm.uiGridOptions = vm.uiGridOptions || {};
-		
+
 		initUtils.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
 
-		$scope.$watch('contentOptions', contentOptionsChanged);
-		$scope.$watch('data', dataChanged);
-		$scope.$watch('data.length', lengthChanged);
-		$scope.$watch('views.options.selected', viewsChangedvalue);
+		$scope.$watch('vm.contentOptions', contentOptionsChanged);
+		$scope.$watch('vm.data', dataChanged);
+		$scope.$watch('vm.data.length', lengthChanged);
+		$scope.$watch('vm.views.options.selected', viewsChangedvalue);
+		$scope.$watch('vm.contentOptions.searchValue', searchValueChanged);
 
 		function contentOptionsChanged(opt) {
 			opt = initUtils.initContentOptions(opt, $element, $scope, vm.data);
@@ -45,6 +46,10 @@
 					initUtils.refreshCheckCallback(vm.gridOptions);
 				}
 			}
+		};
+
+		function searchValueChanged(value) {
+			vm.contentOptions.search(value);
 		};
 	};
 } ());

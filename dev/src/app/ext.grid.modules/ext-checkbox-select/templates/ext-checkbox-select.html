@@ -10,6 +10,6 @@
 	</button>
 
 	<ul class="checkbox-select__list" ng-show="vm.isShow">
-		<li ng-repeat="action in options.actions" ng-click="vm.select(action)"><a>{{vm.action.label}}</a></li>
+		<li ng-repeat="action in vm.options.actions" ng-click="vm.select(action)"><a>{{action.label}}</a></li>
 	</ul>
 </div>

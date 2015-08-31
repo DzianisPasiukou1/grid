@@ -28,7 +28,7 @@
 		function link(scope, element, attrs, vm) {
 			angular.element($window).resize(resize);
 			scope.$on('$destroy', destroy);
-			scope.$watch('isModal', toggleModal);
+			scope.$watch('vm.isModal', toggleModal);
 
 			function toggleModal(value) {
 				$timeout(function () {
@@ -37,7 +37,7 @@
 						angular.element('body').css('overflow', 'inherit');
 					}
 					else {
-						scope.resize();
+						vm.resize();
 						angular.element('body').css('overflow', 'hidden');
 					}
 				});

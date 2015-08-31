@@ -11,7 +11,7 @@
 		var directive = {
 			restrict: 'AC',
 			scope: {
-				event: '=resizeOn',
+				event: '=extResizeOn',
 				parent: '@',
 				width: '=resizeWidth'
 			},
@@ -29,8 +29,8 @@
 			angular.element($window).resize(resize);
 
 			scope.$on('$destroy', destroy);
-			scope.$watch('event', event);
-
+			scope.$watch('vm.event', event);
+			
 			function resizeOn(element, parent, width) {
 				element.css('width', (angular.element(parent).position().left + angular.element(parent).width()) + 'px');
 

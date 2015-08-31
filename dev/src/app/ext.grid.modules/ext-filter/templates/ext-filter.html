@@ -1,10 +1,10 @@
-﻿<div class="filter" any-other-click="vm.listState=false" ng-class="{'filter-selected' : vm.listState}">
+﻿<div class="filter" any-other-click="listState=false" ng-class="{'filter-selected' : listState}">
 	<button class="filter__btn" ng-click="vm.filterClick()">
 		<span class="filter__icon icon-filter"></span>
 		<span class="filter__name">Filter</span>
-		<span class="expand" ng-class="{'icon-menu-up': vm.listState, 'icon-menu-down' : !vm.listState}"></span>
+		<span class="expand" ng-class="{'icon-menu-up': listState, 'icon-menu-down' : !listState}"></span>
 	</button>
-	<div ng-show="vm.listState" ext-resize-on="vm.listState" parent=".filter">
-		<div class="filter__list" ext-filter-list></div>
+	<div ng-show="listState">
+		<div class="filter__list" ext-filter-list  ext-resize-on="listState" parent=".filter"></div>
 	</div>
 </div>

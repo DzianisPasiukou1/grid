@@ -12,12 +12,12 @@
 			restrict: 'EA',
 			controller: 'ExtGridController',
 			controllerAs: 'vm',
-			bindToController: true,
+			bindToController: false,
 			scope: {
 				data: '=gridData',
 				exportTo: '=',
-				options: '=extGridOptions',
-				contentOptions: '=extContextOptions'
+				options: '=gridOptions',
+				contentOptions: '=contentOptions'
 			},
 			templateUrl: templatesPath + 'ext-grid.html'
 		};

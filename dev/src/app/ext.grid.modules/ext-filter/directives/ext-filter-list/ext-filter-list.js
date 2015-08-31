@@ -10,19 +10,19 @@
 	function extFilterList(templatesPath) {
 		var directive = {
 			restrict: 'EA',
-			scope: {},
+			// scope: {},
 			templateUrl: templatesPath + 'ext-filter-list.html',
 			controller: 'ExtFilterListController',
 			controllerAs: 'vm',
 			bindToController: true,
-			require: '^extFilter',
+			require: ['^extFilter'],
 			link: link
 		};
 
 		return directive;
 
-		function link(scope, element, attrs, extFilter){
-			angular.extend(scope.vm, extFilter);
+		function link(scope, element, attrs, req) {
+			angular.extend(scope.vm, req[0]);
 		};
 	};
 } ());

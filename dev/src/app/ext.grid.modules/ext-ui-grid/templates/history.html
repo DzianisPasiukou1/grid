@@ -1,0 +1,18 @@
+﻿<h1>History</h1>
+<div class="message" ng-if="value.length == 0">History is empty.</div>
+<div class="history__content" ng-repeat="hist in value">
+	<div class="dialog__oldVal">
+		Old value: <div ng-repeat="(key, value) in hist.oldObj" class="dialog__entity">
+	<span class="dialog__key">{{key}}</span>:<span class="dialog__value">{{value}}</span>
+</div>
+	</div>
+	<div class="dialog__newVal">
+		New value: <div ng-repeat="(key, value) in hist.newObj" class="dialog__entity">
+	<span class="dialog__key">{{key}}</span>:<span class="dialog__value">{{value}}</span>
+</div>
+	</div>
+	<div class="dialog__dateChange">
+		Date of change: <span>{{hist.dateChange}}</span>
+	</div>
+	<hr />
+</div>

@@ -1,5 +1,4 @@
-﻿/* global actions */
-(function () {
+﻿(function () {
 	'use strict'
 
 	angular

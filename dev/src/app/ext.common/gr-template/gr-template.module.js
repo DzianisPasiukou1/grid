@@ -3,5 +3,5 @@
 
 	angular
 		.module('ext.common.grTemplate', [])
-		.value('extGrTemplateTemplatesPath', 'src/app/ext.common/gr-templates/templates/');
+		.value('extGrTemplateTemplatesPath', 'src/app/ext.common/gr-template/templates/');
 } ());

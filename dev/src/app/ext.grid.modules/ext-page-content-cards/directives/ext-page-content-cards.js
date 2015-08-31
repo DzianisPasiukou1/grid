@@ -29,7 +29,7 @@
 			var initializer = new Initializer(scope, element, CONTENT, templatesPath, $compile);
 			initializer.initCards();
 
-			scope.$watch('contentOptions.datepickerOptions.dateRange', dateRangeChange);
+			scope.$watch('vm.contentOptions.datepickerOptions.dateRange', dateRangeChange);
 
 			function dateRangeChange(date) {
 				if (date) {

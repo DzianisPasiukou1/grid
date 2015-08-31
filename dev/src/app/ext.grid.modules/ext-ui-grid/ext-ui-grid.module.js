@@ -7,6 +7,8 @@
 			'ui.grid.selection',
 			'ui.grid.expandable',
 			
+			'ext.grid.modal',
+			
 			'ext.common.dropdown'
 		])
 		.value('extUiGridTemplatesPath', '/src/app/ext.grid.modules/ext-ui-grid/templates/')
