@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContentCards')
 		.directive('extPageContentCards', extPageContentCards);
 
-	extPageContentCards.$inject = ['extPageContentCardsTemplatesPath', 'CONTENT', '$compile'];
+	extPageContentCards.$inject = ['extPageContentCardsTemplatesPath'];
 
-	function extPageContentCards(templatesPath, CONTENT, $compile) {
+	function extPageContentCards(templatesPath) {
 		var directive = {
 			restrict: 'EA',
 			scope: {

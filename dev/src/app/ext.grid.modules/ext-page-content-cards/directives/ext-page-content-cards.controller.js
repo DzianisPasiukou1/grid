@@ -5,12 +5,17 @@
 		.module('ext.grid.pageContentCards')
 		.controller('ExtPageContentCardsController', ExtPageContentCardsController);
 
-	ExtPageContentCardsController.$inject = ['$scope', 'initCardsOptionsutils'];
+	ExtPageContentCardsController.$inject = ['$scope', 'initCardsOptionsutils', 'loggerFactory'];
 
-	function ExtPageContentCardsController($scope, initCardsOptionsutils) {
+	function ExtPageContentCardsController($scope, initCardsOptionsutils, loggerFactory) {
 		var vm = this;
 
-		initCardsOptionsutils.init(vm.cardsOptions, vm.contentOptions);
+		vm.contentOptions = loggerFactory.defineObj('Content options is not defined', vm.contentOptions, {});
+		vm.cardsOptions = loggerFactory.defineObj('Cards options is not defined', vm.cardsOptions, {});
+		vm.uiGridOptions = loggerFactory.defineObj('Ui grid options is not defined', vm.uiGridOptions, {});
+		vm.data = loggerFactory.defineObj('Data is not defined', vm.data, []);
+
+		initCardsOptionsutils.init(vm.cardsOptions, vm.contentOptions, vm.data, vm);
 
 		$scope.$watch('vm.contentOptions.datepickerOptions.dateRange', dateRangeChange);
 

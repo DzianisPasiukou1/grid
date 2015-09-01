@@ -4,6 +4,14 @@
 	angular
 		.module('ext.grid.pageContentCards')
 		.constant('EXT_CARDS_OPTIONS', {
+			exports: {
+				options: {
+					label: 'Export to: ',
+					values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
+					callback: function (action) {
+					}
+				}
+			},
 			cards: {
 				views: {
 					label: 'Total Touchpoints',
@@ -36,6 +44,12 @@
 			startDate: new Date(new Date().setDate(new Date().getDate() - 1)),
 			endDate: new Date(),
 			dateRange: Math.abs(new Date().getTime() - new Date(new Date().setDate(new Date().getDate() - 1)).getTime()),
-			margin: 270
+			margin: 270,
+			searchValue: '',
+			datepickerConfig: {
+				singleMonth: true,
+				showShortcuts: false,
+				showTopbar: false
+			}
 		});
 } ());

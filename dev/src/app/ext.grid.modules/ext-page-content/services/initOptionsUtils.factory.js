@@ -37,6 +37,8 @@
 			contentOptions.withUpload = contentOptions.withUpload || false;
 			contentOptions.filterOptions = contentOptions.filterOptions || getFilterOptions(data);
 			contentOptions.searchOptions = contentOptions.searchOptions || getSearchOptions(data);
+			opt.searchOptions.selected = opt.searchOptions[0];
+			opt.searchValue = '';
 
 			if (contentOptions.withUpload) {
 				contentOptions.isDynamic = true;

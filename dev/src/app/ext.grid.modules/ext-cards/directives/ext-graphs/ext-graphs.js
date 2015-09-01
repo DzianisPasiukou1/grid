@@ -13,6 +13,7 @@
 			scope: {
 				graphs: '='
 			},
+			controller: 'ExtGraphsController',
 			controllerAs: 'vm',
 			bindToController: true,
 			templateUrl: templatesPath + 'ext-graphs.html'

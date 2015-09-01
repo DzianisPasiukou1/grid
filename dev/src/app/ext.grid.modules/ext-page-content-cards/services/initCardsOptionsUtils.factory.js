@@ -12,14 +12,22 @@
 
 		utils.content = {};
 		utils.content.cards = EXT_CARDS_OPTIONS.cards;
+		utils.content.margin = EXT_CARDS_OPTIONS.margin;
+		utils.content.enalbeCounter = EXT_CARDS_OPTIONS.enableCounter;
+		utils.content.searchValue = EXT_CARDS_OPTIONS.searchValue;
+		utils.content.startDate = EXT_CARDS_OPTIONS.startDate;
+		utils.content.endDate = EXT_CARDS_OPTIONS.endDate;
+		utils.content.dateRange = EXT_CARDS_OPTIONS.dateRange;
+		utils.content.datepickerConfig = EXT_CARDS_OPTIONS.datepickerConfig;
+		utils.content.exports = EXT_CARDS_OPTIONS.exports;
 
 		utils.initCards = initCards;
 		utils.initContentOptions = initContentOptions;
 		utils.init = init;
 
-		function init(cardsOptions, contentOptions) {
+		function init(cardsOptions, contentOptions, data, vm) {
 			cardsOptions = initCards(cardsOptions);
-			contentOptions = initContentOptions(contentOptions);
+			contentOptions = initContentOptions(contentOptions, data, vm);
 		};
 
 		function initCards(cardsOptions) {
@@ -36,18 +44,20 @@
 			return opt;
 		};
 
-		function initContentOptions(contentOptions) {
+		function initContentOptions(contentOptions, data, vm) {
 			var opt = contentOptions || {};
 
-			opt.filtrate = opt.filtrate || filtrate;
-			opt.search = opt.search || search;
-			opt.searchOptions = getSearchOptions;
+			opt.filtrate = opt.filtrate || angular.bind(vm, filtrate);
+			opt.search = opt.search || angular.bind(vm, search);
+			opt.searchOptions = getSearchOptions(data);
 			opt.searchValue = opt.searchValue || utils.content.searchValue;
-			opt.datepickerOptions = opt.datepickerOptions || utils.content.datepickerOptions;
+			opt.datepickerOptions = opt.datepickerOptions || {};
 			opt.datepickerOptions.startDate = opt.datepickerOptions.startDate || utils.content.startDate;
 			opt.datepickerOptions.endDate = opt.datepickerOptions.endDate || utils.content.endDate;
 			opt.datepickerOptions.dateRange = opt.datepickerOptions.dateRange || utils.content.dateRange;
 			opt.datepickerOptions.config = opt.datepickerOptions.config || utils.content.datepickerConfig;
+			opt.exports = opt.exports || utils.content.exports;
+			opt.searchOptions.selected = opt.searchOptions[0];
 
 			return opt;
 		};

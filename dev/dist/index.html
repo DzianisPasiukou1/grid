@@ -18,7 +18,7 @@
 </head>
 
 <body ng-app="ext" ng-controller="test">
-	<ext-page-content grid-data="data"></ext-page-content>
+	<ext-page-content-cards grid-data="data"></ext-page-content-cards>
 </body>
 
 </html>
@@ -100,6 +100,7 @@
 <script src="../src/app/ext.grid.modules/ext-cards/directives/ext-cards/ext-cards.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-cards/directives/ext-cards/ext-cards.js"></script>
 <script src="../src/app/ext.grid.modules/ext-cards/directives/ext-graphs/ext-graphs.js"></script>
+<script src="../src/app/ext.grid.modules/ext-cards/directives/ext-graphs/ext-graphs.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-cards/services/cards.service.js"></script>
 
 <script src="../src/app/ext.grid.modules/ext-checkbox-select/ext-checkbox-select.module.js"></script>
@@ -154,9 +155,13 @@
 <script src="../src/app/ext.grid.modules/ext-page-content/services/initOptionsUtils.factory.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content/services/initUtils.factory.js"></script>
 
-
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/ext-page-content.cards.module.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/directives/ext-page-content-cards.js"></script>
+<script src="../src/app/ext.grid.modules/ext-page-content-cards/ext-cards-options.constant.js"></script>
+<script src="../src/app/ext.grid.modules/ext-page-content-cards/services/counter.factory.js"></script>
+<script src="../src/app/ext.grid.modules/ext-page-content-cards/services/initCardsOptionsUtils.factory.js"></script>
+<script src="../src/app/ext.grid.modules/ext-page-content-cards/directives/ext-page-content-cards.controller.js"></script>
+<script src="../src/app/ext.grid.modules/ext-page-content-cards/services/logger.factory.js"></script>
 
 <script src="../src/app/ext.grid.modules/ext.grid.module.js"></script>
 <!--/build-->

@@ -12,7 +12,7 @@
 			restrict: 'EA',
 			templateUrl: templatesPath + 'ext-cards.html',
 			scope: {
-				cardsOptions: '=cards',
+				cardsOptions: '=extCards',
 				contentOptions: '='
 			},
 			controller: 'ExtCardsController',
