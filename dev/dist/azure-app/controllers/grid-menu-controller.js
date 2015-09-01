@@ -1,51 +1,46 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridWithMenuCtrl', ['templatesPath', '$scope', 'gridUploadService', function (templatesPath, $scope, gridUploadService) {
-		$scope.data = [];
+﻿(function () {
+	'use strict'
 
-		function getData() {
-			setTimeout(function () {
-				gridUploadService.get(function (data) {
-					$scope.data = data;
+	angular
+		.module('azureApp')
+		.controller('GridWithMenuController', GridWithMenuController);
 
-					$scope.grid.count = $scope.data.length;
+	GridWithMenuController.$inject = ['gridUploadService', 'templatesPath'];
 
-					$scope.$apply();
-				})
-			}, 2000)
-		}
-		getData();
+	function GridWithMenuController(gridUploadService, templatesPath) {
+		var vm = this;
 
-		$scope.grid = {
+		vm.data = [];
+
+		vm.grid = {
 			name: 'Grid with menu',
 			count: 0
 		};
 
-		$scope.contentOptions = {
+		vm.contentOptions = {
 			upload: function (data) {
-				$scope.contentOptions.isLoading = true;
+				vm.contentOptions.isLoading = true;
 
-				$scope.data = data;
+				vm.data = data;
 
-				$scope.grid.count = $scope.data.length;
-
-				$scope.$apply();
+				vm.grid.count = vm.data.length;
 			},
 			refresh: function () {
-				$scope.contentOptions.isLoading = true;
+				vm.contentOptions.isLoading = true;
 
 				getData();
 
-				$scope.grid.count = $scope.data.length;
+				vm.grid.count = vm.data.length;
 			},
 			isDynamic: true,
 			loading: true
 		};
 
-		$scope.uiGridOptions = {
+		vm.uiGridOptions = {
 			showResponsMenu: true
 		}
 
-		$scope.gridOptions = {
+		vm.gridOptions = {
 			data: 'data',
 			withDetails: true,
 			init: function (grid, $scope) {
@@ -64,7 +59,7 @@
 			},
 			columnDefs: [
 				{ field: 'details', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/details.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 60, minWidth: 60 },
-			{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/date.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 140 },
+				{ field: 'date', displayName: 'Date', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/date.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 140 },
 				{
 					field: 'name', displayName: 'Name', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/name.html',
 					headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', minWidth: 100
@@ -92,4 +87,17 @@
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/action.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 300, minWidth: 115
 				}]
 		};
-	}]);
+
+		getData();
+
+		function getData() {
+			setTimeout(function () {
+				gridUploadService.get(function (data) {
+					vm.data = data;
+
+					vm.grid.count = vm.data.length;
+				})
+			}, 2000)
+		}
+	};
+} ());

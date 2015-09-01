@@ -1,27 +1,30 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridStandartTwoCtrl', ['$scope', 'gridStandartTwoService', 'templatesPath', function ($scope, gridStandartTwoService, templatesPath) {
-		function getData() {
-			gridStandartTwoService.get(function (data) {
-				$scope.data = data;
-			});
-		}
-		getData();
+﻿(function () {
+	'use strict'
 
-		$scope.grid = {
+	angular
+		.module('azureApp')
+		.controller('GridStandartTwoController', GridStandartTwoController);
+
+	GridStandartTwoController.$inject = ['gridStandartTwoService', 'templatesPath'];
+
+	function GridStandartTwoController(gridStandartTwoService, templatesPath) {
+		var vm = this;
+
+		vm.grid = {
 			name: 'Standart grid two',
-			count: $scope.data.length
+			count: vm.data.length
 		};
 
-		$scope.contentOptions = {
+		vm.contentOptions = {
 			refresh: function () {
 				getData();
 
-				$scope.grid.count = $scope.data.length;
+				vm.grid.count = vm.data.length;
 			}
 		};
 
-		$scope.gridOptions = {
-			data: 'data',
+		vm.gridOptions = {
+			data: 'vm.data',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'grid-templates/row-templates/row.html',
 			filterOptions: { filterText: '' },
@@ -56,4 +59,13 @@
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/action.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 300, minWidth: 115
 				}]
 		};
-	}]);
+
+		getData();
+
+		function getData() {
+			gridStandartTwoService.get(function (data) {
+				vm.data = data;
+			});
+		}
+	};
+} ());

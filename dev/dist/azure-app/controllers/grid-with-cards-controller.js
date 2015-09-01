@@ -1,23 +1,34 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridWithCardsCtrl', ['$scope', 'gridStandartOneService', function ($scope, gridStandartOneService) {
-		function getData() {
-			gridStandartOneService.get(function (data) {
-				$scope.data = data;
-			});
-		}
-		getData();
+﻿(function () {
+	'use strict'
 
-		$scope.uiGridOptions = {
+	angular
+		.module('azureApp')
+		.controller('GridWithCardsController', GridWithCardsController);
+
+	GridWithCardsController.$inject = ['gridStandartOneService'];
+
+	function GridWithCardsController(gridStandartOneService) {
+		var vm = this;
+
+		vm.uiGridOptions = {
 			showResponsMenu: true,
 			enableAction: true,
 			enableDetails: true,
 			disableCheck: false
 		}
 
-		$scope.cardsOpt = {
+		vm.cardsOpt = {
 			cards: [],
 			startDate: '',
 			endDate: ''
 		}
 
-	}])
+		getData();
+
+		function getData() {
+			gridStandartOneService.get(function (data) {
+				vm.data = data;
+			});
+		};
+	};
+} ());

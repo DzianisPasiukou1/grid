@@ -1,11 +1,20 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridTestingCtrl', ['$scope', 'gridUploadService', 'templatesPath', '$compile', '$parse', function ($scope, gridUploadService, templatesPath, $compile, $parse) {
-		var self = this;
-		self.scope = $scope;
-		self.gridUploadService = gridUploadService;
-		self.templatesPath = templatesPath;
+﻿(function () {
+	'use strict'
 
-		self.getData = function (callback) {
+	angular
+		.module('azureApp')
+		.controller('GridTestingController', GridTestingController);
+
+	GridTestingController.$inject = ['$scope', 'gridUploadService', 'templatesPath'];
+
+	function GridTestingController($scope, gridUploadService, templatesPath) {
+		var vm = this;
+
+		vm.scope = $scope;
+		vm.gridUploadService = gridUploadService;
+		vm.templatesPath = templatesPath;
+
+		vm.getData = function (callback) {
 			var self = this;
 
 			setTimeout(function () {
@@ -15,15 +24,15 @@
 				})
 			}.bind(this), 2000);
 		}
-		self.getData();
+		vm.getData();
 
-		self.scope.grid = {
+		vm.scope.grid = {
 			name: 'test grid1'
 		}
 
-		self.scope.contentOptions = {
+		vm.scope.contentOptions = {
 			loading: true,
-			refreshCallback: self.getData,
+			refreshCallback: vm.getData,
 			refresh: function () {
 				this.scope.contentOptions.isLoading = true;
 				this.getData();
@@ -58,9 +67,9 @@
 			}
 		};
 
-		self.scope.gridOptions = {
+		vm.scope.gridOptions = {
 			withDetails: true,
-			detailsTemplate: self.templatesPath + 'grid-templates/details-templates/details-example1.html',
+			detailsTemplate: vm.templatesPath + 'grid-templates/details-templates/details-example1.html',
 			detailsCondition: function (entity, index) {
 				var self = this;
 
@@ -70,11 +79,11 @@
 			}
 		}
 
-		self.scope.uiGridOptions = {
+		vm.scope.uiGridOptions = {
 		}
 
-		self.scope.content = JSON.stringify({
-			contentOptions: self.scope.contentOptions, grid: self.scope.grid, gridOptions: self.scope.gridOptions, uiGridOptions: self.scope.uiGridOptions
+		vm.scope.content = JSON.stringify({
+			contentOptions: vm.scope.contentOptions, grid: vm.scope.grid, gridOptions: vm.scope.gridOptions, uiGridOptions: vm.scope.uiGridOptions
 		}, function (key, value) {
 			if (typeof value === 'function') {
 				var temp = value.toString();
@@ -86,42 +95,42 @@
 
 		var tempContent = '';
 
-		for (var i = 0; i < self.scope.content.length - 1; i++) {
-			if (self.scope.content[i] == "\\") {
-				if (self.scope.content[i + 1] == "r") {
+		for (var i = 0; i < vm.scope.content.length - 1; i++) {
+			if (vm.scope.content[i] == "\\") {
+				if (vm.scope.content[i + 1] == "r") {
 					tempContent += "\r";
 					i++;
 				}
-				else if (self.scope.content[i + 1] == "n") {
+				else if (vm.scope.content[i + 1] == "n") {
 					tempContent += "\n";
 					i++;
 				}
-				else if (self.scope.content[i + 1] == "t") {
+				else if (vm.scope.content[i + 1] == "t") {
 					tempContent += "\t";
 					i++;
 				}
 				else {
-					tempContent += self.scope.content[i];
+					tempContent += vm.scope.content[i];
 				}
 			}
 			else {
-				tempContent += self.scope.content[i];
+				tempContent += vm.scope.content[i];
 			}
 
-			if (i == self.scope.content.length - 2) {
-				tempContent += self.scope.content[i + 1];
+			if (i == vm.scope.content.length - 2) {
+				tempContent += vm.scope.content[i + 1];
 			}
 
 		}
 
 
-		self.scope.content = tempContent;
+		vm.scope.content = tempContent;
 
-		self.scope.isValid = true;
+		vm.scope.isValid = true;
 
-		self.scope.textChange = function () {
+		vm.scope.textChange = function () {
 			try {
-				var temp = self.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
+				var temp = vm.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
 
 				temp = JSON.parse(temp, function (key, value) {
 					if (value && typeof value === "string" && value.substr(0, 8) == "function") {
@@ -131,30 +140,30 @@
 						var endArgs = value.indexOf(')');
 
 						var func = new Function(value.substring(startArgs, endArgs), value.substring(startBody, endBody));
-						func = func.bind(self);
+						func = func.bind(vm);
 
 						return func;
 					}
 					return value;
 				});
 
-				self.scope.contentOptions = temp.contentOptions;
-				self.scope.grid = temp.grid;
-				self.scope.gridOptions = temp.gridOptions;
-				self.scope.uiGridOptions = temp.uiGridOptions;
-				self.scope.isValid = true;
+				vm.scope.contentOptions = temp.contentOptions;
+				vm.scope.grid = temp.grid;
+				vm.scope.gridOptions = temp.gridOptions;
+				vm.scope.uiGridOptions = temp.uiGridOptions;
+				vm.scope.isValid = true;
 			}
 			catch (e) {
 				console.log('parse error');
-				self.scope.isValid = false;
+				vm.scope.isValid = false;
 				return;
 			}
 		}
 
-		self.scope.textChange();
+		vm.scope.textChange();
 
-		self.scope.compile = function () {
-			self.getData();
+		vm.scope.compile = function () {
+			vm.getData();
 		}
 
 		angular.element(document).delegate('.my-textarea', 'keydown', function (e) {
@@ -167,13 +176,13 @@
 
 				// set textarea value to: text before caret + tab + text after caret
 				angular.element(this).val(angular.element(this).val().substring(0, start)
-							+ "\t"
-							+ angular.element(this).val().substring(end));
+					+ "\t"
+					+ angular.element(this).val().substring(end));
 
 				// put caret at right position again
 				angular.element(this).get(0).selectionStart =
 				angular.element(this).get(0).selectionEnd = start + 1;
 			}
 		});
-
-	}]);
+	};
+} ());

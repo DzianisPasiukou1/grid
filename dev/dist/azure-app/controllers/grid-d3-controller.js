@@ -1,33 +1,33 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridD3Ctrl', ['$scope', 'gridStandartOneService', function ($scope, gridStandartOneService) {
-		function getData() {
-			gridStandartOneService.get(function (data) {
-				$scope.data = data;
-			});
-		}
-		getData();
+﻿(function () {
+	'use strict'
 
-		$scope.uiGridOptions = {
+	angular
+		.module('azureApp')
+		.controller('GridD3Controller', GridD3Controller);
+
+	GridD3Controller.$inject = ['gridStandartOneService'];
+
+	function GridD3Controller(gridStandartOneService) {
+		var vm = this;
+
+		vm.uiGridOptions = {
 			showResponsMenu: true
 		}
 
-		$scope.cardsOpt = {
+		vm.cardsOpt = {
 			margin: 525
 		}
 
-		$scope.contentOptions = {
+		vm.contentOptions = {
 			uploadCards: function (data) {
-				$scope.cardsOpt = data;
-				$scope.cardsOpt.margin = 525;
-				$scope.$apply();
+				vm.cardsOpt = data;
+				vm.cardsOpt.margin = 525;
 			},
 			uploadSankey: function (data) {
-				$scope.sankeyData = data;
-				$scope.$apply();
+				vm.sankeyData = data;
 			},
 			uploadHistogram: function (data) {
-				$scope.histogramData = data;
-				$scope.$apply();
+				vm.histogramData = data;
 			},
 			enableDebugging: true,
 			debugCard: {
@@ -35,4 +35,13 @@
 				//template: 'app/templates/directive-templates/chart-segment.html'
 			}
 		}
-	}])
+
+		getData();
+
+		function getData() {
+			gridStandartOneService.get(function (data) {
+				vm.data = data;
+			});
+		}
+	};
+} ());

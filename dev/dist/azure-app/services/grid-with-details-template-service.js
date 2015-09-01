@@ -1,4 +1,4 @@
-﻿angular.module('gridTaskApp')
+﻿angular.module('azureApp')
 	.service('gridWithDetailsTemplateService', ['DetailsTemplateData', function (DetailsTemplateData) {
 		this.get = function (callback) {
 			var data = DetailsTemplateData.get();

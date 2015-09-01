@@ -1,4 +1,4 @@
-﻿angular.module('gridTaskApp')
+﻿angular.module('azureApp')
 	.service('gridUploadService', ['UploadData', '$http', function (UploadData, $http) {
 		this.get = function (callback, url) {
 			var data = UploadData.get();

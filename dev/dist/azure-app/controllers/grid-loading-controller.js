@@ -1,67 +1,72 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridLoadingCtrl', ['templatesPath', '$scope', 'gridUploadService', function (templatesPath, $scope, gridUploadService) {
-		$scope.data = [];
+﻿(function () {
+	'use strict'
 
-		function getData() {
-			setTimeout(function () {
-				gridUploadService.get(function (data) {
-					$scope.data = data;
+	angular
+		.module('azureApp')
+		.controller('GridLoadingController', GridLoadingController);
 
-					$scope.grid.count = $scope.data.length;
+	GridLoadingController.$inject = ['templatesPath', '$scope', 'gridUploadService'];
 
-					$scope.$apply();
-				})
-			}, 2000)
-		}
-		getData();
+	function GridLoadingController(templatesPath, $scope, gridUploadService) {
+		var vm = this;
 
-		$scope.grid = {
+		vm.data = [];
+
+		vm.grid = {
 			name: 'Grid with loading',
 			count: 0
 		};
 
-		$scope.contentOptions = {
+		vm.contentOptions = {
 			upload: function (data) {
-				$scope.contentOptions.isLoading = true;
+				vm.contentOptions.isLoading = true;
 
-				$scope.data = data;
+				vm.data = data;
 
-				$scope.grid.count = $scope.data.length;
+				vm.grid.count = vm.data.length;
 
-				$scope.gridOptions.detailsCondition = undefined;
-
-				$scope.$apply();
+				vm.gridOptions.detailsCondition = undefined;
 			},
 			refresh: function () {
-				$scope.contentOptions.isLoading = true;
+				vm.contentOptions.isLoading = true;
 
 				getData();
 
-				$scope.grid.count = $scope.data.length;
+				vm.grid.count = vm.data.length;
 			},
 			isDynamic: true,
 			loading: true
 		};
 
-		$scope.gridOptions = {
-			data: 'data',
+		vm.gridOptions = {
+			data: 'vm.data',
 			multiSelect: false,
 			init: function (grid, event) {
-				$scope.contentOptions.isLoading = false;
+				vm.contentOptions.isLoading = false;
 			},
 			withDetails: true,
-			rowTemplate: templatesPath + 'grid-templates/row-templates/row-with-detalis.html',
 			filterOptions: { filterText: '' },
 			rowHeight: 60,
 			headerRowHeight: 40,
 			showFooter: true,
 			footerRowHeight: 30,
-			footerTemplate: templatesPath + 'grid-templates/grid-footer.html',
-			columnDefs: columnGenerator($scope.data, templatesPath),
 			detailsCondition: function (entity, index) {
 				if (index % 2 != 0) {
 					return templatesPath + 'grid-templates/details-templates/details-example2.html';
 				}
 			}
 		};
-	}]);
+
+		getData();
+
+		function getData() {
+			setTimeout(function () {
+				gridUploadService.get(function (data) {
+					vm.data = data;
+
+					vm.grid.count = vm.data.length;
+				})
+			}, 2000)
+		}
+	};
+} ());

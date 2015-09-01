@@ -1,4 +1,4 @@
-﻿angular.module('gridTaskApp')
+﻿angular.module('azureApp')
 	.service('gridStandartOneService', ['StandartOneData', function (StandartOneData) {
 		this.get = function (callback) {
 			var data = StandartOneData.get();

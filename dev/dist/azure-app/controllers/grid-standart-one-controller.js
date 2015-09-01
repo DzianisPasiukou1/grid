@@ -1,33 +1,35 @@
-﻿angular.module('gridTaskApp')
-	.controller('gridStandartOneCtrl', ['$scope', 'gridStandartOneService', 'templatesPath', function ($scope, gridStandartOneService, templatesPath) {
-		function getData() {
-			gridStandartOneService.get(function (data) {
-				$scope.data = data;
-			});
-		}
-		getData();
+﻿(function () {
+	'use strict'
 
-		$scope.grid = {
+	angular
+		.module('azureApp')
+		.controller('GridStandartOneController', GridStandartOneController);
+
+	GridStandartOneController.$inject = ['gridStandartOneService', 'templatesPath'];
+
+	function GridStandartOneController(gridStandartOneService, templatesPath) {
+		var vm = this;
+
+		vm.grid = {
 			name: 'Standart grid one',
-			count: $scope.data.length
 		};
 
-		$scope.contentOptions = {
+		vm.contentOptions = {
 			refresh: function () {
 				getData();
 
-				$scope.grid.count = $scope.data.length;
+				vm.grid.count = vm.data.length;
 			},
 			withUpload: true
 		};
 
-		$scope.uiGridOptions = {
+		vm.uiGridOptions = {
 			showResponsMenu: true,
 			reInit: true
 		}
 
-		$scope.gridOptions = {
-			data: 'data',
+		vm.gridOptions = {
+			data: 'vm.data',
 			init: function (grid, $scope) {
 			},
 			multiSelect: false,
@@ -74,4 +76,14 @@
 					field: 'action', displayName: '', cellTemplate: templatesPath + 'grid-templates/cell-templates/fields/action.html', headerCellTemplate: templatesPath + 'grid-templates/cell-templates/cell.html', sortable: false, width: 250, minWidth: 115
 				}]
 		};
-	}]);
+
+		getData();
+
+		function getData() {
+			gridStandartOneService.get(function (data) {
+				vm.data = data;
+				vm.grid.count = vm.data.length;
+			});
+		}
+	};
+} ());
