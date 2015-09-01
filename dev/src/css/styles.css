@@ -420,7 +420,7 @@ button::-moz-focus-inner {
     background-color: white;
     z-index: 1;
     font-size: 0.875rem; }
-  .my-panel > .footer, .page-content > .footer, .my-panel > .page-content__footer, .page-content > .page-content__footer, page-content-cards .my-panel > .page-content__footer, page-content-cards .page-content > .page-content__footer, .page-content-d3 .my-panel > .page-content__footer, .page-content-d3 .page-content > .page-content__footer {
+  .my-panel > .footer, .page-content > .footer, .my-panel > .page-content__footer, .page-content > .page-content__footer, ext-page-content-cards .my-panel > .page-content__footer, ext-page-content-cards .page-content > .page-content__footer, .page-content-d3 .my-panel > .page-content__footer, .page-content-d3 .page-content > .page-content__footer {
     min-height: 50px; }
 
 .my-search input, .options__search .search input {
@@ -1860,32 +1860,32 @@ button::-moz-focus-inner {
       margin-right: 10px; }
 
 @media only screen and (max-width: 910px) {
-  page-content-cards .page-content__header {
+  ext-page-content-cards .page-content__header {
     height: 100px !important; }
-  page-content-cards .page-content__list .custom-ui-grid {
+  ext-page-content-cards .page-content__list .custom-ui-grid {
     margin-top: 20px !important; } }
-page-content-cards .page-content {
+ext-page-content-cards .page-content {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  page-content-cards .page-content__header {
+  ext-page-content-cards .page-content__header {
     height: 55px; }
-  page-content-cards .page-content__actions {
+  ext-page-content-cards .page-content__actions {
     margin-top: 4px; }
-    page-content-cards .page-content__actions__export .my-dropdown__list, page-content-cards .page-content__actions__export .split-btn__list, page-content-cards .page-content__actions__export .checkbox-select__list {
+    ext-page-content-cards .page-content__actions__export .my-dropdown__list, ext-page-content-cards .page-content__actions__export .split-btn__list, ext-page-content-cards .page-content__actions__export .checkbox-select__list {
       right: 19px !important;
       left: auto !important;
       min-width: 200px; }
-  page-content-cards .page-content__options {
+  ext-page-content-cards .page-content__options {
     margin-top: 4px;
     float: left; }
-    page-content-cards .page-content__options .options {
+    ext-page-content-cards .page-content__options .options {
       padding-top: 0 !important; }
       @media only screen and (max-width: 910px) {
-        page-content-cards .page-content__options .options {
+        ext-page-content-cards .page-content__options .options {
           display: block; }
-          page-content-cards .page-content__options .options__block {
+          ext-page-content-cards .page-content__options .options__block {
             float: left; }
-          page-content-cards .page-content__options .options__filter {
+          ext-page-content-cards .page-content__options .options__filter {
             margin-left: 10px;
             z-index: 1000 !important;
             display: table;
@@ -1894,27 +1894,27 @@ page-content-cards .page-content {
             position: relative;
             margin-bottom: 7px;
             clear: both; }
-            page-content-cards .page-content__options .options__filter .filter {
+            ext-page-content-cards .page-content__options .options__filter .filter {
               margin-right: 0 !important; } }
-      page-content-cards .page-content__options .options__search {
+      ext-page-content-cards .page-content__options .options__search {
         float: left;
         margin-right: 0.75rem !important; }
-      page-content-cards .page-content__options .options__show {
+      ext-page-content-cards .page-content__options .options__show {
         float: left; }
-      page-content-cards .page-content__options .options__block {
+      ext-page-content-cards .page-content__options .options__block {
         float: left;
         margin-right: 30px;
         margin-left: 10px; }
-  page-content-cards .page-content__list {
+  ext-page-content-cards .page-content__list {
     margin-top: 10px;
     overflow: hidden; }
-  page-content-cards .page-content__cards {
+  ext-page-content-cards .page-content__cards {
     width: 100%;
     height: 150px;
     overflow-x: auto;
     overflow-y: hidden;
     margin-top: 10px; }
-  page-content-cards .page-content__footer {
+  ext-page-content-cards .page-content__footer {
     border: 1px solid #e5e5e5;
     min-height: 0 !important; }
 

@@ -6,5 +6,5 @@
 			'ext.common.grTemplate',
 			'ext.common.numberFormat'
 		])
-		.value('extCardsTemplatesPath', 'src/app/ext.grid.modules/ext-cards/templates/');
+		.constant('extCardsTemplatesPath', 'src/app/ext.grid.modules/ext-cards/templates/');
 } ());

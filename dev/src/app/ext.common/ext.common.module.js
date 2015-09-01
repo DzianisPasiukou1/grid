@@ -15,6 +15,9 @@
 			'ext.common.dropdown',
 			'ext.common.search',
 			'ext.common.splitButton',
-			'ext.common.upload'
+			'ext.common.upload',
+			
+			'ext.common.counter',
+			'ext.common.logger'
 	]);
 } ());

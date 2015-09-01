@@ -13,6 +13,7 @@
 			scope: {
 				options: '=kxMultiselect'
 			},
+			controller: 'KxMultiselectController',
 			controllerAs: 'vm',
 			bindToController: true,
 			link: link

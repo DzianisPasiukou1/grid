@@ -20,6 +20,7 @@
 		utils.content.dateRange = EXT_CARDS_OPTIONS.dateRange;
 		utils.content.datepickerConfig = EXT_CARDS_OPTIONS.datepickerConfig;
 		utils.content.exports = EXT_CARDS_OPTIONS.exports;
+		utils.content.enableCounter = EXT_CARDS_OPTIONS.enableCounter;
 
 		utils.initCards = initCards;
 		utils.initContentOptions = initContentOptions;
@@ -35,7 +36,7 @@
 
 			opt.cards = opt.cards || utils.content.cards;
 			opt.margin = opt.margin || utils.content.margin;
-			opt.enableCounter = opt.enanbleCounter || utils.content.enableCounter;
+			opt.enableCounter = opt.enableCounter || utils.content.enableCounter;
 
 			if (opt.enableCounter) {
 				initCounter(opt.cards);
@@ -58,6 +59,7 @@
 			opt.datepickerOptions.config = opt.datepickerOptions.config || utils.content.datepickerConfig;
 			opt.exports = opt.exports || utils.content.exports;
 			opt.searchOptions.selected = opt.searchOptions[0];
+			opt.filterOptions = opt.filterOptions || getFilterOptions(data);
 
 			return opt;
 		};
@@ -98,6 +100,18 @@
 				}
 			}
 
+			return options;
+		};
+
+		function getFilterOptions(data) {
+			var options = [];
+
+			if (Array.isArray(data) && data[0])
+				for (var prop in data[0]) {
+					if (prop != '$$hashKey') {
+						options.push({ label: prop, isColumn: true });
+					}
+				}
 			return options;
 		};
 

@@ -6,7 +6,7 @@
 		<div class="chart-segment__list__body">
 			<div ng-repeat="user in vm.selectedUsers" class="chart-segment__list__body__user" ng-class="{'even' : $even, 'odd': $odd}">
 				<span class="chart-segment__list__body__user__icon icon-close" ng-click="vm.deleteUser(user, $index)"></span>
-				<span class="chart-segment__list__body__user__text">Users who have interacted with at least {{vm.user.touchpoints}}</span>
+				<span class="chart-segment__list__body__user__text">Users who have interacted with at least {{user.touchpoints}}</span>
 			</div>
 		</div>
 	</div>

@@ -4,9 +4,9 @@
 			<span class="mouse-over-simple__header__text">{{vm.value.header}}</span>
 		</div>
 		<div class="mouse-over-simple__body">
-			<div ng-repeat="val in value.data" class="mouse-over-simple__body__value">
-				<span class="mouse-over-simple__body__value__text">{{::'Campaing ID'}}: {{vm.val.campaignId}}</span>
-				<span class="mouse-over-simple__body__value__text">{{::'Ad ID'}}: {{vm.val.adId}}</span>
+			<div ng-repeat="val in vm.value.data" class="mouse-over-simple__body__value">
+				<span class="mouse-over-simple__body__value__text">{{::'Campaing ID'}}: {{val.campaignId}}</span>
+				<span class="mouse-over-simple__body__value__text">{{::'Ad ID'}}: {{val.adId}}</span>
 			</div>
 		</div>
 	</div>

@@ -50,6 +50,7 @@
 				singleMonth: true,
 				showShortcuts: false,
 				showTopbar: false
-			}
+			},
+			enableCounter: true
 		});
 } ());

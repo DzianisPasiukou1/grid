@@ -13,7 +13,7 @@
 		vm.selectors.overlaySelector = vm.selectors.overlaySelector || OVERLAY.overlaySelector;
 		vm.selectors.heighterSelector = vm.selectors.heighterSelector || OVERLAY.heighterSelector;
 		vm.selectors.alignTopSelector = vm.selectors.alignTopSelector || OVERLAY.alignTopSelector;
-		vm.selectors.toggleMinWidth = vm.selectors.toggleMinWidth || OVERLAY.toggleMinWidth;
+		vm.toggleMinWidth = vm.toggleMinWidth || OVERLAY.toggleMinWidth;
 		vm.style = {
 			left: getWindowWidth() - vm.toggleMinWidth + 'px',
 			transition: '',
@@ -22,6 +22,7 @@
 		vm.transcludeStyle = {
 		};
 		vm.setToggle = toggle;
+		vm.state = false;
 
 		function toggle(isResize) {
 			$timeout(function () {

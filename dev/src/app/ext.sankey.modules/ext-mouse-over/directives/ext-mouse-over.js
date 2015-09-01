@@ -15,6 +15,7 @@
 				value: '=',
 				parentTop: '=parentTop'
 			},
+			controller: 'ExtMouseOverController',
 			controllerAs: 'vm',
 			bindToController: true,
 			templateUrl: templatesPath + 'ext-mouse-over.html',
@@ -32,15 +33,15 @@
 			$timeout(init);
 
 			function init() {
-				if ($.cursorMessageData.mouseY + element.find('.mouse-over').height() < angular.element($window).height()) {
-					vm.style.top = ($.cursorMessageData.mouseY - vm.parentTop + 15) + 'px';
+				if (angular.element.cursorMessageData.mouseY + element.find('.mouse-over').height() < angular.element($window).height()) {
+					vm.style.top = (angular.element.cursorMessageData.mouseY - vm.parentTop + 15) + 'px';
 				}
 				else {
-					vm.style.top = ($.cursorMessageData.mouseY - element.find('.mouse-over').height() - vm.parentTop - 20) + 'px';
+					vm.style.top = (angular.element.cursorMessageData.mouseY - element.find('.mouse-over').height() - vm.parentTop - 20) + 'px';
 				}
 
-				if ($.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < angular.element($window).width()) {
-					vm.style.left = ($.cursorMessageData.mouseX + 10) + 'px';
+				if (angular.element.cursorMessageData.mouseX + 10 + element.find('.mouse-over').width() < angular.element($window).width()) {
+					vm.style.left = (angular.element.cursorMessageData.mouseX + 10) + 'px';
 				}
 				else {
 					vm.style.left = angular.element($window).width() - element.find('.mouse-over').width() - 10 + 'px';

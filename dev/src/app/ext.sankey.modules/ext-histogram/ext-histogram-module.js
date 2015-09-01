@@ -3,5 +3,5 @@
 
 	angular
 		.module('ext.sankey.histogram', [])
-		.value('extHistogramTemplatesPath', 'src/app/ext.sankey.modules/ext-histogram/templates/');
+		.constant('extHistogramTemplatesPath', 'src/app/ext.sankey.modules/ext-histogram/templates/');
 } ());

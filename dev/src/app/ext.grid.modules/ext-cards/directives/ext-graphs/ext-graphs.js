@@ -11,7 +11,7 @@
 		var directive = {
 			restrict: 'EA',
 			scope: {
-				graphs: '='
+				graphs: '=extGraphs'
 			},
 			controller: 'ExtGraphsController',
 			controllerAs: 'vm',

@@ -71,45 +71,6 @@
 
 				return options;
 			},
-			eventType: {
-				options: {
-					actions: [
-						{ label: 'Simple event' },
-						{ label: 'Medium event' }],
-					selected: { label: 'Simple event' }
-				},
-				selectOpt: {}
-			},
-			segments: {
-				options: {
-					actions: [{ label: 'People' }, { label: 'Trees' }, { label: 'Nodes' }, { label: 'Graphs' }, { label: 'Credentials' }],
-				},
-				selectOpt: {
-					inheritClass: true,
-					includeSelectAllOption: true
-				}
-			},
-			campaign: {
-				options: {
-					actions: [{ label: 'AIX' }, { label: 'UI Campaign' }, { label: 'Design' }, { label: 'Modes' }, { label: 'KJ Entertainment' }],
-				},
-				selectOpt: {
-					inheritClass: true,
-					includeSelectAllOption: true
-				}
-			},
-			sankeyFilters: {
-				dateRange: {
-					start: moment(new Date(new Date().setDate(new Date().getDate() - 7))),
-					end: moment(new Date())
-				},
-			},
-			sankeyPath: "data/sankey/my-graphs.json",
-			debugCard: {
-				id: 'debug',
-				text: 'Debug',
-				templateUrl: templatesPath + 'directive-templates/debug.html'
-			},
 			datepickerOptions: {
 				config: {
 					singleMonth: true,

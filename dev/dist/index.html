@@ -18,7 +18,7 @@
 </head>
 
 <body ng-app="ext" ng-controller="test">
-	<ext-page-content-cards grid-data="data"></ext-page-content-cards>
+	<ext-page-sankey></ext-page-sankey>
 </body>
 
 </html>
@@ -42,6 +42,10 @@
 <script src="../src/vendor/multiple-select/jquery.multiple.select.js"></script>
 
 <!--build:script common-->
+<script src="../src/app/ext.common/counter/counter.module.js"></script>
+<script src="../src/app/ext.common/counter/services/counter.factory.js"></script>
+<script src="../src/app/ext.common/logger/logger.module.js"></script>
+<script src="../src/app/ext.common/logger/services/logger.service.js"></script>
 <script src="../src/app/ext.common/any-other-click/any-other-click.module.js"></script>
 <script src="../src/app/ext.common/any-other-click/directives/any-other-click.js"></script>
 <script src="../src/app/ext.common/any-other-click/services/any-other-click.service.js"></script>
@@ -158,10 +162,8 @@
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/ext-page-content.cards.module.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/directives/ext-page-content-cards.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/ext-cards-options.constant.js"></script>
-<script src="../src/app/ext.grid.modules/ext-page-content-cards/services/counter.factory.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/services/initCardsOptionsUtils.factory.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content-cards/directives/ext-page-content-cards.controller.js"></script>
-<script src="../src/app/ext.grid.modules/ext-page-content-cards/services/logger.factory.js"></script>
 
 <script src="../src/app/ext.grid.modules/ext.grid.module.js"></script>
 <!--/build-->
@@ -175,10 +177,13 @@
 
 <script src="../src/app/ext.sankey.modules/ext-mouse-over/ext-mouse-over.module.js"></script>
 <script src="../src/app/ext.sankey.modules/ext-mouse-over/directives/ext-mouse-over.js"></script>
+<script src="../src/app/ext.sankey.modules/ext-mouse-over/directives/ext-mouse-over.controller.js"></script>
+
 
 <script src="../src/app/ext.sankey.modules/ext-overlay/ext-ovelay.module.js"></script>
 <script src="../src/app/ext.sankey.modules/ext-overlay/directives/ext-overlay.js"></script>
 <script src="../src/app/ext.sankey.modules/ext-overlay/directives/ext-overlay-controller.js"></script>
+<script src="../src/app/ext.sankey.modules/ext-overlay/ext-overlay.constants.js"></script>
 
 <script src="../src/app/ext.sankey.modules/ext-sankey/ext-sankey.module.js"></script>
 <script src="../src/app/ext.sankey.modules/ext-sankey/directives/ext-sankey.controller.js"></script>
@@ -193,6 +198,7 @@
 
 <script src="../src/app/ext.sankey.modules/kx-multiselect/kx-multiselect.module.js"></script>
 <script src="../src/app/ext.sankey.modules/kx-multiselect/directives/kx-multiselect.js"></script>
+<script src="../src/app/ext.sankey.modules/kx-multiselect/directives/kx-multiselect.controller.js"></script>
 
 <script src="../src/app/ext.sankey.modules/kx-nav-bar/kx-nav-bar.module.js"></script>
 <script src="../src/app/ext.sankey.modules/kx-nav-bar/directives/kx-menu.js"></script>
@@ -206,6 +212,9 @@
 
 <script src="../src/app/ext.sankey.modules/ext-page-sankey/ext-page-sankey.module.js"></script>
 <script src="../src/app/ext.sankey.modules/ext-page-sankey/directives/ext-page-sankey.js"></script>
+<script src="../src/app/ext.sankey.modules/ext-page-sankey/services/initUtils.factory.js"></script>
+<script src="../src/app/ext.sankey.modules/ext-page-sankey/directives/ext-page-sankey.controller.js"></script>
+<script src="../src/app/ext.sankey.modules/ext-page-sankey/ext-page-sankey.constants.js"></script>
 
 <script src="../src/app/ext.sankey.modules/ext.sankey.module.js"></script>
 <!--/build-->
@@ -223,6 +232,8 @@
 <!--build:script app-->
 <script src="../src/app/app.js"></script>
 <!--/build-->
+
+<script src=""></script>
 
 
 <script src="//localhost:35729/livereload.js"></script>

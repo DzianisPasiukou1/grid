@@ -28,7 +28,7 @@
 
 			return compileObj;
 
-			function onPositionChanged(element) {
+			function onPositionChanged() {
 				if (getWindowHeight() - element.offset().top > 0) {
 					element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
 				}

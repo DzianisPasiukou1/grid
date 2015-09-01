@@ -11,7 +11,7 @@
 		var directive = {
 			restrict: 'AC',
 			scope: {
-				number: '=numberFormat'
+				number: '=extNumberFormat'
 			},
 			link: link
 		};

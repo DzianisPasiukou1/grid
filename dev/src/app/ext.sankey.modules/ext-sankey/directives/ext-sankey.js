@@ -15,7 +15,7 @@
 			controllerAs: 'vm',
 			bindToController: true,
 			scope: {
-				opt: '=coreDiagram',
+				opt: '=extSankey',
 				data: '=sankeyData'
 			},
 			link: link
@@ -45,15 +45,15 @@
 			function mouseover(event, data) {
 				vm.mouseOverInit(data);
 
-				angular.element('mouse-over').remove();
+				angular.element('ext-mouse-over').remove();
 				vm.parentTop = element.offset().top;
-				element.append("<mouse-over type='type' parent-top='parentTop' value='value'></mouse-over>");
+				element.append("<ext-mouse-over type='vm.type' parent-top='vm.parentTop' value='vm.value'></mouse-over>");
 
-				$compile(angular.element('mouse-over'))(scope);
+				$compile(angular.element('ext-mouse-over'))(scope);
 			};
 
 			function mouseout() {
-				angular.element('mouse-over').remove();
+				angular.element('ext-mouse-over').remove();
 			};
 
 			function drag(event, d, elm) {

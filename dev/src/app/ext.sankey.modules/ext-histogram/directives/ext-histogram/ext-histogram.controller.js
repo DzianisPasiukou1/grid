@@ -5,9 +5,9 @@
 		.module('ext.sankey.histogram')
 		.controller('ExtHistogramController', ExtHistogramController);
 
-	ExtHistogramController.$inject = [];
+	ExtHistogramController.$inject = ['$scope'];
 
-	function ExtHistogramController() {
+	function ExtHistogramController($scope) {
 		var vm = this;
 
 		vm.selectedUsers = [];
@@ -20,6 +20,8 @@
 			else {
 				vm.selectedUsers.push({ touchpoints: user.name + ' touchpoint' });
 			}
+			
+			$scope.$apply();
 		};
 	};
 } ());

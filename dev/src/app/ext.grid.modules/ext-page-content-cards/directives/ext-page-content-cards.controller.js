@@ -5,15 +5,15 @@
 		.module('ext.grid.pageContentCards')
 		.controller('ExtPageContentCardsController', ExtPageContentCardsController);
 
-	ExtPageContentCardsController.$inject = ['$scope', 'initCardsOptionsutils', 'loggerFactory'];
+	ExtPageContentCardsController.$inject = ['$scope', 'initCardsOptionsutils', 'loggerService'];
 
-	function ExtPageContentCardsController($scope, initCardsOptionsutils, loggerFactory) {
+	function ExtPageContentCardsController($scope, initCardsOptionsutils, loggerService) {
 		var vm = this;
 
-		vm.contentOptions = loggerFactory.defineObj('Content options is not defined', vm.contentOptions, {});
-		vm.cardsOptions = loggerFactory.defineObj('Cards options is not defined', vm.cardsOptions, {});
-		vm.uiGridOptions = loggerFactory.defineObj('Ui grid options is not defined', vm.uiGridOptions, {});
-		vm.data = loggerFactory.defineObj('Data is not defined', vm.data, []);
+		vm.contentOptions = loggerService.defineObj('Content options is not defined', vm.contentOptions, {});
+		vm.cardsOptions = loggerService.defineObj('Cards options is not defined', vm.cardsOptions, {});
+		vm.uiGridOptions = loggerService.defineObj('Ui grid options is not defined', vm.uiGridOptions, {});
+		vm.data = loggerService.defineObj('Data is not defined', vm.data, []);
 
 		initCardsOptionsutils.init(vm.cardsOptions, vm.contentOptions, vm.data, vm);
 

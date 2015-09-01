@@ -23,7 +23,7 @@
 		return directive;
 
 		function link(scope, element, attrs, vm) {
-			scope.$watch('data', dataChanged);
+			scope.$watch('vm.data', dataChanged);
 
 			function dataChanged(data) {
 				if (data) {
@@ -66,7 +66,7 @@
 						.attr("height", function (d) { return height - y(d.value); })
 						.attr("width", x.rangeBand() / 2)
 						.on('click', function (d) {
-							scope.select(d);
+							vm.select(d);
 						});
 
 					chart.append("g")

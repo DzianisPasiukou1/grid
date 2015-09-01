@@ -26,7 +26,7 @@
 		return directive;
 
 		function link(scope, element, attrs, vm) {
-			scope.$watch('state', changedState);
+			scope.$watch('vm.state', changedState);
 			scope.$on('$destroy', destroy);
 
 			element.parent().onPositionChanged(resize, 0);
