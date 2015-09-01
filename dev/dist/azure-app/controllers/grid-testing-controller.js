@@ -5,7 +5,7 @@
 		.module('azureApp')
 		.controller('GridTestingController', GridTestingController);
 
-	GridTestingController.$inject = ['$scope', 'gridUploadService', 'templatesPath'];
+	GridTestingController.$inject = ['$scope', 'gridUploadService', 'gridTemplatesPath'];
 
 	function GridTestingController($scope, gridUploadService, templatesPath) {
 		var vm = this;

@@ -7,6 +7,7 @@
 			'ngRoute'
 		])
 		.constant('templatesPath', 'dist/azure-app/templates/')
+		.constant('gridTemplatesPath', 'src/app/ext.grid.modules/ext-grid/templates/')
 		.constant('DATA', {
 			count: 100,
 			startDate: new Date(2000, 1, 1)

@@ -5,7 +5,7 @@
 		.module('azureApp')
 		.controller('GridWithMenuController', GridWithMenuController);
 
-	GridWithMenuController.$inject = ['gridUploadService', 'templatesPath'];
+	GridWithMenuController.$inject = ['gridTemplatesPath', 'templatesPath'];
 
 	function GridWithMenuController(gridUploadService, templatesPath) {
 		var vm = this;

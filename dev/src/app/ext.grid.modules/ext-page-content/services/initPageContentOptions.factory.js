@@ -3,11 +3,11 @@
 
 	angular
 		.module('ext.grid.pageContent')
-		.factory('initOptionsUtils', initOptionsUtils);
+		.factory('initPageContentOptions', initPageContentOptions);
 
-	initOptionsUtils.$inject = ['$compile'];
+	initPageContentOptions.$inject = ['$compile'];
 
-	function initOptionsUtils($compile) {
+	function initPageContentOptions($compile) {
 		var utils = {};
 
 		utils.content = {};

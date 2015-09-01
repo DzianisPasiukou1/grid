@@ -10,6 +10,7 @@
 	function kxNavBar(templatesPath) {
 		var directive = {
 			restrict: 'A',
+			controller: 'KxNavbarController',
 			controllerAs: 'vm',
 			bindToController: true,
 			scope: {

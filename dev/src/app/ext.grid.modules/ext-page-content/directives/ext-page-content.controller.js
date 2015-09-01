@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.controller('ExtPageContentController', ExtPageContentController);
 
-	ExtPageContentController.$inject = ['$scope', 'initUtils', '$element'];
+	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element'];
 
-	function ExtPageContentController($scope, initUtils, $element) {
+	function ExtPageContentController($scope, initPageContent, $element) {
 		var vm = this;
 
 		vm.grid = vm.grid || {};
@@ -15,7 +15,7 @@
 		vm.gridOptions = vm.gridOptions || {};
 		vm.uiGridOptions = vm.uiGridOptions || {};
 
-		initUtils.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
+		initPageContent.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
 
 		$scope.$watch('vm.contentOptions', contentOptionsChanged);
 		$scope.$watch('vm.data', dataChanged);
@@ -24,13 +24,13 @@
 		$scope.$watch('vm.contentOptions.searchValue', searchValueChanged);
 
 		function contentOptionsChanged(opt) {
-			opt = initUtils.initContentOptions(opt, $element, $scope, vm.data);
+			opt = initPageContent.initContentOptions(opt, $element, $scope, vm.data);
 			//vm.contentOptions = initUtils.refreshContentOptions(opt, vm.data, vm.gridOptions);
 		};
 
 		function dataChanged(data) {
 			if (Array.isArray(data)) {
-				initUtils.refreshData(data);
+				initPageContent.refreshData(data);
 			}
 		};
 
@@ -40,10 +40,10 @@
 
 		function viewsChangedvalue(value) {
 			if (value) {
-				vm.contentOptions = initUtils.refreshContentOptions(vm.contentOptions, vm.data, vm.gridOptions);
+				vm.contentOptions = initPageContent.refreshContentOptions(vm.contentOptions, vm.data, vm.gridOptions);
 
 				if (value.isGrid) {
-					initUtils.refreshCheckCallback(vm.gridOptions);
+					initPageContent.refreshCheckCallback(vm.gridOptions);
 				}
 			}
 		};

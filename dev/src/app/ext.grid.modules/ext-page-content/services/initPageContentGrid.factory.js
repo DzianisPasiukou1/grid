@@ -3,11 +3,11 @@
 
 	angular
 		.module('ext.grid.pageContent')
-		.factory('initGridUtils', initGridUtils);
+		.factory('initPageContentGrid', initPageContentGrid);
 
-	initGridUtils.$inject = [];
+	initPageContentGrid.$inject = [];
 
-	function initGridUtils() {
+	function initPageContentGrid() {
 		var utils = {};
 		
 		utils.content = {};

@@ -5,14 +5,13 @@
 		.module('azureApp')
 		.controller('GridStandartTwoController', GridStandartTwoController);
 
-	GridStandartTwoController.$inject = ['gridStandartTwoService', 'templatesPath'];
+	GridStandartTwoController.$inject = ['gridStandartTwoService', 'gridTemplatesPath'];
 
 	function GridStandartTwoController(gridStandartTwoService, templatesPath) {
 		var vm = this;
 
 		vm.grid = {
-			name: 'Standart grid two',
-			count: vm.data.length
+			name: 'Standart grid two'
 		};
 
 		vm.contentOptions = {
@@ -24,7 +23,7 @@
 		};
 
 		vm.gridOptions = {
-			data: 'vm.data',
+			data: 'data',
 			multiSelect: false,
 			rowTemplate: templatesPath + 'grid-templates/row-templates/row.html',
 			filterOptions: { filterText: '' },

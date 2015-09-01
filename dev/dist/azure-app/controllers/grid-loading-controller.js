@@ -5,7 +5,7 @@
 		.module('azureApp')
 		.controller('GridLoadingController', GridLoadingController);
 
-	GridLoadingController.$inject = ['templatesPath', '$scope', 'gridUploadService'];
+	GridLoadingController.$inject = ['gridTemplatesPath', '$scope', 'gridUploadService'];
 
 	function GridLoadingController(templatesPath, $scope, gridUploadService) {
 		var vm = this;
@@ -39,7 +39,7 @@
 		};
 
 		vm.gridOptions = {
-			data: 'vm.data',
+			data: 'data',
 			multiSelect: false,
 			init: function (grid, event) {
 				vm.contentOptions.isLoading = false;

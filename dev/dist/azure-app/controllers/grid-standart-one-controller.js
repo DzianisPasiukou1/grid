@@ -5,7 +5,7 @@
 		.module('azureApp')
 		.controller('GridStandartOneController', GridStandartOneController);
 
-	GridStandartOneController.$inject = ['gridStandartOneService', 'templatesPath'];
+	GridStandartOneController.$inject = ['gridStandartOneService', 'gridTemplatesPath'];
 
 	function GridStandartOneController(gridStandartOneService, templatesPath) {
 		var vm = this;
@@ -29,7 +29,7 @@
 		}
 
 		vm.gridOptions = {
-			data: 'vm.data',
+			data: 'data',
 			init: function (grid, $scope) {
 			},
 			multiSelect: false,

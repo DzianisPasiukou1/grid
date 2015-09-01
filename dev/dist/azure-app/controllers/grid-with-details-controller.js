@@ -5,14 +5,13 @@
 		.module('azureApp')
 		.controller('GridWithDetailsController', GridWithDetailsController);
 
-	GridWithDetailsController.$inject = ['gridWithDetailsTemplateService', 'templatesPath'];
+	GridWithDetailsController.$inject = ['gridWithDetailsTemplateService', 'gridTemplatesPath'];
 
 	function GridWithDetailsController(gridWithDetailsTemplateService, templatesPath) {
 		var vm = this;
 
 		vm.grid = {
 			name: 'Grid with details template',
-			count: vm.data.length
 		};
 
 		vm.contentOptions = {
@@ -25,7 +24,7 @@
 		};
 
 		vm.gridOptions = {
-			data: 'vm.data',
+			data: 'data',
 			withDetails: true,
 			init: function (grid, $scope) {
 			},

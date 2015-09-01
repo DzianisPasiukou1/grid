@@ -3,11 +3,11 @@
 
 	angular
 		.module('ext.grid.pageContent')
-		.factory('initUtils', initUtils);
+		.factory('initPageContent', initPageContent);
 
-	initUtils.$inject = ['initGridUtils', 'initOptionsUtils'];
+	initPageContent.$inject = ['initPageContentGrid', 'initPageContentOptions'];
 
-	function initUtils(initGridUtils, initOptionsUtils) {
+	function initPageContent(initPageContentGrid, initPageContentOptions) {
 		var utils = {};
 
 		utils.init = init;
@@ -19,16 +19,16 @@
 		return utils;
 
 		function init(grid, contentOptions, element, scope, data) {
-			grid = initGridUtils.initGrid(grid);
-			contentOptions = initOptionsUtils.initContentOpt(contentOptions, element, scope, data);
+			grid = initPageContentGrid.initGrid(grid);
+			contentOptions = initPageContentOptions.initContentOpt(contentOptions, element, scope, data);
 		};
 
 		function initContentOptions(contentOptions, element, scope, data) {
-			return initOptionsUtils.initContentOpt(contentOptions, element, scope, data);
+			return initPageContentOptions.initContentOpt(contentOptions, element, scope, data);
 		};
 
 		function refreshContentOptions(contentOptions, data) {
-			return initOptionsUtils.refreshContentOpt(contentOptions, data);
+			return initPageContentOptions.refreshContentOpt(contentOptions, data);
 		};
 		
 		function refreshCheckCallback(gridOptions) {
