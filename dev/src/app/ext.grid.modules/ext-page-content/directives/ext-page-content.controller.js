@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.controller('ExtPageContentController', ExtPageContentController);
 
-	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element'];
+	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile'];
 
-	function ExtPageContentController($scope, initPageContent, $element) {
+	function ExtPageContentController($scope, initPageContent, $element, $compile) {
 		var vm = this;
 
 		vm.grid = vm.grid || {};
@@ -18,7 +18,6 @@
 		initPageContent.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
 
 		$scope.$watch('vm.contentOptions', contentOptionsChanged);
-		$scope.$watch('vm.data', dataChanged);
 		$scope.$watch('vm.data.length', lengthChanged);
 		$scope.$watch('vm.views.options.selected', viewsChangedvalue);
 		$scope.$watch('vm.contentOptions.searchValue', searchValueChanged);
@@ -29,8 +28,8 @@
 		};
 
 		function dataChanged(data) {
-			if (Array.isArray(data)) {
-				initPageContent.refreshData(data);
+			if (angular.isArray(data)) {
+				initPageContent.refreshData(data, $scope, $compile);
 			}
 		};
 

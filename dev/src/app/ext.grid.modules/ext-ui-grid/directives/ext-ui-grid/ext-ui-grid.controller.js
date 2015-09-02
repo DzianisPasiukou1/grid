@@ -53,6 +53,7 @@
 		vm.options.filterOptions = vm.options.filterOptions || getFilterOptions();
 		vm.options.rowActions = vm.options.rowActions || getRowActions();
 		vm.options.columnDefs = vm.options.columnDefs || initColumnDef(vm.data);
+		vm.options.reInit = vm.options.reInit || false;
 
 		vm.singleFilter = singleFilter;
 		vm.rowChangedClass = rowChangedClass;

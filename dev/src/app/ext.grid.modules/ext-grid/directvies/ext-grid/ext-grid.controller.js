@@ -5,9 +5,9 @@
 		.module('ext.grid.main')
 		.controller('ExtGridController', ExtGridController);
 
-	ExtGridController.$inject = ['extGridTemplatesPath', '$compile', '$scope', '$timeout'];
+	ExtGridController.$inject = ['extGridTemplatesPath', '$compile', '$scope', '$timeout', '$rootScope'];
 
-	function ExtGridController(templatesPath, $compile, $scope, $timeout) {
+	function ExtGridController(templatesPath, $compile, $scope, $timeout, $rootScope) {
 		$scope.options = $scope.options || {};
 		$scope.options.data = $scope.options.data || 'data';
 		$scope.options.multiSelect = $scope.options.multiSelect || false;
@@ -19,16 +19,35 @@
 		$scope.options.footerRowHeight = $scope.options.footerRowHeight || 30;
 		$scope.options.footerTemplate = $scope.options.footerTemplate || templatesPath + 'grid-templates/grid-footer.html';
 		$scope.options.init = $scope.options.init || init;
-		$scope.options.detailsTemplate = $scope.options.data || templatesPath + 'grid-templates/details-templates/details.html';
+		$scope.options.detailsTemplate = $scope.options.detailsTemplate || null;
 		$scope.options.rowActions = $scope.options.rowActions || getRowActions();
 		$scope.options.rowCheckAction = $scope.options.rowCheckAction || angular.bind($scope, rowCheckAction);
 		$scope.options.beforeSelectionChange = $scope.options.beforeSelectionChange || beforeSelectionChange;
 		$scope.options.pluginActionOpt = $scope.options.pluginActionOpt || getPluginActionOpt();
 		$scope.options.plugins = getPlugins();
 		$scope.options.columnDefs = $scope.options.columnDefs || initColumnDef($scope.data);
+		$scope.options.reInit = $scope.options.reInit || false;
+
+		if ($scope.options.reInit) {
+			$scope.$watch('data', reInit)
+		}
 
 		function init() {
 			$scope.options.isLoading = false;
+		};
+
+		function reInit(data) {
+			if (angular.isArray(data)) {
+				var oldColumns = angular.copy($scope.options.columnDefs);
+				var newColumns = initColumnDef(data, templatesPath);
+
+				if (!columnsCompare(oldColumns, newColumns)) {
+					$scope.options.columnDefs = newColumns;
+
+					var grid = angular.element('div[ext-grid]') || angular.element('ext-grid');
+					$compile(grid)($scope.$parent.$parent);
+				}
+			}
 		};
 
 		function getRowActions() {
@@ -123,6 +142,20 @@
 			});
 
 			return columns;
+		};
+
+		function columnsCompare(oldCols, newCols) {
+			if (!Array.isArray(oldCols) || !Array.isArray(newCols) || oldCols.length != newCols.length) {
+				return false;
+			}
+
+			for (var i = 0; i < oldCols.length; i++) {
+				if (oldCols[i].field != newCols[i].field) {
+					return false;
+				}
+			}
+
+			return true;
 		};
 	};
 } ());

@@ -30,7 +30,7 @@
 		function refreshContentOptions(contentOptions, data) {
 			return initPageContentOptions.refreshContentOpt(contentOptions, data);
 		};
-		
+
 		function refreshCheckCallback(gridOptions) {
 			var isFindAct, indexAct;
 
@@ -45,7 +45,9 @@
 			gridOptions.plugins[indexAct].refreshCallback();
 		};
 
-		function refreshData(data) {
+		function refreshData(data, $compile, $scope) {
+			// var grid = angular.element('div[ext-grid]') || angular.element('ext-grid');
+			// $compile(grid)($scope);
 		};
 	};
 } ());

@@ -11,7 +11,7 @@
 		var vm = this;
 		vm.options = initOptionsUtils.initOpt(vm.options);
 
-		$scope.$watch('options.searchValue', searchValueChanged);
+		$scope.$watch('vm.options.searchValue', searchValueChanged);
 
 		function searchValueChanged(value) {
 			var selected = $parse('options.searchOptions.selected.label')('vm');

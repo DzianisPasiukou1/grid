@@ -23,17 +23,22 @@
 			contentOptions.mores = contentOptions.mores || this.mores;
 			contentOptions.filterOptions = contentOptions.filterOptions || [];
 			contentOptions.filtrate = contentOptions.filtrate || filtrate;
-			contentOptions.refreshCallback = refresh;
+			contentOptions.refreshCallback = contentOptions.refreshCallback || refresh;
+			contentOptions.upload = contentOptions.upload || upload;
 
 			return contentOptions;
+		};
 
-			function filtrate() {
-				$log.warn('Call default empty function on filtrate.');
-			};
+		function filtrate() {
+			$log.warn('Call default empty function on filtrate.');
+		};
 
-			function refresh() {
-				$log.warn('Call default empty function on refresh.');
-			};
+		function refresh() {
+			$log.warn('Call default empty function on refresh.');
+		};
+
+		function upload(data) {
+			$log.warn('Call default empty function on upload.');
 		};
 	};
 } ());

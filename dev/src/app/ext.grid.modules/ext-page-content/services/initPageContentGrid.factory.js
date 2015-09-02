@@ -28,7 +28,7 @@
 				}
 			}
 		};
-		utils.content.gridName = 'Default grid';
+		utils.content.name = 'Default grid';
 
 		utils.initGrid = initGrid;
 
@@ -39,7 +39,7 @@
 
 			initGrid.exports = initGrid.exports || utils.content.exports;
 			initGrid.views = initGrid.views || utils.content.views;
-			initGrid.gridName = initGrid.gridName || utils.content.gridName;
+			initGrid.name = initGrid.name || utils.content.name;
 
 			return initGrid;
 		};

@@ -18,13 +18,13 @@
 			controllerAs: 'vm',
 			bindToController: true,
 			templateUrl: templatesPath + 'ext-upload.html',
-			lin: link
+			link: link
 		};
 
 		return directive;
 
 		function link(scope, element, attrs, vm) {
-			element.find(':file').change();
+			element.find(':file').change(fileChange);
 
 			function fileChange() {
 				var file = this.files[0];

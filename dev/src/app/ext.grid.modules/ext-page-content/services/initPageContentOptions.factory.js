@@ -42,7 +42,7 @@
 
 			if (contentOptions.withUpload) {
 				contentOptions.isDynamic = true;
-				contentOptions.upload = contentOptions.upload || angular.bind(scope.vm, upload);
+				contentOptions.upload = contentOptions.upload || angular.bind(scope, upload);
 			}
 
 			return contentOptions;
@@ -116,12 +116,12 @@
 		};
 
 		function upload(data) {
-			if (this.contentOptions.loading) {
-				this.contentOptions.isLoading = true;
+			if (this.vm.contentOptions.loading) {
+				this.vm.contentOptions.isLoading = true;
 			}
 
-			this.data = data;
-			this.grid.count = this.data.length;
+			this.vm.data = data;
+			this.vm.grid.count = this.vm.data.length;
 			this.$apply();
 		};
 
