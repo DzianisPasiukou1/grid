@@ -18,6 +18,7 @@
 			'ext.common.upload',
 			
 			'ext.common.counter',
-			'ext.common.logger'
+			'ext.common.logger',
+			'ext.common.initDefault'
 	]);
 } ());

@@ -1,8 +1,8 @@
 ﻿<div class="options">
 	<div class="options__block">
-		<div ext-checkbox-select="vm.options.checks.options" class="options__check"></div>
+		<div ext-checkbox-select="vm.options.checks" class="options__check"></div>
 		<button class="options__refresh" ng-click="vm.options.refresh()">Refresh</button>
-		<div ext-dropdown="vm.options.mores.options" class="options__more"></div>
+		<div ext-dropdown="vm.options.mores" class="options__more"></div>
 		<ext-upload class="options__upload" ng-show="vm.options.upload" upload-callback="vm.options.upload"></ext-upload>
 	</div>
 	<div class="options__filter">

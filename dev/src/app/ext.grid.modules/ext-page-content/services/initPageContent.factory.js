@@ -27,8 +27,8 @@
 			return initPageContentOptions.initContentOpt(contentOptions, element, scope, data);
 		};
 
-		function refreshContentOptions(contentOptions, data) {
-			return initPageContentOptions.refreshContentOpt(contentOptions, data);
+		function refreshContentOptions(contentOptions, data, gridOptions) {
+			return initPageContentOptions.refreshContentOpt(contentOptions, data, gridOptions);
 		};
 
 		function refreshCheckCallback(gridOptions) {

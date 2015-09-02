@@ -3,7 +3,7 @@
 		Filter list
 	</div>
 	<div class="filter-list__options">
-		<div class="filter-list__options__value" ng-repeat="opt in vm.filterOptions">
+		<div class="filter-list__options__value" ng-repeat="opt in filterOptions">
 			<div class="filter-list__options__value__header">
 				{{opt.label}}
 			</div>
@@ -13,6 +13,6 @@
 		</div>
 	</div>
 	<div>
-		<button class="filter-list__button" ng-click="vm.showRecords()">Show records</button>
+		<button class="filter-list__button" ng-click="showRecords()">Show records</button>
 	</div>
 </div>

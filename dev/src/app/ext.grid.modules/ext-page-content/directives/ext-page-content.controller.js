@@ -17,19 +17,14 @@
 
 		initPageContent.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
 
-		$scope.$watch('vm.contentOptions', contentOptionsChanged);
+		$scope.$watch('vm.data', dataChanged);
 		$scope.$watch('vm.data.length', lengthChanged);
-		$scope.$watch('vm.views.options.selected', viewsChangedvalue);
+		$scope.$watch('vm.grid.views.options.selected', viewsChangedvalue);
 		$scope.$watch('vm.contentOptions.searchValue', searchValueChanged);
-
-		function contentOptionsChanged(opt) {
-			opt = initPageContent.initContentOptions(opt, $element, $scope, vm.data);
-			//vm.contentOptions = initUtils.refreshContentOptions(opt, vm.data, vm.gridOptions);
-		};
 
 		function dataChanged(data) {
 			if (angular.isArray(data)) {
-				initPageContent.refreshData(data, $scope, $compile);
+				initPageContent.refreshContentOptions(vm.contentOptions, data, vm.gridOptions);
 			}
 		};
 

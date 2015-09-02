@@ -16,7 +16,7 @@
 			},
 			controller: 'ExtFilterController',
 			controllerAs: 'vm',
-			bindToController: true,
+			bindToController: false,
 			templateUrl: templatesPath + 'ext-filter.html'
 		};
 

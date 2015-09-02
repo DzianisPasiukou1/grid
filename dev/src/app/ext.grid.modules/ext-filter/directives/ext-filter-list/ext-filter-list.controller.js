@@ -5,15 +5,13 @@
 		.module('ext.grid.filter')
 		.controller('ExtFilterListController', ExtFilterListController);
 
-	ExtFilterListController.$inject = [];
+	ExtFilterListController.$inject = ['$scope'];
 
-	function ExtFilterListController() {
-		var vm = this;
-
-		vm.filter = filter;
+	function ExtFilterListController($scope) {
+		$scope.filter = filter;
 
 		function filter() {
-			vm.isFiltrate = true;
+			$scope.isFiltrate = true;
 		}
 	};
 } ());

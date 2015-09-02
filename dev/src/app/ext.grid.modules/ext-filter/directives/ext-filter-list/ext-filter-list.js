@@ -14,7 +14,7 @@
 			templateUrl: templatesPath + 'ext-filter-list.html',
 			controller: 'ExtFilterListController',
 			controllerAs: 'vm',
-			bindToController: true,
+			bindToController: false,
 			require: ['^extFilter'],
 			link: link
 		};
@@ -22,7 +22,6 @@
 		return directive;
 
 		function link(scope, element, attrs, req) {
-			angular.extend(scope.vm, req[0]);
 		};
 	};
 } ());

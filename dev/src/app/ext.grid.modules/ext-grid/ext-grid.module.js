@@ -7,7 +7,8 @@
 			
 			'ext.grid.modal',
 			
-			'ext.common.dropdown'
+			'ext.common.dropdown',
+			'ext.common.initDefault'
 		])
 		.constant('extGridTemplatesPath', 'src/app/ext.grid.modules/ext-grid/templates/')
 		.constant('MENU', {

@@ -58,7 +58,7 @@
 			var isFindAct = false;
 			var indexAct = 0;
 
-			for (var i = 0; i < this.scope.gridOptions.plugins.length; i++) {
+			for (var i = 0; i < gridOptions.plugins.length; i++) {
 				if (gridOptions.plugins[i].constructor.name == 'ExtGridActionsPlugin') {
 					isFindAct = true;
 					indexAct = i;
@@ -68,11 +68,11 @@
 
 			if (!isFindAct) {
 				var pluginActionOpt = {
-					values: this.scope.gridOptions.rowActions,
-					detailsTemplate: this.scope.gridOptions.detailsTemplate,
-					detailsCondition: this.scope.gridOptions.detailsCondition,
-					onCheck: this.scope.gridOptions.rowCheckAction.bind(this.scope),
-					contentOptions: this.scope.contentOptions
+					values: gridOptions.rowActions,
+					detailsTemplate: gridOptions.detailsTemplate,
+					detailsCondition: gridOptions.detailsCondition,
+					onCheck: gridOptions.rowCheckAction,
+					contentOptions: opt
 				}
 				gridOptions.plugins[indexAct].refreshOpt(pluginActionOpt);
 			}
