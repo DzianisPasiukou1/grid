@@ -13,6 +13,9 @@
 
 		utils.getDefault = getDefault;
 		utils.initOptions = initOptions;
+		utils.reInit = reInit;
+		utils.columnsCompare = columnsCompare;
+		utils.generateColumn = generateColumn;
 
 		initContent();
 
@@ -38,7 +41,7 @@
 			var opt = gridOptions || {};
 
 			opt.data = opt.data || utils.content.data;
-			opt.multiselect = opt.multiselect || utils.content.multiselect;
+			opt.multiSelect = opt.multiSelect || utils.content.multiSelect;
 			opt.rowTemplate = opt.rowTemplate || templatesPath + utils.content.rowTemplate;
 			opt.filterOptions = opt.filterOptions || utils.content.filterOptions;
 			opt.rowHeight = opt.rowHeight || utils.content.rowHeight;
@@ -49,7 +52,7 @@
 			opt.init = opt.init || angular.bind(gridOptions, utils.content.init);
 			opt.detailsTemplate = opt.detailsTemplate || utils.content.detailsTemplate;
 			opt.rowActions = opt.rowActions || utils.content.rowActions;
-			opt.rowCheckAction = opt.rowCheckAction || angular.bind(contentOptions, utils.content.getRowCheckAction);
+			opt.rowCheckAction = opt.rowCheckAction || angular.bind(contentOptions, utils.content.rowCheckAction);
 			opt.beforeSelectionChange = opt.beforeSelectionChange || utils.content.beforeSelectionChange;
 			opt.pluginActionOpt = opt.pluginActionOpt || utils.content.getPluginActionOpt(gridOptions, contentOptions);
 			opt.plugins = opt.plugins || utils.content.getPlugins(gridOptions, $compile);
@@ -57,6 +60,34 @@
 			opt.reInit = opt.reInit || utils.content.reInit;
 
 			return opt;
+		};
+
+		function reInit(data, gridOptions, templatesPath, $compile, $scope) {
+			if (angular.isArray(data)) {
+				var oldColumns = angular.copy(gridOptions.columnDefs);
+				var newColumns = generateColumn(data, templatesPath);
+
+				if (!columnsCompare(oldColumns, newColumns)) {
+					gridOptions.columnDefs = newColumns;
+
+					var grid = angular.element('div[ext-grid]') || angular.element('ext-grid');
+					$compile(grid)($scope);
+				}
+			}
+		};
+
+		function columnsCompare(oldCols, newCols) {
+			if (!Array.isArray(oldCols) || !Array.isArray(newCols) || oldCols.length != newCols.length) {
+				return false;
+			}
+
+			for (var i = 0; i < oldCols.length; i++) {
+				if (oldCols[i].field != newCols[i].field) {
+					return false;
+				}
+			}
+
+			return true;
 		};
 
 		function gridInit() {
@@ -71,13 +102,13 @@
 			});
 
 			if (isCheckArray.length == 0) {
-				this.checks.options.selected = this.checks.options.actions.noOne;
+				this.checks.selected = this.checks.actions.noOne;
 			}
 			else if (isCheckArray.length == data.length) {
-				this.checks.options.selected = this.checks.options.actions.all;
+				this.checks.selected = this.checks.actions.all;
 			}
 			else {
-				this.checks.options.selected = this.checks.options.actions.marked;
+				this.checks.selected = this.checks.actions.marked;
 			}
 		};
 
@@ -123,6 +154,10 @@
 				}
 
 				for (var field in data[0]) {
+					if (field == '$$hashKey') {
+						continue;
+					}
+
 					columns.push({
 						field: field,
 						displayName: field,
@@ -166,7 +201,7 @@
 
 		function checkTemplatePath(templatesPath) {
 			if (!angular.isString(templatesPath)) {
-				$log.watn('Templates path should be string');
+				$log.warn('Templates path should be string');
 			}
 		};
 	};

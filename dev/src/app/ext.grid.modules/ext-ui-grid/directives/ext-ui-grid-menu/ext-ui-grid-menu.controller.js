@@ -12,13 +12,13 @@
 
 		vm.options = vm.options || {};
 		vm.options.parentSelector = vm.options.parentSelector || MENU.parentSelector;
-		vm.options.parentMinWidth = vm.options.parentSelector || MENU.parentMinWidth;
+		vm.options.parentMinWidth = vm.options.parentMinWidth || MENU.parentMinWidth;
 		vm.options.enableGridMenu = vm.options.showResponsMenu;
 
 		vm.getTotalWidth = getTotalWidth;
 		vm.changeMinWidth = changeMinWidth;
 		vm.resize = resize;
-		vm.gridApi.core.on.columnVisibilityChanged(vm, columnVisibilityChanged);
+		vm.columnVisibilityChanged = columnVisibilityChanged;
 
 		function getTotalWidth() {
 			var totalWidth = vm.gridApi.grid.columns.reduce(function (a, b) {

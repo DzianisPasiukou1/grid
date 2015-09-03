@@ -49,7 +49,7 @@
 		vm.options.columnMinWidth = vm.options.columnMinWidth || 80;
 		vm.options.cellClass = vm.options.cellClass || cellClass;
 		vm.options.enableColumnFilter = vm.options.enableColumnFilter || false;
-		vm.options.onRegisterApi = vm.options.onRegisterApi || onRegisterApi;
+		vm.options.onRegisterApi = onRegisterApi;
 		vm.options.filterOptions = vm.options.filterOptions || getFilterOptions();
 		vm.options.rowActions = vm.options.rowActions || getRowActions();
 		vm.options.columnDefs = vm.options.columnDefs || initColumnDef(vm.data);
@@ -57,8 +57,8 @@
 
 		vm.singleFilter = singleFilter;
 		vm.rowChangedClass = rowChangedClass;
-		
-		$scope.$watch('vm.options.filterOptions.filterText', filterTextChanged);
+
+		$scope.$watch('vm.data', dataChanged);
 
 		function cellClass(grid, row, col) {
 			if (row.isChecked) {
@@ -95,10 +95,15 @@
 		};
 
 		function onRegisterApi(gridApi) {
+			if (angular.isFunction(vm.options.extRegisterApi)) {
+				vm.options.extRegisterApi(gridApi);
+			}
+
+			vm.gridApi = {};
+
 			vm.gridApi = gridApi;
 
-			$scope.$watch('options.filterOptions.filterText', filterTextChanged);
-			$scope.$watch('data', dataChanged);
+			$scope.$watch('vm.options.filterOptions.filterText', filterTextChanged);
 
 			gridApi.core.on.rowsRendered($scope, rowRendered);
 
@@ -109,7 +114,7 @@
 			}
 
 			if (vm.contentOptions.checks) {
-				vm.contentOptions.checks.options.callback = checkbCallback;
+				vm.contentOptions.checks.callback = checkCallback;
 			}
 		};
 
@@ -203,13 +208,13 @@
 						});
 
 						if (isCheckArray.length == 0) {
-							vm.contentOptions.checks.options.selected = vm.contentOptions.checks.options.actions.noOne;
+							vm.contentOptions.checks.selected = vm.contentOptions.checks.actions.noOne;
 						}
 						else if (isCheckArray.length == data.length) {
-							vm.contentOptions.checks.options.selected = vm.contentOptions.checks.options.actions.all;
+							vm.contentOptions.checks.selected = vm.contentOptions.checks.actions.all;
 						}
 						else {
-							vm.contentOptions.checks.options.selected = vm.contentOptions.checks.options.actions.marked;
+							vm.contentOptions.checks.selected = vm.contentOptions.checks.actions.marked;
 						}
 
 						vm.gridApi.grid.refresh();
@@ -228,7 +233,7 @@
 			}
 		};
 
-		function checkbCallback(check) {
+		function checkCallback(check) {
 			if (check) {
 				if (check.isAll) {
 					vm.gridApi.grid.rows.forEach(function (row) {
@@ -259,7 +264,12 @@
 		function dataChanged(data) {
 			if (Array.isArray(data)) {
 				if (vm.options.reInit) {
-					vm.options.columnDefs = initColumnDef(data);
+					var newColumn = initColumnDef(data)
+
+					if (!columnsCompare(newColumn, vm.options.columnDefs)) {
+						vm.options.columnDefs = newColumn;
+						vm.gridApi.grid.refresh();
+					}
 				}
 			}
 		};
@@ -319,6 +329,20 @@
 			}
 
 			return columns;
+		};
+
+		function columnsCompare(oldCols, newCols) {
+			if (!Array.isArray(oldCols) || !Array.isArray(newCols) || oldCols.length != newCols.length) {
+				return false;
+			}
+
+			for (var i = 0; i < oldCols.length; i++) {
+				if (oldCols[i].field != newCols[i].field) {
+					return false;
+				}
+			}
+
+			return true;
 		};
 	};
 } ());

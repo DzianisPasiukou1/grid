@@ -1,3 +1,4 @@
+/* global idx */
 var templatesPath = 'src/app/ext.grid.modules/ext-grid/templates/';
 
 function ExtGridActionsPlugin(opts, compile) {
@@ -58,8 +59,8 @@ function ExtGridActionsPlugin(opts, compile) {
 					}
 				});
 
-				if (self.opts.contentOptions.checks.options.callback === undefined) {
-					self.opts.contentOptions.checks.options.callback = function (check) {
+				if (self.opts.contentOptions.checks.callback === undefined) {
+					self.opts.contentOptions.checks.callback = function (check) {
 						if (check) {
 							if (check.isAll) {
 								self.grid.rowCache.forEach(function (value) {
@@ -536,7 +537,7 @@ function ExtGridActionsPlugin(opts, compile) {
 	}
 
 	self.refreshCallback = function () {
-		self.opts.contentOptions.checks.options.callback = function (check) {
+		self.opts.contentOptions.checks.callback = function (check) {
 			if (check) {
 				if (check.isAll) {
 					self.grid.rowCache.forEach(function (value) {

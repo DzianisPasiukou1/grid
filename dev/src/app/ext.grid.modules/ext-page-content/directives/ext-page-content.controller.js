@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.controller('ExtPageContentController', ExtPageContentController);
 
-	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile'];
+	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile', 'extGridTemplatesPath'];
 
-	function ExtPageContentController($scope, initPageContent, $element, $compile) {
+	function ExtPageContentController($scope, initPageContent, $element, $compile, extGridTemplatesPath) {
 		var vm = this;
 
 		vm.grid = vm.grid || {};
@@ -15,7 +15,7 @@
 		vm.gridOptions = vm.gridOptions || {};
 		vm.uiGridOptions = vm.uiGridOptions || {};
 
-		initPageContent.init(vm.grid, vm.contentOptions, $element, $scope, vm.data);
+		initPageContent.init(vm.grid, vm.contentOptions, vm.gridOptions, $element, $scope, vm.data, $compile, extGridTemplatesPath);
 
 		$scope.$watch('vm.data', dataChanged);
 		$scope.$watch('vm.data.length', lengthChanged);
@@ -24,7 +24,7 @@
 
 		function dataChanged(data) {
 			if (angular.isArray(data)) {
-				initPageContent.refreshContentOptions(vm.contentOptions, data, vm.gridOptions);
+				initPageContent.refreshContentOptions(vm.contentOptions, data, vm.gridOptions, vm.grid.views);
 			}
 		};
 
@@ -34,7 +34,7 @@
 
 		function viewsChangedvalue(value) {
 			if (value) {
-				vm.contentOptions = initPageContent.refreshContentOptions(vm.contentOptions, vm.data, vm.gridOptions);
+				initPageContent.refreshContentOptions(vm.contentOptions, vm.data, vm.gridOptions, vm.grid.views);
 
 				if (value.isGrid) {
 					initPageContent.refreshCheckCallback(vm.gridOptions);

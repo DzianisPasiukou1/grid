@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.factory('initPageContentOptions', initPageContentOptions);
 
-	initPageContentOptions.$inject = ['$compile', 'initContentOptionsUtils'];
+	initPageContentOptions.$inject = ['$compile', 'initContentOptionsUtils', '$parse'];
 
-	function initPageContentOptions($compile, initContentOptionsUtils) {
+	function initPageContentOptions($compile, initContentOptionsUtils, $parse) {
 		var utils = {};
 
 		utils.content = {};
@@ -22,8 +22,6 @@
 		return utils;
 
 		function initContentOpt(opt, element, scope, data) {
-			opt = initContentOptionsUtils.initOpt(opt);
-
 			var contentOptions = opt || {};
 
 			contentOptions.loading = contentOptions.loading || false;
@@ -40,23 +38,32 @@
 			contentOptions.filterOptions = contentOptions.filterOptions || getFilterOptions(data);
 			contentOptions.searchOptions = contentOptions.searchOptions || getSearchOptions(data);
 			opt.searchOptions.selected = opt.searchOptions[0];
-			opt.searchValue = '';
+			opt.searchValue = opt.searchValue || '';
 
 			if (contentOptions.withUpload) {
 				contentOptions.isDynamic = true;
 				contentOptions.upload = contentOptions.upload || angular.bind(scope, upload);
 			}
 
+			initContentOptionsUtils.initOpt(contentOptions)
+
 			return contentOptions;
 		};
 
-		function refreshContentOpt(opt, data, gridOptions) {
+		function refreshContentOpt(opt, data, gridOptions, views) {
 			opt.filterOptions = getFilterOptions(data);
 			opt.searchOptions = getSearchOptions(data);
 			opt.searchOptions.selected = opt.searchOptions[0];
 			opt.searchValue = '';
 			opt.checks.selected = opt.checks.actions.noOne;
 
+			if (angular.isDefined($parse('options.selected.isGrid')(views))) {
+				refreshGridPlugins(opt, gridOptions);
+			}
+
+		};
+
+		function refreshGridPlugins(contentOptions, gridOptions) {
 			var isFindAct = false;
 			var indexAct = 0;
 
@@ -74,7 +81,7 @@
 					detailsTemplate: gridOptions.detailsTemplate,
 					detailsCondition: gridOptions.detailsCondition,
 					onCheck: gridOptions.rowCheckAction,
-					contentOptions: opt
+					contentOptions: contentOptions
 				}
 				gridOptions.plugins[indexAct].refreshOpt(pluginActionOpt);
 			}

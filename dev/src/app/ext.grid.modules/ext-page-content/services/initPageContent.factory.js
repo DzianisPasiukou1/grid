@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.factory('initPageContent', initPageContent);
 
-	initPageContent.$inject = ['initPageContentGrid', 'initPageContentOptions'];
+	initPageContent.$inject = ['initPageContentGrid', 'initPageContentOptions', 'initGridOptionsUtils'];
 
-	function initPageContent(initPageContentGrid, initPageContentOptions) {
+	function initPageContent(initPageContentGrid, initPageContentOptions, initGridOptionsUtils) {
 		var utils = {};
 
 		utils.init = init;
@@ -18,17 +18,22 @@
 
 		return utils;
 
-		function init(grid, contentOptions, element, scope, data) {
+		function init(grid, contentOptions, gridOptions, element, scope, data, $compile, gridTemplatesPath) {
 			grid = initPageContentGrid.initGrid(grid);
 			contentOptions = initContentOptions(contentOptions, element, scope, data);
+			gridOptions = initGridOptions(gridOptions, data, contentOptions, $compile, gridTemplatesPath);
 		};
 
 		function initContentOptions(contentOptions, element, scope, data) {
 			return initPageContentOptions.initContentOpt(contentOptions, element, scope, data);
 		};
 
-		function refreshContentOptions(contentOptions, data, gridOptions) {
-			return initPageContentOptions.refreshContentOpt(contentOptions, data, gridOptions);
+		function initGridOptions(gridOptions, data, contentOptions, $compile, templatesPath) {
+			return initGridOptionsUtils.initOptions(gridOptions, data, contentOptions, $compile, templatesPath);
+		};
+
+		function refreshContentOptions(contentOptions, data, gridOptions, views) {
+			initPageContentOptions.refreshContentOpt(contentOptions, data, gridOptions, views);
 		};
 
 		function refreshCheckCallback(gridOptions) {

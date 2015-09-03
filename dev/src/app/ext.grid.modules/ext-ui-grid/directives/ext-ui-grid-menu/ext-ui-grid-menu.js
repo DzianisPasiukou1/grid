@@ -23,9 +23,17 @@
 		function link(scope, element, attrs, vm) {
 			angular.element($window).resize(resize);
 			scope.$on('$destroy', destroy);
-			$timeout(init);
+			scope.$watch('vm.gridApi', gridApiChanged);
+
+			function gridApiChanged(gridApi) {
+				if (angular.isDefined(gridApi)) {
+					init();
+				}
+			};
 
 			function init() {
+				vm.gridApi.core.on.columnVisibilityChanged(scope, vm.columnVisibilityChanged);
+
 				var totalWidth = vm.getTotalWidth();
 				vm.resize(totalWidth);
 

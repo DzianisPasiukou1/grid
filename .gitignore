@@ -23,3 +23,4 @@ dev/.sass-cache
 /publish/*.sln
 /dev/.ntvs_analysis.dat
 /publish/publish.sln.GhostDoc.xml
+/publish/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
