@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.factory('initPageContentOptions', initPageContentOptions);
 
-	initPageContentOptions.$inject = ['$compile'];
+	initPageContentOptions.$inject = ['$compile', 'initContentOptionsUtils'];
 
-	function initPageContentOptions($compile) {
+	function initPageContentOptions($compile, initContentOptionsUtils) {
 		var utils = {};
 
 		utils.content = {};
@@ -22,6 +22,8 @@
 		return utils;
 
 		function initContentOpt(opt, element, scope, data) {
+			opt = initContentOptionsUtils.initOpt(opt);
+
 			var contentOptions = opt || {};
 
 			contentOptions.loading = contentOptions.loading || false;
@@ -53,7 +55,7 @@
 			opt.searchOptions = getSearchOptions(data);
 			opt.searchOptions.selected = opt.searchOptions[0];
 			opt.searchValue = '';
-			opt.checks.options.selected = opt.checks.options.actions.noOne;
+			opt.checks.selected = opt.checks.actions.noOne;
 
 			var isFindAct = false;
 			var indexAct = 0;

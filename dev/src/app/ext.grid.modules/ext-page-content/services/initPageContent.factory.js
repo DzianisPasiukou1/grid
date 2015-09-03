@@ -20,7 +20,7 @@
 
 		function init(grid, contentOptions, element, scope, data) {
 			grid = initPageContentGrid.initGrid(grid);
-			contentOptions = initPageContentOptions.initContentOpt(contentOptions, element, scope, data);
+			contentOptions = initContentOptions(contentOptions, element, scope, data);
 		};
 
 		function initContentOptions(contentOptions, element, scope, data) {

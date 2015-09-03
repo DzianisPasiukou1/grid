@@ -3,7 +3,7 @@
 
 	angular
 		.module('ext.common.initDefault')
-		.factory('extInitDefaultService', extInitDefaultService);
+		.service('extInitDefaultService', extInitDefaultService);
 
 	extInitDefaultService.$inject = [];
 

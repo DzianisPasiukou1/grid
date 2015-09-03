@@ -18,8 +18,7 @@
 </head>
 
 <body ng-app="azureApp">
-	<!--<ng-view></ng-view>-->
-	<ext-grid grid-data="data"></ext-grid>
+	<ng-view></ng-view>
 </body>
 
 </html>
@@ -43,6 +42,8 @@
 <script src="../src/vendor/multiple-select/jquery.multiple.select.js"></script>
 
 <!--build:script common-->
+<script src="../src/app/ext.common/ext-init-default/ext-init-default.module.js"></script>
+<script src="../src/app/ext.common/ext-init-default/ext-init-default.service.js"></script>
 <script src="../src/app/ext.common/counter/counter.module.js"></script>
 <script src="../src/app/ext.common/counter/services/counter.factory.js"></script>
 <script src="../src/app/ext.common/logger/logger.module.js"></script>
@@ -134,6 +135,8 @@
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-details/ext-details.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid.js"></script>
+<script src="../src/app/ext.grid.modules/ext-grid/services/initGridOptionsUtils.js"></script>
+<script src="../src/app/ext.grid.modules/ext-grid/ext-grid.constants.js"></script>
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid-actions.plugin.js"></script>
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-grid-menu/ext-grid-menu.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-grid/directvies/ext-grid-menu/ext-grid-menu.js"></script>
@@ -153,6 +156,7 @@
 
 
 <script src="../src/app/ext.grid.modules/ext-page-content/ext-page-content.module.js"></script>
+
 <script src="../src/app/ext.grid.modules/ext-page-content/directives/ext-page-content.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content/directives/ext-page-content.controller.js"></script>
 <script src="../src/app/ext.grid.modules/ext-page-content/services/initPageContent.factory.js"></script>
@@ -283,4 +287,5 @@
 	]
 }
 				 });
+
 </script>
