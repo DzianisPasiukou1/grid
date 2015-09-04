@@ -12,6 +12,7 @@
 
 		vm.parent = vm.parent || LOADING.parentSelector;
 		vm.resize = resize;
+		resize();
 
 		function resize() {
 			vm.disabled = {

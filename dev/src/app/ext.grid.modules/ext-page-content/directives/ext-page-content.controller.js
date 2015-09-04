@@ -11,6 +11,7 @@
 		var vm = this;
 
 		vm.grid = vm.grid || {};
+		vm.data = vm.data || [];
 		vm.contentOptions = vm.contentOptions || {};
 		vm.gridOptions = vm.gridOptions || {};
 		vm.uiGridOptions = vm.uiGridOptions || {};
@@ -25,6 +26,7 @@
 		function dataChanged(data) {
 			if (angular.isArray(data)) {
 				initPageContent.refreshContentOptions(vm.contentOptions, data, vm.gridOptions, vm.grid.views);
+				initPageContent.refreshData(vm.contentOptions);
 			}
 		};
 

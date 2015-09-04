@@ -10,12 +10,10 @@
 	function ExtGridController(templatesPath, $compile, $scope, initGridOptionsUtils, $element) {
 		$scope.options = initGridOptionsUtils.initOptions($scope.options, $scope.data, $scope.contentOptions, $compile, templatesPath);
 
-		if ($scope.options.reInit) {
-			$scope.$watch('data', reInit)
-		}
+		$scope.$watch('data', reInit)
 
 		function reInit() {
-			initGridOptionsUtils.reInit($scope.data, $scope.options, templatesPath, $compile, $scope.$parent.$parent);
+			initGridOptionsUtils.reInit($scope.data, $scope.options, templatesPath, $compile, $scope.$parent.$parent, $scope.options.reInit);
 		};
 	};
 } ());

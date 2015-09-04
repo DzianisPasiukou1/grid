@@ -1,5 +1,5 @@
-﻿<div class="modal" ng-class="modal" ng-if="vm.isModal">
-	<div class="fade" ng-style="fade">
+﻿<div class="modal" ng-class="vm.modal" ng-if="vm.isModal">
+	<div class="fade" ng-style="vm.fade">
 	</div>
 	<div class="dialog">
 		<div ng-include="vm.bodyTemplateUrl" ng-if="!vm.bodyTemplate" onload="vm.onInclude()">

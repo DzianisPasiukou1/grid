@@ -5,9 +5,9 @@
 		.module('azureApp')
 		.controller('GridWithMenuController', GridWithMenuController);
 
-	GridWithMenuController.$inject = ['gridTemplatesPath', 'templatesPath'];
+	GridWithMenuController.$inject = ['gridUploadService', 'gridTemplatesPath', '$scope'];
 
-	function GridWithMenuController(gridUploadService, templatesPath) {
+	function GridWithMenuController(gridUploadService, templatesPath, $scope) {
 		var vm = this;
 
 		vm.data = [];
@@ -96,6 +96,7 @@
 					vm.data = data;
 
 					vm.grid.count = vm.data.length;
+					$scope.$apply();
 				})
 			}, 2000)
 		}

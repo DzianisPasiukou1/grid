@@ -13,7 +13,7 @@
 			showFooter: true,
 			footerRowHeight: 30,
 			footerTemplate: 'grid-templates/grid-footer.html',
-			detailsTemplate: null,
+			detailsTemplate: 'grid-templates/details-templates/details.html',
 			rowActions: {
 				options: {
 					label: 'Actions',

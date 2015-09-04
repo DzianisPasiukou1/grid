@@ -29,6 +29,10 @@
 		};
 
 		function initGridOptions(gridOptions, data, contentOptions, $compile, templatesPath) {
+			if (contentOptions.withUpload) {
+				gridOptions.reInit = true;
+			}
+
 			return initGridOptionsUtils.initOptions(gridOptions, data, contentOptions, $compile, templatesPath);
 		};
 
@@ -50,9 +54,10 @@
 			gridOptions.plugins[indexAct].refreshCallback();
 		};
 
-		function refreshData(data, $compile, $scope) {
-			// var grid = angular.element('div[ext-grid]') || angular.element('ext-grid');
-			// $compile(grid)($scope);
+		function refreshData(contentOptions) {
+			if (contentOptions.loading) {
+				contentOptions.isLoading = false;
+			}
 		};
 	};
 } ());

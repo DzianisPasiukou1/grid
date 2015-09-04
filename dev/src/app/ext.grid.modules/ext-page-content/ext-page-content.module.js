@@ -4,6 +4,7 @@
 	angular
 		.module('ext.grid.pageContent', [
 			'ext.common.dropdown',
+			'ext.common.loading',
 			
 			'ext.grid.contentOptions',
 			'ext.grid.main',

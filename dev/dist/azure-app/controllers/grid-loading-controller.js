@@ -27,12 +27,8 @@
 
 				vm.gridOptions.detailsCondition = undefined;
 			},
-			refresh: function () {
-				vm.contentOptions.isLoading = true;
-
+			refreshCallback: function () {
 				getData();
-
-				vm.grid.count = vm.data.length;
 			},
 			isDynamic: true,
 			loading: true
@@ -64,7 +60,8 @@
 				gridUploadService.get(function (data) {
 					vm.data = data;
 
-					vm.grid.count = vm.data.length;
+					vm.contentOptions.isLoading = false;
+					$scope.$apply();
 				})
 			}, 2000)
 		}

@@ -15,7 +15,7 @@
 			},
 			templateUrl: templatesPath + 'ext-loading.html',
 			controller: 'ExtLoadingController',
-			controllerAs: 'ctrl',
+			controllerAs: 'vm',
 			bindToController: true,
 			link: link
 		};

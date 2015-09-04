@@ -1806,7 +1806,7 @@ button::-moz-focus-inner {
 @media only screen and (max-width: 1530px) {
   .grid-testing textarea {
     width: 100% !important; }
-  .grid-testing page-content {
+  .grid-testing ext-page-content {
     position: relative !important; } }
 .grid-testing .generate-btn {
   margin-left: 50px;
@@ -1842,14 +1842,14 @@ button::-moz-focus-inner {
   min-width: 0 !important;
   position: relative;
   left: 0; }
-.grid-testing page-content {
+.grid-testing ext-page-content {
   position: absolute;
   top: 0;
   right: 0;
   width: 55%; }
-  .grid-testing page-content .page-content {
+  .grid-testing ext-page-content .page-content {
     margin-top: 43px; }
-  .grid-testing page-content .custom-grid {
+  .grid-testing ext-page-content .custom-grid {
     width: 100%; }
 
 .dynamic-dropdown {

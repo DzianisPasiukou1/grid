@@ -12,7 +12,7 @@
 
 		utils.content = {};
 		utils.content.listSelector = '.page-content__list';
-		utils.content.loadingTemplate = '<loading ng-show="vm.contentOptions.isLoading"></loading>';
+		utils.content.loadingTemplate = '<ext-loading ng-show="vm.contentOptions.isLoading"></ext-loading>';
 
 		utils.renderLoading = renderLoading;
 		utils.initContentOpt = initContentOpt;
@@ -28,7 +28,7 @@
 
 			if (contentOptions.loading) {
 				contentOptions.isLoading = true;
-				this.renderLoading(scope);
+				this.renderLoading(scope, element);
 			}
 
 			contentOptions.filtrate = contentOptions.filtrate || angular.bind(scope.vm, filtrate);
@@ -87,10 +87,10 @@
 			}
 		};
 
-		function renderLoading(scope) {
-			if (angular.element('loading').length == 0) {
+		function renderLoading(scope, element) {
+			if (angular.element('ext-loading').length == 0) {
 				element.find(this.content.listSelector).append(this.content.loadingTemplate);
-				$compile(angular.element('loading'))(scope);
+				$compile(angular.element('ext-loading'))(scope);
 			}
 		};
 

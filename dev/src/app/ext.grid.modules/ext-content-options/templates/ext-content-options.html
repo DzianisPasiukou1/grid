@@ -3,7 +3,7 @@
 		<div ext-checkbox-select="vm.options.checks" class="options__check"></div>
 		<button class="options__refresh" ng-click="vm.options.refresh()">Refresh</button>
 		<div ext-dropdown="vm.options.mores" class="options__more"></div>
-		<ext-upload class="options__upload" ng-show="vm.options.upload" upload-callback="vm.options.upload"></ext-upload>
+		<ext-upload class="options__upload" ng-show="vm.options.withUpload" upload-callback="vm.options.upload"></ext-upload>
 	</div>
 	<div class="options__filter">
 		<ext-search class="options__search" search-value="vm.options.searchValue"></ext-search>

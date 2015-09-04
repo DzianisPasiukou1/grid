@@ -22,7 +22,7 @@
 					self.scope.data = angular.copy(data);
 					self.scope.$apply();
 				})
-			}.bind(this), 2000);
+			}.bind(this), 0);
 		}
 		vm.getData();
 
@@ -31,7 +31,7 @@
 		}
 
 		vm.scope.contentOptions = {
-			loading: true,
+			loading: false,
 			refreshCallback: vm.getData,
 			refresh: function () {
 				this.scope.contentOptions.isLoading = true;
@@ -49,13 +49,11 @@
 				}.bind(this));
 			},
 			checks: {
-				options: {
-					actions: [{
-						label: 'test'
-					}],
-					callback: function (action) {
-						console.log('check is tested');
-					}
+				actions: [{
+					label: 'test'
+				}],
+				callback: function (action) {
+					console.log('check is tested');
 				}
 			},
 			upload: function (data) {

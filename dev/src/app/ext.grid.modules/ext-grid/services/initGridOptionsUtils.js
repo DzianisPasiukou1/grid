@@ -41,6 +41,7 @@
 			var opt = gridOptions || {};
 
 			opt.data = opt.data || utils.content.data;
+			opt.withDetails = opt.withDetails || utils.content.withDetails;
 			opt.multiSelect = opt.multiSelect || utils.content.multiSelect;
 			opt.rowTemplate = opt.rowTemplate || templatesPath + utils.content.rowTemplate;
 			opt.filterOptions = opt.filterOptions || utils.content.filterOptions;
@@ -50,7 +51,7 @@
 			opt.footerRowHeight = opt.footerRowHeight || utils.content.footerRowHeight;
 			opt.footerTemplate = opt.footerTemplate || templatesPath + utils.content.footerTemplate;
 			opt.init = opt.init || angular.bind(gridOptions, utils.content.init);
-			opt.detailsTemplate = opt.detailsTemplate || utils.content.detailsTemplate;
+			opt.detailsTemplate = opt.withDetails ? opt.detailsTemplate || templatesPath + utils.content.detailsTemplate : null;
 			opt.rowActions = opt.rowActions || utils.content.rowActions;
 			opt.rowCheckAction = opt.rowCheckAction || angular.bind(contentOptions, utils.content.rowCheckAction);
 			opt.beforeSelectionChange = opt.beforeSelectionChange || utils.content.beforeSelectionChange;
@@ -62,7 +63,7 @@
 			return opt;
 		};
 
-		function reInit(data, gridOptions, templatesPath, $compile, $scope) {
+		function reInit(data, gridOptions, templatesPath, $compile, $scope, reInit) {
 			if (angular.isArray(data)) {
 				var oldColumns = angular.copy(gridOptions.columnDefs);
 				var newColumns = generateColumn(data, templatesPath);
