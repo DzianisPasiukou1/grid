@@ -6,7 +6,7 @@
 		<ext-upload class="options__upload" ng-show="vm.options.withUpload" upload-callback="vm.options.upload"></ext-upload>
 	</div>
 	<div class="options__filter">
-		<ext-search class="options__search" search-value="vm.options.searchValue"></ext-search>
+		<ext-search class="options__search" search-value="vm.options.searchValue" on-change="vm.searchValueChanged"></ext-search>
 		<ext-split-button class="options__show" actions="vm.options.searchOptions" selected="vm.options.show" search="vm.options.searchValue"></ext-split-button>
 		<div class="options__filt" ext-filter="vm.options.filterOptions" on-filtrate="vm.options.filtrate"></div>
 	</div>

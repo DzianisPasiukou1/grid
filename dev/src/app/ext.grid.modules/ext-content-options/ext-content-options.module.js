@@ -8,6 +8,7 @@
 			'ext.common.splitButton',
 			'ext.common.upload',
 			'ext.common.initDefault',
+			'ext.common.searchBase',
 
 			'ext.grid.filter',
 			'ext.grid.checkboxSelect'

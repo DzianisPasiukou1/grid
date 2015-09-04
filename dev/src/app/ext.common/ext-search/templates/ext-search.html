@@ -1,7 +1,7 @@
 ﻿<div class="search">
-	<input type="search" ng-model="vm.searchValue" />
-	<span class="search-span icon-search" ng-show="vm.edited">
+	<input type="search" ng-model="vm.searchValue" ng-change="vm.searchValueChanged(vm.searchValue)" />
+	<span class="search-span icon-search" ng-show="!vm.edited">
 	</span>
-	<span class="search-clear icon-close" ng-click="vm.clear()" ng-show="!vm.edited">
+	<span class="search-clear icon-close" ng-click="vm.clear()" ng-show="vm.edited">
 	</span>
 </div>

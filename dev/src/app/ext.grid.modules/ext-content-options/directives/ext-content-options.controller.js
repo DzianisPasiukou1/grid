@@ -5,27 +5,17 @@
 		.module('ext.grid.contentOptions')
 		.controller('ExtContentOptionsController', ExtContentOptionsController);
 
-	ExtContentOptionsController.$inject = ['$scope', 'initContentOptionsUtils', '$parse'];
+	ExtContentOptionsController.$inject = ['initContentOptionsUtils', '$parse', '$controller'];
 
-	function ExtContentOptionsController($scope, initOptionsUtils, $parse) {
+	function ExtContentOptionsController(initOptionsUtils, $parse, $controller) {
 		var vm = this;
+
+		angular.extend(vm, $controller('ExtContentOptionsSearchBaseController', {
+			$parse: $parse,
+			vm: vm
+		}));
+
 		vm.options = initOptionsUtils.initOpt(vm.options);
-
-		$scope.$watch('vm.options.searchValue', searchValueChanged);
-
-		function searchValueChanged(value) {
-			var selected = $parse('options.searchOptions.selected.label')('vm');
-
-			if (selected === undefined) {
-				return;
-			}
-
-			if (selected == 'everywhere') {
-				vm.options.search(value);
-			} else {
-				vm.options.search(selected + ':' + value);
-			}
-		}
 	};
 
 } ());

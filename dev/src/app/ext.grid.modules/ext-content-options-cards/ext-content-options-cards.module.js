@@ -6,6 +6,7 @@
 			'ext.common.datepicker',
 			'ext.common.splitButton',
 			'ext.common.search',
+			'ext.common.searchBase',
 			
 			'ext.grid.filter'
 		])

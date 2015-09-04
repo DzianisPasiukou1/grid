@@ -5,24 +5,24 @@
 		.module('ext.common.search')
 		.controller('ExtSearchController', ExtSearchController);
 
-	ExtSearchController.$inject = ['$scope'];
+	ExtSearchController.$inject = [];
 
-	function ExtSearchController($scope) {
+	function ExtSearchController() {
 		var vm = this;
 		vm.edited = false;
 		vm.clear = clear;
-		$scope.$watch('vm.searchValue', searchValueChanged);
+		vm.searchValueChanged = searchValueChanged;
 
 		function clear() {
 			vm.searchValue = '';
+			searchValueChanged(vm.searchValue);
 		};
 
 		function searchValueChanged(value) {
-			if (angular.isString(value) && value.length > 0) {
-				vm.edited = false;
-			}
-			else {
-				vm.edited = true;
+			vm.edited = angular.isString(value) && value.length > 0;
+
+			if (angular.isFunction(vm.onChange)) {
+				vm.onChange(value);
 			}
 		};
 	};

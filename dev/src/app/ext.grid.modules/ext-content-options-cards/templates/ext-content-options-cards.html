@@ -4,7 +4,7 @@
 	</div>
 	<div class="options__filter">
 		<ext-split-button class="options__show" actions="vm.options.searchOptions" selected="options.show" search="vm.options.searchValue"></ext-split-button>
-		<ext-search class="options__search" search-value="vm.options.searchValue"></ext-search>
+		<ext-search class="options__search" search-value="vm.options.searchValue" on-change="vm.searchValueChanged"></ext-search>
 		<div class="options__filt" ext-filter="vm.options.filterOptions" on-filtrate="vm.options.filtrate"></div>
 	</div>
 </div>

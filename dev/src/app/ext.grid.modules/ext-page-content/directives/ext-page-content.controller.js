@@ -21,7 +21,6 @@
 		$scope.$watch('vm.data', dataChanged);
 		$scope.$watch('vm.data.length', lengthChanged);
 		$scope.$watch('vm.grid.views.options.selected', viewsChangedvalue);
-		$scope.$watch('vm.contentOptions.searchValue', searchValueChanged);
 
 		function dataChanged(data) {
 			if (angular.isArray(data)) {
@@ -42,10 +41,6 @@
 					initPageContent.refreshCheckCallback(vm.gridOptions);
 				}
 			}
-		};
-
-		function searchValueChanged(value) {
-			vm.contentOptions.search(value);
 		};
 	};
 } ());

@@ -5,11 +5,9 @@
 		.module('ext.sankey.navbar')
 		.controller('NavigationCtrl', NavigationCtrl);
 
-	NavigationCtrl.$inject = ['NavigationTree'];
+	NavigationCtrl.$inject = ['NavigationTree', '$scope'];
 
-	function NavigationCtrl(NavigationTree) {
-		var vm = this;
-
-		vm.navigationTree = NavigationTree.get();
+	function NavigationCtrl(NavigationTree, $scope) {
+		$scope.navigationTree = NavigationTree.get();
 	}
 } ());

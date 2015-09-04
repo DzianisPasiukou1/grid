@@ -12,7 +12,7 @@
 			restrict: 'EA',
 			scope: {
 				searchValue: '=',
-				edited: '='
+				onChange: '='
 			},
 			controller: 'ExtSearchController',
 			controllerAs: 'vm',
