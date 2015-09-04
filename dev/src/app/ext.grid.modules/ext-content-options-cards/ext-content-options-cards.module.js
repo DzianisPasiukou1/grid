@@ -7,6 +7,7 @@
 			'ext.common.splitButton',
 			'ext.common.search',
 			'ext.common.searchBase',
+			'ext.common.extend',
 			
 			'ext.grid.filter'
 		])

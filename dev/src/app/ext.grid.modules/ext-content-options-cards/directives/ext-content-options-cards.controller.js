@@ -5,14 +5,15 @@
 		.module('ext.grid.contentOptionsCards')
 		.controller('ExtContentOptionsCardsController', ExtContentOptionsCardsController);
 
-	ExtContentOptionsCardsController.$inject = ['$parse', '$controller'];
+	ExtContentOptionsCardsController.$inject = ['$parse', 'extExtend'];
 
-	function ExtContentOptionsCardsController($parse, $controller) {
+	function ExtContentOptionsCardsController($parse, extExtend) {
 		var vm = this;
 
-		angular.extend(vm, $controller('ExtContentOptionsSearchBaseController', {
+		extExtend('ExtContentOptionsSearchBaseController', {
 			$parse: $parse,
 			vm: vm
-		}));
+		}, vm);
 	};
+
 } ());

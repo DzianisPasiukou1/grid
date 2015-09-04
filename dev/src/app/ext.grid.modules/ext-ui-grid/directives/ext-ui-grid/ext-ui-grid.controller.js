@@ -152,10 +152,10 @@
 			var match = false;
 
 			vm.options.columnDefs.forEach(function (item) {
-				var propName = propName || item.field;
+				var prop = propName || item.field;
 
-				if (row.entity[propName] !== undefined) {
-					if (row.entity[propName].toString().match(matcher)) {
+				if (row.entity[prop] !== undefined) {
+					if (row.entity[prop].toString().match(matcher)) {
 						match = true;
 					}
 				}

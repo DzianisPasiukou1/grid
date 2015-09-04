@@ -9,6 +9,7 @@
 			'ext.common.upload',
 			'ext.common.initDefault',
 			'ext.common.searchBase',
+			'ext.common.extend',
 
 			'ext.grid.filter',
 			'ext.grid.checkboxSelect'
