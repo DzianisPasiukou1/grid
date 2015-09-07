@@ -5,11 +5,11 @@
 		.module('ext.grid.pageContent')
 		.factory('initPageContentGrid', initPageContentGrid);
 
-	initPageContentGrid.$inject = [];
+	initPageContentGrid.$inject = ['extDefine'];
 
-	function initPageContentGrid() {
+	function initPageContentGrid(extDefine) {
 		var utils = {};
-		
+
 		utils.content = {};
 
 		utils.content.exports = {
@@ -35,11 +35,11 @@
 		return utils;
 
 		function initGrid(grid) {
-			var initGrid = grid || {};
+			var initGrid = extDefine(grid, {});
 
-			initGrid.exports = initGrid.exports || utils.content.exports;
-			initGrid.views = initGrid.views || utils.content.views;
-			initGrid.name = initGrid.name || utils.content.name;
+			initGrid.exports = extDefine(initGrid, utils.content, 'exports');
+			initGrid.views = extDefine(initGrid, utils.content, 'views');
+			initGrid.name = extDefine(initGrid, utils.content, 'name');
 
 			return initGrid;
 		};

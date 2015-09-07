@@ -5,16 +5,16 @@
 		.module('ext.grid.pageContent')
 		.controller('ExtPageContentController', ExtPageContentController);
 
-	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile', 'extGridTemplatesPath'];
+	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile', 'extGridTemplatesPath', 'loggerService'];
 
-	function ExtPageContentController($scope, initPageContent, $element, $compile, extGridTemplatesPath) {
+	function ExtPageContentController($scope, initPageContent, $element, $compile, extGridTemplatesPath, logger) {
 		var vm = this;
 
-		vm.grid = vm.grid || {};
-		vm.data = vm.data || [];
-		vm.contentOptions = vm.contentOptions || {};
-		vm.gridOptions = vm.gridOptions || {};
-		vm.uiGridOptions = vm.uiGridOptions || {};
+		vm.grid = logger.defineObj('Grid is not defined', vm.grid, {});
+		vm.data = logger.defineObj('Data is not defined', vm.data, []);
+		vm.contentOptions = logger.defineObj('Content options is not defined', vm.contentOptions, {});
+		vm.gridOptions = logger.defineObj('Grid options is not defined', vm.gridOptions, {});
+		vm.uiGridOptions = logger.defineObj('Ui grid options is not defined', vm.uiGridOptions, {});
 
 		initPageContent.init(vm.grid, vm.contentOptions, vm.gridOptions, $element, $scope, vm.data, $compile, extGridTemplatesPath);
 

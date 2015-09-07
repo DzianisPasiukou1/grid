@@ -4,56 +4,56 @@
 		.module('ext.grid.uiGrid')
 		.controller('ExtUiGridController', ExtUiGridController);
 
-	ExtUiGridController.$inject = ['extUiGridTemplatesPath', '$scope', 'rowFactory'];
+	ExtUiGridController.$inject = ['extUiGridTemplatesPath', '$scope', 'rowFactory', 'extDefine'];
 
-	function ExtUiGridController(templatesPath, $scope, rowFactory) {
+	function ExtUiGridController(templatesPath, $scope, rowFactory, extDefine) {
 		var vm = this;
 
 		vm.contentOptions = vm.contentOptions || {};
 
 		vm.data = vm.data || [];
 
-		vm.options = vm.options || {};
-		vm.options.data = vm.options.data || 'vm.data';
-		vm.options.rowHeight = vm.options.rowHeight || 60;
-		vm.options.showGridFooter = vm.options.showGridFooter || true;
-		vm.options.enableColumnMenus = vm.options.enableColumnMenus || false;
-		vm.options.enableRowSelection = vm.options.enableRowSelection || true;
-		vm.options.enableGridMenu = vm.options.enableGridMenu || false;
-		vm.options.multiSelect = vm.options.multiSelect || false;
-		vm.options.modifierKeysToMultiSelect = vm.options.modifierKeysToMultiSelect || false;
-		vm.options.noUnselect = vm.options.noUnselect || true;
-		vm.options.enableExpandable = vm.options.enableExpandable || true;
-		vm.options.enableRowHeaderSelection = vm.options.enableRowHeaderSelection || false;
-		vm.options.expandableRowTemplate = vm.options.expandableRowTemplate || templatesPath + 'ui-grid-templates/details.html';
-		vm.options.expandableRowHeight = vm.options.expandableRowHeight || 220;
-		vm.options.selectionRowHeaderWidth = vm.options.selectionRowHeaderWidth || 35;
-		vm.options.enableExpandableRowHeader = vm.options.enableExpandableRowHeader || false;
-		vm.options.enableFiltering = vm.options.enableFiltering || true;
-		vm.options.rowTemplate = vm.options.rowTemplate || templatesPath + 'ui-grid-templates/row.html';
-		vm.options.expandableRowScope = vm.options.expandableRowScope || {
+		vm.options = extDefine(vm.options, {});
+		vm.options.data = extDefine(vm.options.data, 'vm.data');
+		vm.options.rowHeight = extDefine(vm.options.rowHeight, 60);
+		vm.options.showGridFooter = extDefine(vm.options.showGridFooter, true)
+		vm.options.enableColumnMenus = extDefine(vm.options.enableColumnMenus, false);
+		vm.options.enableRowSelection = extDefine(vm.options.enableRowSelection, true);
+		vm.options.enableGridMenu = extDefine(vm.options.enableGridMenu, false);
+		vm.options.multiSelect = extDefine(vm.options.multiSelect, false);
+		vm.options.modifierKeysToMultiSelect = extDefine(vm.options.modifierKeysToMultiSelect, false);
+		vm.options.noUnselect = extDefine(vm.options.noUnselect, true);
+		vm.options.enableExpandable = extDefine(vm.options.enableExpandable, true);
+		vm.options.enableRowHeaderSelection = extDefine(vm.options.enableRowHeaderSelection, false);
+		vm.options.expandableRowTemplate = extDefine(vm.options.expandableRowTemplate, templatesPath + 'ui-grid-templates/details.html');
+		vm.options.expandableRowHeight = extDefine(vm.options.expandableRowHeight, 220);
+		vm.options.selectionRowHeaderWidth = extDefine(vm.options.selectionRowHeaderWidth, 35);
+		vm.options.enableExpandableRowHeader = extDefine(vm.options.enableExpandableRowHeader, false);
+		vm.options.enableFiltering = extDefine(vm.options.enableFiltering, true);
+		vm.options.rowTemplate = extDefine(vm.options.rowTemplate, templatesPath + 'ui-grid-templates/row.html');
+		vm.options.expandableRowScope = extDefine(vm.options.expandableRowScope, {
 			subGridVariable: 'subGridScopeVariable'
-		};
-		vm.options.gridFooterTemplate = vm.options.gridFooterTemplate || '<div class="grid-footer"></div>';
-		vm.options.headerTemplate = vm.options.headerTemplate || templatesPath + 'ui-grid-templates/header.html';
-		vm.options.headerCellTemplate = vm.options.headerCellTemplate || templatesPath + 'ui-grid-templates/cell-templates/header.html';
-		vm.options.reInit = vm.options.reInit || false;
-		vm.options.enableDetails = vm.options.enableDetails || true;
-		vm.options.detailsCellTemplate = vm.options.detailsCellTemplate || templatesPath + 'ui-grid-templates/cell-templates/details.html';
-		vm.options.detailsWidth = vm.options.detailsWidth || 60;
-		vm.options.detailsMinWidth = vm.options.detailsMinWidth || 60;
-		vm.options.enableAction = vm.options.enableAction || true;
-		vm.options.actionsCellTemplate = vm.options.actionsCellTemplate || templatesPath + 'ui-grid-templates/cell-templates/action.html';
-		vm.options.actionsWidth = vm.options.actionsWidth || 250;
-		vm.options.actionsMinWidth = vm.options.actionsWidth || 115;
-		vm.options.columnMinWidth = vm.options.columnMinWidth || 80;
-		vm.options.cellClass = vm.options.cellClass || cellClass;
-		vm.options.enableColumnFilter = vm.options.enableColumnFilter || false;
+		});
+		vm.options.gridFooterTemplate = extDefine(vm.options.gridFooterTemplate, '<div class="grid-footer"></div>');
+		vm.options.headerTemplate = extDefine(vm.options.headerTemplate, templatesPath + 'ui-grid-templates/header.html');
+		vm.options.headerCellTemplate = extDefine(vm.options.headerCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/header.html');
+		vm.options.reInit = extDefine(vm.options.reInit, false);
+		vm.options.enableDetails = extDefine(vm.options.enableDetails, true);
+		vm.options.detailsCellTemplate = extDefine(vm.options.detailsCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/details.html');
+		vm.options.detailsWidth = extDefine(vm.options.detailsWidth, 60);
+		vm.options.detailsMinWidth = extDefine(vm.options.detailsMinWidth, 60);
+		vm.options.enableAction = extDefine(vm.options.enableAction, true);
+		vm.options.actionsCellTemplate = extDefine(vm.options.actionsCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/action.html');
+		vm.options.actionsWidth = extDefine(vm.options.actionsWidth, 250);
+		vm.options.actionsMinWidth = extDefine(vm.options.actionsWidth, 115);
+		vm.options.columnMinWidth = extDefine(vm.options.columnMinWidth, 80);
+		vm.options.cellClass = extDefine(vm.options.cellClass, cellClass);
+		vm.options.enableColumnFilter = extDefine(vm.options.enableColumnFilter, false);
 		vm.options.onRegisterApi = onRegisterApi;
-		vm.options.filterOptions = vm.options.filterOptions || getFilterOptions();
-		vm.options.rowActions = vm.options.rowActions || getRowActions();
-		vm.options.columnDefs = vm.options.columnDefs || initColumnDef(vm.data);
-		vm.options.reInit = vm.contentOptions.withUpload ? vm.options.reInit || true : vm.options.reInit || false;
+		vm.options.filterOptions = extDefine(vm.options.filterOptions, getFilterOptions());
+		vm.options.rowActions = extDefine(vm.options.rowActions, getRowActions());
+		vm.options.columnDefs = extDefine(vm.options.columnDefs, initColumnDef(vm.data));
+		vm.options.reInit = vm.contentOptions.withUpload ? extDefine(vm.options.reInit, true) : extDefine(vm.options.reInit, false);
 
 		vm.singleFilter = singleFilter;
 		vm.rowChangedClass = rowChangedClass;

@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContentCards')
 		.factory('initCardsOptionsUtils', initCardsOptionsUtils);
 
-	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory', 'initContentOptionsCardsUtils'];
+	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory', 'initContentOptionsCardsUtils', 'extDefine'];
 
-	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory, initContentOptionsCardsUtils) {
+	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory, initContentOptionsCardsUtils, extDefine) {
 		var utils = {};
 
 		utils.content = {};
@@ -28,11 +28,11 @@
 		};
 
 		function initCards(cardsOptions) {
-			var opt = cardsOptions || {};
+			var opt = extDefine(cardsOptions, {});
 
-			opt.cards = opt.cards || utils.content.cards;
-			opt.margin = opt.margin || utils.content.margin;
-			opt.enableCounter = opt.enableCounter || utils.content.enableCounter;
+			opt.cards = extDefine(opt, utils.content, 'cards');
+			opt.margin = extDefine(opt, utils.content, 'margin');
+			opt.enableCounter = extDefine(opt, utils.content, 'enableCounter');
 
 			if (opt.enableCounter) {
 				initCounter(opt.cards);
@@ -42,13 +42,13 @@
 		};
 
 		function initContentOptions(contentOptions, data, vm) {
-			var opt = contentOptions || {};
+			var opt = extDefine(contentOptions, {});
 
-			opt.filtrate = opt.filtrate || angular.bind(vm, filtrate);
-			opt.search = opt.search || angular.bind(vm, search);
-			opt.searchOptions = getSearchOptions(data);
+			opt.filtrate = extDefine(opt.filtrate, angular.bind(vm, filtrate));
+			opt.search = extDefine(opt.search, angular.bind(vm, search));
+			opt.searchOptions = extDefine(opt.searchOptions, getSearchOptions(data));
 			opt.searchOptions.selected = opt.searchOptions[0];
-			opt.filterOptions = opt.filterOptions || getFilterOptions(data);
+			opt.filterOptions = extDefine(opt.filterOptions, getFilterOptions(data));
 
 			opt = initContentOptionsCardsUtils.initOpt(opt);
 

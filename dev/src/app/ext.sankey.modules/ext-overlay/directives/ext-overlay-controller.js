@@ -1,19 +1,20 @@
-﻿(function () {
+﻿/* global getWindowWidth */
+(function () {
 	'use strict'
 
 	angular
 		.module('ext.sankey.overlay')
 		.controller('ExtOverlayController', ExtOverlayController);
 
-	ExtOverlayController.$inject = ['OVERLAY', '$timeout', '$element', '$window'];
+	ExtOverlayController.$inject = ['OVERLAY', '$timeout', '$element', '$window', 'extDefine'];
 
-	function ExtOverlayController(OVERLAY, $timeout, $element, $window) {
+	function ExtOverlayController(OVERLAY, $timeout, $element, $window, extDefine) {
 		var vm = this;
-		vm.selectors = vm.selectors || {};
-		vm.selectors.overlaySelector = vm.selectors.overlaySelector || OVERLAY.overlaySelector;
-		vm.selectors.heighterSelector = vm.selectors.heighterSelector || OVERLAY.heighterSelector;
-		vm.selectors.alignTopSelector = vm.selectors.alignTopSelector || OVERLAY.alignTopSelector;
-		vm.toggleMinWidth = vm.toggleMinWidth || OVERLAY.toggleMinWidth;
+		vm.selectors = extDefine(vm.selectors, {});
+		vm.selectors.overlaySelector = extDefine(vm.selectors, OVERLAY, 'overlaySelector');
+		vm.selectors.heighterSelector = extDefine(vm.selectors, OVERLAY, 'heighterSelector');
+		vm.selectors.alignTopSelector = extDefine(vm.selectors, OVERLAY, 'alignTopSelector');
+		vm.toggleMinWidth = extDefine(vm, OVERLAY, 'toggleMinWidth');
 		vm.style = {
 			left: getWindowWidth() - vm.toggleMinWidth + 'px',
 			transition: '',

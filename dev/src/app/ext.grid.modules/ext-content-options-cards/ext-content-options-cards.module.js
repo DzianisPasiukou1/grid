@@ -8,6 +8,7 @@
 			'ext.common.search',
 			'ext.common.searchBase',
 			'ext.common.extend',
+			'ext.common.define',
 			
 			'ext.grid.filter'
 		])

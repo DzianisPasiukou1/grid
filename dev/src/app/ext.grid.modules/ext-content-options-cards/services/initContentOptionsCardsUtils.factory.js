@@ -5,13 +5,14 @@
 		.module('ext.grid.contentOptionsCards')
 		.factory('initContentOptionsCardsUtils', initContentOptionsCardsUtils);
 
-	initContentOptionsCardsUtils.$inject = ['EXT_CONTENT_OPTIONS_CARDS', 'extInitDefaultService', '$log'];
+	initContentOptionsCardsUtils.$inject = ['EXT_CONTENT_OPTIONS_CARDS', 'extInitDefaultService', '$log', 'extDefine'];
 
-	function initContentOptionsCardsUtils(EXT_CONTENT_OPTIONS_CARDS, extInitDefaultService, $log) {
+	function initContentOptionsCardsUtils(EXT_CONTENT_OPTIONS_CARDS, extInitDefaultService, $log, extDefine) {
 		var utils = {};
 		initContent();
 		utils.initOpt = initOpt;
 		utils.getDefault = getDefault;
+		utils.getDefaultByName = getDefaultByName;
 
 		return utils;
 
@@ -22,24 +23,28 @@
 		function initOpt(contentOptions) {
 			var opt = contentOptions || {};
 
-			opt.filtrate = opt.filtrate || filtrate;
-			opt.search = opt.search || search;
-			opt.searchOptions = opt.searchOptions || utils.content.searchOptions;
-			opt.searchValue = opt.searchValue || utils.content.searchValue;
-			opt.datepickerOptions = opt.datepickerOptions || utils.content.datepickerOptions;
-			opt.datepickerOptions.startDate = opt.datepickerOptions.startDate || utils.content.datepickerOptions.startDate;
-			opt.datepickerOptions.endDate = opt.datepickerOptions.endDate || utils.content.datepickerOptions.endDate;
-			opt.datepickerOptions.dateRange = opt.datepickerOptions.dateRange || utils.content.datepickerOptions.dateRange;
-			opt.datepickerOptions.config = opt.datepickerOptions.config || utils.content.datepickerOptions.datepickerConfig;
-			opt.exports = opt.exports || utils.content.exports;
+			opt.filtrate = extDefine(opt.filtrate, filtrate);
+			opt.search = extDefine(opt.search, search);
+			opt.searchOptions = extDefine(opt, utils.content, 'searchOptions');
+			opt.searchValue = extDefine(opt, utils.content, 'searchValue');
+			opt.datepickerOptions = extDefine(opt, utils.content, 'datepickerOptions');
+			opt.datepickerOptions.startDate = extDefine(opt.datepickerOptions, utils.content.datepickerOptions, 'startDate');
+			opt.datepickerOptions.endDate = extDefine(opt.datepickerOptions, utils.content.datepickerOptions, 'endDate');
+			opt.datepickerOptions.dateRange = extDefine(opt.datepickerOptions, utils.content.datepickerOptions, 'dateRange');
+			opt.datepickerOptions.config = extDefine(opt.datepickerOptions.config, utils.content.datepickerOptions.datepickerConfig);
+			opt.exports = extDefine(opt, utils.content, 'exports');
 			opt.searchOptions.selected = opt.searchOptions[0];
-			opt.filterOptions = opt.filterOptions || utils.content.filterOptions;
+			opt.filterOptions = extDefine(opt, utils.content, 'filterOptions');
 
 			return opt;
 		};
 
 		function getDefault() {
 			return utils.content;
+		};
+
+		function getDefaultByName(name) {
+			return utils.content[name];
 		};
 
 		function filtrate() {

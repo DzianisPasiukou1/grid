@@ -5,9 +5,9 @@
 		.module('ext.sankey.mouseOver')
 		.directive('extMouseOver', extMouseOver);
 
-	extMouseOver.$inject = ['extMouseOverTemplatesPath', '$timeout', '$window'];
+	extMouseOver.$inject = ['extMouseOverTemplatesPath', '$timeout', '$window', 'extDefine'];
 
-	function extMouseOver(templatesPath, $timeout, $window) {
+	function extMouseOver(templatesPath, $timeout, $window, extDefine) {
 		var directive = {
 			restrict: 'EAC',
 			scope: {
@@ -25,7 +25,7 @@
 		return directive;
 
 		function link(scope, element, attrs, vm) {
-			vm.parentTop = vm.parentTop || 0;
+			vm.parentTop = extDefine(vm.parentTop, 0);
 			vm.style = {
 				visibility: 'hidden'
 			}

@@ -5,9 +5,9 @@
 		.module('ext.grid.contentOptions')
 		.factory('initContentOptionsUtils', initContentOptionsUtils);
 
-	initContentOptionsUtils.$inject = ['$log', 'EXT_CONTENT_OPTIONS', 'extInitDefaultService'];
+	initContentOptionsUtils.$inject = ['$log', 'EXT_CONTENT_OPTIONS', 'extInitDefaultService', 'extDefine'];
 
-	function initContentOptionsUtils($log, EXT_CONTENT_OPTIONS, extInitDefaultService) {
+	function initContentOptionsUtils($log, EXT_CONTENT_OPTIONS, extInitDefaultService, extDefine) {
 		var utils = {};
 
 		initContent();
@@ -25,16 +25,16 @@
 		};
 
 		function initOpt(opt) {
-			var contentOptions = opt || {};
+			var contentOptions = extDefine(opt, {});
 
-			contentOptions.checks = contentOptions.checks || utils.content.checks;
-			contentOptions.checks.callback = contentOptions.checks.callback || checkCallback;
-			contentOptions.mores = contentOptions.mores || utils.content.mores;
-			contentOptions.filterOptions = contentOptions.filterOptions || [];
-			contentOptions.filtrate = contentOptions.filtrate || filtrate;
-			contentOptions.refresh = contentOptions.refresh || refresh;
-			contentOptions.upload = contentOptions.upload || upload;
-			contentOptions.searchValue = contentOptions.searchValue || utils.content.searchValue;
+			contentOptions.checks = extDefine(contentOptions, utils.content, 'checks');
+			contentOptions.checks.callback = extDefine(contentOptions.checks.callback, checkCallback);
+			contentOptions.mores = extDefine(contentOptions, utils.content, 'mores');
+			contentOptions.filterOptions = extDefine(contentOptions.filterOptions, []);
+			contentOptions.filtrate = extDefine(contentOptions.filtrate, filtrate);
+			contentOptions.refresh = extDefine(contentOptions.refresh, refresh);
+			contentOptions.upload = extDefine(contentOptions.upload, upload);
+			contentOptions.searchValue = extDefine(contentOptions, utils.content, 'searchValue');
 
 			return contentOptions;
 		};

@@ -5,9 +5,9 @@
 		.module('ext.grid.pageContent')
 		.factory('initPageContentOptions', initPageContentOptions);
 
-	initPageContentOptions.$inject = ['$compile', 'initContentOptionsUtils', '$parse'];
+	initPageContentOptions.$inject = ['$compile', 'initContentOptionsUtils', '$parse', 'extDefine'];
 
-	function initPageContentOptions($compile, initContentOptionsUtils, $parse) {
+	function initPageContentOptions($compile, initContentOptionsUtils, $parse, extDefine) {
 		var utils = {};
 
 		utils.content = {};
@@ -22,27 +22,27 @@
 		return utils;
 
 		function initContentOpt(opt, element, scope, data) {
-			var contentOptions = opt || {};
+			var contentOptions = extDefine(opt, {});
 
-			contentOptions.loading = contentOptions.loading || false;
+			contentOptions.loading = extDefine(contentOptions.loading, false);
 
 			if (contentOptions.loading) {
 				contentOptions.isLoading = true;
 				this.renderLoading(scope, element);
 			}
 
-			contentOptions.filtrate = contentOptions.filtrate || angular.bind(scope.vm, filtrate);
-			contentOptions.search = contentOptions.search || angular.bind(scope.vm, search);
-			contentOptions.refresh = contentOptions.refresh || angular.bind(scope.vm, refresh);
-			contentOptions.withUpload = contentOptions.withUpload || false;
-			contentOptions.filterOptions = contentOptions.filterOptions || getFilterOptions(data);
-			contentOptions.searchOptions = contentOptions.searchOptions || getSearchOptions(data);
+			contentOptions.filtrate = extDefine(contentOptions.filtrate, angular.bind(scope.vm, filtrate));
+			contentOptions.search = extDefine(contentOptions.search, angular.bind(scope.vm, search));
+			contentOptions.refresh = extDefine(contentOptions.refresh, angular.bind(scope.vm, refresh));
+			contentOptions.withUpload = extDefine(contentOptions.withUpload, false);
+			contentOptions.filterOptions = extDefine(contentOptions.filterOptions, getFilterOptions(data));
+			contentOptions.searchOptions = extDefine(contentOptions.searchOptions, getSearchOptions(data));
 			opt.searchOptions.selected = opt.searchOptions[0];
-			opt.searchValue = opt.searchValue || '';
+			opt.searchValue = extDefine(opt.searchValue, '');
 
 			if (contentOptions.withUpload) {
 				contentOptions.isDynamic = true;
-				contentOptions.upload = contentOptions.upload || angular.bind(scope, upload);
+				contentOptions.upload = extDefine(contentOptions.upload || angular.bind(scope, upload));
 			}
 
 			initContentOptionsUtils.initOpt(contentOptions)

@@ -5,14 +5,14 @@
 		.module('ext.grid.uiGrid')
 		.controller('ExtUiGridMenuController', ExtUiGridMenuController);
 
-	ExtUiGridMenuController.$inject = ['MENU', 'uiGridGridMenuService', '$window'];
+	ExtUiGridMenuController.$inject = ['MENU', 'uiGridGridMenuService', '$window', 'extDefine'];
 
-	function ExtUiGridMenuController(MENU, uiGridGridMenuService, $window) {
+	function ExtUiGridMenuController(MENU, uiGridGridMenuService, $window, extDefine) {
 		var vm = this;
 
-		vm.options = vm.options || {};
-		vm.options.parentSelector = vm.options.parentSelector || MENU.parentSelector;
-		vm.options.parentMinWidth = vm.options.parentMinWidth || MENU.parentMinWidth;
+		vm.options = extDefine(vm.options, {});
+		vm.options.parentSelector = extDefine(vm.options, MENU, 'parentSelector');
+		vm.options.parentMinWidth = extDefine(vm.options, MENU, 'parentMinWidth');
 		vm.options.enableGridMenu = vm.options.showResponsMenu;
 
 		vm.getTotalWidth = getTotalWidth;

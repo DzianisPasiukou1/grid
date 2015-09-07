@@ -6,9 +6,9 @@
 		.module('ext.grid.main')
 		.factory('initGridOptionsUtils', initGridOptionsUtils);
 
-	initGridOptionsUtils.$inject = ['extGridOptions', 'extInitDefaultService', '$log'];
+	initGridOptionsUtils.$inject = ['extGridOptions', 'extInitDefaultService', '$log', 'extDefine'];
 
-	function initGridOptionsUtils(extGridOptions, extInitDefaultService, $log) {
+	function initGridOptionsUtils(extGridOptions, extInitDefaultService, $log, extDefine) {
 		var utils = {};
 
 		utils.getDefault = getDefault;
@@ -40,25 +40,25 @@
 
 			var opt = gridOptions || {};
 
-			opt.data = opt.data || utils.content.data;
-			opt.withDetails = opt.withDetails || utils.content.withDetails;
-			opt.multiSelect = opt.multiSelect || utils.content.multiSelect;
-			opt.rowTemplate = opt.rowTemplate || templatesPath + utils.content.rowTemplate;
-			opt.filterOptions = opt.filterOptions || utils.content.filterOptions;
-			opt.rowHeight = opt.rowHeight || utils.content.rowHeight;
-			opt.headerRowHeight = opt.headerRowHeight || utils.content.headerRowHeight;
-			opt.showFooter = opt.showFooter || utils.content.showFooter;
-			opt.footerRowHeight = opt.footerRowHeight || utils.content.footerRowHeight;
-			opt.footerTemplate = opt.footerTemplate || templatesPath + utils.content.footerTemplate;
-			opt.init = opt.init || angular.bind(gridOptions, utils.content.init);
-			opt.detailsTemplate = opt.withDetails ? opt.detailsTemplate || templatesPath + utils.content.detailsTemplate : null;
-			opt.rowActions = opt.rowActions || utils.content.rowActions;
-			opt.rowCheckAction = opt.rowCheckAction || angular.bind(contentOptions, utils.content.rowCheckAction);
-			opt.beforeSelectionChange = opt.beforeSelectionChange || utils.content.beforeSelectionChange;
-			opt.pluginActionOpt = opt.pluginActionOpt || utils.content.getPluginActionOpt(gridOptions, contentOptions);
-			opt.plugins = opt.plugins || utils.content.getPlugins(gridOptions, $compile);
-			opt.columnDefs = opt.columnDefs || utils.content.generateColumn(data, templatesPath);
-			opt.reInit = opt.reInit || utils.content.reInit;
+			opt.data = extDefine(opt, utils.content, 'data');
+			opt.withDetails = extDefine(opt, utils.content, 'withDetails');
+			opt.multiSelect = extDefine(opt, utils.content, 'multiSelect');
+			opt.rowTemplate = extDefine(opt.rowTemplate, templatesPath + utils.content.rowTemplate);
+			opt.filterOptions = extDefine(opt, utils.content, 'filterOptions');
+			opt.rowHeight = extDefine(opt, utils.content, 'rowHeight');
+			opt.headerRowHeight = extDefine(opt, utils.content, 'headerRowHeight');
+			opt.showFooter = extDefine(opt, utils.content, 'showFooter');
+			opt.footerRowHeight = extDefine(opt, utils.content, 'footerRowHeight');
+			opt.footerTemplate = extDefine(opt.footerTemplate, templatesPath + utils.content.footerTemplate);
+			opt.init = extDefine(opt.init, angular.bind(gridOptions, utils.content.init));
+			opt.detailsTemplate = opt.withDetails ? extDefine(opt.detailsTemplate, templatesPath + utils.content.detailsTemplate) : null;
+			opt.rowActions = extDefine(opt, utils.content, 'rowActions');
+			opt.rowCheckAction = extDefine(opt.rowCheckAction, angular.bind(contentOptions, utils.content.rowCheckAction));
+			opt.beforeSelectionChange = extDefine(opt, utils.content, 'beforeSelectionChange');
+			opt.pluginActionOpt = extDefine(opt.pluginActionOpt, utils.content.getPluginActionOpt(gridOptions, contentOptions));
+			opt.plugins = extDefine(opt.plugins, utils.content.getPlugins(gridOptions, $compile));
+			opt.columnDefs = extDefine(opt.columnDefs, utils.content.generateColumn(data, templatesPath));
+			opt.reInit = extDefine(opt, utils.content, 'reInit');
 
 			return opt;
 		};

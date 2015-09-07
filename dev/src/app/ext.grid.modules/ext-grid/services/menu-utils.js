@@ -5,26 +5,26 @@
 		.module('ext.grid.main')
 		.factory('menuUtils', menuUtils);
 
-	menuUtils.$inject = ['MENU', '$window'];
+	menuUtils.$inject = ['MENU', '$window', 'extDefine'];
 
-	function menuUtils(MENU, $window) {
+	function menuUtils(MENU, $window, extDefine) {
 		return {
 			register: function (columns, opt) {
 				this.opt = opt;
 
-				this.opt = this.opt || {};
-				this.opt.isMenu = this.opt.isMenu || false;
-				this.opt.label = this.opt.label || '';
-				this.opt.values = this.opt.values || [];
-				this.opt.isCheckbox = this.opt.isCheckbox || true;
-				this.opt.withSave = this.opt.withSave || false;
-				this.opt.onSave = this.opt.onSave || function () {
-				}
-				this.opt.callback = this.opt.callback || function (action) {
-				}
-				this.opt.onCheck = this.opt.onCheck || angular.bind(this, this.check);
-				this.opt.parentSelector = this.opt.parentSelector || MENU.parentSelector;
-				this.opt.parentMinWidth = this.opt.parentMinWidth || MENU.parentMinWidth;
+				this.opt = extDefine(this.opt, {});
+				this.opt.isMenu = extDefine(this.opt.isMenu, false);
+				this.opt.label = extDefine(this.opt.label, '');
+				this.opt.values = extDefine(this.opt.values, []);
+				this.opt.isCheckbox = extDefine(this.opt.isCheckbox, true);
+				this.opt.withSave = extDefine(this.opt.withSave, false);
+				this.opt.onSave = extDefine(this.opt.onSave, function () {
+				});
+				this.opt.callback = extDefine(this.opt.callback, function (action) {
+				});
+				this.opt.onCheck = extDefine(this.opt.onCheck, angular.bind(this, this.check));
+				this.opt.parentSelector = extDefine(this.opt || MENU, 'parentSelector');
+				this.opt.parentMinWidth = extDefine(this.opt || MENU, 'parentMinWidth');
 
 				if (!Number.isFinite(this.opt.countBlockLastColumn)) {
 					this.opt.countBlockLastColumn = 1;
