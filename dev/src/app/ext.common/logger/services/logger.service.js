@@ -14,7 +14,7 @@
 			if (!angular.isDefined(obj)) {
 				$log.warn(text);
 
-				obj = type || {};
+				obj = angular.isDefined(type) ? type : {};
 			}
 
 			return obj;

@@ -21,11 +21,7 @@
 
 		function dateRangeChange(date) {
 			if (date) {
-				for (var card in vm.cardsOptions.cards) {
-					if (vm.cardsOptions.cards[card].counter) {
-						vm.cardsOptions.cards[card].count = vm.cardsOptions.cards[card].counter.calculate(vm.contentOptions.datepickerOptions.startDate, vm.contentOptions.datepickerOptions.endDate);
-					}
-				}
+				initCardsOptionsUtils.dateRangeChanged(date, vm.cardsOptions, vm.contentOptions);
 			}
 		};
 	};

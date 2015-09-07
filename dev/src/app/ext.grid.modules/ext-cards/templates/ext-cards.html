@@ -15,9 +15,9 @@
 				<span class="my-card__header__text">{{vm.contentOptions.debugCard.text}}</span>
 			</div>
 			<div class="my-card__body">
-				<div ng-if="vm.contentOptions.debugCard.templateUrl" ng-include="vm.contentOptions.debugCard.templateUrl">
+				<div ng-if="!vm.contentOptions.debugCard.template" ng-include="vm.contentOptions.debugCard.templateUrl">
 				</div>
-				<div ng-if="!vm.contentOptions.debugCard.templateUrl" gr-template="vm.contentOptions.debugCard.template" gr-name="vm.debugTemplate"></div>
+				<div ng-if="vm.contentOptions.debugCard.template" gr-template="vm.contentOptions.debugCard.template" gr-name="vm.debugTemplate"></div>
 			</div>
 		</div>
 	</div>

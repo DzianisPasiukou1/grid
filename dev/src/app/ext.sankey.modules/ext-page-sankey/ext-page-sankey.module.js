@@ -12,7 +12,8 @@
 
 			'ext.common.logger',
 			'ext.common.counter',
-			'ext.common.upload'
+			'ext.common.upload',
+			'ext.common.define'
 		])
 		.constant('extPagesankeyTemplatesPath', 'src/app/ext.sankey.modules/ext-page-sankey/templates/');
 } ());

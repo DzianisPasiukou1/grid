@@ -29,11 +29,7 @@
 		function link(scope, element, attrs, vm) {
 			element.addClass('page-content-d3');
 
-			vm.contentOptions.refresh = refresh;
 			vm.filters.onDateRangeChange = onDateRangeChange;
-
-			function refresh() {
-			};
 
 			function onDateRangeChange() {
 				for (var card in vm.cardsOptions.cards) {

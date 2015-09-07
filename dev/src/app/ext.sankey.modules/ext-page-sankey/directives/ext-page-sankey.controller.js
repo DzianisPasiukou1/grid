@@ -15,5 +15,13 @@
 		vm.sankeyData = loggerService.defineObj('Sankey data is not defined', vm.sankeyData, initUtils.initSankeyData(vm.sankeyData));
 		vm.histogramData = loggerService.defineObj('Histogram data is not defined', vm.histogramData, initUtils.initHistogramData(vm.histogramData));
 		vm.filters = loggerService.defineObj('Filters is not defined', vm.filters, initUtils.initFilters(vm.filters));
+
+		vm.contentOptions.update = update;
+
+		function update() {
+			vm.sankeyData = initUtils.content.sankeyData;
+			vm.histogramData = initUtils.content.histogramData;
+			vm.cardsOptions.cards = initUtils.content.cards;
+		};
 	};
 } ());

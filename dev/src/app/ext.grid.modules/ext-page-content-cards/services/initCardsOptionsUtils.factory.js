@@ -5,19 +5,22 @@
 		.module('ext.grid.pageContentCards')
 		.factory('initCardsOptionsUtils', initCardsOptionsUtils);
 
-	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory'];
+	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory', 'initContentOptionsCardsUtils'];
 
-	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory) {
+	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory, initContentOptionsCardsUtils) {
 		var utils = {};
 
 		utils.content = {};
 		utils.content.cards = EXT_CARDS_OPTIONS.cards;
 		utils.content.margin = EXT_CARDS_OPTIONS.margin;
-		utils.content.enalbeCounter = EXT_CARDS_OPTIONS.enableCounter;
+		utils.content.enableCounter = EXT_CARDS_OPTIONS.enableCounter;
 
 		utils.initCards = initCards;
 		utils.initContentOptions = initContentOptions;
 		utils.init = init;
+		utils.dateRangeChanged = dateRangeChanged;
+
+		return utils;
 
 		function init(cardsOptions, contentOptions, data, vm) {
 			cardsOptions = initCards(cardsOptions);
@@ -47,7 +50,17 @@
 			opt.searchOptions.selected = opt.searchOptions[0];
 			opt.filterOptions = opt.filterOptions || getFilterOptions(data);
 
+			opt = initContentOptionsCardsUtils.initOpt(opt);
+
 			return opt;
+		};
+
+		function dateRangeChanged(date, cardsOptions, contentOptions) {
+			for (var card in cardsOptions.cards) {
+				if (cardsOptions.cards[card].counter) {
+					cardsOptions.cards[card].count = cardsOptions.cards[card].counter.calculate(contentOptions.datepickerOptions.startDate, contentOptions.datepickerOptions.endDate);
+				}
+			}
 		};
 
 		function initCounter(cards) {
@@ -112,7 +125,5 @@
 			}
 			return convertOpt;
 		};
-
-		return utils;
 	};
 } ());

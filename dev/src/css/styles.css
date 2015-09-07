@@ -423,7 +423,7 @@ button::-moz-focus-inner {
   .my-panel > .footer, .page-content > .footer, .my-panel > .page-content__footer, .page-content > .page-content__footer, ext-page-content-cards .my-panel > .page-content__footer, ext-page-content-cards .page-content > .page-content__footer, .page-content-d3 .my-panel > .page-content__footer, .page-content-d3 .page-content > .page-content__footer {
     min-height: 50px; }
 
-.my-search input, .options__search .search input {
+.my-search input, .options__search .search input, ext-page-content-cards .page-content__options .options__search .search input {
   border-color: #787878;
   padding: 0 2.1rem 0 1rem;
   height: 3.125rem;
@@ -458,13 +458,13 @@ button::-moz-focus-inner {
 .my-search input[type="search"]::-webkit-search-results-decoration,
 .options__search .search input[type="search"]::-webkit-search-results-decoration {
   display: none; }
-.my-search .search-span, .options__search .search .search-span {
+.my-search .search-span, .options__search .search .search-span, ext-page-content-cards .page-content__options .options__search .search .search-span {
   position: relative !important;
   right: 29px;
   font-size: 20px;
   font-weight: normal;
   top: 4px; }
-.my-search .search-clear, .options__search .search .search-clear {
+.my-search .search-clear, .options__search .search .search-clear, ext-page-content-cards .page-content__options .options__search .search .search-clear {
   position: relative !important;
   top: 5px;
   right: 29px;
@@ -1558,10 +1558,6 @@ button::-moz-focus-inner {
         position: relative;
         margin-bottom: 7px;
         clear: both; }
-      .options__search .search .search-span {
-        top: 7px; }
-      .options__search .search .search-clear {
-        top: 7px; }
       .options__check {
         display: inline-block; }
       .options__refresh {
@@ -1899,6 +1895,10 @@ ext-page-content-cards .page-content {
       ext-page-content-cards .page-content__options .options__search {
         float: left;
         margin-right: 0.75rem !important; }
+        ext-page-content-cards .page-content__options .options__search .search .search-span {
+          top: 5px; }
+        ext-page-content-cards .page-content__options .options__search .search .search-clear {
+          top: 4px; }
       ext-page-content-cards .page-content__options .options__show {
         float: left; }
       ext-page-content-cards .page-content__options .options__block {

@@ -28,7 +28,7 @@
 				changedData(vm.data);
 			}
 			
-			scope.$watch('data', changedData);
+			scope.$watch('vm.data', changedData);
 			scope.$on('mouseover', mouseover);
 			scope.$on('mouseout', mouseout);
 			scope.$on('drag', drag);
