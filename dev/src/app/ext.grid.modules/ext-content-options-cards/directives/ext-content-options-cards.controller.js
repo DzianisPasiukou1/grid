@@ -5,15 +5,15 @@
 		.module('ext.grid.contentOptionsCards')
 		.controller('ExtContentOptionsCardsController', ExtContentOptionsCardsController);
 
-	ExtContentOptionsCardsController.$inject = ['$parse', 'extExtend'];
+	ExtContentOptionsCardsController.$inject = ['$parse', 'extExtend', 'initContentOptionsCardsUtils'];
 
-	function ExtContentOptionsCardsController($parse, extExtend) {
+	function ExtContentOptionsCardsController($parse, extExtend, initContentOptionsCardsUtils) {
 		var vm = this;
+		vm.options = initContentOptionsCardsUtils.initOpt(vm.options);
 
 		extExtend('ExtContentOptionsSearchBaseController', {
 			$parse: $parse,
 			vm: vm
 		}, vm);
 	};
-
 } ());

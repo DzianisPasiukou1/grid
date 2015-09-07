@@ -8,7 +8,9 @@
 	extExtend.$inject = ['$controller'];
 
 	function extExtend($controller) {
-		return function (ctrlName, dependecy, parent) {
+		return extend;
+
+		function extend(ctrlName, dependecy, parent) {
 			angular.extend(parent, $controller(ctrlName, dependecy));
 		};
 	};

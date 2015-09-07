@@ -9,13 +9,12 @@
 
 	function ExtContentOptionsController(initOptionsUtils, $parse, extExtend) {
 		var vm = this;
+		vm.options = initOptionsUtils.initOpt(vm.options);
 
 		extExtend('ExtContentOptionsSearchBaseController', {
 			$parse: $parse,
 			vm: vm
 		}, vm);
-
-		vm.options = initOptionsUtils.initOpt(vm.options);
 	};
 
 } ());

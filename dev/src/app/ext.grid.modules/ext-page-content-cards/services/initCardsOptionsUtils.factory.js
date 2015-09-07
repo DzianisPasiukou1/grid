@@ -3,24 +3,17 @@
 
 	angular
 		.module('ext.grid.pageContentCards')
-		.factory('initCardsOptionsutils', initCardsOptionsutils);
+		.factory('initCardsOptionsUtils', initCardsOptionsUtils);
 
-	initCardsOptionsutils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory'];
+	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory'];
 
-	function initCardsOptionsutils(EXT_CARDS_OPTIONS, counterFactory) {
+	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory) {
 		var utils = {};
 
 		utils.content = {};
 		utils.content.cards = EXT_CARDS_OPTIONS.cards;
 		utils.content.margin = EXT_CARDS_OPTIONS.margin;
 		utils.content.enalbeCounter = EXT_CARDS_OPTIONS.enableCounter;
-		utils.content.searchValue = EXT_CARDS_OPTIONS.searchValue;
-		utils.content.startDate = EXT_CARDS_OPTIONS.startDate;
-		utils.content.endDate = EXT_CARDS_OPTIONS.endDate;
-		utils.content.dateRange = EXT_CARDS_OPTIONS.dateRange;
-		utils.content.datepickerConfig = EXT_CARDS_OPTIONS.datepickerConfig;
-		utils.content.exports = EXT_CARDS_OPTIONS.exports;
-		utils.content.enableCounter = EXT_CARDS_OPTIONS.enableCounter;
 
 		utils.initCards = initCards;
 		utils.initContentOptions = initContentOptions;
@@ -51,13 +44,6 @@
 			opt.filtrate = opt.filtrate || angular.bind(vm, filtrate);
 			opt.search = opt.search || angular.bind(vm, search);
 			opt.searchOptions = getSearchOptions(data);
-			opt.searchValue = opt.searchValue || utils.content.searchValue;
-			opt.datepickerOptions = opt.datepickerOptions || {};
-			opt.datepickerOptions.startDate = opt.datepickerOptions.startDate || utils.content.startDate;
-			opt.datepickerOptions.endDate = opt.datepickerOptions.endDate || utils.content.endDate;
-			opt.datepickerOptions.dateRange = opt.datepickerOptions.dateRange || utils.content.dateRange;
-			opt.datepickerOptions.config = opt.datepickerOptions.config || utils.content.datepickerConfig;
-			opt.exports = opt.exports || utils.content.exports;
 			opt.searchOptions.selected = opt.searchOptions[0];
 			opt.filterOptions = opt.filterOptions || getFilterOptions(data);
 
