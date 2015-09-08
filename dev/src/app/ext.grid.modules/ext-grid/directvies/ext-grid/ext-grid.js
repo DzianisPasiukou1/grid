@@ -21,7 +21,7 @@
 			},
 			templateUrl: templatesPath + 'ext-grid.html'
 		};
-
+		
 		return directive;
 	};
 } ());

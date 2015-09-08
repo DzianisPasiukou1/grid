@@ -12,6 +12,7 @@
             deployPath: releaseBase
         },
 		mainModuleName: 'ext',
+		azureModuleName: 'azureApp',
 		fixturesPath: releaseBase,
 		ngtemplates: {
 			myapp: {
@@ -83,34 +84,19 @@
 				livereload: true,
 				port: 9000
 			},
-			error: {
-				files: [fileBase + 'app/**/*.js'],
-				tasks: ['jshint'],
-				options: {
-					interrupt: true
-				},
-			},
-			src: {
-				files: [fileBase + 'app/**/*.js'],
-				tasks: ['copy:src'],
-				options: {
-					interrupt: false
-				},
-			},
 			sass: {
-				files: [fileBase + 'css/**/*.scss'],
-				tasks: ['sass', 'cssmin'],
+				files: ['<%=meta.srcPath%>css/**/*.scss'],
+				tasks: ['sass'],
 				options: {
-					livereload: true,
-					port: 9000,
+					spawn: false
 				}
 			},
-			htmlbuild: {
-				files: [fileBase + 'app/**/*.js'],
-				tasks: ['htmlbuild:index'],
+			scripts: {
+				files: ['<%=meta.srcPath%>app/**/*.js'],
+				tasks: ['debug'],
 				options: {
-					interrupt: false
-				},
+					spawn: false
+				}
 			}
 		},
 		jshint: {
@@ -165,7 +151,10 @@
 			src: [releaseBase]
 		},
 			buildScripts: {
-				src:['<%= meta.devPath%>ext.grid.test.js']
+				src: [
+					'<%= meta.devPath%>src/ext.js',
+					'<%= meta.devPath%>azure-app/azure.js'
+				]
 			}
 			},
 		bundler: {
@@ -194,7 +183,8 @@
 
 		},
 		'angular-builder': {
-			options: {
+			ext: {
+				options: {
 				mainModule: '<%=mainModuleName%>',
 				externalModules: [
 					'ngGrid',
@@ -204,10 +194,28 @@
 					'ui.grid.expandable',
 					'ui.select2'
 				]
+				},
+			src: '<%= meta.srcPath%>app/**/*.js',
+				dest: '<%= meta.devPath%>src/ext.js'
 			},
-			app: {
-				src: '<%= meta.srcPath%>app/**/*.js',
-				dest: '<%= meta.devPath%>ext.grid.test.js'
+			azureApp: {
+				options: {
+					mainModule: '<%=azureModuleName%>',
+					externalModules: [
+					'ngGrid',
+					'pascalprecht.translate',
+					'ui.grid',
+					'ui.grid.selection',
+					'ui.grid.expandable',
+						'ui.select2',
+						'ngRoute',
+					'ext'
+				]
+				},
+				src: [
+					'<%= meta.devPath%>azure-app/**/*.js',
+				],
+				dest: '<%= meta.devPath%>azure-app/azure.js'
 			}
 		},
 		sass: {
@@ -379,11 +387,11 @@
 
 	grunt.registerTask('default', [
 		'sass',
-		'watch:sass',
+		'debug',
+		'watch'
 	]);
 
 	grunt.registerTask('error', [
-		'watch:error'
 	]);
 
 	grunt.registerTask('unit', [
@@ -397,7 +405,7 @@
 	grunt.registerTask('debug', [
 		'clean:buildScripts',
 		'angular-builder::debug'
-	])
+	]);
 
 	grunt.registerTask('publish', [
 		'release',
@@ -425,10 +433,9 @@
 	grunt.registerTask('dev', [
 		'htmlbuild:index',
 		'watch:htmlbuild'
-	])
+	]);
 
 	grunt.registerTask('release', [
-	//'clean',
 		'index-release',
 		'compile-sass',
 		'ngtemplates',

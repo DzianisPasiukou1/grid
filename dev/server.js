@@ -9,12 +9,12 @@ app.use('/dist' , express.static(__dirname + '/dist'));
 app.use('/release' , express.static(__dirname + '/release'));
 
 app.get('/', function (req, res) {
-	res.sendfile(path.join(__dirname, 'dist/builder.html'));
+	res.sendfile(path.join(__dirname, 'dist/index.html'));
 });
 
  app.get('*', function(req, res) {
       // res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
-	  res.sendfile(path.join(__dirname, 'dist/builder.html'));
+	  res.sendfile(path.join(__dirname, 'dist/index.html'));
     });
 
 app.listen(port);
