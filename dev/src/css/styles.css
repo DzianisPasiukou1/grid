@@ -1693,7 +1693,8 @@ button::-moz-focus-inner {
     border-right: 0; }
   .custom-ui-grid .ui-grid-cell-contents {
     text-align: center;
-    margin-top: 6px; }
+    margin-top: 6px;
+    outline: none; }
   .custom-ui-grid .ui-grid-viewport {
     overflow-x: hidden !important;
     border: 0;

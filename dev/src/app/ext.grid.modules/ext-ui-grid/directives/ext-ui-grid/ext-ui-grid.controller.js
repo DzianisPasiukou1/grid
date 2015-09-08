@@ -36,7 +36,7 @@
 		});
 		vm.options.gridFooterTemplate = extDefine(vm.options.gridFooterTemplate, '<div class="grid-footer"></div>');
 		vm.options.headerTemplate = extDefine(vm.options.headerTemplate, templatesPath + 'ui-grid-templates/header.html');
-		vm.options.headerCellTemplate = extDefine(vm.options.headerCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/header.html');
+		vm.options.headerCellTemplate = extDefine(vm.options.headerCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/header-cell.html');
 		vm.options.reInit = extDefine(vm.options.reInit, false);
 		vm.options.enableDetails = extDefine(vm.options.enableDetails, true);
 		vm.options.detailsCellTemplate = extDefine(vm.options.detailsCellTemplate, templatesPath + 'ui-grid-templates/cell-templates/details.html');

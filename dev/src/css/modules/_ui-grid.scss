@@ -24,6 +24,7 @@
 @mixin ui-grid-cell-contents {
 	text-align: center;
 	margin-top: 6px;
+	outline: none;
 }
 
 @mixin ui-grid-viewport {

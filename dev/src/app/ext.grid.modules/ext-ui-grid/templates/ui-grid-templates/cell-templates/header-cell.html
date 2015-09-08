@@ -5,7 +5,8 @@
 			&nbsp;
 		</span>
 	</div>
-	<div class="ui-grid-column-menu-button" ng-if="grid.options.enableColumnMenus && !col.isRowHeader  && col.colDef.enableColumnMenu !== false" ng-click="toggleMenu($event)" ng-class="{'ui-grid-column-menu-button-last-col': isLastCol}">
+	<div class="ui-grid-column-menu-button" ng-if="grid.options.enableColumnMenus && !col.isRowHeader  && col.colDef.enableColumnMenu !== false"
+	ng-click="toggleMenu($event)" ng-class="{'ui-grid-column-menu-button-last-col': isLastCol}">
 		<i class="ui-grid-icon-angle-down">&nbsp;</i>
 	</div>
 	<div ui-grid-filter></div>

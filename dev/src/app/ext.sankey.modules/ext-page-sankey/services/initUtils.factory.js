@@ -50,7 +50,7 @@
 			opt.datepickerOptions.startDate = extDefine(opt.datepickerOptions, utils.content, 'startDate');
 			opt.datepickerOptions.endDate = extDefine(opt.datepickerOptions, utils.content, 'endDate');
 			opt.datepickerOptions.dateRange = extDefine(opt.datepickerOptions, utils.content, 'dateRange');
-			opt.datepickerOptions.config = extDefine(opt.datepickerOptions, utils.content, 'config');
+			opt.datepickerOptions.config = extDefine(opt.datepickerOptions.config, utils.content.datePickerConfig);
 			opt.uploadCards = extDefine(opt.uploadCards, uploadCards);
 			opt.uploadSankey = extDefine(opt.uploadSankey, uploadSankey);
 			opt.uploadHistogram = extDefine(opt.uploadHistogram, uploadHistogram)

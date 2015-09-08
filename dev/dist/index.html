@@ -276,6 +276,8 @@
 <script>
 	angular.module('ext').controller('test', function($scope)
 			{
+				$scope.opt = {data: $scope.data};
+				
 				$scope.data =[{title: '123', prop1: 'asd', prop2: 'asd', pro3: 'asd'}, {title: 'sd', prop1: 'asd', prop2: 'asd', pro3: 'asd'}];
 				
 				$scope.sankeyData = {

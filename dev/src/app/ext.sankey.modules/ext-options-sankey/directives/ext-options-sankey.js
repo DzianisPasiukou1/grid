@@ -12,7 +12,7 @@
 			restrict: 'EA',
 			controller: 'ExtOptionsSankeyController',
 			controllerAs: 'vm',
-			bindToController: true,
+			bindToController: false,
 			scope: {
 				options: '=',
 				filters: '=',
