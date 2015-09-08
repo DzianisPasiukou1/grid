@@ -36,5 +36,5 @@
 				element.off('click', click);
 			}
 		}
-	}
+	};
 } ());
