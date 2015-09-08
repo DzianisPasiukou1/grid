@@ -11,6 +11,7 @@
 			devPath: distBase,
             deployPath: releaseBase
         },
+		mainModuleName: 'ext',
 		fixturesPath: releaseBase,
 		ngtemplates: {
 			myapp: {
@@ -159,7 +160,14 @@
 				dest: distBase + '/azure-app/azure.js',
 			}
 		},
-		clean: [releaseBase],
+		clean:
+		{ release: {
+			src: [releaseBase]
+		},
+			buildScripts: {
+				src:['<%= meta.devPath%>ext.grid.test.js']
+			}
+			},
 		bundler: {
 			bundle: {
 				views: ['index.html'],
@@ -187,11 +195,19 @@
 		},
 		'angular-builder': {
 			options: {
-				mainModule: 'gridTaskApp'
+				mainModule: '<%=mainModuleName%>',
+				externalModules: [
+					'ngGrid',
+					'pascalprecht.translate',
+					'ui.grid',
+					'ui.grid.selection',
+					'ui.grid.expandable',
+					'ui.select2'
+				]
 			},
 			app: {
-				src: 'src/**/*.js',
-				dest: 'release/test.js'
+				src: '<%= meta.srcPath%>app/**/*.js',
+				dest: '<%= meta.devPath%>ext.grid.test.js'
 			}
 		},
 		sass: {
@@ -368,14 +384,19 @@
 
 	grunt.registerTask('error', [
 		'watch:error'
-	])
+	]);
 
 	grunt.registerTask('unit', [
 		'karma'
-	])
+	]);
 
 	grunt.registerTask('e2e', [
 		'protractor'
+	]);
+	
+	grunt.registerTask('debug', [
+		'clean:buildScripts',
+		'angular-builder::debug'
 	])
 
 	grunt.registerTask('publish', [

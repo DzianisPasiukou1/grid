@@ -42,3 +42,4 @@
 		});
 	})(angular.element);
 }
+

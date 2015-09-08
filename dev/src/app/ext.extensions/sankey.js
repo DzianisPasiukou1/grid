@@ -62,9 +62,9 @@
 				y0 = d.source.y + d.sy + d.dy / 2,
 				y1 = d.target.y + d.ty + d.dy / 2;
 			return "M" + x0 + "," + y0
-				 + "C" + x2 + "," + y0
-				 + " " + x3 + "," + y1
-				 + " " + x1 + "," + y1;
+				+ "C" + x2 + "," + y0
+				+ " " + x3 + "," + y1
+				+ " " + x1 + "," + y1;
 		}
 
 		link.curvature = function (_) {
@@ -97,9 +97,9 @@
 	function computeNodeValues() {
 		nodes.forEach(function (node) {
 			node.value = Math.max(
-			  d3.sum(node.sourceLinks, value),
-			  d3.sum(node.targetLinks, value)
-			);
+				d3.sum(node.sourceLinks, value),
+				d3.sum(node.targetLinks, value)
+				);
 		});
 	}
 
@@ -290,3 +290,4 @@
 
 	return sankey;
 };
+

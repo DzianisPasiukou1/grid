@@ -6,4 +6,5 @@
 		angular.element(this.parent()).scrollLeft()) + "px");
 	this.css("z-index", 10000);
 	return this;
-}
+};
+
