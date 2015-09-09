@@ -4,6 +4,8 @@ module.exports = function (grunt) {
 	var fileBase = 'src/';
 	var releaseBase = 'release/';
 	var distBase = "dist/";
+	
+	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -13,7 +15,7 @@ module.exports = function (grunt) {
 			devPath: distBase,
             deployPath: releaseBase
         },
-		port: 9000,
+		port: process.env.PORT || 9000,
 		mainModuleName: 'ext',
 		azureModuleName: 'azureApp',
 		fixturesPath: releaseBase,
@@ -35,47 +37,15 @@ module.exports = function (grunt) {
 				dest:"<%=meta.devPath%>azure-app/templates.js"
 			}
 		},
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js'
-			}
-		},
-		protractor: {
-			test: {
-				options: {
-					configFile: "protractor.conf.js",
-					keepAlive: true,
-					noColor: false
-				}
-			}
-		},
-		webdrivermanager: {
-			out_dir: './selenium',
-			capabilities: {
-				browserName: 'chrome'
-			},
-			seleniumArgs: [],
-			seleniumPort: 4444,
-			ignore_ssl: false,
-			proxy: false,
-			method: 'GET'
-		},
-		protractor_webdriver: {
-			targ: {
-				options: {
-					command: 'webdriver-manager start'
-				}
-			}
-		},
 		uglify: {
-			grid: {
+			ext: {
 				files: {
-					'release/grid.min.js': [fileBase + 'app/**/*.js']
+					'<%=meta.devPath%>src/ext.min.js': ['<%=meta.devPath%>src/ext.js']
 				}
 			},
 			azure: {
 				files: {
-					'dist/azure-app/azure.min.js': [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js', '!' + distBase + 'azure-app/azure.min.js']
+					'<%=meta.devPath%>azure-app/azure.min.js': ['<%=meta.devPath%>azure-app/azure.js']
 				}
 			}
 		},
@@ -86,77 +56,20 @@ module.exports = function (grunt) {
 			},
 			target: {
 				files: {
-					'src/css/styles.min.css': [fileBase + 'css/styles.css']
+					'<%=meta.srcPath%>css/styles.min.css': ['<%=meta.srcPath%>css/styles.css']
 				}
 			}
-		},
-		watch: {
-			options: {
-				livereload: true,
-				port: '<%=port%>'
-			},
-			sass: {
-				files: ['<%=meta.srcPath%>css/**/*.scss'],
-				tasks: ['sass'],
-				options: {
-					spawn: false
-				}
-			},
-			scripts: {
-				files: ['<%=meta.srcPath%>app/**/*.js'],
-				tasks: ['debug'],
-				options: {
-					spawn: false
-				}
-			},
-			templates: {
-				files: [
-					'<%=meta.srcPath%>app/**/*.html',
-					'<%=meta.devPath%>**/*.html'
-				],
-				tasks: ['ngtemplates'],
-				options: {
-					spawn: false
-				}
-			},
-			configFiles: {
-				 files: [ 'Gruntfile.js', 'package.json' ],
-  				  options: {
-    				  reload: true
-				 }
-			},
-			server: {
-				files: ['server.js'],
-				tasks: []
-			}
-		},
-		jshint: {
-			options: {
-				"curly": true,
-				"eqnull": true,
-				"eqeqeq": true,
-				"undef": true,
-				"globals": {
-					"jQuery": true,
-					"angular": true,
-					"d3": true
-				}
-			},
-			files: {
-				src: [fileBase + 'app/**/*.js']
-			},
 		},
 		copy: {
 			css: {
 				files: [
-					{ expand: true, flatten: true, src: [fileBase + 'css/*.css'], dest: releaseBase + 'styles', filter: 'isFile' }]
+					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>css/*.css'], dest: '<%=meta.deployPath%>styles', filter: 'isFile' }
+				]
 			},
 			assets: {
-				files: [{ expand: true, flatten: true, src: [fileBase + 'assets/fonts/*'], dest: releaseBase + 'assets/fonts', filter: 'isFile' }, { expand: true, flatten: true, src: [fileBase + 'assets/images/*'], dest: releaseBase + 'assets/images', filter: 'isFile' }]
-			},
-			src: {
 				files: [
-					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: distBase, filter: 'isFile' }
+					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>assets/fonts/*'], dest: '<%=meta.deployPath%>assets/fonts', filter: 'isFile' },
+					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>assets/images/*'], dest: '<%=meta.deployPath%>assets/images', filter: 'isFile' }
 				]
 			},
 			publish: {
@@ -165,16 +78,6 @@ module.exports = function (grunt) {
 					{ expand: true, flatten: false, src: [distBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
 					{ expand: true, flatten: false, src: [releaseBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
 				]
-			}
-		},
-		concat: {
-			grid: {
-				src: [fileBase + 'app/**/*.js'],
-				dest: releaseBase + 'grid.js',
-			},
-			azure: {
-				src: [distBase + 'azure-app/**/*.js', '!' + distBase + 'azure-app/azure.js', '!' + distBase + 'azure-app/azure.min.js'],
-				dest: distBase + '/azure-app/azure.js',
 			}
 		},
 		clean:
@@ -187,31 +90,17 @@ module.exports = function (grunt) {
 					'<%= meta.devPath%>azure-app/azure.js'
 				]
 			}
-			},
-		bundler: {
-			bundle: {
-				views: ['index.html'],
-				bundles: {
-					'css': {
-						type: 'css',
-						files: [releaseBase + '*.css']
-					},
-					'js': {
-						type: 'js',
-						files: [releaseBase + '*.js']
-					},
-				}
-			}
 		},
 		wiredep: {
-			test: {
+			options: {
+				dependencies: true,
+				compress: true
+			},
+			index: {
 				src: [
-					distBase + 'test.html'
+					'<%=meta.devPath%>index.html'
 				],
-				options: {
-				}
 			}
-
 		},
 		'angular-builder': {
 			ext: {
@@ -270,112 +159,24 @@ module.exports = function (grunt) {
 		},
 		htmlbuild: {
 			release: {
-				src: distBase + 'index.html',
-				dest: releaseBase + 'main.html',
+				src: '<%= meta.devPath %>index.html',
+				dest:'<%= meta.deployPath %>main.html',
 				options: {
 					beautify: true,
 					relative: false,
 					scripts: {
-						grid: [
-							'<%= meta.deployPath %>grid.min.js'
+						ext: [
+							'<%= meta.deployPath %>ext.min.js'
 						],
 						azure: [
-							'<%= meta.devPath %>/azure-app/azure.min.js'
+							'<%= meta.deployPath %>azure-app/azure.min.js'
 						]
 					},
 					styles: {
 						bundle: [
-							'<%= meta.deployPath %>/styles/styles.min.css',
+							'<%= meta.deployPath %>styles/styles.min.css',
 						]
-					},
-					sections: {
-						views: '<%= fixturesPath %>/views/**/*.html',
-						templates: '<%= fixturesPath %>/templates/**/*.html',
-						layout: {
-							header: '<%= fixturesPath %>/layout/header.html',
-							footer: '<%= fixturesPath %>/layout/footer.html'
-						}
-					},
-					data: {
-						version: "0.1.0",
-						title: "test",
-					},
-				}
-			},
-			index: {
-				src: distBase + 'index.html',
-				dest: distBase + 'test.html',
-				options: {
-					beautify: true,
-					relative: false,
-					scripts: {
-						common: [
-							'<%= meta.srcPath %>app/ext.common/any-other-click/**/any-other-click.module.js',
-							'<%= meta.srcPath %>app/ext.common/any-other-click/**/!(any-other-click.module)*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-on-finish-render/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/gr-template/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-datepicker/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-dropdown/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-json/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-loading/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-max-heighter/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-number-format/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-resize-on/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-search/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-split-button/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-upload/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext-upload/**/*.js',
-							'<%= meta.srcPath %>app/ext.common/ext.common.module.js'
-						],
-						grid: [
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-cards/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-checkbox-select/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-filter/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-content-options/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-content-options-cards/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-grid/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-modal/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-ui-grid/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-page-content/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext-page-content-cards/**/*.js',
-							'<%= meta.srcPath %>app/ext.grid.modules/ext.grid.module.js',
-						],
-						sankey: [
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-histogram/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-mouse-over/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-overlay/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-sankey/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/kx-stealth-input/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/kx-date-range/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/kx-multiselect/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/kx-nav-bar/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-options-sankey/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext-page-sankey/**/*.js',
-							'<%= meta.srcPath %>app/ext.sankey.modules/ext.sankey.module.js',
-						],
-						extensions: [
-							'<%= meta.srcPath %>app/ext.extensions/*.js',
-						],
-						app: [
-							'<%= meta.srcPath %>app/app.js',
-						]
-					},
-					styles: {
-						bundle: [
-						]
-					},
-					sections: {
-						views: '<%= fixturesPath %>/views/**/*.html',
-						templates: '<%= fixturesPath %>/templates/**/*.html',
-						layout: {
-							header: '<%= fixturesPath %>/layout/header.html',
-							footer: '<%= fixturesPath %>/layout/footer.html'
-						}
-					},
-					data: {
-						version: "0.1.0",
-						title: "test",
-					},
+					}
 				}
 			}
 		},
@@ -386,36 +187,80 @@ module.exports = function (grunt) {
 				]
 			}
 		},
+		watch: {
+			options: {
+				livereload: true,
+				port: '<%=port%>'
+			},
+			sass: {
+				files: ['<%=meta.srcPath%>css/**/*.scss'],
+				tasks: ['sass'],
+				options: {
+					spawn: false
+				}
+			},
+			scripts: {
+				files: ['<%=meta.srcPath%>app/**/*.js'],
+				tasks: ['debug'],
+				options: {
+					spawn: false
+				}
+			},
+			templates: {
+				files: [
+					'<%=meta.srcPath%>app/**/*.html',
+					'<%=meta.devPath%>**/*.html'
+				],
+				tasks: ['ngtemplates'],
+				options: {
+					spawn: false
+				}
+			},
+			configFiles: {
+				 files: [ 'Gruntfile.js', 'package.json' ],
+  				  options: {
+    				  reload: true
+				 }
+			},
+			server: {
+				files: ['server.js'],
+				tasks: []
+			},
+			bower: {
+				files: ['<%=meta.srcPath%>vendor/**/*.js'],
+				tasks: ['wiredep']
+			}
+		},
 		shell: {
 			openSite: {
 				command: 'start http://localhost:<%=port%>'
 			}
+		},
+		karma: {
+			unit: {
+				configFile: 'karma.conf.js'
+			}
+		},
+		protractor: {
+			test: {
+				options: {
+					configFile: "protractor.conf.js",
+					keepAlive: true,
+					noColor: false
+				}
+			}
+		},
+		protractor_webdriver: {
+			targ: {
+				options: {
+					command: 'webdriver-manager start'
+				}
+			}
 		}
 	});
-	
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-sass');
-
-	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-bundler');
-	grunt.loadNpmTasks('grunt-angular-templates');
-	grunt.loadNpmTasks('grunt-wiredep');
-	grunt.loadNpmTasks('grunt-angular-builder');
-	grunt.loadNpmTasks('grunt-protractor-runner');
-	grunt.loadNpmTasks('grunt-webdriver-manager');
-	grunt.loadNpmTasks('grunt-protractor-webdriver');
-	grunt.loadNpmTasks('grunt-express-server');
-	grunt.loadNpmTasks('grunt-html-build');
-	grunt.loadNpmTasks('grunt-replace');
-	grunt.loadNpmTasks('grunt-shell');
 
 	grunt.registerTask('default', [
+		'wiredep',
 		'sass',
 		'debug',
 		'server',
@@ -442,8 +287,7 @@ module.exports = function (grunt) {
 		'ngtemplates',
 		'copy:css',
 		'copy:assets',
-		'concat:grid',
-		'uglify:grid',
+		'uglify:ext',
 		'copy:publish',
 		'replace:azure'
 	]);
@@ -463,7 +307,6 @@ module.exports = function (grunt) {
 	])
 	
 	grunt.registerTask('index-release', [
-		'concat:azure',
 		'uglify:azure',
 		'htmlbuild'
 	]);
