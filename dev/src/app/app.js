@@ -9,5 +9,4 @@
 			'ext.grid',
 			'ext.sankey'
 		]);
-		
 } ());

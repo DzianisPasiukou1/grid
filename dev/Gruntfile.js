@@ -1,4 +1,6 @@
-﻿module.exports = function (grunt) {
+﻿var path = require('path');
+
+module.exports = function (grunt) {
 	var fileBase = 'src/';
 	var releaseBase = 'release/';
 	var distBase = "dist/";
@@ -11,17 +13,26 @@
 			devPath: distBase,
             deployPath: releaseBase
         },
+		port: 9000,
 		mainModuleName: 'ext',
 		azureModuleName: 'azureApp',
 		fixturesPath: releaseBase,
 		ngtemplates: {
-			myapp: {
+			ext: {
 				options: {
 					prefix: '/',
-					module: "gridTaskApp",
+					module: "ext",
 				},
-				src: fileBase + "app/templates/**/*.html",
-				dest: fileBase + "app/templates.js"
+				src: '<%=meta.srcPath%>app/**/*.html',
+				dest: "<%=meta.srcPath%>app/templates.js"
+			},
+			azure: {
+				options: {
+					prefix: '/',
+					module: "azureApp",
+				},
+				src: '<%=meta.devPath%>azure-app/**/*.html',
+				dest:"<%=meta.devPath%>azure-app/templates.js"
 			}
 		},
 		karma: {
@@ -82,7 +93,7 @@
 		watch: {
 			options: {
 				livereload: true,
-				port: 9000
+				port: '<%=port%>'
 			},
 			sass: {
 				files: ['<%=meta.srcPath%>css/**/*.scss'],
@@ -97,6 +108,26 @@
 				options: {
 					spawn: false
 				}
+			},
+			templates: {
+				files: [
+					'<%=meta.srcPath%>app/**/*.html',
+					'<%=meta.devPath%>**/*.html'
+				],
+				tasks: ['ngtemplates'],
+				options: {
+					spawn: false
+				}
+			},
+			configFiles: {
+				 files: [ 'Gruntfile.js', 'package.json' ],
+  				  options: {
+    				  reload: true
+				 }
+			},
+			server: {
+				files: ['server.js'],
+				tasks: []
 			}
 		},
 		jshint: {
@@ -207,8 +238,8 @@
 					'ui.grid',
 					'ui.grid.selection',
 					'ui.grid.expandable',
-						'ui.select2',
-						'ngRoute',
+					'ui.select2',
+					'ngRoute',
 					'ext'
 				]
 				},
@@ -223,7 +254,7 @@
 				files: [
 					{
 						style: 'compressed',
-						src: ["src/css/styles.scss"],
+						src: ['<%=meta.srcPath%>css/**/*.scss'],
 						dest: "src/css/styles.css",
 					}
 				]
@@ -232,9 +263,8 @@
 		express: {
 			dev: {
 				options: {
-					script: 'server.js',
-					background: false,
-					port: 9000
+					port: '<%=port%>',
+					script: 'server.js'
 				}
 			}
 		},
@@ -358,11 +388,11 @@
 		},
 		shell: {
 			openSite: {
-				command: 'start http://localhost:9000'
+				command: 'start http://localhost:<%=port%>'
 			}
 		}
 	});
-
+	
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -388,27 +418,32 @@
 	grunt.registerTask('default', [
 		'sass',
 		'debug',
+		'server',
 		'watch'
-	]);
-
-	grunt.registerTask('error', [
 	]);
 
 	grunt.registerTask('unit', [
 		'karma'
 	]);
-
+	
 	grunt.registerTask('e2e', [
 		'protractor'
 	]);
 	
 	grunt.registerTask('debug', [
+		'ngtemplates',
 		'clean:buildScripts',
 		'angular-builder::debug'
 	]);
 
 	grunt.registerTask('publish', [
-		'release',
+		'index-release',
+		'compile-sass',
+		'ngtemplates',
+		'copy:css',
+		'copy:assets',
+		'concat:grid',
+		'uglify:grid',
 		'copy:publish',
 		'replace:azure'
 	]);
@@ -419,11 +454,14 @@
 	]);
 
 	grunt.registerTask('server', [
-		'sass',
 		'shell',
 		'express:dev'
 	]);
-
+	
+	grunt.registerTask('reload-server', [
+		'express:dev'
+	])
+	
 	grunt.registerTask('index-release', [
 		'concat:azure',
 		'uglify:azure',
@@ -434,14 +472,9 @@
 		'htmlbuild:index',
 		'watch:htmlbuild'
 	]);
-
+	
 	grunt.registerTask('release', [
-		'index-release',
-		'compile-sass',
-		'ngtemplates',
-		'copy:css',
-		'copy:assets',
-		'concat:grid',
-		'uglify:grid'
-	])
+		'clean:buildScripts',
+		'angular-builder'
+	]);
 };

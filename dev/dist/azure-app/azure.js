@@ -1,5 +1,6 @@
 document.write ('\
 <script src="dist/azure-app/azure-app.js"></script>\
+<script src="dist/azure-app/templates.js"></script>\
 <script src="dist/azure-app/config/routes.js"></script>\
 <script src="dist/azure-app/controllers/grid-d3-controller.js"></script>\
 <script src="dist/azure-app/controllers/grid-loading-controller.js"></script>\

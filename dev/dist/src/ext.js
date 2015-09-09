@@ -152,4 +152,5 @@ document.write ('\
 <script src="src/app/ext.sankey.modules/kx-nav-bar/services/navigation-tree-service.js"></script>\
 <script src="src/app/ext.sankey.modules/ext.sankey.module.js"></script>\
 <script src="src/app/app.js"></script>\
+<script src="src/app/templates.js"></script>\
 ');
