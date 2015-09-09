@@ -9,7 +9,8 @@
 			
 			'ext.common.dropdown',
 			'ext.common.initDefault',
-			'ext.common.define'
+			'ext.common.define',
+			'ext.common.cursorMessage'
 		])
 		.constant('extGridTemplatesPath', 'src/app/ext.grid.modules/ext-grid/templates/')
 		.constant('MENU', {

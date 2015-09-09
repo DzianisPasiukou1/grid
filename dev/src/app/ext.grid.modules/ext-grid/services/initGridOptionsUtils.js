@@ -6,9 +6,9 @@
 		.module('ext.grid.main')
 		.factory('initGridOptionsUtils', initGridOptionsUtils);
 
-	initGridOptionsUtils.$inject = ['extGridOptions', 'extInitDefaultService', '$log', 'extDefine'];
+	initGridOptionsUtils.$inject = ['extGridOptions', 'extInitDefaultService', '$log', 'extDefine', 'extGridActionsPlugin'];
 
-	function initGridOptionsUtils(extGridOptions, extInitDefaultService, $log, extDefine) {
+	function initGridOptionsUtils(extGridOptions, extInitDefaultService, $log, extDefine, ExtGridActionsPlugin) {
 		var utils = {};
 
 		utils.getDefault = getDefault;

@@ -1,14 +1,13 @@
-﻿/* global getWindowHeight */
-(function () {
+﻿(function () {
 	'use strict'
 
 	angular
 		.module('ext.common.maxHeighter')
 		.directive('extMaxHeighter', extMaxHeighter)
 
-	extMaxHeighter.$inject = ['$timeout', '$window'];
+	extMaxHeighter.$inject = ['$timeout', '$window', 'extWindow'];
 
-	function extMaxHeighter($timeout, $window) {
+	function extMaxHeighter($timeout, $window, extWindow) {
 		var directive = {
 			restrict: 'AC',
 			scope: {},
@@ -29,8 +28,8 @@
 			return compileObj;
 
 			function onPositionChanged() {
-				if (getWindowHeight() - element.offset().top > 0) {
-					element.css('max-height', getWindowHeight() - element.offset().top - 10 + 'px');
+				if (extWindow.height() - element.offset().top > 0) {
+					element.css('max-height', extWindow.height() - element.offset().top - 10 + 'px');
 				}
 				else {
 					element.css('max-height', 100 + 'px');

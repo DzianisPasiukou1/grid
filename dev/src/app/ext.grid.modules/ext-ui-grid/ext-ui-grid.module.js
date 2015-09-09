@@ -10,7 +10,8 @@
 			'ext.grid.modal',
 			
 			'ext.common.dropdown',
-			'ext.common.define'
+			'ext.common.define',
+			'ext.common.cursorMessage'
 		])
 		.value('extUiGridTemplatesPath', '/src/app/ext.grid.modules/ext-ui-grid/templates/')
 		.constant('MENU', {

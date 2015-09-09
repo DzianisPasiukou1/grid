@@ -1,14 +1,13 @@
-﻿/* global getWindowWidth */
-(function () {
+﻿(function () {
 	'use strict'
 
 	angular
 		.module('ext.sankey.overlay')
 		.controller('ExtOverlayController', ExtOverlayController);
 
-	ExtOverlayController.$inject = ['OVERLAY', '$timeout', '$element', '$window', 'extDefine'];
+	ExtOverlayController.$inject = ['OVERLAY', '$timeout', '$element', '$window', 'extDefine', 'extWindow'];
 
-	function ExtOverlayController(OVERLAY, $timeout, $element, $window, extDefine) {
+	function ExtOverlayController(OVERLAY, $timeout, $element, $window, extDefine, extWindow) {
 		var vm = this;
 		vm.selectors = extDefine(vm.selectors, {});
 		vm.selectors.overlaySelector = extDefine(vm.selectors, OVERLAY, 'overlaySelector');
@@ -16,7 +15,7 @@
 		vm.selectors.alignTopSelector = extDefine(vm.selectors, OVERLAY, 'alignTopSelector');
 		vm.toggleMinWidth = extDefine(vm, OVERLAY, 'toggleMinWidth');
 		vm.style = {
-			left: getWindowWidth() - vm.toggleMinWidth + 'px',
+			left: extWindow.width() - vm.toggleMinWidth + 'px',
 			transition: '',
 			overflow: 'hidden'
 		};
@@ -28,7 +27,7 @@
 		function toggle(isResize) {
 			$timeout(function () {
 				if (vm.state) {
-					if (getWindowWidth() + 650 > 1750) {
+					if (extWindow.width() + 650 > 1750) {
 						vm.style.left = '650px';
 					}
 					else {

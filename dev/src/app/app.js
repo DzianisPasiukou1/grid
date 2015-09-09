@@ -1,6 +1,4 @@
-﻿//# require ('/ext.extensions/center.js','/ext.extensions/cursorMessage.js','/ext.extensions/on-position-changed.js','/ext.extensions/sankey.js' ,'/ext.extensions/window-size.js', '/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid-actions.plugin.js')
-
-(function () {
+﻿(function () {
 	'use strict'
 
 	angular

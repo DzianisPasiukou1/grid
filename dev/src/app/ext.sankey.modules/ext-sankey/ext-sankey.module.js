@@ -4,6 +4,7 @@
 	angular
 		.module('ext.sankey.main', [
 			'ext.common.maxHeighter',
+			'ext.common.d3Sankey',			
 			
 			'ext.sankey.mouseOver'
 		])

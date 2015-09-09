@@ -1,10 +1,4 @@
 document.write ('\
-<script src="src/app/ext.extensions/center.js"></script>\
-<script src="src/app/ext.extensions/cursorMessage.js"></script>\
-<script src="src/app/ext.extensions/on-position-changed.js"></script>\
-<script src="src/app/ext.extensions/sankey.js"></script>\
-<script src="src/app/ext.extensions/window-size.js"></script>\
-<script src="src/app/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid-actions.plugin.js"></script>\
 <script src="src/app/ext.common/any-other-click/any-other-click.module.js"></script>\
 <script src="src/app/ext.common/any-other-click/directives/any-other-click.js"></script>\
 <script src="src/app/ext.common/any-other-click/services/any-other-click.service.js"></script>\
@@ -18,6 +12,10 @@ document.write ('\
 <script src="src/app/ext.common/ext-resize-on/ext-resize-on.module.js"></script>\
 <script src="src/app/ext.common/ext-resize-on/directives/ext-resize-on.controller.js"></script>\
 <script src="src/app/ext.common/ext-resize-on/directives/ext-resize-on.js"></script>\
+<script src="src/app/ext.common/ext-on-position-changed/ext-on-position-changed.module.js"></script>\
+<script src="src/app/ext.common/ext-on-position-changed/ext-on-position-changed.js"></script>\
+<script src="src/app/ext.common/ext-window/ext-window.module.js"></script>\
+<script src="src/app/ext.common/ext-window/ext-window.factory.js"></script>\
 <script src="src/app/ext.common/ext-max-heighter/ext-max-heighter.module.js"></script>\
 <script src="src/app/ext.common/ext-max-heighter/directives/max-heighter.js"></script>\
 <script src="src/app/ext.common/ext-loading/ext-loading.module.js"></script>\
@@ -81,6 +79,8 @@ document.write ('\
 <script src="src/app/ext.grid.modules/ext-modal/ext-modal.module.js"></script>\
 <script src="src/app/ext.grid.modules/ext-modal/directives/ext-modal.controller.js"></script>\
 <script src="src/app/ext.grid.modules/ext-modal/directives/ext-modal.js"></script>\
+<script src="src/app/ext.common/ext-cursor-message/ext-cursor-message.module.js"></script>\
+<script src="src/app/ext.common/ext-cursor-message/ext-cursor-message.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/ext-grid.module.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/directvies/ext-details/ext-details.controller.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/directvies/ext-details/ext-details.js"></script>\
@@ -90,6 +90,7 @@ document.write ('\
 <script src="src/app/ext.grid.modules/ext-grid/directvies/ext-grid/ext-grid.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/directvies/ext-row-check/ext-row-check.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/ext-grid.constants.js"></script>\
+<script src="src/app/ext.grid.modules/ext-grid/services/ext-grid-actions.plugin.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/services/initGridOptionsUtils.js"></script>\
 <script src="src/app/ext.grid.modules/ext-grid/services/menu-utils.js"></script>\
 <script src="src/app/ext.grid.modules/ext-ui-grid/ext-ui-grid.module.js"></script>\
@@ -135,6 +136,8 @@ document.write ('\
 <script src="src/app/ext.sankey.modules/ext-overlay/directives/ext-overlay-controller.js"></script>\
 <script src="src/app/ext.sankey.modules/ext-overlay/directives/ext-overlay.js"></script>\
 <script src="src/app/ext.sankey.modules/ext-overlay/ext-overlay.constants.js"></script>\
+<script src="src/app/ext.common/ext-d3-sankey/ext-d3-sankey.module.js"></script>\
+<script src="src/app/ext.common/ext-d3-sankey/ext-d3-sankey.js"></script>\
 <script src="src/app/ext.sankey.modules/ext-sankey/ext-sankey.module.js"></script>\
 <script src="src/app/ext.sankey.modules/ext-sankey/directives/ext-sankey.controller.js"></script>\
 <script src="src/app/ext.sankey.modules/ext-sankey/directives/ext-sankey.js"></script>\

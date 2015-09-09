@@ -188,23 +188,23 @@ module.exports = function (grunt) {
 			}
 		},
 		watch: {
-			options: {
-				livereload: true,
-				port: '<%=port%>'
-			},
 			sass: {
 				files: ['<%=meta.srcPath%>css/**/*.scss'],
 				tasks: ['sass'],
 				options: {
-					spawn: false
+					spawn: false,
+					livereload: false,
+					port: '<%=port%>'
 				}
 			},
 			scripts: {
 				files: ['<%=meta.srcPath%>app/**/*.js'],
 				tasks: ['debug'],
 				options: {
-					spawn: false
-				}
+					spawn: false,
+					livereload: false,
+					port: '<%=port%>'
+				},
 			},
 			templates: {
 				files: [
@@ -221,10 +221,6 @@ module.exports = function (grunt) {
   				  options: {
     				  reload: true
 				 }
-			},
-			server: {
-				files: ['server.js'],
-				tasks: []
 			},
 			bower: {
 				files: ['<%=meta.srcPath%>vendor/**/*.js'],
