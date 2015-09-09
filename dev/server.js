@@ -16,5 +16,10 @@ app.get('*', function (req, res) {
 	res.sendfile(path.join(__dirname, 'dist/index.html'));
 });
 
+app.get('/doc', function (req, res) {
+	res.sendfile(path.join(__dirname, 'doc/index.html'));
+});
+
+
 app.listen(port);
 console.log('Server listen on port: ' + port);

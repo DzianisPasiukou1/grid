@@ -19,6 +19,12 @@ module.exports = function (grunt) {
 		mainModuleName: 'ext',
 		azureModuleName: 'azureApp',
 		fixturesPath: releaseBase,
+		jsdoc: {
+			src: ['src/app/app.js'],
+			options: {
+				destination: 'doc'
+			}
+		},
 		ngtemplates: {
 			ext: {
 				options: {
