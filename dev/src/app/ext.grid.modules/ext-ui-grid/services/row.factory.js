@@ -1,6 +1,6 @@
 /* global clipboardData */
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.uiGrid')
@@ -8,14 +8,35 @@
 
 	rowFactory.$inject = ['$document', '$window', '$rootScope', '$compile', 'extUiGridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method rowFactory
+	 * @param {} $compile
+	 * @param {} $compile
+	 * @param {} $compile
+	 * @param {} $compile
+	 * @param {} templatesPath
+	 * @return ObjectExpression
+	 */
 	function rowFactory($document, $window, $rootScope, $compile, templatesPath) {
 		var Row = function () {
+			/**
+			 * Description
+			 * @method Row
+			 * @param {} elm
+			 * @return 
+			 */
 			function Row(elm) {
 				this.elm = elm;
 				this.scope = $rootScope.$new();
 				this.compile = $compile;
 			};
 
+			/**
+			 * Description
+			 * @method edit
+			 * @return 
+			 */
 			Row.prototype.edit = function () {
 				if (angular.element('ext-modal').length != 0) {
 					angular.element('ext-modal').remove();
@@ -28,10 +49,21 @@
 				this.compile(modal)(this.scope);
 			};
 
+			/**
+			 * Description
+			 * @method delete
+			 * @param {} data
+			 * @return 
+			 */
 			Row.prototype.delete = function (data) {
 				data.splice(data.indexOf(this.elm.entity), 1);
 			};
 
+			/**
+			 * Description
+			 * @method history
+			 * @return 
+			 */
 			Row.prototype.history = function () {
 				if (angular.element('ext-history').length != 0) {
 					angular.element('ext-history').remove();
@@ -44,6 +76,11 @@
 				this.compile(modal)(this.scope);
 			};
 
+			/**
+			 * Description
+			 * @method copy
+			 * @return 
+			 */
 			Row.prototype.copy = function () {
 				var s = JSON.stringify(this.elm.entity);
 
@@ -85,6 +122,12 @@
 		} ();
 
 		return {
+			/**
+			 * Description
+			 * @method getNewRow
+			 * @param {} elm
+			 * @return NewExpression
+			 */
 			getNewRow(elm) {
 				return new Row(elm);
 			}

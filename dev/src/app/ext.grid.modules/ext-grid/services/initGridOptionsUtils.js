@@ -1,6 +1,5 @@
-/* global ExtGridActionsPlugin */
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -8,6 +7,16 @@
 
 	initGridOptionsUtils.$inject = ['extGridOptions', 'extInitDefaultService', '$log', 'extDefine', 'extGridActionsPlugin'];
 
+	/**
+	 * Description
+	 * @method initGridOptionsUtils
+	 * @param {} extGridOptions
+	 * @param {} extInitDefaultService
+	 * @param {} $log
+	 * @param {} extDefine
+	 * @param {} ExtGridActionsPlugin
+	 * @return utils
+	 */
 	function initGridOptionsUtils(extGridOptions, extInitDefaultService, $log, extDefine, ExtGridActionsPlugin) {
 		var utils = {};
 
@@ -21,6 +30,11 @@
 
 		return utils;
 
+		/**
+		 * Description
+		 * @method initContent
+		 * @return 
+		 */
 		function initContent() {
 			extInitDefaultService.init(extGridOptions, utils, 'content');
 
@@ -31,10 +45,25 @@
 			utils.content.gridInit = gridInit;
 		};
 
+		/**
+		 * Description
+		 * @method getDefault
+		 * @return MemberExpression
+		 */
 		function getDefault() {
 			return utils.content;
 		};
 
+		/**
+		 * Description
+		 * @method initOptions
+		 * @param {} gridOptions
+		 * @param {} data
+		 * @param {} contentOptions
+		 * @param {} $compile
+		 * @param {} templatesPath
+		 * @return opt
+		 */
 		function initOptions(gridOptions, data, contentOptions, $compile, templatesPath) {
 			checkInit(data, contentOptions, $compile, templatesPath);
 
@@ -63,6 +92,17 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method reInit
+		 * @param {} data
+		 * @param {} gridOptions
+		 * @param {} templatesPath
+		 * @param {} $scope
+		 * @param {} $scope
+		 * @param {} reInit
+		 * @return 
+		 */
 		function reInit(data, gridOptions, templatesPath, $compile, $scope, reInit) {
 			if (angular.isArray(data)) {
 				var oldColumns = angular.copy(gridOptions.columnDefs);
@@ -77,6 +117,13 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method columnsCompare
+		 * @param {} oldCols
+		 * @param {} newCols
+		 * @return Literal
+		 */
 		function columnsCompare(oldCols, newCols) {
 			if (!Array.isArray(oldCols) || !Array.isArray(newCols) || oldCols.length != newCols.length) {
 				return false;
@@ -91,10 +138,21 @@
 			return true;
 		};
 
+		/**
+		 * Description
+		 * @method gridInit
+		 * @return 
+		 */
 		function gridInit() {
 			this.isLoading = false;
 		};
 
+		/**
+		 * Description
+		 * @method rowCheckAction
+		 * @param {} data
+		 * @return 
+		 */
 		function rowCheckAction(data) {
 			var isCheckArray = data.filter(function (value) {
 				if (value.actions.isCheck) {
@@ -113,6 +171,13 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method getPluginActionOpt
+		 * @param {} gridOptions
+		 * @param {} contentOptions
+		 * @return pluginActionOpt
+		 */
 		function getPluginActionOpt(gridOptions, contentOptions) {
 			var pluginActionOpt = {
 				values: gridOptions.rowActions,
@@ -125,6 +190,13 @@
 			return pluginActionOpt;
 		};
 
+		/**
+		 * Description
+		 * @method getPlugins
+		 * @param {} gridOptions
+		 * @param {} $compile
+		 * @return plugins
+		 */
 		function getPlugins(gridOptions, $compile) {
 			var plugins = gridOptions.plugins || [];
 
@@ -142,6 +214,13 @@
 
 			return plugins;
 		};
+		/**
+		 * Description
+		 * @method generateColumn
+		 * @param {} data
+		 * @param {} templatesPath
+		 * @return columns
+		 */
 		function generateColumn(data, templatesPath) {
 			var columns = [];
 
@@ -175,6 +254,15 @@
 			return columns;
 		};
 
+		/**
+		 * Description
+		 * @method checkInit
+		 * @param {} data
+		 * @param {} contentOptions
+		 * @param {} $compile
+		 * @param {} templatesPath
+		 * @return 
+		 */
 		function checkInit(data, contentOptions, $compile, templatesPath) {
 			checkData(data);
 			checkContentOptions(contentOptions);
@@ -182,24 +270,48 @@
 			checkTemplatePath(templatesPath);
 		};
 
+		/**
+		 * Description
+		 * @method checkData
+		 * @param {} data
+		 * @return 
+		 */
 		function checkData(data) {
 			if (!angular.isArray(data)) {
 				$log.warn('Call init grid options utils with wrong data');
 			}
 		};
 
+		/**
+		 * Description
+		 * @method checkContentOptions
+		 * @param {} contentOptions
+		 * @return 
+		 */
 		function checkContentOptions(contentOptions) {
 			if (!angular.isDefined(contentOptions)) {
 				$log.warn('Call init grid options utils with wrong contentOptions');
 			}
 		};
 
+		/**
+		 * Description
+		 * @method checkCompile
+		 * @param {} $compile
+		 * @return 
+		 */
 		function checkCompile($compile) {
 			if (!angular.isFunction($compile)) {
 				$log.warn('Call init grid options with wrong compile function');
 			}
 		};
 
+		/**
+		 * Description
+		 * @method checkTemplatePath
+		 * @param {} templatesPath
+		 * @return 
+		 */
 		function checkTemplatePath(templatesPath) {
 			if (!angular.isString(templatesPath)) {
 				$log.warn('Templates path should be string');

@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.pageContentCards')
@@ -7,6 +7,14 @@
 
 	ExtPageContentCardsController.$inject = ['$scope', 'initCardsOptionsUtils', 'loggerService'];
 
+	/**
+	 * Description
+	 * @method ExtPageContentCardsController
+	 * @param {} $scope
+	 * @param {} initCardsOptionsUtils
+	 * @param {} loggerService
+	 * @return 
+	 */
 	function ExtPageContentCardsController($scope, initCardsOptionsUtils, loggerService) {
 		var vm = this;
 
@@ -19,6 +27,12 @@
 
 		$scope.$watch('vm.contentOptions.datepickerOptions.dateRange', dateRangeChange);
 
+		/**
+		 * Description
+		 * @method dateRangeChange
+		 * @param {} date
+		 * @return 
+		 */
 		function dateRangeChange(date) {
 			if (date) {
 				initCardsOptionsUtils.dateRangeChanged(date, vm.cardsOptions, vm.contentOptions);

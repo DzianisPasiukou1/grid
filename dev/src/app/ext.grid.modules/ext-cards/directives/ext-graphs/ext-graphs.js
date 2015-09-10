@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.cards')
@@ -7,6 +7,12 @@
 
 	extGraphs.$inject = ['extCardsTemplatesPath']
 
+	/**
+	 * Description
+	 * @method extGraphs
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extGraphs(templatesPath) {
 		var directive = {
 			restrict: 'EA',

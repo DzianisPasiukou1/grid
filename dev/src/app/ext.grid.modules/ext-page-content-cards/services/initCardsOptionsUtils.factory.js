@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.pageContentCards')
@@ -7,6 +7,15 @@
 
 	initCardsOptionsUtils.$inject = ['EXT_CARDS_OPTIONS', 'counterFactory', 'initContentOptionsCardsUtils', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method initCardsOptionsUtils
+	 * @param {} EXT_CARDS_OPTIONS
+	 * @param {} counterFactory
+	 * @param {} initContentOptionsCardsUtils
+	 * @param {} extDefine
+	 * @return utils
+	 */
 	function initCardsOptionsUtils(EXT_CARDS_OPTIONS, counterFactory, initContentOptionsCardsUtils, extDefine) {
 		var utils = {};
 
@@ -22,11 +31,26 @@
 
 		return utils;
 
+		/**
+		 * Description
+		 * @method init
+		 * @param {} cardsOptions
+		 * @param {} contentOptions
+		 * @param {} data
+		 * @param {} vm
+		 * @return 
+		 */
 		function init(cardsOptions, contentOptions, data, vm) {
 			cardsOptions = initCards(cardsOptions);
 			contentOptions = initContentOptions(contentOptions, data, vm);
 		};
 
+		/**
+		 * Description
+		 * @method initCards
+		 * @param {} cardsOptions
+		 * @return opt
+		 */
 		function initCards(cardsOptions) {
 			var opt = extDefine(cardsOptions, {});
 
@@ -41,6 +65,14 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method initContentOptions
+		 * @param {} contentOptions
+		 * @param {} data
+		 * @param {} vm
+		 * @return opt
+		 */
 		function initContentOptions(contentOptions, data, vm) {
 			var opt = extDefine(contentOptions, {});
 
@@ -55,6 +87,14 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method dateRangeChanged
+		 * @param {} date
+		 * @param {} cardsOptions
+		 * @param {} contentOptions
+		 * @return 
+		 */
 		function dateRangeChanged(date, cardsOptions, contentOptions) {
 			for (var card in cardsOptions.cards) {
 				if (cardsOptions.cards[card].counter) {
@@ -63,6 +103,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method initCounter
+		 * @param {} cards
+		 * @return 
+		 */
 		function initCounter(cards) {
 			for (var p in cards) {
 				if (p == 'click') {
@@ -73,6 +119,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method filtrate
+		 * @param {} value
+		 * @return 
+		 */
 		function filtrate(value) {
 			var filterText = convertFilterOptions(value).filterText;
 
@@ -81,12 +133,24 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method search
+		 * @param {} value
+		 * @return 
+		 */
 		function search(value) {
 			if (angular.isDefined(this.uiGridOptions.filterOptions)) {
 				this.uiGridOptions.filterOptions.filterText = value;
 			}
 		};
 
+		/**
+		 * Description
+		 * @method getSearchOptions
+		 * @param {} data
+		 * @return options
+		 */
 		function getSearchOptions(data) {
 			var options = [];
 			options.push({ label: 'everywhere', isEverywhere: true });
@@ -102,6 +166,12 @@
 			return options;
 		};
 
+		/**
+		 * Description
+		 * @method getFilterOptions
+		 * @param {} data
+		 * @return options
+		 */
 		function getFilterOptions(data) {
 			var options = [];
 
@@ -114,6 +184,12 @@
 			return options;
 		};
 
+		/**
+		 * Description
+		 * @method convertFilterOptions
+		 * @param {} options
+		 * @return convertOpt
+		 */
 		function convertFilterOptions(options) {
 			var convertOpt = { filterText: '' };
 

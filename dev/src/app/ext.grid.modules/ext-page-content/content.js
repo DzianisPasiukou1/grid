@@ -1,9 +1,15 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.pageContent')
 		.constant('CONTENT', {
+			/**
+			 * Description
+			 * @method filterOptions
+			 * @param {} data
+			 * @return options
+			 */
 			filterOptions: function (data) {
 				var options = [];
 
@@ -15,6 +21,12 @@
 					}
 				return options;
 			},
+			/**
+			 * Description
+			 * @method searchOptions
+			 * @param {} data
+			 * @return options
+			 */
 			searchOptions: function (data) {
 				var options = [];
 				options.push({ label: 'everywhere', isEverywhere: true });

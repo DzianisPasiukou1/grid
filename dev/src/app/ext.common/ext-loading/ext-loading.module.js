@@ -1,5 +1,6 @@
 (function () {
-	'use strict'
+	'use strict';
+	
 	angular
 		.module('ext.common.loading', [])
 		.constant('LOADING', {

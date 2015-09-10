@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.maxHeighter')
@@ -7,6 +7,14 @@
 
 	extMaxHeighter.$inject = ['$timeout', '$window', 'extWindow'];
 
+	/**
+	 * Description
+	 * @method extMaxHeighter
+	 * @param {} $window
+	 * @param {} $window
+	 * @param {} extWindow
+	 * @return directive
+	 */
 	function extMaxHeighter($timeout, $window, extWindow) {
 		var directive = {
 			restrict: 'AC',
@@ -16,6 +24,13 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method compile
+		 * @param {} element
+		 * @param {} attrs
+		 * @return compileObj
+		 */
 		function compile(element, attrs) {
 			var compileObj = {
 				post: compilePost
@@ -27,6 +42,11 @@
 
 			return compileObj;
 
+			/**
+			 * Description
+			 * @method onPositionChanged
+			 * @return 
+			 */
 			function onPositionChanged() {
 				if (extWindow.height() - element.offset().top > 0) {
 					element.css('max-height', extWindow.height() - element.offset().top - 10 + 'px');
@@ -36,6 +56,14 @@
 				}
 			};
 
+			/**
+			 * Description
+			 * @method compilePost
+			 * @param {} scope
+			 * @param {} element
+			 * @param {} attrs
+			 * @return 
+			 */
 			function compilePost(scope, element, attrs) {
 				$timeout(function () {
 					onPositionChanged(element);
@@ -46,6 +74,11 @@
 				scope.$on('$destroy', destroy);
 			};
 
+			/**
+			 * Description
+			 * @method destroy
+			 * @return 
+			 */
 			function destroy() {
 				angular.element($window).off("resize", onPositionChanged);
 			};

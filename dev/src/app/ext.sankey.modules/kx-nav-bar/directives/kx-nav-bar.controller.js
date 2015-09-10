@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.sankey.navbar')
@@ -7,6 +7,11 @@
 	
 	KxNavbarController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method KxNavbarController
+	 * @return 
+	 */
 	function KxNavbarController() {
 		var vm = this;
 	};

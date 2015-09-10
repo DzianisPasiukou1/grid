@@ -1,5 +1,12 @@
 ﻿angular.module('azureApp')
 	.service('gridUploadService', ['UploadData', '$http', function (UploadData, $http) {
+		/**
+		 * Description
+		 * @method get
+		 * @param {} callback
+		 * @param {} url
+		 * @return 
+		 */
 		this.get = function (callback, url) {
 			var data = UploadData.get();
 
@@ -11,6 +18,11 @@
 		var categories = ['ecommerce', 'User Match', 'Site Visit', 'User Action', 'Form Data'];
 		var conversions = ['Yes', 'No'];
 
+		/**
+		 * Description
+		 * @method data
+		 * @return array
+		 */
 		var data = function () {
 			var array = [];
 
@@ -40,6 +52,11 @@
 		};
 
 		return {
+			/**
+			 * Description
+			 * @method get
+			 * @return CallExpression
+			 */
 			get: function () {
 				return data();
 			}

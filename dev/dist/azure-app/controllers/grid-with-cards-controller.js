@@ -7,6 +7,12 @@
 
 	GridWithCardsController.$inject = ['gridStandartOneService'];
 
+	/**
+	 * Description
+	 * @method GridWithCardsController
+	 * @param {} gridStandartOneService
+	 * @return 
+	 */
 	function GridWithCardsController(gridStandartOneService) {
 		var vm = this;
 
@@ -25,6 +31,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			gridStandartOneService.get(function (data) {
 				vm.data = data;

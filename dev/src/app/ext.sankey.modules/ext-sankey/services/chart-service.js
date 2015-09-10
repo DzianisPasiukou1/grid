@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.main')
@@ -7,13 +7,32 @@
 
 	chartFactory.$inject = ['$rootScope'];
 
+	/**
+	 * Description
+	 * @method chartFactory
+	 * @param {} $rootScope
+	 * @return ObjectExpression
+	 */
 	function chartFactory($rootScope) {
 		var Chart = function () {
+			/**
+			 * Description
+			 * @method Chart
+			 * @param {} data
+			 * @param {} opt
+			 * @return 
+			 */
 			function Chart(data, opt) {
 				this.units = "Widgets";
 				this.margin = { top: 0, right: 10, bottom: 10, left: 10 };
 				this.width = 1500 - this.margin.left - this.margin.right;
 				this.height = 740 - this.margin.top - this.margin.bottom;
+				/**
+				 * Description
+				 * @method format
+				 * @param {} d
+				 * @return BinaryExpression
+				 */
 				this.format = function (d) {
 					return this.formatNumber(d) + " " + this.units;
 				}
@@ -27,6 +46,12 @@
 				this.handlers = [];
 			};
 
+			/**
+			 * Description
+			 * @method clearHtml
+			 * @param {} elm
+			 * @return 
+			 */
 			Chart.prototype.clearHtml = function (elm) {
 				elm.html('');
 			};
@@ -165,14 +190,31 @@
 					.layout(32);
 			};
 
+			/**
+			 * Description
+			 * @method mouseover
+			 * @param {} d
+			 * @return 
+			 */
 			Chart.prototype.mouseover = function (d) {
 				$rootScope.$broadcast('mouseover', d);
 			};
 
+			/**
+			 * Description
+			 * @method mouseout
+			 * @param {} d
+			 * @return 
+			 */
 			Chart.prototype.mouseout = function (d) {
 				$rootScope.$broadcast('mouseout', d);
 			};
 
+			/**
+			 * Description
+			 * @method fullRenderSankey
+			 * @return 
+			 */
 			Chart.prototype.fullRenderSankey = function () {
 				this._renderSvg();
 				this._renderSankey();
@@ -182,6 +224,12 @@
 				this._renderNode();
 			};
 
+			/**
+			 * Description
+			 * @method refreshData
+			 * @param {} data
+			 * @return 
+			 */
 			Chart.prototype.refreshData = function (data) {
 				this.data = angular.copy(data);
 			};
@@ -192,6 +240,11 @@
 				})
 			}
 
+			/**
+			 * Description
+			 * @method destroy
+			 * @return 
+			 */
 			Chart.prototype.destroy = function () {
 				this._removeListeners();
 
@@ -206,6 +259,13 @@
 		} ();
 
 		return {
+			/**
+			 * Description
+			 * @method getChart
+			 * @param {} data
+			 * @param {} opt
+			 * @return NewExpression
+			 */
 			getChart: function (data, opt) {
 				return new Chart(data, opt);
 			}

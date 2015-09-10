@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.pageContent')
@@ -7,6 +7,17 @@
 
 	ExtPageContentController.$inject = ['$scope', 'initPageContent', '$element', '$compile', 'extGridTemplatesPath', 'loggerService'];
 
+	/**
+	 * Description
+	 * @method ExtPageContentController
+	 * @param {} $compile
+	 * @param {} initPageContent
+	 * @param {} $compile
+	 * @param {} $compile
+	 * @param {} extGridTemplatesPath
+	 * @param {} logger
+	 * @return 
+	 */
 	function ExtPageContentController($scope, initPageContent, $element, $compile, extGridTemplatesPath, logger) {
 		var vm = this;
 
@@ -22,6 +33,12 @@
 		$scope.$watch('vm.data.length', lengthChanged);
 		$scope.$watch('vm.grid.views.options.selected', viewsChangedvalue);
 
+		/**
+		 * Description
+		 * @method dataChanged
+		 * @param {} data
+		 * @return 
+		 */
 		function dataChanged(data) {
 			if (angular.isArray(data)) {
 				initPageContent.refreshContentOptions(vm.contentOptions, data, vm.gridOptions, vm.grid.views);
@@ -29,10 +46,22 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method lengthChanged
+		 * @param {} value
+		 * @return 
+		 */
 		function lengthChanged(value) {
 			vm.grid.count = value;
 		};
 
+		/**
+		 * Description
+		 * @method viewsChangedvalue
+		 * @param {} value
+		 * @return 
+		 */
 		function viewsChangedvalue(value) {
 			if (value) {
 				initPageContent.refreshContentOptions(vm.contentOptions, vm.data, vm.gridOptions, vm.grid.views);

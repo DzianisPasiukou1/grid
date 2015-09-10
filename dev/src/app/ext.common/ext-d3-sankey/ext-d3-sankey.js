@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.d3Sankey')
@@ -7,7 +7,17 @@
 
 	d3Sankey.$inject = [];
 
+	/**
+	 * Description
+	 * @method d3Sankey
+	 * @return 
+	 */
 	function d3Sankey() {
+		/**
+		 * Description
+		 * @method sankey
+		 * @return sankey
+		 */
 		d3.sankey = function () {
 			var sankey = {},
 				nodeWidth = 24,
@@ -16,36 +26,72 @@
 				nodes = [],
 				links = [];
 
+			/**
+			 * Description
+			 * @method nodeWidth
+			 * @param {} _
+			 * @return sankey
+			 */
 			sankey.nodeWidth = function (_) {
 				if (!arguments.length) return nodeWidth;
 				nodeWidth = +_;
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method nodePadding
+			 * @param {} _
+			 * @return sankey
+			 */
 			sankey.nodePadding = function (_) {
 				if (!arguments.length) return nodePadding;
 				nodePadding = +_;
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method nodes
+			 * @param {} _
+			 * @return sankey
+			 */
 			sankey.nodes = function (_) {
 				if (!arguments.length) return nodes;
 				nodes = _;
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method links
+			 * @param {} _
+			 * @return sankey
+			 */
 			sankey.links = function (_) {
 				if (!arguments.length) return links;
 				links = _;
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method size
+			 * @param {} _
+			 * @return sankey
+			 */
 			sankey.size = function (_) {
 				if (!arguments.length) return size;
 				size = _;
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method layout
+			 * @param {} iterations
+			 * @return sankey
+			 */
 			sankey.layout = function (iterations) {
 				computeNodeLinks();
 				computeNodeValues();
@@ -55,14 +101,30 @@
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method relayout
+			 * @return sankey
+			 */
 			sankey.relayout = function () {
 				computeLinkDepths();
 				return sankey;
 			};
 
+			/**
+			 * Description
+			 * @method link
+			 * @return link
+			 */
 			sankey.link = function () {
 				var curvature = .5;
 
+				/**
+				 * Description
+				 * @method link
+				 * @param {} d
+				 * @return BinaryExpression
+				 */
 				function link(d) {
 					var x0 = d.source.x + d.source.dx,
 						x1 = d.target.x,
@@ -77,6 +139,12 @@
 						+ " " + x1 + "," + y1;
 				}
 
+				/**
+				 * Description
+				 * @method curvature
+				 * @param {} _
+				 * @return link
+				 */
 				link.curvature = function (_) {
 					if (!arguments.length) return curvature;
 					curvature = +_;
@@ -88,6 +156,11 @@
 
 			// Populate the sourceLinks and targetLinks for each node.
 			// Also, if the source and target are not objects, assume they are indices.
+			/**
+			 * Description
+			 * @method computeNodeLinks
+			 * @return 
+			 */
 			function computeNodeLinks() {
 				nodes.forEach(function (node) {
 					node.sourceLinks = [];
@@ -104,6 +177,11 @@
 			}
 
 			// Compute the value (size) of each node by summing the associated links.
+			/**
+			 * Description
+			 * @method computeNodeValues
+			 * @return 
+			 */
 			function computeNodeValues() {
 				nodes.forEach(function (node) {
 					node.value = Math.max(
@@ -117,6 +195,11 @@
 			// Nodes are assigned the maximum breadth of incoming neighbors plus one;
 			// nodes with no incoming links are assigned breadth zero, while
 			// nodes with no outgoing links are assigned the maximum breadth.
+			/**
+			 * Description
+			 * @method computeNodeBreadths
+			 * @return 
+			 */
 			function computeNodeBreadths() {
 				var remainingNodes = nodes,
 					nextNodes,
@@ -140,6 +223,11 @@
 				scaleNodeBreadths((size[0] - nodeWidth) / (x - 1));
 			}
 
+			/**
+			 * Description
+			 * @method moveSourcesRight
+			 * @return 
+			 */
 			function moveSourcesRight() {
 				nodes.forEach(function (node) {
 					if (!node.targetLinks.length) {
@@ -148,6 +236,12 @@
 				});
 			}
 
+			/**
+			 * Description
+			 * @method moveSinksRight
+			 * @param {} x
+			 * @return 
+			 */
 			function moveSinksRight(x) {
 				nodes.forEach(function (node) {
 					if (!node.sourceLinks.length) {
@@ -156,12 +250,24 @@
 				});
 			}
 
+			/**
+			 * Description
+			 * @method scaleNodeBreadths
+			 * @param {} kx
+			 * @return 
+			 */
 			function scaleNodeBreadths(kx) {
 				nodes.forEach(function (node) {
 					node.x *= kx;
 				});
 			}
 
+			/**
+			 * Description
+			 * @method computeNodeDepths
+			 * @param {} iterations
+			 * @return 
+			 */
 			function computeNodeDepths(iterations) {
 				var nodesByBreadth = d3.nest()
 					.key(function (d) { return d.x; })
@@ -179,6 +285,11 @@
 					resolveCollisions();
 				}
 
+				/**
+				 * Description
+				 * @method initializeNodeDepth
+				 * @return 
+				 */
 				function initializeNodeDepth() {
 					var ky = d3.min(nodesByBreadth, function (nodes) {
 						return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
@@ -196,6 +307,12 @@
 					});
 				}
 
+				/**
+				 * Description
+				 * @method relaxLeftToRight
+				 * @param {} alpha
+				 * @return 
+				 */
 				function relaxLeftToRight(alpha) {
 					nodesByBreadth.forEach(function (nodes, breadth) {
 						nodes.forEach(function (node) {
@@ -206,11 +323,23 @@
 						});
 					});
 
+					/**
+					 * Description
+					 * @method weightedSource
+					 * @param {} link
+					 * @return BinaryExpression
+					 */
 					function weightedSource(link) {
 						return center(link.source) * link.value;
 					}
 				}
 
+				/**
+				 * Description
+				 * @method relaxRightToLeft
+				 * @param {} alpha
+				 * @return 
+				 */
 				function relaxRightToLeft(alpha) {
 					nodesByBreadth.slice().reverse().forEach(function (nodes) {
 						nodes.forEach(function (node) {
@@ -221,11 +350,22 @@
 						});
 					});
 
+					/**
+					 * Description
+					 * @method weightedTarget
+					 * @param {} link
+					 * @return BinaryExpression
+					 */
 					function weightedTarget(link) {
 						return center(link.target) * link.value;
 					}
 				}
 
+				/**
+				 * Description
+				 * @method resolveCollisions
+				 * @return 
+				 */
 				function resolveCollisions() {
 					nodesByBreadth.forEach(function (nodes) {
 						var node,
@@ -259,11 +399,23 @@
 					});
 				}
 
+				/**
+				 * Description
+				 * @method ascendingDepth
+				 * @param {} a
+				 * @param {} b
+				 * @return BinaryExpression
+				 */
 				function ascendingDepth(a, b) {
 					return a.y - b.y;
 				}
 			}
 
+			/**
+			 * Description
+			 * @method computeLinkDepths
+			 * @return 
+			 */
 			function computeLinkDepths() {
 				nodes.forEach(function (node) {
 					node.sourceLinks.sort(ascendingTargetDepth);
@@ -281,19 +433,45 @@
 					});
 				});
 
+				/**
+				 * Description
+				 * @method ascendingSourceDepth
+				 * @param {} a
+				 * @param {} b
+				 * @return BinaryExpression
+				 */
 				function ascendingSourceDepth(a, b) {
 					return a.source.y - b.source.y;
 				}
 
+				/**
+				 * Description
+				 * @method ascendingTargetDepth
+				 * @param {} a
+				 * @param {} b
+				 * @return BinaryExpression
+				 */
 				function ascendingTargetDepth(a, b) {
 					return a.target.y - b.target.y;
 				}
 			}
 
+			/**
+			 * Description
+			 * @method center
+			 * @param {} node
+			 * @return BinaryExpression
+			 */
 			function center(node) {
 				return node.y + node.dy / 2;
 			}
 
+			/**
+			 * Description
+			 * @method value
+			 * @param {} link
+			 * @return MemberExpression
+			 */
 			function value(link) {
 				return link.value;
 			}

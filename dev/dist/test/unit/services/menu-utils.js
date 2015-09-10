@@ -15,6 +15,11 @@ describe('factory: menuUtils', function () {
 		columns = [];
 		for (var index = 0; index < countColumns; index++) {
 			columns.push({
+				/**
+				 * Description
+				 * @method toggleVisible
+				 * @return 
+				 */
 				toggleVisible: function () {
 					this.visible = !this.visible;
 				},

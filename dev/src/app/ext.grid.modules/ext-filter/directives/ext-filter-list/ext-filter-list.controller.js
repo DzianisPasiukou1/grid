@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.filter')
@@ -7,9 +7,20 @@
 
 	ExtFilterListController.$inject = ['$scope'];
 
+	/**
+	 * Description
+	 * @method ExtFilterListController
+	 * @param {} $scope
+	 * @return 
+	 */
 	function ExtFilterListController($scope) {
 		$scope.filter = filter;
 
+		/**
+		 * Description
+		 * @method filter
+		 * @return 
+		 */
 		function filter() {
 			$scope.isFiltrate = true;
 		}

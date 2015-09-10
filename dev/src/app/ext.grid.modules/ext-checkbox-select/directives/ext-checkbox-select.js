@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.checkboxSelect')
@@ -7,6 +7,12 @@
 
 	extCheckboxSelect.$inject = ['extCheckboxSelectTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extCheckboxSelect
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extCheckboxSelect(templatesPath) {
 		var directive = {
 			restrict: 'EA',

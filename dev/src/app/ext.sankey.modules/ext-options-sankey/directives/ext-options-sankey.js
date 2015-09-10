@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.optionsSankey')
@@ -7,6 +7,12 @@
 
 	extOptionsSankey.$inject = ['extOptionsSankeyTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extOptionsSankey
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extOptionsSankey(templatesPath) {
 		var directive = {
 			restrict: 'EA',

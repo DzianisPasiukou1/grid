@@ -7,6 +7,13 @@
 
 	GridStandartTwoController.$inject = ['gridStandartTwoService', 'gridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method GridStandartTwoController
+	 * @param {} gridStandartTwoService
+	 * @param {} templatesPath
+	 * @return 
+	 */
 	function GridStandartTwoController(gridStandartTwoService, templatesPath) {
 		var vm = this;
 
@@ -15,6 +22,11 @@
 		};
 
 		vm.contentOptions = {
+			/**
+			 * Description
+			 * @method refresh
+			 * @return 
+			 */
 			refresh: function () {
 				getData();
 
@@ -61,6 +73,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			gridStandartTwoService.get(function (data) {
 				vm.data = data;

@@ -157,6 +157,8 @@ angular.module('azureApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t\t<button class=\"metro-btn\" onclick=\"location.href = 'https://github.com/DzianisPasiukou1/grid/tree/publish-dev'\">Github</button>\r" +
     "\n" +
+    "\t\t<button class=\"metro-btn\" onclick=\"location.href = '/docs'\">Documentation</button>\r" +
+    "\n" +
     "\t</div>\r" +
     "\n" +
     "\t<h2>Grids</h2>\r" +
@@ -223,8 +225,7 @@ angular.module('azureApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "\t</ul>\r" +
     "\n" +
-    "</div>\r" +
-    "\n"
+    "</div>"
   );
 
 }]);

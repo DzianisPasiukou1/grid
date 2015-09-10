@@ -1,12 +1,18 @@
 ﻿(function () {
-	'use strict'
-
+	'use strict';
+	
 	angular
 		.module('ext.grid.uiGrid')
 		.directive('extUiGrid', extUiGrid);
 
 	extUiGrid.$inject = ['extUiGridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extUiGrid
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extUiGrid(templatesPath) {
 		var directive = {
 			restrict: 'EA',

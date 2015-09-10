@@ -7,6 +7,13 @@
 
 	GridWithDetailsController.$inject = ['gridWithDetailsTemplateService', 'gridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method GridWithDetailsController
+	 * @param {} gridWithDetailsTemplateService
+	 * @param {} templatesPath
+	 * @return 
+	 */
 	function GridWithDetailsController(gridWithDetailsTemplateService, templatesPath) {
 		var vm = this;
 
@@ -15,6 +22,11 @@
 		};
 
 		vm.contentOptions = {
+			/**
+			 * Description
+			 * @method refresh
+			 * @return 
+			 */
 			refresh: function () {
 				getData();
 
@@ -26,6 +38,13 @@
 		vm.gridOptions = {
 			data: 'data',
 			withDetails: true,
+			/**
+			 * Description
+			 * @method init
+			 * @param {} grid
+			 * @param {} $scope
+			 * @return 
+			 */
 			init: function (grid, $scope) {
 			},
 			multiSelect: false,
@@ -58,6 +77,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			gridWithDetailsTemplateService.get(function (data) {
 				vm.data = data;

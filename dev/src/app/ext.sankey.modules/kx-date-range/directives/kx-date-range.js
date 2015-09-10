@@ -1,6 +1,6 @@
 ﻿/* global moment */
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.dateRange')
@@ -8,6 +8,13 @@
 
 	kxDateRange.$inject = ['$parse', '$translate'];
 
+	/**
+	 * Description
+	 * @method kxDateRange
+	 * @param {} $translate
+	 * @param {} $translate
+	 * @return directive
+	 */
 	function kxDateRange($parse, $translate) {
 		var directive = {
 			restrict: 'CAE',
@@ -17,6 +24,13 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method compile
+		 * @param {} elem
+		 * @param {} attr
+		 * @return FunctionExpression
+		 */
 		function compile(elem, attr) {
 			if (attr.disableEdit) {
 				elem.append("<span class=\"kx-daterangepicker\">\n  <span class=\"add-on glyph-calendar\">\n    <i class=\"icon-calendar icon-large\"></i>\n  </span>\n  <form ng-submit=\"onHitReturn()\">\n    <input kx-stealth-input\n    ng-model=\"inputValue\"\n    ng-change=\"onInputChange()\"\n    ng-class=\"{'ng-invalid': isInvalid}\" readonly></input>\n  </form>\n</span>");
@@ -26,6 +40,11 @@
 			elem.after('<span ng-show="isInvalid" class="help-inline calendar-invalid-msg">{{"Incorrect Date" | translate}}</span>');
 			return function ($scope, elem, attr, ngModelCtrl) {
 				var format, inputRender, isValid, offset, onApplyRange, onModelChange, open, renderRange, separator;
+				/**
+				 * Description
+				 * @param {} arg
+				 * @return LogicalExpression
+				 */
 				isValid = function (arg) {
 					var end, isSyntacticValid, start;
 					start = arg.start, end = arg.end;
@@ -40,6 +59,11 @@
 				}
 				format = attr.format || 'MMM DD, YYYY';
 				separator = attr.separator || ' - ';
+				/**
+				 * Description
+				 * @param {} range
+				 * @return BinaryExpression
+				 */
 				renderRange = function (range) {
 					return range.start.format(format) + separator + range.end.format(format);
 				};
@@ -56,11 +80,21 @@
 						return ngModelCtrl.$setValidity('parses', true);
 					}
 				});
+				/**
+				 * Description
+				 * @method onHitReturn
+				 * @return CallExpression
+				 */
 				$scope.onHitReturn = function () {
 					var data;
 					data = elem.data('daterangepicker');
 					return onApplyRange(data.startDate, data.endDate);
 				};
+				/**
+				 * Description
+				 * @method onInputChange
+				 * @return 
+				 */
 				$scope.onInputChange = function () {
 					var dates, picker, range;
 					dates = $scope.inputValue.split(separator);
@@ -77,6 +111,11 @@
 						return $scope.isInvalid = true;
 					}
 				};
+				/**
+				 * Description
+				 * @param {} dateRange
+				 * @return 
+				 */
 				onModelChange = function (dateRange) {
 					var elemData, end, ret, start;
 					if (dateRange && dateRange.start) {
@@ -110,6 +149,11 @@
 					}
 				});
 				inputRender = ngModelCtrl.$render;
+				/**
+				 * Description
+				 * @method $render
+				 * @return CallExpression
+				 */
 				ngModelCtrl.$render = function () {
 					inputRender();
 					return elem.trigger('keyup');
@@ -124,6 +168,10 @@
 						'lastYear': {}
 					};
 					for (i = j = 11; j >= 0; i = --j) {
+						/**
+						 * Description
+						 * @return CallExpression
+						 */
 						current = function () {
 							return moment().subtract('months', i);
 						};

@@ -1,12 +1,21 @@
 (function () {
-	'use strict'
-
+	'use strict';
+	
 	angular
 		.module('ext.sankey.pageSankey')
 		.factory('initUtils', initUtils);
 
 	initUtils.$inject = ['CONTENT', 'counterFactory', '$log', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method initUtils
+	 * @param {} CONTENT
+	 * @param {} counterFactory
+	 * @param {} $log
+	 * @param {} extDefine
+	 * @return utils
+	 */
 	function initUtils(CONTENT, counterFactory, $log, extDefine) {
 		var utils = {};
 		initContent();
@@ -21,6 +30,11 @@
 
 		return utils;
 
+		/**
+		 * Description
+		 * @method initContent
+		 * @return 
+		 */
 		function initContent() {
 			utils.content = {};
 
@@ -31,6 +45,16 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method initOptions
+		 * @param {} contentOptions
+		 * @param {} cardsOptions
+		 * @param {} filters
+		 * @param {} sankeyData
+		 * @param {} histogramData
+		 * @return 
+		 */
 		function initOptions(contentOptions, cardsOptions, filters, sankeyData, histogramData) {
 			contentOptions = initContentOptions(contentOptions);
 			cardsOptions = initCardsOptions(cardsOptions);
@@ -39,6 +63,12 @@
 			histogramData = initHistogramData(histogramData);
 		};
 
+		/**
+		 * Description
+		 * @method initContentOptions
+		 * @param {} contentOptions
+		 * @return opt
+		 */
 		function initContentOptions(contentOptions) {
 			var opt = contentOptions || {};
 
@@ -66,6 +96,12 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method initCardsOptions
+		 * @param {} cardsOptions
+		 * @return opt
+		 */
 		function initCardsOptions(cardsOptions) {
 			var opt = cardsOptions || {};
 
@@ -80,6 +116,14 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method updateByDefault
+		 * @param {} cardsOptions
+		 * @param {} sankey
+		 * @param {} histogram
+		 * @return 
+		 */
 		function updateByDefault(cardsOptions, sankey, histogram) {
 			cardsOptions.cards = utils.content.cards;
 			sankey.links = utils.content.sankeyData.links;
@@ -87,12 +131,24 @@
 			histogram = utils.content.histogramData;
 		};
 
+		/**
+		 * Description
+		 * @method initFilters
+		 * @param {} filters
+		 * @return filt
+		 */
 		function initFilters(filters) {
 			var filt = extDefine(filters, utils.content.sankeyFilters);
 
 			return filt;
 		};
 
+		/**
+		 * Description
+		 * @method initSankeyData
+		 * @param {} sankey
+		 * @return data
+		 */
 		function initSankeyData(sankey) {
 			var data = extDefine(sankey, {});
 
@@ -102,12 +158,24 @@
 			return data;
 		};
 
+		/**
+		 * Description
+		 * @method initHistogramData
+		 * @param {} histogram
+		 * @return data
+		 */
 		function initHistogramData(histogram) {
 			var data = angular.isArray(histogram) && histogram.length > 0 ? histogram : utils.content.histogramData;
 
 			return data;
 		};
 
+		/**
+		 * Description
+		 * @method initCounter
+		 * @param {} cards
+		 * @return 
+		 */
 		function initCounter(cards) {
 			for (var p in cards) {
 				if (p == 'click') {
@@ -118,18 +186,42 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method uploadCards
+		 * @param {} data
+		 * @return 
+		 */
 		function uploadCards(data) {
 			logWarn('Call default function on upload cards.');
 		};
 
+		/**
+		 * Description
+		 * @method uploadSankey
+		 * @param {} data
+		 * @return 
+		 */
 		function uploadSankey(data) {
 			logWarn('Call default function on upload sankey.');
 		};
 
+		/**
+		 * Description
+		 * @method uploadHistogram
+		 * @param {} data
+		 * @return 
+		 */
 		function uploadHistogram(data) {
 			logWarn('Call default function on upload histogram.');
 		};
 
+		/**
+		 * Description
+		 * @method logWarn
+		 * @param {} text
+		 * @return 
+		 */
 		function logWarn(text) {
 			$log.warn(text);
 		};

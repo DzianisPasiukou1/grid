@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.cursorMessage')
@@ -7,6 +7,11 @@
 
 	cursorMessage.$inject = [];
 
+	/**
+	 * Description
+	 * @method cursorMessage
+	 * @return 
+	 */
 	function cursorMessage() {
 		angular.element.cursorMessageData = {};
 
@@ -23,6 +28,13 @@
 			});
 		});
 		angular.element.extend({
+			/**
+			 * Description
+			 * @method cursorMessage
+			 * @param {} message
+			 * @param {} options
+			 * @return 
+			 */
 			cursorMessage: function (message, options) {
 				if (options == undefined) options = {};
 				if (options.offsetX == undefined) options.offsetX = 5;
@@ -35,6 +47,11 @@
 				angular.element.cursorMessageData.options = options;
 				angular.element._showCursorMessage();
 			},
+			/**
+			 * Description
+			 * @method hideCursorMessage
+			 * @return 
+			 */
 			hideCursorMessage: function () {
 				angular.element('.cursor-message').fadeOut('slow');
 			},

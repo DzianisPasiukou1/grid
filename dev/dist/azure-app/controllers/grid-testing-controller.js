@@ -7,6 +7,14 @@
 
 	GridTestingController.$inject = ['$scope', 'gridUploadService', 'gridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method GridTestingController
+	 * @param {} $scope
+	 * @param {} gridUploadService
+	 * @param {} templatesPath
+	 * @return 
+	 */
 	function GridTestingController($scope, gridUploadService, templatesPath) {
 		var vm = this;
 
@@ -14,6 +22,12 @@
 		vm.gridUploadService = gridUploadService;
 		vm.templatesPath = templatesPath;
 
+		/**
+		 * Description
+		 * @method getData
+		 * @param {} callback
+		 * @return 
+		 */
 		vm.getData = function (callback) {
 			var self = this;
 
@@ -33,6 +47,11 @@
 		vm.scope.contentOptions = {
 			loading: false,
 			refreshCallback: vm.getData,
+			/**
+			 * Description
+			 * @method refresh
+			 * @return 
+			 */
 			refresh: function () {
 				this.scope.contentOptions.isLoading = true;
 				this.getData();
@@ -52,10 +71,22 @@
 				actions: [{
 					label: 'test'
 				}],
+				/**
+				 * Description
+				 * @method callback
+				 * @param {} action
+				 * @return 
+				 */
 				callback: function (action) {
 					console.log('check is tested');
 				}
 			},
+			/**
+			 * Description
+			 * @method upload
+			 * @param {} data
+			 * @return 
+			 */
 			upload: function (data) {
 				this.scope.contentOptions.isLoading = true;
 				this.scope.data = angular.copy(data);
@@ -68,6 +99,13 @@
 		vm.scope.gridOptions = {
 			withDetails: true,
 			detailsTemplate: vm.templatesPath + 'grid-templates/details-templates/details-example1.html',
+			/**
+			 * Description
+			 * @method detailsCondition
+			 * @param {} entity
+			 * @param {} index
+			 * @return 
+			 */
 			detailsCondition: function (entity, index) {
 				var self = this;
 
@@ -126,6 +164,11 @@
 
 		vm.scope.isValid = true;
 
+		/**
+		 * Description
+		 * @method textChange
+		 * @return 
+		 */
 		vm.scope.textChange = function () {
 			try {
 				var temp = vm.scope.content.replace(/\r/g, '').replace(/\n/g, '').replace(/\t/g, '')
@@ -160,6 +203,11 @@
 
 		vm.scope.textChange();
 
+		/**
+		 * Description
+		 * @method compile
+		 * @return 
+		 */
 		vm.scope.compile = function () {
 			vm.getData();
 		}

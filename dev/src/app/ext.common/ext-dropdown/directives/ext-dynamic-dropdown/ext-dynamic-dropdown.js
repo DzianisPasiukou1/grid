@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.dropdown')
@@ -7,6 +7,15 @@
 
 	extDynamicDropdown.$inject = ['extDropdownTemplatePath', '$compile', '$timeout', '$window'];
 
+	/**
+	 * Description
+	 * @method extDynamicDropdown
+	 * @param {} templatesPath
+	 * @param {} $window
+	 * @param {} $window
+	 * @param {} $window
+	 * @return directive
+	 */
 	function extDynamicDropdown(templatesPath, $compile, $timeout, $window) {
 		var directive = {
 			restrict: 'EA',
@@ -26,7 +35,21 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
+			/**
+			 * Description
+			 * @method dynamic
+			 * @return 
+			 */
 			var dynamic = function () {
 				for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 					if (!scope.dynamicOpt.values[i].isVisible) {
@@ -88,6 +111,11 @@
 				}
 			}
 
+			/**
+			 * Description
+			 * @method undynamic
+			 * @return 
+			 */
 			var undynamic = function () {
 				for (var i = scope.dynamicOpt.values.length - 1; i > -1; i--) {
 					if (scope.dynamicOpt.values[i].isVisible) {
@@ -155,6 +183,12 @@
 
 			for (var i = 0; i < scope.dynamicOpt.values.length; i++) {
 				scope.dynamicOpt.values[i].isVisible = true;
+				/**
+				 * Description
+				 * @method toggleVisible
+				 * @param {} value
+				 * @return 
+				 */
 				scope.dynamicOpt.values[i].toggleVisible = function (value) {
 					this.isVisible = value;
 				}
@@ -198,6 +232,11 @@
 				scope.dropdownOpt.style = { "z-index": "9" };
 			});
 
+			/**
+			 * Description
+			 * @method resize
+			 * @return 
+			 */
 			var resize = function () {
 				if (element.parent().offset().left != 0) {
 					scope.offset = element.parent().offset();

@@ -7,6 +7,13 @@
 
 	config.$inject = ['$routeProvider', '$locationProvider'];
 
+	/**
+	 * Description
+	 * @method config
+	 * @param {} $locationProvider
+	 * @param {} $locationProvider
+	 * @return 
+	 */
 	function config($routeProvider, $locationProvider) {
 		$routeProvider.when("/", {
 			templateUrl: "/dist/azure-app/templates/navigation.html",
@@ -51,6 +58,9 @@
 		}).when("/navigation", {
 			templateUrl: "/dist/azure-app/templates/navigation.html"
 		})
+			.when("/docs", {
+				templateUrl: "/docs/index.html"
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

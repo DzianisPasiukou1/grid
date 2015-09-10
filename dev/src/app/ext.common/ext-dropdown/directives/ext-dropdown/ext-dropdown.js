@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.common.dropdown')
@@ -7,6 +7,12 @@
 	
 	extDropdown.$inject = ['extDropdownTemplatePath'];
 	
+	/**
+	 * Description
+	 * @method extDropdown
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extDropdown(templatesPath) {
 		var directive = {
 			restrict: 'EA',

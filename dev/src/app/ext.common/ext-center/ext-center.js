@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.center')
@@ -7,7 +7,17 @@
 
 	center.$inject = [];
 
+	/**
+	 * Description
+	 * @method center
+	 * @return 
+	 */
 	function center() {
+		/**
+		 * Description
+		 * @method center
+		 * @return ThisExpression
+		 */
 		angular.element.fn.center = function () {
 			this.css("position", "absolute");
 			this.css("top", Math.max(0, ((angular.element(this.parent()).height() - angular.element(this).outerHeight()) / 2) +

@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.common.resizeOn')
@@ -7,6 +7,11 @@
 	
 	ExtResizeOnController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method ExtResizeOnController
+	 * @return 
+	 */
 	function ExtResizeOnController() {
 		var vm = this;
 	};

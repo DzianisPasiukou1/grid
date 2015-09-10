@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.upload')
@@ -7,6 +7,12 @@
 
 	extUpload.$inject = ['extUploadTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extUpload
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extUpload(templatesPath) {
 		var directive = {
 			restrict: 'EA',
@@ -23,9 +29,23 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			element.find(':file').change(fileChange);
 
+			/**
+			 * Description
+			 * @method fileChange
+			 * @return 
+			 */
 			function fileChange() {
 				var file = this.files[0];
 
@@ -34,6 +54,11 @@
 
 					fileReader.readAsText(file);
 
+					/**
+					 * Description
+					 * @method onloadend
+					 * @return 
+					 */
 					fileReader.onloadend = function () {
 						var result = fileReader.result;
 

@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -22,6 +22,13 @@
 				},
 				isShow: false
 			},
+			/**
+			 * Description
+			 * @method beforeSelectionChange
+			 * @param {} row
+			 * @param {} event
+			 * @return Literal
+			 */
 			beforeSelectionChange: function (row, event) {
 				return false;
 			},

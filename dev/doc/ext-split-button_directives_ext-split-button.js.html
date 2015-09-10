@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ext-split-button/directives/ext-split-button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ext-split-button/directives/ext-split-button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>﻿(function () {
+	'use strict';
+
+	angular
+		.module('ext.common.splitButton')
+		.directive('extSplitButton', extSplitButton);
+
+	extSplitButton.$inject = ['extSplitButtonTemplatesPath'];
+
+	/**
+	 * Description
+	 * @method extSplitButton
+	 * @param {} templatesPath
+	 * @return directive
+	 */
+	function extSplitButton(templatesPath) {
+		var directive = {
+			restrict: 'E',
+			scope: {
+				actions: '=',
+				selected: '=',
+				search: '=',
+				typehead: '='
+			},
+			templateUrl: templatesPath + 'ext-split-button.html',
+			controller: 'ExtSplitButtonControler',
+			controllerAs: 'vm',
+			bindToController: true
+		};
+
+		return directive;
+	};
+} ());</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="global.html#anyOtherClick">anyOtherClick</a></li></ul><h3>Global</h3><ul><li><a href="global.html#anyOtherClickLink">anyOtherClickLink</a></li><li><a href="global.html#ascendingDepth">ascendingDepth</a></li><li><a href="global.html#ascendingSourceDepth">ascendingSourceDepth</a></li><li><a href="global.html#ascendingTargetDepth">ascendingTargetDepth</a></li><li><a href="global.html#calculate">calculate</a></li><li><a href="global.html#center">center</a></li><li><a href="global.html#change">change</a></li><li><a href="global.html#changedNumber">changedNumber</a></li><li><a href="global.html#clear">clear</a></li><li><a href="global.html#close">close</a></li><li><a href="global.html#compile">compile</a></li><li><a href="global.html#compilePost">compilePost</a></li><li><a href="global.html#computeLinkDepths">computeLinkDepths</a></li><li><a href="global.html#computeNodeBreadths">computeNodeBreadths</a></li><li><a href="global.html#computeNodeDepths">computeNodeDepths</a></li><li><a href="global.html#computeNodeLinks">computeNodeLinks</a></li><li><a href="global.html#computeNodeValues">computeNodeValues</a></li><li><a href="global.html#Counter">Counter</a></li><li><a href="global.html#counterFactory">counterFactory</a></li><li><a href="global.html#cursorMessage">cursorMessage</a></li><li><a href="global.html#curvature">curvature</a></li><li><a href="global.html#d3Sankey">d3Sankey</a></li><li><a href="global.html#defineObj">defineObj</a></li><li><a href="global.html#definner">definner</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#dynamic">dynamic</a></li><li><a href="global.html#event">event</a></li><li><a href="global.html#ExtContentOptionsSearchBaseController">ExtContentOptionsSearchBaseController</a></li><li><a href="global.html#extDatepicker">extDatepicker</a></li><li><a href="global.html#ExtDatepickerController">ExtDatepickerController</a></li><li><a href="global.html#extDefine">extDefine</a></li><li><a href="global.html#extDropdown">extDropdown</a></li><li><a href="global.html#ExtDropdownController">ExtDropdownController</a></li><li><a href="global.html#extDynamicDropdown">extDynamicDropdown</a></li><li><a href="global.html#extend">extend</a></li><li><a href="global.html#extExtend">extExtend</a></li><li><a href="global.html#extInitDefaultService">extInitDefaultService</a></li><li><a href="global.html#extJsonService">extJsonService</a></li><li><a href="global.html#extLoading">extLoading</a></li><li><a href="global.html#ExtLoadingController">ExtLoadingController</a></li><li><a href="global.html#extMaxHeighter">extMaxHeighter</a></li><li><a href="global.html#extNumberFormat">extNumberFormat</a></li><li><a href="global.html#extOnFinishRender">extOnFinishRender</a></li><li><a href="global.html#extResizeOn">extResizeOn</a></li><li><a href="global.html#ExtResizeOnController">ExtResizeOnController</a></li><li><a href="global.html#extSearch">extSearch</a></li><li><a href="global.html#ExtSearchController">ExtSearchController</a></li><li><a href="global.html#extSplitButton">extSplitButton</a></li><li><a href="global.html#ExtSplitButtonControler">ExtSplitButtonControler</a></li><li><a href="global.html#extUpload">extUpload</a></li><li><a href="global.html#ExtUploadController">ExtUploadController</a></li><li><a href="global.html#extWindow">extWindow</a></li><li><a href="global.html#fileChange">fileChange</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getOrigWindow">getOrigWindow</a></li><li><a href="global.html#grTemplate">grTemplate</a></li><li><a href="global.html#grTemplateService">grTemplateService</a></li><li><a href="global.html#height">height</a></li><li><a href="global.html#hideCursorMessage">hideCursorMessage</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeNodeDepth">initializeNodeDepth</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#link">link</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#loggerService">loggerService</a></li><li><a href="global.html#moveSinksRight">moveSinksRight</a></li><li><a href="global.html#moveSourcesRight">moveSourcesRight</a></li><li><a href="global.html#nFormatter">nFormatter</a></li><li><a href="global.html#nodePadding">nodePadding</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#nodeWidth">nodeWidth</a></li><li><a href="global.html#onloadend">onloadend</a></li><li><a href="global.html#onPositionChanged">onPositionChanged</a></li><li><a href="global.html#put">put</a></li><li><a href="global.html#relaxLeftToRight">relaxLeftToRight</a></li><li><a href="global.html#relaxRightToLeft">relaxRightToLeft</a></li><li><a href="global.html#relayout">relayout</a></li><li><a href="global.html#resize">resize</a></li><li><a href="global.html#resizeOn">resizeOn</a></li><li><a href="global.html#resolveCollisions">resolveCollisions</a></li><li><a href="global.html#sankey">sankey</a></li><li><a href="global.html#scaleNodeBreadths">scaleNodeBreadths</a></li><li><a href="global.html#searchValueChanged">searchValueChanged</a></li><li><a href="global.html#select">select</a></li><li><a href="global.html#size">size</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#toggleVisible">toggleVisible</a></li><li><a href="global.html#undynamic">undynamic</a></li><li><a href="global.html#value">value</a></li><li><a href="global.html#weightedSource">weightedSource</a></li><li><a href="global.html#weightedTarget">weightedTarget</a></li><li><a href="global.html#width">width</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Sep 10 2015 16:54:07 GMT+0300 (Belarus Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

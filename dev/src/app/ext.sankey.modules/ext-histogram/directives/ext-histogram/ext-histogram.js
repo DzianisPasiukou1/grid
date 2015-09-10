@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.histogram')
@@ -7,6 +7,13 @@
 
 	extHistogram.$inject = ['extHistogramTemplatesPath', '$compile'];
 
+	/**
+	 * Description
+	 * @method extHistogram
+	 * @param {} templatesPath
+	 * @param {} $compile
+	 * @return directive
+	 */
 	function extHistogram(templatesPath, $compile) {
 		var directive = {
 			restrict: "EA",
@@ -22,9 +29,24 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			scope.$watch('vm.data', dataChanged);
 
+			/**
+			 * Description
+			 * @method dataChanged
+			 * @param {} data
+			 * @return 
+			 */
 			function dataChanged(data) {
 				if (data) {
 					element.find('.chart').remove();

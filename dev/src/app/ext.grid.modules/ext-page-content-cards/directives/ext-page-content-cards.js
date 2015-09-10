@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.pageContentCards')
@@ -7,6 +7,12 @@
 
 	extPageContentCards.$inject = ['extPageContentCardsTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extPageContentCards
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extPageContentCards(templatesPath) {
 		var directive = {
 			restrict: 'EA',
@@ -25,6 +31,15 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 		};
 	};

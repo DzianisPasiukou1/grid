@@ -1,12 +1,18 @@
 ﻿(function () {
-	'use strict'
-
+	'use strict';
+	
 	angular
 		.module('ext.sankey.histogram')
 		.directive('extChartSegment', extChartSegment);
 
 	extChartSegment.$inject = ['extHistogramTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extChartSegment
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extChartSegment(templatesPath) {
 		var directive = {
 			retstrict: 'EA',

@@ -7,6 +7,14 @@
 
 	GridWithMenuController.$inject = ['gridUploadService', 'gridTemplatesPath', '$scope'];
 
+	/**
+	 * Description
+	 * @method GridWithMenuController
+	 * @param {} gridUploadService
+	 * @param {} templatesPath
+	 * @param {} $scope
+	 * @return 
+	 */
 	function GridWithMenuController(gridUploadService, templatesPath, $scope) {
 		var vm = this;
 
@@ -18,6 +26,12 @@
 		};
 
 		vm.contentOptions = {
+			/**
+			 * Description
+			 * @method upload
+			 * @param {} data
+			 * @return 
+			 */
 			upload: function (data) {
 				vm.contentOptions.isLoading = true;
 
@@ -25,6 +39,11 @@
 
 				vm.grid.count = vm.data.length;
 			},
+			/**
+			 * Description
+			 * @method refresh
+			 * @return 
+			 */
 			refresh: function () {
 				vm.contentOptions.isLoading = true;
 
@@ -43,6 +62,13 @@
 		vm.gridOptions = {
 			data: 'data',
 			withDetails: true,
+			/**
+			 * Description
+			 * @method init
+			 * @param {} grid
+			 * @param {} $scope
+			 * @return 
+			 */
 			init: function (grid, $scope) {
 			},
 			showResponsMenu: true,
@@ -54,6 +80,13 @@
 			showFooter: true,
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-templates/grid-footer.html',
+			/**
+			 * Description
+			 * @method selectItem
+			 * @param {} itemIndex
+			 * @param {} state
+			 * @return 
+			 */
 			selectItem: function (itemIndex, state) {
 
 			},
@@ -90,6 +123,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			setTimeout(function () {
 				gridUploadService.get(function (data) {

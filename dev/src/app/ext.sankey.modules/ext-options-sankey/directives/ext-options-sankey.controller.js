@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.optionsSankey')
@@ -7,9 +7,21 @@
 
 	ExtOptionsSankeyController.$inject = ['$scope'];
 
+	/**
+	 * Description
+	 * @method ExtOptionsSankeyController
+	 * @param {} $scope
+	 * @return 
+	 */
 	function ExtOptionsSankeyController($scope) {
 		$scope.$watch('options.searchValue', searchValueChanged);
 
+		/**
+		 * Description
+		 * @method searchValueChanged
+		 * @param {} value
+		 * @return 
+		 */
 		function searchValueChanged(value) {
 			if (!$scope.options.searchOptions) {
 				return;

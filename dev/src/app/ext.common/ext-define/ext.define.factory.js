@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.define')
@@ -7,9 +7,23 @@
 
 	extDefine.$inject = [];
 
+	/**
+	 * Description
+	 * @method extDefine
+	 * @return definner
+	 */
 	function extDefine() {
 		return definner;
 
+		/**
+		 * Description
+		 * @method definner
+		 * @param {} obj
+		 * @param {} defaultObj
+		 * @param {} prop
+		 * @param {} defaultProp
+		 * @return 
+		 */
 		function definner(obj, defaultObj, prop, defaultProp) {
 			defaultProp = angular.isString(defaultProp) ? defaultProp : prop;
 

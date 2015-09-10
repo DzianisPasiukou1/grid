@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.overlay')
@@ -7,6 +7,17 @@
 
 	ExtOverlayController.$inject = ['OVERLAY', '$timeout', '$element', '$window', 'extDefine', 'extWindow'];
 
+	/**
+	 * Description
+	 * @method ExtOverlayController
+	 * @param {} OVERLAY
+	 * @param {} $window
+	 * @param {} $window
+	 * @param {} $window
+	 * @param {} extDefine
+	 * @param {} extWindow
+	 * @return 
+	 */
 	function ExtOverlayController(OVERLAY, $timeout, $element, $window, extDefine, extWindow) {
 		var vm = this;
 		vm.selectors = extDefine(vm.selectors, {});
@@ -24,6 +35,12 @@
 		vm.setToggle = toggle;
 		vm.state = false;
 
+		/**
+		 * Description
+		 * @method toggle
+		 * @param {} isResize
+		 * @return 
+		 */
 		function toggle(isResize) {
 			$timeout(function () {
 				if (vm.state) {

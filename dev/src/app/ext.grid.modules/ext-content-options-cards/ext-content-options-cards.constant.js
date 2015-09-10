@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.contentOptionsCards')
@@ -23,6 +23,12 @@
 				options: {
 					label: 'Export to: ',
 					values: [{ label: 'Excel', isExcel: true }, { label: 'Pdf', isPdf: true }],
+					/**
+					 * Description
+					 * @method callback
+					 * @param {} action
+					 * @return 
+					 */
 					callback: function (action) {
 					}
 				}

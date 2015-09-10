@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.mouseOver')
@@ -7,6 +7,15 @@
 
 	extMouseOver.$inject = ['extMouseOverTemplatesPath', '$timeout', '$window', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method extMouseOver
+	 * @param {} templatesPath
+	 * @param {} $window
+	 * @param {} $window
+	 * @param {} extDefine
+	 * @return directive
+	 */
 	function extMouseOver(templatesPath, $timeout, $window, extDefine) {
 		var directive = {
 			restrict: 'EAC',
@@ -24,6 +33,15 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			vm.parentTop = extDefine(vm.parentTop, 0);
 			vm.style = {
@@ -32,6 +50,11 @@
 
 			$timeout(init);
 
+			/**
+			 * Description
+			 * @method init
+			 * @return 
+			 */
 			function init() {
 				if (angular.element.cursorMessageData.mouseY + element.find('.mouse-over').height() < angular.element($window).height()) {
 					vm.style.top = (angular.element.cursorMessageData.mouseY - vm.parentTop + 15) + 'px';

@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.cards')
@@ -7,6 +7,13 @@
 
 	ExtCardsController.$inject = ['$scope', 'cardsFactory'];
 
+	/**
+	 * Description
+	 * @method ExtCardsController
+	 * @param {} $scope
+	 * @param {} cardsFactory
+	 * @return 
+	 */
 	function ExtCardsController($scope, cardsFactory) {
 		var vm = this;
 
@@ -25,19 +32,41 @@
 		vm.flipAll = flipAll;
 		vm.clear = clear;
 
+		/**
+		 * Description
+		 * @method refresh
+		 * @param {} cards
+		 * @return 
+		 */
 		function refresh(cards) {
 			cardsFactory.refresh(cards);
 			angular.extend(vm, cardsFactory.getInstance());
 		};
 
+		/**
+		 * Description
+		 * @method enableDebugging
+		 * @param {} isDebug
+		 * @return 
+		 */
 		function enableDebugging(isDebug) {
 			cardsFactory.enableDebugging(isDebug);
 		};
 
+		/**
+		 * Description
+		 * @method flipAll
+		 * @return 
+		 */
 		function flipAll() {
 			cardsFactory.flipAll();
 		};
 
+		/**
+		 * Description
+		 * @method clear
+		 * @return 
+		 */
 		function clear() {
 			cardsFactory.clear();
 		};

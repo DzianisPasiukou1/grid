@@ -3,7 +3,7 @@
 module.exports = function (grunt) {
 	var fileBase = 'src/';
 	var releaseBase = 'release/';
-	var distBase = "dist/";
+	var distBase = 'dist/';
 	
 	require('load-grunt-tasks')(grunt);
 
@@ -20,27 +20,46 @@ module.exports = function (grunt) {
 		azureModuleName: 'azureApp',
 		fixturesPath: releaseBase,
 		jsdoc: {
-			src: ['src/app/app.js'],
 			options: {
 				destination: 'doc'
+			},
+			src: ['<%=meta.srcPath%>app/ext.common/**/*.js']
+		},
+		ngdocs: {
+			options: {
+				dest: 'docs',
+				html5Mode: false,
+				scripts: [
+					'<%=meta.srcPath%>vendor/angular/angular.js'
+				]
+			},
+			api: {
+				src: ['<%=meta.srcPath%>app/**/*.js', '!<%=meta.srcPath%>app/**/*.Spec.js'],
+				title: 'Docs'
 			}
+		},
+		jshint: {
+			options: {
+				reporter: require('jshint-stylish')
+			},
+			target: ['<%=meta.srcPath%>app/**/*.js']
 		},
 		ngtemplates: {
 			ext: {
 				options: {
 					prefix: '/',
-					module: "ext",
+					module:'ext'
 				},
 				src: '<%=meta.srcPath%>app/**/*.html',
-				dest: "<%=meta.srcPath%>app/templates.js"
+				dest: '<%=meta.srcPath%>app/templates.js'
 			},
 			azure: {
 				options: {
 					prefix: '/',
-					module: "azureApp",
+					module: 'azureApp'
 				},
 				src: '<%=meta.devPath%>azure-app/**/*.html',
-				dest:"<%=meta.devPath%>azure-app/templates.js"
+				dest: '<%=meta.devPath%>azure-app/templates.js'
 			}
 		},
 		uglify: {
@@ -69,20 +88,56 @@ module.exports = function (grunt) {
 		copy: {
 			css: {
 				files: [
-					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>css/*.css'], dest: '<%=meta.deployPath%>styles', filter: 'isFile' }
+					{
+						expand: true,
+						flatten: true,
+						src: ['<%=meta.srcPath%>css/*.css'],
+						dest: '<%=meta.deployPath%>styles',
+						filter: 'isFile'
+					}
 				]
 			},
 			assets: {
 				files: [
-					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>assets/fonts/*'], dest: '<%=meta.deployPath%>assets/fonts', filter: 'isFile' },
-					{ expand: true, flatten: true, src: ['<%=meta.srcPath%>assets/images/*'], dest: '<%=meta.deployPath%>assets/images', filter: 'isFile' }
+					{
+						expand: true,
+						flatten: true,
+						src: ['<%=meta.srcPath%>assets/fonts/*'],
+						dest: '<%=meta.deployPath%>assets/fonts',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['<%=meta.srcPath%>assets/images/*'],
+						dest: '<%=meta.deployPath%>assets/images',
+						filter: 'isFile'
+					}
 				]
 			},
 			publish: {
 				files: [
-					{ expand: true, flatten: false, src: [fileBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
-					{ expand: true, flatten: false, src: [distBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
-					{ expand: true, flatten: false, src: [releaseBase + '**/*'], dest: '../publish/publish', filter: 'isFile' },
+					{
+						expand: true,
+						flatten: false,
+						src: [fileBase + '**/*'],
+						dest: '../publish/publish',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						flatten: false,
+						src: [distBase + '**/*'],
+						dest: '../publish/publish',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						flatten: false,
+						src: [releaseBase + '**/*'],
+						dest: '../publish/publish',
+						filter: 'isFile'
+					},
 				]
 			}
 		},
@@ -150,7 +205,7 @@ module.exports = function (grunt) {
 					{
 						style: 'compressed',
 						src: ['<%=meta.srcPath%>css/**/*.scss'],
-						dest: "src/css/styles.css",
+						dest: 'src/css/styles.css'
 					}
 				]
 			}
@@ -189,7 +244,12 @@ module.exports = function (grunt) {
 		replace: {
 			azure: {
 				files: [
-					{ expand: true, flatten: true, src: ['../publish/publish/release/main.html'], dest: '../publish/publish' }
+					{
+						expand: true,
+						flatten: true,
+						src: ['../publish/publish/release/main.html'],
+						dest: '../publish/publish'
+					}
 				]
 			}
 		},
@@ -246,13 +306,13 @@ module.exports = function (grunt) {
 		protractor: {
 			test: {
 				options: {
-					configFile: "protractor.conf.js",
+					configFile: 'protractor.conf.js',
 					keepAlive: true,
 					noColor: false
 				}
 			}
 		},
-		protractor_webdriver: {
+		'protractor_webdriver': {
 			targ: {
 				options: {
 					command: 'webdriver-manager start'
@@ -306,7 +366,7 @@ module.exports = function (grunt) {
 	
 	grunt.registerTask('reload-server', [
 		'express:dev'
-	])
+	]);
 	
 	grunt.registerTask('index-release', [
 		'uglify:azure',

@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.grid.cards')
@@ -7,6 +7,11 @@
 	
 	ExtGraphsController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method ExtGraphsController
+	 * @return 
+	 */
 	function ExtGraphsController() {
 		var vm = this;
 	};

@@ -7,6 +7,12 @@
 
 	GridUploadController.$inject = ['gridUploadService'];
 
+	/**
+	 * Description
+	 * @method GridUploadController
+	 * @param {} gridUploadService
+	 * @return 
+	 */
 	function GridUploadController(gridUploadService) {
 		var vm = this;
 
@@ -17,6 +23,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			gridUploadService.get(function (data) {
 				vm.data = data;

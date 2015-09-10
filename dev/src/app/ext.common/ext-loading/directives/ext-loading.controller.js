@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.loading')
@@ -7,6 +7,12 @@
 
 	ExtLoadingController.$inject = ['LOADING'];
 
+	/**
+	 * Description
+	 * @method ExtLoadingController
+	 * @param {} LOADING
+	 * @return 
+	 */
 	function ExtLoadingController(LOADING) {
 		var vm = this;
 
@@ -14,6 +20,11 @@
 		vm.resize = resize;
 		resize();
 
+		/**
+		 * Description
+		 * @method resize
+		 * @return 
+		 */
 		function resize() {
 			vm.disabled = {
 				height: angular.element(vm.parent).height() + 'px',

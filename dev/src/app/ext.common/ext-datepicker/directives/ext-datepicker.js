@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.datepicker')
@@ -7,6 +7,12 @@
 
 	extDatepicker.$inject = ['extDatepickerTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extDatepicker
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extDatepicker(templatesPath) {
 		var directive = {
 			restrict: 'EA',
@@ -22,12 +28,28 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			element.find(vm.dateBtnSelector)
 				.dateRangePicker(vm.opt.config)
 				.bind('datepicker-change', change)
 				.bind('datepicker-close', close);
 
+			/**
+			 * Description
+			 * @method change
+			 * @param {} event
+			 * @param {} obj
+			 * @return 
+			 */
 			function change(event, obj) {
 				vm.opt.startDate = obj.date1;
 				vm.opt.endDate = obj.date2;
@@ -39,6 +61,11 @@
 				vm.close();
 			};
 
+			/**
+			 * Description
+			 * @method close
+			 * @return 
+			 */
 			function close() {
 				vm.isShow = false;
 				if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {

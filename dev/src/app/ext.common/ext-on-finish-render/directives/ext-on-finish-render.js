@@ -7,6 +7,12 @@
 
 	extOnFinishRender.$inject = ['$timeout'];
 
+	/**
+	 * Description
+	 * @method extOnFinishRender
+	 * @param {} $timeout
+	 * @return directive
+	 */
 	function extOnFinishRender($timeout) {
 		var directive = {
 			restrict: 'AC',
@@ -15,6 +21,14 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attr
+		 * @return 
+		 */
 		function link(scope, element, attr) {
 			if (scope.$last === true) {
 				$timeout(function () {

@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.navbar')
@@ -7,6 +7,12 @@
 
 	kxNavBar.$inject = ['kxNavBarTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method kxNavBar
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function kxNavBar(templatesPath) {
 		var directive = {
 			restrict: 'A',

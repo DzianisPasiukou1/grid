@@ -7,6 +7,13 @@
 
 	GridStandartOneController.$inject = ['gridStandartOneService', 'gridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method GridStandartOneController
+	 * @param {} gridStandartOneService
+	 * @param {} templatesPath
+	 * @return 
+	 */
 	function GridStandartOneController(gridStandartOneService, templatesPath) {
 		var vm = this;
 
@@ -15,6 +22,11 @@
 		};
 
 		vm.contentOptions = {
+			/**
+			 * Description
+			 * @method refresh
+			 * @return 
+			 */
 			refresh: function () {
 				getData();
 
@@ -30,6 +42,13 @@
 
 		vm.gridOptions = {
 			data: 'data',
+			/**
+			 * Description
+			 * @method init
+			 * @param {} grid
+			 * @param {} $scope
+			 * @return 
+			 */
 			init: function (grid, $scope) {
 			},
 			multiSelect: false,
@@ -40,6 +59,13 @@
 			showFooter: true,
 			footerRowHeight: 30,
 			footerTemplate: templatesPath + 'grid-templates/grid-footer.html',
+			/**
+			 * Description
+			 * @method selectItem
+			 * @param {} itemIndex
+			 * @param {} state
+			 * @return 
+			 */
 			selectItem: function (itemIndex, state) {
 
 			},
@@ -80,6 +106,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			gridStandartOneService.get(function (data) {
 				vm.data = data;

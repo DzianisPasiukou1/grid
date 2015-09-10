@@ -1,0 +1,22 @@
+{
+	"target_dir": [
+		"src/app"
+	],
+	"match_files": [
+		"^((?!~).)*.(js)$"
+	],
+	"backup": false,
+	"private": false,
+	"favor_generated": true,
+	"tags": {
+		"function": {
+			"name": {},
+			"desc": {
+				"value": "Description"
+			},
+			"params": {},
+			"rtrn": {}
+		}
+	},
+	"template": "../templates/default.js"
+}

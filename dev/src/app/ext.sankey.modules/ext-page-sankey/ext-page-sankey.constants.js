@@ -1,6 +1,6 @@
 /* global moment */
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.pageSankey')

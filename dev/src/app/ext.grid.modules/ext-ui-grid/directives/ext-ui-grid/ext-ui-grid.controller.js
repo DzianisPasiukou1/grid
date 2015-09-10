@@ -1,11 +1,21 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
+	
 	angular
 		.module('ext.grid.uiGrid')
 		.controller('ExtUiGridController', ExtUiGridController);
 
 	ExtUiGridController.$inject = ['extUiGridTemplatesPath', '$scope', 'rowFactory', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method ExtUiGridController
+	 * @param {} templatesPath
+	 * @param {} $scope
+	 * @param {} rowFactory
+	 * @param {} extDefine
+	 * @return 
+	 */
 	function ExtUiGridController(templatesPath, $scope, rowFactory, extDefine) {
 		var vm = this;
 
@@ -60,6 +70,14 @@
 
 		$scope.$watch('vm.data', dataChanged);
 
+		/**
+		 * Description
+		 * @method cellClass
+		 * @param {} grid
+		 * @param {} row
+		 * @param {} col
+		 * @return 
+		 */
 		function cellClass(grid, row, col) {
 			if (row.isChecked) {
 				return 'checked';
@@ -69,6 +87,11 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method getFilterOptions
+		 * @return filterOptions
+		 */
 		function getFilterOptions() {
 			var filterOptions = {
 				filterText: ''
@@ -77,6 +100,11 @@
 			return filterOptions;
 		};
 
+		/**
+		 * Description
+		 * @method getRowActions
+		 * @return actions
+		 */
 		function getRowActions() {
 			var actions = {
 				options: {
@@ -90,10 +118,22 @@
 			return actions;
 		};
 
+		/**
+		 * Description
+		 * @method rowChangedClass
+		 * @param {} renderableRows
+		 * @return renderableRows
+		 */
 		function rowChangedClass(renderableRows) {
 			return renderableRows;
 		};
 
+		/**
+		 * Description
+		 * @method onRegisterApi
+		 * @param {} gridApi
+		 * @return 
+		 */
 		function onRegisterApi(gridApi) {
 			if (angular.isFunction(vm.options.extRegisterApi)) {
 				vm.options.extRegisterApi(gridApi);
@@ -118,6 +158,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method singleFilter
+		 * @param {} renderableRows
+		 * @return renderableRows
+		 */
 		function singleFilter(renderableRows) {
 			var filtersText = vm.options.filterOptions.filterText.split(';');
 
@@ -148,6 +194,14 @@
 			return renderableRows;
 		};
 
+		/**
+		 * Description
+		 * @method mathRows
+		 * @param {} row
+		 * @param {} propName
+		 * @param {} matcher
+		 * @return 
+		 */
 		function mathRows(row, propName, matcher) {
 			var match = false;
 
@@ -166,12 +220,23 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method rowRendered
+		 * @return 
+		 */
 		function rowRendered() {
 			vm.gridApi.grid.rows.forEach(function (row) {
 				if (vm.options.enableAction) {
 					row.actions = angular.copy(vm.options.rowActions);
 					row.actions.static = rowFactory.getNewRow(row);
 					row.actions.history = [];
+					/**
+					 * Description
+					 * @method callback
+					 * @param {} action
+					 * @return 
+					 */
 					row.actions.options.callback = function (action) {
 						if (action.isEdit) {
 							row.actions.static.edit();
@@ -192,12 +257,22 @@
 				}
 				if (vm.options.enableDetails) {
 					row.actions.tab = 2;
+					/**
+					 * Description
+					 * @method expand
+					 * @return 
+					 */
 					row.actions.expand = function () {
 						vm.gridApi.expandable.toggleRowExpansion(row.entity);
 					};
 					row.actions.disableCheck = vm.options.disableCheck;
 				}
 				if (vm.contentOptions.checks) {
+					/**
+					 * Description
+					 * @method setCheck
+					 * @return 
+					 */
 					row.actions.setCheck = function () {
 						var data = vm.gridApi.grid.rows;
 
@@ -223,6 +298,12 @@
 			});
 		};
 
+		/**
+		 * Description
+		 * @method rowExpandedStateChanged
+		 * @param {} row
+		 * @return 
+		 */
 		function rowExpandedStateChanged(row) {
 			if (row.isExpanded) {
 				vm.gridApi.grid.rows.forEach(function (rowCache) {
@@ -233,6 +314,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method checkCallback
+		 * @param {} check
+		 * @return 
+		 */
 		function checkCallback(check) {
 			if (check) {
 				if (check.isAll) {
@@ -257,10 +344,22 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method filterTextChanged
+		 * @param {} text
+		 * @return 
+		 */
 		function filterTextChanged(text) {
 			vm.gridApi.grid.refresh();
 		};
 
+		/**
+		 * Description
+		 * @method dataChanged
+		 * @param {} data
+		 * @return 
+		 */
 		function dataChanged(data) {
 			if (Array.isArray(data)) {
 				if (vm.options.reInit) {
@@ -274,6 +373,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method initColumnDef
+		 * @param {} data
+		 * @return columns
+		 */
 		function initColumnDef(data) {
 			var columns = [];
 
@@ -331,6 +436,13 @@
 			return columns;
 		};
 
+		/**
+		 * Description
+		 * @method columnsCompare
+		 * @param {} oldCols
+		 * @param {} newCols
+		 * @return Literal
+		 */
 		function columnsCompare(oldCols, newCols) {
 			if (!Array.isArray(oldCols) || !Array.isArray(newCols) || oldCols.length != newCols.length) {
 				return false;

@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.contentOptionsCards')
@@ -7,6 +7,14 @@
 
 	ExtContentOptionsCardsController.$inject = ['$parse', 'extExtend', 'initContentOptionsCardsUtils'];
 
+	/**
+	 * Description
+	 * @method ExtContentOptionsCardsController
+	 * @param {} $parse
+	 * @param {} extExtend
+	 * @param {} initContentOptionsCardsUtils
+	 * @return 
+	 */
 	function ExtContentOptionsCardsController($parse, extExtend, initContentOptionsCardsUtils) {
 		var vm = this;
 		vm.options = initContentOptionsCardsUtils.initOpt(vm.options);

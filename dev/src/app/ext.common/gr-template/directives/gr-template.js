@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.grTemplate')
@@ -7,6 +7,13 @@
 
 	grTemplate.$inject = ['grTemplateService', 'extGrTemplateTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method grTemplate
+	 * @param {} grTemplateService
+	 * @param {} templatesPath
+	 * @return grTemplateDirective
+	 */
 	function grTemplate(grTemplateService, templatesPath) {
 
 		var grTemplateDirective = {
@@ -22,6 +29,14 @@
 
 		return grTemplateDirective;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @return 
+		 */
 		function link(scope, element, attrs) {
 			grTemplateService.put(scope.template, scope.name);
 

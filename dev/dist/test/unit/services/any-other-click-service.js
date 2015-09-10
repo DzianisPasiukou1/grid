@@ -6,6 +6,10 @@
 	beforeEach(inject(function (_anyOtherClickFactory_) {
 		factory = _anyOtherClickFactory_;
 
+		/**
+		 * Description
+		 * @return 
+		 */
 		documentHandler = function () {
 			str = "click test";
 		};

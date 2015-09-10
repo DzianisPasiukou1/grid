@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.window')
@@ -7,6 +7,13 @@
 
 	extWindow.$inject = ['$window', '$document'];
 
+	/**
+	 * Description
+	 * @method extWindow
+	 * @param {} $document
+	 * @param {} $document
+	 * @return extWindow
+	 */
 	function extWindow($window, $document) {
 		var extWindow = {};
 
@@ -16,10 +23,20 @@
 
 		return extWindow;
 
+		/**
+		 * Description
+		 * @method getOrigWindow
+		 * @return $window
+		 */
 		function getOrigWindow() {
 			return $window;
 		};
 
+		/**
+		 * Description
+		 * @method width
+		 * @return windowWidth
+		 */
 		function width() {
 			var windowWidth = 0;
 			if (typeof ($window.innerWidth) == 'number') {
@@ -38,6 +55,11 @@
 			return windowWidth;
 		};
 
+		/**
+		 * Description
+		 * @method height
+		 * @return windowHeight
+		 */
 		function height() {
 			var windowHeight = 0;
 			if (typeof ($window.innerHeight) == 'number') {

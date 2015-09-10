@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.grid.uiGrid')
@@ -7,6 +7,11 @@
 	
 	initUiGridUtils.$inject = [];
 	
+	/**
+	 * Description
+	 * @method initUiGridUtils
+	 * @return utils
+	 */
 	function initUiGridUtils() {
 		var utils = {};
 		

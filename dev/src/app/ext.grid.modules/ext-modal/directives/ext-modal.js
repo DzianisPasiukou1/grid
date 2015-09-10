@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.modal')
@@ -7,6 +7,14 @@
 
 	extModal.$inject = ['extModalTemplatesPath', '$timeout', '$window'];
 
+	/**
+	 * Description
+	 * @method extModal
+	 * @param {} templatesPath
+	 * @param {} $window
+	 * @param {} $window
+	 * @return directive
+	 */
 	function extModal(templatesPath, $timeout, $window) {
 		var directive = {
 			restrict: 'EA',
@@ -25,11 +33,26 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			angular.element($window).resize(resize);
 			scope.$on('$destroy', destroy);
 			scope.$watch('vm.isModal', toggleModal);
 
+			/**
+			 * Description
+			 * @method toggleModal
+			 * @param {} value
+			 * @return 
+			 */
 			function toggleModal(value) {
 				$timeout(function () {
 					if (!value) {
@@ -43,10 +66,20 @@
 				});
 			};
 
+			/**
+			 * Description
+			 * @method resize
+			 * @return 
+			 */
 			function resize() {
 				vm.resize();
 			};
 
+			/**
+			 * Description
+			 * @method destroy
+			 * @return 
+			 */
 			function destroy() {
 				angular.element($window).off("resize", resize);
 			};

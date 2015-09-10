@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.onPositionChanged')
@@ -7,7 +7,19 @@
 
 	onPositionChanged.$inject = [];
 
+	/**
+	 * Description
+	 * @method onPositionChanged
+	 * @return 
+	 */
 	function onPositionChanged() {
+		/**
+		 * Description
+		 * @method onPositionChanged
+		 * @param {} trigger
+		 * @param {} millis
+		 * @return o
+		 */
 		angular.element.fn.onPositionChanged = function (trigger, millis) {
 			if (millis == null) millis = 100;
 			var o = angular.element(this[0]);

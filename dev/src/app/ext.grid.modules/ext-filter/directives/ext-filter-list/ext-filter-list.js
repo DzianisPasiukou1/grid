@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.filter')
@@ -7,6 +7,12 @@
 
 	extFilterList.$inject = ['extFilterTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extFilterList
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extFilterList(templatesPath) {
 		var directive = {
 			restrict: 'EA',
@@ -21,6 +27,15 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} req
+		 * @return 
+		 */
 		function link(scope, element, attrs, req) {
 		};
 	};

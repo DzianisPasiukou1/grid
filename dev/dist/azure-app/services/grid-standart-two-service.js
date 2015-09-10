@@ -1,5 +1,11 @@
 ﻿angular.module('azureApp')
 	.service('gridStandartTwoService', ['StandartTwoData', function (StandartTwoData) {
+		/**
+		 * Description
+		 * @method get
+		 * @param {} callback
+		 * @return 
+		 */
 		this.get = function (callback) {
 			var data = StandartTwoData.get();
 
@@ -13,6 +19,11 @@
 		var statues = ['Enabled', 'Disabled'];
 		var conversions = ['Yes', 'No'];
 
+		/**
+		 * Description
+		 * @method data
+		 * @return array
+		 */
 		var data = function () {
 			var array = [];
 
@@ -38,6 +49,11 @@
 		};
 
 		return {
+			/**
+			 * Description
+			 * @method get
+			 * @return CallExpression
+			 */
 			get: function () {
 				return data();
 			}

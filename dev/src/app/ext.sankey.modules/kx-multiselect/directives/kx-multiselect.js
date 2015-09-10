@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.multiselect')
@@ -7,6 +7,12 @@
 
 	kxMultiselect.$inject = ['$timeout'];
 
+	/**
+	 * Description
+	 * @method kxMultiselect
+	 * @param {} $timeout
+	 * @return directive
+	 */
 	function kxMultiselect($timeout) {
 		var directive = {
 			restrict: 'A',
@@ -21,6 +27,15 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			$timeout(function () {
 				element.multipleSelect(vm.options);

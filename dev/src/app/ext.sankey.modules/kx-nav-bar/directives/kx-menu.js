@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.navbar')
@@ -7,6 +7,11 @@
 
 	kxMenu.$inject = [];
 
+	/**
+	 * Description
+	 * @method kxMenu
+	 * @return directive
+	 */
 	function kxMenu() {
 		var directive = {
 			restrict: 'AE',
@@ -15,6 +20,14 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} $scope
+		 * @param {} elem
+		 * @param {} attrs
+		 * @return CallExpression
+		 */
 		function link($scope, elem, attrs) {
 			var current, listItems, menuItems, selected;
 			listItems = null;
@@ -33,21 +46,40 @@
 						selected = listItems.eq(1);
 						selected.addClass('kx-menu-selected');
 					}
+					/**
+					 * Description
+					 * @return CallExpression
+					 */
 					init = function () {
 						listItems.mouseenter(mouseenter);
 						return listItems.mouseleave(mouseleave);
 					};
+					/**
+					 * Description
+					 * @param {} event
+					 * @return CallExpression
+					 */
 					mouseenter = function (event) {
 						current = listItems.filter(this);
 						current.addClass('kx-menu-open');
 						menuItems = current.children('.kx-submenu').find('a');
 						return menuItems.click(click);
 					};
+					/**
+					 * Description
+					 * @param {} event
+					 * @return 
+					 */
 					mouseleave = function (event) {
 						if (current) {
 							return close();
 						}
 					};
+					/**
+					 * Description
+					 * @param {} event
+					 * @return CallExpression
+					 */
 					click = function (event) {
 						if (selected) {
 							selected.removeClass('kx-menu-selected');
@@ -60,6 +92,10 @@
 						sessionStorage.selectedNav = JSON.stringify(navItem);
 						return close();
 					};
+					/**
+					 * Description
+					 * @return AssignmentExpression
+					 */
 					close = function () {
 						current.removeClass('kx-menu-open');
 						current = null;

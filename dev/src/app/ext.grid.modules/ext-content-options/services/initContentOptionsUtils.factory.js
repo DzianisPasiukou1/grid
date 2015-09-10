@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.contentOptions')
@@ -7,6 +7,15 @@
 
 	initContentOptionsUtils.$inject = ['$log', 'EXT_CONTENT_OPTIONS', 'extInitDefaultService', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method initContentOptionsUtils
+	 * @param {} $log
+	 * @param {} EXT_CONTENT_OPTIONS
+	 * @param {} extInitDefaultService
+	 * @param {} extDefine
+	 * @return utils
+	 */
 	function initContentOptionsUtils($log, EXT_CONTENT_OPTIONS, extInitDefaultService, extDefine) {
 		var utils = {};
 
@@ -16,14 +25,30 @@
 
 		return utils;
 
+		/**
+		 * Description
+		 * @method initContent
+		 * @return 
+		 */
 		function initContent() {
 			extInitDefaultService.init(EXT_CONTENT_OPTIONS, utils, 'content');
 		};
 
+		/**
+		 * Description
+		 * @method getDefault
+		 * @return MemberExpression
+		 */
 		function getDefault() {
 			return utils.content;
 		};
 
+		/**
+		 * Description
+		 * @method initOpt
+		 * @param {} opt
+		 * @return contentOptions
+		 */
 		function initOpt(opt) {
 			var contentOptions = extDefine(opt, {});
 
@@ -39,18 +64,39 @@
 			return contentOptions;
 		};
 
+		/**
+		 * Description
+		 * @method checkCallback
+		 * @return 
+		 */
 		function checkCallback() {
 			$log.warn('Call default empty function on check.');
 		};
 
+		/**
+		 * Description
+		 * @method filtrate
+		 * @return 
+		 */
 		function filtrate() {
 			$log.warn('Call default empty function on filtrate.');
 		};
 
+		/**
+		 * Description
+		 * @method refresh
+		 * @return 
+		 */
 		function refresh() {
 			$log.warn('Call default empty function on refresh.');
 		};
 
+		/**
+		 * Description
+		 * @method upload
+		 * @param {} data
+		 * @return 
+		 */
 		function upload(data) {
 			$log.warn('Call default empty function on upload.');
 		};

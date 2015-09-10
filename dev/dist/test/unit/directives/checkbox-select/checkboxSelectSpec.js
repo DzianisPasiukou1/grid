@@ -7,6 +7,12 @@
 		scope = $rootScope.$new();
 
 		scope.options = CONTENT.checks.options;
+		/**
+		 * Description
+		 * @method callback
+		 * @param {} action
+		 * @return 
+		 */
 		scope.options.callback = function (action) {
 			this.callbackValue = 100;
 		}

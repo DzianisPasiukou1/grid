@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -7,9 +7,22 @@
 
 	extGridActionsPlugin.$inject = ['extGridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extGridActionsPlugin
+	 * @param {} templatesPath
+	 * @return ExtGridActionsPlugin
+	 */
 	function extGridActionsPlugin(templatesPath) {
 		return ExtGridActionsPlugin;
 
+		/**
+		 * Description
+		 * @method ExtGridActionsPlugin
+		 * @param {} opts
+		 * @param {} compile
+		 * @return 
+		 */
 		function ExtGridActionsPlugin(opts, compile) {
 			var self = this;
 			self.grid = null;
@@ -17,11 +30,24 @@
 			self.opts = opts;
 			self.compile = compile;
 
+			/**
+			 * Description
+			 * @method init
+			 * @param {} scope
+			 * @param {} grid
+			 * @param {} services
+			 * @return 
+			 */
 			self.init = function (scope, grid, services) {
 				self.domUtilityService = services.DomUtilityService;
 				self.grid = grid;
 				self.scope = scope;
 
+				/**
+				 * Description
+				 * @method recalcForData
+				 * @return 
+				 */
 				var recalcForData = function () {
 					setTimeout(function () {
 
@@ -37,6 +63,12 @@
 								row.actions.historyRow = historyRow;
 								row.actions.history = [];
 								row.actions.tab = 2;
+								/**
+								 * Description
+								 * @method select
+								 * @param {} row
+								 * @return 
+								 */
 								row.actions.select = function (row) {
 									row.elm.addClass('selected');
 
@@ -50,6 +82,12 @@
 								}
 
 								if (row.actions.values.options.callback === undefined) {
+									/**
+									 * Description
+									 * @method callback
+									 * @param {} action
+									 * @return 
+									 */
 									row.actions.values.options.callback = function (action) {
 										if (action.isEdit) {
 											row.actions.editRow(row);
@@ -69,6 +107,12 @@
 						});
 
 						if (self.opts.contentOptions.checks.callback === undefined) {
+							/**
+							 * Description
+							 * @method callback
+							 * @param {} check
+							 * @return 
+							 */
 							self.opts.contentOptions.checks.callback = function (check) {
 								if (check) {
 									if (check.isAll) {
@@ -105,6 +149,11 @@
 					setTimeout(innerRecalcForData, 1);
 				};
 
+				/**
+				 * Description
+				 * @method innerRecalcForData
+				 * @return 
+				 */
 				var innerRecalcForData = function () {
 
 					if (self.scope.toggleRow) {
@@ -135,6 +184,11 @@
 						}
 					}
 
+					/**
+					 * Description
+					 * @method catHashKeys
+					 * @return hash
+					 */
 					self.scope.catHashKeys = function () {
 						var hash = '',
 							idx;
@@ -186,6 +240,14 @@
 					}
 				});
 
+				/**
+				 * Description
+				 * @method setToggle
+				 * @param {} row
+				 * @param {} isToggle
+				 * @param {} detailsClass
+				 * @return 
+				 */
 				var setToggle = function (row, isToggle, detailsClass) {
 
 					if (isToggle) {
@@ -213,6 +275,15 @@
 					}
 				};
 
+				/**
+				 * Description
+				 * @method refreshToggle
+				 * @param {} row
+				 * @param {} rowHeight
+				 * @param {} step
+				 * @param {} template
+				 * @return 
+				 */
 				var refreshToggle = function (row, rowHeight, step, template) {
 					if (template) {
 						var step = step;
@@ -277,6 +348,15 @@
 					}
 				}
 
+				/**
+				 * Description
+				 * @method setRenderToggle
+				 * @param {} row
+				 * @param {} detailsClass
+				 * @param {} template
+				 * @param {} rowHeight
+				 * @return 
+				 */
 				var setRenderToggle = function (row, detailsClass, template, rowHeight) {
 					row.elm.addClass(detailsClass);
 					row.isToggle = true;
@@ -368,6 +448,16 @@
 					}
 				}
 
+				/**
+				 * Description
+				 * @method closeOrigToggleRow
+				 * @param {} row
+				 * @param {} detailsClass
+				 * @param {} template
+				 * @param {} rowHeigth
+				 * @param {} reInit
+				 * @return 
+				 */
 				var closeOrigToggleRow = function (row, detailsClass, template, rowHeigth, reInit) {
 					if (rowHeigth === undefined) {
 						rowHeigth = 60;
@@ -397,6 +487,16 @@
 					}
 				}
 
+				/**
+				 * Description
+				 * @method closeToggleRow
+				 * @param {} row
+				 * @param {} detailsClass
+				 * @param {} template
+				 * @param {} rowHeigth
+				 * @param {} reInit
+				 * @return 
+				 */
 				var closeToggleRow = function (row, detailsClass, template, rowHeigth, reInit) {
 					row.elm.removeClass('toggle');
 					angular.element('.details-template').remove();
@@ -422,10 +522,25 @@
 					}
 				}
 
+				/**
+				 * Description
+				 * @method setCheck
+				 * @param {} row
+				 * @return 
+				 */
 				var setCheck = function (row) {
 					row.actions.onCheck(self.grid.rowCache);
 				}
 
+				/**
+				 * Description
+				 * @method getDetailsTemplate
+				 * @param {} template
+				 * @param {} condition
+				 * @param {} entity
+				 * @param {} index
+				 * @return template
+				 */
 				var getDetailsTemplate = function (template, condition, entity, index) {
 					if (condition !== undefined && condition(entity, index) !== undefined) {
 						template = condition(entity, index);
@@ -434,6 +549,12 @@
 					return template;
 				}
 
+				/**
+				 * Description
+				 * @method copyRow
+				 * @param {} row
+				 * @return 
+				 */
 				var copyRow = function (row) {
 					var s = JSON.stringify(row.entity);
 
@@ -471,6 +592,14 @@
 					};
 				}
 
+				/**
+				 * Description
+				 * @method deleteRow
+				 * @param {} entity
+				 * @param {} data
+				 * @param {} row
+				 * @return 
+				 */
 				var deleteRow = function (entity, data, row) {
 					for (var i = 0; i < self.grid.rowCache.length; i++) {
 						if (self.grid.rowCache[i].entity == entity) {
@@ -512,6 +641,12 @@
 					}
 				}
 
+				/**
+				 * Description
+				 * @method editRow
+				 * @param {} row
+				 * @return 
+				 */
 				var editRow = function (row) {
 					if (angular.element('div[ext-modal]').length != 0) {
 						angular.element('div[ext-modal]').remove();
@@ -525,6 +660,12 @@
 				}
 
 
+				/**
+				 * Description
+				 * @method historyRow
+				 * @param {} row
+				 * @return 
+				 */
 				var historyRow = function (row) {
 					if (angular.element('div[ext-modal]').length != 0) {
 						angular.element('div[ext-modal]').remove();
@@ -541,11 +682,28 @@
 				self.scope.$watch(self.grid.config.data, recalcForData);
 			}
 
+			/**
+			 * Description
+			 * @method refreshOpt
+			 * @param {} otps
+			 * @return 
+			 */
 			self.refreshOpt = function (otps) {
 				self.opts = otps;
 			}
 
+			/**
+			 * Description
+			 * @method refreshCallback
+			 * @return 
+			 */
 			self.refreshCallback = function () {
+				/**
+				 * Description
+				 * @method callback
+				 * @param {} check
+				 * @return 
+				 */
 				self.opts.contentOptions.checks.callback = function (check) {
 					if (check) {
 						if (check.isAll) {

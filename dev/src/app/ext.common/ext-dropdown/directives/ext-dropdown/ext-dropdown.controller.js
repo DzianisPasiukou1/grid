@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.dropdown')
@@ -7,6 +7,11 @@
 
 	ExtDropdownController.$inject = [];
 
+	/**
+	 * Description
+	 * @method ExtDropdownController
+	 * @return 
+	 */
 	function ExtDropdownController() {
 		var vm = this;
 
@@ -25,6 +30,12 @@
 
 		vm.select = select;
 
+		/**
+		 * Description
+		 * @method select
+		 * @param {} action
+		 * @return 
+		 */
 		function select(action) {
 			vm.options.selected = action;
 

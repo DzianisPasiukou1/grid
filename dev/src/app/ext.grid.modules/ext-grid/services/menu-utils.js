@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -7,8 +7,23 @@
 
 	menuUtils.$inject = ['MENU', '$window', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method menuUtils
+	 * @param {} MENU
+	 * @param {} $window
+	 * @param {} extDefine
+	 * @return ObjectExpression
+	 */
 	function menuUtils(MENU, $window, extDefine) {
 		return {
+			/**
+			 * Description
+			 * @method register
+			 * @param {} columns
+			 * @param {} opt
+			 * @return 
+			 */
 			register: function (columns, opt) {
 				this.opt = opt;
 
@@ -41,15 +56,36 @@
 				this._calcAllWidth();
 				this._pushValues();
 			},
+			/**
+			 * Description
+			 * @method destroy
+			 * @return 
+			 */
 			destroy: function () {
 				this.opt = this.colCache = this.columns = this.totalWidth = this.visibleWidth = null;
 			},
+			/**
+			 * Description
+			 * @method getColCache
+			 * @return MemberExpression
+			 */
 			getColCache: function () {
 				return this.colCache;
 			},
+			/**
+			 * Description
+			 * @method getColumns
+			 * @return MemberExpression
+			 */
 			getColumns: function () {
 				return this.columns;
 			},
+			/**
+			 * Description
+			 * @method getTotalWidth
+			 * @param {} isRecalc
+			 * @return MemberExpression
+			 */
 			getTotalWidth: function (isRecalc) {
 				if (isRecalc) {
 					this._calcTotalWidth();
@@ -57,6 +93,12 @@
 
 				return this.totalWidth;
 			},
+			/**
+			 * Description
+			 * @method getVisibleWidth
+			 * @param {} isRecalc
+			 * @return MemberExpression
+			 */
 			getVisibleWidth: function (isRecalc) {
 				if (isRecalc) {
 					this._calcVisibleWidth();
@@ -64,12 +106,28 @@
 
 				return this.visibleWidth;
 			},
+			/**
+			 * Description
+			 * @method getIsMenu
+			 * @return LogicalExpression
+			 */
 			getIsMenu: function () {
 				return this.colCache.length > 0 || this.opt.showResponsMenu;
 			},
+			/**
+			 * Description
+			 * @method getOptions
+			 * @return MemberExpression
+			 */
 			getOptions: function () {
 				return this.opt;
 			},
+			/**
+			 * Description
+			 * @method refreshColumns
+			 * @param {} columns
+			 * @return 
+			 */
 			refreshColumns: function (columns) {
 				this.columns = columns;
 				this.colCache = [];
@@ -77,6 +135,12 @@
 				this._calcAllWidth();
 				this._pushValues();
 			},
+			/**
+			 * Description
+			 * @method toggleVisible
+			 * @param {} index
+			 * @return 
+			 */
 			toggleVisible: function (index) {
 				this.columns[index].toggleVisible();
 				this._changeOptVisible(this.columns[index]);
@@ -99,6 +163,12 @@
 					this.visibleWidth += this.columns[index].minWidth;
 				}
 			},
+			/**
+			 * Description
+			 * @method toggleColumns
+			 * @param {} windowWidth
+			 * @return 
+			 */
 			toggleColumns: function (windowWidth) {
 				if (windowWidth < this.visibleWidth) {
 					this._toBackFor(function (item, index) {
@@ -124,6 +194,13 @@
 					}, this);
 				}
 			},
+			/**
+			 * Description
+			 * @method check
+			 * @param {} action
+			 * @param {} index
+			 * @return 
+			 */
 			check: function (action, index) {
 				this.toggleVisible(index);
 

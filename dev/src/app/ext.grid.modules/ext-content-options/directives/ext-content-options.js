@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.contentOptions')
@@ -7,6 +7,12 @@
 
 	extContentOptions.$inject = ['extContentOptionsTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extContentOptions
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extContentOptions(templatesPath) {
 		var directive = {
 			restrict: 'EA',

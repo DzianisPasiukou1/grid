@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.json')
@@ -7,7 +7,20 @@
 
 	extJsonService.$inject = ['$http', '$q'];
 
+	/**
+	 * Description
+	 * @method extJsonService
+	 * @param {} $q
+	 * @param {} $q
+	 * @return 
+	 */
 	function extJsonService($http, $q) {
+		/**
+		 * Description
+		 * @method get
+		 * @param {} url
+		 * @return MemberExpression
+		 */
 		this.get = function (url) {
 			var deferred = $q.defer()
 

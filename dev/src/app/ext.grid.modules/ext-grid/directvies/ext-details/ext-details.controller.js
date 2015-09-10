@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.grid.main')
@@ -7,6 +7,11 @@
 	
 	ExtDetailsController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method ExtDetailsController
+	 * @return 
+	 */
 	function ExtDetailsController() {
 		var vm = this;
 	};

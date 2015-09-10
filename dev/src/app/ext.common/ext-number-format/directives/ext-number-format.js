@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.numberFormat')
@@ -7,6 +7,11 @@
 
 	extNumberFormat.$inject = [];
 
+	/**
+	 * Description
+	 * @method extNumberFormat
+	 * @return directive
+	 */
 	function extNumberFormat() {
 		var directive = {
 			restrict: 'AC',
@@ -18,13 +23,35 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			scope.$watch('number', changedNumber);
 
+			/**
+			 * Description
+			 * @method changedNumber
+			 * @param {} num
+			 * @return 
+			 */
 			function changedNumber(num) {
 				element.html(nFormatter(num, 1));
 			};
 
+			/**
+			 * Description
+			 * @method nFormatter
+			 * @param {} num
+			 * @param {} digits
+			 * @return num
+			 */
 			function nFormatter(num, digits) {
 				var si = [
 					{ value: 1E18, symbol: "E" },

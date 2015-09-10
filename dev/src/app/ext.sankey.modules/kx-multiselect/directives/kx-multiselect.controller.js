@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.sankey.multiselect')
@@ -7,6 +7,11 @@
 	
 	KxMultiselectController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method KxMultiselectController
+	 * @return 
+	 */
 	function KxMultiselectController() {
 		var vm = this;
 	};

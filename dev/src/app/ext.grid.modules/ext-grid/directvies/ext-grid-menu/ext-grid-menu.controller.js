@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -7,6 +7,13 @@
 
 	ExtGridMenuController.$inject = ['menuUtils', '$scope'];
 
+	/**
+	 * Description
+	 * @method ExtGridMenuController
+	 * @param {} menuUtils
+	 * @param {} $scope
+	 * @return 
+	 */
 	function ExtGridMenuController(menuUtils, $scope) {
 		var vm = this;
 		

@@ -7,6 +7,14 @@
 
 	GridLoadingController.$inject = ['gridTemplatesPath', '$scope', 'gridUploadService'];
 
+	/**
+	 * Description
+	 * @method GridLoadingController
+	 * @param {} templatesPath
+	 * @param {} $scope
+	 * @param {} gridUploadService
+	 * @return 
+	 */
 	function GridLoadingController(templatesPath, $scope, gridUploadService) {
 		var vm = this;
 
@@ -18,6 +26,12 @@
 		};
 
 		vm.contentOptions = {
+			/**
+			 * Description
+			 * @method upload
+			 * @param {} data
+			 * @return 
+			 */
 			upload: function (data) {
 				vm.contentOptions.isLoading = true;
 
@@ -27,6 +41,11 @@
 
 				vm.gridOptions.detailsCondition = undefined;
 			},
+			/**
+			 * Description
+			 * @method refreshCallback
+			 * @return 
+			 */
 			refreshCallback: function () {
 				getData();
 			},
@@ -37,6 +56,13 @@
 		vm.gridOptions = {
 			data: 'data',
 			multiSelect: false,
+			/**
+			 * Description
+			 * @method init
+			 * @param {} grid
+			 * @param {} event
+			 * @return 
+			 */
 			init: function (grid, event) {
 				vm.contentOptions.isLoading = false;
 			},
@@ -46,6 +72,13 @@
 			headerRowHeight: 40,
 			showFooter: true,
 			footerRowHeight: 30,
+			/**
+			 * Description
+			 * @method detailsCondition
+			 * @param {} entity
+			 * @param {} index
+			 * @return 
+			 */
 			detailsCondition: function (entity, index) {
 				if (index % 2 != 0) {
 					return templatesPath + 'grid-templates/details-templates/details-example2.html';
@@ -55,6 +88,11 @@
 
 		getData();
 
+		/**
+		 * Description
+		 * @method getData
+		 * @return 
+		 */
 		function getData() {
 			setTimeout(function () {
 				gridUploadService.get(function (data) {

@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.main')
@@ -7,6 +7,12 @@
 
 	extGrid.$inject = ['extGridTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extGrid
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extGrid(templatesPath) {
 		var directive = {
 			restrict: 'EA',

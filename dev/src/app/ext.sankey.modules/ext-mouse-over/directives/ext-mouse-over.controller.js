@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.sankey.mouseOver')
@@ -7,6 +7,11 @@
 	
 	ExtMouseOverController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method ExtMouseOverController
+	 * @return 
+	 */
 	function ExtMouseOverController() {
 		var vm = this;
 	};

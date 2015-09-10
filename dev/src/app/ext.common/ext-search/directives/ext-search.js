@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.search')
@@ -7,6 +7,12 @@
 
 	extSearch.$inject = ['extSearchTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extSearch
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extSearch(templatesPath) {
 		var directive = {
 			restrict: 'EA',

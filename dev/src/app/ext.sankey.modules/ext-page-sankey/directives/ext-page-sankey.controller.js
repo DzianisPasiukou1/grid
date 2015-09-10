@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.pageSankey')
@@ -7,6 +7,13 @@
 
 	ExtPageSankeyController.$inject = ['initUtils', 'loggerService'];
 
+	/**
+	 * Description
+	 * @method ExtPageSankeyController
+	 * @param {} initUtils
+	 * @param {} loggerService
+	 * @return 
+	 */
 	function ExtPageSankeyController(initUtils, loggerService) {
 		var vm = this;
 
@@ -18,6 +25,11 @@
 
 		vm.contentOptions.update = update;
 
+		/**
+		 * Description
+		 * @method update
+		 * @return 
+		 */
 		function update() {
 			vm.sankeyData = initUtils.content.sankeyData;
 			vm.histogramData = initUtils.content.histogramData;

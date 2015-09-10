@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.uiGrid')
@@ -7,6 +7,15 @@
 
 	ExtUiGridMenuController.$inject = ['MENU', 'uiGridGridMenuService', '$window', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method ExtUiGridMenuController
+	 * @param {} MENU
+	 * @param {} uiGridGridMenuService
+	 * @param {} $window
+	 * @param {} extDefine
+	 * @return 
+	 */
 	function ExtUiGridMenuController(MENU, uiGridGridMenuService, $window, extDefine) {
 		var vm = this;
 
@@ -20,6 +29,11 @@
 		vm.resize = resize;
 		vm.columnVisibilityChanged = columnVisibilityChanged;
 
+		/**
+		 * Description
+		 * @method getTotalWidth
+		 * @return totalWidth
+		 */
 		function getTotalWidth() {
 			var totalWidth = vm.gridApi.grid.columns.reduce(function (a, b) {
 				if (b.visible) {
@@ -33,6 +47,12 @@
 			return totalWidth;
 		};
 
+		/**
+		 * Description
+		 * @method changeMinWidth
+		 * @param {} totalWidth
+		 * @return 
+		 */
 		function changeMinWidth(totalWidth) {
 			if (angular.element('body')[0].scrollWidth < totalWidth) {
 				angular.element(vm.options.parentSelector).css('minWidth', totalWidth + 'px');
@@ -42,6 +62,12 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method resize
+		 * @param {} totalWidth
+		 * @return 
+		 */
 		function resize(totalWidth) {
 			if (angular.element('body')[0].scrollWidth < totalWidth) {
 				for (var i = vm.gridApi.grid.columns.length - 2; i > 1; i--) {
@@ -67,6 +93,11 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method columnVisibilityChanged
+		 * @return 
+		 */
 		function columnVisibilityChanged() {
 			var totalWidth = vm.getTotalWidth();
 

@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.grid.contentOptionsCards')
@@ -7,6 +7,15 @@
 
 	initContentOptionsCardsUtils.$inject = ['EXT_CONTENT_OPTIONS_CARDS', 'extInitDefaultService', '$log', 'extDefine'];
 
+	/**
+	 * Description
+	 * @method initContentOptionsCardsUtils
+	 * @param {} EXT_CONTENT_OPTIONS_CARDS
+	 * @param {} extInitDefaultService
+	 * @param {} $log
+	 * @param {} extDefine
+	 * @return utils
+	 */
 	function initContentOptionsCardsUtils(EXT_CONTENT_OPTIONS_CARDS, extInitDefaultService, $log, extDefine) {
 		var utils = {};
 		initContent();
@@ -16,10 +25,21 @@
 
 		return utils;
 
+		/**
+		 * Description
+		 * @method initContent
+		 * @return 
+		 */
 		function initContent() {
 			extInitDefaultService.init(EXT_CONTENT_OPTIONS_CARDS, utils, 'content');
 		};
 
+		/**
+		 * Description
+		 * @method initOpt
+		 * @param {} contentOptions
+		 * @return opt
+		 */
 		function initOpt(contentOptions) {
 			var opt = contentOptions || {};
 
@@ -39,18 +59,39 @@
 			return opt;
 		};
 
+		/**
+		 * Description
+		 * @method getDefault
+		 * @return MemberExpression
+		 */
 		function getDefault() {
 			return utils.content;
 		};
 
+		/**
+		 * Description
+		 * @method getDefaultByName
+		 * @param {} name
+		 * @return MemberExpression
+		 */
 		function getDefaultByName(name) {
 			return utils.content[name];
 		};
 
+		/**
+		 * Description
+		 * @method filtrate
+		 * @return 
+		 */
 		function filtrate() {
 			$log.warn('Call default empty function on filtrate.');
 		};
 
+		/**
+		 * Description
+		 * @method search
+		 * @return 
+		 */
 		function search() {
 			$log.warn('Call default empty function on search.');
 		};

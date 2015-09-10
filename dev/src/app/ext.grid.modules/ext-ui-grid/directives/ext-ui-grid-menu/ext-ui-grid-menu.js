@@ -1,10 +1,19 @@
 ﻿(function () {
+	'use strict';
+	
 	angular
 		.module('ext.grid.uiGrid')
 		.directive('extUiGridMenu', extUiGridMenu);
 
 	extUiGridMenu.$inject = ['$timeout', '$window'];
 
+	/**
+	 * Description
+	 * @method extUiGridMenu
+	 * @param {} $window
+	 * @param {} $window
+	 * @return directive
+	 */
 	function extUiGridMenu($timeout, $window) {
 		var directive = {
 			restrict: 'EA',
@@ -20,17 +29,37 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} scope
+		 * @param {} element
+		 * @param {} attrs
+		 * @param {} vm
+		 * @return 
+		 */
 		function link(scope, element, attrs, vm) {
 			angular.element($window).resize(resize);
 			scope.$on('$destroy', destroy);
 			scope.$watch('vm.gridApi', gridApiChanged);
 
+			/**
+			 * Description
+			 * @method gridApiChanged
+			 * @param {} gridApi
+			 * @return 
+			 */
 			function gridApiChanged(gridApi) {
 				if (angular.isDefined(gridApi)) {
 					init();
 				}
 			};
 
+			/**
+			 * Description
+			 * @method init
+			 * @return 
+			 */
 			function init() {
 				vm.gridApi.core.on.columnVisibilityChanged(scope, vm.columnVisibilityChanged);
 
@@ -50,6 +79,11 @@
 				}
 			}
 
+			/**
+			 * Description
+			 * @method resize
+			 * @return 
+			 */
 			function resize() {
 				var totalWidth = vm.getTotalWidth();
 
@@ -73,6 +107,11 @@
 				}
 			};
 
+			/**
+			 * Description
+			 * @method destroy
+			 * @return 
+			 */
 			function destroy() {
 				angular.element($window).off("resize", resize);
 			}

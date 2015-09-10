@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.splitButton')
@@ -7,6 +7,12 @@
 
 	extSplitButton.$inject = ['extSplitButtonTemplatesPath'];
 
+	/**
+	 * Description
+	 * @method extSplitButton
+	 * @param {} templatesPath
+	 * @return directive
+	 */
 	function extSplitButton(templatesPath) {
 		var directive = {
 			restrict: 'E',

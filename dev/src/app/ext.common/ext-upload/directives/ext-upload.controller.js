@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 	
 	angular
 		.module('ext.common.upload')
@@ -7,6 +7,11 @@
 	
 	ExtUploadController.$inject = [];
 	
+	/**
+	 * Description
+	 * @method ExtUploadController
+	 * @return 
+	 */
 	function ExtUploadController() {
 		var vm = this;
 	};

@@ -7,9 +7,22 @@
 
 	extInitDefaultService.$inject = [];
 
+	/**
+	 * Description
+	 * @method extInitDefaultService
+	 * @return 
+	 */
 	function extInitDefaultService() {
 		this.init = init;
 
+		/**
+		 * Description
+		 * @method init
+		 * @param {} defaultVal
+		 * @param {} initVal
+		 * @param {} propName
+		 * @return 
+		 */
 		function init(defaultVal, initVal, propName) {
 			initVal[propName] = {};
 

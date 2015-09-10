@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.datepicker')
@@ -7,6 +7,12 @@
 
 	ExtDatepickerController.$inject = ['$element'];
 
+	/**
+	 * Description
+	 * @method ExtDatepickerController
+	 * @param {} $element
+	 * @return 
+	 */
 	function ExtDatepickerController($element) {
 		var vm = this;
 
@@ -14,6 +20,11 @@
 		vm.toggle = toggle;
 		vm.close = close;
 
+		/**
+		 * Description
+		 * @method toggle
+		 * @return 
+		 */
 		function toggle() {
 			vm.isShow = !vm.isShow;
 
@@ -25,6 +36,11 @@
 			}
 		};
 
+		/**
+		 * Description
+		 * @method close
+		 * @return 
+		 */
 		function close() {
 			vm.isShow = false;
 			$element.find(vm.dateBtnSelector).data('dateRangePicker').close();

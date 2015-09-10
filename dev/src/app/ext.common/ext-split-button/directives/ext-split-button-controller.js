@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.splitButton')
@@ -7,6 +7,11 @@
 
 	ExtSplitButtonControler.$inject = [];
 
+	/**
+	 * Description
+	 * @method ExtSplitButtonControler
+	 * @return 
+	 */
 	function ExtSplitButtonControler() {
 		var vm = this;
 
@@ -21,6 +26,12 @@
 		vm.toggle = toggle;
 		vm.close = close;
 
+		/**
+		 * Description
+		 * @method select
+		 * @param {} action
+		 * @return 
+		 */
 		function select(action) {
 			vm.actions.selected = action;
 			vm.search = '';
@@ -28,10 +39,20 @@
 			close();
 		};
 
+		/**
+		 * Description
+		 * @method toggle
+		 * @return 
+		 */
 		function toggle() {
 			vm.isShow = !vm.isShow;
 		};
 
+		/**
+		 * Description
+		 * @method close
+		 * @return 
+		 */
 		function close() {
 			vm.isShow = false;
 		};

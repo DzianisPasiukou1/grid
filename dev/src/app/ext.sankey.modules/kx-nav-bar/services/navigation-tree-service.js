@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.navbar')
@@ -7,12 +7,27 @@
 
 	NavigationTree.$inject = [];
 
+	/**
+	 * Description
+	 * @method NavigationTree
+	 * @return ObjectExpression
+	 */
 	function NavigationTree() {
 		return {
 			menu: [],
+			/**
+			 * Description
+			 * @method get
+			 * @return AssignmentExpression
+			 */
 			get: function () {
 				return this.menu = this.NAV_TREE;
 			},
+			/**
+			 * Description
+			 * @method generate
+			 * @return menu
+			 */
 			generate: function () {
 				var i, len, menu, node, ref, subMenu;
 				menu = [];
@@ -26,6 +41,12 @@
 				}
 				return menu;
 			},
+			/**
+			 * Description
+			 * @method subTree
+			 * @param {} root
+			 * @return tree
+			 */
 			subTree: function (root) {
 				var i, len, node, ref, subTree, tree;
 				tree = {};
@@ -57,6 +78,12 @@
 				}
 				return tree;
 			},
+			/**
+			 * Description
+			 * @method checkPermission
+			 * @param {} permissions
+			 * @return LogicalExpression
+			 */
 			checkPermission: function (permissions) {
 				return permissions[0] === 'none' || arrayUtils.intersects(session.allow, permissions);
 			},

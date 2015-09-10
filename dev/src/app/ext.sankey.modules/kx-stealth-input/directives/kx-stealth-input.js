@@ -1,5 +1,5 @@
 ﻿(function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.sankey.stealthInput')
@@ -7,6 +7,11 @@
 
 	kxStealthInput.$inject = [];
 
+	/**
+	 * Description
+	 * @method kxStealthInput
+	 * @return directive
+	 */
 	function kxStealthInput() {
 		var directive = {
 			restrict: "CAE",
@@ -15,10 +20,22 @@
 
 		return directive;
 
+		/**
+		 * Description
+		 * @method link
+		 * @param {} $scope
+		 * @param {} elem
+		 * @param {} attrs
+		 * @return CallExpression
+		 */
 		function link($scope, elem, attrs) {
 			var focus, hover, update;
 			focus = false;
 			hover = false;
+			/**
+			 * Description
+			 * @return CallExpression
+			 */
 			update = function () {
 				return elem.toggleClass('stealth-mode', !(focus || hover));
 			};

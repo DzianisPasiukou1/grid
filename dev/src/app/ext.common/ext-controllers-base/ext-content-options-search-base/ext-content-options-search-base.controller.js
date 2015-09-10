@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.searchBase')
@@ -7,9 +7,22 @@
 
 	ExtContentOptionsSearchBaseController.$inject = ['$parse', 'vm'];
 
+	/**
+	 * Description
+	 * @method ExtContentOptionsSearchBaseController
+	 * @param {} $parse
+	 * @param {} vm
+	 * @return 
+	 */
 	function ExtContentOptionsSearchBaseController($parse, vm) {
 		vm.searchValueChanged = searchValueChanged;
 
+		/**
+		 * Description
+		 * @method searchValueChanged
+		 * @param {} value
+		 * @return 
+		 */
 		function searchValueChanged(value) {
 			var selected = $parse('options.searchOptions.selected.label')(vm);
 

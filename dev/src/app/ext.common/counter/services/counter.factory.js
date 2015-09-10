@@ -1,5 +1,5 @@
 (function () {
-	'use strict'
+	'use strict';
 
 	angular
 		.module('ext.common.counter')
@@ -7,16 +7,34 @@
 
 	counterFactory.$inject = [];
 
+	/**
+	 * Description
+	 * @method counterFactory
+	 * @return factory
+	 */
 	function counterFactory() {
 		var factory = {};
 
 		factory.getCounter = getCounter;
 
 		var Counter = (function () {
+			/**
+			 * Description
+			 * @method Counter
+			 * @param {} card
+			 * @return 
+			 */
 			function Counter(card) {
 				this.card = card;
 			}
 
+			/**
+			 * Description
+			 * @method calculate
+			 * @param {} startDate
+			 * @param {} endDate
+			 * @return BinaryExpression
+			 */
 			Counter.prototype.calculate = function (startDate, endDate) {
 				var countDays = endDate.getDay() - startDate.getDay();
 
@@ -27,7 +45,7 @@
 
 					this.card.graphs[i].style['height'] = height + 'px';
 				}
-
+				
 				return count * countDays;
 			}
 
@@ -37,6 +55,12 @@
 
 		return factory;
 
+		/**
+		 * Description
+		 * @method getCounter
+		 * @param {} card
+		 * @return NewExpression
+		 */
 		function getCounter(card) {
 			return new Counter(card);
 		};

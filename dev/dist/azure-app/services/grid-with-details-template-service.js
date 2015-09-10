@@ -1,5 +1,11 @@
 ﻿angular.module('azureApp')
 	.service('gridWithDetailsTemplateService', ['DetailsTemplateData', function (DetailsTemplateData) {
+		/**
+		 * Description
+		 * @method get
+		 * @param {} callback
+		 * @return 
+		 */
 		this.get = function (callback) {
 			var data = DetailsTemplateData.get();
 
@@ -36,6 +42,11 @@
 		}();
 
 		return {
+			/**
+			 * Description
+			 * @method get
+			 * @return data
+			 */
 			get: function () {
 				return data;
 			}
