@@ -166,32 +166,32 @@ module.exports = function (grunt) {
 		'angular-builder': {
 			ext: {
 				options: {
-				mainModule: '<%=mainModuleName%>',
-				externalModules: [
-					'ngGrid',
-					'pascalprecht.translate',
-					'ui.grid',
-					'ui.grid.selection',
-					'ui.grid.expandable',
-					'ui.select2'
-				]
+					mainModule: '<%=mainModuleName%>',
+					externalModules: [
+						'ngGrid',
+						'pascalprecht.translate',
+						'ui.grid',
+						'ui.grid.selection',
+						'ui.grid.expandable',
+						'ui.select2'
+					]
 				},
-			src: '<%= meta.srcPath%>app/**/*.js',
+				src: '<%= meta.srcPath%>app/**/*.js',
 				dest: '<%= meta.devPath%>src/ext.js'
 			},
 			azureApp: {
 				options: {
 					mainModule: '<%=azureModuleName%>',
 					externalModules: [
-					'ngGrid',
-					'pascalprecht.translate',
-					'ui.grid',
-					'ui.grid.selection',
-					'ui.grid.expandable',
-					'ui.select2',
-					'ngRoute',
-					'ext'
-				]
+						'ngGrid',
+						'pascalprecht.translate',
+						'ui.grid',
+						'ui.grid.selection',
+						'ui.grid.expandable',
+						'ui.select2',
+						'ngRoute',
+						'ext'
+					]
 				},
 				src: [
 					'<%= meta.devPath%>azure-app/**/*.js',
@@ -320,7 +320,7 @@ module.exports = function (grunt) {
 			}
 		}
 	});
-
+	
 	grunt.registerTask('default', [
 		'wiredep',
 		'sass',

@@ -6,7 +6,7 @@
 		.run(center);
 
 	center.$inject = [];
-
+	
 	/**
 	 * Description
 	 * @method center

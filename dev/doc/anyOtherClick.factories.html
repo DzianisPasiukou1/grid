@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: ext-max-heighter/directives/max-heighter.js</title>
+    <title>JSDoc: Namespace: factories</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,104 +17,496 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: ext-max-heighter/directives/max-heighter.js</h1>
+    <h1 class="page-title">Namespace: factories</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>﻿(function () {
-	'use strict';
+        <h2>
+            <span class="ancestors"><a href="global.html#anyOtherClick">anyOtherClick</a>.</span>
+        
+        factories
+        </h2>
+        
+    
+</header>
 
-	angular
-		.module('ext.common.maxHeighter')
-		.directive('extMaxHeighter', extMaxHeighter)
+<article>
+    <div class="container-overview">
+    
+        
 
-	extMaxHeighter.$inject = ['$timeout', '$window', 'extWindow'];
+        
 
-	/**
-	 * Description
-	 * @method extMaxHeighter
-	 * @param {} $window
-	 * @param {} $window
-	 * @param {} extWindow
-	 * @return directive
-	 */
-	function extMaxHeighter($timeout, $window, extWindow) {
-		var directive = {
-			restrict: 'AC',
-			scope: {},
-			compile: compile
-		}
 
-		return directive;
+<dl class="details">
 
-		/**
-		 * Description
-		 * @method compile
-		 * @param {} element
-		 * @param {} attrs
-		 * @return compileObj
-		 */
-		function compile(element, attrs) {
-			var compileObj = {
-				post: compilePost
-			};
+    
 
-			element.onPositionChanged(function () {
-				onPositionChanged(element);
-			}, 0);
+    
 
-			return compileObj;
+    
 
-			/**
-			 * Description
-			 * @method onPositionChanged
-			 * @return 
-			 */
-			function onPositionChanged() {
-				if (extWindow.height() - element.offset().top > 0) {
-					element.css('max-height', extWindow.height() - element.offset().top - 10 + 'px');
-				}
-				else {
-					element.css('max-height', 100 + 'px');
-				}
-			};
+    
 
-			/**
-			 * Description
-			 * @method compilePost
-			 * @param {} scope
-			 * @param {} element
-			 * @param {} attrs
-			 * @return 
-			 */
-			function compilePost(scope, element, attrs) {
-				$timeout(function () {
-					onPositionChanged(element);
-				});
+    
 
-				angular.element($window).resize(onPositionChanged);
+    
 
-				scope.$on('$destroy', destroy);
-			};
+    
 
-			/**
-			 * Description
-			 * @method destroy
-			 * @return 
-			 */
-			function destroy() {
-				angular.element($window).off("resize", onPositionChanged);
-			};
-		};
-	};
-} ());</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="._destroy"><span class="type-signature">(static) </span>_destroy<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Unhandle function from document events
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="._getCountHandlers"><span class="type-signature">(static) </span>_getCountHandlers<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Get count of handlers on document click event
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="._getHandlers"><span class="type-signature">(static) </span>_getHandlers<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Get handlers on document click event
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="._register"><span class="type-signature">(static) </span>_register<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Register document event
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".anyOtherClickFactory"><span class="type-signature">(static) </span>anyOtherClickFactory<span class="signature">($document)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Factory for any other click
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>$document</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="any-other-click_services_any-other-click.service.js.html">any-other-click/services/any-other-click.service.js</a>, <a href="any-other-click_services_any-other-click.service.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    ObjectExpression
+</div>
+
+
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -6,12 +6,12 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
-      "id": "global.directive:nameOfDirective",
-      "shortName": "nameOfDirective",
+      "id": "anyOtherClick",
+      "shortName": "anyOtherClick",
       "type": "directive",
-      "moduleName": "global",
-      "shortDescription": "A description of the directive",
-      "keywords": "api description directive field global object"
+      "moduleName": "anyOtherClick",
+      "shortDescription": "",
+      "keywords": "anyotherclick api click directive element event function handle"
     }
   ],
   "apis": {

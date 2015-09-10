@@ -1,4 +1,8 @@
-﻿(function () {
+﻿/**
+ * @namespace factories
+ * @memberOf anyOtherClick
+ */
+(function () {
 	'use strict';
 
 	angular
@@ -8,9 +12,12 @@
 	anyOtherClickFactory.$inject = ['$document'];
 	
 	/**
-   * @desc Factory for any other click
-   * @memberOf anyOtherClick
-   */
+	 * @memberOf anyOtherClick.factories
+	 * @desc Factory for any other click
+	 * @method anyOtherClickFactory
+	 * @param {Object} $document
+	 * @return ObjectExpression
+	 */
 	function anyOtherClickFactory($document) {
 		var handlers = [];
 
@@ -22,44 +29,44 @@
 		};
 
 		/**
+		 * @memberOf anyOtherClick.factories
 			   * @name _register
 			   * @desc Register document event
 			   * @param {Function} documentClickHandler Document event handler
-			   * @memberOf anyOtherClick
 			   */
 		function _register(documentClickHandler) {
-			$document.on("click", documentClickHandler);
+			$document.on('click', documentClickHandler);
 			handlers.push(documentClickHandler);
 		}
 
 		/**
-			   * @name _getHandlers
-			   * @desc Get handlers on document click event
-			   * @returns {Array}
-			   * @memberOf anyOtherClick
-			   */
+		 * @memberOf anyOtherClick.factories
+		 * @name _getHandlers
+	 	 * @desc Get handlers on document click event
+		 * @returns {Array}
+		 */
 		function _getHandlers() {
 			return handlers;
 		}
 
 		/**
+		 * @memberOf anyOtherClick.factories
    * @name _getCountHandlers
    * @desc Get count of handlers on document click event
    * @returns {Number}
-   * @memberOf anyOtherClick
    */
 		function _getCountHandlers() {
 			return handlers.length;
 		}
 		
 		/**
+		 * @memberOf anyOtherClick.factories
    * @name _destroy
    * @desc Unhandle function from document events
    * @param {Function} Document click handler
-   * @memberOf anyOtherClick
    */
 		function _destroy(documentClickHandler) {
-			$document.off("click", documentClickHandler);
+			$document.off('click', documentClickHandler);
 			handlers.splice(documentClickHandler, 1);
 		}
 	}
